@@ -1,0 +1,641 @@
+import asyncio
+import enum
+import hashlib
+import json
+import logging
+import os
+import signal
+import sys
+from functools import partial, update_wrapper
+from pathlib import Path
+from typing import Optional, TypeVar, Union
+
+from . import __version__
+from .api import (
+    API,
+    BaseObject,
+    Close,
+    FormattedText,
+    InputMessageText,
+    Message,
+    MessageSchedulingStateSendAtDate, MessageSchedulingStateSendWhenOnline, MessageSendOptions,
+    PhoneNumberAuthenticationSettings,
+    ReplyMarkup,
+    TdlibParameters,
+    UpdateAuthorizationState,
+)
+from .handlers import FilterCallable, Handler, HandlerCallable
+from .middlewares import MiddlewareCallable
+from .tdjson import TDJson, TDLibLogVerbosity
+from .utils import ainput, AsyncResult, str_to_base64
+
+RequestResult = TypeVar('RequestResult', bound=BaseObject)
+ExecuteResult = TypeVar('ExecuteResult', bound=BaseObject)
+
+
+class CurrentAuthorizationState(enum.Enum):
+    NONE = None
+    WAIT_CODE = 'authorizationStateWaitCode'
+    WAIT_PASSWORD = 'authorizationStateWaitPassword'
+    WAIT_TDLIB_PARAMETERS = 'authorizationStateWaitTdlibParameters'
+    WAIT_ENCRYPTION_KEY = 'authorizationStateWaitEncryptionKey'
+    WAIT_PHONE_NUMBER = 'authorizationStateWaitPhoneNumber'
+    WAIT_REGISTRATION = 'authorizationStateWaitRegistration'
+    READY = 'authorizationStateReady'
+    LOGGING_OUT = 'authorizationStateLoggingOut'
+    CLOSING = 'authorizationStateClosing'
+    CLOSED = 'authorizationStateClosed'
+
+
+class Client:
+    logger: logging.Logger = None
+    loop: asyncio.AbstractEventLoop = None
+    __stop_idle_event: asyncio.Event = None
+
+    def __init__(
+            self,
+            api_id: int,
+            api_hash: str,
+            database_encryption_key: Union[str, bytes] = 'aiotdlib',
+            phone_number: str = None,
+            bot_token: str = None,
+            use_test_dc: bool = False,
+            system_language_code: str = 'en',
+            device_model: str = 'aiotdlib',
+            system_version: str = "",
+            application_version: str = __version__,
+            files_directory: str = None,
+            first_name: str = None,
+            last_name: str = None,
+            library_path: str = None,
+            tdlib_verbosity: TDLibLogVerbosity = TDLibLogVerbosity.WARNING,
+            debug: bool = False,
+    ):
+        """
+            Params:
+                api_id (:class:`int`)
+                    Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
+
+                api_hash (:class:`str`)
+                    Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
+
+                database_encryption_key (:class:`str`)
+                    Encryption key of local session database. Default: aiotdlib
+
+                phone_number (:class:`str`)
+                    The phone number of the user, in international format.
+                    Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
+
+                bot_token (:class:`str`)
+                    The bot token.
+                    Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
+
+                use_test_dc (:class:`bool`)
+                    If set to true, the Telegram test environment will be used instead of the production environment
+
+                system_language_code (:class:`str`)
+                    IETF language tag of the user's operating system language; must be non-empty
+
+                device_model (:class:`str`)
+                    Model of the device the application is being run on; must be non-empty
+
+                system_version (:class:`str`)
+                    Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
+
+                application_version (:class:`str`)
+                    Application version; must be non-empty
+
+                files_directory (:class:`str`)
+                    The path to the directory for storing files. Default: .aiotdlib/
+
+                first_name (:class:`str`)
+                    First name of new account if account with passed phone_number does not exist
+
+                last_name (:class:`str`)
+                    Last name of new account if account with passed phone_number does not exist
+
+                library_path (:class:`str`)
+                    Path to TDLib binary. By default binary included in package is used
+
+                tdlib_verbosity (:class:`str`)
+                    Verbosity level of TDLib itself. Default: 2 (WARNING) for more info look at (:class:`TDLibLogVerbosity`)
+
+                debug (:class:`bool`)
+                    When set to true all request and responses would be logged in console with DEBUG level
+
+        """
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.DEBUG if debug else logging.INFO)
+
+        if not bool(bot_token) and not bool(phone_number):
+            raise ValueError('Either phone_number or bot_token should be specified')
+
+        self.api_id = api_id
+        self.api_hash = api_hash
+        self.database_encryption_key = database_encryption_key
+        self.phone_number = phone_number
+        self.bot_token = bot_token
+        self.use_test_dc = use_test_dc
+        self.device_model = device_model
+        self.application_version = application_version
+        self.system_version = system_version
+        self.system_language_code = system_language_code
+        self.first_name = first_name
+        self.last_name = last_name
+
+        md5_hash = hashlib.md5()
+        md5_hash.update((self.phone_number or self.bot_token).encode('utf-8'))
+        directory_name = md5_hash.hexdigest()
+
+        self.debug = debug
+
+        if bool(files_directory):
+            self.files_directory = str(os.path.join(files_directory, '.aiotdlib', directory_name))
+        else:
+            self.files_directory = str(os.path.join(Path(sys.argv[0]).parent, '.aiotdlib', directory_name))
+
+        self.api = API(self)
+
+        self.__tdjson = TDJson(library_path=library_path, verbosity=tdlib_verbosity)
+        self.__is_authorized = False
+        self.__running = False
+        self.__request_results: dict[str, AsyncResult] = {}
+
+        # For handlers registration
+        self.__updates_handlers: dict[str, set[Handler]] = {}
+        self.__middlewares: list[MiddlewareCallable] = []
+        self.__middlewares_handlers: list[MiddlewareCallable] = []
+
+    # Magic methods
+    async def __aenter__(self) -> 'Client':
+        return await self.start()
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        await self.stop()
+
+    async def send(self, query: Union[dict, BaseObject], *, request_id: str = None) -> AsyncResult:
+        if not self.__running:
+            raise RuntimeError('Client not started')
+
+        if isinstance(query, BaseObject):
+            query_type = query.ID
+            query = query.dict(by_alias=True, exclude={'ID'})
+            query['@type'] = query_type
+
+        if query.get('@extra', None) is None:
+            query['@extra'] = {}
+
+        if not request_id and query['@extra'].get('request_id') is not None:
+            request_id = query['@extra']['request_id']
+
+        async_result = AsyncResult(self, request_id=request_id)
+        query['@extra']['request_id'] = async_result.id
+        async_result.request = query
+
+        if self.debug:
+            self.logger.debug(f">>>>> {query['@type']} {json.dumps(query)}")
+
+        self.__request_results[async_result.id] = async_result
+        await self.loop.run_in_executor(None, self.__tdjson.send, query)
+
+        return async_result
+
+    async def request(self, query: BaseObject, *, request_id: str = None) -> Optional[RequestResult]:
+        result = await self.send(query, request_id=request_id)
+        await result.wait(raise_exc=True, timeout=5)
+
+        if self.debug:
+            self.logger.debug(f"<<<<< {result.update.ID} {result.update.dict(by_alias=True, exclude={'ID'})}")
+
+        return result.update
+
+    async def receive(self, timeout: float = 1.0) -> Optional[dict]:
+        if not self.__running:
+            raise RuntimeError('Client not started')
+
+        return await self.loop.run_in_executor(None, self.__tdjson.receive, timeout)
+
+    async def execute(self, query: BaseObject) -> ExecuteResult:
+        if not self.__running:
+            raise RuntimeError('Client not started')
+
+        if isinstance(query, BaseObject):
+            query_type = query.ID
+            query = query.dict(by_alias=True, exclude={'ID'})
+            query['@type'] = query_type
+
+        result = await self.loop.run_in_executor(None, self.__tdjson.execute, query)
+        return BaseObject.read(result)
+
+    async def start(self) -> 'Client':
+        self.logger.info('Starting client')
+        self.logger.info(f'Session workdir: {self.files_directory}')
+
+        # Preparing middlewares handlers
+        self.__middlewares_handlers = list(reversed(self.__middlewares))
+
+        # Setting up asyncio stuff
+        self.loop = asyncio.get_running_loop()
+        self.__stop_idle_event = asyncio.Event()
+
+        # Starting updates loop
+        self.__running = True
+        self.loop.create_task(self.__updates_loop())
+
+        # Initialize authorization process
+        await self.authorize()
+        return self
+
+    async def idle(self, stop_signals: tuple = (signal.SIGINT, signal.SIGTERM, signal.SIGABRT, signal.SIGQUIT)):
+        if not self.__running:
+            raise ValueError('Client is already stopped')
+
+        self.logger.info('Started Idling...')
+
+        # Registering signals handlers for graceful shutdown
+        for sig in stop_signals:
+            self.loop.add_signal_handler(sig, lambda _s=sig: asyncio.create_task(self.__stop_signal_handler(sig)))
+
+        try:
+            await self.__stop_idle_event.wait()
+        except asyncio.CancelledError:
+            pass
+
+        self.logger.info('Stop Idling...')
+
+    async def stop(self):
+        self.logger.info('Stopping telegram client...')
+        await self.__close()
+
+        self.__running = False
+        self.__stop_idle_event.set()
+
+    async def authorize(self):
+        if bool(self.phone_number):
+            self.logger.info('Authorization process has been started with phone')
+        else:
+            self.logger.info('Authorization process has been started with bot token')
+
+        current_authorization_state = CurrentAuthorizationState.NONE
+        actions = {
+            CurrentAuthorizationState.NONE: self.__auth_get_authorization_state,
+            CurrentAuthorizationState.WAIT_TDLIB_PARAMETERS: self.__auth_set_tdlib_params,
+            CurrentAuthorizationState.WAIT_ENCRYPTION_KEY: self.__auth_send_encryption_key,
+            CurrentAuthorizationState.WAIT_PHONE_NUMBER: self.__auth_send_phone_number_or_bot_token,
+            CurrentAuthorizationState.WAIT_CODE: self.__auth_send_telegram_code,
+            CurrentAuthorizationState.WAIT_REGISTRATION: self.__auth_send_telegram_registration,
+            CurrentAuthorizationState.WAIT_PASSWORD: self.__auth_send_password,
+            CurrentAuthorizationState.READY: self.__auth_completed,
+        }
+
+        while not self.__is_authorized:
+            self.logger.debug('Current authorization state: %s', current_authorization_state)
+            result = await actions[current_authorization_state]()
+
+            if isinstance(result, UpdateAuthorizationState):
+                current_authorization_state = CurrentAuthorizationState(result.authorization_state.ID)
+
+            await asyncio.sleep(0.1)
+
+    async def __handle_pending_request(self, update: BaseObject, *, request_id: str = None):
+        _special_types = ['updateAuthorizationState']
+
+        if update.ID in _special_types:
+            request_id = update.ID
+
+        if bool(request_id):
+            async_result = self.__request_results.get(request_id)
+
+            if bool(async_result):
+                async_result.set_update(update)
+                self.__request_results.pop(request_id, None)
+
+    async def __call_handlers(self, update: BaseObject):
+        # TODO: Maybe need to call updates concurrently with asyncio.gather (???)
+
+        # Call update handlers for current update ID
+        for handler in self.__updates_handlers.get(update.ID, []):
+            try:
+                await handler(self, update)
+            except Exception as e:
+                self.logger.error(e, exc_info=True)
+
+        # Call wildcard update handlers
+        for handler in self.__updates_handlers.get('*', []):
+            try:
+                await handler(self, update)
+            except Exception as e:
+                self.logger.error(e, exc_info=True)
+
+    async def __handle_update(self, update: BaseObject):
+        if len(self.__middlewares_handlers) == 0:
+            return await self.__call_handlers(update)
+
+        async def __fn(*_, **__):
+            return await self.__call_handlers(update)
+
+        call_next = __fn
+
+        for m in self.__middlewares_handlers:
+            call_next = update_wrapper(
+                partial(m, call_next=call_next),
+                call_next
+            )
+
+        return await call_next(self, update)
+
+    async def __updates_loop(self):
+        try:
+            while self.__running:
+                update: dict = await self.receive()
+
+                if not bool(update):
+                    continue
+
+                if update.get('@type') == 'updateAuthorizationState':
+                    if update.get('authorization_state', {}).get('@type') == 'authorizationStateClosed':
+                        self.logger.warning('Session was terminated!')
+                        self.loop.create_task(self.stop())
+                        return
+
+                try:
+                    parsed_update = BaseObject.read(update)
+                except Exception as e:
+                    self.logger.error(f'Unable to parse incoming update! {e}', exc_info=True)
+                    continue
+
+                request_id = update.get("@extra", {}).get('request_id')
+                self.loop.create_task(
+                    self.__handle_pending_request(
+                        parsed_update,
+                        request_id=request_id
+                    )
+                )
+                self.loop.create_task(self.__handle_update(parsed_update))
+        except (asyncio.CancelledError, KeyboardInterrupt):
+            raise
+        except Exception as e:
+            self.logger.error(f'Unhandled exception occurred!. {e.__class__.__qualname__}. {e}', exc_info=True)
+
+    async def __close(self):
+        if not bool(self.__running):
+            return
+
+        self.logger.info('Gracefully closing TDLib connection')
+        await self.send(Close())
+
+        if bool(self.__tdjson):
+            self.__tdjson.stop()
+
+    async def __auth_get_authorization_state(self) -> RequestResult:
+        return await self.api.get_authorization_state(request_id="updateAuthorizationState")
+
+    async def __auth_set_tdlib_params(self) -> RequestResult:
+        # TODO: more parameters in Client constructor
+        return await self.api.set_tdlib_parameters(
+            parameters=TdlibParameters(
+                use_test_dc=self.use_test_dc,
+                database_directory=str(f"{self.files_directory}/database"),
+                files_directory=str(f"{self.files_directory}/files"),
+                use_file_database=True,
+                use_chat_info_database=True,
+                use_message_database=True,
+                use_secret_chats=False,
+                api_id=self.api_id,
+                api_hash=self.api_hash,
+                system_language_code=self.system_language_code,
+                device_model=self.device_model,
+                system_version=self.system_version,
+                application_version=self.application_version,
+                enable_storage_optimizer=True,
+                ignore_file_names=True
+            ),
+            request_id="updateAuthorizationState"
+        )
+
+    async def __auth_send_encryption_key(self) -> RequestResult:
+        self.logger.info('Sending encryption key')
+        return await self.api.check_database_encryption_key(
+            encryption_key=str_to_base64(self.database_encryption_key),
+            request_id="updateAuthorizationState"
+        )
+
+    async def __auth_send_phone_number_or_bot_token(self) -> RequestResult:
+        if self.phone_number:
+            return await self.__auth_send_phone_number()
+        elif self.bot_token:
+            return await self.__auth_send_bot_token()
+        else:
+            raise RuntimeError('Unknown mode: both bot_token and phone_number are None')
+
+    async def __auth_send_phone_number(self) -> RequestResult:
+        self.logger.info('Sending phone number')
+        return await self.api.set_authentication_phone_number(
+            phone_number=self.phone_number,
+            settings=PhoneNumberAuthenticationSettings(
+                is_current_phone_number=True,
+                allow_flash_call=False,
+                allow_sms_retriever_api=False
+            ),
+            request_id="updateAuthorizationState"
+        )
+
+    async def __auth_send_bot_token(self) -> RequestResult:
+        self.logger.info('Sending bot token')
+        return await self.api.check_authentication_bot_token(
+            self.bot_token,
+            request_id="updateAuthorizationState"
+        )
+
+    async def __auth_get_code(self) -> str:
+        code = ""
+
+        while len(code) != 5 or not code.isdigit():
+            code = await ainput('Enter code:')
+
+        return code
+
+    async def __auth_get_password(self) -> str:
+        password = ""
+
+        if not bool(password):
+            password = await ainput('Enter 2FA password:', secured=True)
+
+        return password
+
+    async def __auth_get_first_name(self) -> str:
+        first_name = self.first_name or ""
+
+        while not bool(first_name) or len(first_name) > 64:
+            first_name = await ainput('Enter first name:')
+
+        return first_name
+
+    async def __auth_get_last_name(self) -> str:
+        last_name = self.last_name or ""
+
+        if not bool(last_name):
+            last_name = await ainput('Enter last name:')
+
+        return last_name
+
+    async def __auth_send_telegram_code(self) -> RequestResult:
+        code = await self.__auth_get_code()
+        self.logger.info(f'Sending code {code}')
+
+        return await self.api.check_authentication_code(
+            code=code,
+            request_id="updateAuthorizationState"
+        )
+
+    async def __auth_send_telegram_registration(self) -> RequestResult:
+        first_name = await self.__auth_get_first_name()
+        last_name = await self.__auth_get_last_name()
+        self.logger.info(f'Registering new user in telegram as {first_name} {last_name or ""}'.strip())
+
+        return await self.api.register_user(
+            first_name=first_name,
+            last_name=last_name,
+            request_id="updateAuthorizationState"
+        )
+
+    async def __auth_send_password(self) -> RequestResult:
+        password = await self.__auth_get_password()
+        self.logger.info('Sending password')
+
+        return await self.api.check_authentication_password(
+            password=password,
+            request_id="updateAuthorizationState"
+        )
+
+    async def __auth_completed(self):
+        self.logger.info('Authorization is completed')
+        self.__request_results.pop('updateAuthorizationState', None)
+        self.__is_authorized = True
+
+    async def __stop_signal_handler(self, signum: int) -> None:
+        self.logger.info('Signal %s received!', signum)
+        await self.stop()
+
+    def add_event_handler(
+            self,
+            handler: HandlerCallable,
+            update_type: str = API.Types.ANY,
+            *,
+            filters: FilterCallable = None
+    ):
+        """
+            Registering event handler
+            You can register many handlers for certain event type
+        """
+        if self.__updates_handlers.get(update_type) is None:
+            self.__updates_handlers[update_type] = set()
+
+        if handler not in self.__updates_handlers[update_type]:
+            self.__updates_handlers[update_type].add(
+                handler
+                if isinstance(handler, Handler)
+                else Handler(handler, filters=filters)
+            )
+
+    def on_event(self, update_type: str = API.Types.ANY, *, filters: FilterCallable = None):
+        def decorator(function: HandlerCallable) -> HandlerCallable:
+            self.add_event_handler(function, update_type, filters=filters)
+            return function
+
+        return decorator
+
+    def remove_event_handler(self, handler: Handler, update_type: str = API.Types.ANY):
+        if self.__updates_handlers.get(update_type) is None:
+            return
+
+        self.__updates_handlers.get(update_type).remove(handler)
+
+    def add_middleware(self, middleware: MiddlewareCallable):
+        """
+            Register middleware.
+            Note that middleware would be called for EVERY EVENT.
+            Do not use them for long-running tasks as it could be heavy performance hit
+            You can add as much middlewares as you want.
+            They would be called in order you've added them
+        """
+
+        self.__middlewares.append(middleware)
+        return middleware
+
+    # API methods shorthands
+    async def send_message(
+            self,
+            chat_id: int,
+            text: str,
+            *,
+            reply_to_message_id: int = None,
+            reply_markup: ReplyMarkup = None,
+            disable_notification: bool = False,
+            disable_web_page_preview: bool = False,
+            clear_draft: bool = True,
+            send_when_online: bool = False,
+            send_date: int = None
+    ) -> Message:
+        """
+        Sends a text message. Returns the sent message
+
+        Params:
+            chat_id (:class:`int`)
+                Target chat
+
+            text (:class:`str`)
+                The text
+
+            reply_to_message_id (:class:`int`)
+                Identifier of the message to reply to or 0
+
+            reply_markup (:class:`ReplyMarkup`)
+                Markup for replying to the message; for bots only
+
+            disable_notification (:class:`bool`)
+                Pass true to disable notification for the message
+
+            disable_web_page_preview (:class:`bool`)
+                True, if rich web page previews for URLs in the message text should be disabled
+
+            clear_draft (:class:`bool`)
+                True, if a chat message draft should be deleted
+
+            send_when_online: (:class:`bool`)
+                When True, the message will be sent when the peer will be online.
+                Applicable to private chats only and when the exact online status of the peer is known
+
+            send_date: (:class:`int`)
+                Date the message will be sent. The date must be within 367 days in the future.
+                If send_date passed send_when_online will be ignored
+
+        """
+
+        if bool(send_date):
+            scheduling_state = MessageSchedulingStateSendAtDate(send_date=send_date)
+        elif send_when_online:
+            scheduling_state = MessageSchedulingStateSendWhenOnline()
+        else:
+            scheduling_state = None
+
+        return await self.api.send_message(
+            chat_id=chat_id,
+            message_thread_id=0,
+            reply_to_message_id=reply_to_message_id,
+            options=MessageSendOptions.construct(
+                disable_notification=disable_notification,
+                from_background=False,
+                scheduling_state=scheduling_state
+            ),
+            reply_markup=reply_markup,
+            input_message_content=InputMessageText.construct(
+                text=FormattedText.construct(
+                    text=text,
+                    entities=[]  # TODO: parse text as HTML or as Markdown and set entities
+                ),
+                disable_web_page_preview=disable_web_page_preview,
+                clear_draft=clear_draft,
+            ),
+            skip_validation=True
+        )
