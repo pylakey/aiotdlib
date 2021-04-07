@@ -114,10 +114,10 @@ async def some_post_updates_work(event: BaseObject):
     logging.info(f"After call all update handlers for event {event.ID}")
 
 
+# Middlewares are useful for opening database connections for example
 # Note that call_next argument would always be passed as keyword argument,
 # so it should be called "call_next" only.
 async def my_middleware(client: Client, event: BaseObject, *, call_next: HandlerCallable):
-    # Middlewares useful for opening database connections for example
     await some_pre_updates_work(event)
 
     try:
