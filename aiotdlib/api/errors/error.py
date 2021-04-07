@@ -9,4 +9,4 @@ class AioTDLibError(Exception):
         self.message = message
 
     def __str__(self) -> str:
-        return f"[{self.code}] {self.message}"
+        return f"[Error {self.code}] {self.message}"
