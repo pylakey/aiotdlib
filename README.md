@@ -1,13 +1,14 @@
 # aiotdlib
 
-## Python asyncio wrapper for Telegram's TDLib based on Pydantic models
+## Python asyncio wrapper for [TDLib](https://github.com/tdlib/td). 
+> All types and functions are generated automatically based on [TD tl-schema](https://github.com/tdlib/td/blob/master/td/generate/scheme/td_api.tl) 
 
 > Tested with TDLib v1.7.3 only. Support for other versions of TDLib is not guaranteed
 
-> Includes prebuilt binary (1.7.3) only for macOS.
-> You can use your own binary by passing library_path argument of Client class
+> Prebuilt binary (v1.7.3) **only for macOS** included.
+> You can use your own binary by passing `library_path` argument to `Client` class constructor
 
-> You need to get your api_id and api_hash first.
+> You need to get your **api_id** and **api_hash** first.
 > Read more in [Telegram docs](https://core.telegram.org/api/obtaining_api_id#obtaining-api-id)
 
 ### Basic example
