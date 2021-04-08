@@ -1,5 +1,4 @@
 import asyncio
-import enum
 import hashlib
 import json
 import logging
@@ -12,16 +11,21 @@ from typing import Optional, TypeVar, Union
 
 from . import __version__
 from .api import (
+    AioTDLibError,
     API,
     BaseObject,
     Close,
-    FormattedText,
     InputMessageText,
     Message,
-    MessageSchedulingStateSendAtDate, MessageSchedulingStateSendWhenOnline, MessageSendOptions,
+    MessageSchedulingStateSendAtDate,
+    MessageSchedulingStateSendWhenOnline,
+    MessageSendOptions,
+    ParseTextEntities,
     PhoneNumberAuthenticationSettings,
     ReplyMarkup,
     TdlibParameters,
+    TextParseModeHTML,
+    TextParseModeMarkdown,
     UpdateAuthorizationState,
 )
 from .handlers import FilterCallable, Handler, HandlerCallable
@@ -31,20 +35,6 @@ from .utils import ainput, AsyncResult, str_to_base64
 
 RequestResult = TypeVar('RequestResult', bound=BaseObject)
 ExecuteResult = TypeVar('ExecuteResult', bound=BaseObject)
-
-
-class CurrentAuthorizationState(enum.Enum):
-    NONE = None
-    WAIT_CODE = 'authorizationStateWaitCode'
-    WAIT_PASSWORD = 'authorizationStateWaitPassword'
-    WAIT_TDLIB_PARAMETERS = 'authorizationStateWaitTdlibParameters'
-    WAIT_ENCRYPTION_KEY = 'authorizationStateWaitEncryptionKey'
-    WAIT_PHONE_NUMBER = 'authorizationStateWaitPhoneNumber'
-    WAIT_REGISTRATION = 'authorizationStateWaitRegistration'
-    READY = 'authorizationStateReady'
-    LOGGING_OUT = 'authorizationStateLoggingOut'
-    CLOSING = 'authorizationStateClosing'
-    CLOSED = 'authorizationStateClosed'
 
 
 class Client:
@@ -70,6 +60,7 @@ class Client:
             library_path: str = None,
             tdlib_verbosity: TDLibLogVerbosity = TDLibLogVerbosity.WARNING,
             debug: bool = False,
+            parse_mode: str = 'html'
     ):
         """
             Params:
@@ -123,6 +114,9 @@ class Client:
                 debug (:class:`bool`)
                     When set to true all request and responses would be logged in console with DEBUG level
 
+                parse_mode (:class:`str`)
+                    Default parse mode for high-level methods like send_message. Default: html
+
         """
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.DEBUG if debug else logging.INFO)
@@ -142,6 +136,7 @@ class Client:
         self.system_language_code = system_language_code
         self.first_name = first_name
         self.last_name = last_name
+        self.parse_mode = 'markdown' if (bool(parse_mode) and parse_mode.lower() == 'markdown') else 'html'
 
         md5_hash = hashlib.md5()
         md5_hash.update((self.phone_number or self.bot_token).encode('utf-8'))
@@ -157,6 +152,7 @@ class Client:
         self.api = API(self)
 
         self.__tdjson = TDJson(library_path=library_path, verbosity=tdlib_verbosity)
+        self.__current_authorization_state = None
         self.__is_authorized = False
         self.__running = False
         self.__request_results: dict[str, AsyncResult] = {}
@@ -276,24 +272,35 @@ class Client:
         else:
             self.logger.info('Authorization process has been started with bot token')
 
-        current_authorization_state = CurrentAuthorizationState.NONE
-        actions = {
-            CurrentAuthorizationState.NONE: self.__auth_get_authorization_state,
-            CurrentAuthorizationState.WAIT_TDLIB_PARAMETERS: self.__auth_set_tdlib_params,
-            CurrentAuthorizationState.WAIT_ENCRYPTION_KEY: self.__auth_send_encryption_key,
-            CurrentAuthorizationState.WAIT_PHONE_NUMBER: self.__auth_send_phone_number_or_bot_token,
-            CurrentAuthorizationState.WAIT_CODE: self.__auth_send_telegram_code,
-            CurrentAuthorizationState.WAIT_REGISTRATION: self.__auth_send_telegram_registration,
-            CurrentAuthorizationState.WAIT_PASSWORD: self.__auth_send_password,
-            CurrentAuthorizationState.READY: self.__auth_completed,
+        auth_actions = {
+            None: self.__auth_start,
+            API.Types.AUTHORIZATION_STATE_WAIT_TDLIB_PARAMETERS: self.__set_tdlib_parameters,
+            API.Types.AUTHORIZATION_STATE_WAIT_ENCRYPTION_KEY: self.__check_database_encryption_key,
+            API.Types.AUTHORIZATION_STATE_WAIT_PHONE_NUMBER: self.__set_authentication_phone_number_or_check_bot_token,
+            API.Types.AUTHORIZATION_STATE_WAIT_CODE: self.__check_authentication_code,
+            API.Types.AUTHORIZATION_STATE_WAIT_REGISTRATION: self.__register_user,
+            API.Types.AUTHORIZATION_STATE_WAIT_PASSWORD: self.__check_authentication_password,
+            API.Types.AUTHORIZATION_STATE_READY: self.__auth_completed,
         }
 
         while not self.__is_authorized:
-            self.logger.debug('Current authorization state: %s', current_authorization_state)
-            result = await actions[current_authorization_state]()
+            while True:
+                try:
+                    self.logger.debug('Current authorization state: %s', self.__current_authorization_state)
+                    next_action = auth_actions.get(self.__current_authorization_state)
+
+                    if bool(next_action):
+                        result = await next_action()
+                    else:
+                        raise RuntimeError(f'Unknown current authorization state: {self.__current_authorization_state}')
+                except AioTDLibError as e:
+                    # Need to retry previous step
+                    self.logger.error(e)
+                else:
+                    break
 
             if isinstance(result, UpdateAuthorizationState):
-                current_authorization_state = CurrentAuthorizationState(result.authorization_state.ID)
+                self.__current_authorization_state = result.authorization_state.ID
 
             await asyncio.sleep(0.1)
 
@@ -387,10 +394,10 @@ class Client:
         if bool(self.__tdjson):
             self.__tdjson.stop()
 
-    async def __auth_get_authorization_state(self) -> RequestResult:
+    async def __auth_start(self) -> RequestResult:
         return await self.api.get_authorization_state(request_id="updateAuthorizationState")
 
-    async def __auth_set_tdlib_params(self) -> RequestResult:
+    async def __set_tdlib_parameters(self) -> RequestResult:
         # TODO: more parameters in Client constructor
         return await self.api.set_tdlib_parameters(
             parameters=TdlibParameters(
@@ -400,7 +407,7 @@ class Client:
                 use_file_database=True,
                 use_chat_info_database=True,
                 use_message_database=True,
-                use_secret_chats=False,
+                use_secret_chats=True,
                 api_id=self.api_id,
                 api_hash=self.api_hash,
                 system_language_code=self.system_language_code,
@@ -413,22 +420,22 @@ class Client:
             request_id="updateAuthorizationState"
         )
 
-    async def __auth_send_encryption_key(self) -> RequestResult:
+    async def __check_database_encryption_key(self) -> RequestResult:
         self.logger.info('Sending encryption key')
         return await self.api.check_database_encryption_key(
             encryption_key=str_to_base64(self.database_encryption_key),
             request_id="updateAuthorizationState"
         )
 
-    async def __auth_send_phone_number_or_bot_token(self) -> RequestResult:
+    async def __set_authentication_phone_number_or_check_bot_token(self) -> RequestResult:
         if self.phone_number:
-            return await self.__auth_send_phone_number()
+            return await self.__set_authentication_phone_number()
         elif self.bot_token:
-            return await self.__auth_send_bot_token()
+            return await self.__check_authentication_bot_token()
         else:
             raise RuntimeError('Unknown mode: both bot_token and phone_number are None')
 
-    async def __auth_send_phone_number(self) -> RequestResult:
+    async def __set_authentication_phone_number(self) -> RequestResult:
         self.logger.info('Sending phone number')
         return await self.api.set_authentication_phone_number(
             phone_number=self.phone_number,
@@ -440,7 +447,7 @@ class Client:
             request_id="updateAuthorizationState"
         )
 
-    async def __auth_send_bot_token(self) -> RequestResult:
+    async def __check_authentication_bot_token(self) -> RequestResult:
         self.logger.info('Sending bot token')
         return await self.api.check_authentication_bot_token(
             self.bot_token,
@@ -479,7 +486,7 @@ class Client:
 
         return last_name
 
-    async def __auth_send_telegram_code(self) -> RequestResult:
+    async def __check_authentication_code(self) -> RequestResult:
         code = await self.__auth_get_code()
         self.logger.info(f'Sending code {code}')
 
@@ -488,7 +495,7 @@ class Client:
             request_id="updateAuthorizationState"
         )
 
-    async def __auth_send_telegram_registration(self) -> RequestResult:
+    async def __register_user(self) -> RequestResult:
         first_name = await self.__auth_get_first_name()
         last_name = await self.__auth_get_last_name()
         self.logger.info(f'Registering new user in telegram as {first_name} {last_name or ""}'.strip())
@@ -499,7 +506,7 @@ class Client:
             request_id="updateAuthorizationState"
         )
 
-    async def __auth_send_password(self) -> RequestResult:
+    async def __check_authentication_password(self) -> RequestResult:
         password = await self.__auth_get_password()
         self.logger.info('Sending password')
 
@@ -619,6 +626,12 @@ class Client:
         else:
             scheduling_state = None
 
+        # ParseTextEntities can be called synchronously
+        formatted_text = await self.execute(ParseTextEntities(
+            text=text,
+            parse_mode=TextParseModeHTML() if self.parse_mode == 'html' else TextParseModeMarkdown(version=2)
+        ))
+
         return await self.api.send_message(
             chat_id=chat_id,
             message_thread_id=0,
@@ -630,10 +643,7 @@ class Client:
             ),
             reply_markup=reply_markup,
             input_message_content=InputMessageText.construct(
-                text=FormattedText.construct(
-                    text=text,
-                    entities=[]  # TODO: parse text as HTML or as Markdown and set entities
-                ),
+                text=formatted_text,
                 disable_web_page_preview=disable_web_page_preview,
                 clear_draft=clear_draft,
             ),
