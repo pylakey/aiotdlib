@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import asyncio
 import hashlib
 import json
@@ -14,6 +16,13 @@ from .api import (
     AioTDLibError,
     API,
     BaseObject,
+    BasicGroup,
+    BasicGroupFullInfo,
+    Chat,
+    ChatTypeBasicGroup,
+    ChatTypePrivate,
+    ChatTypeSecret,
+    ChatTypeSupergroup,
     Close,
     InputMessageText,
     Message,
@@ -23,11 +32,17 @@ from .api import (
     ParseTextEntities,
     PhoneNumberAuthenticationSettings,
     ReplyMarkup,
+    SecretChat,
+    Supergroup,
+    SupergroupFullInfo,
     TdlibParameters,
     TextParseModeHTML,
     TextParseModeMarkdown,
     UpdateAuthorizationState,
+    User,
+    UserFullInfo,
 )
+from .client_cache import ClientCache
 from .handlers import FilterCallable, Handler, HandlerCallable
 from .middlewares import MiddlewareCallable
 from .tdjson import TDJson, TDLibLogVerbosity
@@ -35,6 +50,16 @@ from .utils import ainput, AsyncResult, str_to_base64
 
 RequestResult = TypeVar('RequestResult', bound=BaseObject)
 ExecuteResult = TypeVar('ExecuteResult', bound=BaseObject)
+
+ChatInfo = Union[
+    User,
+    UserFullInfo,
+    BasicGroup,
+    BasicGroupFullInfo,
+    Supergroup,
+    SupergroupFullInfo,
+    SecretChat
+]
 
 
 class Client:
@@ -58,7 +83,7 @@ class Client:
             first_name: str = None,
             last_name: str = None,
             library_path: str = None,
-            tdlib_verbosity: TDLibLogVerbosity = TDLibLogVerbosity.WARNING,
+            tdlib_verbosity: TDLibLogVerbosity = TDLibLogVerbosity.ERROR,
             debug: bool = False,
             parse_mode: str = 'html'
     ):
@@ -162,147 +187,14 @@ class Client:
         self.__middlewares: list[MiddlewareCallable] = []
         self.__middlewares_handlers: list[MiddlewareCallable] = []
 
+        self.cache = ClientCache(self)
+
     # Magic methods
     async def __aenter__(self) -> 'Client':
         return await self.start()
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         await self.stop()
-
-    async def send(self, query: Union[dict, BaseObject], *, request_id: str = None) -> AsyncResult:
-        if not self.__running:
-            raise RuntimeError('Client not started')
-
-        if isinstance(query, BaseObject):
-            query_type = query.ID
-            query = query.dict(by_alias=True, exclude={'ID'})
-            query['@type'] = query_type
-
-        if query.get('@extra', None) is None:
-            query['@extra'] = {}
-
-        if not request_id and query['@extra'].get('request_id') is not None:
-            request_id = query['@extra']['request_id']
-
-        async_result = AsyncResult(self, request_id=request_id)
-        query['@extra']['request_id'] = async_result.id
-        async_result.request = query
-
-        if self.debug:
-            self.logger.debug(f">>>>> {query['@type']} {json.dumps(query)}")
-
-        self.__request_results[async_result.id] = async_result
-        await self.loop.run_in_executor(None, self.__tdjson.send, query)
-
-        return async_result
-
-    async def request(self, query: BaseObject, *, request_id: str = None) -> Optional[RequestResult]:
-        result = await self.send(query, request_id=request_id)
-        await result.wait(raise_exc=True, timeout=5)
-
-        if self.debug:
-            self.logger.debug(f"<<<<< {result.update.ID} {result.update.dict(by_alias=True, exclude={'ID'})}")
-
-        return result.update
-
-    async def receive(self, timeout: float = 1.0) -> Optional[dict]:
-        if not self.__running:
-            raise RuntimeError('Client not started')
-
-        return await self.loop.run_in_executor(None, self.__tdjson.receive, timeout)
-
-    async def execute(self, query: BaseObject) -> ExecuteResult:
-        if not self.__running:
-            raise RuntimeError('Client not started')
-
-        if isinstance(query, BaseObject):
-            query_type = query.ID
-            query = query.dict(by_alias=True, exclude={'ID'})
-            query['@type'] = query_type
-
-        result = await self.loop.run_in_executor(None, self.__tdjson.execute, query)
-        return BaseObject.read(result)
-
-    async def start(self) -> 'Client':
-        self.logger.info('Starting client')
-        self.logger.info(f'Session workdir: {self.files_directory}')
-
-        # Preparing middlewares handlers
-        self.__middlewares_handlers = list(reversed(self.__middlewares))
-
-        # Setting up asyncio stuff
-        self.loop = asyncio.get_running_loop()
-        self.__stop_idle_event = asyncio.Event()
-
-        # Starting updates loop
-        self.__running = True
-        self.loop.create_task(self.__updates_loop())
-
-        # Initialize authorization process
-        await self.authorize()
-        return self
-
-    async def idle(self, stop_signals: tuple = (signal.SIGINT, signal.SIGTERM, signal.SIGABRT, signal.SIGQUIT)):
-        if not self.__running:
-            raise ValueError('Client is already stopped')
-
-        self.logger.info('Started Idling...')
-
-        # Registering signals handlers for graceful shutdown
-        for sig in stop_signals:
-            self.loop.add_signal_handler(sig, lambda _s=sig: asyncio.create_task(self.__stop_signal_handler(sig)))
-
-        try:
-            await self.__stop_idle_event.wait()
-        except asyncio.CancelledError:
-            pass
-
-        self.logger.info('Stop Idling...')
-
-    async def stop(self):
-        self.logger.info('Stopping telegram client...')
-        await self.__close()
-
-        self.__running = False
-        self.__stop_idle_event.set()
-
-    async def authorize(self):
-        if bool(self.phone_number):
-            self.logger.info('Authorization process has been started with phone')
-        else:
-            self.logger.info('Authorization process has been started with bot token')
-
-        auth_actions = {
-            None: self.__auth_start,
-            API.Types.AUTHORIZATION_STATE_WAIT_TDLIB_PARAMETERS: self.__set_tdlib_parameters,
-            API.Types.AUTHORIZATION_STATE_WAIT_ENCRYPTION_KEY: self.__check_database_encryption_key,
-            API.Types.AUTHORIZATION_STATE_WAIT_PHONE_NUMBER: self.__set_authentication_phone_number_or_check_bot_token,
-            API.Types.AUTHORIZATION_STATE_WAIT_CODE: self.__check_authentication_code,
-            API.Types.AUTHORIZATION_STATE_WAIT_REGISTRATION: self.__register_user,
-            API.Types.AUTHORIZATION_STATE_WAIT_PASSWORD: self.__check_authentication_password,
-            API.Types.AUTHORIZATION_STATE_READY: self.__auth_completed,
-        }
-
-        while not self.__is_authorized:
-            while True:
-                try:
-                    self.logger.debug('Current authorization state: %s', self.__current_authorization_state)
-                    next_action = auth_actions.get(self.__current_authorization_state)
-
-                    if bool(next_action):
-                        result = await next_action()
-                    else:
-                        raise RuntimeError(f'Unknown current authorization state: {self.__current_authorization_state}')
-                except AioTDLibError as e:
-                    # Need to retry previous step
-                    self.logger.error(e)
-                else:
-                    break
-
-            if isinstance(result, UpdateAuthorizationState):
-                self.__current_authorization_state = result.authorization_state.ID
-
-            await asyncio.sleep(0.1)
 
     async def __handle_pending_request(self, update: BaseObject, *, request_id: str = None):
         _special_types = ['updateAuthorizationState']
@@ -570,6 +462,141 @@ class Client:
         self.__middlewares.append(middleware)
         return middleware
 
+    async def send(self, query: Union[dict, BaseObject], *, request_id: str = None) -> AsyncResult:
+        if not self.__running:
+            raise RuntimeError('Client not started')
+
+        if isinstance(query, BaseObject):
+            query_type = query.ID
+            query = query.dict(by_alias=True, exclude={'ID'})
+            query['@type'] = query_type
+
+        if query.get('@extra', None) is None:
+            query['@extra'] = {}
+
+        if not request_id and query['@extra'].get('request_id') is not None:
+            request_id = query['@extra']['request_id']
+
+        async_result = AsyncResult(self, request_id=request_id)
+        query['@extra']['request_id'] = async_result.id
+        async_result.request = query
+
+        if self.debug:
+            self.logger.debug(f">>>>> {query['@type']} {json.dumps(query)}")
+
+        self.__request_results[async_result.id] = async_result
+        await self.loop.run_in_executor(None, self.__tdjson.send, query)
+
+        return async_result
+
+    async def request(self, query: BaseObject, *, request_id: str = None) -> Optional[RequestResult]:
+        result = await self.send(query, request_id=request_id)
+        await result.wait(raise_exc=True, timeout=5)
+
+        if self.debug:
+            self.logger.debug(f"<<<<< {result.update.ID} {result.update.dict(by_alias=True, exclude={'ID'})}")
+
+        return result.update
+
+    async def receive(self, timeout: float = 1.0) -> Optional[dict]:
+        if not self.__running:
+            raise RuntimeError('Client not started')
+
+        return await self.loop.run_in_executor(None, self.__tdjson.receive, timeout)
+
+    async def execute(self, query: BaseObject) -> ExecuteResult:
+        if not self.__running:
+            raise RuntimeError('Client not started')
+
+        if isinstance(query, BaseObject):
+            query_type = query.ID
+            query = query.dict(by_alias=True, exclude={'ID'})
+            query['@type'] = query_type
+
+        result = await self.loop.run_in_executor(None, self.__tdjson.execute, query)
+        return BaseObject.read(result)
+
+    async def start(self) -> 'Client':
+        self.logger.info('Starting client')
+        self.logger.info(f'Session workdir: {self.files_directory}')
+
+        # Preparing middlewares handlers
+        self.__middlewares_handlers = list(reversed(self.__middlewares))
+
+        # Setting up asyncio stuff
+        self.loop = asyncio.get_running_loop()
+        self.__stop_idle_event = asyncio.Event()
+
+        # Starting updates loop
+        self.__running = True
+        self.loop.create_task(self.__updates_loop())
+
+        # Initialize authorization process
+        await self.authorize()
+        return self
+
+    async def idle(self, stop_signals: tuple = (signal.SIGINT, signal.SIGTERM, signal.SIGABRT, signal.SIGQUIT)):
+        if not self.__running:
+            raise ValueError('Client is already stopped')
+
+        self.logger.info('Started Idling...')
+
+        # Registering signals handlers for graceful shutdown
+        for sig in stop_signals:
+            self.loop.add_signal_handler(sig, lambda _s=sig: asyncio.create_task(self.__stop_signal_handler(sig)))
+
+        try:
+            await self.__stop_idle_event.wait()
+        except asyncio.CancelledError:
+            pass
+
+        self.logger.info('Stop Idling...')
+
+    async def stop(self):
+        self.logger.info('Stopping telegram client...')
+        await self.__close()
+
+        self.__running = False
+        self.__stop_idle_event.set()
+
+    async def authorize(self):
+        if bool(self.phone_number):
+            self.logger.info('Authorization process has been started with phone')
+        else:
+            self.logger.info('Authorization process has been started with bot token')
+
+        auth_actions = {
+            None: self.__auth_start,
+            API.Types.AUTHORIZATION_STATE_WAIT_TDLIB_PARAMETERS: self.__set_tdlib_parameters,
+            API.Types.AUTHORIZATION_STATE_WAIT_ENCRYPTION_KEY: self.__check_database_encryption_key,
+            API.Types.AUTHORIZATION_STATE_WAIT_PHONE_NUMBER: self.__set_authentication_phone_number_or_check_bot_token,
+            API.Types.AUTHORIZATION_STATE_WAIT_CODE: self.__check_authentication_code,
+            API.Types.AUTHORIZATION_STATE_WAIT_REGISTRATION: self.__register_user,
+            API.Types.AUTHORIZATION_STATE_WAIT_PASSWORD: self.__check_authentication_password,
+            API.Types.AUTHORIZATION_STATE_READY: self.__auth_completed,
+        }
+
+        while not self.__is_authorized:
+            while True:
+                try:
+                    self.logger.debug('Current authorization state: %s', self.__current_authorization_state)
+                    next_action = auth_actions.get(self.__current_authorization_state)
+
+                    if bool(next_action):
+                        result = await next_action()
+                    else:
+                        raise RuntimeError(f'Unknown current authorization state: {self.__current_authorization_state}')
+                except AioTDLibError as e:
+                    # Need to retry previous step
+                    self.logger.error(e)
+                else:
+                    break
+
+            if isinstance(result, UpdateAuthorizationState):
+                self.__current_authorization_state = result.authorization_state.ID
+
+            await asyncio.sleep(0.1)
+
     # API methods shorthands
     async def send_message(
             self,
@@ -649,3 +676,63 @@ class Client:
             ),
             skip_validation=True
         )
+
+    async def get_main_list_chats(self, limit: int = 25) -> list[Chat]:
+        """
+        Returns an ordered list of chats in a main chat list.
+        Chats are sorted by the pair (chat.position.order, chat.id) in descending order
+        """
+        return await self.cache.get_main_list_chats(limit)
+
+    async def get_chat(self, chat_id: int) -> Chat:
+        """
+        Returns information about a chat by its identifier, this is an offline request if the current user is not a bot
+        """
+        return await self.cache.get_chat(chat_id)
+
+    async def get_user(self, user_id: int) -> User:
+        return await self.cache.get_user(user_id)
+
+    async def get_user_full_info(self, user_id: int) -> UserFullInfo:
+        return await self.cache.get_user_full_info(user_id)
+
+    async def get_basic_group(self, basic_group_id: int) -> BasicGroup:
+        return await self.cache.get_basic_group(basic_group_id)
+
+    async def get_basic_group_full_info(self, basic_group_id: int) -> BasicGroupFullInfo:
+        return await self.cache.get_basic_group_full_info(basic_group_id)
+
+    async def get_supergroup(self, supergroup_id: int) -> BasicGroup:
+        return await self.cache.get_basic_group(supergroup_id)
+
+    async def get_supergroup_full_info(self, supergroup_id: int) -> BasicGroupFullInfo:
+        return await self.cache.get_basic_group_full_info(supergroup_id)
+
+    async def get_secret_chat(self, secret_chat_id: int) -> SecretChat:
+        return await self.cache.get_secret_chat(secret_chat_id)
+
+    async def get_chat_info(self, chat: Union[int, Chat], *, full: bool = False) -> Optional[ChatInfo]:
+        chat = await self.get_chat(chat) if isinstance(chat, int) else chat
+
+        if isinstance(chat.type_, ChatTypePrivate):
+            if full:
+                return await self.get_user_full_info(chat.type_.user_id)
+            else:
+                return await self.get_user(chat.type_.user_id)
+
+        if isinstance(chat.type_, ChatTypeBasicGroup):
+            if full:
+                return await self.get_basic_group_full_info(chat.type_.basic_group_id)
+            else:
+                return await self.get_basic_group(chat.type_.basic_group_id)
+
+        if isinstance(chat.type_, ChatTypeSupergroup):
+            if full:
+                return await self.get_supergroup_full_info(chat.type_.supergroup_id)
+            else:
+                return await self.get_supergroup(chat.type_.supergroup_id)
+
+        if isinstance(chat.type_, ChatTypeSecret):
+            return await self.get_secret_chat(chat.type_.secret_chat_id)
+
+        raise ValueError(f'Unknown chat.type {chat.type_.__class__.__qualname__}')
