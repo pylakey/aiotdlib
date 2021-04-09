@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .file import File
@@ -54,8 +56,8 @@ class Animation(BaseObject):
     file_name: str
     mime_type: str
     has_stickers: bool
-    minithumbnail: Minithumbnail
-    thumbnail: Thumbnail
+    minithumbnail: typing.Optional[Minithumbnail] = None
+    thumbnail: typing.Optional[Thumbnail] = None
     animation: File
 
     @staticmethod

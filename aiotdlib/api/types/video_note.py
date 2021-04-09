@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .file import File
@@ -38,8 +40,8 @@ class VideoNote(BaseObject):
     ID: str = Field("videoNote", alias="@type")
     duration: int
     length: int
-    minithumbnail: Minithumbnail
-    thumbnail: Thumbnail
+    minithumbnail: typing.Optional[Minithumbnail] = None
+    thumbnail: typing.Optional[Thumbnail] = None
     video: File
 
     @staticmethod

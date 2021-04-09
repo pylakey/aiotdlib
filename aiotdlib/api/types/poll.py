@@ -51,7 +51,7 @@ class Poll(BaseObject):
 
     ID: str = Field("poll", alias="@type")
     id: int
-    question: str
+    question: str = Field(..., min_length=1, max_length=300)
     options: list[PollOption]
     total_voter_count: int
     recent_voter_user_ids: list[int]

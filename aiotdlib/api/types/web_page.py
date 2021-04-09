@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .animation import Animation
@@ -96,20 +98,20 @@ class WebPage(BaseObject):
     site_name: str
     title: str
     param_description: FormattedText
-    photo: Photo
+    photo: typing.Optional[Photo] = None
     embed_url: str
     embed_type: str
     embed_width: int
     embed_height: int
     duration: int
     author: str
-    animation: Animation
-    audio: Audio
-    document: Document
-    sticker: Sticker
-    video: Video
-    video_note: VideoNote
-    voice_note: VoiceNote
+    animation: typing.Optional[Animation] = None
+    audio: typing.Optional[Audio] = None
+    document: typing.Optional[Document] = None
+    sticker: typing.Optional[Sticker] = None
+    video: typing.Optional[Video] = None
+    video_note: typing.Optional[VideoNote] = None
+    voice_note: typing.Optional[VoiceNote] = None
     instant_view_version: int
 
     @staticmethod

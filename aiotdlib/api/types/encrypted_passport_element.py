@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .dated_file import DatedFile
@@ -50,8 +52,8 @@ class EncryptedPassportElement(BaseObject):
     type_: PassportElementType = Field(..., alias='type')
     data: str
     front_side: DatedFile
-    reverse_side: DatedFile
-    selfie: DatedFile
+    reverse_side: typing.Optional[DatedFile] = None
+    selfie: typing.Optional[DatedFile] = None
     translation: list[DatedFile]
     files: list[DatedFile]
     value: str

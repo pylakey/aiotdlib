@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .closed_vector_path import ClosedVectorPath
@@ -63,7 +65,7 @@ class StickerSetInfo(BaseObject):
     id: int
     title: str
     name: str
-    thumbnail: Thumbnail
+    thumbnail: typing.Optional[Thumbnail] = None
     thumbnail_outline: list[ClosedVectorPath]
     is_installed: bool
     is_archived: bool

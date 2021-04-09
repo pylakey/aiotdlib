@@ -33,7 +33,7 @@ class PollOption(BaseObject):
     """
 
     ID: str = Field("pollOption", alias="@type")
-    text: str
+    text: str = Field(..., min_length=1, max_length=100)
     voter_count: int
     vote_percentage: int
     is_chosen: bool

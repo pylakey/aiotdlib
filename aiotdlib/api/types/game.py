@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .animation import Animation
@@ -48,7 +50,7 @@ class Game(BaseObject):
     text: FormattedText
     param_description: str
     photo: Photo
-    animation: Animation
+    animation: typing.Optional[Animation] = None
 
     @staticmethod
     def read(q: dict) -> Game:

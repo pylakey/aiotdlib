@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .animation import Animation
@@ -88,7 +90,7 @@ class InlineQueryResultArticle(InlineQueryResult):
     hide_url: bool
     title: str
     param_description: str
-    thumbnail: Thumbnail
+    thumbnail: typing.Optional[Thumbnail] = None
 
     @staticmethod
     def read(q: dict) -> InlineQueryResultArticle:
@@ -136,7 +138,7 @@ class InlineQueryResultContact(InlineQueryResult):
     ID: str = Field("inlineQueryResultContact", alias="@type")
     id: str
     contact: Contact
-    thumbnail: Thumbnail
+    thumbnail: typing.Optional[Thumbnail] = None
 
     @staticmethod
     def read(q: dict) -> InlineQueryResultContact:
@@ -218,7 +220,7 @@ class InlineQueryResultLocation(InlineQueryResult):
     id: str
     location: Location
     title: str
-    thumbnail: Thumbnail
+    thumbnail: typing.Optional[Thumbnail] = None
 
     @staticmethod
     def read(q: dict) -> InlineQueryResultLocation:
@@ -296,7 +298,7 @@ class InlineQueryResultVenue(InlineQueryResult):
     ID: str = Field("inlineQueryResultVenue", alias="@type")
     id: str
     venue: Venue
-    thumbnail: Thumbnail
+    thumbnail: typing.Optional[Thumbnail] = None
 
     @staticmethod
     def read(q: dict) -> InlineQueryResultVenue:

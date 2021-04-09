@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -24,8 +26,8 @@ class RegisterUser(BaseObject):
     """
 
     ID: str = Field("registerUser", alias="@type")
-    first_name: str
-    last_name: str
+    first_name: str = Field(..., min_length=1, max_length=64)
+    last_name: typing.Optional[str] = Field(None, max_length=64)
 
     @staticmethod
     def read(q: dict) -> RegisterUser:

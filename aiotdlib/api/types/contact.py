@@ -34,7 +34,7 @@ class Contact(BaseObject):
 
     ID: str = Field("contact", alias="@type")
     phone_number: str
-    first_name: str
+    first_name: str = Field(..., min_length=1, max_length=255)
     last_name: str
     vcard: str
     user_id: int

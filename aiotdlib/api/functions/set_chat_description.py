@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -25,7 +27,7 @@ class SetChatDescription(BaseObject):
 
     ID: str = Field("setChatDescription", alias="@type")
     chat_id: int
-    param_description: str
+    param_description: typing.Optional[str] = Field(None, max_length=255)
 
     @staticmethod
     def read(q: dict) -> SetChatDescription:

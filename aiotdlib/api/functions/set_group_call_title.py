@@ -25,7 +25,7 @@ class SetGroupCallTitle(BaseObject):
 
     ID: str = Field("setGroupCallTitle", alias="@type")
     group_call_id: int
-    title: str
+    title: str = Field(..., min_length=1, max_length=64)
 
     @staticmethod
     def read(q: dict) -> SetGroupCallTitle:

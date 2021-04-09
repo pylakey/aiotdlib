@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .page_block_horizontal_alignment import PageBlockHorizontalAlignment
@@ -39,7 +41,7 @@ class PageBlockTableCell(BaseObject):
     """
 
     ID: str = Field("pageBlockTableCell", alias="@type")
-    text: RichText
+    text: typing.Optional[RichText] = None
     is_header: bool
     colspan: int
     rowspan: int

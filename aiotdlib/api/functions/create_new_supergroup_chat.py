@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -34,9 +36,9 @@ class CreateNewSupergroupChat(BaseObject):
     """
 
     ID: str = Field("createNewSupergroupChat", alias="@type")
-    title: str
+    title: str = Field(..., min_length=1, max_length=128)
     is_channel: bool
-    param_description: str
+    param_description: typing.Optional[str] = Field(None, max_length=255)
     location: ChatLocation
     for_import: bool
 

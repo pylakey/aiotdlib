@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_action_bar import ChatActionBar
@@ -105,9 +107,9 @@ class Chat(BaseObject):
     id: int
     type_: ChatType = Field(..., alias='type')
     title: str
-    photo: ChatPhotoInfo
+    photo: typing.Optional[ChatPhotoInfo] = None
     permissions: ChatPermissions
-    last_message: Message
+    last_message: typing.Optional[Message] = None
     positions: list[ChatPosition]
     is_marked_as_unread: bool
     is_blocked: bool
@@ -122,10 +124,10 @@ class Chat(BaseObject):
     unread_mention_count: int
     notification_settings: ChatNotificationSettings
     message_ttl_setting: int
-    action_bar: ChatActionBar
+    action_bar: typing.Optional[ChatActionBar] = None
     voice_chat: VoiceChat
     reply_markup_message_id: int
-    draft_message: DraftMessage
+    draft_message: typing.Optional[DraftMessage] = None
     client_data: str
 
     @staticmethod

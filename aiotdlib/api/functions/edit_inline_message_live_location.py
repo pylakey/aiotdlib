@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -36,7 +38,7 @@ class EditInlineMessageLiveLocation(BaseObject):
     ID: str = Field("editInlineMessageLiveLocation", alias="@type")
     inline_message_id: str
     reply_markup: ReplyMarkup
-    location: Location
+    location: typing.Optional[Location] = None
     heading: int
     proximity_alert_radius: int
 

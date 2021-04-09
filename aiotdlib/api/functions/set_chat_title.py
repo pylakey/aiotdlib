@@ -25,7 +25,7 @@ class SetChatTitle(BaseObject):
 
     ID: str = Field("setChatTitle", alias="@type")
     chat_id: int
-    title: str
+    title: str = Field(..., min_length=1, max_length=128)
 
     @staticmethod
     def read(q: dict) -> SetChatTitle:

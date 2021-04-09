@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .authentication_code_type import AuthenticationCodeType
@@ -33,7 +35,7 @@ class AuthenticationCodeInfo(BaseObject):
     ID: str = Field("authenticationCodeInfo", alias="@type")
     phone_number: str
     type_: AuthenticationCodeType = Field(..., alias='type')
-    next_type: AuthenticationCodeType
+    next_type: typing.Optional[AuthenticationCodeType] = None
     timeout: int
 
     @staticmethod

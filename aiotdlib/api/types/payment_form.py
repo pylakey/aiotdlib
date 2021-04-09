@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .invoice import Invoice
@@ -45,9 +47,9 @@ class PaymentForm(BaseObject):
     ID: str = Field("paymentForm", alias="@type")
     invoice: Invoice
     url: str
-    payments_provider: PaymentsProviderStripe
-    saved_order_info: OrderInfo
-    saved_credentials: SavedCredentials
+    payments_provider: typing.Optional[PaymentsProviderStripe] = None
+    saved_order_info: typing.Optional[OrderInfo] = None
+    saved_credentials: typing.Optional[SavedCredentials] = None
     can_save_credentials: bool
     need_password: bool
 

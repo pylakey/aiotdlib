@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .animation import Animation
@@ -65,7 +67,7 @@ class PageBlockAnimation(PageBlock):
     """
 
     ID: str = Field("pageBlockAnimation", alias="@type")
-    animation: Animation
+    animation: typing.Optional[Animation] = None
     caption: PageBlockCaption
     need_autoplay: bool
 
@@ -88,7 +90,7 @@ class PageBlockAudio(PageBlock):
     """
 
     ID: str = Field("pageBlockAudio", alias="@type")
-    audio: Audio
+    audio: typing.Optional[Audio] = None
     caption: PageBlockCaption
 
     @staticmethod
@@ -158,7 +160,7 @@ class PageBlockChatLink(PageBlock):
 
     ID: str = Field("pageBlockChatLink", alias="@type")
     title: str
-    photo: ChatPhotoInfo
+    photo: typing.Optional[ChatPhotoInfo] = None
     username: str
 
     @staticmethod
@@ -279,7 +281,7 @@ class PageBlockEmbedded(PageBlock):
     ID: str = Field("pageBlockEmbedded", alias="@type")
     url: str
     html: str
-    poster_photo: Photo
+    poster_photo: typing.Optional[Photo] = None
     width: int
     height: int
     caption: PageBlockCaption
@@ -319,7 +321,7 @@ class PageBlockEmbeddedPost(PageBlock):
     ID: str = Field("pageBlockEmbeddedPost", alias="@type")
     url: str
     author: str
-    author_photo: Photo
+    author_photo: typing.Optional[Photo] = None
     date: int
     page_blocks: list[PageBlock]
     caption: PageBlockCaption
@@ -470,7 +472,7 @@ class PageBlockPhoto(PageBlock):
     """
 
     ID: str = Field("pageBlockPhoto", alias="@type")
-    photo: Photo
+    photo: typing.Optional[Photo] = None
     caption: PageBlockCaption
     url: str
 
@@ -671,7 +673,7 @@ class PageBlockVideo(PageBlock):
     """
 
     ID: str = Field("pageBlockVideo", alias="@type")
-    video: Video
+    video: typing.Optional[Video] = None
     caption: PageBlockCaption
     need_autoplay: bool
     is_looped: bool
@@ -695,7 +697,7 @@ class PageBlockVoiceNote(PageBlock):
     """
 
     ID: str = Field("pageBlockVoiceNote", alias="@type")
-    voice_note: VoiceNote
+    voice_note: typing.Optional[VoiceNote] = None
     caption: PageBlockCaption
 
     @staticmethod

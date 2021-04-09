@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -21,7 +23,7 @@ class SetBio(BaseObject):
     """
 
     ID: str = Field("setBio", alias="@type")
-    bio: str
+    bio: typing.Optional[str] = Field(None, max_length=70)
 
     @staticmethod
     def read(q: dict) -> SetBio:

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .formatted_text import FormattedText
@@ -35,7 +37,7 @@ class PollTypeQuiz(PollType):
 
     ID: str = Field("pollTypeQuiz", alias="@type")
     correct_option_id: int
-    explanation: FormattedText
+    explanation: typing.Optional[FormattedText] = None
 
     @staticmethod
     def read(q: dict) -> PollTypeQuiz:

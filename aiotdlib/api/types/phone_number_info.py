@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .country_info import CountryInfo
@@ -28,7 +30,7 @@ class PhoneNumberInfo(BaseObject):
     """
 
     ID: str = Field("phoneNumberInfo", alias="@type")
-    country: CountryInfo
+    country: typing.Optional[CountryInfo] = None
     country_calling_code: str
     formatted_phone_number: str
 

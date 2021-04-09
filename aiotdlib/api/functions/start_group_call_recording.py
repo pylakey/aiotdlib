@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -25,7 +27,7 @@ class StartGroupCallRecording(BaseObject):
 
     ID: str = Field("startGroupCallRecording", alias="@type")
     group_call_id: int
-    title: str
+    title: typing.Optional[str] = Field(None, max_length=64)
 
     @staticmethod
     def read(q: dict) -> StartGroupCallRecording:

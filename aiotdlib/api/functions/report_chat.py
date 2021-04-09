@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -34,7 +36,7 @@ class ReportChat(BaseObject):
     chat_id: int
     message_ids: list[int]
     reason: ChatReportReason
-    text: str
+    text: typing.Optional[str] = Field(None, max_length=1024)
 
     @staticmethod
     def read(q: dict) -> ReportChat:

@@ -81,11 +81,15 @@ class BaseType(BaseModel):
 
 
 class Parameter(BaseModel):
+    # Optional constraints
+    nullable: bool = False
+    min_length: typing.Optional[int] = None
+    max_length: typing.Optional[int] = None
+
     type: str
     name: str
     alias: str = None
     doc: str = ""
-    default: str = None
 
     @validator('name')
     def check_name(cls, name):
@@ -119,12 +123,20 @@ class Parameter(BaseModel):
         return upper_first(tl_type)
 
     @property
+    def has_constraints(self):
+        return self.is_core_type and (self.min_length is not None or self.max_length is not None)
+
+    @property
     def is_constructor(self) -> bool:
         return self.import_type is not None
 
     @property
     def is_vector_type(self) -> bool:
         return "list" in self.type
+
+    @property
+    def is_core_type(self):
+        return self.type in core_types
 
     @property
     def doc_type(self) -> str:
@@ -147,6 +159,14 @@ class Parameter(BaseModel):
             return inner_vector_type
 
         return self.type
+
+    @property
+    def optional_type(self):
+        # Workaround for nullable vector types items https://github.com/tdlib/td/issues/1016#issuecomment-618959102
+        if self.is_vector_type:
+            return re.sub(r"(.*list\[)(\w+)(].*)", r'\1typing.Optional[\2]\3', self.type)
+
+        return f"typing.Optional[{self.type}]"
 
 
 class Dependency(BaseModel):
@@ -286,6 +306,8 @@ def parse_tl_schema(file_path: str = None) -> list[typing.Union[Constructor, Met
     parameter_description_regex = re.compile(r"^//@(?P<name>.*?) (?P<description>.*)$")
     entity_regex = re.compile(r'^(?P<name>\w+)\s(?P<args>(?:.*))=\s(?P<return_type>\w+);$')
     args_regex = re.compile(r"(?P<name>\w+):(?P<type>[\w<>]+)")
+    param_length_constraint = re.compile(r"(?P<min_length>\d+)-(?P<max_length>\d+) characters")
+    nullability_constraint = re.compile(r".*may be null.*")
 
     try:
         scheme = urllib.request.urlopen(
@@ -360,10 +382,36 @@ def parse_tl_schema(file_path: str = None) -> list[typing.Union[Constructor, Met
                     arg_name = f'param_{arg_name}'
 
                 arg_description = current_entity_params_descriptions.get(arg_name)
+                arg_nullable = False
+                arg_min_length = None
+                arg_max_length = None
+
+                if ";" in arg_description:
+                    # Parsing parameter constraints
+                    # https://github.com/tdlib/td/issues/1016#issuecomment-618959102
+                    for c in arg_description.split(";"):
+                        c = c.strip()
+
+                        if nullability_constraint.match(c):
+                            arg_nullable = True
+
+                        param_length_constraint_match = param_length_constraint.match(c)
+
+                        if bool(param_length_constraint_match):
+                            arg_min_length = int(param_length_constraint_match.group('min_length'))
+
+                            if arg_min_length == 0:
+                                arg_nullable = True
+
+                            arg_max_length = int(param_length_constraint_match.group('max_length'))
+
                 entity_parameters.append(Parameter(
                     name=arg_name,
                     type=arg_type,
                     doc=arg_description,
+                    nullable=arg_nullable,
+                    min_length=arg_min_length,
+                    max_length=arg_max_length,
                 ))
 
             if is_functions_section:

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .bot_info import BotInfo
@@ -39,7 +41,7 @@ class ChatMember(BaseObject):
     inviter_user_id: int
     joined_chat_date: int
     status: ChatMemberStatus
-    bot_info: BotInfo
+    bot_info: typing.Optional[BotInfo] = None
 
     @staticmethod
     def read(q: dict) -> ChatMember:

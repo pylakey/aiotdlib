@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .profile_photo import ProfilePhoto
@@ -78,7 +80,7 @@ class User(BaseObject):
     username: str
     phone_number: str
     status: UserStatus
-    profile_photo: ProfilePhoto
+    profile_photo: typing.Optional[ProfilePhoto] = None
     is_contact: bool
     is_mutual_contact: bool
     is_verified: bool

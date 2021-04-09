@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .message_reply_info import MessageReplyInfo
@@ -30,7 +32,7 @@ class MessageInteractionInfo(BaseObject):
     ID: str = Field("messageInteractionInfo", alias="@type")
     view_count: int
     forward_count: int
-    reply_info: MessageReplyInfo
+    reply_info: typing.Optional[MessageReplyInfo] = None
 
     @staticmethod
     def read(q: dict) -> MessageInteractionInfo:

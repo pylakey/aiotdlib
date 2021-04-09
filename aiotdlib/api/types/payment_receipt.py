@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .invoice import Invoice
@@ -42,8 +44,8 @@ class PaymentReceipt(BaseObject):
     date: int
     payments_provider_user_id: int
     invoice: Invoice
-    order_info: OrderInfo
-    shipping_option: ShippingOption
+    order_info: typing.Optional[OrderInfo] = None
+    shipping_option: typing.Optional[ShippingOption] = None
     credentials_title: str
 
     @staticmethod

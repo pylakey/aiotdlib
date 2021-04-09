@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_invite_link import ChatInviteLink
@@ -81,7 +83,7 @@ class SupergroupFullInfo(BaseObject):
     """
 
     ID: str = Field("supergroupFullInfo", alias="@type")
-    photo: ChatPhoto
+    photo: typing.Optional[ChatPhoto] = None
     param_description: str
     member_count: int
     administrator_count: int
@@ -97,8 +99,8 @@ class SupergroupFullInfo(BaseObject):
     can_get_statistics: bool
     is_all_history_available: bool
     sticker_set_id: int
-    location: ChatLocation
-    invite_link: ChatInviteLink
+    location: typing.Optional[ChatLocation] = None
+    invite_link: typing.Optional[ChatInviteLink] = None
     upgraded_from_basic_group_id: int
     upgraded_from_max_message_id: int
 

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_invite_link import ChatInviteLink
@@ -178,8 +180,8 @@ class ChatEventLocationChanged(ChatEventAction):
     """
 
     ID: str = Field("chatEventLocationChanged", alias="@type")
-    old_location: ChatLocation
-    new_location: ChatLocation
+    old_location: typing.Optional[ChatLocation] = None
+    new_location: typing.Optional[ChatLocation] = None
 
     @staticmethod
     def read(q: dict) -> ChatEventLocationChanged:
@@ -438,8 +440,8 @@ class ChatEventPhotoChanged(ChatEventAction):
     """
 
     ID: str = Field("chatEventPhotoChanged", alias="@type")
-    old_photo: ChatPhoto
-    new_photo: ChatPhoto
+    old_photo: typing.Optional[ChatPhoto] = None
+    new_photo: typing.Optional[ChatPhoto] = None
 
     @staticmethod
     def read(q: dict) -> ChatEventPhotoChanged:

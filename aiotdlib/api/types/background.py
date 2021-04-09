@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .background_type import BackgroundType
@@ -42,7 +44,7 @@ class Background(BaseObject):
     is_default: bool
     is_dark: bool
     name: str
-    document: Document
+    document: typing.Optional[Document] = None
     type_: BackgroundType = Field(..., alias='type')
 
     @staticmethod

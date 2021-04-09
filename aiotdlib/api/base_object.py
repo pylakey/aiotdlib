@@ -12,7 +12,6 @@ logger = logging.getLogger('BaseObject')
 class BaseObject(BaseModel):
     class Config(BaseConfig):
         anystr_strip_whitespace = True
-        validate_assignment = True
         underscore_attrs_are_private = True
         use_enum_values = True
 

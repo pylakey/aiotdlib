@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .file import File
@@ -58,8 +60,8 @@ class Video(BaseObject):
     mime_type: str
     has_stickers: bool
     supports_streaming: bool
-    minithumbnail: Minithumbnail
-    thumbnail: Thumbnail
+    minithumbnail: typing.Optional[Minithumbnail] = None
+    thumbnail: typing.Optional[Thumbnail] = None
     video: File
 
     @staticmethod

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .address import Address
@@ -202,7 +204,7 @@ class UpdateChatActionBar(Update):
 
     ID: str = Field("updateChatActionBar", alias="@type")
     chat_id: int
-    action_bar: ChatActionBar
+    action_bar: typing.Optional[ChatActionBar] = None
 
     @staticmethod
     def read(q: dict) -> UpdateChatActionBar:
@@ -249,7 +251,7 @@ class UpdateChatDraftMessage(Update):
 
     ID: str = Field("updateChatDraftMessage", alias="@type")
     chat_id: int
-    draft_message: DraftMessage
+    draft_message: typing.Optional[DraftMessage] = None
     positions: list[ChatPosition]
 
     @staticmethod
@@ -359,7 +361,7 @@ class UpdateChatLastMessage(Update):
 
     ID: str = Field("updateChatLastMessage", alias="@type")
     chat_id: int
-    last_message: Message
+    last_message: typing.Optional[Message] = None
     positions: list[ChatPosition]
 
     @staticmethod
@@ -396,7 +398,7 @@ class UpdateChatMember(Update):
     chat_id: int
     actor_user_id: int
     date: int
-    invite_link: ChatInviteLink
+    invite_link: typing.Optional[ChatInviteLink] = None
     old_chat_member: ChatMember
     new_chat_member: ChatMember
 
@@ -508,7 +510,7 @@ class UpdateChatPhoto(Update):
 
     ID: str = Field("updateChatPhoto", alias="@type")
     chat_id: int
-    photo: ChatPhotoInfo
+    photo: typing.Optional[ChatPhotoInfo] = None
 
     @staticmethod
     def read(q: dict) -> UpdateChatPhoto:
@@ -1004,7 +1006,7 @@ class UpdateMessageEdited(Update):
     chat_id: int
     message_id: int
     edit_date: int
-    reply_markup: ReplyMarkup
+    reply_markup: typing.Optional[ReplyMarkup] = None
 
     @staticmethod
     def read(q: dict) -> UpdateMessageEdited:
@@ -1030,7 +1032,7 @@ class UpdateMessageInteractionInfo(Update):
     ID: str = Field("updateMessageInteractionInfo", alias="@type")
     chat_id: int
     message_id: int
-    interaction_info: MessageInteractionInfo
+    interaction_info: typing.Optional[MessageInteractionInfo] = None
 
     @staticmethod
     def read(q: dict) -> UpdateMessageInteractionInfo:
@@ -1287,7 +1289,7 @@ class UpdateNewChosenInlineResult(Update):
 
     ID: str = Field("updateNewChosenInlineResult", alias="@type")
     sender_user_id: int
-    user_location: Location
+    user_location: typing.Optional[Location] = None
     query: str
     result_id: str
     inline_message_id: str
@@ -1403,8 +1405,8 @@ class UpdateNewInlineQuery(Update):
     ID: str = Field("updateNewInlineQuery", alias="@type")
     id: int
     sender_user_id: int
-    user_location: Location
-    chat_type: ChatType
+    user_location: typing.Optional[Location] = None
+    chat_type: typing.Optional[ChatType] = None
     query: str
     offset: str
 
@@ -1466,7 +1468,7 @@ class UpdateNewPreCheckoutQuery(Update):
     total_amount: int
     invoice_payload: str
     shipping_option_id: str
-    order_info: OrderInfo
+    order_info: typing.Optional[OrderInfo] = None
 
     @staticmethod
     def read(q: dict) -> UpdateNewPreCheckoutQuery:
@@ -1732,7 +1734,7 @@ class UpdateSelectedBackground(Update):
 
     ID: str = Field("updateSelectedBackground", alias="@type")
     for_dark_theme: bool
-    background: Background
+    background: typing.Optional[Background] = None
 
     @staticmethod
     def read(q: dict) -> UpdateSelectedBackground:

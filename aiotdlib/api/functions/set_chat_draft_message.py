@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -30,7 +32,7 @@ class SetChatDraftMessage(BaseObject):
     ID: str = Field("setChatDraftMessage", alias="@type")
     chat_id: int
     message_thread_id: int
-    draft_message: DraftMessage
+    draft_message: typing.Optional[DraftMessage] = None
 
     @staticmethod
     def read(q: dict) -> SetChatDraftMessage:

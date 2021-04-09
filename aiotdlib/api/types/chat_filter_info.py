@@ -28,7 +28,7 @@ class ChatFilterInfo(BaseObject):
 
     ID: str = Field("chatFilterInfo", alias="@type")
     id: int
-    title: str
+    title: str = Field(..., min_length=1, max_length=12)
     icon_name: str
 
     @staticmethod

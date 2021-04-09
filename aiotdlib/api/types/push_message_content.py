@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .animation import Animation
@@ -44,7 +46,7 @@ class PushMessageContentAnimation(PushMessageContent):
     """
 
     ID: str = Field("pushMessageContentAnimation", alias="@type")
-    animation: Animation
+    animation: typing.Optional[Animation] = None
     caption: str
     is_pinned: bool
 
@@ -67,7 +69,7 @@ class PushMessageContentAudio(PushMessageContent):
     """
 
     ID: str = Field("pushMessageContentAudio", alias="@type")
-    audio: Audio
+    audio: typing.Optional[Audio] = None
     is_pinned: bool
 
     @staticmethod
@@ -233,7 +235,7 @@ class PushMessageContentDocument(PushMessageContent):
     """
 
     ID: str = Field("pushMessageContentDocument", alias="@type")
-    document: Document
+    document: typing.Optional[Document] = None
     is_pinned: bool
 
     @staticmethod
@@ -423,7 +425,7 @@ class PushMessageContentPhoto(PushMessageContent):
     """
 
     ID: str = Field("pushMessageContentPhoto", alias="@type")
-    photo: Photo
+    photo: typing.Optional[Photo] = None
     caption: str
     is_secret: bool
     is_pinned: bool
@@ -489,7 +491,7 @@ class PushMessageContentSticker(PushMessageContent):
     """
 
     ID: str = Field("pushMessageContentSticker", alias="@type")
-    sticker: Sticker
+    sticker: typing.Optional[Sticker] = None
     emoji: str
     is_pinned: bool
 
@@ -540,7 +542,7 @@ class PushMessageContentVideo(PushMessageContent):
     """
 
     ID: str = Field("pushMessageContentVideo", alias="@type")
-    video: Video
+    video: typing.Optional[Video] = None
     caption: str
     is_secret: bool
     is_pinned: bool
@@ -564,7 +566,7 @@ class PushMessageContentVideoNote(PushMessageContent):
     """
 
     ID: str = Field("pushMessageContentVideoNote", alias="@type")
-    video_note: VideoNote
+    video_note: typing.Optional[VideoNote] = None
     is_pinned: bool
 
     @staticmethod
@@ -586,7 +588,7 @@ class PushMessageContentVoiceNote(PushMessageContent):
     """
 
     ID: str = Field("pushMessageContentVoiceNote", alias="@type")
-    voice_note: VoiceNote
+    voice_note: typing.Optional[VoiceNote] = None
     is_pinned: bool
 
     @staticmethod

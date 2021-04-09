@@ -35,8 +35,8 @@ class CreateNewStickerSet(BaseObject):
 
     ID: str = Field("createNewStickerSet", alias="@type")
     user_id: int
-    title: str
-    name: str
+    title: str = Field(..., min_length=1, max_length=64)
+    name: str = Field(..., min_length=1, max_length=64)
     is_masks: bool
     stickers: list[InputSticker]
 

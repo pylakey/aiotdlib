@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .message import Message
@@ -26,7 +28,7 @@ class Messages(BaseObject):
 
     ID: str = Field("messages", alias="@type")
     total_count: int
-    messages: list[Message]
+    messages: list[typing.Optional[Message]] = None
 
     @staticmethod
     def read(q: dict) -> Messages:

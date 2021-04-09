@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .message_content import MessageContent
@@ -118,8 +120,8 @@ class Message(BaseObject):
     id: int
     sender: MessageSender
     chat_id: int
-    sending_state: MessageSendingState
-    scheduling_state: MessageSchedulingState
+    sending_state: typing.Optional[MessageSendingState] = None
+    scheduling_state: typing.Optional[MessageSchedulingState] = None
     is_outgoing: bool
     is_pinned: bool
     can_be_edited: bool
@@ -132,8 +134,8 @@ class Message(BaseObject):
     contains_unread_mention: bool
     date: int
     edit_date: int
-    forward_info: MessageForwardInfo
-    interaction_info: MessageInteractionInfo
+    forward_info: typing.Optional[MessageForwardInfo] = None
+    interaction_info: typing.Optional[MessageInteractionInfo] = None
     reply_in_chat_id: int
     reply_to_message_id: int
     message_thread_id: int
@@ -144,7 +146,7 @@ class Message(BaseObject):
     media_album_id: int
     restriction_reason: str
     content: MessageContent
-    reply_markup: ReplyMarkup
+    reply_markup: typing.Optional[ReplyMarkup] = None
 
     @staticmethod
     def read(q: dict) -> Message:

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_list import ChatList
@@ -35,7 +37,7 @@ class ChatPosition(BaseObject):
     list: ChatList
     order: int
     is_pinned: bool
-    source: ChatSource
+    source: typing.Optional[ChatSource] = None
 
     @staticmethod
     def read(q: dict) -> ChatPosition:

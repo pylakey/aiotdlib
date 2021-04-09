@@ -25,7 +25,7 @@ class CreateNewBasicGroupChat(BaseObject):
 
     ID: str = Field("createNewBasicGroupChat", alias="@type")
     user_ids: list[int]
-    title: str
+    title: str = Field(..., min_length=1, max_length=128)
 
     @staticmethod
     def read(q: dict) -> CreateNewBasicGroupChat:

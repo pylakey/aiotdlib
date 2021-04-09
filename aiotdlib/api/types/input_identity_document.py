@@ -38,7 +38,7 @@ class InputIdentityDocument(BaseObject):
     """
 
     ID: str = Field("inputIdentityDocument", alias="@type")
-    number: str
+    number: str = Field(..., min_length=1, max_length=24)
     expiry_date: Date
     front_side: InputFile
     reverse_side: InputFile

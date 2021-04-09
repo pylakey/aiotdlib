@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .file import File
@@ -50,8 +52,8 @@ class Audio(BaseObject):
     performer: str
     file_name: str
     mime_type: str
-    album_cover_minithumbnail: Minithumbnail
-    album_cover_thumbnail: Thumbnail
+    album_cover_minithumbnail: typing.Optional[Minithumbnail] = None
+    album_cover_thumbnail: typing.Optional[Thumbnail] = None
     audio: File
 
     @staticmethod

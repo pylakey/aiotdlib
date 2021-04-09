@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .closed_vector_path import ClosedVectorPath
@@ -58,9 +60,9 @@ class Sticker(BaseObject):
     emoji: str
     is_animated: bool
     is_mask: bool
-    mask_position: MaskPosition
+    mask_position: typing.Optional[MaskPosition] = None
     outline: list[ClosedVectorPath]
-    thumbnail: Thumbnail
+    thumbnail: typing.Optional[Thumbnail] = None
     sticker: File
 
     @staticmethod

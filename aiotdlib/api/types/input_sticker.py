@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .input_file import InputFile
@@ -62,7 +64,7 @@ class InputStickerStatic(InputSticker):
     ID: str = Field("inputStickerStatic", alias="@type")
     sticker: InputFile
     emojis: str
-    mask_position: MaskPosition
+    mask_position: typing.Optional[MaskPosition] = None
 
     @staticmethod
     def read(q: dict) -> InputStickerStatic:

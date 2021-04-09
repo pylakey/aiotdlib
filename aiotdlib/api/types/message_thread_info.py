@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .draft_message import DraftMessage
@@ -40,7 +42,7 @@ class MessageThreadInfo(BaseObject):
     message_thread_id: int
     reply_info: MessageReplyInfo
     messages: list[Message]
-    draft_message: DraftMessage
+    draft_message: typing.Optional[DraftMessage] = None
 
     @staticmethod
     def read(q: dict) -> MessageThreadInfo:

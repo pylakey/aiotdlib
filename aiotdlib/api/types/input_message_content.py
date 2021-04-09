@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .contact import Contact
@@ -99,8 +101,8 @@ class InputMessageAudio(InputMessageContent):
     audio: InputFile
     album_cover_thumbnail: InputThumbnail
     duration: int
-    title: str
-    performer: str
+    title: typing.Optional[str] = Field(None, max_length=64)
+    performer: typing.Optional[str] = Field(None, max_length=64)
     caption: FormattedText
 
     @staticmethod
@@ -272,8 +274,8 @@ class InputMessageInvoice(InputMessageContent):
 
     ID: str = Field("inputMessageInvoice", alias="@type")
     invoice: Invoice
-    title: str
-    param_description: str
+    title: str = Field(..., min_length=1, max_length=32)
+    param_description: typing.Optional[str] = Field(None, max_length=255)
     photo_url: str
     photo_size: int
     photo_width: int
@@ -389,7 +391,7 @@ class InputMessagePoll(InputMessageContent):
     """
 
     ID: str = Field("inputMessagePoll", alias="@type")
-    question: str
+    question: str = Field(..., min_length=1, max_length=255)
     options: list[str]
     is_anonymous: bool
     type_: PollType = Field(..., alias='type')

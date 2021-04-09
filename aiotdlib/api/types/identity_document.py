@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .date import Date
@@ -38,11 +40,11 @@ class IdentityDocument(BaseObject):
     """
 
     ID: str = Field("identityDocument", alias="@type")
-    number: str
-    expiry_date: Date
+    number: str = Field(..., min_length=1, max_length=24)
+    expiry_date: typing.Optional[Date] = None
     front_side: DatedFile
     reverse_side: DatedFile
-    selfie: DatedFile
+    selfie: typing.Optional[DatedFile] = None
     translation: list[DatedFile]
 
     @staticmethod

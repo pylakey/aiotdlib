@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .bot_info import BotInfo
@@ -50,7 +52,7 @@ class UserFullInfo(BaseObject):
     """
 
     ID: str = Field("userFullInfo", alias="@type")
-    photo: ChatPhoto
+    photo: typing.Optional[ChatPhoto] = None
     is_blocked: bool
     can_be_called: bool
     supports_video_calls: bool
@@ -59,7 +61,7 @@ class UserFullInfo(BaseObject):
     bio: str
     share_text: str
     group_in_common_count: int
-    bot_info: BotInfo
+    bot_info: typing.Optional[BotInfo] = None
 
     @staticmethod
     def read(q: dict) -> UserFullInfo:

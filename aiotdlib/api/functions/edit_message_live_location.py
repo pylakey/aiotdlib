@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -40,7 +42,7 @@ class EditMessageLiveLocation(BaseObject):
     chat_id: int
     message_id: int
     reply_markup: ReplyMarkup
-    location: Location
+    location: typing.Optional[Location] = None
     heading: int
     proximity_alert_radius: int
 

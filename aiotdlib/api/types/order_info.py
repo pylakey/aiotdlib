@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .address import Address
@@ -34,7 +36,7 @@ class OrderInfo(BaseObject):
     name: str
     phone_number: str
     email_address: str
-    shipping_address: Address
+    shipping_address: typing.Optional[Address] = None
 
     @staticmethod
     def read(q: dict) -> OrderInfo:

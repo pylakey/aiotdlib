@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_invite_link import ChatInviteLink
@@ -36,11 +38,11 @@ class BasicGroupFullInfo(BaseObject):
     """
 
     ID: str = Field("basicGroupFullInfo", alias="@type")
-    photo: ChatPhoto
+    photo: typing.Optional[ChatPhoto] = None
     param_description: str
     creator_user_id: int
     members: list[ChatMember]
-    invite_link: ChatInviteLink
+    invite_link: typing.Optional[ChatInviteLink] = None
 
     @staticmethod
     def read(q: dict) -> BasicGroupFullInfo:

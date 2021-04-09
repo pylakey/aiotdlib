@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .animation import Animation
@@ -366,8 +368,8 @@ class MessageDice(MessageContent):
     """
 
     ID: str = Field("messageDice", alias="@type")
-    initial_state: DiceStickers
-    final_state: DiceStickers
+    initial_state: typing.Optional[DiceStickers] = None
+    final_state: typing.Optional[DiceStickers] = None
     emoji: str
     value: int
     success_animation_frame_number: int
@@ -528,7 +530,7 @@ class MessageInvoice(MessageContent):
     ID: str = Field("messageInvoice", alias="@type")
     title: str
     param_description: str
-    photo: Photo
+    photo: typing.Optional[Photo] = None
     currency: str
     total_amount: int
     start_parameter: str
@@ -678,7 +680,7 @@ class MessagePaymentSuccessfulBot(MessageContent):
     total_amount: int
     invoice_payload: str
     shipping_option_id: str
-    order_info: OrderInfo
+    order_info: typing.Optional[OrderInfo] = None
     telegram_payment_charge_id: str
     provider_payment_charge_id: str
 
@@ -839,7 +841,7 @@ class MessageText(MessageContent):
 
     ID: str = Field("messageText", alias="@type")
     text: FormattedText
-    web_page: WebPage
+    web_page: typing.Optional[WebPage] = None
 
     @staticmethod
     def read(q: dict) -> MessageText:

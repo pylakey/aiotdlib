@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .message import Message
@@ -36,7 +38,7 @@ class MessageLinkInfo(BaseObject):
     ID: str = Field("messageLinkInfo", alias="@type")
     is_public: bool
     chat_id: int
-    message: Message
+    message: typing.Optional[Message] = None
     for_album: bool
     for_comment: bool
 

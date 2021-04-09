@@ -26,7 +26,7 @@ class ChatLocation(BaseObject):
 
     ID: str = Field("chatLocation", alias="@type")
     location: Location
-    address: str
+    address: str = Field(..., min_length=1, max_length=64)
 
     @staticmethod
     def read(q: dict) -> ChatLocation:

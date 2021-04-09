@@ -57,7 +57,7 @@ class ChatFilter(BaseObject):
     """
 
     ID: str = Field("chatFilter", alias="@type")
-    title: str
+    title: str = Field(..., min_length=1, max_length=12)
     icon_name: str
     pinned_chat_ids: list[int]
     included_chat_ids: list[int]

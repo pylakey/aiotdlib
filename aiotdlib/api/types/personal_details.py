@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .date import Date
@@ -49,12 +51,12 @@ class PersonalDetails(BaseObject):
     """
 
     ID: str = Field("personalDetails", alias="@type")
-    first_name: str
-    middle_name: str
-    last_name: str
-    native_first_name: str
-    native_middle_name: str
-    native_last_name: str
+    first_name: str = Field(..., min_length=1, max_length=255)
+    middle_name: typing.Optional[str] = Field(None, max_length=255)
+    last_name: str = Field(..., min_length=1, max_length=255)
+    native_first_name: str = Field(..., min_length=1, max_length=255)
+    native_middle_name: typing.Optional[str] = Field(None, max_length=255)
+    native_last_name: str = Field(..., min_length=1, max_length=255)
     birthdate: Date
     gender: str
     country_code: str

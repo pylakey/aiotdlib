@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .file import File
@@ -38,8 +40,8 @@ class Document(BaseObject):
     ID: str = Field("document", alias="@type")
     file_name: str
     mime_type: str
-    minithumbnail: Minithumbnail
-    thumbnail: Thumbnail
+    minithumbnail: typing.Optional[Minithumbnail] = None
+    thumbnail: typing.Optional[Thumbnail] = None
     document: File
 
     @staticmethod

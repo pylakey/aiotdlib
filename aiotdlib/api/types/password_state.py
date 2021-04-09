@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .email_address_authentication_code_info import EmailAddressAuthenticationCodeInfo
@@ -38,7 +40,7 @@ class PasswordState(BaseObject):
     password_hint: str
     has_recovery_email_address: bool
     has_passport_data: bool
-    recovery_email_address_code_info: EmailAddressAuthenticationCodeInfo
+    recovery_email_address_code_info: typing.Optional[EmailAddressAuthenticationCodeInfo] = None
 
     @staticmethod
     def read(q: dict) -> PasswordState:

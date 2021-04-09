@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .message_sender import MessageSender
@@ -30,7 +32,7 @@ class VoiceChat(BaseObject):
     ID: str = Field("voiceChat", alias="@type")
     group_call_id: int
     has_participants: bool
-    default_participant_alias: MessageSender
+    default_participant_alias: typing.Optional[MessageSender] = None
 
     @staticmethod
     def read(q: dict) -> VoiceChat:

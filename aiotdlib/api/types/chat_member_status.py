@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_permissions import ChatPermissions
@@ -67,7 +69,7 @@ class ChatMemberStatusAdministrator(ChatMemberStatus):
     """
 
     ID: str = Field("chatMemberStatusAdministrator", alias="@type")
-    custom_title: str
+    custom_title: typing.Optional[str] = Field(None, max_length=16)
     can_be_edited: bool
     can_manage_chat: bool
     can_change_info: bool
@@ -121,7 +123,7 @@ class ChatMemberStatusCreator(ChatMemberStatus):
     """
 
     ID: str = Field("chatMemberStatusCreator", alias="@type")
-    custom_title: str
+    custom_title: typing.Optional[str] = Field(None, max_length=16)
     is_anonymous: bool
     is_member: bool
 

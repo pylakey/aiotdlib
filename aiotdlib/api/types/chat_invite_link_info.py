@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_photo_info import ChatPhotoInfo
@@ -48,7 +50,7 @@ class ChatInviteLinkInfo(BaseObject):
     accessible_for: int
     type_: ChatType = Field(..., alias='type')
     title: str
-    photo: ChatPhotoInfo
+    photo: typing.Optional[ChatPhotoInfo] = None
     member_count: int
     member_user_ids: list[int]
     is_public: bool

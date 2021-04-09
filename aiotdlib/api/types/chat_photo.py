@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .animated_chat_photo import AnimatedChatPhoto
@@ -38,9 +40,9 @@ class ChatPhoto(BaseObject):
     ID: str = Field("chatPhoto", alias="@type")
     id: int
     added_date: int
-    minithumbnail: Minithumbnail
+    minithumbnail: typing.Optional[Minithumbnail] = None
     sizes: list[PhotoSize]
-    animation: AnimatedChatPhoto
+    animation: typing.Optional[AnimatedChatPhoto] = None
 
     @staticmethod
     def read(q: dict) -> ChatPhoto:

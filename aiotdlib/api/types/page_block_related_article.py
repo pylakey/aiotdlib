@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .photo import Photo
@@ -40,7 +42,7 @@ class PageBlockRelatedArticle(BaseObject):
     url: str
     title: str
     param_description: str
-    photo: Photo
+    photo: typing.Optional[Photo] = None
     author: str
     publish_date: int
 

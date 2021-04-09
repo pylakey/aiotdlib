@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .minithumbnail import Minithumbnail
@@ -30,7 +32,7 @@ class Photo(BaseObject):
 
     ID: str = Field("photo", alias="@type")
     has_stickers: bool
-    minithumbnail: Minithumbnail
+    minithumbnail: typing.Optional[Minithumbnail] = None
     sizes: list[PhotoSize]
 
     @staticmethod
