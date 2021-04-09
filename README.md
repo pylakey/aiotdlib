@@ -1,17 +1,31 @@
 # aiotdlib
 
-## Python asyncio wrapper for [TDLib](https://github.com/tdlib/td). 
-> All types and functions are generated automatically based on [TD tl-schema](https://github.com/tdlib/td/blob/master/td/generate/scheme/td_api.tl) 
+## Features
+
+* All types and functions are generated automatically
+  from [tl schema](https://github.com/tdlib/td/blob/master/td/generate/scheme/td_api.tl)
+* All types and functions come with validation and good IDE type hinting (thanks
+  to [Pydantic](https://github.com/samuelcolvin/pydantic))
+* A set of high-level API methods which makes work with tdlib much simpler
 
 > Tested with TDLib v1.7.3 only. Support for other versions of TDLib is not guaranteed
 
 > Prebuilt binary (v1.7.3) **only for macOS** included.
 > You can use your own binary by passing `library_path` argument to `Client` class constructor
 
-> You need to get your **api_id** and **api_hash** first.
-> Read more in [Telegram docs](https://core.telegram.org/api/obtaining_api_id#obtaining-api-id)
+## Requirements
 
-### Basic example
+* Python 3.9+
+* Get your **api_id** and **api_hash**. Read more
+  in [Telegram docs](https://core.telegram.org/api/obtaining_api_id#obtaining-api-id)
+
+## Installation
+
+```shell
+pip install fastapi
+```
+
+## Example
 
 ```python
 import asyncio
@@ -41,7 +55,7 @@ if __name__ == '__main__':
     asyncio.run(main())
 ```
 
-### Registering event handler
+### Events handlers
 
 ```python
 import asyncio
@@ -77,7 +91,7 @@ async def main():
     # Registering event handler for 'updateNewMessage' event
     # You can register many handlers for certain event type
     client.add_event_handler(on_update_new_message, update_type=API.Types.UPDATE_NEW_MESSAGE)
-    
+
     # You can register handler for special event type "*". 
     # It will be called for each received event
     client.add_event_handler(any_event_handler, update_type=API.Types.ANY)
@@ -155,3 +169,7 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     asyncio.run(main())
 ```
+
+## LICENSE
+
+This project is licensed under the terms of the [MIT](https://github.com/pylakey/aiotdlib/blob/master/LICENSE) license.
