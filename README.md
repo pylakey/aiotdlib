@@ -1,4 +1,4 @@
-# aiotdlib
+# aiotdlib - Python asyncio Telegram client based on [TDLib](https://github.com/tdlib/td)
 
 ## Features
 
