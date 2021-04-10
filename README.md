@@ -22,7 +22,7 @@
 ## Installation
 
 ```shell
-pip install fastapi
+pip install aiotdlib
 ```
 
 ## Example
