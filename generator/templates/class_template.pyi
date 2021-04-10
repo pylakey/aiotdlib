@@ -10,7 +10,7 @@ import typing
 from pydantic import Field
 
 {% for d in entity.dependencies -%}
-from {% if entity.is_method %}..types{% else %}.{{ d.name }}{% endif %} import {{ d.type }}
+from {% if entity.is_function %}..types{% else %}.{{d.name}}{% endif %} import {{d.type}}
 {% endfor -%}
 from ..base_object import BaseObject
 

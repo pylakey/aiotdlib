@@ -29,7 +29,7 @@ class API:
 
     def __init__(self, client: 'Client'):
         self.client = client
-    {% for entity in entities if entity.is_method %}
+    {% for entity in entities if entity.is_function %}
     async def {{ entity.snake_name }}{% if entity.parameters %}(
             self,
             {%- for parameter in entity.parameters %}
