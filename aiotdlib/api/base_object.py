@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from enum import Enum
-from typing import Dict, Optional, Type
+from typing import Any, Dict, Optional, Type
 
 from pydantic import BaseConfig, BaseModel, Field
 
@@ -17,6 +17,7 @@ class BaseObject(BaseModel):
 
     _all: Optional[Dict[str, Type[BaseObject]]] = {}
     ID: str = Field(..., alias='@type')
+    EXTRA: Optional[dict[str, Any]] = Field({}, alias='@extra')
 
     @staticmethod
     def read(data: dict):
@@ -29,7 +30,6 @@ class BaseObject(BaseModel):
         q_type = data.get('@type')
 
         if not bool(q_type):
-            logger.warning(f'@type not found in received update. {data}')
             return data
 
         q_type = q_type.value if isinstance(q_type, Enum) else q_type
@@ -40,6 +40,6 @@ class BaseObject(BaseModel):
             return data
 
         for key, value in data.items():
-            data[key] = value if key == '@extra' else BaseObject.read(value)
+            data[key] = BaseObject.read(value)
 
         return object_class.read(data)

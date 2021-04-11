@@ -1,5 +1,26 @@
 # aiotdlib CHANGELOG
 
+### v0.2.0
+
+#### Added
+
+* `@extra` field of incoming updates now available in `EXTRA` attribute of `BaseObject` and is empty dict by default. It
+  is useful to store some user data there
+
+* New filter factory `create_bot_command_filter(command: str)` to create specified command handler (useful for bots).
+  This filter parses message text as command and puts `bot_command` and `bot_command_args` to `update.EXTRA`
+
+* `Client.text_message_handler` method for registration of text message handlers
+  > this method is universal and can be used directly or as decorator
+  
+* `Client.bot_command_handler` method for registration of text message handlers with texts started with "/"
+  > this method is universal and can be used directly or as decorator
+* `Client.parse_text` method to parse text entities according to `parse_mode` parameter. By default, `parse_mode`
+  parameter from constructor will is used
+
+* New high-level API method `Client.edit_message` - Edits the text of a message (or a text of a game message). Returns
+  the edited message after the edit is completed on the server side
+
 ### v0.1.0
 
 #### Added

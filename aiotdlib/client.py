@@ -24,6 +24,7 @@ from .api import (
     ChatTypeSecret,
     ChatTypeSupergroup,
     Close,
+    FormattedText,
     InputMessageText,
     Message,
     MessageSchedulingStateSendAtDate,
@@ -43,6 +44,7 @@ from .api import (
     UserFullInfo,
 )
 from .client_cache import ClientCache
+from .filters import create_bot_command_filter, text_message_filter
 from .handlers import FilterCallable, Handler, HandlerCallable
 from .middlewares import MiddlewareCallable
 from .tdjson import TDJson, TDLibLogVerbosity
@@ -462,6 +464,44 @@ class Client:
         self.__middlewares.append(middleware)
         return middleware
 
+    def text_message_handler(self, function: HandlerCallable = None):
+        """
+        Registers event handler with predefined filter text_message_filter
+        which allows only UpdateNewMessage with MessageText content
+
+        Note: this method is universal and can be used directly or as decorator
+        """
+        if callable(function):
+            self.add_event_handler(
+                function,
+                API.Types.UPDATE_NEW_MESSAGE,
+                filters=text_message_filter
+            )
+        else:
+            return self.on_event(
+                API.Types.UPDATE_NEW_MESSAGE,
+                filters=text_message_filter
+            )
+
+    def bot_command_handler(self, function: HandlerCallable = None, *, command: str = None):
+        """
+        Registers event handler with predefined filter bot_command_handler
+        which allows only UpdateNewMessage with MessageText content and text of message starts with "/"
+
+        Note: this method is universal and can be used directly or as decorator
+        """
+        if callable(function):
+            self.add_event_handler(
+                function,
+                API.Types.UPDATE_NEW_MESSAGE,
+                filters=create_bot_command_filter(command=command)
+            )
+        else:
+            return self.on_event(
+                API.Types.UPDATE_NEW_MESSAGE,
+                filters=create_bot_command_filter(command=command)
+            )
+
     async def send(self, query: Union[dict, BaseObject], *, request_id: str = None) -> AsyncResult:
         if not self.__running:
             raise RuntimeError('Client not started')
@@ -597,6 +637,26 @@ class Client:
 
             await asyncio.sleep(0.1)
 
+    async def parse_text(self, text: str, *, parse_mode: str = None) -> FormattedText:
+        """
+        Parses Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode,
+        TextUrl and MentionName entities contained in the text.
+        """
+        # ParseTextEntities can be called synchronously
+        if parse_mode is None:
+            parse_mode = self.parse_mode
+        else:
+            parse_mode = parse_mode.lower()
+
+        return await self.execute(ParseTextEntities(
+            text=text,
+            parse_mode=(
+                TextParseModeHTML()
+                if parse_mode == 'html' else
+                TextParseModeMarkdown(version=2)
+            )
+        ))
+
     # API methods shorthands
     async def send_message(
             self,
@@ -653,11 +713,7 @@ class Client:
         else:
             scheduling_state = None
 
-        # ParseTextEntities can be called synchronously
-        formatted_text = await self.execute(ParseTextEntities(
-            text=text,
-            parse_mode=TextParseModeHTML() if self.parse_mode == 'html' else TextParseModeMarkdown(version=2)
-        ))
+        formatted_text = await self.parse_text(text)
 
         return await self.api.send_message(
             chat_id=chat_id,
@@ -668,6 +724,54 @@ class Client:
                 from_background=False,
                 scheduling_state=scheduling_state
             ),
+            reply_markup=reply_markup,
+            input_message_content=InputMessageText.construct(
+                text=formatted_text,
+                disable_web_page_preview=disable_web_page_preview,
+                clear_draft=clear_draft,
+            ),
+            skip_validation=True
+        )
+
+    async def edit_message(
+            self,
+            chat_id: int,
+            message_id: int,
+            text: str,
+            *,
+            reply_markup: ReplyMarkup = None,
+            disable_web_page_preview: bool = False,
+            clear_draft: bool = True,
+    ):
+        """
+        Edits the text of a message (or a text of a game message).
+        Returns the edited message after the edit is completed on the server side
+
+        Params:
+            chat_id (:class:`int`)
+                The chat the message belongs to
+
+            message_id (:class:`int`)
+                Identifier of the message
+
+            text (:class:`str`)
+                New text of the message
+
+            reply_markup (:class:`ReplyMarkup`)
+                The new message reply markup; for bots only
+
+            disable_web_page_preview (:class:`bool`)
+                True, if rich web page previews for URLs in the message text should be disabled
+
+            clear_draft (:class:`bool`)
+                True, if a chat message draft should be deleted
+
+        """
+        formatted_text = await self.parse_text(text)
+
+        return await self.api.edit_message_text(
+            chat_id=chat_id,
+            message_id=message_id,
             reply_markup=reply_markup,
             input_message_content=InputMessageText.construct(
                 text=formatted_text,

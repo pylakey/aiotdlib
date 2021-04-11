@@ -106,6 +106,51 @@ if __name__ == '__main__':
     asyncio.run(main())
 ```
 
+### Bot command handler
+
+```python
+import asyncio
+import logging
+
+from aiotdlib import Client
+from aiotdlib.api import UpdateNewMessage
+
+API_ID = 12345
+API_HASH = "00112233445566778899aabbccddeeff"
+PHONE_NUMBER = ""
+
+client = Client(
+    api_id=API_ID,
+    api_hash=API_HASH,
+    phone_number=PHONE_NUMBER
+)
+
+
+async def on_start_command(client: Client, update: UpdateNewMessage):
+    await client.send_message(update.message.chat_id, "Have a good day! :)")
+
+
+# Note: bot_command_handler method is universal and can be used directly or as decorator
+# Registering handler for '/help' command
+@client.bot_command_handler(command='help')
+async def on_help_command(client: Client, update: UpdateNewMessage):
+    await client.send_message(update.message.chat_id, "I will help you!")
+
+
+async def main():
+    # Note: bot_command_handler method is universal and can be used directly or as decorator
+    # Registering handler for '/start' command
+    client.bot_command_handler(on_start_command, command='start')
+
+    async with client:
+        await client.idle()
+
+
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO)
+    asyncio.run(main())
+```
+
 ### Middlewares
 
 ```python
