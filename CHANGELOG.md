@@ -1,5 +1,13 @@
 # aiotdlib CHANGELOG
 
+### v0.2.1
+
+#### Updated
+
+* Minor refactoring
+
+* Updated TDLib binary
+
 ### v0.2.0
 
 #### Added
@@ -12,7 +20,7 @@
 
 * `Client.text_message_handler` method for registration of text message handlers
   > this method is universal and can be used directly or as decorator
-  
+
 * `Client.bot_command_handler` method for registration of text message handlers with texts started with "/"
   > this method is universal and can be used directly or as decorator
 * `Client.parse_text` method to parse text entities according to `parse_mode` parameter. By default, `parse_mode`
