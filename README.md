@@ -162,7 +162,7 @@ if __name__ == '__main__':
 import asyncio
 import logging
 
-from aiotdlib import Client, ClientProxySettings, ClientProxySettingsType
+from aiotdlib import Client, ClientProxySettings, ClientProxyType
 
 API_ID = 12345
 API_HASH = "00112233445566778899aabbccddeeff"
@@ -170,26 +170,26 @@ PHONE_NUMBER = ""
 
 
 async def main():
-    client = Client(
-        api_id=API_ID,
-        api_hash=API_HASH,
-        phone_number=PHONE_NUMBER,
-        proxy_settings=ClientProxySettings(
-            host="10.0.0.1",
-            port=3333,
-            type=ClientProxySettingsType.SOCKS5,
-            username="aiotdlib",
-            password="somepassword",
-        )
+  client = Client(
+    api_id=API_ID,
+    api_hash=API_HASH,
+    phone_number=PHONE_NUMBER,
+    proxy_settings=ClientProxySettings(
+      host="10.0.0.1",
+      port=3333,
+      type=ClientProxyType.SOCKS5,
+      username="aiotdlib",
+      password="somepassword",
     )
+  )
 
-    async with client:
-        await client.idle()
+  async with client:
+    await client.idle()
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO)
-    asyncio.run(main())
+  logging.basicConfig(level=logging.INFO)
+  asyncio.run(main())
 ```
 
 ## LICENSE

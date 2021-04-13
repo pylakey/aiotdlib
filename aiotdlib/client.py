@@ -70,7 +70,7 @@ ChatInfo = Union[
 ]
 
 
-class ClientProxySettingsType(str, enum.Enum):
+class ClientProxyType(str, enum.Enum):
     MTPROTO = 'mtproto'
     HTTP = 'http'
     SOCKS5 = 'socks5'
@@ -106,7 +106,7 @@ class ClientProxySettings(BaseModel):
 
     host: str
     port: int
-    type: ClientProxySettingsType = ClientProxySettingsType.SOCKS5
+    type: ClientProxyType = ClientProxyType.SOCKS5
     username: Optional[str] = None
     password: Optional[str] = None
     http_only: bool = False
@@ -114,7 +114,7 @@ class ClientProxySettings(BaseModel):
 
     @validator('secret', pre=True, always=True)
     def validate_secret(cls, secret: str, values):
-        if values.get('type') == ClientProxySettingsType.MTPROTO and secret is None:
+        if values.get('type') == ClientProxyType.MTPROTO and secret is None:
             raise MissingError
 
         return secret
@@ -519,15 +519,15 @@ class Client:
 
                 return
 
-        if self.proxy_settings.type == ClientProxySettingsType.HTTP:
+        if self.proxy_settings.type == ClientProxyType.HTTP:
             proxy_type = ProxyTypeHttp.construct(
                 username=self.proxy_settings.username,
                 password=self.proxy_settings.password,
                 http_only=self.proxy_settings.http_only
             )
-        elif self.proxy_settings.type == ClientProxySettingsType.MTPROTO:
+        elif self.proxy_settings.type == ClientProxyType.MTPROTO:
             proxy_type = ProxyTypeMtproto.construct(secret=self.proxy_settings.secret)
-        elif self.proxy_settings.type == ClientProxySettingsType.SOCKS5:
+        elif self.proxy_settings.type == ClientProxyType.SOCKS5:
             proxy_type = ProxyTypeSocks5.construct(
                 username=self.proxy_settings.username,
                 password=self.proxy_settings.password,

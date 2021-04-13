@@ -1,6 +1,6 @@
 __version__ = "0.3.0"
 
-from .client import Client, ClientProxySettings, ClientProxySettingsType
+from .client import Client, ClientProxySettings, ClientProxyType
 from .filters import FilterCallable
 from .handlers import Handler, HandlerCallable
 from .middlewares import MiddlewareCallable
