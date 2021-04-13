@@ -155,60 +155,33 @@ if __name__ == '__main__':
     asyncio.run(main())
 ```
 
-### Middlewares
+### Proxy
 
 ```python
 
 import asyncio
 import logging
 
-from aiotdlib import Client, HandlerCallable
-from aiotdlib.api import API, BaseObject, UpdateNewMessage
+from aiotdlib import Client, ClientProxySettings, ClientProxySettingsType
 
 API_ID = 12345
 API_HASH = "00112233445566778899aabbccddeeff"
 PHONE_NUMBER = ""
 
 
-async def some_pre_updates_work(event: BaseObject):
-    logging.info(f"Before call all update handlers for event {event.ID}")
-
-
-async def some_post_updates_work(event: BaseObject):
-    logging.info(f"After call all update handlers for event {event.ID}")
-
-
-# Middlewares are useful for opening database connections for example
-# Note that call_next argument would always be passed as keyword argument,
-# so it should be called "call_next" only.
-async def my_middleware(client: Client, event: BaseObject, *, call_next: HandlerCallable):
-    await some_pre_updates_work(event)
-
-    try:
-        await call_next(client, event)
-    finally:
-        await some_post_updates_work(event)
-
-
-async def on_update_new_message(client: Client, update: UpdateNewMessage):
-    logging.info('on_update_new_message handler called')
-
-
 async def main():
     client = Client(
         api_id=API_ID,
         api_hash=API_HASH,
-        phone_number=PHONE_NUMBER
+        phone_number=PHONE_NUMBER,
+        proxy_settings=ClientProxySettings(
+            host="10.0.0.1",
+            port=3333,
+            type=ClientProxySettingsType.SOCKS5,
+            username="aiotdlib",
+            password="somepassword",
+        )
     )
-
-    client.add_event_handler(on_update_new_message, update_type=API.Types.UPDATE_NEW_MESSAGE)
-
-    # Registering middleware.
-    # Note that middleware would be called for EVERY EVENT.
-    # Don't use them for long-running tasks as it could be heavy performance hit
-    # You can add as much middlewares as you want. 
-    # They would be called in order you've added them
-    client.add_middleware(my_middleware)
 
     async with client:
         await client.idle()

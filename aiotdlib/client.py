@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import enum
 import hashlib
 import json
 import logging
@@ -10,6 +11,8 @@ import sys
 from functools import partial, update_wrapper
 from pathlib import Path
 from typing import Optional, TypeVar, Union
+
+from pydantic import BaseModel, MissingError, validator
 
 from . import __version__
 from .api import (
@@ -24,7 +27,7 @@ from .api import (
     ChatTypeSecret,
     ChatTypeSupergroup,
     Close,
-    FormattedText,
+    Error, FormattedText,
     InputMessageText,
     Message,
     MessageSchedulingStateSendAtDate,
@@ -32,6 +35,9 @@ from .api import (
     MessageSendOptions,
     ParseTextEntities,
     PhoneNumberAuthenticationSettings,
+    ProxyTypeHttp,
+    ProxyTypeMtproto,
+    ProxyTypeSocks5,
     ReplyMarkup,
     SecretChat,
     Supergroup,
@@ -64,6 +70,56 @@ ChatInfo = Union[
 ]
 
 
+class ClientProxySettingsType(str, enum.Enum):
+    MTPROTO = 'mtproto'
+    HTTP = 'http'
+    SOCKS5 = 'socks5'
+
+
+class ClientProxySettings(BaseModel):
+    """
+    Universal proxy settings object for all proxy types
+
+    Params:
+        host (:class:`str`)
+            Proxy server IP address
+
+        port (:class:`int`)
+            Proxy server port
+
+        type (:class:`ClientProxySettingsType`)
+            Proxy type
+
+        username (:class:`str`)
+            Username for logging in; may be empty
+
+        password (:class:`str`)
+            Password for logging in; may be empty
+
+        http_only (:class:`bool`)
+            Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
+
+        secret (:class:`str`)
+            The proxy's secret in hexadecimal encoding
+
+    """
+
+    host: str
+    port: int
+    type: ClientProxySettingsType = ClientProxySettingsType.SOCKS5
+    username: Optional[str] = None
+    password: Optional[str] = None
+    http_only: bool = False
+    secret: Optional[str] = None
+
+    @validator('secret', pre=True, always=True)
+    def validate_secret(cls, secret: str, values):
+        if values.get('type') == ClientProxySettingsType.MTPROTO and secret is None:
+            raise MissingError
+
+        return secret
+
+
 class Client:
     logger: logging.Logger = None
     loop: asyncio.AbstractEventLoop = None
@@ -87,7 +143,8 @@ class Client:
             library_path: str = None,
             tdlib_verbosity: TDLibLogVerbosity = TDLibLogVerbosity.ERROR,
             debug: bool = False,
-            parse_mode: str = 'html'
+            parse_mode: str = 'html',
+            proxy_settings: ClientProxySettings = None
     ):
         """
             Params:
@@ -144,6 +201,9 @@ class Client:
                 parse_mode (:class:`str`)
                     Default parse mode for high-level methods like send_message. Default: html
 
+                proxy_settings (:class:`ClientProxySettings`)
+                    Settings for proxying telegram connection
+
         """
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.DEBUG if debug else logging.INFO)
@@ -164,6 +224,7 @@ class Client:
         self.first_name = first_name
         self.last_name = last_name
         self.parse_mode = 'markdown' if (bool(parse_mode) and parse_mode.lower() == 'markdown') else 'html'
+        self.proxy_settings = proxy_settings
 
         md5_hash = hashlib.md5()
         md5_hash.update((self.phone_number or self.bot_token).encode('utf-8'))
@@ -292,7 +353,6 @@ class Client:
         return await self.api.get_authorization_state(request_id="updateAuthorizationState")
 
     async def __set_tdlib_parameters(self) -> RequestResult:
-        # TODO: more parameters in Client constructor
         return await self.api.set_tdlib_parameters(
             parameters=TdlibParameters(
                 use_test_dc=self.use_test_dc,
@@ -316,10 +376,14 @@ class Client:
 
     async def __check_database_encryption_key(self) -> RequestResult:
         self.logger.info('Sending encryption key')
-        return await self.api.check_database_encryption_key(
+        result = await self.api.check_database_encryption_key(
             encryption_key=str_to_base64(self.database_encryption_key),
             request_id="updateAuthorizationState"
         )
+
+        await self.__setup_proxy()
+
+        return result
 
     async def __set_authentication_phone_number_or_check_bot_token(self) -> RequestResult:
         if self.phone_number:
@@ -417,6 +481,71 @@ class Client:
     async def __stop_signal_handler(self, signum: int) -> None:
         self.logger.info('Signal %s received!', signum)
         await self.stop()
+
+    async def __setup_proxy(self):
+        if not bool(self.proxy_settings):
+            # If proxy is not set disabling all configured proxy
+            await self.api.disable_proxy()
+            return
+
+        self.logger.info('Retrieving all proxies list')
+        result = await self.api.get_proxies()
+
+        proxy_type_by_class = {
+            ProxyTypeSocks5: 'socks5',
+            ProxyTypeMtproto: 'mtproto',
+            ProxyTypeHttp: 'http',
+        }
+
+        if self.debug:
+            proxies_list_string = "\n".join(
+                f"{'* ' if p.is_enabled else ''}[{proxy_type_by_class.get(p.type_.__class__)}] {p.server}:{p.port}"
+                for p in result.proxies
+            )
+            self.logger.info(
+                f'{len(result.proxies)} proxies already set up:\n'
+                f'{proxies_list_string}'
+                f'\n'
+            )
+
+        for p in result.proxies:
+            if (
+                    p.server == self.proxy_settings.host and
+                    p.port == self.proxy_settings.port and
+                    proxy_type_by_class.get(p.type_.__class__) == self.proxy_settings.type
+            ):
+                if not p.is_enabled:
+                    await self.api.enable_proxy(p.id)
+
+                return
+
+        if self.proxy_settings.type == ClientProxySettingsType.HTTP:
+            proxy_type = ProxyTypeHttp.construct(
+                username=self.proxy_settings.username,
+                password=self.proxy_settings.password,
+                http_only=self.proxy_settings.http_only
+            )
+        elif self.proxy_settings.type == ClientProxySettingsType.MTPROTO:
+            proxy_type = ProxyTypeMtproto.construct(secret=self.proxy_settings.secret)
+        elif self.proxy_settings.type == ClientProxySettingsType.SOCKS5:
+            proxy_type = ProxyTypeSocks5.construct(
+                username=self.proxy_settings.username,
+                password=self.proxy_settings.password,
+            )
+        else:
+            raise ValueError(f'Unknown proxy type {self.proxy_settings.type}')
+
+        self.logger.info(
+            f"Configuring PROXY of type {self.proxy_settings.type.value}. "
+            f"Server: {self.proxy_settings.host}:{self.proxy_settings.port}"
+        )
+
+        await self.api.add_proxy(
+            enable=True,
+            server=self.proxy_settings.host,
+            port=self.proxy_settings.port,
+            type_=proxy_type,
+        )
 
     def add_event_handler(
             self,
@@ -529,9 +658,9 @@ class Client:
 
         return async_result
 
-    async def request(self, query: BaseObject, *, request_id: str = None) -> Optional[RequestResult]:
+    async def request(self, query: BaseObject, *, request_id: str = None, timeout: int = 5) -> Optional[RequestResult]:
         result = await self.send(query, request_id=request_id)
-        await result.wait(raise_exc=True, timeout=5)
+        await result.wait(raise_exc=True, timeout=timeout)
 
         if self.debug:
             self.logger.debug(f"<<<<< {result.update.ID} {result.update.dict(by_alias=True, exclude={'ID'})}")
@@ -554,7 +683,15 @@ class Client:
             query['@type'] = query_type
 
         result = await self.loop.run_in_executor(None, self.__tdjson.execute, query)
-        return BaseObject.read(result)
+        result_object = BaseObject.read(result)
+
+        if isinstance(result_object, Error):
+            raise AioTDLibError(
+                code=result_object.code,
+                message=result_object.message
+            )
+
+        return result_object
 
     async def start(self) -> 'Client':
         self.logger.info('Starting client')

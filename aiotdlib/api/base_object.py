@@ -39,7 +39,12 @@ class BaseObject(BaseModel):
             logger.error(f'Object class not found for @type={q_type}')
             return data
 
-        for key, value in data.items():
-            data[key] = BaseObject.read(value)
+        processed_data = {}
 
-        return object_class.read(data)
+        for key, value in data.items():
+            key = key + "_" if key in ['json', 'filter', 'type', 'hash'] else key
+            processed_data[key] = BaseObject.read(value)
+
+        del data
+
+        return object_class.read(processed_data)

@@ -1,5 +1,12 @@
 # aiotdlib CHANGELOG
 
+### v0.3.0
+
+#### Added
+
+* Added proxy support. Proxy settings now available in Client
+  initializer. [Example](https://github.com/pylakey/aiotdlib#proxy)
+
 ### v0.2.1
 
 #### Updated
