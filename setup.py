@@ -14,7 +14,7 @@ with open("aiotdlib/__init__.py", encoding="utf-8") as f:
 setup(
     name="aiotdlib",
     version=version,
-    license='MIT License',
+    license='MIT',
     author="Pylakey",
     author_email="pylakey@protonmail.com",
     description="Python asyncio wrapper for TDLib",
@@ -24,7 +24,7 @@ setup(
         exclude=('generator',)
     ),
     classifiers=[
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.9",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],

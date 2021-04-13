@@ -1,5 +1,9 @@
 # aiotdlib - Python asyncio Telegram client based on [TDLib](https://github.com/tdlib/td)
 
+[![PyPI version shields.io](https://img.shields.io/pypi/v/aiotdlib.svg)](https://pypi.python.org/pypi/aiotdlib/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/aiotdlib.svg)](https://pypi.python.org/pypi/aiotdlib/)
+[![PyPI license](https://img.shields.io/pypi/l/aiotdlib.svg)](https://pypi.python.org/pypi/aiotdlib/)
+
 ## Features
 
 * All types and functions are generated automatically
