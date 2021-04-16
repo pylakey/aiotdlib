@@ -1,5 +1,37 @@
 # aiotdlib CHANGELOG
 
+### v0.4.0
+
+### BREAKING CHANGES
+
+* `timeout` parameter of `Client.request` changed to `request_timeout`
+
+* `AsyncResult` renamed to `PendingRequest`
+
+* `Client.send_message` renamed to `Client.send_text`
+
+#### Added
+
+* all methods of API class now have `request_timeout` parameter
+
+#### Updated
+
+* added workaround for all aliased fields of `BaseObject` subclasses
+
+* `PendingRequest.id` is property now and returns `request_id` of outgoing request passed to constructor
+
+* `ClientCache` now handles telegram options updates and provides `get_option_value` method to retrieve option value by
+  name
+
+* Messages now can be sent in semi-synchronous way: `SendMessage` request would wait for `UpdateMessageSendSucceeded`
+  event.
+
+* Added some high-level methods to `Client`: `send_photo`, `send_video`, `send_animation`, `send_document`, `send_audio`
+  , `send_voice_note`, `send_video_note`, `forward_messages`
+
+* Request main chats list if session was authorized for the first time to avoid Chat not found errors and initialize
+  inner TDLib chats cache
+
 ### v0.3.0
 
 #### Added

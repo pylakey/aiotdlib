@@ -505,7 +505,7 @@ class Client:
 
         if self.first_time_auth:
             # Update chats list in cache after successful authorization
-            await self.get_main_list_chats()
+            await self.get_main_list_chats(limit=500)
 
         self.__is_authorized = True
         self.logger.info('Authorization is completed')
