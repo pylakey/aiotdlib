@@ -42,7 +42,13 @@ class BaseObject(BaseModel):
         processed_data = {}
 
         for key, value in data.items():
-            key = key + "_" if key in ['json', 'filter', 'type', 'hash'] else key
+            # Workaround for BaseModel.construct(**kwargs).
+            # It doesn't automatically rename fields according to aliases
+            if key in ['json', 'filter', 'type', 'hash']:
+                key = key + "_"
+            elif key == '@extra':
+                key = 'EXTRA'
+
             processed_data[key] = BaseObject.read(value)
 
         del data

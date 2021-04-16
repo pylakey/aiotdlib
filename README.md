@@ -131,14 +131,14 @@ client = Client(
 
 
 async def on_start_command(client: Client, update: UpdateNewMessage):
-    await client.send_message(update.message.chat_id, "Have a good day! :)")
+    await client.send_text(update.message.chat_id, "Have a good day! :)")
 
 
 # Note: bot_command_handler method is universal and can be used directly or as decorator
 # Registering handler for '/help' command
 @client.bot_command_handler(command='help')
 async def on_help_command(client: Client, update: UpdateNewMessage):
-    await client.send_message(update.message.chat_id, "I will help you!")
+    await client.send_text(update.message.chat_id, "I will help you!")
 
 
 async def main():

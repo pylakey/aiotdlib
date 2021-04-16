@@ -10,3 +10,13 @@ class AioTDLibError(Exception):
 
     def __str__(self) -> str:
         return f"[Error {self.code}] {self.message}"
+
+
+class BadRequest(AioTDLibError):
+    def __init__(self, message: str):
+        super(BadRequest, self).__init__(400, message)
+
+
+class Unauthorized(AioTDLibError):
+    def __init__(self, message: str):
+        super(Unauthorized, self).__init__(401, message)

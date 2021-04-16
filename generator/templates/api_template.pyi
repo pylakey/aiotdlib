@@ -37,8 +37,9 @@ class API:
             {%- endfor %}
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
-    ){%- else %}(self, *, request_id: str = None){% endif %} -> {{ entity.return_type_str }}:
+    ){%- else %}(self, *, request_id: str = None, request_timeout: int = None){% endif %} -> {{ entity.return_type_str }}:
         """
         {{ entity.doc }}
         {% if entity.parameters %}
@@ -59,6 +60,7 @@ class API:
                 {{ parameter.name.rstrip('_') }}={{ parameter.name }},
                 {%- endfor %}
             ){% else %}{{ entity.uf_name }}(){% endif %},
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     {% endfor %}

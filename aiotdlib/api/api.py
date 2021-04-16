@@ -1417,6 +1417,7 @@ class API:
             protocol: CallProtocol,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -1437,7 +1438,8 @@ class API:
                 call_id=call_id,
                 protocol=protocol,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def accept_terms_of_service(
@@ -1445,6 +1447,7 @@ class API:
             terms_of_service_id: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -1461,7 +1464,8 @@ class API:
             _constructor(
                 terms_of_service_id=terms_of_service_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def add_chat_member(
@@ -1471,6 +1475,7 @@ class API:
             forward_limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -1495,7 +1500,8 @@ class API:
                 user_id=user_id,
                 forward_limit=forward_limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def add_chat_members(
@@ -1504,6 +1510,7 @@ class API:
             user_ids: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -1524,7 +1531,8 @@ class API:
                 chat_id=chat_id,
                 user_ids=user_ids,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def add_chat_to_list(
@@ -1533,6 +1541,7 @@ class API:
             chat_list: ChatList,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -1553,7 +1562,8 @@ class API:
                 chat_id=chat_id,
                 chat_list=chat_list,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def add_contact(
@@ -1562,6 +1572,7 @@ class API:
             share_phone_number: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -1582,7 +1593,8 @@ class API:
                 contact=contact,
                 share_phone_number=share_phone_number,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def add_custom_server_language_pack(
@@ -1590,6 +1602,7 @@ class API:
             language_pack_id: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -1606,7 +1619,8 @@ class API:
             _constructor(
                 language_pack_id=language_pack_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def add_favorite_sticker(
@@ -1614,6 +1628,7 @@ class API:
             sticker: InputFile,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -1630,7 +1645,8 @@ class API:
             _constructor(
                 sticker=sticker,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def add_local_message(
@@ -1642,6 +1658,7 @@ class API:
             input_message_content: InputMessageContent,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -1674,7 +1691,8 @@ class API:
                 disable_notification=disable_notification,
                 input_message_content=input_message_content,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def add_log_message(
@@ -1683,6 +1701,7 @@ class API:
             text: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -1703,7 +1722,8 @@ class API:
                 verbosity_level=verbosity_level,
                 text=text,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def add_network_statistics(
@@ -1711,6 +1731,7 @@ class API:
             entry: NetworkStatisticsEntry,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -1727,7 +1748,8 @@ class API:
             _constructor(
                 entry=entry,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def add_proxy(
@@ -1738,6 +1760,7 @@ class API:
             type_: ProxyType,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Proxy:
         """
@@ -1766,7 +1789,8 @@ class API:
                 enable=enable,
                 type=type_,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def add_recent_sticker(
@@ -1775,6 +1799,7 @@ class API:
             sticker: InputFile,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Stickers:
         """
@@ -1795,7 +1820,8 @@ class API:
                 is_attached=is_attached,
                 sticker=sticker,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def add_recently_found_chat(
@@ -1803,6 +1829,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -1819,7 +1846,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def add_saved_animation(
@@ -1827,6 +1855,7 @@ class API:
             animation: InputFile,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -1843,7 +1872,8 @@ class API:
             _constructor(
                 animation=animation,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def add_sticker_to_set(
@@ -1853,6 +1883,7 @@ class API:
             sticker: InputSticker,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> StickerSet:
         """
@@ -1877,7 +1908,8 @@ class API:
                 name=name,
                 sticker=sticker,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def answer_callback_query(
@@ -1889,6 +1921,7 @@ class API:
             cache_time: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -1921,7 +1954,8 @@ class API:
                 url=url,
                 cache_time=cache_time,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def answer_custom_query(
@@ -1930,6 +1964,7 @@ class API:
             data: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -1950,7 +1985,8 @@ class API:
                 custom_query_id=custom_query_id,
                 data=data,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def answer_inline_query(
@@ -1964,6 +2000,7 @@ class API:
             switch_pm_parameter: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2004,7 +2041,8 @@ class API:
                 switch_pm_text=switch_pm_text,
                 switch_pm_parameter=switch_pm_parameter,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def answer_pre_checkout_query(
@@ -2013,6 +2051,7 @@ class API:
             error_message: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2033,7 +2072,8 @@ class API:
                 pre_checkout_query_id=pre_checkout_query_id,
                 error_message=error_message,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def answer_shipping_query(
@@ -2043,6 +2083,7 @@ class API:
             error_message: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2067,7 +2108,8 @@ class API:
                 shipping_options=shipping_options,
                 error_message=error_message,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def ban_chat_member(
@@ -2078,6 +2120,7 @@ class API:
             revoke_messages: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2106,7 +2149,8 @@ class API:
                 banned_until_date=banned_until_date,
                 revoke_messages=revoke_messages,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def block_message_sender_from_replies(
@@ -2117,6 +2161,7 @@ class API:
             report_spam: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2145,17 +2190,19 @@ class API:
                 delete_all_messages=delete_all_messages,
                 report_spam=report_spam,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def can_transfer_ownership(self, *, request_id: str = None) -> CanTransferOwnershipResult:
+    async def can_transfer_ownership(self, *, request_id: str = None, request_timeout: int = None) -> CanTransferOwnershipResult:
         """
         Checks whether the current session can be used to transfer a chat ownership to another user
         
         """
         return await self.client.request(
             CanTransferOwnership(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def cancel_download_file(
@@ -2164,6 +2211,7 @@ class API:
             only_if_pending: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2184,7 +2232,8 @@ class API:
                 file_id=file_id,
                 only_if_pending=only_if_pending,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def cancel_upload_file(
@@ -2192,6 +2241,7 @@ class API:
             file_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2208,7 +2258,8 @@ class API:
             _constructor(
                 file_id=file_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def change_imported_contacts(
@@ -2216,6 +2267,7 @@ class API:
             contacts: list[Contact],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ImportedContacts:
         """
@@ -2232,7 +2284,8 @@ class API:
             _constructor(
                 contacts=contacts,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def change_phone_number(
@@ -2241,6 +2294,7 @@ class API:
             settings: PhoneNumberAuthenticationSettings,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> AuthenticationCodeInfo:
         """
@@ -2261,7 +2315,8 @@ class API:
                 phone_number=phone_number,
                 settings=settings,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def change_sticker_set(
@@ -2271,6 +2326,7 @@ class API:
             is_archived: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2295,7 +2351,8 @@ class API:
                 is_installed=is_installed,
                 is_archived=is_archived,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def check_authentication_bot_token(
@@ -2303,6 +2360,7 @@ class API:
             token: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2319,7 +2377,8 @@ class API:
             _constructor(
                 token=token,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def check_authentication_code(
@@ -2327,6 +2386,7 @@ class API:
             code: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2343,7 +2403,8 @@ class API:
             _constructor(
                 code=code,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def check_authentication_password(
@@ -2351,6 +2412,7 @@ class API:
             password: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2367,7 +2429,8 @@ class API:
             _constructor(
                 password=password,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def check_change_phone_number_code(
@@ -2375,6 +2438,7 @@ class API:
             code: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2391,7 +2455,8 @@ class API:
             _constructor(
                 code=code,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def check_chat_invite_link(
@@ -2399,6 +2464,7 @@ class API:
             invite_link: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatInviteLinkInfo:
         """
@@ -2415,7 +2481,8 @@ class API:
             _constructor(
                 invite_link=invite_link,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def check_chat_username(
@@ -2424,6 +2491,7 @@ class API:
             username: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> CheckChatUsernameResult:
         """
@@ -2444,7 +2512,8 @@ class API:
                 chat_id=chat_id,
                 username=username,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def check_created_public_chats_limit(
@@ -2452,6 +2521,7 @@ class API:
             type_: PublicChatType,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2468,7 +2538,8 @@ class API:
             _constructor(
                 type=type_,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def check_database_encryption_key(
@@ -2476,6 +2547,7 @@ class API:
             encryption_key: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2492,7 +2564,8 @@ class API:
             _constructor(
                 encryption_key=encryption_key,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def check_email_address_verification_code(
@@ -2500,6 +2573,7 @@ class API:
             code: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2516,7 +2590,8 @@ class API:
             _constructor(
                 code=code,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def check_phone_number_confirmation_code(
@@ -2524,6 +2599,7 @@ class API:
             code: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2540,7 +2616,8 @@ class API:
             _constructor(
                 code=code,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def check_phone_number_verification_code(
@@ -2548,6 +2625,7 @@ class API:
             code: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2564,7 +2642,8 @@ class API:
             _constructor(
                 code=code,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def check_recovery_email_address_code(
@@ -2572,6 +2651,7 @@ class API:
             code: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PasswordState:
         """
@@ -2588,7 +2668,8 @@ class API:
             _constructor(
                 code=code,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def clean_file_name(
@@ -2596,6 +2677,7 @@ class API:
             file_name: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Text:
         """
@@ -2612,7 +2694,8 @@ class API:
             _constructor(
                 file_name=file_name,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def clear_all_draft_messages(
@@ -2620,6 +2703,7 @@ class API:
             exclude_secret_chats: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2636,17 +2720,19 @@ class API:
             _constructor(
                 exclude_secret_chats=exclude_secret_chats,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def clear_imported_contacts(self, *, request_id: str = None) -> Ok:
+    async def clear_imported_contacts(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Clears all imported contacts, contact list remains unchanged
         
         """
         return await self.client.request(
             ClearImportedContacts(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def clear_recent_stickers(
@@ -2654,6 +2740,7 @@ class API:
             is_attached: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2670,27 +2757,30 @@ class API:
             _constructor(
                 is_attached=is_attached,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def clear_recently_found_chats(self, *, request_id: str = None) -> Ok:
+    async def clear_recently_found_chats(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Clears the list of recently found chats
         
         """
         return await self.client.request(
             ClearRecentlyFoundChats(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def close(self, *, request_id: str = None) -> Ok:
+    async def close(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
         
         """
         return await self.client.request(
             Close(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def close_chat(
@@ -2698,6 +2788,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2714,7 +2805,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def close_secret_chat(
@@ -2722,6 +2814,7 @@ class API:
             secret_chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -2738,7 +2831,8 @@ class API:
             _constructor(
                 secret_chat_id=secret_chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def confirm_qr_code_authentication(
@@ -2746,6 +2840,7 @@ class API:
             link: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Session:
         """
@@ -2762,7 +2857,8 @@ class API:
             _constructor(
                 link=link,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def create_basic_group_chat(
@@ -2771,6 +2867,7 @@ class API:
             force: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chat:
         """
@@ -2791,7 +2888,8 @@ class API:
                 basic_group_id=basic_group_id,
                 force=force,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def create_call(
@@ -2801,6 +2899,7 @@ class API:
             is_video: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> CallId:
         """
@@ -2825,7 +2924,8 @@ class API:
                 protocol=protocol,
                 is_video=is_video,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def create_chat_filter(
@@ -2833,6 +2933,7 @@ class API:
             filter_: ChatFilter,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatFilterInfo:
         """
@@ -2849,7 +2950,8 @@ class API:
             _constructor(
                 filter=filter_,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def create_chat_invite_link(
@@ -2859,6 +2961,7 @@ class API:
             member_limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatInviteLink:
         """
@@ -2883,7 +2986,8 @@ class API:
                 expire_date=expire_date,
                 member_limit=member_limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def create_new_basic_group_chat(
@@ -2892,6 +2996,7 @@ class API:
             title: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chat:
         """
@@ -2912,7 +3017,8 @@ class API:
                 user_ids=user_ids,
                 title=title,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def create_new_secret_chat(
@@ -2920,6 +3026,7 @@ class API:
             user_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chat:
         """
@@ -2936,7 +3043,8 @@ class API:
             _constructor(
                 user_id=user_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def create_new_sticker_set(
@@ -2948,6 +3056,7 @@ class API:
             stickers: list[InputSticker],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> StickerSet:
         """
@@ -2980,7 +3089,8 @@ class API:
                 is_masks=is_masks,
                 stickers=stickers,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def create_new_supergroup_chat(
@@ -2992,6 +3102,7 @@ class API:
             for_import: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chat:
         """
@@ -3024,7 +3135,8 @@ class API:
                 location=location,
                 for_import=for_import,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def create_private_chat(
@@ -3033,6 +3145,7 @@ class API:
             force: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chat:
         """
@@ -3053,7 +3166,8 @@ class API:
                 user_id=user_id,
                 force=force,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def create_secret_chat(
@@ -3061,6 +3175,7 @@ class API:
             secret_chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chat:
         """
@@ -3077,7 +3192,8 @@ class API:
             _constructor(
                 secret_chat_id=secret_chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def create_supergroup_chat(
@@ -3086,6 +3202,7 @@ class API:
             force: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chat:
         """
@@ -3106,7 +3223,8 @@ class API:
                 supergroup_id=supergroup_id,
                 force=force,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def create_temporary_password(
@@ -3115,6 +3233,7 @@ class API:
             valid_for: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> TemporaryPasswordState:
         """
@@ -3135,7 +3254,8 @@ class API:
                 password=password,
                 valid_for=valid_for,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def create_voice_chat(
@@ -3143,6 +3263,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> GroupCallId:
         """
@@ -3159,7 +3280,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def delete_account(
@@ -3167,6 +3289,7 @@ class API:
             reason: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3183,7 +3306,8 @@ class API:
             _constructor(
                 reason=reason,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def delete_all_call_messages(
@@ -3191,6 +3315,7 @@ class API:
             revoke: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3207,7 +3332,8 @@ class API:
             _constructor(
                 revoke=revoke,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def delete_all_revoked_chat_invite_links(
@@ -3216,6 +3342,7 @@ class API:
             creator_user_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3236,7 +3363,8 @@ class API:
                 chat_id=chat_id,
                 creator_user_id=creator_user_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def delete_chat(
@@ -3244,6 +3372,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3260,7 +3389,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def delete_chat_filter(
@@ -3268,6 +3398,7 @@ class API:
             chat_filter_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3284,7 +3415,8 @@ class API:
             _constructor(
                 chat_filter_id=chat_filter_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def delete_chat_history(
@@ -3294,6 +3426,7 @@ class API:
             revoke: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3318,7 +3451,8 @@ class API:
                 remove_from_chat_list=remove_from_chat_list,
                 revoke=revoke,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def delete_chat_messages_from_user(
@@ -3327,6 +3461,7 @@ class API:
             user_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3347,7 +3482,8 @@ class API:
                 chat_id=chat_id,
                 user_id=user_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def delete_chat_reply_markup(
@@ -3356,6 +3492,7 @@ class API:
             message_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3376,7 +3513,8 @@ class API:
                 chat_id=chat_id,
                 message_id=message_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def delete_file(
@@ -3384,6 +3522,7 @@ class API:
             file_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3400,7 +3539,8 @@ class API:
             _constructor(
                 file_id=file_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def delete_language_pack(
@@ -3408,6 +3548,7 @@ class API:
             language_pack_id: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3424,7 +3565,8 @@ class API:
             _constructor(
                 language_pack_id=language_pack_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def delete_messages(
@@ -3434,6 +3576,7 @@ class API:
             revoke: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3458,7 +3601,8 @@ class API:
                 message_ids=message_ids,
                 revoke=revoke,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def delete_passport_element(
@@ -3466,6 +3610,7 @@ class API:
             type_: PassportElementType,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3482,7 +3627,8 @@ class API:
             _constructor(
                 type=type_,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def delete_profile_photo(
@@ -3490,6 +3636,7 @@ class API:
             profile_photo_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3506,7 +3653,8 @@ class API:
             _constructor(
                 profile_photo_id=profile_photo_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def delete_revoked_chat_invite_link(
@@ -3515,6 +3663,7 @@ class API:
             invite_link: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3535,47 +3684,52 @@ class API:
                 chat_id=chat_id,
                 invite_link=invite_link,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def delete_saved_credentials(self, *, request_id: str = None) -> Ok:
+    async def delete_saved_credentials(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Deletes saved credentials for all payment provider bots
         
         """
         return await self.client.request(
             DeleteSavedCredentials(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def delete_saved_order_info(self, *, request_id: str = None) -> Ok:
+    async def delete_saved_order_info(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Deletes saved order info
         
         """
         return await self.client.request(
             DeleteSavedOrderInfo(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def destroy(self, *, request_id: str = None) -> Ok:
+    async def destroy(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed. After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent. Can be called before authorization
         
         """
         return await self.client.request(
             Destroy(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def disable_proxy(self, *, request_id: str = None) -> Ok:
+    async def disable_proxy(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Disables the currently enabled proxy. Can be called before authorization
         
         """
         return await self.client.request(
             DisableProxy(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def discard_call(
@@ -3587,6 +3741,7 @@ class API:
             connection_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3619,7 +3774,8 @@ class API:
                 is_video=is_video,
                 connection_id=connection_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def discard_group_call(
@@ -3627,6 +3783,7 @@ class API:
             group_call_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3643,17 +3800,19 @@ class API:
             _constructor(
                 group_call_id=group_call_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def disconnect_all_websites(self, *, request_id: str = None) -> Ok:
+    async def disconnect_all_websites(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Disconnects all websites from the current user's Telegram account
         
         """
         return await self.client.request(
             DisconnectAllWebsites(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def disconnect_website(
@@ -3661,6 +3820,7 @@ class API:
             website_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3677,7 +3837,8 @@ class API:
             _constructor(
                 website_id=website_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def download_file(
@@ -3689,6 +3850,7 @@ class API:
             synchronous: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> File:
         """
@@ -3721,7 +3883,8 @@ class API:
                 limit=limit,
                 synchronous=synchronous,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_chat_filter(
@@ -3730,6 +3893,7 @@ class API:
             filter_: ChatFilter,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatFilterInfo:
         """
@@ -3750,7 +3914,8 @@ class API:
                 chat_filter_id=chat_filter_id,
                 filter=filter_,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_chat_invite_link(
@@ -3761,6 +3926,7 @@ class API:
             member_limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatInviteLink:
         """
@@ -3789,7 +3955,8 @@ class API:
                 expire_date=expire_date,
                 member_limit=member_limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_custom_language_pack_info(
@@ -3797,6 +3964,7 @@ class API:
             info: LanguagePackInfo,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3813,7 +3981,8 @@ class API:
             _constructor(
                 info=info,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_inline_message_caption(
@@ -3823,6 +3992,7 @@ class API:
             caption: FormattedText,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3847,7 +4017,8 @@ class API:
                 reply_markup=reply_markup,
                 caption=caption,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_inline_message_live_location(
@@ -3859,6 +4030,7 @@ class API:
             proximity_alert_radius: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3891,7 +4063,8 @@ class API:
                 heading=heading,
                 proximity_alert_radius=proximity_alert_radius,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_inline_message_media(
@@ -3901,6 +4074,7 @@ class API:
             input_message_content: InputMessageContent,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3925,7 +4099,8 @@ class API:
                 reply_markup=reply_markup,
                 input_message_content=input_message_content,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_inline_message_reply_markup(
@@ -3934,6 +4109,7 @@ class API:
             reply_markup: ReplyMarkup,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3954,7 +4130,8 @@ class API:
                 inline_message_id=inline_message_id,
                 reply_markup=reply_markup,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_inline_message_text(
@@ -3964,6 +4141,7 @@ class API:
             input_message_content: InputMessageContent,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -3988,7 +4166,8 @@ class API:
                 reply_markup=reply_markup,
                 input_message_content=input_message_content,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_message_caption(
@@ -3999,6 +4178,7 @@ class API:
             caption: FormattedText,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -4027,7 +4207,8 @@ class API:
                 reply_markup=reply_markup,
                 caption=caption,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_message_live_location(
@@ -4040,6 +4221,7 @@ class API:
             proximity_alert_radius: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -4076,7 +4258,8 @@ class API:
                 heading=heading,
                 proximity_alert_radius=proximity_alert_radius,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_message_media(
@@ -4087,6 +4270,7 @@ class API:
             input_message_content: InputMessageContent,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -4115,7 +4299,8 @@ class API:
                 reply_markup=reply_markup,
                 input_message_content=input_message_content,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_message_reply_markup(
@@ -4125,6 +4310,7 @@ class API:
             reply_markup: ReplyMarkup,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -4149,7 +4335,8 @@ class API:
                 message_id=message_id,
                 reply_markup=reply_markup,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_message_scheduling_state(
@@ -4159,6 +4346,7 @@ class API:
             scheduling_state: MessageSchedulingState,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -4183,7 +4371,8 @@ class API:
                 message_id=message_id,
                 scheduling_state=scheduling_state,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_message_text(
@@ -4194,6 +4383,7 @@ class API:
             input_message_content: InputMessageContent,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -4222,7 +4412,8 @@ class API:
                 reply_markup=reply_markup,
                 input_message_content=input_message_content,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def edit_proxy(
@@ -4234,6 +4425,7 @@ class API:
             type_: ProxyType,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Proxy:
         """
@@ -4266,7 +4458,8 @@ class API:
                 enable=enable,
                 type=type_,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def enable_proxy(
@@ -4274,6 +4467,7 @@ class API:
             proxy_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -4290,7 +4484,8 @@ class API:
             _constructor(
                 proxy_id=proxy_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def end_group_call_recording(
@@ -4298,6 +4493,7 @@ class API:
             group_call_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -4314,7 +4510,8 @@ class API:
             _constructor(
                 group_call_id=group_call_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def finish_file_generation(
@@ -4323,6 +4520,7 @@ class API:
             error: Error,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -4343,7 +4541,8 @@ class API:
                 generation_id=generation_id,
                 error=error,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def forward_messages(
@@ -4356,6 +4555,7 @@ class API:
             remove_caption: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Messages:
         """
@@ -4392,37 +4592,41 @@ class API:
                 send_copy=send_copy,
                 remove_caption=remove_caption,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_account_ttl(self, *, request_id: str = None) -> AccountTtl:
+    async def get_account_ttl(self, *, request_id: str = None, request_timeout: int = None) -> AccountTtl:
         """
         Returns the period of inactivity after which the account of the current user will automatically be deleted
         
         """
         return await self.client.request(
             GetAccountTtl(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_active_live_location_messages(self, *, request_id: str = None) -> Messages:
+    async def get_active_live_location_messages(self, *, request_id: str = None, request_timeout: int = None) -> Messages:
         """
         Returns all active live locations that should be updated by the application. The list is persistent across application restarts only if the message database is used
         
         """
         return await self.client.request(
             GetActiveLiveLocationMessages(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_active_sessions(self, *, request_id: str = None) -> Sessions:
+    async def get_active_sessions(self, *, request_id: str = None, request_timeout: int = None) -> Sessions:
         """
         Returns all active sessions of the current user
         
         """
         return await self.client.request(
             GetActiveSessions(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_all_passport_elements(
@@ -4430,6 +4634,7 @@ class API:
             password: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PassportElements:
         """
@@ -4446,17 +4651,19 @@ class API:
             _constructor(
                 password=password,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_application_config(self, *, request_id: str = None) -> JsonValue:
+    async def get_application_config(self, *, request_id: str = None, request_timeout: int = None) -> JsonValue:
         """
         Returns application config, provided by the server. Can be called before authorization
         
         """
         return await self.client.request(
             GetApplicationConfig(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_archived_sticker_sets(
@@ -4466,6 +4673,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> StickerSets:
         """
@@ -4490,7 +4698,8 @@ class API:
                 offset_sticker_set_id=offset_sticker_set_id,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_attached_sticker_sets(
@@ -4498,6 +4707,7 @@ class API:
             file_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> StickerSets:
         """
@@ -4514,27 +4724,30 @@ class API:
             _constructor(
                 file_id=file_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_authorization_state(self, *, request_id: str = None) -> AuthorizationState:
+    async def get_authorization_state(self, *, request_id: str = None, request_timeout: int = None) -> AuthorizationState:
         """
         Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
         
         """
         return await self.client.request(
             GetAuthorizationState(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_auto_download_settings_presets(self, *, request_id: str = None) -> AutoDownloadSettingsPresets:
+    async def get_auto_download_settings_presets(self, *, request_id: str = None, request_timeout: int = None) -> AutoDownloadSettingsPresets:
         """
         Returns auto-download settings presets for the current user
         
         """
         return await self.client.request(
             GetAutoDownloadSettingsPresets(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_available_voice_chat_aliases(
@@ -4542,6 +4755,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> MessageSenders:
         """
@@ -4558,7 +4772,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_background_url(
@@ -4567,6 +4782,7 @@ class API:
             type_: BackgroundType,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> HttpUrl:
         """
@@ -4587,7 +4803,8 @@ class API:
                 name=name,
                 type=type_,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_backgrounds(
@@ -4595,6 +4812,7 @@ class API:
             for_dark_theme: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Backgrounds:
         """
@@ -4611,7 +4829,8 @@ class API:
             _constructor(
                 for_dark_theme=for_dark_theme,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_bank_card_info(
@@ -4619,6 +4838,7 @@ class API:
             bank_card_number: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> BankCardInfo:
         """
@@ -4635,7 +4855,8 @@ class API:
             _constructor(
                 bank_card_number=bank_card_number,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_basic_group(
@@ -4643,6 +4864,7 @@ class API:
             basic_group_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> BasicGroup:
         """
@@ -4659,7 +4881,8 @@ class API:
             _constructor(
                 basic_group_id=basic_group_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_basic_group_full_info(
@@ -4667,6 +4890,7 @@ class API:
             basic_group_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> BasicGroupFullInfo:
         """
@@ -4683,7 +4907,8 @@ class API:
             _constructor(
                 basic_group_id=basic_group_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_blocked_message_senders(
@@ -4692,6 +4917,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> MessageSenders:
         """
@@ -4712,7 +4938,8 @@ class API:
                 offset=offset,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_callback_query_answer(
@@ -4722,6 +4949,7 @@ class API:
             payload: CallbackQueryPayload,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> CallbackQueryAnswer:
         """
@@ -4746,7 +4974,8 @@ class API:
                 message_id=message_id,
                 payload=payload,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_callback_query_message(
@@ -4756,6 +4985,7 @@ class API:
             callback_query_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -4780,7 +5010,8 @@ class API:
                 message_id=message_id,
                 callback_query_id=callback_query_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat(
@@ -4788,6 +5019,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chat:
         """
@@ -4804,7 +5036,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_administrators(
@@ -4812,6 +5045,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatAdministrators:
         """
@@ -4828,7 +5062,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_event_log(
@@ -4841,6 +5076,7 @@ class API:
             user_ids: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatEvents:
         """
@@ -4877,7 +5113,8 @@ class API:
                 filters=filters,
                 user_ids=user_ids,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_filter(
@@ -4885,6 +5122,7 @@ class API:
             chat_filter_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatFilter:
         """
@@ -4901,7 +5139,8 @@ class API:
             _constructor(
                 chat_filter_id=chat_filter_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_filter_default_icon_name(
@@ -4909,6 +5148,7 @@ class API:
             filter_: ChatFilter,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Text:
         """
@@ -4925,7 +5165,8 @@ class API:
             _constructor(
                 filter=filter_,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_history(
@@ -4937,6 +5178,7 @@ class API:
             only_local: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Messages:
         """
@@ -4969,7 +5211,8 @@ class API:
                 limit=limit,
                 only_local=only_local,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_invite_link(
@@ -4978,6 +5221,7 @@ class API:
             invite_link: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatInviteLink:
         """
@@ -4998,7 +5242,8 @@ class API:
                 chat_id=chat_id,
                 invite_link=invite_link,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_invite_link_counts(
@@ -5006,6 +5251,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatInviteLinkCounts:
         """
@@ -5022,7 +5268,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_invite_link_members(
@@ -5033,6 +5280,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatInviteLinkMembers:
         """
@@ -5061,7 +5309,8 @@ class API:
                 offset_member=offset_member,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_invite_links(
@@ -5074,6 +5323,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatInviteLinks:
         """
@@ -5110,7 +5360,8 @@ class API:
                 offset_invite_link=offset_invite_link,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_lists_to_add_chat(
@@ -5118,6 +5369,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatLists:
         """
@@ -5134,7 +5386,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_member(
@@ -5143,6 +5396,7 @@ class API:
             user_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatMember:
         """
@@ -5163,7 +5417,8 @@ class API:
                 chat_id=chat_id,
                 user_id=user_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_message_by_date(
@@ -5172,6 +5427,7 @@ class API:
             date: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -5192,7 +5448,8 @@ class API:
                 chat_id=chat_id,
                 date=date,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_message_count(
@@ -5202,6 +5459,7 @@ class API:
             return_local: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Count:
         """
@@ -5226,7 +5484,8 @@ class API:
                 filter=filter_,
                 return_local=return_local,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_notification_settings_exceptions(
@@ -5235,6 +5494,7 @@ class API:
             compare_sound: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chats:
         """
@@ -5255,7 +5515,8 @@ class API:
                 scope=scope,
                 compare_sound=compare_sound,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_pinned_message(
@@ -5263,6 +5524,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -5279,7 +5541,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_scheduled_messages(
@@ -5287,6 +5550,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Messages:
         """
@@ -5303,7 +5567,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_statistics(
@@ -5312,6 +5577,7 @@ class API:
             is_dark: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatStatistics:
         """
@@ -5332,7 +5598,8 @@ class API:
                 chat_id=chat_id,
                 is_dark=is_dark,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chat_statistics_url(
@@ -5342,6 +5609,7 @@ class API:
             is_dark: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> HttpUrl:
         """
@@ -5366,7 +5634,8 @@ class API:
                 parameters=parameters,
                 is_dark=is_dark,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_chats(
@@ -5377,6 +5646,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chats:
         """
@@ -5405,47 +5675,52 @@ class API:
                 offset_chat_id=offset_chat_id,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_connected_websites(self, *, request_id: str = None) -> ConnectedWebsites:
+    async def get_connected_websites(self, *, request_id: str = None, request_timeout: int = None) -> ConnectedWebsites:
         """
         Returns all website where the current user used Telegram to log in
         
         """
         return await self.client.request(
             GetConnectedWebsites(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_contacts(self, *, request_id: str = None) -> Users:
+    async def get_contacts(self, *, request_id: str = None, request_timeout: int = None) -> Users:
         """
         Returns all user contacts
         
         """
         return await self.client.request(
             GetContacts(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_countries(self, *, request_id: str = None) -> Countries:
+    async def get_countries(self, *, request_id: str = None, request_timeout: int = None) -> Countries:
         """
         Returns information about existing countries. Can be called before authorization
         
         """
         return await self.client.request(
             GetCountries(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_country_code(self, *, request_id: str = None) -> Text:
+    async def get_country_code(self, *, request_id: str = None, request_timeout: int = None) -> Text:
         """
         Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
         
         """
         return await self.client.request(
             GetCountryCode(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_created_public_chats(
@@ -5453,6 +5728,7 @@ class API:
             type_: PublicChatType,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chats:
         """
@@ -5469,27 +5745,30 @@ class API:
             _constructor(
                 type=type_,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_current_state(self, *, request_id: str = None) -> Updates:
+    async def get_current_state(self, *, request_id: str = None, request_timeout: int = None) -> Updates:
         """
         Returns all updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
         
         """
         return await self.client.request(
             GetCurrentState(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_database_statistics(self, *, request_id: str = None) -> DatabaseStatistics:
+    async def get_database_statistics(self, *, request_id: str = None, request_timeout: int = None) -> DatabaseStatistics:
         """
         Returns database statistics
         
         """
         return await self.client.request(
             GetDatabaseStatistics(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_deep_link_info(
@@ -5497,6 +5776,7 @@ class API:
             link: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> DeepLinkInfo:
         """
@@ -5513,7 +5793,8 @@ class API:
             _constructor(
                 link=link,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_emoji_suggestions_url(
@@ -5521,6 +5802,7 @@ class API:
             language_code: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> HttpUrl:
         """
@@ -5537,7 +5819,8 @@ class API:
             _constructor(
                 language_code=language_code,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_external_link(
@@ -5546,6 +5829,7 @@ class API:
             allow_write_access: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> HttpUrl:
         """
@@ -5566,7 +5850,8 @@ class API:
                 link=link,
                 allow_write_access=allow_write_access,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_external_link_info(
@@ -5574,6 +5859,7 @@ class API:
             link: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> LoginUrlInfo:
         """
@@ -5590,17 +5876,19 @@ class API:
             _constructor(
                 link=link,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_favorite_stickers(self, *, request_id: str = None) -> Stickers:
+    async def get_favorite_stickers(self, *, request_id: str = None, request_timeout: int = None) -> Stickers:
         """
         Returns favorite stickers
         
         """
         return await self.client.request(
             GetFavoriteStickers(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_file(
@@ -5608,6 +5896,7 @@ class API:
             file_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> File:
         """
@@ -5624,7 +5913,8 @@ class API:
             _constructor(
                 file_id=file_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_file_downloaded_prefix_size(
@@ -5633,6 +5923,7 @@ class API:
             offset: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Count:
         """
@@ -5653,7 +5944,8 @@ class API:
                 file_id=file_id,
                 offset=offset,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_file_extension(
@@ -5661,6 +5953,7 @@ class API:
             mime_type: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Text:
         """
@@ -5677,7 +5970,8 @@ class API:
             _constructor(
                 mime_type=mime_type,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_file_mime_type(
@@ -5685,6 +5979,7 @@ class API:
             file_name: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Text:
         """
@@ -5701,7 +5996,8 @@ class API:
             _constructor(
                 file_name=file_name,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_game_high_scores(
@@ -5711,6 +6007,7 @@ class API:
             user_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> GameHighScores:
         """
@@ -5735,7 +6032,8 @@ class API:
                 message_id=message_id,
                 user_id=user_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_group_call(
@@ -5743,6 +6041,7 @@ class API:
             group_call_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> GroupCall:
         """
@@ -5759,7 +6058,8 @@ class API:
             _constructor(
                 group_call_id=group_call_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_group_call_invite_link(
@@ -5768,6 +6068,7 @@ class API:
             can_self_unmute: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> HttpUrl:
         """
@@ -5788,7 +6089,8 @@ class API:
                 group_call_id=group_call_id,
                 can_self_unmute=can_self_unmute,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_group_call_stream_segment(
@@ -5798,6 +6100,7 @@ class API:
             scale: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> FilePart:
         """
@@ -5822,7 +6125,8 @@ class API:
                 time_offset=time_offset,
                 scale=scale,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_groups_in_common(
@@ -5832,6 +6136,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chats:
         """
@@ -5856,27 +6161,30 @@ class API:
                 offset_chat_id=offset_chat_id,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_imported_contact_count(self, *, request_id: str = None) -> Count:
+    async def get_imported_contact_count(self, *, request_id: str = None, request_timeout: int = None) -> Count:
         """
         Returns the total number of imported contacts
         
         """
         return await self.client.request(
             GetImportedContactCount(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_inactive_supergroup_chats(self, *, request_id: str = None) -> Chats:
+    async def get_inactive_supergroup_chats(self, *, request_id: str = None, request_timeout: int = None) -> Chats:
         """
         Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error
         
         """
         return await self.client.request(
             GetInactiveSupergroupChats(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_inline_game_high_scores(
@@ -5885,6 +6193,7 @@ class API:
             user_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> GameHighScores:
         """
@@ -5905,7 +6214,8 @@ class API:
                 inline_message_id=inline_message_id,
                 user_id=user_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_inline_query_results(
@@ -5917,6 +6227,7 @@ class API:
             offset: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> InlineQueryResults:
         """
@@ -5949,7 +6260,8 @@ class API:
                 query=query,
                 offset=offset,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_installed_sticker_sets(
@@ -5957,6 +6269,7 @@ class API:
             is_masks: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> StickerSets:
         """
@@ -5973,17 +6286,19 @@ class API:
             _constructor(
                 is_masks=is_masks,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_invite_text(self, *, request_id: str = None) -> Text:
+    async def get_invite_text(self, *, request_id: str = None, request_timeout: int = None) -> Text:
         """
         Returns the default text for invitation messages to be used as a placeholder when the current user invites friends to Telegram
         
         """
         return await self.client.request(
             GetInviteText(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_json_string(
@@ -5991,6 +6306,7 @@ class API:
             json_value: JsonValue,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Text:
         """
@@ -6007,7 +6323,8 @@ class API:
             _constructor(
                 json_value=json_value,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_json_value(
@@ -6015,6 +6332,7 @@ class API:
             json_: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> JsonValue:
         """
@@ -6031,7 +6349,8 @@ class API:
             _constructor(
                 json=json_,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_language_pack_info(
@@ -6039,6 +6358,7 @@ class API:
             language_pack_id: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> LanguagePackInfo:
         """
@@ -6055,7 +6375,8 @@ class API:
             _constructor(
                 language_pack_id=language_pack_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_language_pack_string(
@@ -6066,6 +6387,7 @@ class API:
             key: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> LanguagePackStringValue:
         """
@@ -6094,7 +6416,8 @@ class API:
                 language_pack_id=language_pack_id,
                 key=key,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_language_pack_strings(
@@ -6103,6 +6426,7 @@ class API:
             keys: list[str],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> LanguagePackStrings:
         """
@@ -6123,7 +6447,8 @@ class API:
                 language_pack_id=language_pack_id,
                 keys=keys,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_localization_target_info(
@@ -6131,6 +6456,7 @@ class API:
             only_local: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> LocalizationTargetInfo:
         """
@@ -6147,17 +6473,19 @@ class API:
             _constructor(
                 only_local=only_local,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_log_stream(self, *, request_id: str = None) -> LogStream:
+    async def get_log_stream(self, *, request_id: str = None, request_timeout: int = None) -> LogStream:
         """
         Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
         
         """
         return await self.client.request(
             GetLogStream(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_log_tag_verbosity_level(
@@ -6165,6 +6493,7 @@ class API:
             tag: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> LogVerbosityLevel:
         """
@@ -6181,27 +6510,30 @@ class API:
             _constructor(
                 tag=tag,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_log_tags(self, *, request_id: str = None) -> LogTags:
+    async def get_log_tags(self, *, request_id: str = None, request_timeout: int = None) -> LogTags:
         """
         Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
         
         """
         return await self.client.request(
             GetLogTags(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_log_verbosity_level(self, *, request_id: str = None) -> LogVerbosityLevel:
+    async def get_log_verbosity_level(self, *, request_id: str = None, request_timeout: int = None) -> LogVerbosityLevel:
         """
         Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
         
         """
         return await self.client.request(
             GetLogVerbosityLevel(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_login_url(
@@ -6212,6 +6544,7 @@ class API:
             allow_write_access: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> HttpUrl:
         """
@@ -6240,7 +6573,8 @@ class API:
                 button_id=button_id,
                 allow_write_access=allow_write_access,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_login_url_info(
@@ -6250,6 +6584,7 @@ class API:
             button_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> LoginUrlInfo:
         """
@@ -6274,7 +6609,8 @@ class API:
                 message_id=message_id,
                 button_id=button_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_map_thumbnail_file(
@@ -6287,6 +6623,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> File:
         """
@@ -6323,7 +6660,8 @@ class API:
                 scale=scale,
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_markdown_text(
@@ -6331,6 +6669,7 @@ class API:
             text: FormattedText,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> FormattedText:
         """
@@ -6347,17 +6686,19 @@ class API:
             _constructor(
                 text=text,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_me(self, *, request_id: str = None) -> User:
+    async def get_me(self, *, request_id: str = None, request_timeout: int = None) -> User:
         """
         Returns the current user
         
         """
         return await self.client.request(
             GetMe(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_message(
@@ -6366,6 +6707,7 @@ class API:
             message_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -6386,7 +6728,8 @@ class API:
                 chat_id=chat_id,
                 message_id=message_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_message_embedding_code(
@@ -6396,6 +6739,7 @@ class API:
             for_album: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Text:
         """
@@ -6420,7 +6764,8 @@ class API:
                 message_id=message_id,
                 for_album=for_album,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_message_file_type(
@@ -6428,6 +6773,7 @@ class API:
             message_file_head: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> MessageFileType:
         """
@@ -6444,7 +6790,8 @@ class API:
             _constructor(
                 message_file_head=message_file_head,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_message_import_confirmation_text(
@@ -6452,6 +6799,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Text:
         """
@@ -6468,7 +6816,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_message_link(
@@ -6479,6 +6828,7 @@ class API:
             for_comment: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> MessageLink:
         """
@@ -6507,7 +6857,8 @@ class API:
                 for_album=for_album,
                 for_comment=for_comment,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_message_link_info(
@@ -6515,6 +6866,7 @@ class API:
             url: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> MessageLinkInfo:
         """
@@ -6531,7 +6883,8 @@ class API:
             _constructor(
                 url=url,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_message_locally(
@@ -6540,6 +6893,7 @@ class API:
             message_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -6560,7 +6914,8 @@ class API:
                 chat_id=chat_id,
                 message_id=message_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_message_public_forwards(
@@ -6571,6 +6926,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> FoundMessages:
         """
@@ -6599,7 +6955,8 @@ class API:
                 offset=offset,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_message_statistics(
@@ -6609,6 +6966,7 @@ class API:
             is_dark: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> MessageStatistics:
         """
@@ -6633,7 +6991,8 @@ class API:
                 message_id=message_id,
                 is_dark=is_dark,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_message_thread(
@@ -6642,6 +7001,7 @@ class API:
             message_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> MessageThreadInfo:
         """
@@ -6662,7 +7022,8 @@ class API:
                 chat_id=chat_id,
                 message_id=message_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_message_thread_history(
@@ -6674,6 +7035,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Messages:
         """
@@ -6706,7 +7068,8 @@ class API:
                 offset=offset,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_messages(
@@ -6715,6 +7078,7 @@ class API:
             message_ids: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Messages:
         """
@@ -6735,7 +7099,8 @@ class API:
                 chat_id=chat_id,
                 message_ids=message_ids,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_network_statistics(
@@ -6743,6 +7108,7 @@ class API:
             only_current: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> NetworkStatistics:
         """
@@ -6759,7 +7125,8 @@ class API:
             _constructor(
                 only_current=only_current,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_option(
@@ -6767,6 +7134,7 @@ class API:
             name: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> OptionValue:
         """
@@ -6783,7 +7151,8 @@ class API:
             _constructor(
                 name=name,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_passport_authorization_form(
@@ -6794,6 +7163,7 @@ class API:
             nonce: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PassportAuthorizationForm:
         """
@@ -6822,7 +7192,8 @@ class API:
                 public_key=public_key,
                 nonce=nonce,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_passport_authorization_form_available_elements(
@@ -6831,6 +7202,7 @@ class API:
             password: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PassportElementsWithErrors:
         """
@@ -6851,7 +7223,8 @@ class API:
                 autorization_form_id=autorization_form_id,
                 password=password,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_passport_element(
@@ -6860,6 +7233,7 @@ class API:
             password: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PassportElement:
         """
@@ -6880,17 +7254,19 @@ class API:
                 type=type_,
                 password=password,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_password_state(self, *, request_id: str = None) -> PasswordState:
+    async def get_password_state(self, *, request_id: str = None, request_timeout: int = None) -> PasswordState:
         """
         Returns the current state of 2-step verification
         
         """
         return await self.client.request(
             GetPasswordState(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_payment_form(
@@ -6899,6 +7275,7 @@ class API:
             message_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PaymentForm:
         """
@@ -6919,7 +7296,8 @@ class API:
                 chat_id=chat_id,
                 message_id=message_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_payment_receipt(
@@ -6928,6 +7306,7 @@ class API:
             message_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PaymentReceipt:
         """
@@ -6948,7 +7327,8 @@ class API:
                 chat_id=chat_id,
                 message_id=message_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_phone_number_info(
@@ -6956,6 +7336,7 @@ class API:
             phone_number_prefix: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PhoneNumberInfo:
         """
@@ -6972,7 +7353,8 @@ class API:
             _constructor(
                 phone_number_prefix=phone_number_prefix,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_poll_voters(
@@ -6984,6 +7366,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Users:
         """
@@ -7016,7 +7399,8 @@ class API:
                 offset=offset,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_preferred_country_language(
@@ -7024,6 +7408,7 @@ class API:
             country_code: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Text:
         """
@@ -7040,17 +7425,19 @@ class API:
             _constructor(
                 country_code=country_code,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_proxies(self, *, request_id: str = None) -> Proxies:
+    async def get_proxies(self, *, request_id: str = None, request_timeout: int = None) -> Proxies:
         """
         Returns list of proxies that are currently set up. Can be called before authorization
         
         """
         return await self.client.request(
             GetProxies(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_proxy_link(
@@ -7058,6 +7445,7 @@ class API:
             proxy_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> HttpUrl:
         """
@@ -7074,7 +7462,8 @@ class API:
             _constructor(
                 proxy_id=proxy_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_push_receiver_id(
@@ -7082,6 +7471,7 @@ class API:
             payload: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PushReceiverId:
         """
@@ -7098,17 +7488,19 @@ class API:
             _constructor(
                 payload=payload,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_recent_inline_bots(self, *, request_id: str = None) -> Users:
+    async def get_recent_inline_bots(self, *, request_id: str = None, request_timeout: int = None) -> Users:
         """
         Returns up to 20 recently used inline bots in the order of their last usage
         
         """
         return await self.client.request(
             GetRecentInlineBots(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_recent_stickers(
@@ -7116,6 +7508,7 @@ class API:
             is_attached: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Stickers:
         """
@@ -7132,7 +7525,8 @@ class API:
             _constructor(
                 is_attached=is_attached,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_recently_visited_t_me_urls(
@@ -7140,6 +7534,7 @@ class API:
             referrer: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> TMeUrls:
         """
@@ -7156,17 +7551,19 @@ class API:
             _constructor(
                 referrer=referrer,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_recommended_chat_filters(self, *, request_id: str = None) -> RecommendedChatFilters:
+    async def get_recommended_chat_filters(self, *, request_id: str = None, request_timeout: int = None) -> RecommendedChatFilters:
         """
         Returns recommended chat filters for the current user
         
         """
         return await self.client.request(
             GetRecommendedChatFilters(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_recovery_email_address(
@@ -7174,6 +7571,7 @@ class API:
             password: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> RecoveryEmailAddress:
         """
@@ -7190,7 +7588,8 @@ class API:
             _constructor(
                 password=password,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_remote_file(
@@ -7199,6 +7598,7 @@ class API:
             file_type: FileType,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> File:
         """
@@ -7219,7 +7619,8 @@ class API:
                 remote_file_id=remote_file_id,
                 file_type=file_type,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_replied_message(
@@ -7228,6 +7629,7 @@ class API:
             message_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -7248,27 +7650,30 @@ class API:
                 chat_id=chat_id,
                 message_id=message_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_saved_animations(self, *, request_id: str = None) -> Animations:
+    async def get_saved_animations(self, *, request_id: str = None, request_timeout: int = None) -> Animations:
         """
         Returns saved animations
         
         """
         return await self.client.request(
             GetSavedAnimations(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_saved_order_info(self, *, request_id: str = None) -> OrderInfo:
+    async def get_saved_order_info(self, *, request_id: str = None, request_timeout: int = None) -> OrderInfo:
         """
         Returns saved order info, if any
         
         """
         return await self.client.request(
             GetSavedOrderInfo(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_scope_notification_settings(
@@ -7276,6 +7681,7 @@ class API:
             scope: NotificationSettingsScope,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ScopeNotificationSettings:
         """
@@ -7292,7 +7698,8 @@ class API:
             _constructor(
                 scope=scope,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_secret_chat(
@@ -7300,6 +7707,7 @@ class API:
             secret_chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> SecretChat:
         """
@@ -7316,7 +7724,8 @@ class API:
             _constructor(
                 secret_chat_id=secret_chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_statistical_graph(
@@ -7326,6 +7735,7 @@ class API:
             x: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> StatisticalGraph:
         """
@@ -7350,7 +7760,8 @@ class API:
                 token=token,
                 x=x,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_sticker_emojis(
@@ -7358,6 +7769,7 @@ class API:
             sticker: InputFile,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Emojis:
         """
@@ -7374,7 +7786,8 @@ class API:
             _constructor(
                 sticker=sticker,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_sticker_set(
@@ -7382,6 +7795,7 @@ class API:
             set_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> StickerSet:
         """
@@ -7398,7 +7812,8 @@ class API:
             _constructor(
                 set_id=set_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_stickers(
@@ -7407,6 +7822,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Stickers:
         """
@@ -7427,7 +7843,8 @@ class API:
                 emoji=emoji,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_storage_statistics(
@@ -7435,6 +7852,7 @@ class API:
             chat_limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> StorageStatistics:
         """
@@ -7451,27 +7869,30 @@ class API:
             _constructor(
                 chat_limit=chat_limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_storage_statistics_fast(self, *, request_id: str = None) -> StorageStatisticsFast:
+    async def get_storage_statistics_fast(self, *, request_id: str = None, request_timeout: int = None) -> StorageStatisticsFast:
         """
         Quickly returns approximate storage usage statistics. Can be called before authorization
         
         """
         return await self.client.request(
             GetStorageStatisticsFast(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_suitable_discussion_chats(self, *, request_id: str = None) -> Chats:
+    async def get_suitable_discussion_chats(self, *, request_id: str = None, request_timeout: int = None) -> Chats:
         """
         Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group. To set a returned supergroup as a discussion group, access to its old messages must be enabled using toggleSupergroupIsAllHistoryAvailable first
         
         """
         return await self.client.request(
             GetSuitableDiscussionChats(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_supergroup(
@@ -7479,6 +7900,7 @@ class API:
             supergroup_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Supergroup:
         """
@@ -7495,7 +7917,8 @@ class API:
             _constructor(
                 supergroup_id=supergroup_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_supergroup_full_info(
@@ -7503,6 +7926,7 @@ class API:
             supergroup_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> SupergroupFullInfo:
         """
@@ -7519,7 +7943,8 @@ class API:
             _constructor(
                 supergroup_id=supergroup_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_supergroup_members(
@@ -7530,6 +7955,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatMembers:
         """
@@ -7558,27 +7984,30 @@ class API:
                 offset=offset,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_support_user(self, *, request_id: str = None) -> User:
+    async def get_support_user(self, *, request_id: str = None, request_timeout: int = None) -> User:
         """
         Returns a user that can be contacted to get support
         
         """
         return await self.client.request(
             GetSupportUser(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def get_temporary_password_state(self, *, request_id: str = None) -> TemporaryPasswordState:
+    async def get_temporary_password_state(self, *, request_id: str = None, request_timeout: int = None) -> TemporaryPasswordState:
         """
         Returns information about the current temporary password
         
         """
         return await self.client.request(
             GetTemporaryPasswordState(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_text_entities(
@@ -7586,6 +8015,7 @@ class API:
             text: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> TextEntities:
         """
@@ -7602,7 +8032,8 @@ class API:
             _constructor(
                 text=text,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_top_chats(
@@ -7611,6 +8042,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chats:
         """
@@ -7631,7 +8063,8 @@ class API:
                 category=category,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_trending_sticker_sets(
@@ -7640,6 +8073,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> StickerSets:
         """
@@ -7660,7 +8094,8 @@ class API:
                 offset=offset,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_user(
@@ -7668,6 +8103,7 @@ class API:
             user_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> User:
         """
@@ -7684,7 +8120,8 @@ class API:
             _constructor(
                 user_id=user_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_user_full_info(
@@ -7692,6 +8129,7 @@ class API:
             user_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> UserFullInfo:
         """
@@ -7708,7 +8146,8 @@ class API:
             _constructor(
                 user_id=user_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_user_privacy_setting_rules(
@@ -7716,6 +8155,7 @@ class API:
             setting: UserPrivacySetting,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> UserPrivacySettingRules:
         """
@@ -7732,7 +8172,8 @@ class API:
             _constructor(
                 setting=setting,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_user_profile_photos(
@@ -7742,6 +8183,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatPhotos:
         """
@@ -7766,7 +8208,8 @@ class API:
                 offset=offset,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_web_page_instant_view(
@@ -7775,6 +8218,7 @@ class API:
             force_full: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> WebPageInstantView:
         """
@@ -7795,7 +8239,8 @@ class API:
                 url=url,
                 force_full=force_full,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def get_web_page_preview(
@@ -7803,6 +8248,7 @@ class API:
             text: FormattedText,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> WebPage:
         """
@@ -7819,7 +8265,8 @@ class API:
             _constructor(
                 text=text,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def hide_suggested_action(
@@ -7827,6 +8274,7 @@ class API:
             action: SuggestedAction,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -7843,7 +8291,8 @@ class API:
             _constructor(
                 action=action,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def import_contacts(
@@ -7851,6 +8300,7 @@ class API:
             contacts: list[Contact],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ImportedContacts:
         """
@@ -7867,7 +8317,8 @@ class API:
             _constructor(
                 contacts=contacts,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def import_messages(
@@ -7877,6 +8328,7 @@ class API:
             attached_files: list[InputFile],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -7901,7 +8353,8 @@ class API:
                 message_file=message_file,
                 attached_files=attached_files,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def invite_group_call_participants(
@@ -7910,6 +8363,7 @@ class API:
             user_ids: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -7930,7 +8384,8 @@ class API:
                 group_call_id=group_call_id,
                 user_ids=user_ids,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def join_chat(
@@ -7938,6 +8393,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -7954,7 +8410,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def join_chat_by_invite_link(
@@ -7962,6 +8419,7 @@ class API:
             invite_link: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chat:
         """
@@ -7978,7 +8436,8 @@ class API:
             _constructor(
                 invite_link=invite_link,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def join_group_call(
@@ -7991,6 +8450,7 @@ class API:
             invite_hash: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> GroupCallJoinResponse:
         """
@@ -8027,7 +8487,8 @@ class API:
                 is_muted=is_muted,
                 invite_hash=invite_hash,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def leave_chat(
@@ -8035,6 +8496,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8051,7 +8513,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def leave_group_call(
@@ -8059,6 +8522,7 @@ class API:
             group_call_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8075,7 +8539,8 @@ class API:
             _constructor(
                 group_call_id=group_call_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def load_group_call_participants(
@@ -8084,6 +8549,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8104,17 +8570,19 @@ class API:
                 group_call_id=group_call_id,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def log_out(self, *, request_id: str = None) -> Ok:
+    async def log_out(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent
         
         """
         return await self.client.request(
             LogOut(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def open_chat(
@@ -8122,6 +8590,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8138,7 +8607,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def open_message_content(
@@ -8147,6 +8617,7 @@ class API:
             message_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8167,7 +8638,8 @@ class API:
                 chat_id=chat_id,
                 message_id=message_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def optimize_storage(
@@ -8183,6 +8655,7 @@ class API:
             chat_limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> StorageStatistics:
         """
@@ -8231,7 +8704,8 @@ class API:
                 return_deleted_file_statistics=return_deleted_file_statistics,
                 chat_limit=chat_limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def parse_markdown(
@@ -8239,6 +8713,7 @@ class API:
             text: FormattedText,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> FormattedText:
         """
@@ -8255,7 +8730,8 @@ class API:
             _constructor(
                 text=text,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def parse_text_entities(
@@ -8264,6 +8740,7 @@ class API:
             parse_mode: TextParseMode,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> FormattedText:
         """
@@ -8284,7 +8761,8 @@ class API:
                 text=text,
                 parse_mode=parse_mode,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def pin_chat_message(
@@ -8295,6 +8773,7 @@ class API:
             only_for_self: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8323,7 +8802,8 @@ class API:
                 disable_notification=disable_notification,
                 only_for_self=only_for_self,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def ping_proxy(
@@ -8331,6 +8811,7 @@ class API:
             proxy_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Seconds:
         """
@@ -8347,7 +8828,8 @@ class API:
             _constructor(
                 proxy_id=proxy_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def process_push_notification(
@@ -8355,6 +8837,7 @@ class API:
             payload: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8371,7 +8854,8 @@ class API:
             _constructor(
                 payload=payload,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def read_all_chat_mentions(
@@ -8379,6 +8863,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8395,7 +8880,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def read_file_part(
@@ -8405,6 +8891,7 @@ class API:
             count: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> FilePart:
         """
@@ -8429,7 +8916,8 @@ class API:
                 offset=offset,
                 count=count,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def recover_authentication_password(
@@ -8437,6 +8925,7 @@ class API:
             recovery_code: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8453,7 +8942,8 @@ class API:
             _constructor(
                 recovery_code=recovery_code,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def recover_password(
@@ -8461,6 +8951,7 @@ class API:
             recovery_code: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PasswordState:
         """
@@ -8477,7 +8968,8 @@ class API:
             _constructor(
                 recovery_code=recovery_code,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def register_device(
@@ -8486,6 +8978,7 @@ class API:
             other_user_ids: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PushReceiverId:
         """
@@ -8506,7 +8999,8 @@ class API:
                 device_token=device_token,
                 other_user_ids=other_user_ids,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def register_user(
@@ -8515,6 +9009,7 @@ class API:
             last_name: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8535,7 +9030,8 @@ class API:
                 first_name=first_name,
                 last_name=last_name,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def remove_background(
@@ -8543,6 +9039,7 @@ class API:
             background_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8559,7 +9056,8 @@ class API:
             _constructor(
                 background_id=background_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def remove_chat_action_bar(
@@ -8567,6 +9065,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8583,7 +9082,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def remove_contacts(
@@ -8591,6 +9091,7 @@ class API:
             user_ids: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8607,7 +9108,8 @@ class API:
             _constructor(
                 user_ids=user_ids,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def remove_favorite_sticker(
@@ -8615,6 +9117,7 @@ class API:
             sticker: InputFile,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8631,7 +9134,8 @@ class API:
             _constructor(
                 sticker=sticker,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def remove_notification(
@@ -8640,6 +9144,7 @@ class API:
             notification_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8660,7 +9165,8 @@ class API:
                 notification_group_id=notification_group_id,
                 notification_id=notification_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def remove_notification_group(
@@ -8669,6 +9175,7 @@ class API:
             max_notification_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8689,7 +9196,8 @@ class API:
                 notification_group_id=notification_group_id,
                 max_notification_id=max_notification_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def remove_proxy(
@@ -8697,6 +9205,7 @@ class API:
             proxy_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8713,7 +9222,8 @@ class API:
             _constructor(
                 proxy_id=proxy_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def remove_recent_hashtag(
@@ -8721,6 +9231,7 @@ class API:
             hashtag: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8737,7 +9248,8 @@ class API:
             _constructor(
                 hashtag=hashtag,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def remove_recent_sticker(
@@ -8746,6 +9258,7 @@ class API:
             sticker: InputFile,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8766,7 +9279,8 @@ class API:
                 is_attached=is_attached,
                 sticker=sticker,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def remove_recently_found_chat(
@@ -8774,6 +9288,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8790,7 +9305,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def remove_saved_animation(
@@ -8798,6 +9314,7 @@ class API:
             animation: InputFile,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8814,7 +9331,8 @@ class API:
             _constructor(
                 animation=animation,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def remove_sticker_from_set(
@@ -8822,6 +9340,7 @@ class API:
             sticker: InputFile,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8838,7 +9357,8 @@ class API:
             _constructor(
                 sticker=sticker,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def remove_top_chat(
@@ -8847,6 +9367,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8867,7 +9388,8 @@ class API:
                 category=category,
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def reorder_chat_filters(
@@ -8875,6 +9397,7 @@ class API:
             chat_filter_ids: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8891,7 +9414,8 @@ class API:
             _constructor(
                 chat_filter_ids=chat_filter_ids,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def reorder_installed_sticker_sets(
@@ -8900,6 +9424,7 @@ class API:
             sticker_set_ids: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8920,7 +9445,8 @@ class API:
                 is_masks=is_masks,
                 sticker_set_ids=sticker_set_ids,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def replace_primary_chat_invite_link(
@@ -8928,6 +9454,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatInviteLink:
         """
@@ -8944,7 +9471,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def report_chat(
@@ -8955,6 +9483,7 @@ class API:
             text: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -8983,7 +9512,8 @@ class API:
                 reason=reason,
                 text=text,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def report_chat_photo(
@@ -8994,6 +9524,7 @@ class API:
             text: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -9022,7 +9553,8 @@ class API:
                 reason=reason,
                 text=text,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def report_supergroup_spam(
@@ -9032,6 +9564,7 @@ class API:
             message_ids: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -9056,27 +9589,30 @@ class API:
                 user_id=user_id,
                 message_ids=message_ids,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def request_authentication_password_recovery(self, *, request_id: str = None) -> Ok:
+    async def request_authentication_password_recovery(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Requests to send a password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
         
         """
         return await self.client.request(
             RequestAuthenticationPasswordRecovery(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def request_password_recovery(self, *, request_id: str = None) -> EmailAddressAuthenticationCodeInfo:
+    async def request_password_recovery(self, *, request_id: str = None, request_timeout: int = None) -> EmailAddressAuthenticationCodeInfo:
         """
         Requests to send a password recovery code to an email address that was previously set up
         
         """
         return await self.client.request(
             RequestPasswordRecovery(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def request_qr_code_authentication(
@@ -9084,6 +9620,7 @@ class API:
             other_user_ids: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -9100,37 +9637,41 @@ class API:
             _constructor(
                 other_user_ids=other_user_ids,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def resend_authentication_code(self, *, request_id: str = None) -> Ok:
+    async def resend_authentication_code(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Re-sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode and the next_code_type of the result is not null
         
         """
         return await self.client.request(
             ResendAuthenticationCode(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def resend_change_phone_number_code(self, *, request_id: str = None) -> AuthenticationCodeInfo:
+    async def resend_change_phone_number_code(self, *, request_id: str = None, request_timeout: int = None) -> AuthenticationCodeInfo:
         """
         Re-sends the authentication code sent to confirm a new phone number for the user. Works only if the previously received authenticationCodeInfo next_code_type was not null
         
         """
         return await self.client.request(
             ResendChangePhoneNumberCode(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def resend_email_address_verification_code(self, *, request_id: str = None) -> EmailAddressAuthenticationCodeInfo:
+    async def resend_email_address_verification_code(self, *, request_id: str = None, request_timeout: int = None) -> EmailAddressAuthenticationCodeInfo:
         """
         Re-sends the code to verify an email address to be added to a user's Telegram Passport
         
         """
         return await self.client.request(
             ResendEmailAddressVerificationCode(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def resend_messages(
@@ -9139,6 +9680,7 @@ class API:
             message_ids: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Messages:
         """
@@ -9159,67 +9701,74 @@ class API:
                 chat_id=chat_id,
                 message_ids=message_ids,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def resend_phone_number_confirmation_code(self, *, request_id: str = None) -> AuthenticationCodeInfo:
+    async def resend_phone_number_confirmation_code(self, *, request_id: str = None, request_timeout: int = None) -> AuthenticationCodeInfo:
         """
         Resends phone number confirmation code
         
         """
         return await self.client.request(
             ResendPhoneNumberConfirmationCode(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def resend_phone_number_verification_code(self, *, request_id: str = None) -> AuthenticationCodeInfo:
+    async def resend_phone_number_verification_code(self, *, request_id: str = None, request_timeout: int = None) -> AuthenticationCodeInfo:
         """
         Re-sends the code to verify a phone number to be added to a user's Telegram Passport
         
         """
         return await self.client.request(
             ResendPhoneNumberVerificationCode(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def resend_recovery_email_address_code(self, *, request_id: str = None) -> PasswordState:
+    async def resend_recovery_email_address_code(self, *, request_id: str = None, request_timeout: int = None) -> PasswordState:
         """
         Resends the 2-step verification recovery email address verification code
         
         """
         return await self.client.request(
             ResendRecoveryEmailAddressCode(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def reset_all_notification_settings(self, *, request_id: str = None) -> Ok:
+    async def reset_all_notification_settings(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to "default" and message previews are shown
         
         """
         return await self.client.request(
             ResetAllNotificationSettings(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def reset_backgrounds(self, *, request_id: str = None) -> Ok:
+    async def reset_backgrounds(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Resets list of installed backgrounds to its default value
         
         """
         return await self.client.request(
             ResetBackgrounds(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def reset_network_statistics(self, *, request_id: str = None) -> Ok:
+    async def reset_network_statistics(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Resets all network data usage statistics to zero. Can be called before authorization
         
         """
         return await self.client.request(
             ResetNetworkStatistics(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def revoke_chat_invite_link(
@@ -9228,6 +9777,7 @@ class API:
             invite_link: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatInviteLinks:
         """
@@ -9248,7 +9798,8 @@ class API:
                 chat_id=chat_id,
                 invite_link=invite_link,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def revoke_group_call_invite_link(
@@ -9256,6 +9807,7 @@ class API:
             group_call_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -9272,7 +9824,8 @@ class API:
             _constructor(
                 group_call_id=group_call_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def save_application_log_event(
@@ -9282,6 +9835,7 @@ class API:
             data: JsonValue,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -9306,7 +9860,8 @@ class API:
                 chat_id=chat_id,
                 data=data,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_background(
@@ -9314,6 +9869,7 @@ class API:
             name: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Background:
         """
@@ -9330,7 +9886,8 @@ class API:
             _constructor(
                 name=name,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_call_messages(
@@ -9340,6 +9897,7 @@ class API:
             only_missed: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Messages:
         """
@@ -9364,7 +9922,8 @@ class API:
                 limit=limit,
                 only_missed=only_missed,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_chat_members(
@@ -9375,6 +9934,7 @@ class API:
             filter_: ChatMembersFilter,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatMembers:
         """
@@ -9403,7 +9963,8 @@ class API:
                 limit=limit,
                 filter=filter_,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_chat_messages(
@@ -9418,6 +9979,7 @@ class API:
             message_thread_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Messages:
         """
@@ -9462,7 +10024,8 @@ class API:
                 filter=filter_,
                 message_thread_id=message_thread_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_chat_recent_location_messages(
@@ -9471,6 +10034,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Messages:
         """
@@ -9491,7 +10055,8 @@ class API:
                 chat_id=chat_id,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_chats(
@@ -9500,6 +10065,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chats:
         """
@@ -9520,7 +10086,8 @@ class API:
                 query=query,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_chats_nearby(
@@ -9528,6 +10095,7 @@ class API:
             location: Location,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ChatsNearby:
         """
@@ -9544,7 +10112,8 @@ class API:
             _constructor(
                 location=location,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_chats_on_server(
@@ -9553,6 +10122,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chats:
         """
@@ -9573,7 +10143,8 @@ class API:
                 query=query,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_contacts(
@@ -9582,6 +10153,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Users:
         """
@@ -9602,7 +10174,8 @@ class API:
                 query=query,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_emojis(
@@ -9612,6 +10185,7 @@ class API:
             input_language_codes: list[str],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Emojis:
         """
@@ -9636,7 +10210,8 @@ class API:
                 exact_match=exact_match,
                 input_language_codes=input_language_codes,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_hashtags(
@@ -9645,6 +10220,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Hashtags:
         """
@@ -9665,7 +10241,8 @@ class API:
                 prefix=prefix,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_installed_sticker_sets(
@@ -9675,6 +10252,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> StickerSets:
         """
@@ -9699,7 +10277,8 @@ class API:
                 query=query,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_messages(
@@ -9715,6 +10294,7 @@ class API:
             max_date: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Messages:
         """
@@ -9763,7 +10343,8 @@ class API:
                 min_date=min_date,
                 max_date=max_date,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_public_chat(
@@ -9771,6 +10352,7 @@ class API:
             username: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chat:
         """
@@ -9787,7 +10369,8 @@ class API:
             _constructor(
                 username=username,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_public_chats(
@@ -9795,6 +10378,7 @@ class API:
             query: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chats:
         """
@@ -9811,7 +10395,8 @@ class API:
             _constructor(
                 query=query,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_secret_messages(
@@ -9823,6 +10408,7 @@ class API:
             filter_: SearchMessagesFilter,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> FoundMessages:
         """
@@ -9855,7 +10441,8 @@ class API:
                 limit=limit,
                 filter=filter_,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_sticker_set(
@@ -9863,6 +10450,7 @@ class API:
             name: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> StickerSet:
         """
@@ -9879,7 +10467,8 @@ class API:
             _constructor(
                 name=name,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_sticker_sets(
@@ -9887,6 +10476,7 @@ class API:
             query: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> StickerSets:
         """
@@ -9903,7 +10493,8 @@ class API:
             _constructor(
                 query=query,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def search_stickers(
@@ -9912,6 +10503,7 @@ class API:
             limit: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Stickers:
         """
@@ -9932,7 +10524,8 @@ class API:
                 emoji=emoji,
                 limit=limit,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_bot_start_message(
@@ -9942,6 +10535,7 @@ class API:
             parameter: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -9966,7 +10560,8 @@ class API:
                 chat_id=chat_id,
                 parameter=parameter,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_call_debug_information(
@@ -9975,6 +10570,7 @@ class API:
             debug_information: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -9995,7 +10591,8 @@ class API:
                 call_id=call_id,
                 debug_information=debug_information,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_call_rating(
@@ -10006,6 +10603,7 @@ class API:
             problems: list[CallProblem],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10034,7 +10632,8 @@ class API:
                 comment=comment,
                 problems=problems,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_call_signaling_data(
@@ -10043,6 +10642,7 @@ class API:
             data: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10063,7 +10663,8 @@ class API:
                 call_id=call_id,
                 data=data,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_chat_action(
@@ -10073,6 +10674,7 @@ class API:
             action: ChatAction,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10097,7 +10699,8 @@ class API:
                 message_thread_id=message_thread_id,
                 action=action,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_chat_screenshot_taken_notification(
@@ -10105,6 +10708,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10121,7 +10725,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_custom_request(
@@ -10130,6 +10735,7 @@ class API:
             parameters: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> CustomRequestResult:
         """
@@ -10150,7 +10756,8 @@ class API:
                 method=method,
                 parameters=parameters,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_email_address_verification_code(
@@ -10158,6 +10765,7 @@ class API:
             email_address: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> EmailAddressAuthenticationCodeInfo:
         """
@@ -10174,7 +10782,8 @@ class API:
             _constructor(
                 email_address=email_address,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_inline_query_result_message(
@@ -10188,6 +10797,7 @@ class API:
             hide_via_bot: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -10228,7 +10838,8 @@ class API:
                 result_id=result_id,
                 hide_via_bot=hide_via_bot,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_message(
@@ -10241,6 +10852,7 @@ class API:
             input_message_content: InputMessageContent,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -10277,7 +10889,8 @@ class API:
                 reply_markup=reply_markup,
                 input_message_content=input_message_content,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_message_album(
@@ -10289,6 +10902,7 @@ class API:
             input_message_contents: list[InputMessageContent],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Messages:
         """
@@ -10321,7 +10935,8 @@ class API:
                 options=options,
                 input_message_contents=input_message_contents,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_passport_authorization_form(
@@ -10330,6 +10945,7 @@ class API:
             types: list[PassportElementType],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10350,7 +10966,8 @@ class API:
                 autorization_form_id=autorization_form_id,
                 types=types,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_payment_form(
@@ -10362,6 +10979,7 @@ class API:
             credentials: InputCredentials,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PaymentResult:
         """
@@ -10394,7 +11012,8 @@ class API:
                 shipping_option_id=shipping_option_id,
                 credentials=credentials,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_phone_number_confirmation_code(
@@ -10404,6 +11023,7 @@ class API:
             settings: PhoneNumberAuthenticationSettings,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> AuthenticationCodeInfo:
         """
@@ -10428,7 +11048,8 @@ class API:
                 phone_number=phone_number,
                 settings=settings,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def send_phone_number_verification_code(
@@ -10437,6 +11058,7 @@ class API:
             settings: PhoneNumberAuthenticationSettings,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> AuthenticationCodeInfo:
         """
@@ -10457,7 +11079,8 @@ class API:
                 phone_number=phone_number,
                 settings=settings,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_account_ttl(
@@ -10465,6 +11088,7 @@ class API:
             ttl: AccountTtl,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10481,7 +11105,8 @@ class API:
             _constructor(
                 ttl=ttl,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_alarm(
@@ -10489,6 +11114,7 @@ class API:
             seconds: float,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10505,7 +11131,8 @@ class API:
             _constructor(
                 seconds=seconds,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_authentication_phone_number(
@@ -10514,6 +11141,7 @@ class API:
             settings: PhoneNumberAuthenticationSettings,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10534,7 +11162,8 @@ class API:
                 phone_number=phone_number,
                 settings=settings,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_auto_download_settings(
@@ -10543,6 +11172,7 @@ class API:
             type_: NetworkType,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10563,7 +11193,8 @@ class API:
                 settings=settings,
                 type=type_,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_background(
@@ -10573,6 +11204,7 @@ class API:
             for_dark_theme: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Background:
         """
@@ -10597,7 +11229,8 @@ class API:
                 type=type_,
                 for_dark_theme=for_dark_theme,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_bio(
@@ -10605,6 +11238,7 @@ class API:
             bio: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10621,7 +11255,8 @@ class API:
             _constructor(
                 bio=bio,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_bot_updates_status(
@@ -10630,6 +11265,7 @@ class API:
             error_message: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10650,7 +11286,8 @@ class API:
                 pending_update_count=pending_update_count,
                 error_message=error_message,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_chat_client_data(
@@ -10659,6 +11296,7 @@ class API:
             client_data: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10679,7 +11317,8 @@ class API:
                 chat_id=chat_id,
                 client_data=client_data,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_chat_description(
@@ -10688,6 +11327,7 @@ class API:
             param_description: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10708,7 +11348,8 @@ class API:
                 chat_id=chat_id,
                 param_description=param_description,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_chat_discussion_group(
@@ -10717,6 +11358,7 @@ class API:
             discussion_chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10737,7 +11379,8 @@ class API:
                 chat_id=chat_id,
                 discussion_chat_id=discussion_chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_chat_draft_message(
@@ -10747,6 +11390,7 @@ class API:
             draft_message: DraftMessage,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10771,7 +11415,8 @@ class API:
                 message_thread_id=message_thread_id,
                 draft_message=draft_message,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_chat_location(
@@ -10780,6 +11425,7 @@ class API:
             location: ChatLocation,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10800,7 +11446,8 @@ class API:
                 chat_id=chat_id,
                 location=location,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_chat_member_status(
@@ -10810,6 +11457,7 @@ class API:
             status: ChatMemberStatus,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10834,7 +11482,8 @@ class API:
                 user_id=user_id,
                 status=status,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_chat_message_ttl_setting(
@@ -10843,6 +11492,7 @@ class API:
             ttl: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10863,7 +11513,8 @@ class API:
                 chat_id=chat_id,
                 ttl=ttl,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_chat_notification_settings(
@@ -10872,6 +11523,7 @@ class API:
             notification_settings: ChatNotificationSettings,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10892,7 +11544,8 @@ class API:
                 chat_id=chat_id,
                 notification_settings=notification_settings,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_chat_permissions(
@@ -10901,6 +11554,7 @@ class API:
             permissions: ChatPermissions,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10921,7 +11575,8 @@ class API:
                 chat_id=chat_id,
                 permissions=permissions,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_chat_photo(
@@ -10930,6 +11585,7 @@ class API:
             photo: InputChatPhoto,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10950,7 +11606,8 @@ class API:
                 chat_id=chat_id,
                 photo=photo,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_chat_slow_mode_delay(
@@ -10959,6 +11616,7 @@ class API:
             slow_mode_delay: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -10979,7 +11637,8 @@ class API:
                 chat_id=chat_id,
                 slow_mode_delay=slow_mode_delay,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_chat_title(
@@ -10988,6 +11647,7 @@ class API:
             title: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11008,7 +11668,8 @@ class API:
                 chat_id=chat_id,
                 title=title,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_commands(
@@ -11016,6 +11677,7 @@ class API:
             commands: list[BotCommand],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11032,7 +11694,8 @@ class API:
             _constructor(
                 commands=commands,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_custom_language_pack(
@@ -11041,6 +11704,7 @@ class API:
             strings: list[LanguagePackString],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11061,7 +11725,8 @@ class API:
                 info=info,
                 strings=strings,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_custom_language_pack_string(
@@ -11070,6 +11735,7 @@ class API:
             new_string: LanguagePackString,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11090,7 +11756,8 @@ class API:
                 language_pack_id=language_pack_id,
                 new_string=new_string,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_database_encryption_key(
@@ -11098,6 +11765,7 @@ class API:
             new_encryption_key: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11114,7 +11782,8 @@ class API:
             _constructor(
                 new_encryption_key=new_encryption_key,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_file_generation_progress(
@@ -11124,6 +11793,7 @@ class API:
             local_prefix_size: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11148,7 +11818,8 @@ class API:
                 expected_size=expected_size,
                 local_prefix_size=local_prefix_size,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_game_score(
@@ -11161,6 +11832,7 @@ class API:
             force: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Message:
         """
@@ -11197,7 +11869,8 @@ class API:
                 score=score,
                 force=force,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_group_call_participant_is_speaking(
@@ -11207,6 +11880,7 @@ class API:
             is_speaking: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11231,7 +11905,8 @@ class API:
                 source=source,
                 is_speaking=is_speaking,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_group_call_participant_volume_level(
@@ -11241,6 +11916,7 @@ class API:
             volume_level: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11265,7 +11941,8 @@ class API:
                 participant=participant,
                 volume_level=volume_level,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_group_call_title(
@@ -11274,6 +11951,7 @@ class API:
             title: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11294,7 +11972,8 @@ class API:
                 group_call_id=group_call_id,
                 title=title,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_inline_game_score(
@@ -11306,6 +11985,7 @@ class API:
             force: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11338,7 +12018,8 @@ class API:
                 score=score,
                 force=force,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_location(
@@ -11346,6 +12027,7 @@ class API:
             location: Location,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11362,7 +12044,8 @@ class API:
             _constructor(
                 location=location,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_log_stream(
@@ -11370,6 +12053,7 @@ class API:
             log_stream: LogStream,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11386,7 +12070,8 @@ class API:
             _constructor(
                 log_stream=log_stream,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_log_tag_verbosity_level(
@@ -11395,6 +12080,7 @@ class API:
             new_verbosity_level: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11415,7 +12101,8 @@ class API:
                 tag=tag,
                 new_verbosity_level=new_verbosity_level,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_log_verbosity_level(
@@ -11423,6 +12110,7 @@ class API:
             new_verbosity_level: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11439,7 +12127,8 @@ class API:
             _constructor(
                 new_verbosity_level=new_verbosity_level,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_name(
@@ -11448,6 +12137,7 @@ class API:
             last_name: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11468,7 +12158,8 @@ class API:
                 first_name=first_name,
                 last_name=last_name,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_network_type(
@@ -11476,6 +12167,7 @@ class API:
             type_: NetworkType,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11492,7 +12184,8 @@ class API:
             _constructor(
                 type=type_,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_option(
@@ -11501,6 +12194,7 @@ class API:
             value: OptionValue,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11521,7 +12215,8 @@ class API:
                 name=name,
                 value=value,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_passport_element(
@@ -11530,6 +12225,7 @@ class API:
             password: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PassportElement:
         """
@@ -11550,7 +12246,8 @@ class API:
                 element=element,
                 password=password,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_passport_element_errors(
@@ -11559,6 +12256,7 @@ class API:
             errors: list[InputPassportElementError],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11579,7 +12277,8 @@ class API:
                 user_id=user_id,
                 errors=errors,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_password(
@@ -11591,6 +12290,7 @@ class API:
             new_recovery_email_address: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PasswordState:
         """
@@ -11623,7 +12323,8 @@ class API:
                 set_recovery_email_address=set_recovery_email_address,
                 new_recovery_email_address=new_recovery_email_address,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_pinned_chats(
@@ -11632,6 +12333,7 @@ class API:
             chat_ids: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11652,7 +12354,8 @@ class API:
                 chat_list=chat_list,
                 chat_ids=chat_ids,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_poll_answer(
@@ -11662,6 +12365,7 @@ class API:
             option_ids: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11686,7 +12390,8 @@ class API:
                 message_id=message_id,
                 option_ids=option_ids,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_profile_photo(
@@ -11694,6 +12399,7 @@ class API:
             photo: InputChatPhoto,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11710,7 +12416,8 @@ class API:
             _constructor(
                 photo=photo,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_recovery_email_address(
@@ -11719,6 +12426,7 @@ class API:
             new_recovery_email_address: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> PasswordState:
         """
@@ -11739,7 +12447,8 @@ class API:
                 password=password,
                 new_recovery_email_address=new_recovery_email_address,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_scope_notification_settings(
@@ -11748,6 +12457,7 @@ class API:
             notification_settings: ScopeNotificationSettings,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11768,7 +12478,8 @@ class API:
                 scope=scope,
                 notification_settings=notification_settings,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_sticker_position_in_set(
@@ -11777,6 +12488,7 @@ class API:
             position: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11797,7 +12509,8 @@ class API:
                 sticker=sticker,
                 position=position,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_sticker_set_thumbnail(
@@ -11807,6 +12520,7 @@ class API:
             thumbnail: InputFile,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> StickerSet:
         """
@@ -11831,7 +12545,8 @@ class API:
                 name=name,
                 thumbnail=thumbnail,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_supergroup_sticker_set(
@@ -11840,6 +12555,7 @@ class API:
             sticker_set_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11860,7 +12576,8 @@ class API:
                 supergroup_id=supergroup_id,
                 sticker_set_id=sticker_set_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_supergroup_username(
@@ -11869,6 +12586,7 @@ class API:
             username: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11889,7 +12607,8 @@ class API:
                 supergroup_id=supergroup_id,
                 username=username,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_tdlib_parameters(
@@ -11897,6 +12616,7 @@ class API:
             parameters: TdlibParameters,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11913,7 +12633,8 @@ class API:
             _constructor(
                 parameters=parameters,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_user_privacy_setting_rules(
@@ -11922,6 +12643,7 @@ class API:
             rules: UserPrivacySettingRules,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11942,7 +12664,8 @@ class API:
                 setting=setting,
                 rules=rules,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def set_username(
@@ -11950,6 +12673,7 @@ class API:
             username: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11966,7 +12690,8 @@ class API:
             _constructor(
                 username=username,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def share_phone_number(
@@ -11974,6 +12699,7 @@ class API:
             user_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -11990,7 +12716,8 @@ class API:
             _constructor(
                 user_id=user_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def start_group_call_recording(
@@ -11999,6 +12726,7 @@ class API:
             title: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12019,7 +12747,8 @@ class API:
                 group_call_id=group_call_id,
                 title=title,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def stop_poll(
@@ -12029,6 +12758,7 @@ class API:
             reply_markup: ReplyMarkup,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12053,7 +12783,8 @@ class API:
                 message_id=message_id,
                 reply_markup=reply_markup,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def synchronize_language_pack(
@@ -12061,6 +12792,7 @@ class API:
             language_pack_id: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12077,17 +12809,19 @@ class API:
             _constructor(
                 language_pack_id=language_pack_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def terminate_all_other_sessions(self, *, request_id: str = None) -> Ok:
+    async def terminate_all_other_sessions(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Terminates all other sessions of the current user
         
         """
         return await self.client.request(
             TerminateAllOtherSessions(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def terminate_session(
@@ -12095,6 +12829,7 @@ class API:
             session_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12111,7 +12846,8 @@ class API:
             _constructor(
                 session_id=session_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def test_call_bytes(
@@ -12119,6 +12855,7 @@ class API:
             x: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> TestBytes:
         """
@@ -12135,17 +12872,19 @@ class API:
             _constructor(
                 x=x,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def test_call_empty(self, *, request_id: str = None) -> Ok:
+    async def test_call_empty(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Does nothing; for testing only. This is an offline method. Can be called before authorization
         
         """
         return await self.client.request(
             TestCallEmpty(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def test_call_string(
@@ -12153,6 +12892,7 @@ class API:
             x: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> TestString:
         """
@@ -12169,7 +12909,8 @@ class API:
             _constructor(
                 x=x,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def test_call_vector_int(
@@ -12177,6 +12918,7 @@ class API:
             x: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> TestVectorInt:
         """
@@ -12193,7 +12935,8 @@ class API:
             _constructor(
                 x=x,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def test_call_vector_int_object(
@@ -12201,6 +12944,7 @@ class API:
             x: list[TestInt],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> TestVectorIntObject:
         """
@@ -12217,7 +12961,8 @@ class API:
             _constructor(
                 x=x,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def test_call_vector_string(
@@ -12225,6 +12970,7 @@ class API:
             x: list[str],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> TestVectorString:
         """
@@ -12241,7 +12987,8 @@ class API:
             _constructor(
                 x=x,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def test_call_vector_string_object(
@@ -12249,6 +12996,7 @@ class API:
             x: list[TestString],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> TestVectorStringObject:
         """
@@ -12265,27 +13013,30 @@ class API:
             _constructor(
                 x=x,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def test_get_difference(self, *, request_id: str = None) -> Ok:
+    async def test_get_difference(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Forces an updates.getDifference call to the Telegram servers; for testing only
         
         """
         return await self.client.request(
             TestGetDifference(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def test_network(self, *, request_id: str = None) -> Ok:
+    async def test_network(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization
         
         """
         return await self.client.request(
             TestNetwork(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def test_proxy(
@@ -12297,6 +13048,7 @@ class API:
             timeout: float,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12329,7 +13081,8 @@ class API:
                 dc_id=dc_id,
                 timeout=timeout,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def test_return_error(
@@ -12337,6 +13090,7 @@ class API:
             error: Error,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Error:
         """
@@ -12353,7 +13107,8 @@ class API:
             _constructor(
                 error=error,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def test_square_int(
@@ -12361,6 +13116,7 @@ class API:
             x: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> TestInt:
         """
@@ -12377,17 +13133,19 @@ class API:
             _constructor(
                 x=x,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
-    async def test_use_update(self, *, request_id: str = None) -> Update:
+    async def test_use_update(self, *, request_id: str = None, request_timeout: int = None) -> Update:
         """
         Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization
         
         """
         return await self.client.request(
             TestUseUpdate(),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def toggle_chat_default_disable_notification(
@@ -12396,6 +13154,7 @@ class API:
             default_disable_notification: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12416,7 +13175,8 @@ class API:
                 chat_id=chat_id,
                 default_disable_notification=default_disable_notification,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def toggle_chat_is_marked_as_unread(
@@ -12425,6 +13185,7 @@ class API:
             is_marked_as_unread: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12445,7 +13206,8 @@ class API:
                 chat_id=chat_id,
                 is_marked_as_unread=is_marked_as_unread,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def toggle_chat_is_pinned(
@@ -12455,6 +13217,7 @@ class API:
             is_pinned: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12479,7 +13242,8 @@ class API:
                 chat_id=chat_id,
                 is_pinned=is_pinned,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def toggle_group_call_mute_new_participants(
@@ -12488,6 +13252,7 @@ class API:
             mute_new_participants: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12508,7 +13273,8 @@ class API:
                 group_call_id=group_call_id,
                 mute_new_participants=mute_new_participants,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def toggle_group_call_participant_is_hand_raised(
@@ -12518,6 +13284,7 @@ class API:
             is_hand_raised: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12542,7 +13309,8 @@ class API:
                 participant=participant,
                 is_hand_raised=is_hand_raised,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def toggle_group_call_participant_is_muted(
@@ -12552,6 +13320,7 @@ class API:
             is_muted: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12576,7 +13345,8 @@ class API:
                 participant=participant,
                 is_muted=is_muted,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def toggle_message_sender_is_blocked(
@@ -12585,6 +13355,7 @@ class API:
             is_blocked: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12605,7 +13376,8 @@ class API:
                 sender=sender,
                 is_blocked=is_blocked,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def toggle_supergroup_is_all_history_available(
@@ -12614,6 +13386,7 @@ class API:
             is_all_history_available: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12634,7 +13407,8 @@ class API:
                 supergroup_id=supergroup_id,
                 is_all_history_available=is_all_history_available,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def toggle_supergroup_is_broadcast_group(
@@ -12642,6 +13416,7 @@ class API:
             supergroup_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12658,7 +13433,8 @@ class API:
             _constructor(
                 supergroup_id=supergroup_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def toggle_supergroup_sign_messages(
@@ -12667,6 +13443,7 @@ class API:
             sign_messages: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12687,7 +13464,8 @@ class API:
                 supergroup_id=supergroup_id,
                 sign_messages=sign_messages,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def transfer_chat_ownership(
@@ -12697,6 +13475,7 @@ class API:
             password: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12721,7 +13500,8 @@ class API:
                 user_id=user_id,
                 password=password,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def unpin_all_chat_messages(
@@ -12729,6 +13509,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12745,7 +13526,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def unpin_chat_message(
@@ -12754,6 +13536,7 @@ class API:
             message_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12774,7 +13557,8 @@ class API:
                 chat_id=chat_id,
                 message_id=message_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def upgrade_basic_group_chat_to_supergroup_chat(
@@ -12782,6 +13566,7 @@ class API:
             chat_id: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Chat:
         """
@@ -12798,7 +13583,8 @@ class API:
             _constructor(
                 chat_id=chat_id,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def upload_file(
@@ -12808,6 +13594,7 @@ class API:
             priority: int,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> File:
         """
@@ -12832,7 +13619,8 @@ class API:
                 file_type=file_type,
                 priority=priority,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def upload_sticker_file(
@@ -12841,6 +13629,7 @@ class API:
             png_sticker: InputFile,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> File:
         """
@@ -12861,7 +13650,8 @@ class API:
                 user_id=user_id,
                 png_sticker=png_sticker,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def validate_order_info(
@@ -12872,6 +13662,7 @@ class API:
             allow_save: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> ValidatedOrderInfo:
         """
@@ -12900,7 +13691,8 @@ class API:
                 order_info=order_info,
                 allow_save=allow_save,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def view_messages(
@@ -12911,6 +13703,7 @@ class API:
             force_read: bool,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12939,7 +13732,8 @@ class API:
                 message_ids=message_ids,
                 force_read=force_read,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def view_trending_sticker_sets(
@@ -12947,6 +13741,7 @@ class API:
             sticker_set_ids: list[int],
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12963,7 +13758,8 @@ class API:
             _constructor(
                 sticker_set_ids=sticker_set_ids,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     
     async def write_generated_file_part(
@@ -12973,6 +13769,7 @@ class API:
             data: str,
             *,
             request_id: str = None,
+            request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
@@ -12997,6 +13794,7 @@ class API:
                 offset=offset,
                 data=data,
             ),
-            request_id=request_id
+            request_id=request_id,
+            request_timeout=request_timeout,
         )
     

@@ -3,11 +3,11 @@ import base64
 import getpass
 import logging
 import sys
-import uuid
 from functools import partial
 from typing import Optional, TYPE_CHECKING, Union
 
-from .api import AioTDLibError, BaseObject, Error
+from .api import BaseObject, Error
+from .api.errors import AioTDLibError, Unauthorized
 
 if TYPE_CHECKING:
     from .client import Client
@@ -41,26 +41,22 @@ def str_to_base64(text: Union[str, bytes]) -> str:
     return base64.b64encode(result).decode()
 
 
-class AsyncResult:
+class PendingRequest:
     request: Optional[BaseObject] = None
     update: Optional[BaseObject] = None
     error: bool = False
 
-    def __init__(self, client: 'Client', *, request_id: str = None) -> None:
+    def __init__(self, client: 'Client', request: BaseObject) -> None:
         self.client = client
+        self.request = request
+        self.__ready_event = asyncio.Event()
 
-        if request_id:
-            self.id = request_id
-        else:
-            self.id = uuid.uuid4().hex
-
-        self.__ready = asyncio.Event()
-
-    def __str__(self) -> str:
-        return f'AsyncResult <{self.id}>'
+    @property
+    def id(self) -> Optional[str]:
+        return self.request.EXTRA.get('request_id')
 
     async def wait(self, timeout: Union[int, float] = None, raise_exc: bool = False) -> None:
-        result = await asyncio.wait_for(self.__ready.wait(), timeout=timeout)
+        result = await asyncio.wait_for(self.__ready_event.wait(), timeout=timeout)
 
         if result is False:
             raise asyncio.TimeoutError()
@@ -73,10 +69,13 @@ class AsyncResult:
             self.error = True
 
         self.update = update
-        self.__ready.set()
+        self.__ready_event.set()
 
     def raise_error(self):
         if isinstance(self.update, Error):
+            if self.update.code == 401:
+                raise Unauthorized(self.update.message)
+
             raise AioTDLibError(self.update.code, self.update.message)
 
         raise RuntimeError(f'Unknown TDLib error')

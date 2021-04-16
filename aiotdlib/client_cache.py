@@ -12,6 +12,10 @@ from .api import (
     Chat,
     ChatListMain,
     ChatPosition,
+    OptionValueBoolean,
+    OptionValueEmpty,
+    OptionValueInteger,
+    OptionValueString,
     SecretChat,
     Supergroup,
     SupergroupFullInfo,
@@ -35,6 +39,7 @@ from .api import (
     UpdateChatUnreadMentionCount,
     UpdateChatVoiceChat,
     UpdateNewChat,
+    UpdateOption,
     UpdateSecretChat,
     UpdateSupergroup,
     UpdateSupergroupFullInfo,
@@ -89,6 +94,9 @@ class OrderedChat:
 
 
 class ClientCache:
+    # Client Options
+    options: dict[str, typing.Union[str, int, bool]] = {}
+
     users: dict[int, User] = {}
     basic_groups: dict[int, BasicGroup] = {}
     supergroups: dict[int, Supergroup] = {}
@@ -107,6 +115,10 @@ class ClientCache:
     def __init__(self, client: 'Client'):
         self.logger = logging.getLogger(__name__)
         self.client = client
+        client.add_event_handler(
+            self.__on_update_option,
+            API.Types.UPDATE_OPTION
+        )
         client.add_event_handler(
             self.__on_update_user,
             API.Types.UPDATE_USER
@@ -207,6 +219,25 @@ class ClientCache:
             self.__on_update_chat_voice_chat,
             API.Types.UPDATE_CHAT_VOICE_CHAT
         )
+
+    async def get_option_value(self, name: str) -> typing.Union[str, int, bool, None]:
+        value = self.options.get(name)
+
+        if not bool(value):
+            option_value = await self.client.api.get_option()
+
+            if isinstance(option_value, OptionValueEmpty):
+                value = None
+            elif isinstance(option_value, OptionValueInteger):
+                value = int(option_value.value)
+            elif isinstance(option_value, (OptionValueString, OptionValueBoolean,)):
+                value = option_value.value
+            else:
+                value = None
+
+            self.options[name] = value
+
+        return value
 
     async def get_main_list_chats(self, limit: int = 25) -> list[Chat]:
         cached_chats_count = len(self.main_chats_list)
@@ -316,6 +347,18 @@ class ClientCache:
         for position in positions:
             if isinstance(position.list, ChatListMain):
                 self.main_chats_list.add(OrderedChat(chat.id, position))
+
+    async def __on_update_option(self, _: Client, update: UpdateOption):
+        if isinstance(update.value, OptionValueEmpty):
+            value = None
+        elif isinstance(update.value, OptionValueInteger):
+            value = int(update.value.value)
+        elif isinstance(update.value, (OptionValueString, OptionValueBoolean,)):
+            value = update.value.value
+        else:
+            return
+
+        self.options[update.name] = value
 
     async def __on_update_user(self, _: Client, update: UpdateUser):
         self.users[update.user.id] = update.user

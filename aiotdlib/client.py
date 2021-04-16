@@ -3,21 +3,24 @@ from __future__ import annotations
 import asyncio
 import enum
 import hashlib
-import json
 import logging
 import os
 import signal
 import sys
+import typing
+import uuid
 from functools import partial, update_wrapper
 from pathlib import Path
 from typing import Optional, TypeVar, Union
 
-from pydantic import BaseModel, MissingError, validator
+import pydantic.errors
+from pydantic import BaseModel, validator
 
 from . import __version__
 from .api import (
     AioTDLibError,
     API,
+    AuthorizationStateClosed,
     BaseObject,
     BasicGroup,
     BasicGroupFullInfo,
@@ -28,13 +31,23 @@ from .api import (
     ChatTypeSupergroup,
     Close,
     Error, FormattedText,
+    InputFileLocal,
+    InputFileRemote,
+    InputMessageAnimation,
+    InputMessageAudio, InputMessageContent,
+    InputMessageDocument,
+    InputMessagePhoto,
     InputMessageText,
+    InputMessageVideo,
+    InputMessageVideoNote, InputMessageVoiceNote, InputThumbnail,
     Message,
-    MessageSchedulingStateSendAtDate,
+    Messages, MessageSchedulingStateSendAtDate,
     MessageSchedulingStateSendWhenOnline,
+    MessageSendingStatePending,
     MessageSendOptions,
     ParseTextEntities,
     PhoneNumberAuthenticationSettings,
+    ProxyType,
     ProxyTypeHttp,
     ProxyTypeMtproto,
     ProxyTypeSocks5,
@@ -46,6 +59,7 @@ from .api import (
     TextParseModeHTML,
     TextParseModeMarkdown,
     UpdateAuthorizationState,
+    UpdateMessageSendSucceeded,
     User,
     UserFullInfo,
 )
@@ -54,7 +68,7 @@ from .filters import create_bot_command_filter, text_message_filter
 from .handlers import FilterCallable, Handler, HandlerCallable
 from .middlewares import MiddlewareCallable
 from .tdjson import TDJson, TDLibLogVerbosity
-from .utils import ainput, AsyncResult, str_to_base64
+from .utils import ainput, PendingRequest, str_to_base64
 
 RequestResult = TypeVar('RequestResult', bound=BaseObject)
 ExecuteResult = TypeVar('ExecuteResult', bound=BaseObject)
@@ -97,7 +111,8 @@ class ClientProxySettings(BaseModel):
             Password for logging in; may be empty
 
         http_only (:class:`bool`)
-            Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
+            Pass true if the proxy supports only HTTP requests
+            and doesn't support transparent TCP connections via HTTP CONNECT method
 
         secret (:class:`str`)
             The proxy's secret in hexadecimal encoding
@@ -115,7 +130,7 @@ class ClientProxySettings(BaseModel):
     @validator('secret', pre=True, always=True)
     def validate_secret(cls, secret: str, values):
         if values.get('type') == ClientProxyType.MTPROTO and secret is None:
-            raise MissingError
+            raise pydantic.errors.MissingError
 
         return secret
 
@@ -152,7 +167,8 @@ class Client:
                     Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
 
                 api_hash (:class:`str`)
-                    Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
+                    Application identifier hash for Telegram API access,
+                    which can be obtained at https://my.telegram.org
 
                 database_encryption_key (:class:`str`)
                     Encryption key of local session database. Default: aiotdlib
@@ -175,7 +191,8 @@ class Client:
                     Model of the device the application is being run on; must be non-empty
 
                 system_version (:class:`str`)
-                    Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
+                    Version of the operating system the application is being run on.
+                    If empty, the version is automatically detected by TDLib
 
                 application_version (:class:`str`)
                     Application version; must be non-empty
@@ -193,7 +210,8 @@ class Client:
                     Path to TDLib binary. By default binary included in package is used
 
                 tdlib_verbosity (:class:`str`)
-                    Verbosity level of TDLib itself. Default: 2 (WARNING) for more info look at (:class:`TDLibLogVerbosity`)
+                    Verbosity level of TDLib itself.
+                    Default: 2 (WARNING) for more info look at (:class:`TDLibLogVerbosity`)
 
                 debug (:class:`bool`)
                     When set to true all request and responses would be logged in console with DEBUG level
@@ -237,20 +255,22 @@ class Client:
         else:
             self.files_directory = str(os.path.join(Path(sys.argv[0]).parent, '.aiotdlib', directory_name))
 
-        self.api = API(self)
-
         self.__tdjson = TDJson(library_path=library_path, verbosity=tdlib_verbosity)
         self.__current_authorization_state = None
         self.__is_authorized = False
         self.__running = False
-        self.__request_results: dict[str, AsyncResult] = {}
+        self.__pending_requests: dict[str, PendingRequest] = {}
+        # "{chat_id}_{message_id}" will be used as key
+        self.__pending_messages: dict[str, Message] = {}
 
         # For handlers registration
         self.__updates_handlers: dict[str, set[Handler]] = {}
         self.__middlewares: list[MiddlewareCallable] = []
         self.__middlewares_handlers: list[MiddlewareCallable] = []
 
+        self.api = API(self)
         self.cache = ClientCache(self)
+        self.first_time_auth = False
 
     # Magic methods
     async def __aenter__(self) -> 'Client':
@@ -259,35 +279,18 @@ class Client:
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         await self.stop()
 
-    async def __handle_pending_request(self, update: BaseObject, *, request_id: str = None):
-        _special_types = ['updateAuthorizationState']
-
-        if update.ID in _special_types:
-            request_id = update.ID
-
-        if bool(request_id):
-            async_result = self.__request_results.get(request_id)
-
-            if bool(async_result):
-                async_result.set_update(update)
-                self.__request_results.pop(request_id, None)
+    async def __call_handler(self, handler: Handler, update: BaseObject):
+        try:
+            await handler(self, update)
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
 
     async def __call_handlers(self, update: BaseObject):
-        # TODO: Maybe need to call updates concurrently with asyncio.gather (???)
-
-        # Call update handlers for current update ID
-        for handler in self.__updates_handlers.get(update.ID, []):
-            try:
-                await handler(self, update)
-            except Exception as e:
-                self.logger.error(e, exc_info=True)
-
-        # Call wildcard update handlers
-        for handler in self.__updates_handlers.get('*', []):
-            try:
-                await handler(self, update)
-            except Exception as e:
-                self.logger.error(e, exc_info=True)
+        tasks = []
+        tasks.extend(self.__call_handler(h, update) for h in self.__updates_handlers.get(update.ID, []))
+        tasks.extend(self.__call_handler(h, update) for h in self.__updates_handlers.get('*', []))
+        # Running all handlers concurrently and independently
+        await asyncio.gather(*tasks, return_exceptions=True)
 
     async def __handle_update(self, update: BaseObject):
         if len(self.__middlewares_handlers) == 0:
@@ -299,41 +302,57 @@ class Client:
         call_next = __fn
 
         for m in self.__middlewares_handlers:
-            call_next = update_wrapper(
-                partial(m, call_next=call_next),
-                call_next
-            )
+            call_next = update_wrapper(partial(m, call_next=call_next), call_next)
 
         return await call_next(self, update)
+
+    async def __handle_pending_request(self, update: BaseObject):
+        request_id = update.EXTRA.get('request_id')
+
+        if not bool(request_id) and update.ID in ['updateAuthorizationState']:
+            request_id = update.ID
+
+        if bool(request_id):
+            pending_request = self.__pending_requests.get(request_id)
+
+            if bool(pending_request):
+                if isinstance(update, Message) and isinstance(update.sending_state, MessageSendingStatePending):
+                    self.__pending_messages[f"{update.chat_id}_{update.id}"] = update
+                else:
+                    self.__pending_requests.pop(request_id)
+                    pending_request.set_update(update)
+
+        if isinstance(update, UpdateMessageSendSucceeded):
+            pending_message = self.__pending_messages.pop(
+                f"{update.message.chat_id}_{update.old_message_id}",
+                None
+            )
+
+            if bool(pending_message):
+                request_id = pending_message.EXTRA.get('request_id')
+                pending_request = self.__pending_requests.get(request_id)
+
+                if bool(pending_request):
+                    update.message.EXTRA['request_id'] = request_id
+                    self.__pending_requests.pop(request_id)
+                    pending_request.set_update(update.message)
 
     async def __updates_loop(self):
         try:
             while self.__running:
-                update: dict = await self.receive()
+                update = await self.receive()
 
                 if not bool(update):
                     continue
 
-                if update.get('@type') == 'updateAuthorizationState':
-                    if update.get('authorization_state', {}).get('@type') == 'authorizationStateClosed':
+                if isinstance(update, UpdateAuthorizationState):
+                    if isinstance(update.authorization_state, AuthorizationStateClosed):
                         self.logger.warning('Session was terminated!')
                         self.loop.create_task(self.stop())
                         return
 
-                try:
-                    parsed_update = BaseObject.read(update)
-                except Exception as e:
-                    self.logger.error(f'Unable to parse incoming update! {e}', exc_info=True)
-                    continue
-
-                request_id = update.get("@extra", {}).get('request_id')
-                self.loop.create_task(
-                    self.__handle_pending_request(
-                        parsed_update,
-                        request_id=request_id
-                    )
-                )
-                self.loop.create_task(self.__handle_update(parsed_update))
+                self.loop.create_task(self.__handle_pending_request(update))
+                self.loop.create_task(self.__handle_update(update))
         except (asyncio.CancelledError, KeyboardInterrupt):
             raise
         except Exception as e:
@@ -386,6 +405,8 @@ class Client:
         return result
 
     async def __set_authentication_phone_number_or_check_bot_token(self) -> RequestResult:
+        self.first_time_auth = True
+
         if self.phone_number:
             return await self.__set_authentication_phone_number()
         elif self.bot_token:
@@ -445,6 +466,8 @@ class Client:
         return last_name
 
     async def __check_authentication_code(self) -> RequestResult:
+        self.first_time_auth = True
+
         code = await self.__auth_get_code()
         self.logger.info(f'Sending code {code}')
 
@@ -454,6 +477,8 @@ class Client:
         )
 
     async def __register_user(self) -> RequestResult:
+        self.first_time_auth = True
+
         first_name = await self.__auth_get_first_name()
         last_name = await self.__auth_get_last_name()
         self.logger.info(f'Registering new user in telegram as {first_name} {last_name or ""}'.strip())
@@ -465,6 +490,8 @@ class Client:
         )
 
     async def __check_authentication_password(self) -> RequestResult:
+        self.first_time_auth = True
+
         password = await self.__auth_get_password()
         self.logger.info('Sending password')
 
@@ -474,9 +501,14 @@ class Client:
         )
 
     async def __auth_completed(self):
-        self.logger.info('Authorization is completed')
-        self.__request_results.pop('updateAuthorizationState', None)
+        self.__pending_requests.pop('updateAuthorizationState', None)
+
+        if self.first_time_auth:
+            # Update chats list in cache after successful authorization
+            await self.get_main_list_chats()
+
         self.__is_authorized = True
+        self.logger.info('Authorization is completed')
 
     async def __stop_signal_handler(self, signum: int) -> None:
         self.logger.info('Signal %s received!', signum)
@@ -491,7 +523,7 @@ class Client:
         self.logger.info('Retrieving all proxies list')
         result = await self.api.get_proxies()
 
-        proxy_type_by_class = {
+        proxy_type_by_class: dict[typing.Type[ProxyType], str] = {
             ProxyTypeSocks5: 'socks5',
             ProxyTypeMtproto: 'mtproto',
             ProxyTypeHttp: 'http',
@@ -631,58 +663,46 @@ class Client:
                 filters=create_bot_command_filter(command=command)
             )
 
-    async def send(self, query: Union[dict, BaseObject], *, request_id: str = None) -> AsyncResult:
+    async def send(self, query: BaseObject):
         if not self.__running:
             raise RuntimeError('Client not started')
 
-        if isinstance(query, BaseObject):
-            query_type = query.ID
-            query = query.dict(by_alias=True, exclude={'ID'})
-            query['@type'] = query_type
-
-        if query.get('@extra', None) is None:
-            query['@extra'] = {}
-
-        if not request_id and query['@extra'].get('request_id') is not None:
-            request_id = query['@extra']['request_id']
-
-        async_result = AsyncResult(self, request_id=request_id)
-        query['@extra']['request_id'] = async_result.id
-        async_result.request = query
-
         if self.debug:
-            self.logger.debug(f">>>>> {query['@type']} {json.dumps(query)}")
+            self.logger.debug(f">>>>> {query.ID} {query.json(by_alias=True)}")
 
-        self.__request_results[async_result.id] = async_result
-        await self.loop.run_in_executor(None, self.__tdjson.send, query)
+        await self.loop.run_in_executor(None, self.__tdjson.send, query.dict(by_alias=True))
 
-        return async_result
+    async def request(
+            self,
+            query: BaseObject,
+            *,
+            request_id: str = None,
+            request_timeout: int = None
+    ) -> Optional[RequestResult]:
+        if not bool(request_id):
+            request_id = query.EXTRA.get('request_id') or uuid.uuid4().hex
 
-    async def request(self, query: BaseObject, *, request_id: str = None, timeout: int = 5) -> Optional[RequestResult]:
-        result = await self.send(query, request_id=request_id)
-        await result.wait(raise_exc=True, timeout=timeout)
+        if request_timeout is None:
+            request_timeout = 10
 
-        if self.debug:
-            self.logger.debug(f"<<<<< {result.update.ID} {result.update.dict(by_alias=True, exclude={'ID'})}")
+        query.EXTRA['request_id'] = request_id
+        pending_request = PendingRequest(self, query)
+        self.__pending_requests[request_id] = pending_request
 
-        return result.update
+        try:
+            await self.send(query)
+            await pending_request.wait(raise_exc=True, timeout=request_timeout)
+        finally:
+            if self.debug and bool(pending_request.update):
+                self.logger.debug(f"<<<<< {pending_request.update.ID} {pending_request.update.json(by_alias=True)}")
 
-    async def receive(self, timeout: float = 1.0) -> Optional[dict]:
-        if not self.__running:
-            raise RuntimeError('Client not started')
-
-        return await self.loop.run_in_executor(None, self.__tdjson.receive, timeout)
+        return pending_request.update
 
     async def execute(self, query: BaseObject) -> ExecuteResult:
         if not self.__running:
             raise RuntimeError('Client not started')
 
-        if isinstance(query, BaseObject):
-            query_type = query.ID
-            query = query.dict(by_alias=True, exclude={'ID'})
-            query['@type'] = query_type
-
-        result = await self.loop.run_in_executor(None, self.__tdjson.execute, query)
+        result = await self.loop.run_in_executor(None, self.__tdjson.execute, query.dict(by_alias=True))
         result_object = BaseObject.read(result)
 
         if isinstance(result_object, Error):
@@ -692,6 +712,21 @@ class Client:
             )
 
         return result_object
+
+    async def receive(self, timeout: float = 1.0) -> Optional[BaseObject]:
+        if not self.__running:
+            raise RuntimeError('Client not started')
+
+        data = await self.loop.run_in_executor(None, self.__tdjson.receive, timeout)
+
+        if not bool(data):
+            return None
+
+        try:
+            return BaseObject.read(data)
+        except Exception as e:
+            self.logger.error(f'Unable to parse incoming update! {e}', exc_info=True)
+            return None
 
     async def start(self) -> 'Client':
         self.logger.info('Starting client')
@@ -754,6 +789,8 @@ class Client:
         }
 
         while not self.__is_authorized:
+            result = None
+
             while True:
                 try:
                     self.logger.debug('Current authorization state: %s', self.__current_authorization_state)
@@ -762,10 +799,12 @@ class Client:
                     if bool(next_action):
                         result = await next_action()
                     else:
-                        raise RuntimeError(f'Unknown current authorization state: {self.__current_authorization_state}')
+                        self.logger.warning(f'Unhandled authorization state: {self.__current_authorization_state}')
+                        break
                 except AioTDLibError as e:
                     # Need to retry previous step
                     self.logger.error(e)
+                    await asyncio.sleep(0.1)
                 else:
                     break
 
@@ -774,149 +813,18 @@ class Client:
 
             await asyncio.sleep(0.1)
 
-    async def parse_text(self, text: str, *, parse_mode: str = None) -> FormattedText:
+    # Cache related methods
+    async def get_option_value(self, name: str) -> typing.Union[str, int, bool, None]:
         """
-        Parses Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode,
-        TextUrl and MentionName entities contained in the text.
-        """
-        # ParseTextEntities can be called synchronously
-        if parse_mode is None:
-            parse_mode = self.parse_mode
-        else:
-            parse_mode = parse_mode.lower()
-
-        return await self.execute(ParseTextEntities(
-            text=text,
-            parse_mode=(
-                TextParseModeHTML()
-                if parse_mode == 'html' else
-                TextParseModeMarkdown(version=2)
-            )
-        ))
-
-    # API methods shorthands
-    async def send_message(
-            self,
-            chat_id: int,
-            text: str,
-            *,
-            reply_to_message_id: int = None,
-            reply_markup: ReplyMarkup = None,
-            disable_notification: bool = False,
-            disable_web_page_preview: bool = False,
-            clear_draft: bool = True,
-            send_when_online: bool = False,
-            send_date: int = None
-    ) -> Message:
-        """
-        Sends a text message. Returns the sent message
+        Returns the value of an option by its name.
+        (Check the list of available options on https://core.telegram.org/tdlib/options.)
+        Can be called before authorization
 
         Params:
-            chat_id (:class:`int`)
-                Target chat
-
-            text (:class:`str`)
-                The text
-
-            reply_to_message_id (:class:`int`)
-                Identifier of the message to reply to or 0
-
-            reply_markup (:class:`ReplyMarkup`)
-                Markup for replying to the message; for bots only
-
-            disable_notification (:class:`bool`)
-                Pass true to disable notification for the message
-
-            disable_web_page_preview (:class:`bool`)
-                True, if rich web page previews for URLs in the message text should be disabled
-
-            clear_draft (:class:`bool`)
-                True, if a chat message draft should be deleted
-
-            send_when_online: (:class:`bool`)
-                When True, the message will be sent when the peer will be online.
-                Applicable to private chats only and when the exact online status of the peer is known
-
-            send_date: (:class:`int`)
-                Date the message will be sent. The date must be within 367 days in the future.
-                If send_date passed send_when_online will be ignored
-
+            name (:class:`str`)
+                The name of the option
         """
-
-        if bool(send_date):
-            scheduling_state = MessageSchedulingStateSendAtDate(send_date=send_date)
-        elif send_when_online:
-            scheduling_state = MessageSchedulingStateSendWhenOnline()
-        else:
-            scheduling_state = None
-
-        formatted_text = await self.parse_text(text)
-
-        return await self.api.send_message(
-            chat_id=chat_id,
-            message_thread_id=0,
-            reply_to_message_id=reply_to_message_id,
-            options=MessageSendOptions.construct(
-                disable_notification=disable_notification,
-                from_background=False,
-                scheduling_state=scheduling_state
-            ),
-            reply_markup=reply_markup,
-            input_message_content=InputMessageText.construct(
-                text=formatted_text,
-                disable_web_page_preview=disable_web_page_preview,
-                clear_draft=clear_draft,
-            ),
-            skip_validation=True
-        )
-
-    async def edit_message(
-            self,
-            chat_id: int,
-            message_id: int,
-            text: str,
-            *,
-            reply_markup: ReplyMarkup = None,
-            disable_web_page_preview: bool = False,
-            clear_draft: bool = True,
-    ):
-        """
-        Edits the text of a message (or a text of a game message).
-        Returns the edited message after the edit is completed on the server side
-
-        Params:
-            chat_id (:class:`int`)
-                The chat the message belongs to
-
-            message_id (:class:`int`)
-                Identifier of the message
-
-            text (:class:`str`)
-                New text of the message
-
-            reply_markup (:class:`ReplyMarkup`)
-                The new message reply markup; for bots only
-
-            disable_web_page_preview (:class:`bool`)
-                True, if rich web page previews for URLs in the message text should be disabled
-
-            clear_draft (:class:`bool`)
-                True, if a chat message draft should be deleted
-
-        """
-        formatted_text = await self.parse_text(text)
-
-        return await self.api.edit_message_text(
-            chat_id=chat_id,
-            message_id=message_id,
-            reply_markup=reply_markup,
-            input_message_content=InputMessageText.construct(
-                text=formatted_text,
-                disable_web_page_preview=disable_web_page_preview,
-                clear_draft=clear_draft,
-            ),
-            skip_validation=True
-        )
+        return await self.cache.get_option_value(name)
 
     async def get_main_list_chats(self, limit: int = 25) -> list[Chat]:
         """
@@ -977,3 +885,956 @@ class Client:
             return await self.get_secret_chat(chat.type_.secret_chat_id)
 
         raise ValueError(f'Unknown chat.type {chat.type_.__class__.__qualname__}')
+
+    # API methods shorthands
+    async def parse_text(self, text: str, *, parse_mode: str = None) -> Optional[FormattedText]:
+        """
+        Parses Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode,
+        TextUrl and MentionName entities contained in the text.
+        """
+        if text is None:
+            return None
+
+        # ParseTextEntities can be called synchronously
+        if parse_mode is None:
+            parse_mode = self.parse_mode
+        else:
+            parse_mode = parse_mode.lower()
+
+        return await self.execute(
+            ParseTextEntities(
+                text=text,
+                parse_mode=(
+                    TextParseModeHTML()
+                    if parse_mode == 'html' else
+                    TextParseModeMarkdown(version=2)
+                )
+            )
+        )
+
+    async def __send_message(
+            self,
+            chat_id: int,
+            content: InputMessageContent,
+            *,
+            reply_to_message_id: int = None,
+            reply_markup: ReplyMarkup = None,
+            disable_notification: bool = False,
+            send_when_online: bool = False,
+            send_date: int = None,
+            request_timeout: int = None
+    ):
+        """
+        Sends a text message. Returns the sent message
+
+        Params:
+            chat_id (:class:`int`)
+                Target chat
+
+            content (:class:`InputMessageContent`)
+                The content of the message to be sent
+
+            reply_to_message_id (:class:`int`)
+                Identifier of the message to reply to or 0
+
+            reply_markup (:class:`ReplyMarkup`)
+                Markup for replying to the message; for bots only
+
+            disable_notification (:class:`bool`)
+                Pass true to disable notification for the message
+
+            send_when_online: (:class:`bool`)
+                When True, the message will be sent when the peer will be online.
+                Applicable to private chats only and when the exact online status of the peer is known
+
+            send_date: (:class:`int`)
+                Date the message will be sent. The date must be within 367 days in the future.
+                If send_date passed send_when_online will be ignored
+
+        """
+
+        if bool(send_date):
+            scheduling_state = MessageSchedulingStateSendAtDate(send_date=send_date)
+        elif send_when_online:
+            scheduling_state = MessageSchedulingStateSendWhenOnline()
+        else:
+            scheduling_state = None
+
+        return await self.api.send_message(
+            chat_id=chat_id,
+            message_thread_id=0,
+            reply_to_message_id=reply_to_message_id,
+            options=MessageSendOptions.construct(
+                disable_notification=disable_notification,
+                from_background=False,
+                scheduling_state=scheduling_state
+            ),
+            reply_markup=reply_markup,
+            input_message_content=content,
+            skip_validation=True,
+            request_timeout=request_timeout
+        )
+
+    async def send_text(
+            self,
+            chat_id: int,
+            text: str,
+            *,
+            reply_to_message_id: int = None,
+            reply_markup: ReplyMarkup = None,
+            disable_notification: bool = False,
+            disable_web_page_preview: bool = False,
+            clear_draft: bool = True,
+            send_when_online: bool = False,
+            send_date: int = None,
+            request_timeout: int = None
+    ) -> Message:
+        """
+        Sends a text message. Returns the sent message
+
+        Params:
+            chat_id (:class:`int`)
+                Target chat
+
+            text (:class:`str`)
+                The text
+
+            reply_to_message_id (:class:`int`)
+                Identifier of the message to reply to or 0
+
+            reply_markup (:class:`ReplyMarkup`)
+                Markup for replying to the message; for bots only
+
+            disable_notification (:class:`bool`)
+                Pass true to disable notification for the message
+
+            disable_web_page_preview (:class:`bool`)
+                True, if rich web page previews for URLs in the message text should be disabled
+
+            clear_draft (:class:`bool`)
+                True, if a chat message draft should be deleted
+
+            send_when_online: (:class:`bool`)
+                When True, the message will be sent when the peer will be online.
+                Applicable to private chats only and when the exact online status of the peer is known
+
+            send_date: (:class:`int`)
+                Date the message will be sent. The date must be within 367 days in the future.
+                If send_date passed send_when_online will be ignored
+
+        """
+        return await self.__send_message(
+            chat_id=chat_id,
+            content=InputMessageText.construct(
+                text=(await self.parse_text(text)),
+                disable_web_page_preview=disable_web_page_preview,
+                clear_draft=clear_draft,
+            ),
+            reply_to_message_id=reply_to_message_id,
+            reply_markup=reply_markup,
+            disable_notification=disable_notification,
+            send_when_online=send_when_online,
+            send_date=send_date,
+            request_timeout=request_timeout
+        )
+
+    async def edit_text(
+            self,
+            chat_id: int,
+            message_id: int,
+            text: str,
+            *,
+            reply_markup: ReplyMarkup = None,
+            disable_web_page_preview: bool = False,
+            clear_draft: bool = True,
+            request_timeout: int = None
+    ):
+        """
+        Edits the text of a message (or a text of a game message).
+        Returns the edited message after the edit is completed on the server side
+
+        Params:
+            chat_id (:class:`int`)
+                The chat the message belongs to
+
+            message_id (:class:`int`)
+                Identifier of the message
+
+            text (:class:`str`)
+                New text of the message
+
+            reply_markup (:class:`ReplyMarkup`)
+                The new message reply markup; for bots only
+
+            disable_web_page_preview (:class:`bool`)
+                True, if rich web page previews for URLs in the message text should be disabled
+
+            clear_draft (:class:`bool`)
+                True, if a chat message draft should be deleted
+
+        """
+        formatted_text = await self.parse_text(text)
+
+        return await self.api.edit_message_text(
+            chat_id=chat_id,
+            message_id=message_id,
+            reply_markup=reply_markup,
+            input_message_content=InputMessageText.construct(
+                text=formatted_text,
+                disable_web_page_preview=disable_web_page_preview,
+                clear_draft=clear_draft,
+            ),
+            skip_validation=True,
+            request_timeout=request_timeout
+        )
+
+    async def send_photo(
+            self,
+            chat_id: int,
+            photo: str,
+            *,
+            caption: str = None,
+            added_sticker_file_ids: list[int] = None,
+            photo_width: int = None,
+            photo_height: int = None,
+            ttl: int = None,
+            thumbnail: Union[str, InputThumbnail] = None,
+            thumbnail_width: int = None,
+            thumbnail_height: int = None,
+            reply_to_message_id: int = None,
+            reply_markup: ReplyMarkup = None,
+            disable_notification: bool = False,
+            send_when_online: bool = False,
+            send_date: int = None,
+            request_timeout: int = None
+    ):
+        """
+        Sends a photo with caption to chat. Returns the sent message
+
+        Params:
+            chat_id (:class:`int`)
+                Target chat
+
+            photo (:class:`str`)
+                Photo to send. This parameter could be ether path to local file or remote file_id
+
+            caption (:class:`str`)
+                Photo caption
+
+            added_sticker_file_ids (:obj:`list[int]`)
+                File identifiers of the stickers added to the photo, if applicable
+
+            photo_width (:class:`int`)
+                Photo width
+
+            photo_height (:class:`int`)
+                Photo height
+
+            ttl (:class:`int`)
+                Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
+
+            thumbnail (:class:`str`)
+                Thumbnail file to send. Sending thumbnails by file_id is currently not supported
+
+            thumbnail_width (:class:`int`)
+                Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
+
+            thumbnail_height (:class:`int`)
+                Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
+
+            reply_to_message_id (:class:`int`)
+                Identifier of the message to reply to or 0
+
+            reply_markup (:class:`ReplyMarkup`)
+                Markup for replying to the message; for bots only
+
+            disable_notification (:class:`bool`)
+                Pass true to disable notification for the message
+
+            send_when_online: (:class:`bool`)
+                When True, the message will be sent when the peer will be online.
+                Applicable to private chats only and when the exact online status of the peer is known
+
+            send_date: (:class:`int`)
+                Date the message will be sent. The date must be within 367 days in the future.
+                If send_date passed send_when_online will be ignored
+
+        """
+
+        if os.path.exists(photo):
+            photo_input_file = InputFileLocal(path=photo)
+        else:
+            photo_input_file = InputFileRemote(id=photo)
+
+        if isinstance(thumbnail, str):
+            thumbnail = InputThumbnail.construct(
+                # Sending thumbnails by file_id is currently not supported
+                thumbnail=InputFileLocal(path=thumbnail),
+                width=thumbnail_width,
+                height=thumbnail_height,
+            )
+
+        return await self.__send_message(
+            chat_id=chat_id,
+            content=InputMessagePhoto.construct(
+                caption=(await self.parse_text(caption)),
+                photo=photo_input_file,
+                thumbnail=thumbnail,
+                added_sticker_file_ids=added_sticker_file_ids,
+                width=photo_width,
+                height=photo_height,
+                ttl=ttl,
+            ),
+            reply_to_message_id=reply_to_message_id,
+            reply_markup=reply_markup,
+            disable_notification=disable_notification,
+            send_when_online=send_when_online,
+            send_date=send_date,
+            request_timeout=request_timeout
+        )
+
+    async def send_video(
+            self,
+            chat_id: int,
+            video: str,
+            *,
+            caption: str = None,
+            added_sticker_file_ids: list[int] = None,
+            duration: int = None,
+            video_width: int = None,
+            video_height: int = None,
+            ttl: int = None,
+            supports_streaming: bool = False,
+            thumbnail: Union[str, InputThumbnail] = None,
+            thumbnail_width: int = None,
+            thumbnail_height: int = None,
+            reply_to_message_id: int = None,
+            reply_markup: ReplyMarkup = None,
+            disable_notification: bool = False,
+            send_when_online: bool = False,
+            send_date: int = None,
+            request_timeout: int = None
+    ):
+        """
+        Sends a video with caption to chat. Returns the sent message
+
+        Params:
+            chat_id (:class:`int`)
+                Target chat
+
+            video (:class:`str`)
+                Video to send. This parameter could be ether path to local file or remote file_id
+
+            caption (:class:`str`)
+                Video caption
+
+            added_sticker_file_ids (:obj:`list[int]`)
+                File identifiers of the stickers added to the photo, if applicable
+
+            duration (:class:`int`)
+                Duration of the video, in seconds
+
+            video_width (:class:`int`)
+                Video width
+
+            video_height (:class:`int`)
+                Video height
+
+            ttl (:class:`int`)
+                Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
+
+            supports_streaming (:class:`bool`)
+                True, if the video should be tried to be streamed
+
+            thumbnail (:class:`str`)
+                Thumbnail file to send. Sending thumbnails by file_id is currently not supported
+
+            thumbnail_width (:class:`int`)
+                Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
+
+            thumbnail_height (:class:`int`)
+                Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
+
+            reply_to_message_id (:class:`int`)
+                Identifier of the message to reply to or 0
+
+            reply_markup (:class:`ReplyMarkup`)
+                Markup for replying to the message; for bots only
+
+            disable_notification (:class:`bool`)
+                Pass true to disable notification for the message
+
+            send_when_online: (:class:`bool`)
+                When True, the message will be sent when the peer will be online.
+                Applicable to private chats only and when the exact online status of the peer is known
+
+            send_date: (:class:`int`)
+                Date the message will be sent. The date must be within 367 days in the future.
+                If send_date passed send_when_online will be ignored
+
+        """
+
+        if os.path.exists(video):
+            video_input_file = InputFileLocal(path=video)
+        else:
+            video_input_file = InputFileRemote(id=video)
+
+        if isinstance(thumbnail, str):
+            thumbnail = InputThumbnail.construct(
+                # Sending thumbnails by file_id is currently not supported
+                thumbnail=InputFileLocal(path=thumbnail),
+                width=thumbnail_width,
+                height=thumbnail_height,
+            )
+
+        return await self.__send_message(
+            chat_id=chat_id,
+            content=InputMessageVideo.construct(
+                caption=(await self.parse_text(caption)),
+                video=video_input_file,
+                thumbnail=thumbnail,
+                added_sticker_file_ids=added_sticker_file_ids,
+                duration=duration,
+                width=video_width,
+                height=video_height,
+                ttl=ttl,
+                supports_streaming=supports_streaming,
+            ),
+            reply_to_message_id=reply_to_message_id,
+            reply_markup=reply_markup,
+            disable_notification=disable_notification,
+            send_when_online=send_when_online,
+            send_date=send_date,
+            request_timeout=request_timeout
+        )
+
+    async def send_animation(
+            self,
+            chat_id: int,
+            animation: str,
+            *,
+            caption: str = None,
+            added_sticker_file_ids: list[int] = None,
+            duration: int = None,
+            animation_width: int = None,
+            animation_height: int = None,
+            thumbnail: Union[str, InputThumbnail] = None,
+            thumbnail_width: int = None,
+            thumbnail_height: int = None,
+            reply_to_message_id: int = None,
+            reply_markup: ReplyMarkup = None,
+            disable_notification: bool = False,
+            send_when_online: bool = False,
+            send_date: int = None,
+            request_timeout: int = None
+    ):
+        """
+        Sends an animation with caption to chat. Returns the sent message
+
+        Params:
+            chat_id (:class:`int`)
+                Target chat
+
+            animation (:class:`str`)
+                Animation to send. This parameter could be ether path to local file or remote file_id
+
+            caption (:class:`str`)
+                Animation caption
+
+            added_sticker_file_ids (:obj:`list[int]`)
+                File identifiers of the stickers added to the photo, if applicable
+
+            duration (:class:`int`)
+                Duration of the animation, in seconds
+
+            animation_width (:class:`int`)
+                Animation width
+
+            animation_height (:class:`int`)
+                Animation height
+
+            thumbnail (:class:`str`)
+                Thumbnail file to send. Sending thumbnails by file_id is currently not supported
+
+            thumbnail_width (:class:`int`)
+                Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
+
+            thumbnail_height (:class:`int`)
+                Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
+
+            reply_to_message_id (:class:`int`)
+                Identifier of the message to reply to or 0
+
+            reply_markup (:class:`ReplyMarkup`)
+                Markup for replying to the message; for bots only
+
+            disable_notification (:class:`bool`)
+                Pass true to disable notification for the message
+
+            send_when_online: (:class:`bool`)
+                When True, the message will be sent when the peer will be online.
+                Applicable to private chats only and when the exact online status of the peer is known
+
+            send_date: (:class:`int`)
+                Date the message will be sent. The date must be within 367 days in the future.
+                If send_date passed send_when_online will be ignored
+
+        """
+
+        if os.path.exists(animation):
+            animation_input_file = InputFileLocal(path=animation)
+        else:
+            animation_input_file = InputFileRemote(id=animation)
+
+        if isinstance(thumbnail, str):
+            thumbnail = InputThumbnail.construct(
+                # Sending thumbnails by file_id is currently not supported
+                thumbnail=InputFileLocal(path=thumbnail),
+                width=thumbnail_width,
+                height=thumbnail_height,
+            )
+
+        return await self.__send_message(
+            chat_id=chat_id,
+            content=InputMessageAnimation.construct(
+                caption=(await self.parse_text(caption)),
+                animation=animation_input_file,
+                thumbnail=thumbnail,
+                added_sticker_file_ids=added_sticker_file_ids,
+                duration=duration,
+                width=animation_width,
+                height=animation_height,
+            ),
+            reply_to_message_id=reply_to_message_id,
+            reply_markup=reply_markup,
+            disable_notification=disable_notification,
+            send_when_online=send_when_online,
+            send_date=send_date,
+            request_timeout=request_timeout
+        )
+
+    async def send_document(
+            self,
+            chat_id: int,
+            document: str,
+            *,
+            caption: str = None,
+            disable_content_type_detection: bool = False,
+            thumbnail: Union[str, InputThumbnail] = None,
+            thumbnail_width: int = None,
+            thumbnail_height: int = None,
+            reply_to_message_id: int = None,
+            reply_markup: ReplyMarkup = None,
+            disable_notification: bool = False,
+            send_when_online: bool = False,
+            send_date: int = None,
+            request_timeout: int = None
+    ):
+        """
+        Sends a document with caption to chat. Returns the sent message
+
+        Params:
+            chat_id (:class:`int`)
+                Target chat
+
+            document (:class:`str`)
+                Document to be sent. This parameter could be ether path to local file or remote file_id
+
+            caption (:class:`str`)
+                Document caption
+
+            disable_content_type_detection (:class:`bool`)
+                If true, automatic file type detection will be disabled and the document will be always sent as file.
+                Always true for files sent to secret chats
+
+            thumbnail (:class:`str`)
+                Thumbnail file to send. Sending thumbnails by file_id is currently not supported
+
+            thumbnail_width (:class:`int`)
+                Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
+
+            thumbnail_height (:class:`int`)
+                Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
+
+            reply_to_message_id (:class:`int`)
+                Identifier of the message to reply to or 0
+
+            reply_markup (:class:`ReplyMarkup`)
+                Markup for replying to the message; for bots only
+
+            disable_notification (:class:`bool`)
+                Pass true to disable notification for the message
+
+            send_when_online: (:class:`bool`)
+                When True, the message will be sent when the peer will be online.
+                Applicable to private chats only and when the exact online status of the peer is known
+
+            send_date: (:class:`int`)
+                Date the message will be sent. The date must be within 367 days in the future.
+                If send_date passed send_when_online will be ignored
+
+        """
+
+        if os.path.exists(document):
+            document_input_file = InputFileLocal(path=document)
+        else:
+            document_input_file = InputFileRemote(id=document)
+
+        if isinstance(thumbnail, str):
+            thumbnail = InputThumbnail.construct(
+                # Sending thumbnails by file_id is currently not supported
+                thumbnail=InputFileLocal(path=thumbnail),
+                width=thumbnail_width,
+                height=thumbnail_height,
+            )
+
+        return await self.__send_message(
+            chat_id=chat_id,
+            content=InputMessageDocument.construct(
+                document=document_input_file,
+                caption=(await self.parse_text(caption)),
+                thumbnail=thumbnail,
+                disable_content_type_detection=disable_content_type_detection,
+            ),
+            reply_to_message_id=reply_to_message_id,
+            reply_markup=reply_markup,
+            disable_notification=disable_notification,
+            send_when_online=send_when_online,
+            send_date=send_date,
+            request_timeout=request_timeout
+        )
+
+    async def send_audio(
+            self,
+            chat_id: int,
+            audio: str,
+            *,
+            caption: str = None,
+            duration: int = None,
+            title: str = None,
+            performer: str = None,
+            thumbnail: Union[str, InputThumbnail] = None,
+            thumbnail_width: int = None,
+            thumbnail_height: int = None,
+            reply_to_message_id: int = None,
+            reply_markup: ReplyMarkup = None,
+            disable_notification: bool = False,
+            send_when_online: bool = False,
+            send_date: int = None,
+            request_timeout: int = None
+    ):
+        """
+        Sends an audio with caption to chat. Returns the sent message
+
+        Params:
+            chat_id (:class:`int`)
+                Target chat
+
+            audio (:class:`str`)
+                Audio to be sent. This parameter could be ether path to local file or remote file_id
+
+            caption (:class:`str`)
+                Audio caption
+
+            duration (:class:`int`)
+                Duration of the audio, in seconds; may be replaced by the server
+
+            title (:class:`str`)
+                Title of the audio; 0-64 characters; may be replaced by the server
+
+            performer (:class:`str`)
+                Performer of the audio; 0-64 characters, may be replaced by the server
+
+            thumbnail (:class:`str`)
+                Thumbnail of the cover for the album, if available.
+                Sending thumbnails by file_id is currently not supported
+
+            thumbnail_width (:class:`int`)
+                Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
+
+            thumbnail_height (:class:`int`)
+                Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
+
+            reply_to_message_id (:class:`int`)
+                Identifier of the message to reply to or 0
+
+            reply_markup (:class:`ReplyMarkup`)
+                Markup for replying to the message; for bots only
+
+            disable_notification (:class:`bool`)
+                Pass true to disable notification for the message
+
+            send_when_online: (:class:`bool`)
+                When True, the message will be sent when the peer will be online.
+                Applicable to private chats only and when the exact online status of the peer is known
+
+            send_date: (:class:`int`)
+                Date the message will be sent. The date must be within 367 days in the future.
+                If send_date passed send_when_online will be ignored
+
+        """
+
+        if os.path.exists(audio):
+            audio_input_file = InputFileLocal(path=audio)
+        else:
+            audio_input_file = InputFileRemote(id=audio)
+
+        if isinstance(thumbnail, str):
+            thumbnail = InputThumbnail.construct(
+                # Sending thumbnails by file_id is currently not supported
+                thumbnail=InputFileLocal(path=thumbnail),
+                width=thumbnail_width,
+                height=thumbnail_height,
+            )
+
+        return await self.__send_message(
+            chat_id=chat_id,
+            content=InputMessageAudio.construct(
+                audio=audio_input_file,
+                caption=(await self.parse_text(caption)),
+                album_cover_thumbnail=thumbnail,
+                title=title,
+                duration=duration,
+                performer=performer
+            ),
+            reply_to_message_id=reply_to_message_id,
+            reply_markup=reply_markup,
+            disable_notification=disable_notification,
+            send_when_online=send_when_online,
+            send_date=send_date,
+            request_timeout=request_timeout
+        )
+
+    async def send_voice_note(
+            self,
+            chat_id: int,
+            voice_note: str,
+            *,
+            caption: str = None,
+            duration: int = None,
+            waveform: str = None,
+            reply_to_message_id: int = None,
+            reply_markup: ReplyMarkup = None,
+            disable_notification: bool = False,
+            send_when_online: bool = False,
+            send_date: int = None,
+            request_timeout: int = None
+    ):
+        """
+        Sends a voice note with caption to chat. Returns the sent message
+
+        Params:
+            chat_id (:class:`int`)
+                Target chat
+
+            voice_note (:class:`str`)
+                Voice note to be sent. This parameter could be ether path to local file or remote file_id
+
+            caption (:class:`str`)
+                Voice note caption
+
+            duration (:class:`int`)
+                Duration of the audio, in seconds; may be replaced by the server
+
+            waveform (:class:`str`)
+                Waveform representation of the voice note, in 5-bit format
+
+            reply_to_message_id (:class:`int`)
+                Identifier of the message to reply to or 0
+
+            reply_markup (:class:`ReplyMarkup`)
+                Markup for replying to the message; for bots only
+
+            disable_notification (:class:`bool`)
+                Pass true to disable notification for the message
+
+            send_when_online: (:class:`bool`)
+                When True, the message will be sent when the peer will be online.
+                Applicable to private chats only and when the exact online status of the peer is known
+
+            send_date: (:class:`int`)
+                Date the message will be sent. The date must be within 367 days in the future.
+                If send_date passed send_when_online will be ignored
+
+        """
+
+        if os.path.exists(voice_note):
+            voice_note_input_file = InputFileLocal(path=voice_note)
+        else:
+            voice_note_input_file = InputFileRemote(id=voice_note)
+
+        return await self.__send_message(
+            chat_id=chat_id,
+            content=InputMessageVoiceNote.construct(
+                voice_note=voice_note_input_file,
+                caption=(await self.parse_text(caption)),
+                duration=duration,
+                waveform=waveform
+            ),
+            reply_to_message_id=reply_to_message_id,
+            reply_markup=reply_markup,
+            disable_notification=disable_notification,
+            send_when_online=send_when_online,
+            send_date=send_date,
+            request_timeout=request_timeout
+        )
+
+    async def send_video_note(
+            self,
+            chat_id: int,
+            video_note: str,
+            *,
+            duration: int = None,
+            length: int = None,
+            thumbnail: Union[str, InputThumbnail] = None,
+            thumbnail_width: int = None,
+            thumbnail_height: int = None,
+            reply_to_message_id: int = None,
+            reply_markup: ReplyMarkup = None,
+            disable_notification: bool = False,
+            send_when_online: bool = False,
+            send_date: int = None,
+            request_timeout: int = None
+    ):
+        """
+        Sends a video note with caption to chat. Returns the sent message
+
+        Params:
+            chat_id (:class:`int`)
+                Target chat
+
+            video_note (:class:`str`)
+                Video note to be sent. This parameter could be ether path to local file or remote file_id
+
+            duration (:class:`int`)
+                Duration of the video, in seconds
+
+            length (:class:`int`)
+                Video width and height; must be positive and not greater than 640
+
+            thumbnail (:class:`str`)
+                Video note thumbnail, if available
+                Sending thumbnails by file_id is currently not supported
+
+            thumbnail_width (:class:`int`)
+                Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
+
+            thumbnail_height (:class:`int`)
+                Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
+
+            reply_to_message_id (:class:`int`)
+                Identifier of the message to reply to or 0
+
+            reply_markup (:class:`ReplyMarkup`)
+                Markup for replying to the message; for bots only
+
+            disable_notification (:class:`bool`)
+                Pass true to disable notification for the message
+
+            send_when_online: (:class:`bool`)
+                When True, the message will be sent when the peer will be online.
+                Applicable to private chats only and when the exact online status of the peer is known
+
+            send_date: (:class:`int`)
+                Date the message will be sent. The date must be within 367 days in the future.
+                If send_date passed send_when_online will be ignored
+
+        """
+
+        if os.path.exists(video_note):
+            video_note_input_file = InputFileLocal(path=video_note)
+        else:
+            video_note_input_file = InputFileRemote(id=video_note)
+
+        if isinstance(thumbnail, str):
+            thumbnail = InputThumbnail.construct(
+                # Sending thumbnails by file_id is currently not supported
+                thumbnail=InputFileLocal(path=thumbnail),
+                width=thumbnail_width,
+                height=thumbnail_height,
+            )
+
+        return await self.__send_message(
+            chat_id=chat_id,
+            content=InputMessageVideoNote.construct(
+                video_note=video_note_input_file,
+                thumbnail=thumbnail,
+                length=length,
+                duration=duration,
+            ),
+            reply_to_message_id=reply_to_message_id,
+            reply_markup=reply_markup,
+            disable_notification=disable_notification,
+            send_when_online=send_when_online,
+            send_date=send_date,
+            request_timeout=request_timeout
+        )
+
+    async def forward_messages(
+            self,
+            from_chat_id: int,
+            chat_id: int,
+            message_ids: list[int],
+            *,
+            send_copy: bool = False,
+            remove_caption: bool = False,
+            disable_notification: bool = False,
+            send_when_online: bool = False,
+            send_date: int = None,
+            request_timeout: int = None,
+    ) -> Messages:
+        """
+        Forwards previously sent messages.
+        Returns the forwarded messages in the same order as the message identifiers passed in message_ids.
+        If a message can't be forwarded, null will be returned instead of the message
+
+        Params:
+            from_chat_id (:class:`int`)
+                Identifier of the chat from which to forward messages
+
+            chat_id (:class:`int`)
+                Identifier of the chat to which to forward messages
+
+            message_ids (:obj:`list[int]`)
+                Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order.
+                At most 100 messages can be forwarded simultaneously
+
+            send_copy (:class:`bool`)
+                True, if content of the messages needs to be copied without links to the original messages.
+                Always true if the messages are forwarded to a secret chat
+
+            remove_caption (:class:`bool`)
+                True, if media caption of message copies needs to be removed. Ignored if send_copy is false
+
+            disable_notification (:class:`bool`)
+                Pass true to disable notification for the message
+
+            send_when_online: (:class:`bool`)
+                When True, the message will be sent when the peer will be online.
+                Applicable to private chats only and when the exact online status of the peer is known
+
+            send_date: (:class:`int`)
+                Date the message will be sent. The date must be within 367 days in the future.
+                If send_date passed send_when_online will be ignored
+        """
+        if bool(send_date):
+            scheduling_state = MessageSchedulingStateSendAtDate(send_date=send_date)
+        elif send_when_online:
+            scheduling_state = MessageSchedulingStateSendWhenOnline()
+        else:
+            scheduling_state = None
+
+        return await self.api.forward_messages(
+            chat_id=chat_id,
+            from_chat_id=from_chat_id,
+            message_ids=message_ids,
+            options=MessageSendOptions.construct(
+                disable_notification=disable_notification,
+                from_background=False,
+                scheduling_state=scheduling_state
+            ),
+            send_copy=send_copy,
+            remove_caption=remove_caption,
+            request_timeout=request_timeout,
+            skip_validation=True
+        )
