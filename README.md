@@ -37,8 +37,8 @@ import logging
 
 from aiotdlib import Client
 
-API_ID = 12345
-API_HASH = "00112233445566778899aabbccddeeff"
+API_ID = 5172829
+API_HASH = "7ae1bef25a2194cf31d6321fd228cac2"
 PHONE_NUMBER = ""
 
 
@@ -68,8 +68,8 @@ import logging
 from aiotdlib import Client
 from aiotdlib.api import API, BaseObject, UpdateNewMessage
 
-API_ID = 12345
-API_HASH = "00112233445566778899aabbccddeeff"
+API_ID = 5172829
+API_HASH = "7ae1bef25a2194cf31d6321fd228cac2"
 PHONE_NUMBER = ""
 
 
@@ -119,8 +119,8 @@ import logging
 from aiotdlib import Client
 from aiotdlib.api import UpdateNewMessage
 
-API_ID = 12345
-API_HASH = "00112233445566778899aabbccddeeff"
+API_ID = 5172829
+API_HASH = "7ae1bef25a2194cf31d6321fd228cac2"
 PHONE_NUMBER = ""
 
 client = Client(
@@ -164,8 +164,8 @@ import logging
 
 from aiotdlib import Client, ClientProxySettings, ClientProxyType
 
-API_ID = 12345
-API_HASH = "00112233445566778899aabbccddeeff"
+API_ID = 5172829
+API_HASH = "7ae1bef25a2194cf31d6321fd228cac2"
 PHONE_NUMBER = ""
 
 
