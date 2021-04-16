@@ -503,7 +503,7 @@ class Client:
     async def __auth_completed(self):
         self.__pending_requests.pop('updateAuthorizationState', None)
 
-        if self.first_time_auth:
+        if not bool(self.bot_token) and self.first_time_auth:
             # Update chats list in cache after successful authorization
             await self.get_main_list_chats(limit=500)
 

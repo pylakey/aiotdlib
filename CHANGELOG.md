@@ -1,5 +1,11 @@
 # aiotdlib CHANGELOG
 
+### v0.4.1
+
+#### Updated
+
+* Fixed a bug when main chats list was requested from bot session
+
 ### v0.4.0
 
 ### BREAKING CHANGES
