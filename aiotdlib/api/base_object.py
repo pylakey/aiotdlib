@@ -4,6 +4,7 @@ import logging
 from enum import Enum
 from typing import Any, Dict, Optional, Type
 
+import ujson
 from pydantic import BaseConfig, BaseModel, Field
 
 logger = logging.getLogger('BaseObject')
@@ -14,6 +15,8 @@ class BaseObject(BaseModel):
         anystr_strip_whitespace = True
         underscore_attrs_are_private = True
         use_enum_values = True
+        json_dumps = ujson.dumps
+        json_loads = ujson.loads
 
     _all: Optional[Dict[str, Type[BaseObject]]] = {}
     ID: str = Field(..., alias='@type')

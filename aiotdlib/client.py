@@ -29,19 +29,23 @@ from .api import (
     ChatTypePrivate,
     ChatTypeSecret,
     ChatTypeSupergroup,
-    Close,
-    Error, FormattedText,
+    Error,
+    FormattedText,
     InputFileLocal,
     InputFileRemote,
     InputMessageAnimation,
-    InputMessageAudio, InputMessageContent,
+    InputMessageAudio,
+    InputMessageContent,
     InputMessageDocument,
     InputMessagePhoto,
     InputMessageText,
     InputMessageVideo,
-    InputMessageVideoNote, InputMessageVoiceNote, InputThumbnail,
+    InputMessageVideoNote,
+    InputMessageVoiceNote,
+    InputThumbnail,
     Message,
-    Messages, MessageSchedulingStateSendAtDate,
+    Messages,
+    MessageSchedulingStateSendAtDate,
     MessageSchedulingStateSendWhenOnline,
     MessageSendingStatePending,
     MessageSendOptions,
@@ -362,10 +366,8 @@ class Client:
         if not bool(self.__running):
             return
 
-        self.logger.info('Gracefully closing TDLib connection')
-        await self.send(Close())
-
         if bool(self.__tdjson):
+            self.logger.info('Gracefully closing TDLib connection')
             self.__tdjson.stop()
 
     async def __auth_start(self) -> RequestResult:

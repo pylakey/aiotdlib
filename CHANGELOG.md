@@ -1,5 +1,13 @@
 # aiotdlib CHANGELOG
 
+### v0.4.2
+
+#### Updated
+
+* Added ujson dependency to improve performance of json encoding/decoding
+
+* `TDJson` class now uses new TDLibJson api to work with requests  
+
 ### v0.4.1
 
 #### Updated

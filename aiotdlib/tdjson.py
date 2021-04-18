@@ -1,4 +1,3 @@
-import json
 import logging
 import platform
 import typing
@@ -6,6 +5,7 @@ from ctypes import *
 from enum import IntEnum
 
 import pkg_resources
+import ujson
 
 fatal_error_callback_type = CFUNCTYPE(None, c_char_p)
 
@@ -42,13 +42,11 @@ class TDJson:
     # TDLib functions typings
     __tdjson: CDLL
     __td_json_client_create: typing.Callable[[], int]
-    __td_json_client_receive: typing.Callable[[int, float], bytes]
+    __td_json_client_receive: typing.Callable[[float], bytes]
     __td_json_client_send: typing.Callable[[int, bytes], None]
-    __td_json_client_execute: typing.Callable[[int, bytes], bytes]
-    __td_json_client_destroy: typing.Callable[[int], None]
+    __td_json_client_execute: typing.Callable[[bytes], bytes]
     __td_set_log_verbosity_level: typing.Callable[[int], None]
     __td_set_log_fatal_error_callback: typing.Callable[[fatal_error_callback_type], None]
-    __c_on_fatal_error_callback: typing.Callable[[fatal_error_callback_type], None]
 
     td_json_client: typing.Optional[int] = None
 
@@ -66,53 +64,49 @@ class TDJson:
     def __del__(self) -> None:
         self.stop()
 
-    def initialize(self, library_path: str, verbosity: TDLibLogVerbosity) -> None:
-        if bool(self.td_json_client):
-            raise RuntimeError('TDJson instance is already initialized')
-
+    def inject_library(self, library_path: str):
         # load TDLib functions from shared library
         self.__tdjson = CDLL(library_path)
 
-        # td_json_client_create
-        self.__td_json_client_create = self.__tdjson.td_json_client_create
-        self.__td_json_client_create.restype = c_void_p
+        # TDJSON_EXPORT int td_create_client_id();
+        self.__td_json_client_create = self.__tdjson.td_create_client_id
+        self.__td_json_client_create.restype = c_int
         self.__td_json_client_create.argtypes = []
 
-        # Creating tdlib json client instance
-        self.td_json_client = self.__td_json_client_create()
-
-        # td_json_client_receive
-        self.__td_json_client_receive = self.__tdjson.td_json_client_receive
-        self.__td_json_client_receive.restype = c_char_p
-        self.__td_json_client_receive.argtypes = [c_void_p, c_double]
-
-        # td_json_client_send
-        self.__td_json_client_send = self.__tdjson.td_json_client_send
+        # TDJSON_EXPORT void td_send(int client_id, const char *request);
+        self.__td_json_client_send = self.__tdjson.td_send
         self.__td_json_client_send.restype = None
-        self.__td_json_client_send.argtypes = [c_void_p, c_char_p]
+        self.__td_json_client_send.argtypes = [c_int, c_char_p]
 
-        # td_json_client_execute
-        self.__td_json_client_execute = self.__tdjson.td_json_client_execute
+        # TDJSON_EXPORT const char *td_receive(double timeout);
+        self.__td_json_client_receive = self.__tdjson.td_receive
+        self.__td_json_client_receive.restype = c_char_p
+        self.__td_json_client_receive.argtypes = [c_double]
+
+        # TDJSON_EXPORT const char *td_execute(const char *request);
+        self.__td_json_client_execute = self.__tdjson.td_execute
         self.__td_json_client_execute.restype = c_char_p
-        self.__td_json_client_execute.argtypes = [c_void_p, c_char_p]
-
-        # td_json_client_destroy
-        self.__td_json_client_destroy = self.__tdjson.td_json_client_destroy
-        self.__td_json_client_destroy.restype = None
-        self.__td_json_client_destroy.argtypes = [c_void_p]
+        self.__td_json_client_execute.argtypes = [c_char_p]
 
         # td_set_log_verbosity_level
         self.__td_set_log_verbosity_level = self.__tdjson.td_set_log_verbosity_level
         self.__td_set_log_verbosity_level.restype = None
         self.__td_set_log_verbosity_level.argtypes = [c_int]
-        self.__td_set_log_verbosity_level(int(verbosity))
 
         # td_set_log_fatal_error_callback
         self.__td_set_log_fatal_error_callback = self.__tdjson.td_set_log_fatal_error_callback
         self.__td_set_log_fatal_error_callback.restype = None
         self.__td_set_log_fatal_error_callback.argtypes = [fatal_error_callback_type]
-        c_on_fatal_error_callback = fatal_error_callback_type(self.__on_fatal_error_callback)
-        self.__td_set_log_fatal_error_callback(c_on_fatal_error_callback)
+
+    def initialize(self, library_path: str, verbosity: TDLibLogVerbosity) -> None:
+        self.inject_library(library_path)
+
+        if bool(self.td_json_client):
+            raise RuntimeError('TDJson instance is already initialized')
+
+        self.__td_set_log_fatal_error_callback(fatal_error_callback_type(self.__on_fatal_error_callback))
+        self.__td_set_log_verbosity_level(int(verbosity))
+        self.td_json_client = self.__td_json_client_create()
 
     def __on_fatal_error_callback(self, error_message: str) -> None:
         self.logger.error('TDLib fatal error: %s', error_message)
@@ -121,8 +115,7 @@ class TDJson:
         if not bool(self.td_json_client):
             raise RuntimeError('Instance is not initialized')
 
-        # TODO: Add support for orjson for better encoding/decoding performance
-        dumped_query = json.dumps(query).encode('utf-8')
+        dumped_query = ujson.dumps(query, ensure_ascii=False).encode('utf-8')
         self.logger.debug(f'[me >>>] Sending {dumped_query}')
         self.__td_json_client_send(self.td_json_client, dumped_query)
 
@@ -130,31 +123,32 @@ class TDJson:
         if not bool(self.td_json_client):
             raise RuntimeError('Instance is not initialized')
 
-        # TODO: Add support for orjson for better encoding/decoding performance
-        dumped_query = json.dumps(query).encode('utf-8')
+        dumped_query = ujson.dumps(query, ensure_ascii=False).encode('utf-8')
         self.logger.debug(f'Executing query {dumped_query} as client {self.td_json_client}')
-        result = self.__td_json_client_execute(self.td_json_client, dumped_query)
+        result = self.__td_json_client_execute(dumped_query)
 
         if result:
-            result = json.loads(result)
+            result = ujson.loads(result)
 
         return result
 
-    def receive(self, timeout: float = 1.0) -> typing.Optional[dict]:
+    def receive(self, timeout: float = 10.0) -> typing.Optional[dict]:
         if not bool(self.td_json_client):
             raise RuntimeError('Instance is not initialized')
 
-        result = self.__td_json_client_receive(self.td_json_client, timeout)
+        result = self.__td_json_client_receive(timeout)
 
-        if result:
+        if bool(result):
             self.logger.debug(f'[me <<<] Received {result}')
-            result = json.loads(result)
+            result = ujson.loads(result)
+
+            # Each returned object will have an "@client_id" field,
+            # containing the identifier of the client for which a response or an update was received.
+            if result.pop('@client_id', None) != self.td_json_client:
+                return None
 
         return result
 
     def stop(self) -> None:
-        if bool(self.td_json_client) and callable(self.__td_json_client_destroy):
-            self.logger.warning('Destroying TDJson client')
-            td_json_client = self.td_json_client
-            self.td_json_client = None
-            self.__td_json_client_destroy(td_json_client)
+        # TDLib client instances are destroyed automatically after they are closed, so we need to send close
+        self.send({'@type': 'close'})
