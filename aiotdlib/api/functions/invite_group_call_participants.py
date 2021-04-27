@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class InviteGroupCallParticipants(BaseObject):
     """
-    Invites users to a group call. Sends a service message of type messageInviteToGroupCall for voice chats
+    Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for voice chats
     
     Params:
         group_call_id (:class:`int`)

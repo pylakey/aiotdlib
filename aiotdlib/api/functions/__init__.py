@@ -118,7 +118,6 @@ from .get_archived_sticker_sets import GetArchivedStickerSets
 from .get_attached_sticker_sets import GetAttachedStickerSets
 from .get_authorization_state import GetAuthorizationState
 from .get_auto_download_settings_presets import GetAutoDownloadSettingsPresets
-from .get_available_voice_chat_aliases import GetAvailableVoiceChatAliases
 from .get_background_url import GetBackgroundUrl
 from .get_backgrounds import GetBackgrounds
 from .get_bank_card_info import GetBankCardInfo
@@ -245,6 +244,7 @@ from .get_user import GetUser
 from .get_user_full_info import GetUserFullInfo
 from .get_user_privacy_setting_rules import GetUserPrivacySettingRules
 from .get_user_profile_photos import GetUserProfilePhotos
+from .get_voice_chat_available_participants import GetVoiceChatAvailableParticipants
 from .get_web_page_instant_view import GetWebPageInstantView
 from .get_web_page_preview import GetWebPagePreview
 from .hide_suggested_action import HideSuggestedAction
@@ -392,8 +392,10 @@ from .set_supergroup_username import SetSupergroupUsername
 from .set_tdlib_parameters import SetTdlibParameters
 from .set_user_privacy_setting_rules import SetUserPrivacySettingRules
 from .set_username import SetUsername
+from .set_voice_chat_default_participant import SetVoiceChatDefaultParticipant
 from .share_phone_number import SharePhoneNumber
 from .start_group_call_recording import StartGroupCallRecording
+from .start_scheduled_group_call import StartScheduledGroupCall
 from .stop_poll import StopPoll
 from .synchronize_language_pack import SynchronizeLanguagePack
 from .terminate_all_other_sessions import TerminateAllOtherSessions
@@ -414,6 +416,7 @@ from .test_use_update import TestUseUpdate
 from .toggle_chat_default_disable_notification import ToggleChatDefaultDisableNotification
 from .toggle_chat_is_marked_as_unread import ToggleChatIsMarkedAsUnread
 from .toggle_chat_is_pinned import ToggleChatIsPinned
+from .toggle_group_call_enabled_start_notification import ToggleGroupCallEnabledStartNotification
 from .toggle_group_call_mute_new_participants import ToggleGroupCallMuteNewParticipants
 from .toggle_group_call_participant_is_hand_raised import ToggleGroupCallParticipantIsHandRaised
 from .toggle_group_call_participant_is_muted import ToggleGroupCallParticipantIsMuted
@@ -547,7 +550,6 @@ __all__ = [
     "GetAttachedStickerSets",
     "GetAuthorizationState",
     "GetAutoDownloadSettingsPresets",
-    "GetAvailableVoiceChatAliases",
     "GetBackgroundUrl",
     "GetBackgrounds",
     "GetBankCardInfo",
@@ -674,6 +676,7 @@ __all__ = [
     "GetUserFullInfo",
     "GetUserPrivacySettingRules",
     "GetUserProfilePhotos",
+    "GetVoiceChatAvailableParticipants",
     "GetWebPageInstantView",
     "GetWebPagePreview",
     "HideSuggestedAction",
@@ -821,8 +824,10 @@ __all__ = [
     "SetTdlibParameters",
     "SetUserPrivacySettingRules",
     "SetUsername",
+    "SetVoiceChatDefaultParticipant",
     "SharePhoneNumber",
     "StartGroupCallRecording",
+    "StartScheduledGroupCall",
     "StopPoll",
     "SynchronizeLanguagePack",
     "TerminateAllOtherSessions",
@@ -843,6 +848,7 @@ __all__ = [
     "ToggleChatDefaultDisableNotification",
     "ToggleChatIsMarkedAsUnread",
     "ToggleChatIsPinned",
+    "ToggleGroupCallEnabledStartNotification",
     "ToggleGroupCallMuteNewParticipants",
     "ToggleGroupCallParticipantIsHandRaised",
     "ToggleGroupCallParticipantIsMuted",

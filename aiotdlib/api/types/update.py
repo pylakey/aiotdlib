@@ -1448,7 +1448,7 @@ class UpdateNewPreCheckoutQuery(Update):
             Currency for the product price
         
         total_amount (:class:`int`)
-            Total price for the product, in the minimal quantity of the currency
+            Total price for the product, in the smallest units of the currency
         
         invoice_payload (:class:`str`)
             Invoice payload

@@ -24,7 +24,7 @@ class VoiceChat(BaseObject):
         has_participants (:class:`bool`)
             True, if the voice chat has participants
         
-        default_participant_alias (:class:`MessageSender`)
+        default_participant_id (:class:`MessageSender`)
             Default group call participant identifier to join the voice chat; may be null
         
     """
@@ -32,7 +32,7 @@ class VoiceChat(BaseObject):
     ID: str = Field("voiceChat", alias="@type")
     group_call_id: int
     has_participants: bool
-    default_participant_alias: typing.Optional[MessageSender] = None
+    default_participant_id: typing.Optional[MessageSender] = None
 
     @staticmethod
     def read(q: dict) -> VoiceChat:

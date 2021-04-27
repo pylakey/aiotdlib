@@ -260,7 +260,7 @@ class ChatEventMemberPromoted(ChatEventAction):
     
     Params:
         user_id (:class:`int`)
-            Chat member user identifier
+            Affected chat member user identifier
         
         old_status (:class:`ChatMemberStatus`)
             Previous status of the chat member
@@ -285,8 +285,8 @@ class ChatEventMemberRestricted(ChatEventAction):
     A chat member was restricted/unrestricted or banned/unbanned, or the list of their restrictions has changed
     
     Params:
-        user_id (:class:`int`)
-            Chat member user identifier
+        member_id (:class:`MessageSender`)
+            Affected chat member identifier
         
         old_status (:class:`ChatMemberStatus`)
             Previous status of the chat member
@@ -297,7 +297,7 @@ class ChatEventMemberRestricted(ChatEventAction):
     """
 
     ID: str = Field("chatEventMemberRestricted", alias="@type")
-    user_id: int
+    member_id: MessageSender
     old_status: ChatMemberStatus
     new_status: ChatMemberStatus
 
@@ -631,7 +631,7 @@ class ChatEventVoiceChatParticipantIsMutedToggled(ChatEventAction):
     A voice chat participant was muted or unmuted
     
     Params:
-        participant (:class:`MessageSender`)
+        participant_id (:class:`MessageSender`)
             Identifier of the affected group call participant
         
         is_muted (:class:`bool`)
@@ -640,7 +640,7 @@ class ChatEventVoiceChatParticipantIsMutedToggled(ChatEventAction):
     """
 
     ID: str = Field("chatEventVoiceChatParticipantIsMutedToggled", alias="@type")
-    participant: MessageSender
+    participant_id: MessageSender
     is_muted: bool
 
     @staticmethod
@@ -653,7 +653,7 @@ class ChatEventVoiceChatParticipantVolumeLevelChanged(ChatEventAction):
     A voice chat participant volume level was changed
     
     Params:
-        participant (:class:`MessageSender`)
+        participant_id (:class:`MessageSender`)
             Identifier of the affected group call participant
         
         volume_level (:class:`int`)
@@ -662,7 +662,7 @@ class ChatEventVoiceChatParticipantVolumeLevelChanged(ChatEventAction):
     """
 
     ID: str = Field("chatEventVoiceChatParticipantVolumeLevelChanged", alias="@type")
-    participant: MessageSender
+    participant_id: MessageSender
     volume_level: int
 
     @staticmethod

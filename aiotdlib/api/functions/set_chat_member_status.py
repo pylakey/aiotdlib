@@ -8,7 +8,7 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import ChatMemberStatus
+from ..types import ChatMemberStatus, MessageSender
 
 
 class SetChatMemberStatus(BaseObject):
@@ -19,8 +19,8 @@ class SetChatMemberStatus(BaseObject):
         chat_id (:class:`int`)
             Chat identifier
         
-        user_id (:class:`int`)
-            User identifier
+        member_id (:class:`MessageSender`)
+            Member identifier. Chats can be only banned and unbanned in supergroups and channels
         
         status (:class:`ChatMemberStatus`)
             The new status of the member in the chat
@@ -29,7 +29,7 @@ class SetChatMemberStatus(BaseObject):
 
     ID: str = Field("setChatMemberStatus", alias="@type")
     chat_id: int
-    user_id: int
+    member_id: MessageSender
     status: ChatMemberStatus
 
     @staticmethod

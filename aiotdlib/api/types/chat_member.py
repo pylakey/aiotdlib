@@ -11,16 +11,17 @@ from pydantic import Field
 
 from .bot_info import BotInfo
 from .chat_member_status import ChatMemberStatus
+from .message_sender import MessageSender
 from ..base_object import BaseObject
 
 
 class ChatMember(BaseObject):
     """
-    A user with information about joining/leaving a chat
+    Information about a user or a chat as a member of another chat
     
     Params:
-        user_id (:class:`int`)
-            User identifier of the chat member
+        member_id (:class:`MessageSender`)
+            Identifier of the chat member. Currently, other chats can be only Left or Banned. Only supergroups and channels can have other chats as Left or Banned members and these chats must be supergroups or channels
         
         inviter_user_id (:class:`int`)
             Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown
@@ -37,7 +38,7 @@ class ChatMember(BaseObject):
     """
 
     ID: str = Field("chatMember", alias="@type")
-    user_id: int
+    member_id: MessageSender
     inviter_user_id: int
     joined_chat_date: int
     status: ChatMemberStatus

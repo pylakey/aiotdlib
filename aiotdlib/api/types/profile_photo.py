@@ -5,9 +5,12 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .file import File
+from .minithumbnail import Minithumbnail
 from ..base_object import BaseObject
 
 
@@ -25,6 +28,9 @@ class ProfilePhoto(BaseObject):
         big (:class:`File`)
             A big (640x640) user profile photo. The file can be downloaded only before the photo is changed
         
+        minithumbnail (:class:`Minithumbnail`)
+            User profile photo minithumbnail; may be null
+        
         has_animation (:class:`bool`)
             True, if the photo has animated variant
         
@@ -34,6 +40,7 @@ class ProfilePhoto(BaseObject):
     id: int
     small: File
     big: File
+    minithumbnail: typing.Optional[Minithumbnail] = None
     has_animation: bool
 
     @staticmethod

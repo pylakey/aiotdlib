@@ -511,7 +511,7 @@ class MessageInvoice(MessageContent):
             Currency for the product price
         
         total_amount (:class:`int`)
-            Product total price in the minimal quantity of the currency
+            Product total price in the smallest units of the currency
         
         start_parameter (:class:`str`)
             Unique invoice bot start_parameter. To share an invoice use the URL https://t.me/{bot_username}?start={start_parameter}
@@ -622,6 +622,9 @@ class MessagePaymentSuccessful(MessageContent):
     A payment has been completed
     
     Params:
+        invoice_chat_id (:class:`int`)
+            Identifier of the chat, containing the corresponding invoice message; 0 if unknown
+        
         invoice_message_id (:class:`int`)
             Identifier of the message with the corresponding invoice; can be an identifier of a deleted message
         
@@ -629,11 +632,12 @@ class MessagePaymentSuccessful(MessageContent):
             Currency for the price of the product
         
         total_amount (:class:`int`)
-            Total price for the product, in the minimal quantity of the currency
+            Total price for the product, in the smallest units of the currency
         
     """
 
     ID: str = Field("messagePaymentSuccessful", alias="@type")
+    invoice_chat_id: int
     invoice_message_id: int
     currency: str
     total_amount: int
@@ -648,14 +652,11 @@ class MessagePaymentSuccessfulBot(MessageContent):
     A payment has been completed; for bots only
     
     Params:
-        invoice_message_id (:class:`int`)
-            Identifier of the message with the corresponding invoice; can be an identifier of a deleted message
-        
         currency (:class:`str`)
             Currency for price of the product
         
         total_amount (:class:`int`)
-            Total price for the product, in the minimal quantity of the currency
+            Total price for the product, in the smallest units of the currency
         
         invoice_payload (:class:`str`)
             Invoice payload
@@ -675,7 +676,6 @@ class MessagePaymentSuccessfulBot(MessageContent):
     """
 
     ID: str = Field("messagePaymentSuccessfulBot", alias="@type")
-    invoice_message_id: int
     currency: str
     total_amount: int
     invoice_payload: str
@@ -947,6 +947,28 @@ class MessageVoiceChatEnded(MessageContent):
     @staticmethod
     def read(q: dict) -> MessageVoiceChatEnded:
         return MessageVoiceChatEnded.construct(**q)
+
+
+class MessageVoiceChatScheduled(MessageContent):
+    """
+    A new voice chat was scheduled
+    
+    Params:
+        group_call_id (:class:`int`)
+            Identifier of the voice chat. The voice chat can be received through the method getGroupCall
+        
+        start_date (:class:`int`)
+            Point in time (Unix timestamp) when the group call is supposed to be started by an administrator
+        
+    """
+
+    ID: str = Field("messageVoiceChatScheduled", alias="@type")
+    group_call_id: int
+    start_date: int
+
+    @staticmethod
+    def read(q: dict) -> MessageVoiceChatScheduled:
+        return MessageVoiceChatScheduled.construct(**q)
 
 
 class MessageVoiceChatStarted(MessageContent):

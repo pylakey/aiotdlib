@@ -60,7 +60,7 @@ class InputInlineQueryResultAnimation(InputInlineQueryResult):
             The message reply markup. Must be of type replyMarkupInlineKeyboard or null
         
         input_message_content (:class:`InputMessageContent`)
-            The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAnimation, InputMessageLocation, InputMessageVenue or InputMessageContact
+            The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         
     """
 
@@ -115,7 +115,7 @@ class InputInlineQueryResultArticle(InputInlineQueryResult):
             The message reply markup. Must be of type replyMarkupInlineKeyboard or null
         
         input_message_content (:class:`InputMessageContent`)
-            The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
+            The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         
     """
 
@@ -160,7 +160,7 @@ class InputInlineQueryResultAudio(InputInlineQueryResult):
             The message reply markup. Must be of type replyMarkupInlineKeyboard or null
         
         input_message_content (:class:`InputMessageContent`)
-            The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAudio, InputMessageLocation, InputMessageVenue or InputMessageContact
+            The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAudio, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         
     """
 
@@ -202,7 +202,7 @@ class InputInlineQueryResultContact(InputInlineQueryResult):
             The message reply markup. Must be of type replyMarkupInlineKeyboard or null
         
         input_message_content (:class:`InputMessageContent`)
-            The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
+            The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         
     """
 
@@ -253,7 +253,7 @@ class InputInlineQueryResultDocument(InputInlineQueryResult):
             The message reply markup. Must be of type replyMarkupInlineKeyboard or null
         
         input_message_content (:class:`InputMessageContent`)
-            The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageDocument, InputMessageLocation, InputMessageVenue or InputMessageContact
+            The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageDocument, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         
     """
 
@@ -330,7 +330,7 @@ class InputInlineQueryResultLocation(InputInlineQueryResult):
             The message reply markup. Must be of type replyMarkupInlineKeyboard or null
         
         input_message_content (:class:`InputMessageContent`)
-            The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
+            The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         
     """
 
@@ -380,7 +380,7 @@ class InputInlineQueryResultPhoto(InputInlineQueryResult):
             The message reply markup. Must be of type replyMarkupInlineKeyboard or null
         
         input_message_content (:class:`InputMessageContent`)
-            The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessagePhoto, InputMessageLocation, InputMessageVenue or InputMessageContact
+            The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessagePhoto, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         
     """
 
@@ -424,7 +424,7 @@ class InputInlineQueryResultSticker(InputInlineQueryResult):
             The message reply markup. Must be of type replyMarkupInlineKeyboard or null
         
         input_message_content (:class:`InputMessageContent`)
-            The content of the message to be sent. Must be one of the following types: InputMessageText, inputMessageSticker, InputMessageLocation, InputMessageVenue or InputMessageContact
+            The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageSticker, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         
     """
 
@@ -466,7 +466,7 @@ class InputInlineQueryResultVenue(InputInlineQueryResult):
             The message reply markup. Must be of type replyMarkupInlineKeyboard or null
         
         input_message_content (:class:`InputMessageContent`)
-            The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
+            The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         
     """
 
@@ -520,7 +520,7 @@ class InputInlineQueryResultVideo(InputInlineQueryResult):
             The message reply markup. Must be of type replyMarkupInlineKeyboard or null
         
         input_message_content (:class:`InputMessageContent`)
-            The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageVideo, InputMessageLocation, InputMessageVenue or InputMessageContact
+            The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVideo, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         
     """
 
@@ -563,7 +563,7 @@ class InputInlineQueryResultVoiceNote(InputInlineQueryResult):
             The message reply markup. Must be of type replyMarkupInlineKeyboard or null
         
         input_message_content (:class:`InputMessageContent`)
-            The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageVoiceNote, InputMessageLocation, InputMessageVenue or InputMessageContact
+            The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVoiceNote, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
         
     """
 

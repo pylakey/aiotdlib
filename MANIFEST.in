@@ -1,4 +1,4 @@
 include README.md requirements.txt
-recursive-include aiotdlib/tdlib libtdjson.1.7.3.dylib
-recursive-include aiotdlib/tdlib libtdjson.1.7.3.so
-recursive-include aiotdlib/tdlib libtdjson.1.7.3.dll
+recursive-include aiotdlib/tdlib libtdjson.1.7.4.dylib
+recursive-include aiotdlib/tdlib libtdjson.1.7.4.so
+recursive-include aiotdlib/tdlib libtdjson.1.7.4.dll

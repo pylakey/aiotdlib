@@ -23,7 +23,7 @@ class EditInlineMessageMedia(BaseObject):
             The new message reply markup; for bots only
         
         input_message_content (:class:`InputMessageContent`)
-            New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
+            New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
         
     """
 

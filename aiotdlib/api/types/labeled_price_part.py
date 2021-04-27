@@ -19,7 +19,7 @@ class LabeledPricePart(BaseObject):
             Label for this portion of the product price
         
         amount (:class:`int`)
-            Currency amount in minimal quantity of the currency
+            Currency amount in the smallest units of the currency
         
     """
 

@@ -14,7 +14,7 @@ from ..base_object import BaseObject
 
 class StartGroupCallRecording(BaseObject):
     """
-    Starts recording of a group call. Requires groupCall.can_be_managed group call flag
+    Starts recording of an active group call. Requires groupCall.can_be_managed group call flag
     
     Params:
         group_call_id (:class:`int`)

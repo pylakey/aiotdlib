@@ -21,11 +21,20 @@ class PaymentForm(BaseObject):
     Contains information about an invoice payment form
     
     Params:
+        id (:class:`int`)
+            The payment form identifier
+        
         invoice (:class:`Invoice`)
             Full information of the invoice
         
         url (:class:`str`)
             Payment form URL
+        
+        seller_bot_user_id (:class:`int`)
+            User identifier of the seller bot
+        
+        payments_provider_user_id (:class:`int`)
+            User identifier of the payment provider bot
         
         payments_provider (:class:`PaymentsProviderStripe`)
             Contains information about the payment provider, if available, to support it natively without the need for opening the URL; may be null
@@ -45,8 +54,11 @@ class PaymentForm(BaseObject):
     """
 
     ID: str = Field("paymentForm", alias="@type")
+    id: int
     invoice: Invoice
     url: str
+    seller_bot_user_id: int
+    payments_provider_user_id: int
     payments_provider: typing.Optional[PaymentsProviderStripe] = None
     saved_order_info: typing.Optional[OrderInfo] = None
     saved_credentials: typing.Optional[SavedCredentials] = None

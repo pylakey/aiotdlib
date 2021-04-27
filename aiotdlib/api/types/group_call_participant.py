@@ -16,7 +16,7 @@ class GroupCallParticipant(BaseObject):
     Represents a group call participant
     
     Params:
-        participant (:class:`MessageSender`)
+        participant_id (:class:`MessageSender`)
             Identifier of the group call participant
         
         source (:class:`int`)
@@ -64,7 +64,7 @@ class GroupCallParticipant(BaseObject):
     """
 
     ID: str = Field("groupCallParticipant", alias="@type")
-    participant: MessageSender
+    participant_id: MessageSender
     source: int
     bio: str
     is_current_user: bool

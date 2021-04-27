@@ -22,6 +22,12 @@ class Invoice(BaseObject):
         price_parts (:obj:`list[LabeledPricePart]`)
             A list of objects used to calculate the total price of the product
         
+        max_tip_amount (:class:`int`)
+            The maximum allowed amount of tip in the smallest units of the currency
+        
+        suggested_tip_amounts (:obj:`list[int]`)
+            Suggested amounts of tip in the smallest units of the currency
+        
         is_test (:class:`bool`)
             True, if the payment is a test payment
         
@@ -51,6 +57,8 @@ class Invoice(BaseObject):
     ID: str = Field("invoice", alias="@type")
     currency: str
     price_parts: list[LabeledPricePart]
+    max_tip_amount: int
+    suggested_tip_amounts: list[int]
     is_test: bool
     need_name: bool
     need_phone_number: bool

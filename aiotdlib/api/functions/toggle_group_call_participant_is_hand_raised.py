@@ -19,7 +19,7 @@ class ToggleGroupCallParticipantIsHandRaised(BaseObject):
         group_call_id (:class:`int`)
             Group call identifier
         
-        participant (:class:`MessageSender`)
+        participant_id (:class:`MessageSender`)
             Participant identifier
         
         is_hand_raised (:class:`bool`)
@@ -29,7 +29,7 @@ class ToggleGroupCallParticipantIsHandRaised(BaseObject):
 
     ID: str = Field("toggleGroupCallParticipantIsHandRaised", alias="@type")
     group_call_id: int
-    participant: MessageSender
+    participant_id: MessageSender
     is_hand_raised: bool
 
     @staticmethod

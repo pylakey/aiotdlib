@@ -9,7 +9,7 @@ import ujson
 
 fatal_error_callback_type = CFUNCTYPE(None, c_char_p)
 
-TDLIB_VERSION = '1.7.3'
+TDLIB_VERSION = '1.7.4'
 TDLIB_MAX_INT = 2 ** 63 - 1
 
 

@@ -411,7 +411,6 @@ class API:
         GET_ATTACHED_STICKER_SETS = 'getAttachedStickerSets'
         GET_AUTHORIZATION_STATE = 'getAuthorizationState'
         GET_AUTO_DOWNLOAD_SETTINGS_PRESETS = 'getAutoDownloadSettingsPresets'
-        GET_AVAILABLE_VOICE_CHAT_ALIASES = 'getAvailableVoiceChatAliases'
         GET_BACKGROUND_URL = 'getBackgroundUrl'
         GET_BACKGROUNDS = 'getBackgrounds'
         GET_BANK_CARD_INFO = 'getBankCardInfo'
@@ -538,6 +537,7 @@ class API:
         GET_USER_FULL_INFO = 'getUserFullInfo'
         GET_USER_PRIVACY_SETTING_RULES = 'getUserPrivacySettingRules'
         GET_USER_PROFILE_PHOTOS = 'getUserProfilePhotos'
+        GET_VOICE_CHAT_AVAILABLE_PARTICIPANTS = 'getVoiceChatAvailableParticipants'
         GET_WEB_PAGE_INSTANT_VIEW = 'getWebPageInstantView'
         GET_WEB_PAGE_PREVIEW = 'getWebPagePreview'
         GROUP_CALL = 'groupCall'
@@ -751,6 +751,7 @@ class API:
         MESSAGE_VIDEO = 'messageVideo'
         MESSAGE_VIDEO_NOTE = 'messageVideoNote'
         MESSAGE_VOICE_CHAT_ENDED = 'messageVoiceChatEnded'
+        MESSAGE_VOICE_CHAT_SCHEDULED = 'messageVoiceChatScheduled'
         MESSAGE_VOICE_CHAT_STARTED = 'messageVoiceChatStarted'
         MESSAGE_VOICE_NOTE = 'messageVoiceNote'
         MESSAGE_WEBSITE_CONNECTED = 'messageWebsiteConnected'
@@ -910,6 +911,7 @@ class API:
         PASSPORT_SUITABLE_ELEMENT = 'passportSuitableElement'
         PASSWORD_STATE = 'passwordState'
         PAYMENT_FORM = 'paymentForm'
+        PAYMENT_FORM_THEME = 'paymentFormTheme'
         PAYMENT_RECEIPT = 'paymentReceipt'
         PAYMENT_RESULT = 'paymentResult'
         PAYMENTS_PROVIDER_STRIPE = 'paymentsProviderStripe'
@@ -1148,9 +1150,11 @@ class API:
         SET_TDLIB_PARAMETERS = 'setTdlibParameters'
         SET_USER_PRIVACY_SETTING_RULES = 'setUserPrivacySettingRules'
         SET_USERNAME = 'setUsername'
+        SET_VOICE_CHAT_DEFAULT_PARTICIPANT = 'setVoiceChatDefaultParticipant'
         SHARE_PHONE_NUMBER = 'sharePhoneNumber'
         SHIPPING_OPTION = 'shippingOption'
         START_GROUP_CALL_RECORDING = 'startGroupCallRecording'
+        START_SCHEDULED_GROUP_CALL = 'startScheduledGroupCall'
         STATISTICAL_GRAPH = 'statisticalGraph'
         STATISTICAL_GRAPH_ASYNC = 'statisticalGraphAsync'
         STATISTICAL_GRAPH_DATA = 'statisticalGraphData'
@@ -1250,6 +1254,7 @@ class API:
         TOGGLE_CHAT_DEFAULT_DISABLE_NOTIFICATION = 'toggleChatDefaultDisableNotification'
         TOGGLE_CHAT_IS_MARKED_AS_UNREAD = 'toggleChatIsMarkedAsUnread'
         TOGGLE_CHAT_IS_PINNED = 'toggleChatIsPinned'
+        TOGGLE_GROUP_CALL_ENABLED_START_NOTIFICATION = 'toggleGroupCallEnabledStartNotification'
         TOGGLE_GROUP_CALL_MUTE_NEW_PARTICIPANTS = 'toggleGroupCallMuteNewParticipants'
         TOGGLE_GROUP_CALL_PARTICIPANT_IS_HAND_RAISED = 'toggleGroupCallParticipantIsHandRaised'
         TOGGLE_GROUP_CALL_PARTICIPANT_IS_MUTED = 'toggleGroupCallParticipantIsMuted'
@@ -2115,7 +2120,7 @@ class API:
     async def ban_chat_member(
             self,
             chat_id: int,
-            user_id: int,
+            member_id: MessageSender,
             banned_until_date: int,
             revoke_messages: bool,
             *,
@@ -2130,8 +2135,8 @@ class API:
             chat_id (:class:`int`)
                 Chat identifier
             
-            user_id (:class:`int`)
-                Identifier of the user
+            member_id (:class:`MessageSender`)
+                Member identifier
             
             banned_until_date (:class:`int`)
                 Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups
@@ -2145,7 +2150,7 @@ class API:
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
-                user_id=user_id,
+                member_id=member_id,
                 banned_until_date=banned_until_date,
                 revoke_messages=revoke_messages,
             ),
@@ -2975,7 +2980,7 @@ class API:
                 Point in time (Unix timestamp) when the link will expire; pass 0 if never
             
             member_limit (:class:`int`)
-                Maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+                The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
             
         """
         _constructor = CreateChatInviteLink.construct if skip_validation else CreateChatInviteLink
@@ -3261,6 +3266,8 @@ class API:
     async def create_voice_chat(
             self,
             chat_id: int,
+            title: str,
+            start_date: int,
             *,
             request_id: str = None,
             request_timeout: int = None,
@@ -3271,7 +3278,13 @@ class API:
         
         Params:
             chat_id (:class:`int`)
-                Chat identifier
+                Chat identifier, in which the voice chat will be created
+            
+            title (:class:`str`)
+                Group call title; if empty, chat title will be used
+            
+            start_date (:class:`int`)
+                Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the voice chat immediately. The date must be at least 10 seconds and at most 8 days in the future
             
         """
         _constructor = CreateVoiceChat.construct if skip_validation else CreateVoiceChat
@@ -3279,6 +3292,8 @@ class API:
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
+                title=title,
+                start_date=start_date,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -3943,7 +3958,7 @@ class API:
                 Point in time (Unix timestamp) when the link will expire; pass 0 if never
             
             member_limit (:class:`int`)
-                Maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+                The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
             
         """
         _constructor = EditChatInviteLink.construct if skip_validation else EditChatInviteLink
@@ -4088,7 +4103,7 @@ class API:
                 The new message reply markup; for bots only
             
             input_message_content (:class:`InputMessageContent`)
-                New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
+                New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
             
         """
         _constructor = EditInlineMessageMedia.construct if skip_validation else EditInlineMessageMedia
@@ -4155,7 +4170,7 @@ class API:
                 The new message reply markup
             
             input_message_content (:class:`InputMessageContent`)
-                New text content of the message. Should be of type InputMessageText
+                New text content of the message. Should be of type inputMessageText
             
         """
         _constructor = EditInlineMessageText.construct if skip_validation else EditInlineMessageText
@@ -4287,7 +4302,7 @@ class API:
                 The new message reply markup; for bots only
             
             input_message_content (:class:`InputMessageContent`)
-                New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
+                New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
             
         """
         _constructor = EditMessageMedia.construct if skip_validation else EditMessageMedia
@@ -4400,7 +4415,7 @@ class API:
                 The new message reply markup; for bots only
             
             input_message_content (:class:`InputMessageContent`)
-                New text content of the message. Should be of type InputMessageText
+                New text content of the message. Should be of type inputMessageText
             
         """
         _constructor = EditMessageText.construct if skip_validation else EditMessageText
@@ -4497,7 +4512,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Ends recording of a group call. Requires groupCall.can_be_managed group call flag
+        Ends recording of an active group call. Requires groupCall.can_be_managed group call flag
         
         Params:
             group_call_id (:class:`int`)
@@ -4746,32 +4761,6 @@ class API:
         """
         return await self.client.request(
             GetAutoDownloadSettingsPresets(),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-    
-    async def get_available_voice_chat_aliases(
-            self,
-            chat_id: int,
-            *,
-            request_id: str = None,
-            request_timeout: int = None,
-            skip_validation: bool = False
-    ) -> MessageSenders:
-        """
-        Returns list of user and chat, which can be used as aliases to join a voice chat in the chat
-        
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-        """
-        _constructor = GetAvailableVoiceChatAliases.construct if skip_validation else GetAvailableVoiceChatAliases
-        
-        return await self.client.request(
-            _constructor(
-                chat_id=chat_id,
-            ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
@@ -5297,7 +5286,7 @@ class API:
                 A chat member from which to return next chat members; use null to get results from the beginning
             
             limit (:class:`int`)
-                Maximum number of chat members to return
+                The maximum number of chat members to return
             
         """
         _constructor = GetChatInviteLinkMembers.construct if skip_validation else GetChatInviteLinkMembers
@@ -5346,7 +5335,7 @@ class API:
                 Invite link starting after which to return invite links; use empty string to get results from the beginning
             
             limit (:class:`int`)
-                Maximum number of invite links to return
+                The maximum number of invite links to return
             
         """
         _constructor = GetChatInviteLinks.construct if skip_validation else GetChatInviteLinks
@@ -5393,7 +5382,7 @@ class API:
     async def get_chat_member(
             self,
             chat_id: int,
-            user_id: int,
+            member_id: MessageSender,
             *,
             request_id: str = None,
             request_timeout: int = None,
@@ -5406,8 +5395,8 @@ class API:
             chat_id (:class:`int`)
                 Chat identifier
             
-            user_id (:class:`int`)
-                User identifier
+            member_id (:class:`MessageSender`)
+                Member identifier
             
         """
         _constructor = GetChatMember.construct if skip_validation else GetChatMember
@@ -5415,7 +5404,7 @@ class API:
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
-                user_id=user_id,
+                member_id=member_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -7273,6 +7262,7 @@ class API:
             self,
             chat_id: int,
             message_id: int,
+            theme: PaymentFormTheme,
             *,
             request_id: str = None,
             request_timeout: int = None,
@@ -7288,6 +7278,9 @@ class API:
             message_id (:class:`int`)
                 Message identifier
             
+            theme (:class:`PaymentFormTheme`)
+                Preferred payment form theme
+            
         """
         _constructor = GetPaymentForm.construct if skip_validation else GetPaymentForm
         
@@ -7295,6 +7288,7 @@ class API:
             _constructor(
                 chat_id=chat_id,
                 message_id=message_id,
+                theme=theme,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -8212,6 +8206,32 @@ class API:
             request_timeout=request_timeout,
         )
     
+    async def get_voice_chat_available_participants(
+            self,
+            chat_id: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> MessageSenders:
+        """
+        Returns list of participant identifiers, which can be used to join voice chats in a chat
+        
+        Params:
+            chat_id (:class:`int`)
+                Chat identifier
+            
+        """
+        _constructor = GetVoiceChatAvailableParticipants.construct if skip_validation else GetVoiceChatAvailableParticipants
+        
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+    
     async def get_web_page_instant_view(
             self,
             url: str,
@@ -8367,7 +8387,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Invites users to a group call. Sends a service message of type messageInviteToGroupCall for voice chats
+        Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for voice chats
         
         Params:
             group_call_id (:class:`int`)
@@ -8443,7 +8463,7 @@ class API:
     async def join_group_call(
             self,
             group_call_id: int,
-            participant_alias: MessageSender,
+            participant_id: MessageSender,
             payload: GroupCallPayload,
             source: int,
             is_muted: bool,
@@ -8454,14 +8474,14 @@ class API:
             skip_validation: bool = False
     ) -> GroupCallJoinResponse:
         """
-        Joins a group call
+        Joins an active group call
         
         Params:
             group_call_id (:class:`int`)
                 Group call identifier
             
-            participant_alias (:class:`MessageSender`)
-                Identifier of the group call participant, which will be used to join the call; voice chats only
+            participant_id (:class:`MessageSender`)
+                Identifier of a group call participant, which will be used to join the call; voice chats only
             
             payload (:class:`GroupCallPayload`)
                 Group join payload; received from tgcalls
@@ -8481,7 +8501,7 @@ class API:
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
-                participant_alias=participant_alias,
+                participant_id=participant_id,
                 payload=payload,
                 source=source,
                 is_muted=is_muted,
@@ -8553,14 +8573,14 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Loads more group call participants. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants has already been loaded
+        Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants has already been loaded
         
         Params:
             group_call_id (:class:`int`)
                 Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
             
             limit (:class:`int`)
-                Maximum number of participants to load
+                The maximum number of participants to load
             
         """
         _constructor = LoadGroupCallParticipants.construct if skip_validation else LoadGroupCallParticipants
@@ -10974,9 +10994,11 @@ class API:
             self,
             chat_id: int,
             message_id: int,
+            payment_form_id: int,
             order_info_id: str,
             shipping_option_id: str,
             credentials: InputCredentials,
+            tip_amount: int,
             *,
             request_id: str = None,
             request_timeout: int = None,
@@ -10992,14 +11014,20 @@ class API:
             message_id (:class:`int`)
                 Message identifier
             
+            payment_form_id (:class:`int`)
+                Payment form identifier returned by getPaymentForm
+            
             order_info_id (:class:`str`)
-                Identifier returned by ValidateOrderInfo, or an empty string
+                Identifier returned by validateOrderInfo, or an empty string
             
             shipping_option_id (:class:`str`)
                 Identifier of a chosen shipping option, if applicable
             
             credentials (:class:`InputCredentials`)
                 The credentials chosen by user for payment
+            
+            tip_amount (:class:`int`)
+                Chosen by the user amount of tip in the smallest units of the currency
             
         """
         _constructor = SendPaymentForm.construct if skip_validation else SendPaymentForm
@@ -11008,9 +11036,11 @@ class API:
             _constructor(
                 chat_id=chat_id,
                 message_id=message_id,
+                payment_form_id=payment_form_id,
                 order_info_id=order_info_id,
                 shipping_option_id=shipping_option_id,
                 credentials=credentials,
+                tip_amount=tip_amount,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -11453,7 +11483,7 @@ class API:
     async def set_chat_member_status(
             self,
             chat_id: int,
-            user_id: int,
+            member_id: MessageSender,
             status: ChatMemberStatus,
             *,
             request_id: str = None,
@@ -11467,8 +11497,8 @@ class API:
             chat_id (:class:`int`)
                 Chat identifier
             
-            user_id (:class:`int`)
-                User identifier
+            member_id (:class:`MessageSender`)
+                Member identifier. Chats can be only banned and unbanned in supergroups and channels
             
             status (:class:`ChatMemberStatus`)
                 The new status of the member in the chat
@@ -11479,7 +11509,7 @@ class API:
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
-                user_id=user_id,
+                member_id=member_id,
                 status=status,
             ),
             request_id=request_id,
@@ -11884,7 +11914,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Informs TDLib that a group call participant speaking state has changed
+        Informs TDLib that a participant of an active group call speaking state has changed
         
         Params:
             group_call_id (:class:`int`)
@@ -11912,7 +11942,7 @@ class API:
     async def set_group_call_participant_volume_level(
             self,
             group_call_id: int,
-            participant: MessageSender,
+            participant_id: MessageSender,
             volume_level: int,
             *,
             request_id: str = None,
@@ -11920,13 +11950,13 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Changes a group call participant's volume level. If the current user can manage the group call, then the participant's volume level will be changed for all users with default volume level
+        Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with default volume level
         
         Params:
             group_call_id (:class:`int`)
                 Group call identifier
             
-            participant (:class:`MessageSender`)
+            participant_id (:class:`MessageSender`)
                 Participant identifier
             
             volume_level (:class:`int`)
@@ -11938,7 +11968,7 @@ class API:
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
-                participant=participant,
+                participant_id=participant_id,
                 volume_level=volume_level,
             ),
             request_id=request_id,
@@ -12694,6 +12724,37 @@ class API:
             request_timeout=request_timeout,
         )
     
+    async def set_voice_chat_default_participant(
+            self,
+            chat_id: int,
+            default_participant_id: MessageSender,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes default participant identifier, which can be used to join voice chats in a chat
+        
+        Params:
+            chat_id (:class:`int`)
+                Chat identifier
+            
+            default_participant_id (:class:`MessageSender`)
+                Default group call participant identifier to join the voice chats
+            
+        """
+        _constructor = SetVoiceChatDefaultParticipant.construct if skip_validation else SetVoiceChatDefaultParticipant
+        
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                default_participant_id=default_participant_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+    
     async def share_phone_number(
             self,
             user_id: int,
@@ -12730,7 +12791,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Starts recording of a group call. Requires groupCall.can_be_managed group call flag
+        Starts recording of an active group call. Requires groupCall.can_be_managed group call flag
         
         Params:
             group_call_id (:class:`int`)
@@ -12746,6 +12807,32 @@ class API:
             _constructor(
                 group_call_id=group_call_id,
                 title=title,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+    
+    async def start_scheduled_group_call(
+            self,
+            group_call_id: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Starts a scheduled group call
+        
+        Params:
+            group_call_id (:class:`int`)
+                Group call identifier
+            
+        """
+        _constructor = StartScheduledGroupCall.construct if skip_validation else StartScheduledGroupCall
+        
+        return await self.client.request(
+            _constructor(
+                group_call_id=group_call_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -13246,6 +13333,37 @@ class API:
             request_timeout=request_timeout,
         )
     
+    async def toggle_group_call_enabled_start_notification(
+            self,
+            group_call_id: int,
+            enabled_start_notification: bool,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only
+        
+        Params:
+            group_call_id (:class:`int`)
+                Group call identifier
+            
+            enabled_start_notification (:class:`bool`)
+                New value of the enabled_start_notification setting
+            
+        """
+        _constructor = ToggleGroupCallEnabledStartNotification.construct if skip_validation else ToggleGroupCallEnabledStartNotification
+        
+        return await self.client.request(
+            _constructor(
+                group_call_id=group_call_id,
+                enabled_start_notification=enabled_start_notification,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+    
     async def toggle_group_call_mute_new_participants(
             self,
             group_call_id: int,
@@ -13280,7 +13398,7 @@ class API:
     async def toggle_group_call_participant_is_hand_raised(
             self,
             group_call_id: int,
-            participant: MessageSender,
+            participant_id: MessageSender,
             is_hand_raised: bool,
             *,
             request_id: str = None,
@@ -13294,7 +13412,7 @@ class API:
             group_call_id (:class:`int`)
                 Group call identifier
             
-            participant (:class:`MessageSender`)
+            participant_id (:class:`MessageSender`)
                 Participant identifier
             
             is_hand_raised (:class:`bool`)
@@ -13306,7 +13424,7 @@ class API:
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
-                participant=participant,
+                participant_id=participant_id,
                 is_hand_raised=is_hand_raised,
             ),
             request_id=request_id,
@@ -13316,7 +13434,7 @@ class API:
     async def toggle_group_call_participant_is_muted(
             self,
             group_call_id: int,
-            participant: MessageSender,
+            participant_id: MessageSender,
             is_muted: bool,
             *,
             request_id: str = None,
@@ -13324,13 +13442,13 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Toggles whether a group call participant is muted, unmuted, or allowed to unmute themself
+        Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themself
         
         Params:
             group_call_id (:class:`int`)
                 Group call identifier
             
-            participant (:class:`MessageSender`)
+            participant_id (:class:`MessageSender`)
                 Participant identifier
             
             is_muted (:class:`bool`)
@@ -13342,7 +13460,7 @@ class API:
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
-                participant=participant,
+                participant_id=participant_id,
                 is_muted=is_muted,
             ),
             request_id=request_id,

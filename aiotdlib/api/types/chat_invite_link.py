@@ -31,7 +31,7 @@ class ChatInviteLink(BaseObject):
             Point in time (Unix timestamp) when the link will expire; 0 if never
         
         member_limit (:class:`int`)
-            Maximum number of members, which can join the chat using the link simultaneously; 0 if not limited
+            The maximum number of members, which can join the chat using the link simultaneously; 0 if not limited
         
         member_count (:class:`int`)
             Number of chat members, which joined the chat using the link

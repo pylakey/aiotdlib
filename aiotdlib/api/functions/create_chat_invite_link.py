@@ -22,7 +22,7 @@ class CreateChatInviteLink(BaseObject):
             Point in time (Unix timestamp) when the link will expire; pass 0 if never
         
         member_limit (:class:`int`)
-            Maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+            The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
         
     """
 

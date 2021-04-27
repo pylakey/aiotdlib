@@ -8,6 +8,7 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
+from ..types import MessageSender
 
 
 class BanChatMember(BaseObject):
@@ -18,8 +19,8 @@ class BanChatMember(BaseObject):
         chat_id (:class:`int`)
             Chat identifier
         
-        user_id (:class:`int`)
-            Identifier of the user
+        member_id (:class:`MessageSender`)
+            Member identifier
         
         banned_until_date (:class:`int`)
             Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups
@@ -31,7 +32,7 @@ class BanChatMember(BaseObject):
 
     ID: str = Field("banChatMember", alias="@type")
     chat_id: int
-    user_id: int
+    member_id: MessageSender
     banned_until_date: int
     revoke_messages: bool
 

@@ -16,8 +16,8 @@ class GroupCallRecentSpeaker(BaseObject):
     Describes a recently speaking participant in a group call
     
     Params:
-        speaker (:class:`MessageSender`)
-            Speaking participantt
+        participant_id (:class:`MessageSender`)
+            Group call participant identifier
         
         is_speaking (:class:`bool`)
             True, is the user has spoken recently
@@ -25,7 +25,7 @@ class GroupCallRecentSpeaker(BaseObject):
     """
 
     ID: str = Field("groupCallRecentSpeaker", alias="@type")
-    speaker: MessageSender
+    participant_id: MessageSender
     is_speaking: bool
 
     @staticmethod

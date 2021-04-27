@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class SetGroupCallParticipantIsSpeaking(BaseObject):
     """
-    Informs TDLib that a group call participant speaking state has changed
+    Informs TDLib that a participant of an active group call speaking state has changed
     
     Params:
         group_call_id (:class:`int`)

@@ -569,6 +569,7 @@ from .message_content import (
     MessageVideo,
     MessageVideoNote,
     MessageVoiceChatEnded,
+    MessageVoiceChatScheduled,
     MessageVoiceChatStarted,
     MessageVoiceNote,
     MessageWebsiteConnected,
@@ -759,6 +760,7 @@ from .passport_required_element import PassportRequiredElement
 from .passport_suitable_element import PassportSuitableElement
 from .password_state import PasswordState
 from .payment_form import PaymentForm
+from .payment_form_theme import PaymentFormTheme
 from .payment_receipt import PaymentReceipt
 from .payment_result import PaymentResult
 from .payments_provider_stripe import PaymentsProviderStripe
@@ -1612,6 +1614,7 @@ __all__ = [
     "MessageVideo",
     "MessageVideoNote",
     "MessageVoiceChatEnded",
+    "MessageVoiceChatScheduled",
     "MessageVoiceChatStarted",
     "MessageVoiceNote",
     "MessageWebsiteConnected",
@@ -1767,6 +1770,7 @@ __all__ = [
     "PassportSuitableElement",
     "PasswordState",
     "PaymentForm",
+    "PaymentFormTheme",
     "PaymentReceipt",
     "PaymentResult",
     "PaymentsProviderStripe",

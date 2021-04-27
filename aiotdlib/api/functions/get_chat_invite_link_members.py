@@ -26,7 +26,7 @@ class GetChatInviteLinkMembers(BaseObject):
             A chat member from which to return next chat members; use null to get results from the beginning
         
         limit (:class:`int`)
-            Maximum number of chat members to return
+            The maximum number of chat members to return
         
     """
 

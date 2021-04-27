@@ -23,7 +23,7 @@ class EditInlineMessageText(BaseObject):
             The new message reply markup
         
         input_message_content (:class:`InputMessageContent`)
-            New text content of the message. Should be of type InputMessageText
+            New text content of the message. Should be of type inputMessageText
         
     """
 

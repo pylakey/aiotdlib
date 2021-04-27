@@ -8,6 +8,7 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
+from ..types import MessageSender
 
 
 class GetChatMember(BaseObject):
@@ -18,14 +19,14 @@ class GetChatMember(BaseObject):
         chat_id (:class:`int`)
             Chat identifier
         
-        user_id (:class:`int`)
-            User identifier
+        member_id (:class:`MessageSender`)
+            Member identifier
         
     """
 
     ID: str = Field("getChatMember", alias="@type")
     chat_id: int
-    user_id: int
+    member_id: MessageSender
 
     @staticmethod
     def read(q: dict) -> GetChatMember:

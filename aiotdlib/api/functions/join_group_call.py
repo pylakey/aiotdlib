@@ -13,14 +13,14 @@ from ..types import GroupCallPayload, MessageSender
 
 class JoinGroupCall(BaseObject):
     """
-    Joins a group call
+    Joins an active group call
     
     Params:
         group_call_id (:class:`int`)
             Group call identifier
         
-        participant_alias (:class:`MessageSender`)
-            Identifier of the group call participant, which will be used to join the call; voice chats only
+        participant_id (:class:`MessageSender`)
+            Identifier of a group call participant, which will be used to join the call; voice chats only
         
         payload (:class:`GroupCallPayload`)
             Group join payload; received from tgcalls
@@ -38,7 +38,7 @@ class JoinGroupCall(BaseObject):
 
     ID: str = Field("joinGroupCall", alias="@type")
     group_call_id: int
-    participant_alias: MessageSender
+    participant_id: MessageSender
     payload: GroupCallPayload
     source: int
     is_muted: bool

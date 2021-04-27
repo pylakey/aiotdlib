@@ -1,5 +1,13 @@
 # aiotdlib CHANGELOG
 
+### v0.5.0
+
+#### Updated
+
+* TDLib upgraded to version 1.7.4
+
+* API types and functions regenerated with new API available in TDLib 1.7.4
+
 ### v0.4.2
 
 #### Updated

@@ -31,7 +31,7 @@ class GetChatInviteLinks(BaseObject):
             Invite link starting after which to return invite links; use empty string to get results from the beginning
         
         limit (:class:`int`)
-            Maximum number of invite links to return
+            The maximum number of invite links to return
         
     """
 

@@ -90,7 +90,7 @@ class ChatMemberStatusAdministrator(ChatMemberStatus):
 
 class ChatMemberStatusBanned(ChatMemberStatus):
     """
-    The user was banned (and hence is not a member of the chat). Implies the user can't return to the chat or view messages
+    The user or the chat was banned (and hence is not a member of the chat). Implies the user can't return to the chat, view messages, or be used as a participant identifier to join a voice chat of the chat
     
     Params:
         banned_until_date (:class:`int`)
@@ -134,7 +134,7 @@ class ChatMemberStatusCreator(ChatMemberStatus):
 
 class ChatMemberStatusLeft(ChatMemberStatus):
     """
-    The user is not a chat member
+    The user or the chat is not a chat member
     
     """
 

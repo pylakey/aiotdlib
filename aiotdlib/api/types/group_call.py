@@ -22,6 +22,12 @@ class GroupCall(BaseObject):
         title (:class:`str`)
             Group call title
         
+        scheduled_start_date (:class:`int`)
+            Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 if it is already active or was ended
+        
+        enabled_start_notification (:class:`bool`)
+            True, if the group call is scheduled and the current user will receive a notification when the group call will start
+        
         is_active (:class:`bool`)
             True, if the call is active
         
@@ -30,9 +36,6 @@ class GroupCall(BaseObject):
         
         need_rejoin (:class:`bool`)
             True, if user was kicked from the call because of network loss and the call needs to be rejoined
-        
-        can_unmute_self (:class:`bool`)
-            True, if the current user can unmute themself
         
         can_be_managed (:class:`bool`)
             True, if the current user can manage the group call
@@ -63,10 +66,11 @@ class GroupCall(BaseObject):
     ID: str = Field("groupCall", alias="@type")
     id: int
     title: str
+    scheduled_start_date: int
+    enabled_start_notification: bool
     is_active: bool
     is_joined: bool
     need_rejoin: bool
-    can_unmute_self: bool
     can_be_managed: bool
     participant_count: int
     loaded_all_participants: bool
