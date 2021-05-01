@@ -9,6 +9,7 @@ import signal
 import sys
 import typing
 import uuid
+from collections import AsyncIterator
 from functools import partial, update_wrapper
 from pathlib import Path
 from typing import Optional, TypeVar, Union
@@ -1840,3 +1841,62 @@ class Client:
             request_timeout=request_timeout,
             skip_validation=True
         )
+
+    async def iter_chat_history(
+            self,
+            chat_id: int,
+            from_message_id: int = 0,
+            limit: int = None,
+            only_local: bool = False
+    ) -> AsyncIterator[Message]:
+        """
+        Iterates over messages in a chat.
+        The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id).
+        Number of messages are limited by limit parameter
+
+        Params:
+            chat_id (:class:`int`)
+                Chat identifier
+
+            from_message_id (:class:`int`)
+                Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+
+            limit (:class:`int`)
+                The maximum number of messages to be returned; must be positive
+                If chat contains less than limit messages all of them would be returned
+
+            only_local (:class:`bool`)
+                If true, returns only messages that are available locally without sending network requests
+
+        """
+
+        if limit is None:
+            limit = 100
+
+        yielded_messages_count = 0
+        need_finish = False
+        request_limit = min(100, limit)
+
+        while not need_finish:
+            history = await self.api.get_chat_history(
+                chat_id=chat_id,
+                from_message_id=from_message_id,
+                limit=request_limit,
+                offset=0,
+                only_local=only_local
+            )
+
+            if len(history.messages) == 0:
+                break
+
+            from_message_id = history.messages[-1].id
+
+            for message in history.messages:
+                yield message
+                yielded_messages_count += 1
+
+                if yielded_messages_count >= limit:
+                    need_finish = True
+                    break
+
+            request_limit = min(100, limit - yielded_messages_count)
