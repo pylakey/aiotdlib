@@ -1,5 +1,19 @@
 # aiotdlib CHANGELOG
 
+### v0.6.0
+
+#### Added
+
+* New high-level API method `Client.iter_chat_history` to iterate over messages in chat
+
+* Added `Client.run` method to synchronously run client. Useful for faster bots coding (Included example in README.md)
+
+#### Updated
+
+* Improved filters system
+
+* Added a few useful predefined filters
+
 ### v0.5.0
 
 #### Updated
@@ -14,7 +28,7 @@
 
 * Added ujson dependency to improve performance of json encoding/decoding
 
-* `TDJson` class now uses new TDLibJson api to work with requests  
+* `TDJson` class now uses new TDLibJson api to work with requests
 
 ### v0.4.1
 

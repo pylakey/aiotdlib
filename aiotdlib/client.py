@@ -69,7 +69,7 @@ from .api import (
     UserFullInfo,
 )
 from .client_cache import ClientCache
-from .filters import create_bot_command_filter, text_message_filter
+from .filters import Filters
 from .handlers import FilterCallable, Handler, HandlerCallable
 from .middlewares import MiddlewareCallable
 from .tdjson import TDJson, TDLibLogVerbosity
@@ -630,41 +630,27 @@ class Client:
 
     def text_message_handler(self, function: HandlerCallable = None):
         """
-        Registers event handler with predefined filter text_message_filter
+        Registers event handler with predefined filter Filters.text
         which allows only UpdateNewMessage with MessageText content
 
         Note: this method is universal and can be used directly or as decorator
         """
         if callable(function):
-            self.add_event_handler(
-                function,
-                API.Types.UPDATE_NEW_MESSAGE,
-                filters=text_message_filter
-            )
+            self.add_event_handler(function, API.Types.UPDATE_NEW_MESSAGE, filters=Filters.text)
         else:
-            return self.on_event(
-                API.Types.UPDATE_NEW_MESSAGE,
-                filters=text_message_filter
-            )
+            return self.on_event(API.Types.UPDATE_NEW_MESSAGE, filters=Filters.text)
 
     def bot_command_handler(self, function: HandlerCallable = None, *, command: str = None):
         """
-        Registers event handler with predefined filter bot_command_handler
+        Registers event handler with predefined filter Filters.bot_command
         which allows only UpdateNewMessage with MessageText content and text of message starts with "/"
 
         Note: this method is universal and can be used directly or as decorator
         """
         if callable(function):
-            self.add_event_handler(
-                function,
-                API.Types.UPDATE_NEW_MESSAGE,
-                filters=create_bot_command_filter(command=command)
-            )
+            self.add_event_handler(function, API.Types.UPDATE_NEW_MESSAGE, filters=Filters.bot_command(command))
         else:
-            return self.on_event(
-                API.Types.UPDATE_NEW_MESSAGE,
-                filters=create_bot_command_filter(command=command)
-            )
+            return self.on_event(API.Types.UPDATE_NEW_MESSAGE, filters=Filters.bot_command(command))
 
     async def send(self, query: BaseObject):
         if not self.__running:
@@ -1900,3 +1886,10 @@ class Client:
                     break
 
             request_limit = min(100, limit - yielded_messages_count)
+
+    async def _run(self):
+        async with self:
+            await self.idle()
+
+    def run(self):
+        asyncio.run(self._run())

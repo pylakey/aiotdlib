@@ -13,7 +13,7 @@
 * A set of high-level API methods which makes work with tdlib much simpler
 
 > Compatible with **TDLib v1.7.4**. Support for other versions of TDLib is not guaranteed
-> 
+>
 > Prebuilt binary (**v1.7.4**) **only for macOS** included.
 > You can use your own binary by passing `library_path` argument to `Client` class constructor
 
@@ -113,7 +113,6 @@ if __name__ == '__main__':
 ### Bot command handler
 
 ```python
-import asyncio
 import logging
 
 from aiotdlib import Client
@@ -121,38 +120,38 @@ from aiotdlib.api import UpdateNewMessage
 
 API_ID = 5172829
 API_HASH = "7ae1bef25a2194cf31d6321fd228cac2"
-PHONE_NUMBER = ""
+BOT_TOKEN = ""
 
-client = Client(
-    api_id=API_ID,
-    api_hash=API_HASH,
-    phone_number=PHONE_NUMBER
-)
-
-
-async def on_start_command(client: Client, update: UpdateNewMessage):
-    await client.send_text(update.message.chat_id, "Have a good day! :)")
+bot = Client(api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 
 # Note: bot_command_handler method is universal and can be used directly or as decorator
 # Registering handler for '/help' command
-@client.bot_command_handler(command='help')
+@bot.bot_command_handler(command='help')
 async def on_help_command(client: Client, update: UpdateNewMessage):
+    # Each command handler registered with this method will update update.EXTRA field
+    # with command related data: {'bot_command': 'help', 'bot_command_args': []}
     await client.send_text(update.message.chat_id, "I will help you!")
 
 
-async def main():
-    # Note: bot_command_handler method is universal and can be used directly or as decorator
-    # Registering handler for '/start' command
-    client.bot_command_handler(on_start_command, command='start')
+async def on_start_command(client: Client, update: UpdateNewMessage):
+    # So this will print "{'bot_command': 'help', 'bot_command_args': []}"
+    print(update.EXTRA)
+    await client.send_text(update.message.chat_id, "Have a good day! :)")
 
-    async with client:
-        await client.idle()
+
+async def on_custom_command(client: Client, update: UpdateNewMessage):
+    # So when you send a message "/custom 1 2 3 test" 
+    # So this will print "{'bot_command': 'custom', 'bot_command_args': ['1', '2', '3', 'test']}"
+    print(update.EXTRA)
 
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
-    asyncio.run(main())
+    # Registering handler for '/start' command
+    bot.bot_command_handler(on_start_command, command='start')
+    bot.bot_command_handler(on_custom_command, command='custom')
+    bot.run()
 ```
 
 ### Proxy
@@ -170,26 +169,90 @@ PHONE_NUMBER = ""
 
 
 async def main():
-  client = Client(
-    api_id=API_ID,
-    api_hash=API_HASH,
-    phone_number=PHONE_NUMBER,
-    proxy_settings=ClientProxySettings(
-      host="10.0.0.1",
-      port=3333,
-      type=ClientProxyType.SOCKS5,
-      username="aiotdlib",
-      password="somepassword",
+    client = Client(
+        api_id=API_ID,
+        api_hash=API_HASH,
+        phone_number=PHONE_NUMBER,
+        proxy_settings=ClientProxySettings(
+            host="10.0.0.1",
+            port=3333,
+            type=ClientProxyType.SOCKS5,
+            username="aiotdlib",
+            password="somepassword",
+        )
     )
-  )
 
-  async with client:
-    await client.idle()
+    async with client:
+        await client.idle()
 
 
 if __name__ == '__main__':
-  logging.basicConfig(level=logging.INFO)
-  asyncio.run(main())
+    logging.basicConfig(level=logging.INFO)
+    asyncio.run(main())
+```
+
+### Middlewares
+
+```python
+
+import asyncio
+import logging
+
+from aiotdlib import Client, HandlerCallable
+from aiotdlib.api import API, BaseObject, UpdateNewMessage
+
+API_ID = 12345
+API_HASH = "00112233445566778899aabbccddeeff"
+PHONE_NUMBER = ""
+
+
+async def some_pre_updates_work(event: BaseObject):
+    logging.info(f"Before call all update handlers for event {event.ID}")
+
+
+async def some_post_updates_work(event: BaseObject):
+    logging.info(f"After call all update handlers for event {event.ID}")
+
+
+# Note that call_next argument would always be passed as keyword argument,
+# so it should be called "call_next" only.
+async def my_middleware(client: Client, event: BaseObject, *, call_next: HandlerCallable):
+    # Middlewares useful for opening database connections for example
+    await some_pre_updates_work(event)
+
+    try:
+        await call_next(client, event)
+    finally:
+        await some_post_updates_work(event)
+
+
+async def on_update_new_message(client: Client, update: UpdateNewMessage):
+    logging.info('on_update_new_message handler called')
+
+
+async def main():
+    client = Client(
+        api_id=API_ID,
+        api_hash=API_HASH,
+        phone_number=PHONE_NUMBER
+    )
+
+    client.add_event_handler(on_update_new_message, update_type=API.Types.UPDATE_NEW_MESSAGE)
+
+    # Registering middleware.
+    # Note that middleware would be called for EVERY EVENT.
+    # Don't use them for long-running tasks as it could be heavy performance hit
+    # You can add as much middlewares as you want. 
+    # They would be called in order you've added them
+    client.add_middleware(my_middleware)
+
+    async with client:
+        await client.idle()
+
+
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO)
+    asyncio.run(main())
 ```
 
 ## LICENSE
