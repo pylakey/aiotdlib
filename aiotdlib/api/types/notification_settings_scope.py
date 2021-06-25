@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class NotificationSettingsScope(BaseObject):
     """
-    Describes the types of chats to which notification settings are applied
+    Describes the types of chats to which notification settings are relevant
     
     """
 

@@ -21,7 +21,7 @@ class ChatAction(BaseObject):
 
 class ChatActionCancel(ChatAction):
     """
-    The user has cancelled the previous action
+    The user has canceled the previous action
     
     """
 

@@ -9,6 +9,7 @@ import typing
 
 from pydantic import Field
 
+from .bot_commands import BotCommands
 from .chat_invite_link import ChatInviteLink
 from .chat_member import ChatMember
 from .chat_photo import ChatPhoto
@@ -35,6 +36,9 @@ class BasicGroupFullInfo(BaseObject):
         invite_link (:class:`ChatInviteLink`)
             Primary invite link for this group; may be null. For chat administrators with can_invite_users right only. Updated only after the basic group is opened
         
+        bot_commands (:obj:`list[BotCommands]`)
+            List of commands of bots in the group
+        
     """
 
     ID: str = Field("basicGroupFullInfo", alias="@type")
@@ -43,6 +47,7 @@ class BasicGroupFullInfo(BaseObject):
     creator_user_id: int
     members: list[ChatMember]
     invite_link: typing.Optional[ChatInviteLink] = None
+    bot_commands: list[BotCommands]
 
     @staticmethod
     def read(q: dict) -> BasicGroupFullInfo:

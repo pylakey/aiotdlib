@@ -22,10 +22,10 @@ class GetPassportAuthorizationForm(BaseObject):
             Telegram Passport element types requested by the service
         
         public_key (:class:`str`)
-            Service's public_key
+            Service's public key
         
         nonce (:class:`str`)
-            Authorization form nonce provided by the service
+            Unique request identifier provided by the service
         
     """
 

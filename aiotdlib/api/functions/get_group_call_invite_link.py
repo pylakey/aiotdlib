@@ -19,7 +19,7 @@ class GetGroupCallInviteLink(BaseObject):
             Group call identifier
         
         can_self_unmute (:class:`bool`)
-            Pass true if the invite_link should contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themself. Requires groupCall.can_be_managed group call flag
+            Pass true if the invite_link should contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
         
     """
 

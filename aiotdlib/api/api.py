@@ -6,9 +6,9 @@
 
 import typing
 
+from .base_object import BaseObject
 from .functions import *
 from .types import *
-from .base_object import BaseObject
 
 if typing.TYPE_CHECKING:
     from aiotdlib.client import Client
@@ -69,6 +69,7 @@ class API:
         AUTO_DOWNLOAD_SETTINGS_PRESETS = 'autoDownloadSettingsPresets'
         BACKGROUND = 'background'
         BACKGROUND_FILL = 'backgroundFill'
+        BACKGROUND_FILL_FREEFORM_GRADIENT = 'backgroundFillFreeformGradient'
         BACKGROUND_FILL_GRADIENT = 'backgroundFillGradient'
         BACKGROUND_FILL_SOLID = 'backgroundFillSolid'
         BACKGROUND_TYPE = 'backgroundType'
@@ -83,7 +84,15 @@ class API:
         BASIC_GROUP_FULL_INFO = 'basicGroupFullInfo'
         BLOCK_MESSAGE_SENDER_FROM_REPLIES = 'blockMessageSenderFromReplies'
         BOT_COMMAND = 'botCommand'
-        BOT_INFO = 'botInfo'
+        BOT_COMMAND_SCOPE = 'botCommandScope'
+        BOT_COMMAND_SCOPE_ALL_CHAT_ADMINISTRATORS = 'botCommandScopeAllChatAdministrators'
+        BOT_COMMAND_SCOPE_ALL_GROUP_CHATS = 'botCommandScopeAllGroupChats'
+        BOT_COMMAND_SCOPE_ALL_PRIVATE_CHATS = 'botCommandScopeAllPrivateChats'
+        BOT_COMMAND_SCOPE_CHAT = 'botCommandScopeChat'
+        BOT_COMMAND_SCOPE_CHAT_ADMINISTRATORS = 'botCommandScopeChatAdministrators'
+        BOT_COMMAND_SCOPE_CHAT_MEMBER = 'botCommandScopeChatMember'
+        BOT_COMMAND_SCOPE_DEFAULT = 'botCommandScopeDefault'
+        BOT_COMMANDS = 'botCommands'
         CALL = 'call'
         CALL_DISCARD_REASON = 'callDiscardReason'
         CALL_DISCARD_REASON_DECLINED = 'callDiscardReasonDeclined'
@@ -273,6 +282,11 @@ class API:
         CHECK_PHONE_NUMBER_CONFIRMATION_CODE = 'checkPhoneNumberConfirmationCode'
         CHECK_PHONE_NUMBER_VERIFICATION_CODE = 'checkPhoneNumberVerificationCode'
         CHECK_RECOVERY_EMAIL_ADDRESS_CODE = 'checkRecoveryEmailAddressCode'
+        CHECK_STICKER_SET_NAME = 'checkStickerSetName'
+        CHECK_STICKER_SET_NAME_RESULT = 'checkStickerSetNameResult'
+        CHECK_STICKER_SET_NAME_RESULT_NAME_INVALID = 'checkStickerSetNameResultNameInvalid'
+        CHECK_STICKER_SET_NAME_RESULT_NAME_OCCUPIED = 'checkStickerSetNameResultNameOccupied'
+        CHECK_STICKER_SET_NAME_RESULT_OK = 'checkStickerSetNameResultOk'
         CLEAN_FILE_NAME = 'cleanFileName'
         CLEAR_ALL_DRAFT_MESSAGES = 'clearAllDraftMessages'
         CLEAR_IMPORTED_CONTACTS = 'clearImportedContacts'
@@ -322,6 +336,7 @@ class API:
         DELETE_CHAT_HISTORY = 'deleteChatHistory'
         DELETE_CHAT_MESSAGES_FROM_USER = 'deleteChatMessagesFromUser'
         DELETE_CHAT_REPLY_MARKUP = 'deleteChatReplyMarkup'
+        DELETE_COMMANDS = 'deleteCommands'
         DELETE_FILE = 'deleteFile'
         DELETE_LANGUAGE_PACK = 'deleteLanguagePack'
         DELETE_MESSAGES = 'deleteMessages'
@@ -375,6 +390,7 @@ class API:
         ENCRYPTED_CREDENTIALS = 'encryptedCredentials'
         ENCRYPTED_PASSPORT_ELEMENT = 'encryptedPassportElement'
         END_GROUP_CALL_RECORDING = 'endGroupCallRecording'
+        END_GROUP_CALL_SCREEN_SHARING = 'endGroupCallScreenSharing'
         ERROR = 'error'
         FILE = 'file'
         FILE_PART = 'filePart'
@@ -407,6 +423,7 @@ class API:
         GET_ACTIVE_SESSIONS = 'getActiveSessions'
         GET_ALL_PASSPORT_ELEMENTS = 'getAllPassportElements'
         GET_APPLICATION_CONFIG = 'getApplicationConfig'
+        GET_APPLICATION_DOWNLOAD_LINK = 'getApplicationDownloadLink'
         GET_ARCHIVED_STICKER_SETS = 'getArchivedStickerSets'
         GET_ATTACHED_STICKER_SETS = 'getAttachedStickerSets'
         GET_AUTHORIZATION_STATE = 'getAuthorizationState'
@@ -439,6 +456,7 @@ class API:
         GET_CHAT_STATISTICS = 'getChatStatistics'
         GET_CHAT_STATISTICS_URL = 'getChatStatisticsUrl'
         GET_CHATS = 'getChats'
+        GET_COMMANDS = 'getCommands'
         GET_CONNECTED_WEBSITES = 'getConnectedWebsites'
         GET_CONTACTS = 'getContacts'
         GET_COUNTRIES = 'getCountries'
@@ -465,7 +483,7 @@ class API:
         GET_INLINE_GAME_HIGH_SCORES = 'getInlineGameHighScores'
         GET_INLINE_QUERY_RESULTS = 'getInlineQueryResults'
         GET_INSTALLED_STICKER_SETS = 'getInstalledStickerSets'
-        GET_INVITE_TEXT = 'getInviteText'
+        GET_INTERNAL_LINK_TYPE = 'getInternalLinkType'
         GET_JSON_STRING = 'getJsonString'
         GET_JSON_VALUE = 'getJsonValue'
         GET_LANGUAGE_PACK_INFO = 'getLanguagePackInfo'
@@ -524,6 +542,7 @@ class API:
         GET_STICKERS = 'getStickers'
         GET_STORAGE_STATISTICS = 'getStorageStatistics'
         GET_STORAGE_STATISTICS_FAST = 'getStorageStatisticsFast'
+        GET_SUGGESTED_STICKER_SET_NAME = 'getSuggestedStickerSetName'
         GET_SUITABLE_DISCUSSION_CHATS = 'getSuitableDiscussionChats'
         GET_SUPERGROUP = 'getSupergroup'
         GET_SUPERGROUP_FULL_INFO = 'getSupergroupFullInfo'
@@ -542,14 +561,10 @@ class API:
         GET_WEB_PAGE_PREVIEW = 'getWebPagePreview'
         GROUP_CALL = 'groupCall'
         GROUP_CALL_ID = 'groupCallId'
-        GROUP_CALL_JOIN_RESPONSE = 'groupCallJoinResponse'
-        GROUP_CALL_JOIN_RESPONSE_STREAM = 'groupCallJoinResponseStream'
-        GROUP_CALL_JOIN_RESPONSE_WEBRTC = 'groupCallJoinResponseWebrtc'
-        GROUP_CALL_JOIN_RESPONSE_CANDIDATE = 'groupCallJoinResponseCandidate'
         GROUP_CALL_PARTICIPANT = 'groupCallParticipant'
-        GROUP_CALL_PAYLOAD = 'groupCallPayload'
-        GROUP_CALL_PAYLOAD_FINGERPRINT = 'groupCallPayloadFingerprint'
+        GROUP_CALL_PARTICIPANT_VIDEO_INFO = 'groupCallParticipantVideoInfo'
         GROUP_CALL_RECENT_SPEAKER = 'groupCallRecentSpeaker'
+        GROUP_CALL_VIDEO_SOURCE_GROUP = 'groupCallVideoSourceGroup'
         HASHTAGS = 'hashtags'
         HIDE_SUGGESTED_ACTION = 'hideSuggestedAction'
         HTTP_URL = 'httpUrl'
@@ -659,6 +674,30 @@ class API:
         INPUT_STICKER_ANIMATED = 'inputStickerAnimated'
         INPUT_STICKER_STATIC = 'inputStickerStatic'
         INPUT_THUMBNAIL = 'inputThumbnail'
+        INTERNAL_LINK_TYPE = 'internalLinkType'
+        INTERNAL_LINK_TYPE_ACTIVE_SESSIONS = 'internalLinkTypeActiveSessions'
+        INTERNAL_LINK_TYPE_AUTHENTICATION_CODE = 'internalLinkTypeAuthenticationCode'
+        INTERNAL_LINK_TYPE_BACKGROUND = 'internalLinkTypeBackground'
+        INTERNAL_LINK_TYPE_BOT_START = 'internalLinkTypeBotStart'
+        INTERNAL_LINK_TYPE_BOT_START_IN_GROUP = 'internalLinkTypeBotStartInGroup'
+        INTERNAL_LINK_TYPE_CHANGE_PHONE_NUMBER = 'internalLinkTypeChangePhoneNumber'
+        INTERNAL_LINK_TYPE_CHAT_INVITE = 'internalLinkTypeChatInvite'
+        INTERNAL_LINK_TYPE_FILTER_SETTINGS = 'internalLinkTypeFilterSettings'
+        INTERNAL_LINK_TYPE_GAME = 'internalLinkTypeGame'
+        INTERNAL_LINK_TYPE_LANGUAGE_PACK = 'internalLinkTypeLanguagePack'
+        INTERNAL_LINK_TYPE_MESSAGE = 'internalLinkTypeMessage'
+        INTERNAL_LINK_TYPE_MESSAGE_DRAFT = 'internalLinkTypeMessageDraft'
+        INTERNAL_LINK_TYPE_PASSPORT_DATA_REQUEST = 'internalLinkTypePassportDataRequest'
+        INTERNAL_LINK_TYPE_PHONE_NUMBER_CONFIRMATION = 'internalLinkTypePhoneNumberConfirmation'
+        INTERNAL_LINK_TYPE_PROXY = 'internalLinkTypeProxy'
+        INTERNAL_LINK_TYPE_PUBLIC_CHAT = 'internalLinkTypePublicChat'
+        INTERNAL_LINK_TYPE_QR_CODE_AUTHENTICATION = 'internalLinkTypeQrCodeAuthentication'
+        INTERNAL_LINK_TYPE_SETTINGS = 'internalLinkTypeSettings'
+        INTERNAL_LINK_TYPE_STICKER_SET = 'internalLinkTypeStickerSet'
+        INTERNAL_LINK_TYPE_THEME = 'internalLinkTypeTheme'
+        INTERNAL_LINK_TYPE_THEME_SETTINGS = 'internalLinkTypeThemeSettings'
+        INTERNAL_LINK_TYPE_UNKNOWN_DEEP_LINK = 'internalLinkTypeUnknownDeepLink'
+        INTERNAL_LINK_TYPE_VOICE_CHAT = 'internalLinkTypeVoiceChat'
         INVITE_GROUP_CALL_PARTICIPANTS = 'inviteGroupCallParticipants'
         INVOICE = 'invoice'
         JOIN_CHAT = 'joinChat'
@@ -1154,6 +1193,7 @@ class API:
         SHARE_PHONE_NUMBER = 'sharePhoneNumber'
         SHIPPING_OPTION = 'shippingOption'
         START_GROUP_CALL_RECORDING = 'startGroupCallRecording'
+        START_GROUP_CALL_SCREEN_SHARING = 'startGroupCallScreenSharing'
         START_SCHEDULED_GROUP_CALL = 'startScheduledGroupCall'
         STATISTICAL_GRAPH = 'statisticalGraph'
         STATISTICAL_GRAPH_ASYNC = 'statisticalGraphAsync'
@@ -1171,6 +1211,7 @@ class API:
         STORAGE_STATISTICS_BY_FILE_TYPE = 'storageStatisticsByFileType'
         STORAGE_STATISTICS_FAST = 'storageStatisticsFast'
         SUGGESTED_ACTION = 'suggestedAction'
+        SUGGESTED_ACTION_CHECK_PASSWORD = 'suggestedActionCheckPassword'
         SUGGESTED_ACTION_CHECK_PHONE_NUMBER = 'suggestedActionCheckPhoneNumber'
         SUGGESTED_ACTION_CONVERT_TO_BROADCAST_GROUP = 'suggestedActionConvertToBroadcastGroup'
         SUGGESTED_ACTION_ENABLE_ARCHIVE_AND_MUTE_NEW_CHATS = 'suggestedActionEnableArchiveAndMuteNewChats'
@@ -1255,9 +1296,12 @@ class API:
         TOGGLE_CHAT_IS_MARKED_AS_UNREAD = 'toggleChatIsMarkedAsUnread'
         TOGGLE_CHAT_IS_PINNED = 'toggleChatIsPinned'
         TOGGLE_GROUP_CALL_ENABLED_START_NOTIFICATION = 'toggleGroupCallEnabledStartNotification'
+        TOGGLE_GROUP_CALL_IS_MY_VIDEO_ENABLED = 'toggleGroupCallIsMyVideoEnabled'
+        TOGGLE_GROUP_CALL_IS_MY_VIDEO_PAUSED = 'toggleGroupCallIsMyVideoPaused'
         TOGGLE_GROUP_CALL_MUTE_NEW_PARTICIPANTS = 'toggleGroupCallMuteNewParticipants'
         TOGGLE_GROUP_CALL_PARTICIPANT_IS_HAND_RAISED = 'toggleGroupCallParticipantIsHandRaised'
         TOGGLE_GROUP_CALL_PARTICIPANT_IS_MUTED = 'toggleGroupCallParticipantIsMuted'
+        TOGGLE_GROUP_CALL_SCREEN_SHARING_IS_PAUSED = 'toggleGroupCallScreenSharingIsPaused'
         TOGGLE_MESSAGE_SENDER_IS_BLOCKED = 'toggleMessageSenderIsBlocked'
         TOGGLE_SUPERGROUP_IS_ALL_HISTORY_AVAILABLE = 'toggleSupergroupIsAllHistoryAvailable'
         TOGGLE_SUPERGROUP_IS_BROADCAST_GROUP = 'toggleSupergroupIsBroadcastGroup'
@@ -1415,7 +1459,7 @@ class API:
 
     def __init__(self, client: 'Client'):
         self.client = client
-    
+
     async def accept_call(
             self,
             call_id: int,
@@ -1437,7 +1481,7 @@ class API:
             
         """
         _constructor = AcceptCall.construct if skip_validation else AcceptCall
-        
+
         return await self.client.request(
             _constructor(
                 call_id=call_id,
@@ -1446,7 +1490,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def accept_terms_of_service(
             self,
             terms_of_service_id: str,
@@ -1464,7 +1508,7 @@ class API:
             
         """
         _constructor = AcceptTermsOfService.construct if skip_validation else AcceptTermsOfService
-        
+
         return await self.client.request(
             _constructor(
                 terms_of_service_id=terms_of_service_id,
@@ -1472,7 +1516,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def add_chat_member(
             self,
             chat_id: int,
@@ -1498,7 +1542,7 @@ class API:
             
         """
         _constructor = AddChatMember.construct if skip_validation else AddChatMember
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -1508,7 +1552,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def add_chat_members(
             self,
             chat_id: int,
@@ -1530,7 +1574,7 @@ class API:
             
         """
         _constructor = AddChatMembers.construct if skip_validation else AddChatMembers
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -1539,7 +1583,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def add_chat_to_list(
             self,
             chat_id: int,
@@ -1561,7 +1605,7 @@ class API:
             
         """
         _constructor = AddChatToList.construct if skip_validation else AddChatToList
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -1570,7 +1614,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def add_contact(
             self,
             contact: Contact,
@@ -1592,7 +1636,7 @@ class API:
             
         """
         _constructor = AddContact.construct if skip_validation else AddContact
-        
+
         return await self.client.request(
             _constructor(
                 contact=contact,
@@ -1601,7 +1645,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def add_custom_server_language_pack(
             self,
             language_pack_id: str,
@@ -1619,7 +1663,7 @@ class API:
             
         """
         _constructor = AddCustomServerLanguagePack.construct if skip_validation else AddCustomServerLanguagePack
-        
+
         return await self.client.request(
             _constructor(
                 language_pack_id=language_pack_id,
@@ -1627,7 +1671,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def add_favorite_sticker(
             self,
             sticker: InputFile,
@@ -1645,7 +1689,7 @@ class API:
             
         """
         _constructor = AddFavoriteSticker.construct if skip_validation else AddFavoriteSticker
-        
+
         return await self.client.request(
             _constructor(
                 sticker=sticker,
@@ -1653,7 +1697,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def add_local_message(
             self,
             chat_id: int,
@@ -1687,7 +1731,7 @@ class API:
             
         """
         _constructor = AddLocalMessage.construct if skip_validation else AddLocalMessage
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -1699,7 +1743,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def add_log_message(
             self,
             verbosity_level: int,
@@ -1721,7 +1765,7 @@ class API:
             
         """
         _constructor = AddLogMessage.construct if skip_validation else AddLogMessage
-        
+
         return await self.client.request(
             _constructor(
                 verbosity_level=verbosity_level,
@@ -1730,7 +1774,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def add_network_statistics(
             self,
             entry: NetworkStatisticsEntry,
@@ -1748,7 +1792,7 @@ class API:
             
         """
         _constructor = AddNetworkStatistics.construct if skip_validation else AddNetworkStatistics
-        
+
         return await self.client.request(
             _constructor(
                 entry=entry,
@@ -1756,7 +1800,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def add_proxy(
             self,
             server: str,
@@ -1786,7 +1830,7 @@ class API:
             
         """
         _constructor = AddProxy.construct if skip_validation else AddProxy
-        
+
         return await self.client.request(
             _constructor(
                 server=server,
@@ -1797,7 +1841,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def add_recent_sticker(
             self,
             is_attached: bool,
@@ -1819,7 +1863,7 @@ class API:
             
         """
         _constructor = AddRecentSticker.construct if skip_validation else AddRecentSticker
-        
+
         return await self.client.request(
             _constructor(
                 is_attached=is_attached,
@@ -1828,7 +1872,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def add_recently_found_chat(
             self,
             chat_id: int,
@@ -1846,7 +1890,7 @@ class API:
             
         """
         _constructor = AddRecentlyFoundChat.construct if skip_validation else AddRecentlyFoundChat
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -1854,7 +1898,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def add_saved_animation(
             self,
             animation: InputFile,
@@ -1872,7 +1916,7 @@ class API:
             
         """
         _constructor = AddSavedAnimation.construct if skip_validation else AddSavedAnimation
-        
+
         return await self.client.request(
             _constructor(
                 animation=animation,
@@ -1880,7 +1924,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def add_sticker_to_set(
             self,
             user_id: int,
@@ -1906,7 +1950,7 @@ class API:
             
         """
         _constructor = AddStickerToSet.construct if skip_validation else AddStickerToSet
-        
+
         return await self.client.request(
             _constructor(
                 user_id=user_id,
@@ -1916,7 +1960,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def answer_callback_query(
             self,
             callback_query_id: int,
@@ -1950,7 +1994,7 @@ class API:
             
         """
         _constructor = AnswerCallbackQuery.construct if skip_validation else AnswerCallbackQuery
-        
+
         return await self.client.request(
             _constructor(
                 callback_query_id=callback_query_id,
@@ -1962,7 +2006,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def answer_custom_query(
             self,
             custom_query_id: int,
@@ -1984,7 +2028,7 @@ class API:
             
         """
         _constructor = AnswerCustomQuery.construct if skip_validation else AnswerCustomQuery
-        
+
         return await self.client.request(
             _constructor(
                 custom_query_id=custom_query_id,
@@ -1993,7 +2037,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def answer_inline_query(
             self,
             inline_query_id: int,
@@ -2035,7 +2079,7 @@ class API:
             
         """
         _constructor = AnswerInlineQuery.construct if skip_validation else AnswerInlineQuery
-        
+
         return await self.client.request(
             _constructor(
                 inline_query_id=inline_query_id,
@@ -2049,7 +2093,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def answer_pre_checkout_query(
             self,
             pre_checkout_query_id: int,
@@ -2071,7 +2115,7 @@ class API:
             
         """
         _constructor = AnswerPreCheckoutQuery.construct if skip_validation else AnswerPreCheckoutQuery
-        
+
         return await self.client.request(
             _constructor(
                 pre_checkout_query_id=pre_checkout_query_id,
@@ -2080,7 +2124,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def answer_shipping_query(
             self,
             shipping_query_id: int,
@@ -2106,7 +2150,7 @@ class API:
             
         """
         _constructor = AnswerShippingQuery.construct if skip_validation else AnswerShippingQuery
-        
+
         return await self.client.request(
             _constructor(
                 shipping_query_id=shipping_query_id,
@@ -2116,7 +2160,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def ban_chat_member(
             self,
             chat_id: int,
@@ -2146,7 +2190,7 @@ class API:
             
         """
         _constructor = BanChatMember.construct if skip_validation else BanChatMember
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -2157,7 +2201,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def block_message_sender_from_replies(
             self,
             message_id: int,
@@ -2187,7 +2231,7 @@ class API:
             
         """
         _constructor = BlockMessageSenderFromReplies.construct if skip_validation else BlockMessageSenderFromReplies
-        
+
         return await self.client.request(
             _constructor(
                 message_id=message_id,
@@ -2198,8 +2242,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def can_transfer_ownership(self, *, request_id: str = None, request_timeout: int = None) -> CanTransferOwnershipResult:
+
+    async def can_transfer_ownership(self, *, request_id: str = None,
+                                     request_timeout: int = None) -> CanTransferOwnershipResult:
         """
         Checks whether the current session can be used to transfer a chat ownership to another user
         
@@ -2209,7 +2254,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def cancel_download_file(
             self,
             file_id: int,
@@ -2231,7 +2276,7 @@ class API:
             
         """
         _constructor = CancelDownloadFile.construct if skip_validation else CancelDownloadFile
-        
+
         return await self.client.request(
             _constructor(
                 file_id=file_id,
@@ -2240,7 +2285,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def cancel_upload_file(
             self,
             file_id: int,
@@ -2258,7 +2303,7 @@ class API:
             
         """
         _constructor = CancelUploadFile.construct if skip_validation else CancelUploadFile
-        
+
         return await self.client.request(
             _constructor(
                 file_id=file_id,
@@ -2266,7 +2311,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def change_imported_contacts(
             self,
             contacts: list[Contact],
@@ -2284,7 +2329,7 @@ class API:
             
         """
         _constructor = ChangeImportedContacts.construct if skip_validation else ChangeImportedContacts
-        
+
         return await self.client.request(
             _constructor(
                 contacts=contacts,
@@ -2292,7 +2337,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def change_phone_number(
             self,
             phone_number: str,
@@ -2314,7 +2359,7 @@ class API:
             
         """
         _constructor = ChangePhoneNumber.construct if skip_validation else ChangePhoneNumber
-        
+
         return await self.client.request(
             _constructor(
                 phone_number=phone_number,
@@ -2323,7 +2368,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def change_sticker_set(
             self,
             set_id: int,
@@ -2349,7 +2394,7 @@ class API:
             
         """
         _constructor = ChangeStickerSet.construct if skip_validation else ChangeStickerSet
-        
+
         return await self.client.request(
             _constructor(
                 set_id=set_id,
@@ -2359,7 +2404,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def check_authentication_bot_token(
             self,
             token: str,
@@ -2377,7 +2422,7 @@ class API:
             
         """
         _constructor = CheckAuthenticationBotToken.construct if skip_validation else CheckAuthenticationBotToken
-        
+
         return await self.client.request(
             _constructor(
                 token=token,
@@ -2385,7 +2430,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def check_authentication_code(
             self,
             code: str,
@@ -2403,7 +2448,7 @@ class API:
             
         """
         _constructor = CheckAuthenticationCode.construct if skip_validation else CheckAuthenticationCode
-        
+
         return await self.client.request(
             _constructor(
                 code=code,
@@ -2411,7 +2456,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def check_authentication_password(
             self,
             password: str,
@@ -2429,7 +2474,7 @@ class API:
             
         """
         _constructor = CheckAuthenticationPassword.construct if skip_validation else CheckAuthenticationPassword
-        
+
         return await self.client.request(
             _constructor(
                 password=password,
@@ -2437,7 +2482,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def check_change_phone_number_code(
             self,
             code: str,
@@ -2455,7 +2500,7 @@ class API:
             
         """
         _constructor = CheckChangePhoneNumberCode.construct if skip_validation else CheckChangePhoneNumberCode
-        
+
         return await self.client.request(
             _constructor(
                 code=code,
@@ -2463,7 +2508,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def check_chat_invite_link(
             self,
             invite_link: str,
@@ -2477,11 +2522,11 @@ class API:
         
         Params:
             invite_link (:class:`str`)
-                Invite link to be checked; must have URL "t.me", "telegram.me", or "telegram.dog" and query beginning with "/joinchat/" or "/+"
+                Invite link to be checked
             
         """
         _constructor = CheckChatInviteLink.construct if skip_validation else CheckChatInviteLink
-        
+
         return await self.client.request(
             _constructor(
                 invite_link=invite_link,
@@ -2489,7 +2534,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def check_chat_username(
             self,
             chat_id: int,
@@ -2504,14 +2549,14 @@ class API:
         
         Params:
             chat_id (:class:`int`)
-                Chat identifier; should be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if chat is being created
+                Chat identifier; should be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
             
             username (:class:`str`)
                 Username to be checked
             
         """
         _constructor = CheckChatUsername.construct if skip_validation else CheckChatUsername
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -2520,7 +2565,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def check_created_public_chats_limit(
             self,
             type_: PublicChatType,
@@ -2538,7 +2583,7 @@ class API:
             
         """
         _constructor = CheckCreatedPublicChatsLimit.construct if skip_validation else CheckCreatedPublicChatsLimit
-        
+
         return await self.client.request(
             _constructor(
                 type=type_,
@@ -2546,7 +2591,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def check_database_encryption_key(
             self,
             encryption_key: str,
@@ -2564,7 +2609,7 @@ class API:
             
         """
         _constructor = CheckDatabaseEncryptionKey.construct if skip_validation else CheckDatabaseEncryptionKey
-        
+
         return await self.client.request(
             _constructor(
                 encryption_key=encryption_key,
@@ -2572,7 +2617,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def check_email_address_verification_code(
             self,
             code: str,
@@ -2590,7 +2635,7 @@ class API:
             
         """
         _constructor = CheckEmailAddressVerificationCode.construct if skip_validation else CheckEmailAddressVerificationCode
-        
+
         return await self.client.request(
             _constructor(
                 code=code,
@@ -2598,7 +2643,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def check_phone_number_confirmation_code(
             self,
             code: str,
@@ -2616,7 +2661,7 @@ class API:
             
         """
         _constructor = CheckPhoneNumberConfirmationCode.construct if skip_validation else CheckPhoneNumberConfirmationCode
-        
+
         return await self.client.request(
             _constructor(
                 code=code,
@@ -2624,7 +2669,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def check_phone_number_verification_code(
             self,
             code: str,
@@ -2642,7 +2687,7 @@ class API:
             
         """
         _constructor = CheckPhoneNumberVerificationCode.construct if skip_validation else CheckPhoneNumberVerificationCode
-        
+
         return await self.client.request(
             _constructor(
                 code=code,
@@ -2650,7 +2695,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def check_recovery_email_address_code(
             self,
             code: str,
@@ -2668,7 +2713,7 @@ class API:
             
         """
         _constructor = CheckRecoveryEmailAddressCode.construct if skip_validation else CheckRecoveryEmailAddressCode
-        
+
         return await self.client.request(
             _constructor(
                 code=code,
@@ -2676,7 +2721,33 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
+    async def check_sticker_set_name(
+            self,
+            name: str,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> CheckStickerSetNameResult:
+        """
+        Checks whether a name can be used for a new sticker set
+        
+        Params:
+            name (:class:`str`)
+                Name to be checked
+            
+        """
+        _constructor = CheckStickerSetName.construct if skip_validation else CheckStickerSetName
+
+        return await self.client.request(
+            _constructor(
+                name=name,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def clean_file_name(
             self,
             file_name: str,
@@ -2694,7 +2765,7 @@ class API:
             
         """
         _constructor = CleanFileName.construct if skip_validation else CleanFileName
-        
+
         return await self.client.request(
             _constructor(
                 file_name=file_name,
@@ -2702,7 +2773,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def clear_all_draft_messages(
             self,
             exclude_secret_chats: bool,
@@ -2720,7 +2791,7 @@ class API:
             
         """
         _constructor = ClearAllDraftMessages.construct if skip_validation else ClearAllDraftMessages
-        
+
         return await self.client.request(
             _constructor(
                 exclude_secret_chats=exclude_secret_chats,
@@ -2728,7 +2799,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def clear_imported_contacts(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Clears all imported contacts, contact list remains unchanged
@@ -2739,7 +2810,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def clear_recent_stickers(
             self,
             is_attached: bool,
@@ -2757,7 +2828,7 @@ class API:
             
         """
         _constructor = ClearRecentStickers.construct if skip_validation else ClearRecentStickers
-        
+
         return await self.client.request(
             _constructor(
                 is_attached=is_attached,
@@ -2765,7 +2836,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def clear_recently_found_chats(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Clears the list of recently found chats
@@ -2776,7 +2847,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def close(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
@@ -2787,7 +2858,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def close_chat(
             self,
             chat_id: int,
@@ -2805,7 +2876,7 @@ class API:
             
         """
         _constructor = CloseChat.construct if skip_validation else CloseChat
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -2813,7 +2884,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def close_secret_chat(
             self,
             secret_chat_id: int,
@@ -2831,7 +2902,7 @@ class API:
             
         """
         _constructor = CloseSecretChat.construct if skip_validation else CloseSecretChat
-        
+
         return await self.client.request(
             _constructor(
                 secret_chat_id=secret_chat_id,
@@ -2839,7 +2910,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def confirm_qr_code_authentication(
             self,
             link: str,
@@ -2857,7 +2928,7 @@ class API:
             
         """
         _constructor = ConfirmQrCodeAuthentication.construct if skip_validation else ConfirmQrCodeAuthentication
-        
+
         return await self.client.request(
             _constructor(
                 link=link,
@@ -2865,7 +2936,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def create_basic_group_chat(
             self,
             basic_group_id: int,
@@ -2887,7 +2958,7 @@ class API:
             
         """
         _constructor = CreateBasicGroupChat.construct if skip_validation else CreateBasicGroupChat
-        
+
         return await self.client.request(
             _constructor(
                 basic_group_id=basic_group_id,
@@ -2896,7 +2967,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def create_call(
             self,
             user_id: int,
@@ -2922,7 +2993,7 @@ class API:
             
         """
         _constructor = CreateCall.construct if skip_validation else CreateCall
-        
+
         return await self.client.request(
             _constructor(
                 user_id=user_id,
@@ -2932,7 +3003,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def create_chat_filter(
             self,
             filter_: ChatFilter,
@@ -2950,7 +3021,7 @@ class API:
             
         """
         _constructor = CreateChatFilter.construct if skip_validation else CreateChatFilter
-        
+
         return await self.client.request(
             _constructor(
                 filter=filter_,
@@ -2958,7 +3029,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def create_chat_invite_link(
             self,
             chat_id: int,
@@ -2984,7 +3055,7 @@ class API:
             
         """
         _constructor = CreateChatInviteLink.construct if skip_validation else CreateChatInviteLink
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -2994,7 +3065,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def create_new_basic_group_chat(
             self,
             user_ids: list[int],
@@ -3016,7 +3087,7 @@ class API:
             
         """
         _constructor = CreateNewBasicGroupChat.construct if skip_validation else CreateNewBasicGroupChat
-        
+
         return await self.client.request(
             _constructor(
                 user_ids=user_ids,
@@ -3025,7 +3096,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def create_new_secret_chat(
             self,
             user_id: int,
@@ -3043,7 +3114,7 @@ class API:
             
         """
         _constructor = CreateNewSecretChat.construct if skip_validation else CreateNewSecretChat
-        
+
         return await self.client.request(
             _constructor(
                 user_id=user_id,
@@ -3051,7 +3122,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def create_new_sticker_set(
             self,
             user_id: int,
@@ -3059,33 +3130,37 @@ class API:
             name: str,
             is_masks: bool,
             stickers: list[InputSticker],
+            source: str,
             *,
             request_id: str = None,
             request_timeout: int = None,
             skip_validation: bool = False
     ) -> StickerSet:
         """
-        Creates a new sticker set; for bots only. Returns the newly created sticker set
+        Creates a new sticker set. Returns the newly created sticker set
         
         Params:
             user_id (:class:`int`)
-                Sticker set owner
+                Sticker set owner; ignored for regular users
             
             title (:class:`str`)
                 Sticker set title; 1-64 characters
             
             name (:class:`str`)
-                Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive); 1-64 characters
+                Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
             
             is_masks (:class:`bool`)
                 True, if stickers are masks. Animated stickers can't be masks
             
             stickers (:obj:`list[InputSticker]`)
-                List of stickers to be added to the set; must be non-empty. All stickers must be of the same type
+                List of stickers to be added to the set; must be non-empty. All stickers must be of the same type. For animated stickers, uploadStickerFile must be used before the sticker is shown
+            
+            source (:class:`str`)
+                Source of the sticker set; may be empty if unknown
             
         """
         _constructor = CreateNewStickerSet.construct if skip_validation else CreateNewStickerSet
-        
+
         return await self.client.request(
             _constructor(
                 user_id=user_id,
@@ -3093,11 +3168,12 @@ class API:
                 name=name,
                 is_masks=is_masks,
                 stickers=stickers,
+                source=source,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def create_new_supergroup_chat(
             self,
             title: str,
@@ -3131,7 +3207,7 @@ class API:
             
         """
         _constructor = CreateNewSupergroupChat.construct if skip_validation else CreateNewSupergroupChat
-        
+
         return await self.client.request(
             _constructor(
                 title=title,
@@ -3143,7 +3219,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def create_private_chat(
             self,
             user_id: int,
@@ -3165,7 +3241,7 @@ class API:
             
         """
         _constructor = CreatePrivateChat.construct if skip_validation else CreatePrivateChat
-        
+
         return await self.client.request(
             _constructor(
                 user_id=user_id,
@@ -3174,7 +3250,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def create_secret_chat(
             self,
             secret_chat_id: int,
@@ -3192,7 +3268,7 @@ class API:
             
         """
         _constructor = CreateSecretChat.construct if skip_validation else CreateSecretChat
-        
+
         return await self.client.request(
             _constructor(
                 secret_chat_id=secret_chat_id,
@@ -3200,7 +3276,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def create_supergroup_chat(
             self,
             supergroup_id: int,
@@ -3222,7 +3298,7 @@ class API:
             
         """
         _constructor = CreateSupergroupChat.construct if skip_validation else CreateSupergroupChat
-        
+
         return await self.client.request(
             _constructor(
                 supergroup_id=supergroup_id,
@@ -3231,7 +3307,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def create_temporary_password(
             self,
             password: str,
@@ -3253,7 +3329,7 @@ class API:
             
         """
         _constructor = CreateTemporaryPassword.construct if skip_validation else CreateTemporaryPassword
-        
+
         return await self.client.request(
             _constructor(
                 password=password,
@@ -3262,7 +3338,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def create_voice_chat(
             self,
             chat_id: int,
@@ -3288,7 +3364,7 @@ class API:
             
         """
         _constructor = CreateVoiceChat.construct if skip_validation else CreateVoiceChat
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -3298,7 +3374,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_account(
             self,
             reason: str,
@@ -3316,7 +3392,7 @@ class API:
             
         """
         _constructor = DeleteAccount.construct if skip_validation else DeleteAccount
-        
+
         return await self.client.request(
             _constructor(
                 reason=reason,
@@ -3324,7 +3400,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_all_call_messages(
             self,
             revoke: bool,
@@ -3342,7 +3418,7 @@ class API:
             
         """
         _constructor = DeleteAllCallMessages.construct if skip_validation else DeleteAllCallMessages
-        
+
         return await self.client.request(
             _constructor(
                 revoke=revoke,
@@ -3350,7 +3426,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_all_revoked_chat_invite_links(
             self,
             chat_id: int,
@@ -3372,7 +3448,7 @@ class API:
             
         """
         _constructor = DeleteAllRevokedChatInviteLinks.construct if skip_validation else DeleteAllRevokedChatInviteLinks
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -3381,7 +3457,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_chat(
             self,
             chat_id: int,
@@ -3399,7 +3475,7 @@ class API:
             
         """
         _constructor = DeleteChat.construct if skip_validation else DeleteChat
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -3407,7 +3483,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_chat_filter(
             self,
             chat_filter_id: int,
@@ -3425,7 +3501,7 @@ class API:
             
         """
         _constructor = DeleteChatFilter.construct if skip_validation else DeleteChatFilter
-        
+
         return await self.client.request(
             _constructor(
                 chat_filter_id=chat_filter_id,
@@ -3433,7 +3509,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_chat_history(
             self,
             chat_id: int,
@@ -3459,7 +3535,7 @@ class API:
             
         """
         _constructor = DeleteChatHistory.construct if skip_validation else DeleteChatHistory
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -3469,7 +3545,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_chat_messages_from_user(
             self,
             chat_id: int,
@@ -3491,7 +3567,7 @@ class API:
             
         """
         _constructor = DeleteChatMessagesFromUser.construct if skip_validation else DeleteChatMessagesFromUser
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -3500,7 +3576,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_chat_reply_markup(
             self,
             chat_id: int,
@@ -3522,7 +3598,7 @@ class API:
             
         """
         _constructor = DeleteChatReplyMarkup.construct if skip_validation else DeleteChatReplyMarkup
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -3531,7 +3607,38 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
+    async def delete_commands(
+            self,
+            scope: BotCommandScope,
+            language_code: str,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Deletes commands supported by the bot for the given user scope and language; for bots only
+        
+        Params:
+            scope (:class:`BotCommandScope`)
+                The scope to which the commands are relevant
+            
+            language_code (:class:`str`)
+                A two-letter ISO 639-1 country code or an empty string
+            
+        """
+        _constructor = DeleteCommands.construct if skip_validation else DeleteCommands
+
+        return await self.client.request(
+            _constructor(
+                scope=scope,
+                language_code=language_code,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def delete_file(
             self,
             file_id: int,
@@ -3549,7 +3656,7 @@ class API:
             
         """
         _constructor = DeleteFile.construct if skip_validation else DeleteFile
-        
+
         return await self.client.request(
             _constructor(
                 file_id=file_id,
@@ -3557,7 +3664,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_language_pack(
             self,
             language_pack_id: str,
@@ -3575,7 +3682,7 @@ class API:
             
         """
         _constructor = DeleteLanguagePack.construct if skip_validation else DeleteLanguagePack
-        
+
         return await self.client.request(
             _constructor(
                 language_pack_id=language_pack_id,
@@ -3583,7 +3690,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_messages(
             self,
             chat_id: int,
@@ -3609,7 +3716,7 @@ class API:
             
         """
         _constructor = DeleteMessages.construct if skip_validation else DeleteMessages
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -3619,7 +3726,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_passport_element(
             self,
             type_: PassportElementType,
@@ -3637,7 +3744,7 @@ class API:
             
         """
         _constructor = DeletePassportElement.construct if skip_validation else DeletePassportElement
-        
+
         return await self.client.request(
             _constructor(
                 type=type_,
@@ -3645,7 +3752,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_profile_photo(
             self,
             profile_photo_id: int,
@@ -3663,7 +3770,7 @@ class API:
             
         """
         _constructor = DeleteProfilePhoto.construct if skip_validation else DeleteProfilePhoto
-        
+
         return await self.client.request(
             _constructor(
                 profile_photo_id=profile_photo_id,
@@ -3671,7 +3778,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_revoked_chat_invite_link(
             self,
             chat_id: int,
@@ -3693,7 +3800,7 @@ class API:
             
         """
         _constructor = DeleteRevokedChatInviteLink.construct if skip_validation else DeleteRevokedChatInviteLink
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -3702,7 +3809,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_saved_credentials(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Deletes saved credentials for all payment provider bots
@@ -3713,7 +3820,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def delete_saved_order_info(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Deletes saved order info
@@ -3724,7 +3831,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def destroy(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed. After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent. Can be called before authorization
@@ -3735,7 +3842,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def disable_proxy(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Disables the currently enabled proxy. Can be called before authorization
@@ -3746,7 +3853,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def discard_call(
             self,
             call_id: int,
@@ -3780,7 +3887,7 @@ class API:
             
         """
         _constructor = DiscardCall.construct if skip_validation else DiscardCall
-        
+
         return await self.client.request(
             _constructor(
                 call_id=call_id,
@@ -3792,7 +3899,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def discard_group_call(
             self,
             group_call_id: int,
@@ -3810,7 +3917,7 @@ class API:
             
         """
         _constructor = DiscardGroupCall.construct if skip_validation else DiscardGroupCall
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -3818,7 +3925,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def disconnect_all_websites(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Disconnects all websites from the current user's Telegram account
@@ -3829,7 +3936,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def disconnect_website(
             self,
             website_id: int,
@@ -3847,7 +3954,7 @@ class API:
             
         """
         _constructor = DisconnectWebsite.construct if skip_validation else DisconnectWebsite
-        
+
         return await self.client.request(
             _constructor(
                 website_id=website_id,
@@ -3855,7 +3962,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def download_file(
             self,
             file_id: int,
@@ -3882,14 +3989,14 @@ class API:
                 The starting position from which the file should be downloaded
             
             limit (:class:`int`)
-                Number of bytes which should be downloaded starting from the "offset" position before the download will be automatically cancelled; use 0 to download without a limit
+                Number of bytes which should be downloaded starting from the "offset" position before the download will be automatically canceled; use 0 to download without a limit
             
             synchronous (:class:`bool`)
-                If false, this request returns file state just after the download has been started. If true, this request returns file state only after the download has succeeded, has failed, has been cancelled or a new downloadFile request with different offset/limit parameters was sent
+                If false, this request returns file state just after the download has been started. If true, this request returns file state only after the download has succeeded, has failed, has been canceled or a new downloadFile request with different offset/limit parameters was sent
             
         """
         _constructor = DownloadFile.construct if skip_validation else DownloadFile
-        
+
         return await self.client.request(
             _constructor(
                 file_id=file_id,
@@ -3901,7 +4008,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_chat_filter(
             self,
             chat_filter_id: int,
@@ -3923,7 +4030,7 @@ class API:
             
         """
         _constructor = EditChatFilter.construct if skip_validation else EditChatFilter
-        
+
         return await self.client.request(
             _constructor(
                 chat_filter_id=chat_filter_id,
@@ -3932,7 +4039,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_chat_invite_link(
             self,
             chat_id: int,
@@ -3962,7 +4069,7 @@ class API:
             
         """
         _constructor = EditChatInviteLink.construct if skip_validation else EditChatInviteLink
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -3973,7 +4080,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_custom_language_pack_info(
             self,
             info: LanguagePackInfo,
@@ -3991,7 +4098,7 @@ class API:
             
         """
         _constructor = EditCustomLanguagePackInfo.construct if skip_validation else EditCustomLanguagePackInfo
-        
+
         return await self.client.request(
             _constructor(
                 info=info,
@@ -3999,7 +4106,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_inline_message_caption(
             self,
             inline_message_id: str,
@@ -4025,7 +4132,7 @@ class API:
             
         """
         _constructor = EditInlineMessageCaption.construct if skip_validation else EditInlineMessageCaption
-        
+
         return await self.client.request(
             _constructor(
                 inline_message_id=inline_message_id,
@@ -4035,7 +4142,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_inline_message_live_location(
             self,
             inline_message_id: str,
@@ -4069,7 +4176,7 @@ class API:
             
         """
         _constructor = EditInlineMessageLiveLocation.construct if skip_validation else EditInlineMessageLiveLocation
-        
+
         return await self.client.request(
             _constructor(
                 inline_message_id=inline_message_id,
@@ -4081,7 +4188,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_inline_message_media(
             self,
             inline_message_id: str,
@@ -4107,7 +4214,7 @@ class API:
             
         """
         _constructor = EditInlineMessageMedia.construct if skip_validation else EditInlineMessageMedia
-        
+
         return await self.client.request(
             _constructor(
                 inline_message_id=inline_message_id,
@@ -4117,7 +4224,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_inline_message_reply_markup(
             self,
             inline_message_id: str,
@@ -4139,7 +4246,7 @@ class API:
             
         """
         _constructor = EditInlineMessageReplyMarkup.construct if skip_validation else EditInlineMessageReplyMarkup
-        
+
         return await self.client.request(
             _constructor(
                 inline_message_id=inline_message_id,
@@ -4148,7 +4255,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_inline_message_text(
             self,
             inline_message_id: str,
@@ -4174,7 +4281,7 @@ class API:
             
         """
         _constructor = EditInlineMessageText.construct if skip_validation else EditInlineMessageText
-        
+
         return await self.client.request(
             _constructor(
                 inline_message_id=inline_message_id,
@@ -4184,7 +4291,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_message_caption(
             self,
             chat_id: int,
@@ -4214,7 +4321,7 @@ class API:
             
         """
         _constructor = EditMessageCaption.construct if skip_validation else EditMessageCaption
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -4225,7 +4332,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_message_live_location(
             self,
             chat_id: int,
@@ -4263,7 +4370,7 @@ class API:
             
         """
         _constructor = EditMessageLiveLocation.construct if skip_validation else EditMessageLiveLocation
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -4276,7 +4383,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_message_media(
             self,
             chat_id: int,
@@ -4306,7 +4413,7 @@ class API:
             
         """
         _constructor = EditMessageMedia.construct if skip_validation else EditMessageMedia
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -4317,7 +4424,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_message_reply_markup(
             self,
             chat_id: int,
@@ -4343,7 +4450,7 @@ class API:
             
         """
         _constructor = EditMessageReplyMarkup.construct if skip_validation else EditMessageReplyMarkup
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -4353,7 +4460,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_message_scheduling_state(
             self,
             chat_id: int,
@@ -4379,7 +4486,7 @@ class API:
             
         """
         _constructor = EditMessageSchedulingState.construct if skip_validation else EditMessageSchedulingState
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -4389,7 +4496,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_message_text(
             self,
             chat_id: int,
@@ -4419,7 +4526,7 @@ class API:
             
         """
         _constructor = EditMessageText.construct if skip_validation else EditMessageText
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -4430,7 +4537,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def edit_proxy(
             self,
             proxy_id: int,
@@ -4464,7 +4571,7 @@ class API:
             
         """
         _constructor = EditProxy.construct if skip_validation else EditProxy
-        
+
         return await self.client.request(
             _constructor(
                 proxy_id=proxy_id,
@@ -4476,7 +4583,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def enable_proxy(
             self,
             proxy_id: int,
@@ -4494,7 +4601,7 @@ class API:
             
         """
         _constructor = EnableProxy.construct if skip_validation else EnableProxy
-        
+
         return await self.client.request(
             _constructor(
                 proxy_id=proxy_id,
@@ -4502,7 +4609,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def end_group_call_recording(
             self,
             group_call_id: int,
@@ -4520,7 +4627,7 @@ class API:
             
         """
         _constructor = EndGroupCallRecording.construct if skip_validation else EndGroupCallRecording
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -4528,7 +4635,33 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
+    async def end_group_call_screen_sharing(
+            self,
+            group_call_id: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Ends screen sharing in a joined group call
+        
+        Params:
+            group_call_id (:class:`int`)
+                Group call identifier
+            
+        """
+        _constructor = EndGroupCallScreenSharing.construct if skip_validation else EndGroupCallScreenSharing
+
+        return await self.client.request(
+            _constructor(
+                group_call_id=group_call_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def finish_file_generation(
             self,
             generation_id: int,
@@ -4550,7 +4683,7 @@ class API:
             
         """
         _constructor = FinishFileGeneration.construct if skip_validation else FinishFileGeneration
-        
+
         return await self.client.request(
             _constructor(
                 generation_id=generation_id,
@@ -4559,7 +4692,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def forward_messages(
             self,
             chat_id: int,
@@ -4597,7 +4730,7 @@ class API:
             
         """
         _constructor = ForwardMessages.construct if skip_validation else ForwardMessages
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -4610,7 +4743,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_account_ttl(self, *, request_id: str = None, request_timeout: int = None) -> AccountTtl:
         """
         Returns the period of inactivity after which the account of the current user will automatically be deleted
@@ -4621,8 +4754,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def get_active_live_location_messages(self, *, request_id: str = None, request_timeout: int = None) -> Messages:
+
+    async def get_active_live_location_messages(self, *, request_id: str = None,
+                                                request_timeout: int = None) -> Messages:
         """
         Returns all active live locations that should be updated by the application. The list is persistent across application restarts only if the message database is used
         
@@ -4632,7 +4766,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_active_sessions(self, *, request_id: str = None, request_timeout: int = None) -> Sessions:
         """
         Returns all active sessions of the current user
@@ -4643,7 +4777,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_all_passport_elements(
             self,
             password: str,
@@ -4661,7 +4795,7 @@ class API:
             
         """
         _constructor = GetAllPassportElements.construct if skip_validation else GetAllPassportElements
-        
+
         return await self.client.request(
             _constructor(
                 password=password,
@@ -4669,7 +4803,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_application_config(self, *, request_id: str = None, request_timeout: int = None) -> JsonValue:
         """
         Returns application config, provided by the server. Can be called before authorization
@@ -4680,7 +4814,18 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
+    async def get_application_download_link(self, *, request_id: str = None, request_timeout: int = None) -> HttpUrl:
+        """
+        Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
+        
+        """
+        return await self.client.request(
+            GetApplicationDownloadLink(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_archived_sticker_sets(
             self,
             is_masks: bool,
@@ -4706,7 +4851,7 @@ class API:
             
         """
         _constructor = GetArchivedStickerSets.construct if skip_validation else GetArchivedStickerSets
-        
+
         return await self.client.request(
             _constructor(
                 is_masks=is_masks,
@@ -4716,7 +4861,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_attached_sticker_sets(
             self,
             file_id: int,
@@ -4734,7 +4879,7 @@ class API:
             
         """
         _constructor = GetAttachedStickerSets.construct if skip_validation else GetAttachedStickerSets
-        
+
         return await self.client.request(
             _constructor(
                 file_id=file_id,
@@ -4742,8 +4887,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def get_authorization_state(self, *, request_id: str = None, request_timeout: int = None) -> AuthorizationState:
+
+    async def get_authorization_state(self, *, request_id: str = None,
+                                      request_timeout: int = None) -> AuthorizationState:
         """
         Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
         
@@ -4753,8 +4899,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def get_auto_download_settings_presets(self, *, request_id: str = None, request_timeout: int = None) -> AutoDownloadSettingsPresets:
+
+    async def get_auto_download_settings_presets(self, *, request_id: str = None,
+                                                 request_timeout: int = None) -> AutoDownloadSettingsPresets:
         """
         Returns auto-download settings presets for the current user
         
@@ -4764,7 +4911,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_background_url(
             self,
             name: str,
@@ -4786,7 +4933,7 @@ class API:
             
         """
         _constructor = GetBackgroundUrl.construct if skip_validation else GetBackgroundUrl
-        
+
         return await self.client.request(
             _constructor(
                 name=name,
@@ -4795,7 +4942,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_backgrounds(
             self,
             for_dark_theme: bool,
@@ -4813,7 +4960,7 @@ class API:
             
         """
         _constructor = GetBackgrounds.construct if skip_validation else GetBackgrounds
-        
+
         return await self.client.request(
             _constructor(
                 for_dark_theme=for_dark_theme,
@@ -4821,7 +4968,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_bank_card_info(
             self,
             bank_card_number: str,
@@ -4839,7 +4986,7 @@ class API:
             
         """
         _constructor = GetBankCardInfo.construct if skip_validation else GetBankCardInfo
-        
+
         return await self.client.request(
             _constructor(
                 bank_card_number=bank_card_number,
@@ -4847,7 +4994,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_basic_group(
             self,
             basic_group_id: int,
@@ -4865,7 +5012,7 @@ class API:
             
         """
         _constructor = GetBasicGroup.construct if skip_validation else GetBasicGroup
-        
+
         return await self.client.request(
             _constructor(
                 basic_group_id=basic_group_id,
@@ -4873,7 +5020,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_basic_group_full_info(
             self,
             basic_group_id: int,
@@ -4891,7 +5038,7 @@ class API:
             
         """
         _constructor = GetBasicGroupFullInfo.construct if skip_validation else GetBasicGroupFullInfo
-        
+
         return await self.client.request(
             _constructor(
                 basic_group_id=basic_group_id,
@@ -4899,7 +5046,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_blocked_message_senders(
             self,
             offset: int,
@@ -4921,7 +5068,7 @@ class API:
             
         """
         _constructor = GetBlockedMessageSenders.construct if skip_validation else GetBlockedMessageSenders
-        
+
         return await self.client.request(
             _constructor(
                 offset=offset,
@@ -4930,7 +5077,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_callback_query_answer(
             self,
             chat_id: int,
@@ -4956,7 +5103,7 @@ class API:
             
         """
         _constructor = GetCallbackQueryAnswer.construct if skip_validation else GetCallbackQueryAnswer
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -4966,7 +5113,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_callback_query_message(
             self,
             chat_id: int,
@@ -4992,7 +5139,7 @@ class API:
             
         """
         _constructor = GetCallbackQueryMessage.construct if skip_validation else GetCallbackQueryMessage
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5002,7 +5149,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat(
             self,
             chat_id: int,
@@ -5020,7 +5167,7 @@ class API:
             
         """
         _constructor = GetChat.construct if skip_validation else GetChat
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5028,7 +5175,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_administrators(
             self,
             chat_id: int,
@@ -5046,7 +5193,7 @@ class API:
             
         """
         _constructor = GetChatAdministrators.construct if skip_validation else GetChatAdministrators
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5054,7 +5201,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_event_log(
             self,
             chat_id: int,
@@ -5092,7 +5239,7 @@ class API:
             
         """
         _constructor = GetChatEventLog.construct if skip_validation else GetChatEventLog
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5105,7 +5252,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_filter(
             self,
             chat_filter_id: int,
@@ -5123,7 +5270,7 @@ class API:
             
         """
         _constructor = GetChatFilter.construct if skip_validation else GetChatFilter
-        
+
         return await self.client.request(
             _constructor(
                 chat_filter_id=chat_filter_id,
@@ -5131,7 +5278,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_filter_default_icon_name(
             self,
             filter_: ChatFilter,
@@ -5149,7 +5296,7 @@ class API:
             
         """
         _constructor = GetChatFilterDefaultIconName.construct if skip_validation else GetChatFilterDefaultIconName
-        
+
         return await self.client.request(
             _constructor(
                 filter=filter_,
@@ -5157,7 +5304,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_history(
             self,
             chat_id: int,
@@ -5191,7 +5338,7 @@ class API:
             
         """
         _constructor = GetChatHistory.construct if skip_validation else GetChatHistory
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5203,7 +5350,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_invite_link(
             self,
             chat_id: int,
@@ -5225,7 +5372,7 @@ class API:
             
         """
         _constructor = GetChatInviteLink.construct if skip_validation else GetChatInviteLink
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5234,7 +5381,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_invite_link_counts(
             self,
             chat_id: int,
@@ -5252,7 +5399,7 @@ class API:
             
         """
         _constructor = GetChatInviteLinkCounts.construct if skip_validation else GetChatInviteLinkCounts
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5260,7 +5407,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_invite_link_members(
             self,
             chat_id: int,
@@ -5290,7 +5437,7 @@ class API:
             
         """
         _constructor = GetChatInviteLinkMembers.construct if skip_validation else GetChatInviteLinkMembers
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5301,7 +5448,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_invite_links(
             self,
             chat_id: int,
@@ -5339,7 +5486,7 @@ class API:
             
         """
         _constructor = GetChatInviteLinks.construct if skip_validation else GetChatInviteLinks
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5352,7 +5499,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_lists_to_add_chat(
             self,
             chat_id: int,
@@ -5370,7 +5517,7 @@ class API:
             
         """
         _constructor = GetChatListsToAddChat.construct if skip_validation else GetChatListsToAddChat
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5378,7 +5525,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_member(
             self,
             chat_id: int,
@@ -5400,7 +5547,7 @@ class API:
             
         """
         _constructor = GetChatMember.construct if skip_validation else GetChatMember
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5409,7 +5556,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_message_by_date(
             self,
             chat_id: int,
@@ -5431,7 +5578,7 @@ class API:
             
         """
         _constructor = GetChatMessageByDate.construct if skip_validation else GetChatMessageByDate
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5440,7 +5587,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_message_count(
             self,
             chat_id: int,
@@ -5466,7 +5613,7 @@ class API:
             
         """
         _constructor = GetChatMessageCount.construct if skip_validation else GetChatMessageCount
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5476,7 +5623,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_notification_settings_exceptions(
             self,
             scope: NotificationSettingsScope,
@@ -5498,7 +5645,7 @@ class API:
             
         """
         _constructor = GetChatNotificationSettingsExceptions.construct if skip_validation else GetChatNotificationSettingsExceptions
-        
+
         return await self.client.request(
             _constructor(
                 scope=scope,
@@ -5507,7 +5654,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_pinned_message(
             self,
             chat_id: int,
@@ -5525,7 +5672,7 @@ class API:
             
         """
         _constructor = GetChatPinnedMessage.construct if skip_validation else GetChatPinnedMessage
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5533,7 +5680,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_scheduled_messages(
             self,
             chat_id: int,
@@ -5551,7 +5698,7 @@ class API:
             
         """
         _constructor = GetChatScheduledMessages.construct if skip_validation else GetChatScheduledMessages
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5559,7 +5706,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_statistics(
             self,
             chat_id: int,
@@ -5581,7 +5728,7 @@ class API:
             
         """
         _constructor = GetChatStatistics.construct if skip_validation else GetChatStatistics
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5590,7 +5737,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chat_statistics_url(
             self,
             chat_id: int,
@@ -5609,14 +5756,14 @@ class API:
                 Chat identifier
             
             parameters (:class:`str`)
-                Parameters from "tg://statsrefresh?params=******" link
+                Parameters for the request
             
             is_dark (:class:`bool`)
                 Pass true if a URL with the dark theme must be returned
             
         """
         _constructor = GetChatStatisticsUrl.construct if skip_validation else GetChatStatisticsUrl
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -5626,7 +5773,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_chats(
             self,
             chat_list: ChatList,
@@ -5656,7 +5803,7 @@ class API:
             
         """
         _constructor = GetChats.construct if skip_validation else GetChats
-        
+
         return await self.client.request(
             _constructor(
                 chat_list=chat_list,
@@ -5667,7 +5814,38 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
+    async def get_commands(
+            self,
+            scope: BotCommandScope,
+            language_code: str,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> BotCommands:
+        """
+        Returns the list of commands supported by the bot for the given user scope and language; for bots only
+        
+        Params:
+            scope (:class:`BotCommandScope`)
+                The scope to which the commands are relevant
+            
+            language_code (:class:`str`)
+                A two-letter ISO 639-1 country code or an empty string
+            
+        """
+        _constructor = GetCommands.construct if skip_validation else GetCommands
+
+        return await self.client.request(
+            _constructor(
+                scope=scope,
+                language_code=language_code,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_connected_websites(self, *, request_id: str = None, request_timeout: int = None) -> ConnectedWebsites:
         """
         Returns all website where the current user used Telegram to log in
@@ -5678,7 +5856,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_contacts(self, *, request_id: str = None, request_timeout: int = None) -> Users:
         """
         Returns all user contacts
@@ -5689,7 +5867,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_countries(self, *, request_id: str = None, request_timeout: int = None) -> Countries:
         """
         Returns information about existing countries. Can be called before authorization
@@ -5700,7 +5878,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_country_code(self, *, request_id: str = None, request_timeout: int = None) -> Text:
         """
         Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
@@ -5711,7 +5889,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_created_public_chats(
             self,
             type_: PublicChatType,
@@ -5729,7 +5907,7 @@ class API:
             
         """
         _constructor = GetCreatedPublicChats.construct if skip_validation else GetCreatedPublicChats
-        
+
         return await self.client.request(
             _constructor(
                 type=type_,
@@ -5737,7 +5915,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_current_state(self, *, request_id: str = None, request_timeout: int = None) -> Updates:
         """
         Returns all updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
@@ -5748,8 +5926,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def get_database_statistics(self, *, request_id: str = None, request_timeout: int = None) -> DatabaseStatistics:
+
+    async def get_database_statistics(self, *, request_id: str = None,
+                                      request_timeout: int = None) -> DatabaseStatistics:
         """
         Returns database statistics
         
@@ -5759,7 +5938,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_deep_link_info(
             self,
             link: str,
@@ -5777,7 +5956,7 @@ class API:
             
         """
         _constructor = GetDeepLinkInfo.construct if skip_validation else GetDeepLinkInfo
-        
+
         return await self.client.request(
             _constructor(
                 link=link,
@@ -5785,7 +5964,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_emoji_suggestions_url(
             self,
             language_code: str,
@@ -5803,7 +5982,7 @@ class API:
             
         """
         _constructor = GetEmojiSuggestionsUrl.construct if skip_validation else GetEmojiSuggestionsUrl
-        
+
         return await self.client.request(
             _constructor(
                 language_code=language_code,
@@ -5811,7 +5990,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_external_link(
             self,
             link: str,
@@ -5833,7 +6012,7 @@ class API:
             
         """
         _constructor = GetExternalLink.construct if skip_validation else GetExternalLink
-        
+
         return await self.client.request(
             _constructor(
                 link=link,
@@ -5842,7 +6021,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_external_link_info(
             self,
             link: str,
@@ -5852,15 +6031,15 @@ class API:
             skip_validation: bool = False
     ) -> LoginUrlInfo:
         """
-        Returns information about an action to be done when the current user clicks an HTTP link. This method can be used to automatically authorize the current user on a website. Don't use this method for links from secret chats if link preview is disabled in secret chats
+        Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if link preview is disabled in secret chats
         
         Params:
             link (:class:`str`)
-                The HTTP link
+                The link
             
         """
         _constructor = GetExternalLinkInfo.construct if skip_validation else GetExternalLinkInfo
-        
+
         return await self.client.request(
             _constructor(
                 link=link,
@@ -5868,7 +6047,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_favorite_stickers(self, *, request_id: str = None, request_timeout: int = None) -> Stickers:
         """
         Returns favorite stickers
@@ -5879,7 +6058,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_file(
             self,
             file_id: int,
@@ -5897,7 +6076,7 @@ class API:
             
         """
         _constructor = GetFile.construct if skip_validation else GetFile
-        
+
         return await self.client.request(
             _constructor(
                 file_id=file_id,
@@ -5905,7 +6084,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_file_downloaded_prefix_size(
             self,
             file_id: int,
@@ -5927,7 +6106,7 @@ class API:
             
         """
         _constructor = GetFileDownloadedPrefixSize.construct if skip_validation else GetFileDownloadedPrefixSize
-        
+
         return await self.client.request(
             _constructor(
                 file_id=file_id,
@@ -5936,7 +6115,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_file_extension(
             self,
             mime_type: str,
@@ -5954,7 +6133,7 @@ class API:
             
         """
         _constructor = GetFileExtension.construct if skip_validation else GetFileExtension
-        
+
         return await self.client.request(
             _constructor(
                 mime_type=mime_type,
@@ -5962,7 +6141,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_file_mime_type(
             self,
             file_name: str,
@@ -5980,7 +6159,7 @@ class API:
             
         """
         _constructor = GetFileMimeType.construct if skip_validation else GetFileMimeType
-        
+
         return await self.client.request(
             _constructor(
                 file_name=file_name,
@@ -5988,7 +6167,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_game_high_scores(
             self,
             chat_id: int,
@@ -6014,7 +6193,7 @@ class API:
             
         """
         _constructor = GetGameHighScores.construct if skip_validation else GetGameHighScores
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -6024,7 +6203,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_group_call(
             self,
             group_call_id: int,
@@ -6042,7 +6221,7 @@ class API:
             
         """
         _constructor = GetGroupCall.construct if skip_validation else GetGroupCall
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -6050,7 +6229,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_group_call_invite_link(
             self,
             group_call_id: int,
@@ -6068,11 +6247,11 @@ class API:
                 Group call identifier
             
             can_self_unmute (:class:`bool`)
-                Pass true if the invite_link should contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themself. Requires groupCall.can_be_managed group call flag
+                Pass true if the invite_link should contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
             
         """
         _constructor = GetGroupCallInviteLink.construct if skip_validation else GetGroupCallInviteLink
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -6081,7 +6260,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_group_call_stream_segment(
             self,
             group_call_id: int,
@@ -6107,7 +6286,7 @@ class API:
             
         """
         _constructor = GetGroupCallStreamSegment.construct if skip_validation else GetGroupCallStreamSegment
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -6117,7 +6296,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_groups_in_common(
             self,
             user_id: int,
@@ -6143,7 +6322,7 @@ class API:
             
         """
         _constructor = GetGroupsInCommon.construct if skip_validation else GetGroupsInCommon
-        
+
         return await self.client.request(
             _constructor(
                 user_id=user_id,
@@ -6153,7 +6332,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_imported_contact_count(self, *, request_id: str = None, request_timeout: int = None) -> Count:
         """
         Returns the total number of imported contacts
@@ -6164,7 +6343,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_inactive_supergroup_chats(self, *, request_id: str = None, request_timeout: int = None) -> Chats:
         """
         Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error
@@ -6175,7 +6354,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_inline_game_high_scores(
             self,
             inline_message_id: str,
@@ -6197,7 +6376,7 @@ class API:
             
         """
         _constructor = GetInlineGameHighScores.construct if skip_validation else GetInlineGameHighScores
-        
+
         return await self.client.request(
             _constructor(
                 inline_message_id=inline_message_id,
@@ -6206,7 +6385,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_inline_query_results(
             self,
             bot_user_id: int,
@@ -6240,7 +6419,7 @@ class API:
             
         """
         _constructor = GetInlineQueryResults.construct if skip_validation else GetInlineQueryResults
-        
+
         return await self.client.request(
             _constructor(
                 bot_user_id=bot_user_id,
@@ -6252,7 +6431,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_installed_sticker_sets(
             self,
             is_masks: bool,
@@ -6270,7 +6449,7 @@ class API:
             
         """
         _constructor = GetInstalledStickerSets.construct if skip_validation else GetInstalledStickerSets
-        
+
         return await self.client.request(
             _constructor(
                 is_masks=is_masks,
@@ -6278,18 +6457,33 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def get_invite_text(self, *, request_id: str = None, request_timeout: int = None) -> Text:
+
+    async def get_internal_link_type(
+            self,
+            link: str,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> InternalLinkType:
         """
-        Returns the default text for invitation messages to be used as a placeholder when the current user invites friends to Telegram
+        Returns information about the type of an internal link. Returns a 404 error if the link is not internal. Can be called before authorization
         
+        Params:
+            link (:class:`str`)
+                The link
+            
         """
+        _constructor = GetInternalLinkType.construct if skip_validation else GetInternalLinkType
+
         return await self.client.request(
-            GetInviteText(),
+            _constructor(
+                link=link,
+            ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_json_string(
             self,
             json_value: JsonValue,
@@ -6307,7 +6501,7 @@ class API:
             
         """
         _constructor = GetJsonString.construct if skip_validation else GetJsonString
-        
+
         return await self.client.request(
             _constructor(
                 json_value=json_value,
@@ -6315,7 +6509,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_json_value(
             self,
             json_: str,
@@ -6333,7 +6527,7 @@ class API:
             
         """
         _constructor = GetJsonValue.construct if skip_validation else GetJsonValue
-        
+
         return await self.client.request(
             _constructor(
                 json=json_,
@@ -6341,7 +6535,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_language_pack_info(
             self,
             language_pack_id: str,
@@ -6359,7 +6553,7 @@ class API:
             
         """
         _constructor = GetLanguagePackInfo.construct if skip_validation else GetLanguagePackInfo
-        
+
         return await self.client.request(
             _constructor(
                 language_pack_id=language_pack_id,
@@ -6367,7 +6561,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_language_pack_string(
             self,
             language_pack_database_path: str,
@@ -6397,7 +6591,7 @@ class API:
             
         """
         _constructor = GetLanguagePackString.construct if skip_validation else GetLanguagePackString
-        
+
         return await self.client.request(
             _constructor(
                 language_pack_database_path=language_pack_database_path,
@@ -6408,7 +6602,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_language_pack_strings(
             self,
             language_pack_id: str,
@@ -6430,7 +6624,7 @@ class API:
             
         """
         _constructor = GetLanguagePackStrings.construct if skip_validation else GetLanguagePackStrings
-        
+
         return await self.client.request(
             _constructor(
                 language_pack_id=language_pack_id,
@@ -6439,7 +6633,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_localization_target_info(
             self,
             only_local: bool,
@@ -6457,7 +6651,7 @@ class API:
             
         """
         _constructor = GetLocalizationTargetInfo.construct if skip_validation else GetLocalizationTargetInfo
-        
+
         return await self.client.request(
             _constructor(
                 only_local=only_local,
@@ -6465,7 +6659,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_log_stream(self, *, request_id: str = None, request_timeout: int = None) -> LogStream:
         """
         Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
@@ -6476,7 +6670,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_log_tag_verbosity_level(
             self,
             tag: str,
@@ -6494,7 +6688,7 @@ class API:
             
         """
         _constructor = GetLogTagVerbosityLevel.construct if skip_validation else GetLogTagVerbosityLevel
-        
+
         return await self.client.request(
             _constructor(
                 tag=tag,
@@ -6502,7 +6696,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_log_tags(self, *, request_id: str = None, request_timeout: int = None) -> LogTags:
         """
         Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
@@ -6513,8 +6707,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def get_log_verbosity_level(self, *, request_id: str = None, request_timeout: int = None) -> LogVerbosityLevel:
+
+    async def get_log_verbosity_level(self, *, request_id: str = None,
+                                      request_timeout: int = None) -> LogVerbosityLevel:
         """
         Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
         
@@ -6524,7 +6719,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_login_url(
             self,
             chat_id: int,
@@ -6554,7 +6749,7 @@ class API:
             
         """
         _constructor = GetLoginUrl.construct if skip_validation else GetLoginUrl
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -6565,7 +6760,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_login_url_info(
             self,
             chat_id: int,
@@ -6591,7 +6786,7 @@ class API:
             
         """
         _constructor = GetLoginUrlInfo.construct if skip_validation else GetLoginUrlInfo
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -6601,7 +6796,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_map_thumbnail_file(
             self,
             location: Location,
@@ -6639,7 +6834,7 @@ class API:
             
         """
         _constructor = GetMapThumbnailFile.construct if skip_validation else GetMapThumbnailFile
-        
+
         return await self.client.request(
             _constructor(
                 location=location,
@@ -6652,7 +6847,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_markdown_text(
             self,
             text: FormattedText,
@@ -6670,7 +6865,7 @@ class API:
             
         """
         _constructor = GetMarkdownText.construct if skip_validation else GetMarkdownText
-        
+
         return await self.client.request(
             _constructor(
                 text=text,
@@ -6678,7 +6873,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_me(self, *, request_id: str = None, request_timeout: int = None) -> User:
         """
         Returns the current user
@@ -6689,7 +6884,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_message(
             self,
             chat_id: int,
@@ -6711,7 +6906,7 @@ class API:
             
         """
         _constructor = GetMessage.construct if skip_validation else GetMessage
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -6720,7 +6915,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_message_embedding_code(
             self,
             chat_id: int,
@@ -6746,7 +6941,7 @@ class API:
             
         """
         _constructor = GetMessageEmbeddingCode.construct if skip_validation else GetMessageEmbeddingCode
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -6756,7 +6951,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_message_file_type(
             self,
             message_file_head: str,
@@ -6774,7 +6969,7 @@ class API:
             
         """
         _constructor = GetMessageFileType.construct if skip_validation else GetMessageFileType
-        
+
         return await self.client.request(
             _constructor(
                 message_file_head=message_file_head,
@@ -6782,7 +6977,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_message_import_confirmation_text(
             self,
             chat_id: int,
@@ -6800,7 +6995,7 @@ class API:
             
         """
         _constructor = GetMessageImportConfirmationText.construct if skip_validation else GetMessageImportConfirmationText
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -6808,7 +7003,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_message_link(
             self,
             chat_id: int,
@@ -6838,7 +7033,7 @@ class API:
             
         """
         _constructor = GetMessageLink.construct if skip_validation else GetMessageLink
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -6849,7 +7044,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_message_link_info(
             self,
             url: str,
@@ -6863,11 +7058,11 @@ class API:
         
         Params:
             url (:class:`str`)
-                The message link in the format "https://t.me/c/...", or "tg://privatepost?...", or "https://t.me/username/...", or "tg://resolve?..."
+                The message link
             
         """
         _constructor = GetMessageLinkInfo.construct if skip_validation else GetMessageLinkInfo
-        
+
         return await self.client.request(
             _constructor(
                 url=url,
@@ -6875,7 +7070,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_message_locally(
             self,
             chat_id: int,
@@ -6897,7 +7092,7 @@ class API:
             
         """
         _constructor = GetMessageLocally.construct if skip_validation else GetMessageLocally
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -6906,7 +7101,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_message_public_forwards(
             self,
             chat_id: int,
@@ -6936,7 +7131,7 @@ class API:
             
         """
         _constructor = GetMessagePublicForwards.construct if skip_validation else GetMessagePublicForwards
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -6947,7 +7142,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_message_statistics(
             self,
             chat_id: int,
@@ -6973,7 +7168,7 @@ class API:
             
         """
         _constructor = GetMessageStatistics.construct if skip_validation else GetMessageStatistics
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -6983,7 +7178,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_message_thread(
             self,
             chat_id: int,
@@ -7005,7 +7200,7 @@ class API:
             
         """
         _constructor = GetMessageThread.construct if skip_validation else GetMessageThread
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -7014,7 +7209,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_message_thread_history(
             self,
             chat_id: int,
@@ -7048,7 +7243,7 @@ class API:
             
         """
         _constructor = GetMessageThreadHistory.construct if skip_validation else GetMessageThreadHistory
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -7060,7 +7255,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_messages(
             self,
             chat_id: int,
@@ -7082,7 +7277,7 @@ class API:
             
         """
         _constructor = GetMessages.construct if skip_validation else GetMessages
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -7091,7 +7286,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_network_statistics(
             self,
             only_current: bool,
@@ -7109,7 +7304,7 @@ class API:
             
         """
         _constructor = GetNetworkStatistics.construct if skip_validation else GetNetworkStatistics
-        
+
         return await self.client.request(
             _constructor(
                 only_current=only_current,
@@ -7117,7 +7312,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_option(
             self,
             name: str,
@@ -7135,7 +7330,7 @@ class API:
             
         """
         _constructor = GetOption.construct if skip_validation else GetOption
-        
+
         return await self.client.request(
             _constructor(
                 name=name,
@@ -7143,7 +7338,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_passport_authorization_form(
             self,
             bot_user_id: int,
@@ -7166,14 +7361,14 @@ class API:
                 Telegram Passport element types requested by the service
             
             public_key (:class:`str`)
-                Service's public_key
+                Service's public key
             
             nonce (:class:`str`)
-                Authorization form nonce provided by the service
+                Unique request identifier provided by the service
             
         """
         _constructor = GetPassportAuthorizationForm.construct if skip_validation else GetPassportAuthorizationForm
-        
+
         return await self.client.request(
             _constructor(
                 bot_user_id=bot_user_id,
@@ -7184,7 +7379,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_passport_authorization_form_available_elements(
             self,
             autorization_form_id: int,
@@ -7206,7 +7401,7 @@ class API:
             
         """
         _constructor = GetPassportAuthorizationFormAvailableElements.construct if skip_validation else GetPassportAuthorizationFormAvailableElements
-        
+
         return await self.client.request(
             _constructor(
                 autorization_form_id=autorization_form_id,
@@ -7215,7 +7410,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_passport_element(
             self,
             type_: PassportElementType,
@@ -7237,7 +7432,7 @@ class API:
             
         """
         _constructor = GetPassportElement.construct if skip_validation else GetPassportElement
-        
+
         return await self.client.request(
             _constructor(
                 type=type_,
@@ -7246,7 +7441,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_password_state(self, *, request_id: str = None, request_timeout: int = None) -> PasswordState:
         """
         Returns the current state of 2-step verification
@@ -7257,7 +7452,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_payment_form(
             self,
             chat_id: int,
@@ -7283,7 +7478,7 @@ class API:
             
         """
         _constructor = GetPaymentForm.construct if skip_validation else GetPaymentForm
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -7293,7 +7488,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_payment_receipt(
             self,
             chat_id: int,
@@ -7315,7 +7510,7 @@ class API:
             
         """
         _constructor = GetPaymentReceipt.construct if skip_validation else GetPaymentReceipt
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -7324,7 +7519,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_phone_number_info(
             self,
             phone_number_prefix: str,
@@ -7342,7 +7537,7 @@ class API:
             
         """
         _constructor = GetPhoneNumberInfo.construct if skip_validation else GetPhoneNumberInfo
-        
+
         return await self.client.request(
             _constructor(
                 phone_number_prefix=phone_number_prefix,
@@ -7350,7 +7545,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_poll_voters(
             self,
             chat_id: int,
@@ -7384,7 +7579,7 @@ class API:
             
         """
         _constructor = GetPollVoters.construct if skip_validation else GetPollVoters
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -7396,7 +7591,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_preferred_country_language(
             self,
             country_code: str,
@@ -7414,7 +7609,7 @@ class API:
             
         """
         _constructor = GetPreferredCountryLanguage.construct if skip_validation else GetPreferredCountryLanguage
-        
+
         return await self.client.request(
             _constructor(
                 country_code=country_code,
@@ -7422,7 +7617,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_proxies(self, *, request_id: str = None, request_timeout: int = None) -> Proxies:
         """
         Returns list of proxies that are currently set up. Can be called before authorization
@@ -7433,7 +7628,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_proxy_link(
             self,
             proxy_id: int,
@@ -7451,7 +7646,7 @@ class API:
             
         """
         _constructor = GetProxyLink.construct if skip_validation else GetProxyLink
-        
+
         return await self.client.request(
             _constructor(
                 proxy_id=proxy_id,
@@ -7459,7 +7654,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_push_receiver_id(
             self,
             payload: str,
@@ -7477,7 +7672,7 @@ class API:
             
         """
         _constructor = GetPushReceiverId.construct if skip_validation else GetPushReceiverId
-        
+
         return await self.client.request(
             _constructor(
                 payload=payload,
@@ -7485,7 +7680,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_recent_inline_bots(self, *, request_id: str = None, request_timeout: int = None) -> Users:
         """
         Returns up to 20 recently used inline bots in the order of their last usage
@@ -7496,7 +7691,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_recent_stickers(
             self,
             is_attached: bool,
@@ -7514,7 +7709,7 @@ class API:
             
         """
         _constructor = GetRecentStickers.construct if skip_validation else GetRecentStickers
-        
+
         return await self.client.request(
             _constructor(
                 is_attached=is_attached,
@@ -7522,7 +7717,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_recently_visited_t_me_urls(
             self,
             referrer: str,
@@ -7540,7 +7735,7 @@ class API:
             
         """
         _constructor = GetRecentlyVisitedTMeUrls.construct if skip_validation else GetRecentlyVisitedTMeUrls
-        
+
         return await self.client.request(
             _constructor(
                 referrer=referrer,
@@ -7548,8 +7743,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def get_recommended_chat_filters(self, *, request_id: str = None, request_timeout: int = None) -> RecommendedChatFilters:
+
+    async def get_recommended_chat_filters(self, *, request_id: str = None,
+                                           request_timeout: int = None) -> RecommendedChatFilters:
         """
         Returns recommended chat filters for the current user
         
@@ -7559,7 +7755,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_recovery_email_address(
             self,
             password: str,
@@ -7577,7 +7773,7 @@ class API:
             
         """
         _constructor = GetRecoveryEmailAddress.construct if skip_validation else GetRecoveryEmailAddress
-        
+
         return await self.client.request(
             _constructor(
                 password=password,
@@ -7585,7 +7781,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_remote_file(
             self,
             remote_file_id: str,
@@ -7607,7 +7803,7 @@ class API:
             
         """
         _constructor = GetRemoteFile.construct if skip_validation else GetRemoteFile
-        
+
         return await self.client.request(
             _constructor(
                 remote_file_id=remote_file_id,
@@ -7616,7 +7812,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_replied_message(
             self,
             chat_id: int,
@@ -7638,7 +7834,7 @@ class API:
             
         """
         _constructor = GetRepliedMessage.construct if skip_validation else GetRepliedMessage
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -7647,7 +7843,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_saved_animations(self, *, request_id: str = None, request_timeout: int = None) -> Animations:
         """
         Returns saved animations
@@ -7658,7 +7854,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_saved_order_info(self, *, request_id: str = None, request_timeout: int = None) -> OrderInfo:
         """
         Returns saved order info, if any
@@ -7669,7 +7865,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_scope_notification_settings(
             self,
             scope: NotificationSettingsScope,
@@ -7687,7 +7883,7 @@ class API:
             
         """
         _constructor = GetScopeNotificationSettings.construct if skip_validation else GetScopeNotificationSettings
-        
+
         return await self.client.request(
             _constructor(
                 scope=scope,
@@ -7695,7 +7891,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_secret_chat(
             self,
             secret_chat_id: int,
@@ -7713,7 +7909,7 @@ class API:
             
         """
         _constructor = GetSecretChat.construct if skip_validation else GetSecretChat
-        
+
         return await self.client.request(
             _constructor(
                 secret_chat_id=secret_chat_id,
@@ -7721,7 +7917,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_statistical_graph(
             self,
             chat_id: int,
@@ -7747,7 +7943,7 @@ class API:
             
         """
         _constructor = GetStatisticalGraph.construct if skip_validation else GetStatisticalGraph
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -7757,7 +7953,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_sticker_emojis(
             self,
             sticker: InputFile,
@@ -7775,7 +7971,7 @@ class API:
             
         """
         _constructor = GetStickerEmojis.construct if skip_validation else GetStickerEmojis
-        
+
         return await self.client.request(
             _constructor(
                 sticker=sticker,
@@ -7783,7 +7979,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_sticker_set(
             self,
             set_id: int,
@@ -7801,7 +7997,7 @@ class API:
             
         """
         _constructor = GetStickerSet.construct if skip_validation else GetStickerSet
-        
+
         return await self.client.request(
             _constructor(
                 set_id=set_id,
@@ -7809,7 +8005,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_stickers(
             self,
             emoji: str,
@@ -7831,7 +8027,7 @@ class API:
             
         """
         _constructor = GetStickers.construct if skip_validation else GetStickers
-        
+
         return await self.client.request(
             _constructor(
                 emoji=emoji,
@@ -7840,7 +8036,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_storage_statistics(
             self,
             chat_limit: int,
@@ -7858,7 +8054,7 @@ class API:
             
         """
         _constructor = GetStorageStatistics.construct if skip_validation else GetStorageStatistics
-        
+
         return await self.client.request(
             _constructor(
                 chat_limit=chat_limit,
@@ -7866,8 +8062,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def get_storage_statistics_fast(self, *, request_id: str = None, request_timeout: int = None) -> StorageStatisticsFast:
+
+    async def get_storage_statistics_fast(self, *, request_id: str = None,
+                                          request_timeout: int = None) -> StorageStatisticsFast:
         """
         Quickly returns approximate storage usage statistics. Can be called before authorization
         
@@ -7877,7 +8074,33 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
+    async def get_suggested_sticker_set_name(
+            self,
+            title: str,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Text:
+        """
+        Returns a suggested name for a new sticker set with a given title
+        
+        Params:
+            title (:class:`str`)
+                Sticker set title; 1-64 characters
+            
+        """
+        _constructor = GetSuggestedStickerSetName.construct if skip_validation else GetSuggestedStickerSetName
+
+        return await self.client.request(
+            _constructor(
+                title=title,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_suitable_discussion_chats(self, *, request_id: str = None, request_timeout: int = None) -> Chats:
         """
         Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Returned basic group chats must be first upgraded to supergroups before they can be set as a discussion group. To set a returned supergroup as a discussion group, access to its old messages must be enabled using toggleSupergroupIsAllHistoryAvailable first
@@ -7888,7 +8111,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_supergroup(
             self,
             supergroup_id: int,
@@ -7906,7 +8129,7 @@ class API:
             
         """
         _constructor = GetSupergroup.construct if skip_validation else GetSupergroup
-        
+
         return await self.client.request(
             _constructor(
                 supergroup_id=supergroup_id,
@@ -7914,7 +8137,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_supergroup_full_info(
             self,
             supergroup_id: int,
@@ -7932,7 +8155,7 @@ class API:
             
         """
         _constructor = GetSupergroupFullInfo.construct if skip_validation else GetSupergroupFullInfo
-        
+
         return await self.client.request(
             _constructor(
                 supergroup_id=supergroup_id,
@@ -7940,7 +8163,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_supergroup_members(
             self,
             supergroup_id: int,
@@ -7970,7 +8193,7 @@ class API:
             
         """
         _constructor = GetSupergroupMembers.construct if skip_validation else GetSupergroupMembers
-        
+
         return await self.client.request(
             _constructor(
                 supergroup_id=supergroup_id,
@@ -7981,7 +8204,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_support_user(self, *, request_id: str = None, request_timeout: int = None) -> User:
         """
         Returns a user that can be contacted to get support
@@ -7992,8 +8215,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def get_temporary_password_state(self, *, request_id: str = None, request_timeout: int = None) -> TemporaryPasswordState:
+
+    async def get_temporary_password_state(self, *, request_id: str = None,
+                                           request_timeout: int = None) -> TemporaryPasswordState:
         """
         Returns information about the current temporary password
         
@@ -8003,7 +8227,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_text_entities(
             self,
             text: str,
@@ -8021,7 +8245,7 @@ class API:
             
         """
         _constructor = GetTextEntities.construct if skip_validation else GetTextEntities
-        
+
         return await self.client.request(
             _constructor(
                 text=text,
@@ -8029,7 +8253,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_top_chats(
             self,
             category: TopChatCategory,
@@ -8051,7 +8275,7 @@ class API:
             
         """
         _constructor = GetTopChats.construct if skip_validation else GetTopChats
-        
+
         return await self.client.request(
             _constructor(
                 category=category,
@@ -8060,7 +8284,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_trending_sticker_sets(
             self,
             offset: int,
@@ -8082,7 +8306,7 @@ class API:
             
         """
         _constructor = GetTrendingStickerSets.construct if skip_validation else GetTrendingStickerSets
-        
+
         return await self.client.request(
             _constructor(
                 offset=offset,
@@ -8091,7 +8315,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_user(
             self,
             user_id: int,
@@ -8109,7 +8333,7 @@ class API:
             
         """
         _constructor = GetUser.construct if skip_validation else GetUser
-        
+
         return await self.client.request(
             _constructor(
                 user_id=user_id,
@@ -8117,7 +8341,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_user_full_info(
             self,
             user_id: int,
@@ -8135,7 +8359,7 @@ class API:
             
         """
         _constructor = GetUserFullInfo.construct if skip_validation else GetUserFullInfo
-        
+
         return await self.client.request(
             _constructor(
                 user_id=user_id,
@@ -8143,7 +8367,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_user_privacy_setting_rules(
             self,
             setting: UserPrivacySetting,
@@ -8161,7 +8385,7 @@ class API:
             
         """
         _constructor = GetUserPrivacySettingRules.construct if skip_validation else GetUserPrivacySettingRules
-        
+
         return await self.client.request(
             _constructor(
                 setting=setting,
@@ -8169,7 +8393,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_user_profile_photos(
             self,
             user_id: int,
@@ -8195,7 +8419,7 @@ class API:
             
         """
         _constructor = GetUserProfilePhotos.construct if skip_validation else GetUserProfilePhotos
-        
+
         return await self.client.request(
             _constructor(
                 user_id=user_id,
@@ -8205,7 +8429,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_voice_chat_available_participants(
             self,
             chat_id: int,
@@ -8223,7 +8447,7 @@ class API:
             
         """
         _constructor = GetVoiceChatAvailableParticipants.construct if skip_validation else GetVoiceChatAvailableParticipants
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -8231,7 +8455,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_web_page_instant_view(
             self,
             url: str,
@@ -8253,7 +8477,7 @@ class API:
             
         """
         _constructor = GetWebPageInstantView.construct if skip_validation else GetWebPageInstantView
-        
+
         return await self.client.request(
             _constructor(
                 url=url,
@@ -8262,7 +8486,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def get_web_page_preview(
             self,
             text: FormattedText,
@@ -8280,7 +8504,7 @@ class API:
             
         """
         _constructor = GetWebPagePreview.construct if skip_validation else GetWebPagePreview
-        
+
         return await self.client.request(
             _constructor(
                 text=text,
@@ -8288,7 +8512,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def hide_suggested_action(
             self,
             action: SuggestedAction,
@@ -8306,7 +8530,7 @@ class API:
             
         """
         _constructor = HideSuggestedAction.construct if skip_validation else HideSuggestedAction
-        
+
         return await self.client.request(
             _constructor(
                 action=action,
@@ -8314,7 +8538,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def import_contacts(
             self,
             contacts: list[Contact],
@@ -8332,7 +8556,7 @@ class API:
             
         """
         _constructor = ImportContacts.construct if skip_validation else ImportContacts
-        
+
         return await self.client.request(
             _constructor(
                 contacts=contacts,
@@ -8340,7 +8564,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def import_messages(
             self,
             chat_id: int,
@@ -8366,7 +8590,7 @@ class API:
             
         """
         _constructor = ImportMessages.construct if skip_validation else ImportMessages
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -8376,7 +8600,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def invite_group_call_participants(
             self,
             group_call_id: int,
@@ -8398,7 +8622,7 @@ class API:
             
         """
         _constructor = InviteGroupCallParticipants.construct if skip_validation else InviteGroupCallParticipants
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -8407,7 +8631,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def join_chat(
             self,
             chat_id: int,
@@ -8425,7 +8649,7 @@ class API:
             
         """
         _constructor = JoinChat.construct if skip_validation else JoinChat
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -8433,7 +8657,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def join_chat_by_invite_link(
             self,
             invite_link: str,
@@ -8447,11 +8671,11 @@ class API:
         
         Params:
             invite_link (:class:`str`)
-                Invite link to import; must have URL "t.me", "telegram.me", or "telegram.dog" and query beginning with "/joinchat/" or "/+"
+                Invite link to use
             
         """
         _constructor = JoinChatByInviteLink.construct if skip_validation else JoinChatByInviteLink
-        
+
         return await self.client.request(
             _constructor(
                 invite_link=invite_link,
@@ -8459,22 +8683,23 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def join_group_call(
             self,
             group_call_id: int,
             participant_id: MessageSender,
-            payload: GroupCallPayload,
-            source: int,
+            audio_source_id: int,
+            payload: str,
             is_muted: bool,
+            is_my_video_enabled: bool,
             invite_hash: str,
             *,
             request_id: str = None,
             request_timeout: int = None,
             skip_validation: bool = False
-    ) -> GroupCallJoinResponse:
+    ) -> Text:
         """
-        Joins an active group call
+        Joins an active group call. Returns join response payload for tgcalls
         
         Params:
             group_call_id (:class:`int`)
@@ -8483,34 +8708,38 @@ class API:
             participant_id (:class:`MessageSender`)
                 Identifier of a group call participant, which will be used to join the call; voice chats only
             
-            payload (:class:`GroupCallPayload`)
-                Group join payload; received from tgcalls
+            audio_source_id (:class:`int`)
+                Caller audio channel synchronization source identifier; received from tgcalls
             
-            source (:class:`int`)
-                Caller synchronization source identifier; received from tgcalls
+            payload (:class:`str`)
+                Group call join payload; received from tgcalls
             
             is_muted (:class:`bool`)
                 True, if the user's microphone is muted
+            
+            is_my_video_enabled (:class:`bool`)
+                True, if the user's video is enabled
             
             invite_hash (:class:`str`)
                 If non-empty, invite hash to be used to join the group call without being muted by administrators
             
         """
         _constructor = JoinGroupCall.construct if skip_validation else JoinGroupCall
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
                 participant_id=participant_id,
+                audio_source_id=audio_source_id,
                 payload=payload,
-                source=source,
                 is_muted=is_muted,
+                is_my_video_enabled=is_my_video_enabled,
                 invite_hash=invite_hash,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def leave_chat(
             self,
             chat_id: int,
@@ -8528,7 +8757,7 @@ class API:
             
         """
         _constructor = LeaveChat.construct if skip_validation else LeaveChat
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -8536,7 +8765,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def leave_group_call(
             self,
             group_call_id: int,
@@ -8554,7 +8783,7 @@ class API:
             
         """
         _constructor = LeaveGroupCall.construct if skip_validation else LeaveGroupCall
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -8562,7 +8791,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def load_group_call_participants(
             self,
             group_call_id: int,
@@ -8584,7 +8813,7 @@ class API:
             
         """
         _constructor = LoadGroupCallParticipants.construct if skip_validation else LoadGroupCallParticipants
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -8593,7 +8822,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def log_out(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent
@@ -8604,7 +8833,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def open_chat(
             self,
             chat_id: int,
@@ -8622,7 +8851,7 @@ class API:
             
         """
         _constructor = OpenChat.construct if skip_validation else OpenChat
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -8630,7 +8859,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def open_message_content(
             self,
             chat_id: int,
@@ -8652,7 +8881,7 @@ class API:
             
         """
         _constructor = OpenMessageContent.construct if skip_validation else OpenMessageContent
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -8661,7 +8890,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def optimize_storage(
             self,
             size: int,
@@ -8711,7 +8940,7 @@ class API:
             
         """
         _constructor = OptimizeStorage.construct if skip_validation else OptimizeStorage
-        
+
         return await self.client.request(
             _constructor(
                 size=size,
@@ -8727,7 +8956,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def parse_markdown(
             self,
             text: FormattedText,
@@ -8745,7 +8974,7 @@ class API:
             
         """
         _constructor = ParseMarkdown.construct if skip_validation else ParseMarkdown
-        
+
         return await self.client.request(
             _constructor(
                 text=text,
@@ -8753,7 +8982,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def parse_text_entities(
             self,
             text: str,
@@ -8775,7 +9004,7 @@ class API:
             
         """
         _constructor = ParseTextEntities.construct if skip_validation else ParseTextEntities
-        
+
         return await self.client.request(
             _constructor(
                 text=text,
@@ -8784,7 +9013,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def pin_chat_message(
             self,
             chat_id: int,
@@ -8814,7 +9043,7 @@ class API:
             
         """
         _constructor = PinChatMessage.construct if skip_validation else PinChatMessage
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -8825,7 +9054,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def ping_proxy(
             self,
             proxy_id: int,
@@ -8843,7 +9072,7 @@ class API:
             
         """
         _constructor = PingProxy.construct if skip_validation else PingProxy
-        
+
         return await self.client.request(
             _constructor(
                 proxy_id=proxy_id,
@@ -8851,7 +9080,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def process_push_notification(
             self,
             payload: str,
@@ -8869,7 +9098,7 @@ class API:
             
         """
         _constructor = ProcessPushNotification.construct if skip_validation else ProcessPushNotification
-        
+
         return await self.client.request(
             _constructor(
                 payload=payload,
@@ -8877,7 +9106,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def read_all_chat_mentions(
             self,
             chat_id: int,
@@ -8895,7 +9124,7 @@ class API:
             
         """
         _constructor = ReadAllChatMentions.construct if skip_validation else ReadAllChatMentions
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -8903,7 +9132,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def read_file_part(
             self,
             file_id: int,
@@ -8929,7 +9158,7 @@ class API:
             
         """
         _constructor = ReadFilePart.construct if skip_validation else ReadFilePart
-        
+
         return await self.client.request(
             _constructor(
                 file_id=file_id,
@@ -8939,7 +9168,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def recover_authentication_password(
             self,
             recovery_code: str,
@@ -8957,7 +9186,7 @@ class API:
             
         """
         _constructor = RecoverAuthenticationPassword.construct if skip_validation else RecoverAuthenticationPassword
-        
+
         return await self.client.request(
             _constructor(
                 recovery_code=recovery_code,
@@ -8965,7 +9194,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def recover_password(
             self,
             recovery_code: str,
@@ -8983,7 +9212,7 @@ class API:
             
         """
         _constructor = RecoverPassword.construct if skip_validation else RecoverPassword
-        
+
         return await self.client.request(
             _constructor(
                 recovery_code=recovery_code,
@@ -8991,7 +9220,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def register_device(
             self,
             device_token: DeviceToken,
@@ -9013,7 +9242,7 @@ class API:
             
         """
         _constructor = RegisterDevice.construct if skip_validation else RegisterDevice
-        
+
         return await self.client.request(
             _constructor(
                 device_token=device_token,
@@ -9022,7 +9251,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def register_user(
             self,
             first_name: str,
@@ -9044,7 +9273,7 @@ class API:
             
         """
         _constructor = RegisterUser.construct if skip_validation else RegisterUser
-        
+
         return await self.client.request(
             _constructor(
                 first_name=first_name,
@@ -9053,7 +9282,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def remove_background(
             self,
             background_id: int,
@@ -9071,7 +9300,7 @@ class API:
             
         """
         _constructor = RemoveBackground.construct if skip_validation else RemoveBackground
-        
+
         return await self.client.request(
             _constructor(
                 background_id=background_id,
@@ -9079,7 +9308,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def remove_chat_action_bar(
             self,
             chat_id: int,
@@ -9097,7 +9326,7 @@ class API:
             
         """
         _constructor = RemoveChatActionBar.construct if skip_validation else RemoveChatActionBar
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -9105,7 +9334,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def remove_contacts(
             self,
             user_ids: list[int],
@@ -9123,7 +9352,7 @@ class API:
             
         """
         _constructor = RemoveContacts.construct if skip_validation else RemoveContacts
-        
+
         return await self.client.request(
             _constructor(
                 user_ids=user_ids,
@@ -9131,7 +9360,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def remove_favorite_sticker(
             self,
             sticker: InputFile,
@@ -9149,7 +9378,7 @@ class API:
             
         """
         _constructor = RemoveFavoriteSticker.construct if skip_validation else RemoveFavoriteSticker
-        
+
         return await self.client.request(
             _constructor(
                 sticker=sticker,
@@ -9157,7 +9386,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def remove_notification(
             self,
             notification_group_id: int,
@@ -9179,7 +9408,7 @@ class API:
             
         """
         _constructor = RemoveNotification.construct if skip_validation else RemoveNotification
-        
+
         return await self.client.request(
             _constructor(
                 notification_group_id=notification_group_id,
@@ -9188,7 +9417,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def remove_notification_group(
             self,
             notification_group_id: int,
@@ -9210,7 +9439,7 @@ class API:
             
         """
         _constructor = RemoveNotificationGroup.construct if skip_validation else RemoveNotificationGroup
-        
+
         return await self.client.request(
             _constructor(
                 notification_group_id=notification_group_id,
@@ -9219,7 +9448,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def remove_proxy(
             self,
             proxy_id: int,
@@ -9237,7 +9466,7 @@ class API:
             
         """
         _constructor = RemoveProxy.construct if skip_validation else RemoveProxy
-        
+
         return await self.client.request(
             _constructor(
                 proxy_id=proxy_id,
@@ -9245,7 +9474,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def remove_recent_hashtag(
             self,
             hashtag: str,
@@ -9263,7 +9492,7 @@ class API:
             
         """
         _constructor = RemoveRecentHashtag.construct if skip_validation else RemoveRecentHashtag
-        
+
         return await self.client.request(
             _constructor(
                 hashtag=hashtag,
@@ -9271,7 +9500,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def remove_recent_sticker(
             self,
             is_attached: bool,
@@ -9293,7 +9522,7 @@ class API:
             
         """
         _constructor = RemoveRecentSticker.construct if skip_validation else RemoveRecentSticker
-        
+
         return await self.client.request(
             _constructor(
                 is_attached=is_attached,
@@ -9302,7 +9531,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def remove_recently_found_chat(
             self,
             chat_id: int,
@@ -9320,7 +9549,7 @@ class API:
             
         """
         _constructor = RemoveRecentlyFoundChat.construct if skip_validation else RemoveRecentlyFoundChat
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -9328,7 +9557,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def remove_saved_animation(
             self,
             animation: InputFile,
@@ -9346,7 +9575,7 @@ class API:
             
         """
         _constructor = RemoveSavedAnimation.construct if skip_validation else RemoveSavedAnimation
-        
+
         return await self.client.request(
             _constructor(
                 animation=animation,
@@ -9354,7 +9583,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def remove_sticker_from_set(
             self,
             sticker: InputFile,
@@ -9372,7 +9601,7 @@ class API:
             
         """
         _constructor = RemoveStickerFromSet.construct if skip_validation else RemoveStickerFromSet
-        
+
         return await self.client.request(
             _constructor(
                 sticker=sticker,
@@ -9380,7 +9609,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def remove_top_chat(
             self,
             category: TopChatCategory,
@@ -9402,7 +9631,7 @@ class API:
             
         """
         _constructor = RemoveTopChat.construct if skip_validation else RemoveTopChat
-        
+
         return await self.client.request(
             _constructor(
                 category=category,
@@ -9411,7 +9640,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def reorder_chat_filters(
             self,
             chat_filter_ids: list[int],
@@ -9429,7 +9658,7 @@ class API:
             
         """
         _constructor = ReorderChatFilters.construct if skip_validation else ReorderChatFilters
-        
+
         return await self.client.request(
             _constructor(
                 chat_filter_ids=chat_filter_ids,
@@ -9437,7 +9666,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def reorder_installed_sticker_sets(
             self,
             is_masks: bool,
@@ -9459,7 +9688,7 @@ class API:
             
         """
         _constructor = ReorderInstalledStickerSets.construct if skip_validation else ReorderInstalledStickerSets
-        
+
         return await self.client.request(
             _constructor(
                 is_masks=is_masks,
@@ -9468,7 +9697,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def replace_primary_chat_invite_link(
             self,
             chat_id: int,
@@ -9486,7 +9715,7 @@ class API:
             
         """
         _constructor = ReplacePrimaryChatInviteLink.construct if skip_validation else ReplacePrimaryChatInviteLink
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -9494,7 +9723,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def report_chat(
             self,
             chat_id: int,
@@ -9524,7 +9753,7 @@ class API:
             
         """
         _constructor = ReportChat.construct if skip_validation else ReportChat
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -9535,7 +9764,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def report_chat_photo(
             self,
             chat_id: int,
@@ -9565,7 +9794,7 @@ class API:
             
         """
         _constructor = ReportChatPhoto.construct if skip_validation else ReportChatPhoto
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -9576,7 +9805,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def report_supergroup_spam(
             self,
             supergroup_id: int,
@@ -9602,7 +9831,7 @@ class API:
             
         """
         _constructor = ReportSupergroupSpam.construct if skip_validation else ReportSupergroupSpam
-        
+
         return await self.client.request(
             _constructor(
                 supergroup_id=supergroup_id,
@@ -9612,8 +9841,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def request_authentication_password_recovery(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
+
+    async def request_authentication_password_recovery(self, *, request_id: str = None,
+                                                       request_timeout: int = None) -> Ok:
         """
         Requests to send a password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
         
@@ -9623,8 +9853,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def request_password_recovery(self, *, request_id: str = None, request_timeout: int = None) -> EmailAddressAuthenticationCodeInfo:
+
+    async def request_password_recovery(self, *, request_id: str = None,
+                                        request_timeout: int = None) -> EmailAddressAuthenticationCodeInfo:
         """
         Requests to send a password recovery code to an email address that was previously set up
         
@@ -9634,7 +9865,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def request_qr_code_authentication(
             self,
             other_user_ids: list[int],
@@ -9652,7 +9883,7 @@ class API:
             
         """
         _constructor = RequestQrCodeAuthentication.construct if skip_validation else RequestQrCodeAuthentication
-        
+
         return await self.client.request(
             _constructor(
                 other_user_ids=other_user_ids,
@@ -9660,7 +9891,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def resend_authentication_code(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Re-sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode and the next_code_type of the result is not null
@@ -9671,8 +9902,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def resend_change_phone_number_code(self, *, request_id: str = None, request_timeout: int = None) -> AuthenticationCodeInfo:
+
+    async def resend_change_phone_number_code(self, *, request_id: str = None,
+                                              request_timeout: int = None) -> AuthenticationCodeInfo:
         """
         Re-sends the authentication code sent to confirm a new phone number for the user. Works only if the previously received authenticationCodeInfo next_code_type was not null
         
@@ -9682,8 +9914,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def resend_email_address_verification_code(self, *, request_id: str = None, request_timeout: int = None) -> EmailAddressAuthenticationCodeInfo:
+
+    async def resend_email_address_verification_code(self, *, request_id: str = None,
+                                                     request_timeout: int = None) -> EmailAddressAuthenticationCodeInfo:
         """
         Re-sends the code to verify an email address to be added to a user's Telegram Passport
         
@@ -9693,7 +9926,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def resend_messages(
             self,
             chat_id: int,
@@ -9715,7 +9948,7 @@ class API:
             
         """
         _constructor = ResendMessages.construct if skip_validation else ResendMessages
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -9724,8 +9957,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def resend_phone_number_confirmation_code(self, *, request_id: str = None, request_timeout: int = None) -> AuthenticationCodeInfo:
+
+    async def resend_phone_number_confirmation_code(self, *, request_id: str = None,
+                                                    request_timeout: int = None) -> AuthenticationCodeInfo:
         """
         Resends phone number confirmation code
         
@@ -9735,8 +9969,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def resend_phone_number_verification_code(self, *, request_id: str = None, request_timeout: int = None) -> AuthenticationCodeInfo:
+
+    async def resend_phone_number_verification_code(self, *, request_id: str = None,
+                                                    request_timeout: int = None) -> AuthenticationCodeInfo:
         """
         Re-sends the code to verify a phone number to be added to a user's Telegram Passport
         
@@ -9746,8 +9981,9 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
-    async def resend_recovery_email_address_code(self, *, request_id: str = None, request_timeout: int = None) -> PasswordState:
+
+    async def resend_recovery_email_address_code(self, *, request_id: str = None,
+                                                 request_timeout: int = None) -> PasswordState:
         """
         Resends the 2-step verification recovery email address verification code
         
@@ -9757,7 +9993,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def reset_all_notification_settings(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to "default" and message previews are shown
@@ -9768,7 +10004,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def reset_backgrounds(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Resets list of installed backgrounds to its default value
@@ -9779,7 +10015,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def reset_network_statistics(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Resets all network data usage statistics to zero. Can be called before authorization
@@ -9790,7 +10026,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def revoke_chat_invite_link(
             self,
             chat_id: int,
@@ -9812,7 +10048,7 @@ class API:
             
         """
         _constructor = RevokeChatInviteLink.construct if skip_validation else RevokeChatInviteLink
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -9821,7 +10057,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def revoke_group_call_invite_link(
             self,
             group_call_id: int,
@@ -9839,7 +10075,7 @@ class API:
             
         """
         _constructor = RevokeGroupCallInviteLink.construct if skip_validation else RevokeGroupCallInviteLink
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -9847,7 +10083,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def save_application_log_event(
             self,
             type_: str,
@@ -9873,7 +10109,7 @@ class API:
             
         """
         _constructor = SaveApplicationLogEvent.construct if skip_validation else SaveApplicationLogEvent
-        
+
         return await self.client.request(
             _constructor(
                 type=type_,
@@ -9883,7 +10119,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_background(
             self,
             name: str,
@@ -9901,7 +10137,7 @@ class API:
             
         """
         _constructor = SearchBackground.construct if skip_validation else SearchBackground
-        
+
         return await self.client.request(
             _constructor(
                 name=name,
@@ -9909,7 +10145,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_call_messages(
             self,
             from_message_id: int,
@@ -9935,7 +10171,7 @@ class API:
             
         """
         _constructor = SearchCallMessages.construct if skip_validation else SearchCallMessages
-        
+
         return await self.client.request(
             _constructor(
                 from_message_id=from_message_id,
@@ -9945,7 +10181,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_chat_members(
             self,
             chat_id: int,
@@ -9975,7 +10211,7 @@ class API:
             
         """
         _constructor = SearchChatMembers.construct if skip_validation else SearchChatMembers
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -9986,7 +10222,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_chat_messages(
             self,
             chat_id: int,
@@ -10032,7 +10268,7 @@ class API:
             
         """
         _constructor = SearchChatMessages.construct if skip_validation else SearchChatMessages
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -10047,7 +10283,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_chat_recent_location_messages(
             self,
             chat_id: int,
@@ -10069,7 +10305,7 @@ class API:
             
         """
         _constructor = SearchChatRecentLocationMessages.construct if skip_validation else SearchChatRecentLocationMessages
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -10078,7 +10314,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_chats(
             self,
             query: str,
@@ -10100,7 +10336,7 @@ class API:
             
         """
         _constructor = SearchChats.construct if skip_validation else SearchChats
-        
+
         return await self.client.request(
             _constructor(
                 query=query,
@@ -10109,7 +10345,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_chats_nearby(
             self,
             location: Location,
@@ -10127,7 +10363,7 @@ class API:
             
         """
         _constructor = SearchChatsNearby.construct if skip_validation else SearchChatsNearby
-        
+
         return await self.client.request(
             _constructor(
                 location=location,
@@ -10135,7 +10371,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_chats_on_server(
             self,
             query: str,
@@ -10157,7 +10393,7 @@ class API:
             
         """
         _constructor = SearchChatsOnServer.construct if skip_validation else SearchChatsOnServer
-        
+
         return await self.client.request(
             _constructor(
                 query=query,
@@ -10166,7 +10402,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_contacts(
             self,
             query: str,
@@ -10188,7 +10424,7 @@ class API:
             
         """
         _constructor = SearchContacts.construct if skip_validation else SearchContacts
-        
+
         return await self.client.request(
             _constructor(
                 query=query,
@@ -10197,7 +10433,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_emojis(
             self,
             text: str,
@@ -10223,7 +10459,7 @@ class API:
             
         """
         _constructor = SearchEmojis.construct if skip_validation else SearchEmojis
-        
+
         return await self.client.request(
             _constructor(
                 text=text,
@@ -10233,7 +10469,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_hashtags(
             self,
             prefix: str,
@@ -10255,7 +10491,7 @@ class API:
             
         """
         _constructor = SearchHashtags.construct if skip_validation else SearchHashtags
-        
+
         return await self.client.request(
             _constructor(
                 prefix=prefix,
@@ -10264,7 +10500,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_installed_sticker_sets(
             self,
             is_masks: bool,
@@ -10290,7 +10526,7 @@ class API:
             
         """
         _constructor = SearchInstalledStickerSets.construct if skip_validation else SearchInstalledStickerSets
-        
+
         return await self.client.request(
             _constructor(
                 is_masks=is_masks,
@@ -10300,7 +10536,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_messages(
             self,
             chat_list: ChatList,
@@ -10350,7 +10586,7 @@ class API:
             
         """
         _constructor = SearchMessages.construct if skip_validation else SearchMessages
-        
+
         return await self.client.request(
             _constructor(
                 chat_list=chat_list,
@@ -10366,7 +10602,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_public_chat(
             self,
             username: str,
@@ -10384,7 +10620,7 @@ class API:
             
         """
         _constructor = SearchPublicChat.construct if skip_validation else SearchPublicChat
-        
+
         return await self.client.request(
             _constructor(
                 username=username,
@@ -10392,7 +10628,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_public_chats(
             self,
             query: str,
@@ -10410,7 +10646,7 @@ class API:
             
         """
         _constructor = SearchPublicChats.construct if skip_validation else SearchPublicChats
-        
+
         return await self.client.request(
             _constructor(
                 query=query,
@@ -10418,7 +10654,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_secret_messages(
             self,
             chat_id: int,
@@ -10452,7 +10688,7 @@ class API:
             
         """
         _constructor = SearchSecretMessages.construct if skip_validation else SearchSecretMessages
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -10464,7 +10700,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_sticker_set(
             self,
             name: str,
@@ -10482,7 +10718,7 @@ class API:
             
         """
         _constructor = SearchStickerSet.construct if skip_validation else SearchStickerSet
-        
+
         return await self.client.request(
             _constructor(
                 name=name,
@@ -10490,7 +10726,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_sticker_sets(
             self,
             query: str,
@@ -10508,7 +10744,7 @@ class API:
             
         """
         _constructor = SearchStickerSets.construct if skip_validation else SearchStickerSets
-        
+
         return await self.client.request(
             _constructor(
                 query=query,
@@ -10516,7 +10752,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def search_stickers(
             self,
             emoji: str,
@@ -10538,7 +10774,7 @@ class API:
             
         """
         _constructor = SearchStickers.construct if skip_validation else SearchStickers
-        
+
         return await self.client.request(
             _constructor(
                 emoji=emoji,
@@ -10547,7 +10783,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_bot_start_message(
             self,
             bot_user_id: int,
@@ -10573,7 +10809,7 @@ class API:
             
         """
         _constructor = SendBotStartMessage.construct if skip_validation else SendBotStartMessage
-        
+
         return await self.client.request(
             _constructor(
                 bot_user_id=bot_user_id,
@@ -10583,7 +10819,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_call_debug_information(
             self,
             call_id: int,
@@ -10605,7 +10841,7 @@ class API:
             
         """
         _constructor = SendCallDebugInformation.construct if skip_validation else SendCallDebugInformation
-        
+
         return await self.client.request(
             _constructor(
                 call_id=call_id,
@@ -10614,7 +10850,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_call_rating(
             self,
             call_id: int,
@@ -10644,7 +10880,7 @@ class API:
             
         """
         _constructor = SendCallRating.construct if skip_validation else SendCallRating
-        
+
         return await self.client.request(
             _constructor(
                 call_id=call_id,
@@ -10655,7 +10891,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_call_signaling_data(
             self,
             call_id: int,
@@ -10677,7 +10913,7 @@ class API:
             
         """
         _constructor = SendCallSignalingData.construct if skip_validation else SendCallSignalingData
-        
+
         return await self.client.request(
             _constructor(
                 call_id=call_id,
@@ -10686,7 +10922,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_chat_action(
             self,
             chat_id: int,
@@ -10712,7 +10948,7 @@ class API:
             
         """
         _constructor = SendChatAction.construct if skip_validation else SendChatAction
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -10722,7 +10958,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_chat_screenshot_taken_notification(
             self,
             chat_id: int,
@@ -10740,7 +10976,7 @@ class API:
             
         """
         _constructor = SendChatScreenshotTakenNotification.construct if skip_validation else SendChatScreenshotTakenNotification
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -10748,7 +10984,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_custom_request(
             self,
             method: str,
@@ -10770,7 +11006,7 @@ class API:
             
         """
         _constructor = SendCustomRequest.construct if skip_validation else SendCustomRequest
-        
+
         return await self.client.request(
             _constructor(
                 method=method,
@@ -10779,7 +11015,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_email_address_verification_code(
             self,
             email_address: str,
@@ -10797,7 +11033,7 @@ class API:
             
         """
         _constructor = SendEmailAddressVerificationCode.construct if skip_validation else SendEmailAddressVerificationCode
-        
+
         return await self.client.request(
             _constructor(
                 email_address=email_address,
@@ -10805,7 +11041,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_inline_query_result_message(
             self,
             chat_id: int,
@@ -10847,7 +11083,7 @@ class API:
             
         """
         _constructor = SendInlineQueryResultMessage.construct if skip_validation else SendInlineQueryResultMessage
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -10861,7 +11097,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_message(
             self,
             chat_id: int,
@@ -10899,7 +11135,7 @@ class API:
             
         """
         _constructor = SendMessage.construct if skip_validation else SendMessage
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -10912,7 +11148,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_message_album(
             self,
             chat_id: int,
@@ -10946,7 +11182,7 @@ class API:
             
         """
         _constructor = SendMessageAlbum.construct if skip_validation else SendMessageAlbum
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -10958,7 +11194,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_passport_authorization_form(
             self,
             autorization_form_id: int,
@@ -10980,7 +11216,7 @@ class API:
             
         """
         _constructor = SendPassportAuthorizationForm.construct if skip_validation else SendPassportAuthorizationForm
-        
+
         return await self.client.request(
             _constructor(
                 autorization_form_id=autorization_form_id,
@@ -10989,7 +11225,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_payment_form(
             self,
             chat_id: int,
@@ -11031,7 +11267,7 @@ class API:
             
         """
         _constructor = SendPaymentForm.construct if skip_validation else SendPaymentForm
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -11045,7 +11281,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_phone_number_confirmation_code(
             self,
             hash_: str,
@@ -11057,21 +11293,21 @@ class API:
             skip_validation: bool = False
     ) -> AuthenticationCodeInfo:
         """
-        Sends phone number confirmation code. Should be called when user presses "https://t.me/confirmphone?phone=*******&hash=**********" or "tg://confirmphone?phone=*******&hash=**********" link
+        Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
         
         Params:
             hash_ (:class:`str`)
-                Value of the "hash" parameter from the link
+                Hash value from the link
             
             phone_number (:class:`str`)
-                Value of the "phone" parameter from the link
+                Phone number value from the link
             
             settings (:class:`PhoneNumberAuthenticationSettings`)
                 Settings for the authentication of the user's phone number
             
         """
         _constructor = SendPhoneNumberConfirmationCode.construct if skip_validation else SendPhoneNumberConfirmationCode
-        
+
         return await self.client.request(
             _constructor(
                 hash=hash_,
@@ -11081,7 +11317,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def send_phone_number_verification_code(
             self,
             phone_number: str,
@@ -11103,7 +11339,7 @@ class API:
             
         """
         _constructor = SendPhoneNumberVerificationCode.construct if skip_validation else SendPhoneNumberVerificationCode
-        
+
         return await self.client.request(
             _constructor(
                 phone_number=phone_number,
@@ -11112,7 +11348,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_account_ttl(
             self,
             ttl: AccountTtl,
@@ -11130,7 +11366,7 @@ class API:
             
         """
         _constructor = SetAccountTtl.construct if skip_validation else SetAccountTtl
-        
+
         return await self.client.request(
             _constructor(
                 ttl=ttl,
@@ -11138,7 +11374,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_alarm(
             self,
             seconds: float,
@@ -11156,7 +11392,7 @@ class API:
             
         """
         _constructor = SetAlarm.construct if skip_validation else SetAlarm
-        
+
         return await self.client.request(
             _constructor(
                 seconds=seconds,
@@ -11164,7 +11400,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_authentication_phone_number(
             self,
             phone_number: str,
@@ -11186,7 +11422,7 @@ class API:
             
         """
         _constructor = SetAuthenticationPhoneNumber.construct if skip_validation else SetAuthenticationPhoneNumber
-        
+
         return await self.client.request(
             _constructor(
                 phone_number=phone_number,
@@ -11195,7 +11431,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_auto_download_settings(
             self,
             settings: AutoDownloadSettings,
@@ -11213,11 +11449,11 @@ class API:
                 New user auto-download settings
             
             type_ (:class:`NetworkType`)
-                Type of the network for which the new settings are applied
+                Type of the network for which the new settings are relevant
             
         """
         _constructor = SetAutoDownloadSettings.construct if skip_validation else SetAutoDownloadSettings
-        
+
         return await self.client.request(
             _constructor(
                 settings=settings,
@@ -11226,7 +11462,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_background(
             self,
             background: InputBackground,
@@ -11242,17 +11478,17 @@ class API:
         
         Params:
             background (:class:`InputBackground`)
-                The input background to use, null for filled backgrounds
+                The input background to use. Pass null to create a new filled backgrounds. Pass null to remove the current background
             
             type_ (:class:`BackgroundType`)
-                Background type; null for default background. The method will return error 404 if type is null
+                Background type. Pass null to use default type of the remote background. Pass null to remove the current background
             
             for_dark_theme (:class:`bool`)
                 True, if the background is chosen for dark theme
             
         """
         _constructor = SetBackground.construct if skip_validation else SetBackground
-        
+
         return await self.client.request(
             _constructor(
                 background=background,
@@ -11262,7 +11498,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_bio(
             self,
             bio: str,
@@ -11280,7 +11516,7 @@ class API:
             
         """
         _constructor = SetBio.construct if skip_validation else SetBio
-        
+
         return await self.client.request(
             _constructor(
                 bio=bio,
@@ -11288,7 +11524,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_bot_updates_status(
             self,
             pending_update_count: int,
@@ -11310,7 +11546,7 @@ class API:
             
         """
         _constructor = SetBotUpdatesStatus.construct if skip_validation else SetBotUpdatesStatus
-        
+
         return await self.client.request(
             _constructor(
                 pending_update_count=pending_update_count,
@@ -11319,7 +11555,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_chat_client_data(
             self,
             chat_id: int,
@@ -11341,7 +11577,7 @@ class API:
             
         """
         _constructor = SetChatClientData.construct if skip_validation else SetChatClientData
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -11350,7 +11586,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_chat_description(
             self,
             chat_id: int,
@@ -11372,7 +11608,7 @@ class API:
             
         """
         _constructor = SetChatDescription.construct if skip_validation else SetChatDescription
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -11381,7 +11617,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_chat_discussion_group(
             self,
             chat_id: int,
@@ -11403,7 +11639,7 @@ class API:
             
         """
         _constructor = SetChatDiscussionGroup.construct if skip_validation else SetChatDiscussionGroup
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -11412,7 +11648,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_chat_draft_message(
             self,
             chat_id: int,
@@ -11438,7 +11674,7 @@ class API:
             
         """
         _constructor = SetChatDraftMessage.construct if skip_validation else SetChatDraftMessage
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -11448,7 +11684,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_chat_location(
             self,
             chat_id: int,
@@ -11470,7 +11706,7 @@ class API:
             
         """
         _constructor = SetChatLocation.construct if skip_validation else SetChatLocation
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -11479,7 +11715,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_chat_member_status(
             self,
             chat_id: int,
@@ -11505,7 +11741,7 @@ class API:
             
         """
         _constructor = SetChatMemberStatus.construct if skip_validation else SetChatMemberStatus
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -11515,7 +11751,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_chat_message_ttl_setting(
             self,
             chat_id: int,
@@ -11537,7 +11773,7 @@ class API:
             
         """
         _constructor = SetChatMessageTtlSetting.construct if skip_validation else SetChatMessageTtlSetting
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -11546,7 +11782,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_chat_notification_settings(
             self,
             chat_id: int,
@@ -11568,7 +11804,7 @@ class API:
             
         """
         _constructor = SetChatNotificationSettings.construct if skip_validation else SetChatNotificationSettings
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -11577,7 +11813,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_chat_permissions(
             self,
             chat_id: int,
@@ -11599,7 +11835,7 @@ class API:
             
         """
         _constructor = SetChatPermissions.construct if skip_validation else SetChatPermissions
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -11608,7 +11844,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_chat_photo(
             self,
             chat_id: int,
@@ -11630,7 +11866,7 @@ class API:
             
         """
         _constructor = SetChatPhoto.construct if skip_validation else SetChatPhoto
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -11639,7 +11875,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_chat_slow_mode_delay(
             self,
             chat_id: int,
@@ -11661,7 +11897,7 @@ class API:
             
         """
         _constructor = SetChatSlowModeDelay.construct if skip_validation else SetChatSlowModeDelay
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -11670,7 +11906,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_chat_title(
             self,
             chat_id: int,
@@ -11692,7 +11928,7 @@ class API:
             
         """
         _constructor = SetChatTitle.construct if skip_validation else SetChatTitle
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -11701,9 +11937,11 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_commands(
             self,
+            scope: BotCommandScope,
+            language_code: str,
             commands: list[BotCommand],
             *,
             request_id: str = None,
@@ -11711,23 +11949,31 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Sets the list of commands supported by the bot; for bots only
+        Sets the list of commands supported by the bot for the given user scope and language; for bots only
         
         Params:
+            scope (:class:`BotCommandScope`)
+                The scope to which the commands are relevant
+            
+            language_code (:class:`str`)
+                A two-letter ISO 639-1 country code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
+            
             commands (:obj:`list[BotCommand]`)
                 List of the bot's commands
             
         """
         _constructor = SetCommands.construct if skip_validation else SetCommands
-        
+
         return await self.client.request(
             _constructor(
+                scope=scope,
+                language_code=language_code,
                 commands=commands,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_custom_language_pack(
             self,
             info: LanguagePackInfo,
@@ -11749,7 +11995,7 @@ class API:
             
         """
         _constructor = SetCustomLanguagePack.construct if skip_validation else SetCustomLanguagePack
-        
+
         return await self.client.request(
             _constructor(
                 info=info,
@@ -11758,7 +12004,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_custom_language_pack_string(
             self,
             language_pack_id: str,
@@ -11780,7 +12026,7 @@ class API:
             
         """
         _constructor = SetCustomLanguagePackString.construct if skip_validation else SetCustomLanguagePackString
-        
+
         return await self.client.request(
             _constructor(
                 language_pack_id=language_pack_id,
@@ -11789,7 +12035,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_database_encryption_key(
             self,
             new_encryption_key: str,
@@ -11807,7 +12053,7 @@ class API:
             
         """
         _constructor = SetDatabaseEncryptionKey.construct if skip_validation else SetDatabaseEncryptionKey
-        
+
         return await self.client.request(
             _constructor(
                 new_encryption_key=new_encryption_key,
@@ -11815,7 +12061,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_file_generation_progress(
             self,
             generation_id: int,
@@ -11841,7 +12087,7 @@ class API:
             
         """
         _constructor = SetFileGenerationProgress.construct if skip_validation else SetFileGenerationProgress
-        
+
         return await self.client.request(
             _constructor(
                 generation_id=generation_id,
@@ -11851,7 +12097,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_game_score(
             self,
             chat_id: int,
@@ -11889,7 +12135,7 @@ class API:
             
         """
         _constructor = SetGameScore.construct if skip_validation else SetGameScore
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -11902,11 +12148,11 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_group_call_participant_is_speaking(
             self,
             group_call_id: int,
-            source: int,
+            audio_source: int,
             is_speaking: bool,
             *,
             request_id: str = None,
@@ -11914,31 +12160,31 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Informs TDLib that a participant of an active group call speaking state has changed
+        Informs TDLib that speaking state of a participant of an active group has changed
         
         Params:
             group_call_id (:class:`int`)
                 Group call identifier
             
-            source (:class:`int`)
-                Group call participant's synchronization source identifier, or 0 for the current user
+            audio_source (:class:`int`)
+                Group call participant's synchronization audio source identifier, or 0 for the current user
             
             is_speaking (:class:`bool`)
                 True, if the user is speaking
             
         """
         _constructor = SetGroupCallParticipantIsSpeaking.construct if skip_validation else SetGroupCallParticipantIsSpeaking
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
-                source=source,
+                audio_source=audio_source,
                 is_speaking=is_speaking,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_group_call_participant_volume_level(
             self,
             group_call_id: int,
@@ -11964,7 +12210,7 @@ class API:
             
         """
         _constructor = SetGroupCallParticipantVolumeLevel.construct if skip_validation else SetGroupCallParticipantVolumeLevel
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -11974,7 +12220,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_group_call_title(
             self,
             group_call_id: int,
@@ -11996,7 +12242,7 @@ class API:
             
         """
         _constructor = SetGroupCallTitle.construct if skip_validation else SetGroupCallTitle
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -12005,7 +12251,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_inline_game_score(
             self,
             inline_message_id: str,
@@ -12039,7 +12285,7 @@ class API:
             
         """
         _constructor = SetInlineGameScore.construct if skip_validation else SetInlineGameScore
-        
+
         return await self.client.request(
             _constructor(
                 inline_message_id=inline_message_id,
@@ -12051,7 +12297,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_location(
             self,
             location: Location,
@@ -12069,7 +12315,7 @@ class API:
             
         """
         _constructor = SetLocation.construct if skip_validation else SetLocation
-        
+
         return await self.client.request(
             _constructor(
                 location=location,
@@ -12077,7 +12323,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_log_stream(
             self,
             log_stream: LogStream,
@@ -12095,7 +12341,7 @@ class API:
             
         """
         _constructor = SetLogStream.construct if skip_validation else SetLogStream
-        
+
         return await self.client.request(
             _constructor(
                 log_stream=log_stream,
@@ -12103,7 +12349,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_log_tag_verbosity_level(
             self,
             tag: str,
@@ -12125,7 +12371,7 @@ class API:
             
         """
         _constructor = SetLogTagVerbosityLevel.construct if skip_validation else SetLogTagVerbosityLevel
-        
+
         return await self.client.request(
             _constructor(
                 tag=tag,
@@ -12134,7 +12380,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_log_verbosity_level(
             self,
             new_verbosity_level: int,
@@ -12152,7 +12398,7 @@ class API:
             
         """
         _constructor = SetLogVerbosityLevel.construct if skip_validation else SetLogVerbosityLevel
-        
+
         return await self.client.request(
             _constructor(
                 new_verbosity_level=new_verbosity_level,
@@ -12160,7 +12406,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_name(
             self,
             first_name: str,
@@ -12182,7 +12428,7 @@ class API:
             
         """
         _constructor = SetName.construct if skip_validation else SetName
-        
+
         return await self.client.request(
             _constructor(
                 first_name=first_name,
@@ -12191,7 +12437,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_network_type(
             self,
             type_: NetworkType,
@@ -12209,7 +12455,7 @@ class API:
             
         """
         _constructor = SetNetworkType.construct if skip_validation else SetNetworkType
-        
+
         return await self.client.request(
             _constructor(
                 type=type_,
@@ -12217,7 +12463,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_option(
             self,
             name: str,
@@ -12239,7 +12485,7 @@ class API:
             
         """
         _constructor = SetOption.construct if skip_validation else SetOption
-        
+
         return await self.client.request(
             _constructor(
                 name=name,
@@ -12248,7 +12494,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_passport_element(
             self,
             element: InputPassportElement,
@@ -12270,7 +12516,7 @@ class API:
             
         """
         _constructor = SetPassportElement.construct if skip_validation else SetPassportElement
-        
+
         return await self.client.request(
             _constructor(
                 element=element,
@@ -12279,7 +12525,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_passport_element_errors(
             self,
             user_id: int,
@@ -12301,7 +12547,7 @@ class API:
             
         """
         _constructor = SetPassportElementErrors.construct if skip_validation else SetPassportElementErrors
-        
+
         return await self.client.request(
             _constructor(
                 user_id=user_id,
@@ -12310,7 +12556,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_password(
             self,
             old_password: str,
@@ -12344,7 +12590,7 @@ class API:
             
         """
         _constructor = SetPassword.construct if skip_validation else SetPassword
-        
+
         return await self.client.request(
             _constructor(
                 old_password=old_password,
@@ -12356,7 +12602,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_pinned_chats(
             self,
             chat_list: ChatList,
@@ -12378,7 +12624,7 @@ class API:
             
         """
         _constructor = SetPinnedChats.construct if skip_validation else SetPinnedChats
-        
+
         return await self.client.request(
             _constructor(
                 chat_list=chat_list,
@@ -12387,7 +12633,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_poll_answer(
             self,
             chat_id: int,
@@ -12413,7 +12659,7 @@ class API:
             
         """
         _constructor = SetPollAnswer.construct if skip_validation else SetPollAnswer
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -12423,7 +12669,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_profile_photo(
             self,
             photo: InputChatPhoto,
@@ -12441,7 +12687,7 @@ class API:
             
         """
         _constructor = SetProfilePhoto.construct if skip_validation else SetProfilePhoto
-        
+
         return await self.client.request(
             _constructor(
                 photo=photo,
@@ -12449,7 +12695,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_recovery_email_address(
             self,
             password: str,
@@ -12471,7 +12717,7 @@ class API:
             
         """
         _constructor = SetRecoveryEmailAddress.construct if skip_validation else SetRecoveryEmailAddress
-        
+
         return await self.client.request(
             _constructor(
                 password=password,
@@ -12480,7 +12726,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_scope_notification_settings(
             self,
             scope: NotificationSettingsScope,
@@ -12502,7 +12748,7 @@ class API:
             
         """
         _constructor = SetScopeNotificationSettings.construct if skip_validation else SetScopeNotificationSettings
-        
+
         return await self.client.request(
             _constructor(
                 scope=scope,
@@ -12511,7 +12757,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_sticker_position_in_set(
             self,
             sticker: InputFile,
@@ -12533,7 +12779,7 @@ class API:
             
         """
         _constructor = SetStickerPositionInSet.construct if skip_validation else SetStickerPositionInSet
-        
+
         return await self.client.request(
             _constructor(
                 sticker=sticker,
@@ -12542,7 +12788,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_sticker_set_thumbnail(
             self,
             user_id: int,
@@ -12568,7 +12814,7 @@ class API:
             
         """
         _constructor = SetStickerSetThumbnail.construct if skip_validation else SetStickerSetThumbnail
-        
+
         return await self.client.request(
             _constructor(
                 user_id=user_id,
@@ -12578,7 +12824,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_supergroup_sticker_set(
             self,
             supergroup_id: int,
@@ -12600,7 +12846,7 @@ class API:
             
         """
         _constructor = SetSupergroupStickerSet.construct if skip_validation else SetSupergroupStickerSet
-        
+
         return await self.client.request(
             _constructor(
                 supergroup_id=supergroup_id,
@@ -12609,7 +12855,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_supergroup_username(
             self,
             supergroup_id: int,
@@ -12631,7 +12877,7 @@ class API:
             
         """
         _constructor = SetSupergroupUsername.construct if skip_validation else SetSupergroupUsername
-        
+
         return await self.client.request(
             _constructor(
                 supergroup_id=supergroup_id,
@@ -12640,7 +12886,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_tdlib_parameters(
             self,
             parameters: TdlibParameters,
@@ -12658,7 +12904,7 @@ class API:
             
         """
         _constructor = SetTdlibParameters.construct if skip_validation else SetTdlibParameters
-        
+
         return await self.client.request(
             _constructor(
                 parameters=parameters,
@@ -12666,7 +12912,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_user_privacy_setting_rules(
             self,
             setting: UserPrivacySetting,
@@ -12688,7 +12934,7 @@ class API:
             
         """
         _constructor = SetUserPrivacySettingRules.construct if skip_validation else SetUserPrivacySettingRules
-        
+
         return await self.client.request(
             _constructor(
                 setting=setting,
@@ -12697,7 +12943,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_username(
             self,
             username: str,
@@ -12715,7 +12961,7 @@ class API:
             
         """
         _constructor = SetUsername.construct if skip_validation else SetUsername
-        
+
         return await self.client.request(
             _constructor(
                 username=username,
@@ -12723,7 +12969,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def set_voice_chat_default_participant(
             self,
             chat_id: int,
@@ -12745,7 +12991,7 @@ class API:
             
         """
         _constructor = SetVoiceChatDefaultParticipant.construct if skip_validation else SetVoiceChatDefaultParticipant
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -12754,7 +13000,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def share_phone_number(
             self,
             user_id: int,
@@ -12772,7 +13018,7 @@ class API:
             
         """
         _constructor = SharePhoneNumber.construct if skip_validation else SharePhoneNumber
-        
+
         return await self.client.request(
             _constructor(
                 user_id=user_id,
@@ -12780,7 +13026,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def start_group_call_recording(
             self,
             group_call_id: int,
@@ -12802,7 +13048,7 @@ class API:
             
         """
         _constructor = StartGroupCallRecording.construct if skip_validation else StartGroupCallRecording
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -12811,7 +13057,38 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
+    async def start_group_call_screen_sharing(
+            self,
+            group_call_id: int,
+            payload: str,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Text:
+        """
+        Starts screen sharing in a joined group call. Returns join response payload for tgcalls
+        
+        Params:
+            group_call_id (:class:`int`)
+                Group call identifier
+            
+            payload (:class:`str`)
+                Group call join payload; received from tgcalls
+            
+        """
+        _constructor = StartGroupCallScreenSharing.construct if skip_validation else StartGroupCallScreenSharing
+
+        return await self.client.request(
+            _constructor(
+                group_call_id=group_call_id,
+                payload=payload,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def start_scheduled_group_call(
             self,
             group_call_id: int,
@@ -12829,7 +13106,7 @@ class API:
             
         """
         _constructor = StartScheduledGroupCall.construct if skip_validation else StartScheduledGroupCall
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -12837,7 +13114,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def stop_poll(
             self,
             chat_id: int,
@@ -12863,7 +13140,7 @@ class API:
             
         """
         _constructor = StopPoll.construct if skip_validation else StopPoll
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -12873,7 +13150,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def synchronize_language_pack(
             self,
             language_pack_id: str,
@@ -12891,7 +13168,7 @@ class API:
             
         """
         _constructor = SynchronizeLanguagePack.construct if skip_validation else SynchronizeLanguagePack
-        
+
         return await self.client.request(
             _constructor(
                 language_pack_id=language_pack_id,
@@ -12899,7 +13176,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def terminate_all_other_sessions(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Terminates all other sessions of the current user
@@ -12910,7 +13187,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def terminate_session(
             self,
             session_id: int,
@@ -12928,7 +13205,7 @@ class API:
             
         """
         _constructor = TerminateSession.construct if skip_validation else TerminateSession
-        
+
         return await self.client.request(
             _constructor(
                 session_id=session_id,
@@ -12936,7 +13213,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def test_call_bytes(
             self,
             x: str,
@@ -12954,7 +13231,7 @@ class API:
             
         """
         _constructor = TestCallBytes.construct if skip_validation else TestCallBytes
-        
+
         return await self.client.request(
             _constructor(
                 x=x,
@@ -12962,7 +13239,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def test_call_empty(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Does nothing; for testing only. This is an offline method. Can be called before authorization
@@ -12973,7 +13250,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def test_call_string(
             self,
             x: str,
@@ -12991,7 +13268,7 @@ class API:
             
         """
         _constructor = TestCallString.construct if skip_validation else TestCallString
-        
+
         return await self.client.request(
             _constructor(
                 x=x,
@@ -12999,7 +13276,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def test_call_vector_int(
             self,
             x: list[int],
@@ -13017,7 +13294,7 @@ class API:
             
         """
         _constructor = TestCallVectorInt.construct if skip_validation else TestCallVectorInt
-        
+
         return await self.client.request(
             _constructor(
                 x=x,
@@ -13025,7 +13302,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def test_call_vector_int_object(
             self,
             x: list[TestInt],
@@ -13043,7 +13320,7 @@ class API:
             
         """
         _constructor = TestCallVectorIntObject.construct if skip_validation else TestCallVectorIntObject
-        
+
         return await self.client.request(
             _constructor(
                 x=x,
@@ -13051,7 +13328,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def test_call_vector_string(
             self,
             x: list[str],
@@ -13069,7 +13346,7 @@ class API:
             
         """
         _constructor = TestCallVectorString.construct if skip_validation else TestCallVectorString
-        
+
         return await self.client.request(
             _constructor(
                 x=x,
@@ -13077,7 +13354,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def test_call_vector_string_object(
             self,
             x: list[TestString],
@@ -13095,7 +13372,7 @@ class API:
             
         """
         _constructor = TestCallVectorStringObject.construct if skip_validation else TestCallVectorStringObject
-        
+
         return await self.client.request(
             _constructor(
                 x=x,
@@ -13103,7 +13380,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def test_get_difference(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Forces an updates.getDifference call to the Telegram servers; for testing only
@@ -13114,7 +13391,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def test_network(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization
@@ -13125,7 +13402,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def test_proxy(
             self,
             server: str,
@@ -13159,7 +13436,7 @@ class API:
             
         """
         _constructor = TestProxy.construct if skip_validation else TestProxy
-        
+
         return await self.client.request(
             _constructor(
                 server=server,
@@ -13171,7 +13448,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def test_return_error(
             self,
             error: Error,
@@ -13189,7 +13466,7 @@ class API:
             
         """
         _constructor = TestReturnError.construct if skip_validation else TestReturnError
-        
+
         return await self.client.request(
             _constructor(
                 error=error,
@@ -13197,7 +13474,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def test_square_int(
             self,
             x: int,
@@ -13215,7 +13492,7 @@ class API:
             
         """
         _constructor = TestSquareInt.construct if skip_validation else TestSquareInt
-        
+
         return await self.client.request(
             _constructor(
                 x=x,
@@ -13223,7 +13500,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def test_use_update(self, *, request_id: str = None, request_timeout: int = None) -> Update:
         """
         Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization
@@ -13234,7 +13511,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def toggle_chat_default_disable_notification(
             self,
             chat_id: int,
@@ -13256,7 +13533,7 @@ class API:
             
         """
         _constructor = ToggleChatDefaultDisableNotification.construct if skip_validation else ToggleChatDefaultDisableNotification
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -13265,7 +13542,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def toggle_chat_is_marked_as_unread(
             self,
             chat_id: int,
@@ -13287,7 +13564,7 @@ class API:
             
         """
         _constructor = ToggleChatIsMarkedAsUnread.construct if skip_validation else ToggleChatIsMarkedAsUnread
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -13296,7 +13573,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def toggle_chat_is_pinned(
             self,
             chat_list: ChatList,
@@ -13322,7 +13599,7 @@ class API:
             
         """
         _constructor = ToggleChatIsPinned.construct if skip_validation else ToggleChatIsPinned
-        
+
         return await self.client.request(
             _constructor(
                 chat_list=chat_list,
@@ -13332,7 +13609,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def toggle_group_call_enabled_start_notification(
             self,
             group_call_id: int,
@@ -13354,7 +13631,7 @@ class API:
             
         """
         _constructor = ToggleGroupCallEnabledStartNotification.construct if skip_validation else ToggleGroupCallEnabledStartNotification
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -13363,7 +13640,69 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
+    async def toggle_group_call_is_my_video_enabled(
+            self,
+            group_call_id: int,
+            is_my_video_enabled: bool,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Toggles whether current user's video is enabled
+        
+        Params:
+            group_call_id (:class:`int`)
+                Group call identifier
+            
+            is_my_video_enabled (:class:`bool`)
+                Pass true if the current user's video is enabled
+            
+        """
+        _constructor = ToggleGroupCallIsMyVideoEnabled.construct if skip_validation else ToggleGroupCallIsMyVideoEnabled
+
+        return await self.client.request(
+            _constructor(
+                group_call_id=group_call_id,
+                is_my_video_enabled=is_my_video_enabled,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def toggle_group_call_is_my_video_paused(
+            self,
+            group_call_id: int,
+            is_my_video_paused: bool,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Toggles whether current user's video is paused
+        
+        Params:
+            group_call_id (:class:`int`)
+                Group call identifier
+            
+            is_my_video_paused (:class:`bool`)
+                Pass true if the current user's video is paused
+            
+        """
+        _constructor = ToggleGroupCallIsMyVideoPaused.construct if skip_validation else ToggleGroupCallIsMyVideoPaused
+
+        return await self.client.request(
+            _constructor(
+                group_call_id=group_call_id,
+                is_my_video_paused=is_my_video_paused,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def toggle_group_call_mute_new_participants(
             self,
             group_call_id: int,
@@ -13385,7 +13724,7 @@ class API:
             
         """
         _constructor = ToggleGroupCallMuteNewParticipants.construct if skip_validation else ToggleGroupCallMuteNewParticipants
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -13394,7 +13733,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def toggle_group_call_participant_is_hand_raised(
             self,
             group_call_id: int,
@@ -13420,7 +13759,7 @@ class API:
             
         """
         _constructor = ToggleGroupCallParticipantIsHandRaised.construct if skip_validation else ToggleGroupCallParticipantIsHandRaised
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -13430,7 +13769,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def toggle_group_call_participant_is_muted(
             self,
             group_call_id: int,
@@ -13442,7 +13781,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themself
+        Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
         
         Params:
             group_call_id (:class:`int`)
@@ -13456,7 +13795,7 @@ class API:
             
         """
         _constructor = ToggleGroupCallParticipantIsMuted.construct if skip_validation else ToggleGroupCallParticipantIsMuted
-        
+
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
@@ -13466,7 +13805,38 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
+    async def toggle_group_call_screen_sharing_is_paused(
+            self,
+            group_call_id: int,
+            is_paused: bool,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Pauses or unpauses screen sharing in a joined group call
+        
+        Params:
+            group_call_id (:class:`int`)
+                Group call identifier
+            
+            is_paused (:class:`bool`)
+                True if screen sharing is paused
+            
+        """
+        _constructor = ToggleGroupCallScreenSharingIsPaused.construct if skip_validation else ToggleGroupCallScreenSharingIsPaused
+
+        return await self.client.request(
+            _constructor(
+                group_call_id=group_call_id,
+                is_paused=is_paused,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def toggle_message_sender_is_blocked(
             self,
             sender: MessageSender,
@@ -13488,7 +13858,7 @@ class API:
             
         """
         _constructor = ToggleMessageSenderIsBlocked.construct if skip_validation else ToggleMessageSenderIsBlocked
-        
+
         return await self.client.request(
             _constructor(
                 sender=sender,
@@ -13497,7 +13867,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def toggle_supergroup_is_all_history_available(
             self,
             supergroup_id: int,
@@ -13519,7 +13889,7 @@ class API:
             
         """
         _constructor = ToggleSupergroupIsAllHistoryAvailable.construct if skip_validation else ToggleSupergroupIsAllHistoryAvailable
-        
+
         return await self.client.request(
             _constructor(
                 supergroup_id=supergroup_id,
@@ -13528,7 +13898,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def toggle_supergroup_is_broadcast_group(
             self,
             supergroup_id: int,
@@ -13546,7 +13916,7 @@ class API:
             
         """
         _constructor = ToggleSupergroupIsBroadcastGroup.construct if skip_validation else ToggleSupergroupIsBroadcastGroup
-        
+
         return await self.client.request(
             _constructor(
                 supergroup_id=supergroup_id,
@@ -13554,7 +13924,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def toggle_supergroup_sign_messages(
             self,
             supergroup_id: int,
@@ -13576,7 +13946,7 @@ class API:
             
         """
         _constructor = ToggleSupergroupSignMessages.construct if skip_validation else ToggleSupergroupSignMessages
-        
+
         return await self.client.request(
             _constructor(
                 supergroup_id=supergroup_id,
@@ -13585,7 +13955,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def transfer_chat_ownership(
             self,
             chat_id: int,
@@ -13611,7 +13981,7 @@ class API:
             
         """
         _constructor = TransferChatOwnership.construct if skip_validation else TransferChatOwnership
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -13621,7 +13991,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def unpin_all_chat_messages(
             self,
             chat_id: int,
@@ -13639,7 +14009,7 @@ class API:
             
         """
         _constructor = UnpinAllChatMessages.construct if skip_validation else UnpinAllChatMessages
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -13647,7 +14017,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def unpin_chat_message(
             self,
             chat_id: int,
@@ -13669,7 +14039,7 @@ class API:
             
         """
         _constructor = UnpinChatMessage.construct if skip_validation else UnpinChatMessage
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -13678,7 +14048,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def upgrade_basic_group_chat_to_supergroup_chat(
             self,
             chat_id: int,
@@ -13696,7 +14066,7 @@ class API:
             
         """
         _constructor = UpgradeBasicGroupChatToSupergroupChat.construct if skip_validation else UpgradeBasicGroupChatToSupergroupChat
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -13704,7 +14074,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def upload_file(
             self,
             file: InputFile,
@@ -13730,7 +14100,7 @@ class API:
             
         """
         _constructor = UploadFile.construct if skip_validation else UploadFile
-        
+
         return await self.client.request(
             _constructor(
                 file=file,
@@ -13740,38 +14110,38 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def upload_sticker_file(
             self,
             user_id: int,
-            png_sticker: InputFile,
+            sticker: InputSticker,
             *,
             request_id: str = None,
             request_timeout: int = None,
             skip_validation: bool = False
     ) -> File:
         """
-        Uploads a PNG image with a sticker; for bots only; returns the uploaded file
+        Uploads a PNG image with a sticker; returns the uploaded file
         
         Params:
             user_id (:class:`int`)
-                Sticker file owner
+                Sticker file owner; ignored for regular users
             
-            png_sticker (:class:`InputFile`)
-                PNG image with the sticker; must be up to 512 KB in size and fit in 512x512 square
+            sticker (:class:`InputSticker`)
+                Sticker file to upload
             
         """
         _constructor = UploadStickerFile.construct if skip_validation else UploadStickerFile
-        
+
         return await self.client.request(
             _constructor(
                 user_id=user_id,
-                png_sticker=png_sticker,
+                sticker=sticker,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def validate_order_info(
             self,
             chat_id: int,
@@ -13801,7 +14171,7 @@ class API:
             
         """
         _constructor = ValidateOrderInfo.construct if skip_validation else ValidateOrderInfo
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -13812,7 +14182,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def view_messages(
             self,
             chat_id: int,
@@ -13842,7 +14212,7 @@ class API:
             
         """
         _constructor = ViewMessages.construct if skip_validation else ViewMessages
-        
+
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
@@ -13853,7 +14223,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def view_trending_sticker_sets(
             self,
             sticker_set_ids: list[int],
@@ -13871,7 +14241,7 @@ class API:
             
         """
         _constructor = ViewTrendingStickerSets.construct if skip_validation else ViewTrendingStickerSets
-        
+
         return await self.client.request(
             _constructor(
                 sticker_set_ids=sticker_set_ids,
@@ -13879,7 +14249,7 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    
+
     async def write_generated_file_part(
             self,
             generation_id: int,
@@ -13905,7 +14275,7 @@ class API:
             
         """
         _constructor = WriteGeneratedFilePart.construct if skip_validation else WriteGeneratedFilePart
-        
+
         return await self.client.request(
             _constructor(
                 generation_id=generation_id,
@@ -13915,4 +14285,3 @@ class API:
             request_id=request_id,
             request_timeout=request_timeout,
         )
-    

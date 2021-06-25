@@ -47,7 +47,7 @@ class BackgroundTypePattern(BackgroundType):
             Description of the background fill
         
         intensity (:class:`int`)
-            Intensity of the pattern when it is shown above the filled background; 0-100
+            Intensity of the pattern when it is shown above the filled background; -100-100. If negative, the pattern color and the filled background colors needs to be inverted
         
         is_moving (:class:`bool`)
             True, if the background needs to be slightly moved when device is tilted

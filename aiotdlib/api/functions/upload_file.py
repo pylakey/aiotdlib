@@ -8,7 +8,8 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import FileType, InputFile
+from ..types import FileType
+from ..types import InputFile
 
 
 class UploadFile(BaseObject):

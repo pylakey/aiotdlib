@@ -10,14 +10,23 @@ from pydantic import Field
 from ..base_object import BaseObject
 
 
-class GetInviteText(BaseObject):
+class ToggleGroupCallIsMyVideoPaused(BaseObject):
     """
-    Returns the default text for invitation messages to be used as a placeholder when the current user invites friends to Telegram
+    Toggles whether current user's video is paused
     
+    Params:
+        group_call_id (:class:`int`)
+            Group call identifier
+        
+        is_my_video_paused (:class:`bool`)
+            Pass true if the current user's video is paused
+        
     """
 
-    ID: str = Field("getInviteText", alias="@type")
+    ID: str = Field("toggleGroupCallIsMyVideoPaused", alias="@type")
+    group_call_id: int
+    is_my_video_paused: bool
 
     @staticmethod
-    def read(q: dict) -> GetInviteText:
-        return GetInviteText.construct(**q)
+    def read(q: dict) -> ToggleGroupCallIsMyVideoPaused:
+        return ToggleGroupCallIsMyVideoPaused.construct(**q)

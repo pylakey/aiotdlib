@@ -19,6 +19,24 @@ class BackgroundFill(BaseObject):
     ID: str = Field("backgroundFill", alias="@type")
 
 
+class BackgroundFillFreeformGradient(BackgroundFill):
+    """
+    Describes a freeform gradient fill of a background
+    
+    Params:
+        colors (:obj:`list[int]`)
+            A list of 3 or 4 colors of the freeform gradients in the RGB24 format
+        
+    """
+
+    ID: str = Field("backgroundFillFreeformGradient", alias="@type")
+    colors: list[int]
+
+    @staticmethod
+    def read(q: dict) -> BackgroundFillFreeformGradient:
+        return BackgroundFillFreeformGradient.construct(**q)
+
+
 class BackgroundFillGradient(BackgroundFill):
     """
     Describes a gradient fill of a background

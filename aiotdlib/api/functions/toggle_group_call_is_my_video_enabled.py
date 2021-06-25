@@ -10,27 +10,23 @@ from pydantic import Field
 from ..base_object import BaseObject
 
 
-class GroupCallPayloadFingerprint(BaseObject):
+class ToggleGroupCallIsMyVideoEnabled(BaseObject):
     """
-    Describes a payload fingerprint for interaction with tgcalls
+    Toggles whether current user's video is enabled
     
     Params:
-        hash_ (:class:`str`)
-            Value of the field hash
+        group_call_id (:class:`int`)
+            Group call identifier
         
-        setup (:class:`str`)
-            Value of the field setup
-        
-        fingerprint (:class:`str`)
-            Value of the field fingerprint
+        is_my_video_enabled (:class:`bool`)
+            Pass true if the current user's video is enabled
         
     """
 
-    ID: str = Field("groupCallPayloadFingerprint", alias="@type")
-    hash_: str = Field(..., alias='hash')
-    setup: str
-    fingerprint: str
+    ID: str = Field("toggleGroupCallIsMyVideoEnabled", alias="@type")
+    group_call_id: int
+    is_my_video_enabled: bool
 
     @staticmethod
-    def read(q: dict) -> GroupCallPayloadFingerprint:
-        return GroupCallPayloadFingerprint.construct(**q)
+    def read(q: dict) -> ToggleGroupCallIsMyVideoEnabled:
+        return ToggleGroupCallIsMyVideoEnabled.construct(**q)

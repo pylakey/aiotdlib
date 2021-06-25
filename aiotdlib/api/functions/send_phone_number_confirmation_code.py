@@ -13,14 +13,14 @@ from ..types import PhoneNumberAuthenticationSettings
 
 class SendPhoneNumberConfirmationCode(BaseObject):
     """
-    Sends phone number confirmation code. Should be called when user presses "https://t.me/confirmphone?phone=*******&hash=**********" or "tg://confirmphone?phone=*******&hash=**********" link
+    Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
     
     Params:
         hash_ (:class:`str`)
-            Value of the "hash" parameter from the link
+            Hash value from the link
         
         phone_number (:class:`str`)
-            Value of the "phone" parameter from the link
+            Phone number value from the link
         
         settings (:class:`PhoneNumberAuthenticationSettings`)
             Settings for the authentication of the user's phone number

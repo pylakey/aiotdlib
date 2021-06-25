@@ -45,6 +45,7 @@ from .check_email_address_verification_code import CheckEmailAddressVerification
 from .check_phone_number_confirmation_code import CheckPhoneNumberConfirmationCode
 from .check_phone_number_verification_code import CheckPhoneNumberVerificationCode
 from .check_recovery_email_address_code import CheckRecoveryEmailAddressCode
+from .check_sticker_set_name import CheckStickerSetName
 from .clean_file_name import CleanFileName
 from .clear_all_draft_messages import ClearAllDraftMessages
 from .clear_imported_contacts import ClearImportedContacts
@@ -75,6 +76,7 @@ from .delete_chat_filter import DeleteChatFilter
 from .delete_chat_history import DeleteChatHistory
 from .delete_chat_messages_from_user import DeleteChatMessagesFromUser
 from .delete_chat_reply_markup import DeleteChatReplyMarkup
+from .delete_commands import DeleteCommands
 from .delete_file import DeleteFile
 from .delete_language_pack import DeleteLanguagePack
 from .delete_messages import DeleteMessages
@@ -107,6 +109,7 @@ from .edit_message_text import EditMessageText
 from .edit_proxy import EditProxy
 from .enable_proxy import EnableProxy
 from .end_group_call_recording import EndGroupCallRecording
+from .end_group_call_screen_sharing import EndGroupCallScreenSharing
 from .finish_file_generation import FinishFileGeneration
 from .forward_messages import ForwardMessages
 from .get_account_ttl import GetAccountTtl
@@ -114,6 +117,7 @@ from .get_active_live_location_messages import GetActiveLiveLocationMessages
 from .get_active_sessions import GetActiveSessions
 from .get_all_passport_elements import GetAllPassportElements
 from .get_application_config import GetApplicationConfig
+from .get_application_download_link import GetApplicationDownloadLink
 from .get_archived_sticker_sets import GetArchivedStickerSets
 from .get_attached_sticker_sets import GetAttachedStickerSets
 from .get_authorization_state import GetAuthorizationState
@@ -146,6 +150,7 @@ from .get_chat_scheduled_messages import GetChatScheduledMessages
 from .get_chat_statistics import GetChatStatistics
 from .get_chat_statistics_url import GetChatStatisticsUrl
 from .get_chats import GetChats
+from .get_commands import GetCommands
 from .get_connected_websites import GetConnectedWebsites
 from .get_contacts import GetContacts
 from .get_countries import GetCountries
@@ -172,7 +177,7 @@ from .get_inactive_supergroup_chats import GetInactiveSupergroupChats
 from .get_inline_game_high_scores import GetInlineGameHighScores
 from .get_inline_query_results import GetInlineQueryResults
 from .get_installed_sticker_sets import GetInstalledStickerSets
-from .get_invite_text import GetInviteText
+from .get_internal_link_type import GetInternalLinkType
 from .get_json_string import GetJsonString
 from .get_json_value import GetJsonValue
 from .get_language_pack_info import GetLanguagePackInfo
@@ -231,6 +236,7 @@ from .get_sticker_set import GetStickerSet
 from .get_stickers import GetStickers
 from .get_storage_statistics import GetStorageStatistics
 from .get_storage_statistics_fast import GetStorageStatisticsFast
+from .get_suggested_sticker_set_name import GetSuggestedStickerSetName
 from .get_suitable_discussion_chats import GetSuitableDiscussionChats
 from .get_supergroup import GetSupergroup
 from .get_supergroup_full_info import GetSupergroupFullInfo
@@ -395,6 +401,7 @@ from .set_username import SetUsername
 from .set_voice_chat_default_participant import SetVoiceChatDefaultParticipant
 from .share_phone_number import SharePhoneNumber
 from .start_group_call_recording import StartGroupCallRecording
+from .start_group_call_screen_sharing import StartGroupCallScreenSharing
 from .start_scheduled_group_call import StartScheduledGroupCall
 from .stop_poll import StopPoll
 from .synchronize_language_pack import SynchronizeLanguagePack
@@ -417,9 +424,12 @@ from .toggle_chat_default_disable_notification import ToggleChatDefaultDisableNo
 from .toggle_chat_is_marked_as_unread import ToggleChatIsMarkedAsUnread
 from .toggle_chat_is_pinned import ToggleChatIsPinned
 from .toggle_group_call_enabled_start_notification import ToggleGroupCallEnabledStartNotification
+from .toggle_group_call_is_my_video_enabled import ToggleGroupCallIsMyVideoEnabled
+from .toggle_group_call_is_my_video_paused import ToggleGroupCallIsMyVideoPaused
 from .toggle_group_call_mute_new_participants import ToggleGroupCallMuteNewParticipants
 from .toggle_group_call_participant_is_hand_raised import ToggleGroupCallParticipantIsHandRaised
 from .toggle_group_call_participant_is_muted import ToggleGroupCallParticipantIsMuted
+from .toggle_group_call_screen_sharing_is_paused import ToggleGroupCallScreenSharingIsPaused
 from .toggle_message_sender_is_blocked import ToggleMessageSenderIsBlocked
 from .toggle_supergroup_is_all_history_available import ToggleSupergroupIsAllHistoryAvailable
 from .toggle_supergroup_is_broadcast_group import ToggleSupergroupIsBroadcastGroup
@@ -477,6 +487,7 @@ __all__ = [
     "CheckPhoneNumberConfirmationCode",
     "CheckPhoneNumberVerificationCode",
     "CheckRecoveryEmailAddressCode",
+    "CheckStickerSetName",
     "CleanFileName",
     "ClearAllDraftMessages",
     "ClearImportedContacts",
@@ -507,6 +518,7 @@ __all__ = [
     "DeleteChatHistory",
     "DeleteChatMessagesFromUser",
     "DeleteChatReplyMarkup",
+    "DeleteCommands",
     "DeleteFile",
     "DeleteLanguagePack",
     "DeleteMessages",
@@ -539,6 +551,7 @@ __all__ = [
     "EditProxy",
     "EnableProxy",
     "EndGroupCallRecording",
+    "EndGroupCallScreenSharing",
     "FinishFileGeneration",
     "ForwardMessages",
     "GetAccountTtl",
@@ -546,6 +559,7 @@ __all__ = [
     "GetActiveSessions",
     "GetAllPassportElements",
     "GetApplicationConfig",
+    "GetApplicationDownloadLink",
     "GetArchivedStickerSets",
     "GetAttachedStickerSets",
     "GetAuthorizationState",
@@ -578,6 +592,7 @@ __all__ = [
     "GetChatStatistics",
     "GetChatStatisticsUrl",
     "GetChats",
+    "GetCommands",
     "GetConnectedWebsites",
     "GetContacts",
     "GetCountries",
@@ -604,7 +619,7 @@ __all__ = [
     "GetInlineGameHighScores",
     "GetInlineQueryResults",
     "GetInstalledStickerSets",
-    "GetInviteText",
+    "GetInternalLinkType",
     "GetJsonString",
     "GetJsonValue",
     "GetLanguagePackInfo",
@@ -663,6 +678,7 @@ __all__ = [
     "GetStickers",
     "GetStorageStatistics",
     "GetStorageStatisticsFast",
+    "GetSuggestedStickerSetName",
     "GetSuitableDiscussionChats",
     "GetSupergroup",
     "GetSupergroupFullInfo",
@@ -827,6 +843,7 @@ __all__ = [
     "SetVoiceChatDefaultParticipant",
     "SharePhoneNumber",
     "StartGroupCallRecording",
+    "StartGroupCallScreenSharing",
     "StartScheduledGroupCall",
     "StopPoll",
     "SynchronizeLanguagePack",
@@ -849,9 +866,12 @@ __all__ = [
     "ToggleChatIsMarkedAsUnread",
     "ToggleChatIsPinned",
     "ToggleGroupCallEnabledStartNotification",
+    "ToggleGroupCallIsMyVideoEnabled",
+    "ToggleGroupCallIsMyVideoPaused",
     "ToggleGroupCallMuteNewParticipants",
     "ToggleGroupCallParticipantIsHandRaised",
     "ToggleGroupCallParticipantIsMuted",
+    "ToggleGroupCallScreenSharingIsPaused",
     "ToggleMessageSenderIsBlocked",
     "ToggleSupergroupIsAllHistoryAvailable",
     "ToggleSupergroupIsBroadcastGroup",

@@ -16,7 +16,7 @@ class JoinChatByInviteLink(BaseObject):
     
     Params:
         invite_link (:class:`str`)
-            Invite link to import; must have URL "t.me", "telegram.me", or "telegram.dog" and query beginning with "/joinchat/" or "/+"
+            Invite link to use
         
     """
 

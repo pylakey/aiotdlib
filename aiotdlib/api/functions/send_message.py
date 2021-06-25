@@ -8,7 +8,9 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import InputMessageContent, MessageSendOptions, ReplyMarkup
+from ..types import InputMessageContent
+from ..types import MessageSendOptions
+from ..types import ReplyMarkup
 
 
 class SendMessage(BaseObject):

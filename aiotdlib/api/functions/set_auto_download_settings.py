@@ -8,7 +8,8 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import AutoDownloadSettings, NetworkType
+from ..types import AutoDownloadSettings
+from ..types import NetworkType
 
 
 class SetAutoDownloadSettings(BaseObject):
@@ -20,7 +21,7 @@ class SetAutoDownloadSettings(BaseObject):
             New user auto-download settings
         
         type_ (:class:`NetworkType`)
-            Type of the network for which the new settings are applied
+            Type of the network for which the new settings are relevant
         
     """
 

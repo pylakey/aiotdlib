@@ -37,6 +37,7 @@ from .auto_download_settings_presets import AutoDownloadSettingsPresets
 from .background import Background
 from .background_fill import (
     BackgroundFill,
+    BackgroundFillFreeformGradient,
     BackgroundFillGradient,
     BackgroundFillSolid,
 )
@@ -52,7 +53,17 @@ from .bank_card_info import BankCardInfo
 from .basic_group import BasicGroup
 from .basic_group_full_info import BasicGroupFullInfo
 from .bot_command import BotCommand
-from .bot_info import BotInfo
+from .bot_command_scope import (
+    BotCommandScope,
+    BotCommandScopeAllChatAdministrators,
+    BotCommandScopeAllGroupChats,
+    BotCommandScopeAllPrivateChats,
+    BotCommandScopeChat,
+    BotCommandScopeChatAdministrators,
+    BotCommandScopeChatMember,
+    BotCommandScopeDefault,
+)
+from .bot_commands import BotCommands
 from .call import Call
 from .call_discard_reason import (
     CallDiscardReason,
@@ -258,6 +269,12 @@ from .check_chat_username_result import (
     CheckChatUsernameResultUsernameInvalid,
     CheckChatUsernameResultUsernameOccupied,
 )
+from .check_sticker_set_name_result import (
+    CheckStickerSetNameResult,
+    CheckStickerSetNameResultNameInvalid,
+    CheckStickerSetNameResultNameOccupied,
+    CheckStickerSetNameResultOk,
+)
 from .closed_vector_path import ClosedVectorPath
 from .connected_website import ConnectedWebsite
 from .connected_websites import ConnectedWebsites
@@ -333,16 +350,10 @@ from .game_high_score import GameHighScore
 from .game_high_scores import GameHighScores
 from .group_call import GroupCall
 from .group_call_id import GroupCallId
-from .group_call_join_response import (
-    GroupCallJoinResponse,
-    GroupCallJoinResponseStream,
-    GroupCallJoinResponseWebrtc,
-)
-from .group_call_join_response_candidate import GroupCallJoinResponseCandidate
 from .group_call_participant import GroupCallParticipant
-from .group_call_payload import GroupCallPayload
-from .group_call_payload_fingerprint import GroupCallPayloadFingerprint
+from .group_call_participant_video_info import GroupCallParticipantVideoInfo
 from .group_call_recent_speaker import GroupCallRecentSpeaker
+from .group_call_video_source_group import GroupCallVideoSourceGroup
 from .hashtags import Hashtags
 from .http_url import HttpUrl
 from .identity_document import IdentityDocument
@@ -416,10 +427,10 @@ from .input_inline_query_result import (
     InputInlineQueryResultVoiceNote,
 )
 from .input_message_content import (
+    InputMessageContent,
     InputMessageAnimation,
     InputMessageAudio,
     InputMessageContact,
-    InputMessageContent,
     InputMessageDice,
     InputMessageDocument,
     InputMessageForwarded,
@@ -471,9 +482,34 @@ from .input_sticker import (
     InputStickerStatic,
 )
 from .input_thumbnail import InputThumbnail
+from .internal_link_type import (
+    InternalLinkType,
+    InternalLinkTypeActiveSessions,
+    InternalLinkTypeAuthenticationCode,
+    InternalLinkTypeBackground,
+    InternalLinkTypeBotStart,
+    InternalLinkTypeBotStartInGroup,
+    InternalLinkTypeChangePhoneNumber,
+    InternalLinkTypeChatInvite,
+    InternalLinkTypeFilterSettings,
+    InternalLinkTypeGame,
+    InternalLinkTypeLanguagePack,
+    InternalLinkTypeMessage,
+    InternalLinkTypeMessageDraft,
+    InternalLinkTypePassportDataRequest,
+    InternalLinkTypePhoneNumberConfirmation,
+    InternalLinkTypeProxy,
+    InternalLinkTypePublicChat,
+    InternalLinkTypeQrCodeAuthentication,
+    InternalLinkTypeSettings,
+    InternalLinkTypeStickerSet,
+    InternalLinkTypeTheme,
+    InternalLinkTypeThemeSettings,
+    InternalLinkTypeUnknownDeepLink,
+    InternalLinkTypeVoiceChat,
+)
 from .invoice import Invoice
 from .json_value import (
-    JsonObjectMember,
     JsonValue,
     JsonValueArray,
     JsonValueBoolean,
@@ -481,6 +517,7 @@ from .json_value import (
     JsonValueNumber,
     JsonValueObject,
     JsonValueString,
+    JsonObjectMember,
 )
 from .keyboard_button import KeyboardButton
 from .keyboard_button_type import (
@@ -526,6 +563,7 @@ from .mask_point import (
 from .mask_position import MaskPosition
 from .message import Message
 from .message_content import (
+    MessageContent,
     MessageAnimation,
     MessageAudio,
     MessageBasicGroupChatCreate,
@@ -541,7 +579,6 @@ from .message_content import (
     MessageChatUpgradeTo,
     MessageContact,
     MessageContactRegistered,
-    MessageContent,
     MessageCustomServiceAction,
     MessageDice,
     MessageDocument,
@@ -678,7 +715,6 @@ from .page_block import (
     PageBlockHeader,
     PageBlockKicker,
     PageBlockList,
-    PageBlockListItem,
     PageBlockMap,
     PageBlockParagraph,
     PageBlockPhoto,
@@ -692,6 +728,7 @@ from .page_block import (
     PageBlockTitle,
     PageBlockVideo,
     PageBlockVoiceNote,
+    PageBlockListItem,
 )
 from .page_block_caption import PageBlockCaption
 from .page_block_horizontal_alignment import (
@@ -846,12 +883,12 @@ from .rich_text import (
     RichTextPhoneNumber,
     RichTextPlain,
     RichTextReference,
-    RichTexts,
     RichTextStrikethrough,
     RichTextSubscript,
     RichTextSuperscript,
     RichTextUnderline,
     RichTextUrl,
+    RichTexts,
 )
 from .saved_credentials import SavedCredentials
 from .scope_notification_settings import ScopeNotificationSettings
@@ -905,6 +942,7 @@ from .storage_statistics_by_file_type import StorageStatisticsByFileType
 from .storage_statistics_fast import StorageStatisticsFast
 from .suggested_action import (
     SuggestedAction,
+    SuggestedActionCheckPassword,
     SuggestedActionCheckPhoneNumber,
     SuggestedActionConvertToBroadcastGroup,
     SuggestedActionEnableArchiveAndMuteNewChats,
@@ -1041,8 +1079,8 @@ from .update import (
     UpdateMessageSendAcknowledged,
     UpdateMessageSendFailed,
     UpdateMessageSendSucceeded,
-    UpdateNewCallbackQuery,
     UpdateNewCallSignalingData,
+    UpdateNewCallbackQuery,
     UpdateNewChat,
     UpdateNewChosenInlineResult,
     UpdateNewCustomEvent,
@@ -1075,8 +1113,8 @@ from .update import (
     UpdateUserChatAction,
     UpdateUserFullInfo,
     UpdateUserPrivacySettingRules,
-    UpdateUsersNearby,
     UpdateUserStatus,
+    UpdateUsersNearby,
 )
 from .updates import Updates
 from .user import User
@@ -1164,6 +1202,7 @@ __all__ = [
     "AutoDownloadSettingsPresets",
     "Background",
     "BackgroundFill",
+    "BackgroundFillFreeformGradient",
     "BackgroundFillGradient",
     "BackgroundFillSolid",
     "BackgroundType",
@@ -1176,7 +1215,15 @@ __all__ = [
     "BasicGroup",
     "BasicGroupFullInfo",
     "BotCommand",
-    "BotInfo",
+    "BotCommandScope",
+    "BotCommandScopeAllChatAdministrators",
+    "BotCommandScopeAllGroupChats",
+    "BotCommandScopeAllPrivateChats",
+    "BotCommandScopeChat",
+    "BotCommandScopeChatAdministrators",
+    "BotCommandScopeChatMember",
+    "BotCommandScopeDefault",
+    "BotCommands",
     "Call",
     "CallDiscardReason",
     "CallDiscardReasonDeclined",
@@ -1348,6 +1395,10 @@ __all__ = [
     "CheckChatUsernameResultPublicGroupsUnavailable",
     "CheckChatUsernameResultUsernameInvalid",
     "CheckChatUsernameResultUsernameOccupied",
+    "CheckStickerSetNameResult",
+    "CheckStickerSetNameResultNameInvalid",
+    "CheckStickerSetNameResultNameOccupied",
+    "CheckStickerSetNameResultOk",
     "ClosedVectorPath",
     "ConnectedWebsite",
     "ConnectedWebsites",
@@ -1415,14 +1466,10 @@ __all__ = [
     "GameHighScores",
     "GroupCall",
     "GroupCallId",
-    "GroupCallJoinResponse",
-    "GroupCallJoinResponseStream",
-    "GroupCallJoinResponseWebrtc",
-    "GroupCallJoinResponseCandidate",
     "GroupCallParticipant",
-    "GroupCallPayload",
-    "GroupCallPayloadFingerprint",
+    "GroupCallParticipantVideoInfo",
     "GroupCallRecentSpeaker",
+    "GroupCallVideoSourceGroup",
     "Hashtags",
     "HttpUrl",
     "IdentityDocument",
@@ -1529,6 +1576,30 @@ __all__ = [
     "InputStickerAnimated",
     "InputStickerStatic",
     "InputThumbnail",
+    "InternalLinkType",
+    "InternalLinkTypeActiveSessions",
+    "InternalLinkTypeAuthenticationCode",
+    "InternalLinkTypeBackground",
+    "InternalLinkTypeBotStart",
+    "InternalLinkTypeBotStartInGroup",
+    "InternalLinkTypeChangePhoneNumber",
+    "InternalLinkTypeChatInvite",
+    "InternalLinkTypeFilterSettings",
+    "InternalLinkTypeGame",
+    "InternalLinkTypeLanguagePack",
+    "InternalLinkTypeMessage",
+    "InternalLinkTypeMessageDraft",
+    "InternalLinkTypePassportDataRequest",
+    "InternalLinkTypePhoneNumberConfirmation",
+    "InternalLinkTypeProxy",
+    "InternalLinkTypePublicChat",
+    "InternalLinkTypeQrCodeAuthentication",
+    "InternalLinkTypeSettings",
+    "InternalLinkTypeStickerSet",
+    "InternalLinkTypeTheme",
+    "InternalLinkTypeThemeSettings",
+    "InternalLinkTypeUnknownDeepLink",
+    "InternalLinkTypeVoiceChat",
     "Invoice",
     "JsonValue",
     "JsonValueArray",
@@ -1896,6 +1967,7 @@ __all__ = [
     "StorageStatisticsByFileType",
     "StorageStatisticsFast",
     "SuggestedAction",
+    "SuggestedActionCheckPassword",
     "SuggestedActionCheckPhoneNumber",
     "SuggestedActionConvertToBroadcastGroup",
     "SuggestedActionEnableArchiveAndMuteNewChats",

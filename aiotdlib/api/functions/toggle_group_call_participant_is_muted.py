@@ -13,7 +13,7 @@ from ..types import MessageSender
 
 class ToggleGroupCallParticipantIsMuted(BaseObject):
     """
-    Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themself
+    Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
     
     Params:
         group_call_id (:class:`int`)

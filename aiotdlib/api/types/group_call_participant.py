@@ -5,8 +5,11 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
+from .group_call_participant_video_info import GroupCallParticipantVideoInfo
 from .message_sender import MessageSender
 from ..base_object import BaseObject
 
@@ -19,8 +22,17 @@ class GroupCallParticipant(BaseObject):
         participant_id (:class:`MessageSender`)
             Identifier of the group call participant
         
-        source (:class:`int`)
-            User's synchronization source
+        audio_source_id (:class:`int`)
+            User's audio channel synchronization source identifier
+        
+        can_enable_video (:class:`bool`)
+            True, if the user can broadcast video or share screen
+        
+        video_info (:class:`GroupCallParticipantVideoInfo`)
+            Information about user's video channel; may be null if there is no active video
+        
+        screen_sharing_video_info (:class:`GroupCallParticipantVideoInfo`)
+            Information about user's screen sharing video channel; may be null if there is no active screen sharing video
         
         bio (:class:`str`)
             The participant user's bio or the participant chat's description
@@ -38,7 +50,7 @@ class GroupCallParticipant(BaseObject):
             True, if the current user can mute the participant for all other group call participants
         
         can_be_unmuted_for_all_users (:class:`bool`)
-            True, if the current user can allow the participant to unmute themself or unmute the participant (if the participant is the current user)
+            True, if the current user can allow the participant to unmute themselves or unmute the participant (if the participant is the current user)
         
         can_be_muted_for_current_user (:class:`bool`)
             True, if the current user can mute the participant only for self
@@ -53,7 +65,7 @@ class GroupCallParticipant(BaseObject):
             True, if the participant is muted for the current user
         
         can_unmute_self (:class:`bool`)
-            True, if the participant is muted for all users, but can unmute themself
+            True, if the participant is muted for all users, but can unmute themselves
         
         volume_level (:class:`int`)
             Participant's volume level; 1-20000 in hundreds of percents
@@ -65,7 +77,10 @@ class GroupCallParticipant(BaseObject):
 
     ID: str = Field("groupCallParticipant", alias="@type")
     participant_id: MessageSender
-    source: int
+    audio_source_id: int
+    can_enable_video: bool
+    video_info: typing.Optional[GroupCallParticipantVideoInfo] = None
+    screen_sharing_video_info: typing.Optional[GroupCallParticipantVideoInfo] = None
     bio: str
     is_current_user: bool
     is_speaking: bool

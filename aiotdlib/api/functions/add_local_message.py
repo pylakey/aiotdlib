@@ -8,7 +8,8 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import InputMessageContent, MessageSender
+from ..types import InputMessageContent
+from ..types import MessageSender
 
 
 class AddLocalMessage(BaseObject):

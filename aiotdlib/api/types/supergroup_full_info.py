@@ -9,6 +9,7 @@ import typing
 
 from pydantic import Field
 
+from .bot_commands import BotCommands
 from .chat_invite_link import ChatInviteLink
 from .chat_location import ChatLocation
 from .chat_photo import ChatPhoto
@@ -74,6 +75,9 @@ class SupergroupFullInfo(BaseObject):
         invite_link (:class:`ChatInviteLink`)
             Primary invite link for this chat; may be null. For chat administrators with can_invite_users right only
         
+        bot_commands (:obj:`list[BotCommands]`)
+            List of commands of bots in the group
+        
         upgraded_from_basic_group_id (:class:`int`)
             Identifier of the basic group from which supergroup was upgraded; 0 if none
         
@@ -101,6 +105,7 @@ class SupergroupFullInfo(BaseObject):
     sticker_set_id: int
     location: typing.Optional[ChatLocation] = None
     invite_link: typing.Optional[ChatInviteLink] = None
+    bot_commands: list[BotCommands]
     upgraded_from_basic_group_id: int
     upgraded_from_max_message_id: int
 

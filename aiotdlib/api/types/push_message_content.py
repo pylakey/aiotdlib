@@ -102,7 +102,7 @@ class PushMessageContentChatAddMembers(PushMessageContent):
             True, if the current user was added to the group
         
         is_returned (:class:`bool`)
-            True, if the user has returned to the group themself
+            True, if the user has returned to the group themselves
         
     """
 
@@ -159,7 +159,7 @@ class PushMessageContentChatDeleteMember(PushMessageContent):
             True, if the current user was deleted from the group
         
         is_left (:class:`bool`)
-            True, if the user has left the group themself
+            True, if the user has left the group themselves
         
     """
 

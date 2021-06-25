@@ -8,7 +8,8 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import FormattedText, ReplyMarkup
+from ..types import FormattedText
+from ..types import ReplyMarkup
 
 
 class EditMessageCaption(BaseObject):

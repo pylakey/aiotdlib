@@ -49,6 +49,15 @@ class GroupCall(BaseObject):
         recent_speakers (:obj:`list[GroupCallRecentSpeaker]`)
             Recently speaking users in the group call
         
+        is_my_video_enabled (:class:`bool`)
+            True, if the current user's video is enabled
+        
+        is_my_video_paused (:class:`bool`)
+            True, if the current user's video is paused
+        
+        can_start_video (:class:`bool`)
+            True, if video can be enabled by group call participants. This flag is generally useless after the user has already joined the group call
+        
         mute_new_participants (:class:`bool`)
             True, if only group call administrators can unmute new participants
         
@@ -75,6 +84,9 @@ class GroupCall(BaseObject):
     participant_count: int
     loaded_all_participants: bool
     recent_speakers: list[GroupCallRecentSpeaker]
+    is_my_video_enabled: bool
+    is_my_video_paused: bool
+    can_start_video: bool
     mute_new_participants: bool
     can_change_mute_new_participants: bool
     record_duration: int

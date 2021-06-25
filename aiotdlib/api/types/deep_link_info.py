@@ -13,7 +13,7 @@ from ..base_object import BaseObject
 
 class DeepLinkInfo(BaseObject):
     """
-    Contains information about a tg:// deep link
+    Contains information about a tg: deep link
     
     Params:
         text (:class:`FormattedText`)

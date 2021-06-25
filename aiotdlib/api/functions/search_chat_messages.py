@@ -8,7 +8,8 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import MessageSender, SearchMessagesFilter
+from ..types import MessageSender
+from ..types import SearchMessagesFilter
 
 
 class SearchChatMessages(BaseObject):

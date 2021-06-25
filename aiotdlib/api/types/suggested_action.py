@@ -19,9 +19,22 @@ class SuggestedAction(BaseObject):
     ID: str = Field("suggestedAction", alias="@type")
 
 
+class SuggestedActionCheckPassword(SuggestedAction):
+    """
+    Suggests the user to check whether 2-step verification password is still remembered
+    
+    """
+
+    ID: str = Field("suggestedActionCheckPassword", alias="@type")
+
+    @staticmethod
+    def read(q: dict) -> SuggestedActionCheckPassword:
+        return SuggestedActionCheckPassword.construct(**q)
+
+
 class SuggestedActionCheckPhoneNumber(SuggestedAction):
     """
-    Suggests the user to check authorization phone number and change the phone number if it is inaccessible
+    Suggests the user to check whether authorization phone number is correct and change the phone number if it is inaccessible
     
     """
 

@@ -8,7 +8,8 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import NotificationSettingsScope, ScopeNotificationSettings
+from ..types import NotificationSettingsScope
+from ..types import ScopeNotificationSettings
 
 
 class SetScopeNotificationSettings(BaseObject):

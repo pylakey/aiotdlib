@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .inline_keyboard_button import InlineKeyboardButton
@@ -29,10 +31,14 @@ class ReplyMarkupForceReply(ReplyMarkup):
         is_personal (:class:`bool`)
             True, if a forced reply must automatically be shown to the current user. For outgoing messages, specify true to show the forced reply only for the mentioned users and for the target user of a reply
         
+        input_field_placeholder (:class:`str`)
+            If non-empty, the placeholder to be shown in the input field when the reply is active; 0-64 characters
+        
     """
 
     ID: str = Field("replyMarkupForceReply", alias="@type")
     is_personal: bool
+    input_field_placeholder: typing.Optional[str] = Field(None, max_length=64)
 
     @staticmethod
     def read(q: dict) -> ReplyMarkupForceReply:
@@ -92,6 +98,9 @@ class ReplyMarkupShowKeyboard(ReplyMarkup):
         is_personal (:class:`bool`)
             True, if the keyboard must automatically be shown to the current user. For outgoing messages, specify true to show the keyboard only for the mentioned users and for the target user of a reply
         
+        input_field_placeholder (:class:`str`)
+            If non-empty, the placeholder to be shown in the input field when the keyboard is active; 0-64 characters
+        
     """
 
     ID: str = Field("replyMarkupShowKeyboard", alias="@type")
@@ -99,6 +108,7 @@ class ReplyMarkupShowKeyboard(ReplyMarkup):
     resize_keyboard: bool
     one_time: bool
     is_personal: bool
+    input_field_placeholder: typing.Optional[str] = Field(None, max_length=64)
 
     @staticmethod
     def read(q: dict) -> ReplyMarkupShowKeyboard:

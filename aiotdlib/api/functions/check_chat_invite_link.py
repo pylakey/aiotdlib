@@ -16,7 +16,7 @@ class CheckChatInviteLink(BaseObject):
     
     Params:
         invite_link (:class:`str`)
-            Invite link to be checked; must have URL "t.me", "telegram.me", or "telegram.dog" and query beginning with "/joinchat/" or "/+"
+            Invite link to be checked
         
     """
 

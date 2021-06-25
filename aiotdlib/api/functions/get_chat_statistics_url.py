@@ -19,7 +19,7 @@ class GetChatStatisticsUrl(BaseObject):
             Chat identifier
         
         parameters (:class:`str`)
-            Parameters from "tg://statsrefresh?params=******" link
+            Parameters for the request
         
         is_dark (:class:`bool`)
             Pass true if a URL with the dark theme must be returned

@@ -10,7 +10,8 @@ import typing
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import Location, ReplyMarkup
+from ..types import Location
+from ..types import ReplyMarkup
 
 
 class EditMessageLiveLocation(BaseObject):

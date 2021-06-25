@@ -7,27 +7,22 @@ from __future__ import annotations
 
 from pydantic import Field
 
-from .bot_command import BotCommand
 from ..base_object import BaseObject
 
 
-class BotInfo(BaseObject):
+class GetVoiceChatAvailableParticipants(BaseObject):
     """
-    Provides information about a bot and its supported commands
+    Returns list of participant identifiers, which can be used to join voice chats in a chat
     
     Params:
-        param_description (:class:`str`)
-            Long description shown on the user info page
-        
-        commands (:obj:`list[BotCommand]`)
-            A list of commands supported by the bot
+        chat_id (:class:`int`)
+            Chat identifier
         
     """
 
-    ID: str = Field("botInfo", alias="@type")
-    param_description: str
-    commands: list[BotCommand]
+    ID: str = Field("getVoiceChatAvailableParticipants", alias="@type")
+    chat_id: int
 
     @staticmethod
-    def read(q: dict) -> BotInfo:
-        return BotInfo.construct(**q)
+    def read(q: dict) -> GetVoiceChatAvailableParticipants:
+        return GetVoiceChatAvailableParticipants.construct(**q)
