@@ -135,6 +135,7 @@ class API:
         CAN_TRANSFER_OWNERSHIP_RESULT_PASSWORD_TOO_FRESH = 'canTransferOwnershipResultPasswordTooFresh'
         CAN_TRANSFER_OWNERSHIP_RESULT_SESSION_TOO_FRESH = 'canTransferOwnershipResultSessionTooFresh'
         CANCEL_DOWNLOAD_FILE = 'cancelDownloadFile'
+        CANCEL_PASSWORD_RESET = 'cancelPasswordReset'
         CANCEL_UPLOAD_FILE = 'cancelUploadFile'
         CHANGE_IMPORTED_CONTACTS = 'changeImportedContacts'
         CHANGE_PHONE_NUMBER = 'changePhoneNumber'
@@ -267,6 +268,7 @@ class API:
         CHECK_AUTHENTICATION_BOT_TOKEN = 'checkAuthenticationBotToken'
         CHECK_AUTHENTICATION_CODE = 'checkAuthenticationCode'
         CHECK_AUTHENTICATION_PASSWORD = 'checkAuthenticationPassword'
+        CHECK_AUTHENTICATION_PASSWORD_RECOVERY_CODE = 'checkAuthenticationPasswordRecoveryCode'
         CHECK_CHANGE_PHONE_NUMBER_CODE = 'checkChangePhoneNumberCode'
         CHECK_CHAT_INVITE_LINK = 'checkChatInviteLink'
         CHECK_CHAT_USERNAME = 'checkChatUsername'
@@ -279,6 +281,7 @@ class API:
         CHECK_CREATED_PUBLIC_CHATS_LIMIT = 'checkCreatedPublicChatsLimit'
         CHECK_DATABASE_ENCRYPTION_KEY = 'checkDatabaseEncryptionKey'
         CHECK_EMAIL_ADDRESS_VERIFICATION_CODE = 'checkEmailAddressVerificationCode'
+        CHECK_PASSWORD_RECOVERY_CODE = 'checkPasswordRecoveryCode'
         CHECK_PHONE_NUMBER_CONFIRMATION_CODE = 'checkPhoneNumberConfirmationCode'
         CHECK_PHONE_NUMBER_VERIFICATION_CODE = 'checkPhoneNumberVerificationCode'
         CHECK_RECOVERY_EMAIL_ADDRESS_CODE = 'checkRecoveryEmailAddressCode'
@@ -1054,6 +1057,11 @@ class API:
         RESET_ALL_NOTIFICATION_SETTINGS = 'resetAllNotificationSettings'
         RESET_BACKGROUNDS = 'resetBackgrounds'
         RESET_NETWORK_STATISTICS = 'resetNetworkStatistics'
+        RESET_PASSWORD = 'resetPassword'
+        RESET_PASSWORD_RESULT = 'resetPasswordResult'
+        RESET_PASSWORD_RESULT_DECLINED = 'resetPasswordResultDeclined'
+        RESET_PASSWORD_RESULT_OK = 'resetPasswordResultOk'
+        RESET_PASSWORD_RESULT_PENDING = 'resetPasswordResultPending'
         REVOKE_CHAT_INVITE_LINK = 'revokeChatInviteLink'
         REVOKE_GROUP_CALL_INVITE_LINK = 'revokeGroupCallInviteLink'
         RICH_TEXT = 'richText'
@@ -2286,6 +2294,17 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def cancel_password_reset(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
+        """
+        Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0
+        
+        """
+        return await self.client.request(
+            CancelPasswordReset(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def cancel_upload_file(
             self,
             file_id: int,
@@ -2483,6 +2502,32 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def check_authentication_password_recovery_code(
+            self,
+            recovery_code: str,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Checks whether a password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
+        
+        Params:
+            recovery_code (:class:`str`)
+                Recovery code to check
+            
+        """
+        _constructor = CheckAuthenticationPasswordRecoveryCode.construct if skip_validation else CheckAuthenticationPasswordRecoveryCode
+
+        return await self.client.request(
+            _constructor(
+                recovery_code=recovery_code,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def check_change_phone_number_code(
             self,
             code: str,
@@ -2639,6 +2684,32 @@ class API:
         return await self.client.request(
             _constructor(
                 code=code,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def check_password_recovery_code(
+            self,
+            recovery_code: str,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Checks whether a 2-step verification password recovery code sent to an email address is valid
+        
+        Params:
+            recovery_code (:class:`str`)
+                Recovery code to check
+            
+        """
+        _constructor = CheckPasswordRecoveryCode.construct if skip_validation else CheckPasswordRecoveryCode
+
+        return await self.client.request(
+            _constructor(
+                recovery_code=recovery_code,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -9172,6 +9243,8 @@ class API:
     async def recover_authentication_password(
             self,
             recovery_code: str,
+            new_password: str,
+            new_hint: str,
             *,
             request_id: str = None,
             request_timeout: int = None,
@@ -9184,12 +9257,20 @@ class API:
             recovery_code (:class:`str`)
                 Recovery code to check
             
+            new_password (:class:`str`)
+                New password of the user; may be empty to remove the password
+            
+            new_hint (:class:`str`)
+                New password hint; may be empty
+            
         """
         _constructor = RecoverAuthenticationPassword.construct if skip_validation else RecoverAuthenticationPassword
 
         return await self.client.request(
             _constructor(
                 recovery_code=recovery_code,
+                new_password=new_password,
+                new_hint=new_hint,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -9198,17 +9279,25 @@ class API:
     async def recover_password(
             self,
             recovery_code: str,
+            new_password: str,
+            new_hint: str,
             *,
             request_id: str = None,
             request_timeout: int = None,
             skip_validation: bool = False
     ) -> PasswordState:
         """
-        Recovers the password using a recovery code sent to an email address that was previously set up
+        Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
         
         Params:
             recovery_code (:class:`str`)
                 Recovery code to check
+            
+            new_password (:class:`str`)
+                New password of the user; may be empty to remove the password
+            
+            new_hint (:class:`str`)
+                New password hint; may be empty
             
         """
         _constructor = RecoverPassword.construct if skip_validation else RecoverPassword
@@ -9216,6 +9305,8 @@ class API:
         return await self.client.request(
             _constructor(
                 recovery_code=recovery_code,
+                new_password=new_password,
+                new_hint=new_hint,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -9857,7 +9948,7 @@ class API:
     async def request_password_recovery(self, *, request_id: str = None,
                                         request_timeout: int = None) -> EmailAddressAuthenticationCodeInfo:
         """
-        Requests to send a password recovery code to an email address that was previously set up
+        Requests to send a 2-step verification password recovery code to an email address that was previously set up
         
         """
         return await self.client.request(
@@ -9894,7 +9985,7 @@ class API:
 
     async def resend_authentication_code(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
-        Re-sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode and the next_code_type of the result is not null
+        Re-sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed
         
         """
         return await self.client.request(
@@ -9906,7 +9997,7 @@ class API:
     async def resend_change_phone_number_code(self, *, request_id: str = None,
                                               request_timeout: int = None) -> AuthenticationCodeInfo:
         """
-        Re-sends the authentication code sent to confirm a new phone number for the user. Works only if the previously received authenticationCodeInfo next_code_type was not null
+        Re-sends the authentication code sent to confirm a new phone number for the user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
         
         """
         return await self.client.request(
@@ -10023,6 +10114,17 @@ class API:
         """
         return await self.client.request(
             ResetNetworkStatistics(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def reset_password(self, *, request_id: str = None, request_timeout: int = None) -> ResetPasswordResult:
+        """
+        Removes 2-step verification password without previous password and access to recovery email address. The password can't be reset immediately and the request needs to be repeated after the specified time
+        
+        """
+        return await self.client.request(
+            ResetPassword(),
             request_id=request_id,
             request_timeout=request_timeout,
         )

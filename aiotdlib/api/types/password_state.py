@@ -33,6 +33,9 @@ class PasswordState(BaseObject):
         recovery_email_address_code_info (:class:`EmailAddressAuthenticationCodeInfo`)
             Information about the recovery email address to which the confirmation email was sent; may be null
         
+        pending_reset_date (:class:`int`)
+            If not 0, point in time (Unix timestamp) after which the password can be reset immediately using resetPassword
+        
     """
 
     ID: str = Field("passwordState", alias="@type")
@@ -41,6 +44,7 @@ class PasswordState(BaseObject):
     has_recovery_email_address: bool
     has_passport_data: bool
     recovery_email_address_code_info: typing.Optional[EmailAddressAuthenticationCodeInfo] = None
+    pending_reset_date: int
 
     @staticmethod
     def read(q: dict) -> PasswordState:

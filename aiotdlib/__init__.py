@@ -1,4 +1,4 @@
-__version__ = "0.6.0"
+__version__ = "0.7.0"
 
 from .client import Client, ClientProxySettings, ClientProxyType
 from .filters import FilterCallable

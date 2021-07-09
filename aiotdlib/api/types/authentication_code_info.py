@@ -28,7 +28,7 @@ class AuthenticationCodeInfo(BaseObject):
             Describes the way the next code will be sent to the user; may be null
         
         timeout (:class:`int`)
-            Timeout before the code should be re-sent, in seconds
+            Timeout before the code can be re-sent, in seconds
         
     """
 

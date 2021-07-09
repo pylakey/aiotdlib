@@ -29,6 +29,7 @@ from .ban_chat_member import BanChatMember
 from .block_message_sender_from_replies import BlockMessageSenderFromReplies
 from .can_transfer_ownership import CanTransferOwnership
 from .cancel_download_file import CancelDownloadFile
+from .cancel_password_reset import CancelPasswordReset
 from .cancel_upload_file import CancelUploadFile
 from .change_imported_contacts import ChangeImportedContacts
 from .change_phone_number import ChangePhoneNumber
@@ -36,12 +37,14 @@ from .change_sticker_set import ChangeStickerSet
 from .check_authentication_bot_token import CheckAuthenticationBotToken
 from .check_authentication_code import CheckAuthenticationCode
 from .check_authentication_password import CheckAuthenticationPassword
+from .check_authentication_password_recovery_code import CheckAuthenticationPasswordRecoveryCode
 from .check_change_phone_number_code import CheckChangePhoneNumberCode
 from .check_chat_invite_link import CheckChatInviteLink
 from .check_chat_username import CheckChatUsername
 from .check_created_public_chats_limit import CheckCreatedPublicChatsLimit
 from .check_database_encryption_key import CheckDatabaseEncryptionKey
 from .check_email_address_verification_code import CheckEmailAddressVerificationCode
+from .check_password_recovery_code import CheckPasswordRecoveryCode
 from .check_phone_number_confirmation_code import CheckPhoneNumberConfirmationCode
 from .check_phone_number_verification_code import CheckPhoneNumberVerificationCode
 from .check_recovery_email_address_code import CheckRecoveryEmailAddressCode
@@ -310,6 +313,7 @@ from .resend_recovery_email_address_code import ResendRecoveryEmailAddressCode
 from .reset_all_notification_settings import ResetAllNotificationSettings
 from .reset_backgrounds import ResetBackgrounds
 from .reset_network_statistics import ResetNetworkStatistics
+from .reset_password import ResetPassword
 from .revoke_chat_invite_link import RevokeChatInviteLink
 from .revoke_group_call_invite_link import RevokeGroupCallInviteLink
 from .save_application_log_event import SaveApplicationLogEvent
@@ -471,6 +475,7 @@ __all__ = [
     "BlockMessageSenderFromReplies",
     "CanTransferOwnership",
     "CancelDownloadFile",
+    "CancelPasswordReset",
     "CancelUploadFile",
     "ChangeImportedContacts",
     "ChangePhoneNumber",
@@ -478,12 +483,14 @@ __all__ = [
     "CheckAuthenticationBotToken",
     "CheckAuthenticationCode",
     "CheckAuthenticationPassword",
+    "CheckAuthenticationPasswordRecoveryCode",
     "CheckChangePhoneNumberCode",
     "CheckChatInviteLink",
     "CheckChatUsername",
     "CheckCreatedPublicChatsLimit",
     "CheckDatabaseEncryptionKey",
     "CheckEmailAddressVerificationCode",
+    "CheckPasswordRecoveryCode",
     "CheckPhoneNumberConfirmationCode",
     "CheckPhoneNumberVerificationCode",
     "CheckRecoveryEmailAddressCode",
@@ -752,6 +759,7 @@ __all__ = [
     "ResetAllNotificationSettings",
     "ResetBackgrounds",
     "ResetNetworkStatistics",
+    "ResetPassword",
     "RevokeChatInviteLink",
     "RevokeGroupCallInviteLink",
     "SaveApplicationLogEvent",

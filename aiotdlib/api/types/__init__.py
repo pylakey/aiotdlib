@@ -870,6 +870,12 @@ from .reply_markup import (
     ReplyMarkupRemoveKeyboard,
     ReplyMarkupShowKeyboard,
 )
+from .reset_password_result import (
+    ResetPasswordResult,
+    ResetPasswordResultDeclined,
+    ResetPasswordResultOk,
+    ResetPasswordResultPending,
+)
 from .rich_text import (
     RichText,
     RichTextAnchor,
@@ -1904,6 +1910,10 @@ __all__ = [
     "ReplyMarkupInlineKeyboard",
     "ReplyMarkupRemoveKeyboard",
     "ReplyMarkupShowKeyboard",
+    "ResetPasswordResult",
+    "ResetPasswordResultDeclined",
+    "ResetPasswordResultOk",
+    "ResetPasswordResultPending",
     "RichText",
     "RichTextAnchor",
     "RichTextAnchorLink",

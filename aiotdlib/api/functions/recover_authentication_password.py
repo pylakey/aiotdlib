@@ -18,10 +18,18 @@ class RecoverAuthenticationPassword(BaseObject):
         recovery_code (:class:`str`)
             Recovery code to check
         
+        new_password (:class:`str`)
+            New password of the user; may be empty to remove the password
+        
+        new_hint (:class:`str`)
+            New password hint; may be empty
+        
     """
 
     ID: str = Field("recoverAuthenticationPassword", alias="@type")
     recovery_code: str
+    new_password: str
+    new_hint: str
 
     @staticmethod
     def read(q: dict) -> RecoverAuthenticationPassword:

@@ -12,9 +12,9 @@
   to [Pydantic](https://github.com/samuelcolvin/pydantic))
 * A set of high-level API methods which makes work with tdlib much simpler
 
-> Compatible with **TDLib v1.7.4**. Support for other versions of TDLib is not guaranteed
+> Compatible with **TDLib v1.7.5**. Support for other versions of TDLib is not guaranteed
 >
-> Prebuilt binary (**v1.7.4**) **only for macOS** included.
+> Prebuilt binary (**v1.7.5**) **only for macOS** included.
 > You can use your own binary by passing `library_path` argument to `Client` class constructor
 
 ## Requirements

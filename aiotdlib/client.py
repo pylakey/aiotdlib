@@ -513,6 +513,15 @@ class Client:
         self.__is_authorized = True
         self.logger.info('Authorization is completed')
 
+    async def __auth_logging_out(self):
+        self.logger.info('Auth session is logging out')
+
+    async def __auth_closing(self):
+        self.logger.info('Auth session is closing')
+
+    async def __auth_closed(self):
+        self.logger.info('Auth session is closed')
+
     async def __stop_signal_handler(self, signum: int) -> None:
         self.logger.info('Signal %s received!', signum)
         await self.stop()
@@ -775,6 +784,9 @@ class Client:
             API.Types.AUTHORIZATION_STATE_WAIT_REGISTRATION: self.__register_user,
             API.Types.AUTHORIZATION_STATE_WAIT_PASSWORD: self.__check_authentication_password,
             API.Types.AUTHORIZATION_STATE_READY: self.__auth_completed,
+            API.Types.AUTHORIZATION_STATE_LOGGING_OUT: self.__auth_logging_out,
+            API.Types.AUTHORIZATION_STATE_CLOSING: self.__auth_closing,
+            API.Types.AUTHORIZATION_STATE_CLOSED: self.__auth_closed,
         }
 
         while not self.__is_authorized:
