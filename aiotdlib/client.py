@@ -800,7 +800,7 @@ class Client:
                     if bool(next_action):
                         result = await next_action()
                     else:
-                        self.logger.warning(f'Unhandled authorization state: {self.__current_authorization_state}')
+                        self.logger.error(f'Unhandled authorization state: {self.__current_authorization_state}')
                         break
                 except AioTDLibError as e:
                     # Need to retry previous step
@@ -1857,7 +1857,8 @@ class Client:
                 Chat identifier
 
             from_message_id (:class:`int`)
-                Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+                Identifier of the message starting from which history must be fetched;
+                use 0 to get results from the last message
 
             limit (:class:`int`)
                 The maximum number of messages to be returned; must be positive
