@@ -21,13 +21,12 @@ def _get_tdjson_lib_path() -> str:
         return tdjson_path
 
     if platform.system().lower() == 'darwin':
-        lib_extension = 'dylib'
+        lib_name = f"libtdjson.{TDLIB_VERSION}.dylib"
     elif platform.system().lower() == 'windows':
-        lib_extension = 'dll'
+        lib_name = f"libtdjson.{TDLIB_VERSION}.dll"
     else:
-        lib_extension = 'so'
-
-    lib_name = f"libtdjson.{TDLIB_VERSION}.{lib_extension}"
+        # By default tdlib is built with this name
+        lib_name = f"libtdjson.so.{TDLIB_VERSION}"
 
     return pkg_resources.resource_filename('aiotdlib', f'tdlib/{lib_name}')
 

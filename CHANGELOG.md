@@ -1,5 +1,11 @@
 # aiotdlib CHANGELOG
 
+### v0.6.2
+
+#### Updated
+
+* Added prebuilt binary for Linux (Built with Ubuntu 20)
+
 ### v0.6.1
 
 #### Updated
