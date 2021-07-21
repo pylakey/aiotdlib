@@ -18,6 +18,9 @@ class StartGroupCallScreenSharing(BaseObject):
         group_call_id (:class:`int`)
             Group call identifier
         
+        audio_source_id (:class:`int`)
+            Screen sharing audio channel synchronization source identifier; received from tgcalls
+        
         payload (:class:`str`)
             Group call join payload; received from tgcalls
         
@@ -25,6 +28,7 @@ class StartGroupCallScreenSharing(BaseObject):
 
     ID: str = Field("startGroupCallScreenSharing", alias="@type")
     group_call_id: int
+    audio_source_id: int
     payload: str
 
     @staticmethod

@@ -4,10 +4,20 @@ import getpass
 import logging
 import sys
 from functools import partial
-from typing import Optional, TYPE_CHECKING, Union
+from typing import (
+    Optional,
+    TYPE_CHECKING,
+    Union,
+)
 
-from .api import BaseObject, Error
-from .api.errors import AioTDLibError, Unauthorized
+from .api import (
+    BaseObject,
+    Error,
+)
+from .api.errors import (
+    AioTDLibError,
+    Unauthorized,
+)
 
 if TYPE_CHECKING:
     from .client import Client

@@ -5,9 +5,16 @@ import pathlib
 import shutil
 import typing
 
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import (
+    Environment,
+    FileSystemLoader,
+)
 
-from .parser import Constructor, Method, Parser
+from .parser import (
+    Constructor,
+    Method,
+    Parser,
+)
 
 Entities = list[typing.Union[Constructor, Method]]
 
@@ -38,18 +45,22 @@ class Generator:
         section_init_file_template = self.jinja_env.get_template('section_init_template.pyi')
 
         with open(f"{self.destination}/types/__init__.py", "w", encoding="utf-8") as f:
-            f.write(section_init_file_template.render(
-                notice=self.notice,
-                entities=[e for e in entities if e.is_constructor])
+            f.write(
+                section_init_file_template.render(
+                    notice=self.notice,
+                    entities=[e for e in entities if e.is_constructor]
+                )
             )
 
     def render_functions_init_file(self, entities: Entities):
         section_init_file_template = self.jinja_env.get_template('section_init_template.pyi')
 
         with open(f"{self.destination}/functions/__init__.py", "w", encoding="utf-8") as f:
-            f.write(section_init_file_template.render(
-                notice=self.notice,
-                entities=[e for e in entities if e.is_function])
+            f.write(
+                section_init_file_template.render(
+                    notice=self.notice,
+                    entities=[e for e in entities if e.is_function]
+                )
             )
 
     def render_package_init_file(self, entities: Entities):

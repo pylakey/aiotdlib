@@ -937,7 +937,7 @@ class MessageVoiceChatEnded(MessageContent):
     
     Params:
         duration (:class:`int`)
-            Call duration
+            Call duration, in seconds
         
     """
 

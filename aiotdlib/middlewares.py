@@ -1,7 +1,11 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Any, Coroutine, TypeVar
+from typing import (
+    Any,
+    Coroutine,
+    TypeVar,
+)
 
 from aiotdlib.api import BaseObject
 from .handlers import HandlerCallable

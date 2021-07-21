@@ -2,10 +2,19 @@ from __future__ import annotations
 
 import logging
 from enum import Enum
-from typing import Any, Dict, Optional, Type
+from typing import (
+    Any,
+    Dict,
+    Optional,
+    Type,
+)
 
 import ujson
-from pydantic import BaseConfig, BaseModel, Field
+from pydantic import (
+    BaseConfig,
+    BaseModel,
+    Field,
+)
 
 logger = logging.getLogger('BaseObject')
 

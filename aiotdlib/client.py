@@ -10,17 +10,27 @@ import sys
 import typing
 import uuid
 from collections import AsyncIterator
-from functools import partial, update_wrapper
+from functools import (
+    partial,
+    update_wrapper,
+)
 from pathlib import Path
-from typing import Optional, TypeVar, Union
+from typing import (
+    Optional,
+    TypeVar,
+    Union,
+)
 
 import pydantic.errors
-from pydantic import BaseModel, validator
+from pydantic import (
+    BaseModel,
+    validator,
+)
 
 from . import __version__
 from .api import (
-    AioTDLibError,
     API,
+    AioTDLibError,
     AuthorizationStateClosed,
     BaseObject,
     BasicGroup,
@@ -45,11 +55,11 @@ from .api import (
     InputMessageVoiceNote,
     InputThumbnail,
     Message,
-    Messages,
     MessageSchedulingStateSendAtDate,
     MessageSchedulingStateSendWhenOnline,
-    MessageSendingStatePending,
     MessageSendOptions,
+    MessageSendingStatePending,
+    Messages,
     ParseTextEntities,
     PhoneNumberAuthenticationSettings,
     ProxyType,
@@ -70,10 +80,21 @@ from .api import (
 )
 from .client_cache import ClientCache
 from .filters import Filters
-from .handlers import FilterCallable, Handler, HandlerCallable
+from .handlers import (
+    FilterCallable,
+    Handler,
+    HandlerCallable,
+)
 from .middlewares import MiddlewareCallable
-from .tdjson import TDJson, TDLibLogVerbosity
-from .utils import ainput, PendingRequest, str_to_base64
+from .tdjson import (
+    TDJson,
+    TDLibLogVerbosity,
+)
+from .utils import (
+    PendingRequest,
+    ainput,
+    str_to_base64,
+)
 
 RequestResult = TypeVar('RequestResult', bound=BaseObject)
 ExecuteResult = TypeVar('ExecuteResult', bound=BaseObject)

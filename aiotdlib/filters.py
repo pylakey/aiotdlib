@@ -1,7 +1,18 @@
 import re
-from abc import ABC, abstractmethod
-from collections import Callable, Coroutine
-from typing import Any, NoReturn, Optional, Union
+from abc import (
+    ABC,
+    abstractmethod,
+)
+from collections import (
+    Callable,
+    Coroutine,
+)
+from typing import (
+    Any,
+    NoReturn,
+    Optional,
+    Union,
+)
 
 from aiotdlib.api import (
     BaseObject,

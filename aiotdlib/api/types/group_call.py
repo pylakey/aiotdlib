@@ -55,8 +55,8 @@ class GroupCall(BaseObject):
         is_my_video_paused (:class:`bool`)
             True, if the current user's video is paused
         
-        can_start_video (:class:`bool`)
-            True, if video can be enabled by group call participants. This flag is generally useless after the user has already joined the group call
+        can_enable_video (:class:`bool`)
+            True, if the current user can broadcast video or share screen
         
         mute_new_participants (:class:`bool`)
             True, if only group call administrators can unmute new participants
@@ -68,7 +68,7 @@ class GroupCall(BaseObject):
             Duration of the ongoing group call recording, in seconds; 0 if none. An updateGroupCall update is not triggered when value of this field changes, but the same recording goes on
         
         duration (:class:`int`)
-            Call duration; for ended calls only
+            Call duration, in seconds; for ended calls only
         
     """
 
@@ -86,7 +86,7 @@ class GroupCall(BaseObject):
     recent_speakers: list[GroupCallRecentSpeaker]
     is_my_video_enabled: bool
     is_my_video_paused: bool
-    can_start_video: bool
+    can_enable_video: bool
     mute_new_participants: bool
     can_change_mute_new_participants: bool
     record_duration: int

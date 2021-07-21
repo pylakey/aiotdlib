@@ -2251,8 +2251,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def can_transfer_ownership(self, *, request_id: str = None,
-                                     request_timeout: int = None) -> CanTransferOwnershipResult:
+    async def can_transfer_ownership(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> CanTransferOwnershipResult:
         """
         Checks whether the current session can be used to transfer a chat ownership to another user
         
@@ -4826,8 +4828,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_active_live_location_messages(self, *, request_id: str = None,
-                                                request_timeout: int = None) -> Messages:
+    async def get_active_live_location_messages(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> Messages:
         """
         Returns all active live locations that should be updated by the application. The list is persistent across application restarts only if the message database is used
         
@@ -4959,8 +4963,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_authorization_state(self, *, request_id: str = None,
-                                      request_timeout: int = None) -> AuthorizationState:
+    async def get_authorization_state(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> AuthorizationState:
         """
         Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
         
@@ -4971,8 +4977,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_auto_download_settings_presets(self, *, request_id: str = None,
-                                                 request_timeout: int = None) -> AutoDownloadSettingsPresets:
+    async def get_auto_download_settings_presets(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> AutoDownloadSettingsPresets:
         """
         Returns auto-download settings presets for the current user
         
@@ -5998,8 +6006,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_database_statistics(self, *, request_id: str = None,
-                                      request_timeout: int = None) -> DatabaseStatistics:
+    async def get_database_statistics(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> DatabaseStatistics:
         """
         Returns database statistics
         
@@ -6779,8 +6789,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_log_verbosity_level(self, *, request_id: str = None,
-                                      request_timeout: int = None) -> LogVerbosityLevel:
+    async def get_log_verbosity_level(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> LogVerbosityLevel:
         """
         Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
         
@@ -7815,8 +7827,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_recommended_chat_filters(self, *, request_id: str = None,
-                                           request_timeout: int = None) -> RecommendedChatFilters:
+    async def get_recommended_chat_filters(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> RecommendedChatFilters:
         """
         Returns recommended chat filters for the current user
         
@@ -8134,8 +8148,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_storage_statistics_fast(self, *, request_id: str = None,
-                                          request_timeout: int = None) -> StorageStatisticsFast:
+    async def get_storage_statistics_fast(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> StorageStatisticsFast:
         """
         Quickly returns approximate storage usage statistics. Can be called before authorization
         
@@ -8287,8 +8303,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_temporary_password_state(self, *, request_id: str = None,
-                                           request_timeout: int = None) -> TemporaryPasswordState:
+    async def get_temporary_password_state(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> TemporaryPasswordState:
         """
         Returns information about the current temporary password
         
@@ -9933,8 +9951,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def request_authentication_password_recovery(self, *, request_id: str = None,
-                                                       request_timeout: int = None) -> Ok:
+    async def request_authentication_password_recovery(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> Ok:
         """
         Requests to send a password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
         
@@ -9945,8 +9965,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def request_password_recovery(self, *, request_id: str = None,
-                                        request_timeout: int = None) -> EmailAddressAuthenticationCodeInfo:
+    async def request_password_recovery(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> EmailAddressAuthenticationCodeInfo:
         """
         Requests to send a 2-step verification password recovery code to an email address that was previously set up
         
@@ -9994,8 +10016,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def resend_change_phone_number_code(self, *, request_id: str = None,
-                                              request_timeout: int = None) -> AuthenticationCodeInfo:
+    async def resend_change_phone_number_code(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> AuthenticationCodeInfo:
         """
         Re-sends the authentication code sent to confirm a new phone number for the user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
         
@@ -10006,8 +10030,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def resend_email_address_verification_code(self, *, request_id: str = None,
-                                                     request_timeout: int = None) -> EmailAddressAuthenticationCodeInfo:
+    async def resend_email_address_verification_code(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> EmailAddressAuthenticationCodeInfo:
         """
         Re-sends the code to verify an email address to be added to a user's Telegram Passport
         
@@ -10049,8 +10075,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def resend_phone_number_confirmation_code(self, *, request_id: str = None,
-                                                    request_timeout: int = None) -> AuthenticationCodeInfo:
+    async def resend_phone_number_confirmation_code(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> AuthenticationCodeInfo:
         """
         Resends phone number confirmation code
         
@@ -10061,8 +10089,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def resend_phone_number_verification_code(self, *, request_id: str = None,
-                                                    request_timeout: int = None) -> AuthenticationCodeInfo:
+    async def resend_phone_number_verification_code(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> AuthenticationCodeInfo:
         """
         Re-sends the code to verify a phone number to be added to a user's Telegram Passport
         
@@ -10073,8 +10103,10 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def resend_recovery_email_address_code(self, *, request_id: str = None,
-                                                 request_timeout: int = None) -> PasswordState:
+    async def resend_recovery_email_address_code(
+            self, *, request_id: str = None,
+            request_timeout: int = None
+    ) -> PasswordState:
         """
         Resends the 2-step verification recovery email address verification code
         
@@ -13163,6 +13195,7 @@ class API:
     async def start_group_call_screen_sharing(
             self,
             group_call_id: int,
+            audio_source_id: int,
             payload: str,
             *,
             request_id: str = None,
@@ -13176,6 +13209,9 @@ class API:
             group_call_id (:class:`int`)
                 Group call identifier
             
+            audio_source_id (:class:`int`)
+                Screen sharing audio channel synchronization source identifier; received from tgcalls
+            
             payload (:class:`str`)
                 Group call join payload; received from tgcalls
             
@@ -13185,6 +13221,7 @@ class API:
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
+                audio_source_id=audio_source_id,
                 payload=payload,
             ),
             request_id=request_id,

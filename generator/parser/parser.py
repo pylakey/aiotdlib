@@ -3,7 +3,12 @@ import re
 import typing
 import urllib.request
 
-from .entities import Constructor, ConstructorShort, Method, Parameter
+from .entities import (
+    Constructor,
+    ConstructorShort,
+    Method,
+    Parameter,
+)
 from .utils import upper_first
 
 
@@ -118,14 +123,16 @@ class Parser:
 
                                 arg_max_length = int(param_length_constraint_match.group('max_length'))
 
-                    entity_parameters.append(Parameter(
-                        name=arg_name,
-                        type=arg_type,
-                        doc=arg_description,
-                        nullable=arg_nullable,
-                        min_length=arg_min_length,
-                        max_length=arg_max_length,
-                    ))
+                    entity_parameters.append(
+                        Parameter(
+                            name=arg_name,
+                            type=arg_type,
+                            doc=arg_description,
+                            nullable=arg_nullable,
+                            min_length=arg_min_length,
+                            max_length=arg_max_length,
+                        )
+                    )
 
                 if is_functions_section:
                     methods[entity_name] = Method(

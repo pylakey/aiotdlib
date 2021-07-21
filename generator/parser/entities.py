@@ -3,9 +3,16 @@ from __future__ import annotations
 import re
 import typing
 
-from pydantic import BaseModel, validator
+from pydantic import (
+    BaseModel,
+    validator,
+)
 
-from .utils import lower_first, snake_case, upper_first
+from .utils import (
+    lower_first,
+    snake_case,
+    upper_first,
+)
 
 vector_type_regex = re.compile(r"vector<(?P<type>.*)>")
 list_type_regex = re.compile(r".*list\[(?P<type>\w+)].*")
@@ -216,18 +223,22 @@ class Constructor(ConstructorShort):
                         and p.import_type != self.uf_name
                         and upper_first(p.import_type) not in cross_deps
                 ):
-                    deps.add(Dependency(
-                        name=snake_case(p.import_type),
-                        type=p.import_type
-                    ))
+                    deps.add(
+                        Dependency(
+                            name=snake_case(p.import_type),
+                            type=p.import_type
+                        )
+                    )
 
         for dep in self.cross_deps:
             for p in dep.parameters:
                 if bool(p.import_type) and p.import_type != self.uf_name:
-                    deps.add(Dependency(
-                        name=snake_case(p.import_type),
-                        type=p.import_type
-                    ))
+                    deps.add(
+                        Dependency(
+                            name=snake_case(p.import_type),
+                            type=p.import_type
+                        )
+                    )
 
         return list(sorted(deps, key=lambda x: x.name))
 
@@ -258,10 +269,12 @@ class Method(BaseEntity):
 
         for p in self.parameters:
             if p.import_type is not None:
-                deps.add(Dependency(
-                    name=snake_case(p.import_type),
-                    type=p.import_type
-                ))
+                deps.add(
+                    Dependency(
+                        name=snake_case(p.import_type),
+                        type=p.import_type
+                    )
+                )
 
         return list(sorted(deps, key=lambda x: x.name))
 

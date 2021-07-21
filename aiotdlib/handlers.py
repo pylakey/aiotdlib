@@ -2,10 +2,19 @@ from __future__ import annotations
 
 import asyncio
 from collections.abc import Callable
-from typing import Any, Coroutine, Optional, TypeVar, Union
+from typing import (
+    Any,
+    Coroutine,
+    Optional,
+    TypeVar,
+    Union,
+)
 
 from .api import BaseObject
-from .filters import BaseFilter, FilterCallable
+from .filters import (
+    BaseFilter,
+    FilterCallable,
+)
 
 SomeUpdate = TypeVar('SomeUpdate', bound=BaseObject)
 HandlerCallable = Callable[['aiotdlib.Client', SomeUpdate], Coroutine[Any, Any, None]]

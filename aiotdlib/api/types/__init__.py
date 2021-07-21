@@ -427,10 +427,10 @@ from .input_inline_query_result import (
     InputInlineQueryResultVoiceNote,
 )
 from .input_message_content import (
-    InputMessageContent,
     InputMessageAnimation,
     InputMessageAudio,
     InputMessageContact,
+    InputMessageContent,
     InputMessageDice,
     InputMessageDocument,
     InputMessageForwarded,
@@ -510,6 +510,7 @@ from .internal_link_type import (
 )
 from .invoice import Invoice
 from .json_value import (
+    JsonObjectMember,
     JsonValue,
     JsonValueArray,
     JsonValueBoolean,
@@ -517,7 +518,6 @@ from .json_value import (
     JsonValueNumber,
     JsonValueObject,
     JsonValueString,
-    JsonObjectMember,
 )
 from .keyboard_button import KeyboardButton
 from .keyboard_button_type import (
@@ -563,7 +563,6 @@ from .mask_point import (
 from .mask_position import MaskPosition
 from .message import Message
 from .message_content import (
-    MessageContent,
     MessageAnimation,
     MessageAudio,
     MessageBasicGroupChatCreate,
@@ -579,6 +578,7 @@ from .message_content import (
     MessageChatUpgradeTo,
     MessageContact,
     MessageContactRegistered,
+    MessageContent,
     MessageCustomServiceAction,
     MessageDice,
     MessageDocument,
@@ -715,6 +715,7 @@ from .page_block import (
     PageBlockHeader,
     PageBlockKicker,
     PageBlockList,
+    PageBlockListItem,
     PageBlockMap,
     PageBlockParagraph,
     PageBlockPhoto,
@@ -728,7 +729,6 @@ from .page_block import (
     PageBlockTitle,
     PageBlockVideo,
     PageBlockVoiceNote,
-    PageBlockListItem,
 )
 from .page_block_caption import PageBlockCaption
 from .page_block_horizontal_alignment import (

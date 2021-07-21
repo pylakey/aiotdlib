@@ -25,8 +25,8 @@ class GroupCallParticipant(BaseObject):
         audio_source_id (:class:`int`)
             User's audio channel synchronization source identifier
         
-        can_enable_video (:class:`bool`)
-            True, if the user can broadcast video or share screen
+        screen_sharing_audio_source_id (:class:`int`)
+            User's screen sharing audio channel synchronization source identifier
         
         video_info (:class:`GroupCallParticipantVideoInfo`)
             Information about user's video channel; may be null if there is no active video
@@ -78,7 +78,7 @@ class GroupCallParticipant(BaseObject):
     ID: str = Field("groupCallParticipant", alias="@type")
     participant_id: MessageSender
     audio_source_id: int
-    can_enable_video: bool
+    screen_sharing_audio_source_id: int
     video_info: typing.Optional[GroupCallParticipantVideoInfo] = None
     screen_sharing_video_info: typing.Optional[GroupCallParticipantVideoInfo] = None
     bio: str
