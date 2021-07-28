@@ -1,5 +1,11 @@
 # aiotdlib CHANGELOG
 
+### v0.7.1
+
+#### Added
+
+* Added docker support. Fell free to use [this image](https://hub.docker.com/repository/docker/pylakey/aiotdlib) 
+
 ### v0.7.0
 
 #### Updated
