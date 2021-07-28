@@ -13,7 +13,7 @@ from jinja2 import (
 from .parser import (
     Constructor,
     Method,
-    Parser,
+    TDApiParser,
 )
 
 Entities = list[typing.Union[Constructor, Method]]
@@ -30,7 +30,6 @@ class Generator:
     ):
         self.notice = notice
         self.destination = destination
-        self.parser = Parser(tl_schema_file_path)
         self.jinja_env = Environment(loader=FileSystemLoader(f'{LIBRARY_ROOT_PATH}/generator/templates'))
 
     def __prepare_directories(self):
@@ -87,7 +86,7 @@ class Generator:
     def generate(self):
         self.__prepare_directories()
 
-        entities = self.parser.parse()
+        entities = TDApiParser.parse()
 
         self.render_entities_classes(entities)
         self.render_types_init_file(entities)

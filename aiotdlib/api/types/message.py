@@ -94,7 +94,7 @@ class Message(BaseObject):
             For self-destructing messages, the message's TTL (Time To Live), in seconds; 0 if none. TDLib will send updateDeleteMessages or updateMessageContent once the TTL expires
         
         ttl_expires_in (:class:`float`)
-            Time left before the message expires, in seconds
+            Time left before the message expires, in seconds. If the TTL timer isn't started yet, equals to the value of the ttl field
         
         via_bot_user_id (:class:`int`)
             If non-zero, the user identifier of the bot through which this message was sent

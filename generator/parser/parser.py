@@ -1,4 +1,3 @@
-import logging
 import re
 import typing
 import urllib.request
@@ -11,12 +10,12 @@ from .entities import (
 )
 from .utils import upper_first
 
+DEFAULT_TD_API_SCHEME_URL = "https://raw.githubusercontent.com/tdlib/td/master/td/generate/scheme/td_api.tl"
 
-class Parser:
-    def __init__(self, file_path: str = None):
-        self.file_path = file_path
 
-    def parse(self) -> list[typing.Union[Constructor, Method]]:
+class TDApiParser:
+    @staticmethod
+    def parse() -> list[typing.Union[Constructor, Method]]:
         abstract_class_docs_regex = re.compile(r"^//@class (?P<name>[^@]*) @description (?P<description>.*)$")
         description_regex = re.compile(r"^//@description (?P<description>.*)$")
         parameter_description_regex = re.compile(r"^//@(?P<name>.*?) (?P<description>.*)$")
@@ -25,18 +24,7 @@ class Parser:
         param_length_constraint = re.compile(r"(?P<min_length>\d+)-(?P<max_length>\d+) characters")
         nullability_constraint = re.compile(r".*may be null.*")
 
-        try:
-            scheme = urllib.request.urlopen(
-                "https://raw.githubusercontent.com/tdlib/td/master/td/generate/scheme/td_api.tl"
-            ).read().decode('utf-8')
-        except Exception as e:
-            logging.error(f"Unable to retrieve tl schema from github {e}")
-
-            if self.file_path is None:
-                raise RuntimeError('Unable to receive schema on Github and file_path is not set!')
-
-            with open(self.file_path, encoding='utf-8') as f:
-                scheme = f.read()
+        scheme = urllib.request.urlopen(DEFAULT_TD_API_SCHEME_URL).read().decode('utf-8')
 
         # Some cleaning for better parsing
         inline_parameter_regex = re.compile(r'(?!(@description|@class))(@\w+)')

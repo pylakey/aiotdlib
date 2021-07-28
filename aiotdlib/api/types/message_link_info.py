@@ -27,6 +27,9 @@ class MessageLinkInfo(BaseObject):
         message (:class:`Message`)
             If found, the linked message; may be null
         
+        media_timestamp (:class:`int`)
+            Timestamp from which the video/audio/video note/voice note playing should start, in seconds; 0 if not specified. The media can be in the message content or in its link preview
+        
         for_album (:class:`bool`)
             True, if the whole media album to which the message belongs is linked
         
@@ -39,6 +42,7 @@ class MessageLinkInfo(BaseObject):
     is_public: bool
     chat_id: int
     message: typing.Optional[Message] = None
+    media_timestamp: int
     for_album: bool
     for_comment: bool
 

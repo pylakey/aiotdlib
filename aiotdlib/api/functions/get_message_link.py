@@ -21,6 +21,9 @@ class GetMessageLink(BaseObject):
         message_id (:class:`int`)
             Identifier of the message
         
+        media_timestamp (:class:`int`)
+            If not 0, timestamp from which the video/audio/video note/voice note playing should start, in seconds. The media can be in the message content or in its link preview
+        
         for_album (:class:`bool`)
             Pass true to create a link for the whole media album
         
@@ -32,6 +35,7 @@ class GetMessageLink(BaseObject):
     ID: str = Field("getMessageLink", alias="@type")
     chat_id: int
     message_id: int
+    media_timestamp: int
     for_album: bool
     for_comment: bool
 

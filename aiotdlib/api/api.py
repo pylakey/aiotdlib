@@ -545,6 +545,7 @@ class API:
         GET_STICKERS = 'getStickers'
         GET_STORAGE_STATISTICS = 'getStorageStatistics'
         GET_STORAGE_STATISTICS_FAST = 'getStorageStatisticsFast'
+        GET_SUGGESTED_FILE_NAME = 'getSuggestedFileName'
         GET_SUGGESTED_STICKER_SET_NAME = 'getSuggestedStickerSetName'
         GET_SUITABLE_DISCUSSION_CHATS = 'getSuitableDiscussionChats'
         GET_SUPERGROUP = 'getSupergroup'
@@ -2252,7 +2253,9 @@ class API:
         )
 
     async def can_transfer_ownership(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> CanTransferOwnershipResult:
         """
@@ -4829,7 +4832,9 @@ class API:
         )
 
     async def get_active_live_location_messages(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> Messages:
         """
@@ -4964,7 +4969,9 @@ class API:
         )
 
     async def get_authorization_state(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> AuthorizationState:
         """
@@ -4978,7 +4985,9 @@ class API:
         )
 
     async def get_auto_download_settings_presets(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> AutoDownloadSettingsPresets:
         """
@@ -6007,7 +6016,9 @@ class API:
         )
 
     async def get_database_statistics(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> DatabaseStatistics:
         """
@@ -6790,7 +6801,9 @@ class API:
         )
 
     async def get_log_verbosity_level(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> LogVerbosityLevel:
         """
@@ -7091,6 +7104,7 @@ class API:
             self,
             chat_id: int,
             message_id: int,
+            media_timestamp: int,
             for_album: bool,
             for_comment: bool,
             *,
@@ -7108,6 +7122,9 @@ class API:
             message_id (:class:`int`)
                 Identifier of the message
             
+            media_timestamp (:class:`int`)
+                If not 0, timestamp from which the video/audio/video note/voice note playing should start, in seconds. The media can be in the message content or in its link preview
+            
             for_album (:class:`bool`)
                 Pass true to create a link for the whole media album
             
@@ -7121,6 +7138,7 @@ class API:
             _constructor(
                 chat_id=chat_id,
                 message_id=message_id,
+                media_timestamp=media_timestamp,
                 for_album=for_album,
                 for_comment=for_comment,
             ),
@@ -7828,7 +7846,9 @@ class API:
         )
 
     async def get_recommended_chat_filters(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> RecommendedChatFilters:
         """
@@ -8149,7 +8169,9 @@ class API:
         )
 
     async def get_storage_statistics_fast(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> StorageStatisticsFast:
         """
@@ -8158,6 +8180,37 @@ class API:
         """
         return await self.client.request(
             GetStorageStatisticsFast(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_suggested_file_name(
+            self,
+            file_id: int,
+            directory: str,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Text:
+        """
+        Returns suggested name for saving a file in a given directory
+        
+        Params:
+            file_id (:class:`int`)
+                Identifier of the file
+            
+            directory (:class:`str`)
+                Directory in which the file is supposed to be saved
+            
+        """
+        _constructor = GetSuggestedFileName.construct if skip_validation else GetSuggestedFileName
+
+        return await self.client.request(
+            _constructor(
+                file_id=file_id,
+                directory=directory,
+            ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
@@ -8304,7 +8357,9 @@ class API:
         )
 
     async def get_temporary_password_state(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> TemporaryPasswordState:
         """
@@ -9952,7 +10007,9 @@ class API:
         )
 
     async def request_authentication_password_recovery(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> Ok:
         """
@@ -9966,7 +10023,9 @@ class API:
         )
 
     async def request_password_recovery(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> EmailAddressAuthenticationCodeInfo:
         """
@@ -10017,7 +10076,9 @@ class API:
         )
 
     async def resend_change_phone_number_code(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> AuthenticationCodeInfo:
         """
@@ -10031,7 +10092,9 @@ class API:
         )
 
     async def resend_email_address_verification_code(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> EmailAddressAuthenticationCodeInfo:
         """
@@ -10076,7 +10139,9 @@ class API:
         )
 
     async def resend_phone_number_confirmation_code(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> AuthenticationCodeInfo:
         """
@@ -10090,7 +10155,9 @@ class API:
         )
 
     async def resend_phone_number_verification_code(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> AuthenticationCodeInfo:
         """
@@ -10104,7 +10171,9 @@ class API:
         )
 
     async def resend_recovery_email_address_code(
-            self, *, request_id: str = None,
+            self,
+            *,
+            request_id: str = None,
             request_timeout: int = None
     ) -> PasswordState:
         """

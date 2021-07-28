@@ -9,7 +9,7 @@ from enum import IntEnum
 import pkg_resources
 import ujson
 
-TDLIB_VERSION = '1.7.5'
+TDLIB_VERSION = '1.7.6'
 TDLIB_MAX_INT = 2 ** 63 - 1
 log_message_callback_type = CFUNCTYPE(None, c_int, c_char_p)
 

@@ -52,7 +52,7 @@ class ChatMemberStatusAdministrator(ChatMemberStatus):
             True, if the administrator can invite new users to the chat
         
         can_restrict_members (:class:`bool`)
-            True, if the administrator can restrict, ban, or unban chat members
+            True, if the administrator can restrict, ban, or unban chat members; always true for channels
         
         can_pin_messages (:class:`bool`)
             True, if the administrator can pin messages; applicable to basic groups and supergroups only

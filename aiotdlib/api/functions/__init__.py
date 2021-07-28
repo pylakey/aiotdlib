@@ -239,6 +239,7 @@ from .get_sticker_set import GetStickerSet
 from .get_stickers import GetStickers
 from .get_storage_statistics import GetStorageStatistics
 from .get_storage_statistics_fast import GetStorageStatisticsFast
+from .get_suggested_file_name import GetSuggestedFileName
 from .get_suggested_sticker_set_name import GetSuggestedStickerSetName
 from .get_suitable_discussion_chats import GetSuitableDiscussionChats
 from .get_supergroup import GetSupergroup
@@ -685,6 +686,7 @@ __all__ = [
     "GetStickers",
     "GetStorageStatistics",
     "GetStorageStatisticsFast",
+    "GetSuggestedFileName",
     "GetSuggestedStickerSetName",
     "GetSuitableDiscussionChats",
     "GetSupergroup",

@@ -28,7 +28,7 @@ class AutoDownloadSettings(BaseObject):
             The maximum size of other file types to be auto-downloaded
         
         video_upload_bitrate (:class:`int`)
-            The maximum suggested bitrate for uploaded videos
+            The maximum suggested bitrate for uploaded videos, in kbit/s
         
         preload_large_videos (:class:`bool`)
             True, if the beginning of video files needs to be preloaded for instant playback

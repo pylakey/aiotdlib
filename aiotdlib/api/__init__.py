@@ -1544,6 +1544,7 @@ __all__ = [
     'GetStickers',
     'GetStorageStatistics',
     'GetStorageStatisticsFast',
+    'GetSuggestedFileName',
     'GetSuggestedStickerSetName',
     'GetSuitableDiscussionChats',
     'GetSupergroup',

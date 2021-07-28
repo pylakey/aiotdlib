@@ -1,26 +1,36 @@
 # aiotdlib CHANGELOG
 
-### v0.7.1
-
-#### Added
-
-* Added docker support. Fell free to use [this image](https://hub.docker.com/repository/docker/pylakey/aiotdlib) 
-
-### v0.7.0
+### 0.8.0 - TDLib 1.7.6
 
 #### Updated
 
-* TDLib binaries upgraded to latest [available version](https://github.com/tdlib/td/commit/c45535d607463adb0cd20fcadf43e8f793b1fb24)
-  
+* TDLib binaries upgraded to
+  latest [available version](https://github.com/tdlib/td/commit/d4dc4f2a50f39b1c05efd955a6e9de0db2b197bc) (1.7.6 for now)
+
 * API types and functions regenerated
 
-### v0.6.2
+### 0.7.1 - Docker support
+
+#### Added
+
+* Added docker support. Fell free to use [this image](https://hub.docker.com/repository/docker/pylakey/aiotdlib)
+
+### 0.7.0 - Upgraded TDLib (Layer 131)
+
+#### Updated
+
+* TDLib binaries upgraded to
+  latest [available version](https://github.com/tdlib/td/commit/c45535d607463adb0cd20fcadf43e8f793b1fb24)
+
+* API types and functions regenerated
+
+### 0.6.2 - Prebuilt binary for Linux
 
 #### Updated
 
 * Added prebuilt binary for Linux (Built with Ubuntu 20)
 
-### v0.6.1
+### 0.6.1 - TDLib 1.7.5
 
 #### Updated
 
@@ -28,7 +38,7 @@
 
 * API types and functions regenerated with new API available in TDLib 1.7.5
 
-### v0.6.0
+### 0.6.0 - Improved filters system, Chat history iteration and Minor Improvements
 
 #### Added
 
@@ -42,7 +52,7 @@
 
 * Added a few useful predefined filters
 
-### v0.5.0
+### 0.5.0 - TDLib v1.7.4 and new API features
 
 #### Updated
 
@@ -50,7 +60,7 @@
 
 * API types and functions regenerated with new API available in TDLib 1.7.4
 
-### v0.4.2
+### 0.4.2 - UJSON and new TDLibJson API
 
 #### Updated
 
@@ -58,13 +68,13 @@
 
 * `TDJson` class now uses new TDLibJson api to work with requests
 
-### v0.4.1
+### 0.4.1
 
 #### Updated
 
 * Fixed a bug when main chats list was requested from bot session
 
-### v0.4.0
+### 0.4.0 - TG options cache, Media messages
 
 ### BREAKING CHANGES
 
@@ -96,14 +106,14 @@
 * Request main chats list if session was authorized for the first time to avoid Chat not found errors and initialize
   inner TDLib chats cache
 
-### v0.3.0
+### 0.3.0 - Proxy
 
 #### Added
 
 * Added proxy support. Proxy settings now available in Client
   initializer. [Example](https://github.com/pylakey/aiotdlib#proxy)
 
-### v0.2.1
+### 0.2.1
 
 #### Updated
 
@@ -111,7 +121,7 @@
 
 * Updated TDLib binary
 
-### v0.2.0
+### 0.2.0 - Usability improvements
 
 #### Added
 
@@ -132,7 +142,7 @@
 * New high-level API method `Client.edit_message` - Edits the text of a message (or a text of a game message). Returns
   the edited message after the edit is completed on the server side
 
-### v0.1.0
+### 0.1.0 - Client cache, TDLib parameters constraints
 
 #### Added
 
@@ -149,7 +159,7 @@
 
 * API objects were regenerated with updated parser
 
-### v0.0.2
+### 0.0.2 - Automated parsing message text
 
 #### Added
 
@@ -165,4 +175,4 @@
 
 * Removed redundant `CurrentAuthorizationState` class
 
-### v0.0.1 - First Public Release
+### 0.0.1 - First Public Release
