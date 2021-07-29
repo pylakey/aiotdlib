@@ -1,3 +1,4 @@
-pydantic>=1.8.2
-sortedcontainers>=2.4.0
-ujson>=4.0.2
+pydantic~=1.8.2
+sortedcontainers~=2.4.0
+ujson~=4.0.2
+python-decouple~=3.4

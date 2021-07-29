@@ -4,8 +4,11 @@ LABEL maintainer="Pylakey <pylakey@protonmail.com>"
 ENV AIOTDLIB_VERSION="0.8.1"
 
 RUN apt-get update && apt-get install -y \
+    clang \
     zlib1g-dev \
     libssl-dev \
+    libc++-dev \
+    libc++abi-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install -U pip setuptools wheel
