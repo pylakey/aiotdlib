@@ -67,7 +67,10 @@ class TDJson:
         self.initialize(library_path, verbosity)
 
     def __del__(self) -> None:
-        self.stop()
+        try:
+            self.stop()
+        except:
+            pass
 
     def inject_library(self, library_path: str):
         # load TDLib functions from shared library
