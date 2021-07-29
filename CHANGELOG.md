@@ -1,5 +1,11 @@
 # aiotdlib CHANGELOG
 
+### 0.8.1 - Hotfix
+
+#### Fixed
+
+* Added missing generated file from new TDLib
+
 ### 0.8.0 - TDLib 1.7.6
 
 #### Updated
