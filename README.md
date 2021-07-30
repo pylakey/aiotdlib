@@ -6,7 +6,7 @@
 
 > This wrapper is actual for **[TDLib v1.7.6 (d4dc4f2)](https://github.com/tdlib/td/commit/d4dc4f2a50f39b1c05efd955a6e9de0db2b197bc)**
 >
-> This package includes prebuilt TDLib binaries for macOS and Ubuntu 20.
+> This package includes prebuilt TDLib binaries for macOS and Debian Buster.
 > You can use your own binary by passing `library_path` argument to `Client` class constructor. Make sure it's built from [this commit](https://github.com/tdlib/td/commit/d4dc4f2a50f39b1c05efd955a6e9de0db2b197bc). Compatibility with other versions of library is not guaranteed.
 
 ## Features
@@ -25,9 +25,15 @@
 
 ## Installation
 
+### PyPI
+
 ```shell
 pip install aiotdlib
 ```
+
+### Docker
+
+You can use [this Docker image](https://hub.docker.com/repository/docker/pylakey/aiotdlib) as a base for your own image.
 
 ## Example
 
