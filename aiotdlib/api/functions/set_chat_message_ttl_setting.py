@@ -19,7 +19,7 @@ class SetChatMessageTtlSetting(BaseObject):
             Chat identifier
         
         ttl (:class:`int`)
-            New TTL value, in seconds; must be one of 0, 86400, 604800 unless chat is secret
+            New TTL value, in seconds; must be one of 0, 86400, 7 * 86400, or 31 * 86400 unless the chat is secret
         
     """
 
