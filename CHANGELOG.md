@@ -2,6 +2,10 @@
 
 ### 0.8.3 - Minor fixes
 
+#### Added
+
+* Added `force_update: bool = False` parameter to `Client` class getters. When set to True locally cached values will be refreshed from tdlib
+
 #### Updated
 
 * Fixed an error when `Client.get_supergroup` and `Client.get_supergroup_full_info` returned `BasicGroup` and `BasicGroupFullInfo` instead of

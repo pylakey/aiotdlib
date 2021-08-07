@@ -261,77 +261,77 @@ class ClientCache:
 
         return [self.chats.get(oc.chat_id) for oc in self.main_chats_list[:limit]]
 
-    async def get_chat(self, chat_id: int) -> Chat:
+    async def get_chat(self, chat_id: int, *, force_update: bool = True) -> Chat:
         chat = self.chats.get(chat_id)
 
-        if not bool(chat):
+        if not bool(chat) or force_update:
             chat = await self.client.api.get_chat(chat_id)
+            self.__set_chat_positions(chat, chat.positions)
+            self.chats[chat_id] = chat
 
-        self.chats[chat_id] = chat
-        self.__set_chat_positions(chat, chat.positions)
         return chat
 
-    async def get_user(self, user_id: int) -> User:
+    async def get_user(self, user_id: int, *, force_update: bool = True) -> User:
         user = self.users.get(user_id)
 
-        if not bool(user):
+        if not bool(user) or force_update:
             user = await self.client.api.get_user(user_id)
+            self.users[user_id] = user
 
-        self.users[user_id] = user
         return user
 
-    async def get_user_full_info(self, user_id: int) -> UserFullInfo:
+    async def get_user_full_info(self, user_id: int, *, force_update: bool = True) -> UserFullInfo:
         user_full_info = self.users_full_info.get(user_id)
 
-        if not bool(user_full_info):
+        if not bool(user_full_info) or force_update:
             user_full_info = await self.client.api.get_user_full_info(user_id)
+            self.users_full_info[user_id] = user_full_info
 
-        self.users_full_info[user_id] = user_full_info
         return user_full_info
 
-    async def get_basic_group(self, basic_group_id: int) -> BasicGroup:
+    async def get_basic_group(self, basic_group_id: int, *, force_update: bool = True) -> BasicGroup:
         basic_group = self.basic_groups.get(basic_group_id)
 
-        if not bool(basic_group):
+        if not bool(basic_group) or force_update:
             basic_group = await self.client.api.get_basic_group(basic_group_id)
+            self.basic_groups[basic_group_id] = basic_group
 
-        self.basic_groups[basic_group_id] = basic_group
         return basic_group
 
-    async def get_basic_group_full_info(self, basic_group_id: int) -> BasicGroupFullInfo:
+    async def get_basic_group_full_info(self, basic_group_id: int, *, force_update: bool = True) -> BasicGroupFullInfo:
         basic_group_full_info = self.basic_groups_full_info.get(basic_group_id)
 
-        if not bool(basic_group_full_info):
+        if not bool(basic_group_full_info) or force_update:
             basic_group_full_info = await self.client.api.get_basic_group_full_info(basic_group_id)
+            self.basic_groups_full_info[basic_group_id] = basic_group_full_info
 
-        self.basic_groups_full_info[basic_group_id] = basic_group_full_info
         return basic_group_full_info
 
-    async def get_supergroup(self, supergroup_id: int) -> Supergroup:
+    async def get_supergroup(self, supergroup_id: int, *, force_update: bool = True) -> Supergroup:
         supergroup = self.supergroups.get(supergroup_id)
 
-        if not bool(supergroup):
+        if not bool(supergroup) or force_update:
             supergroup = await self.client.api.get_supergroup(supergroup_id)
+            self.supergroups[supergroup_id] = supergroup
 
-        self.supergroups[supergroup_id] = supergroup
         return supergroup
 
-    async def get_supergroup_full_info(self, supergroup_id: int) -> SupergroupFullInfo:
+    async def get_supergroup_full_info(self, supergroup_id: int, *, force_update: bool = True) -> SupergroupFullInfo:
         supergroup_full_info = self.supergroups_full_info.get(supergroup_id)
 
-        if not bool(supergroup_full_info):
+        if not bool(supergroup_full_info) or force_update:
             supergroup_full_info = await self.client.api.get_supergroup_full_info(supergroup_id)
+            self.supergroups_full_info[supergroup_id] = supergroup_full_info
 
-        self.supergroups_full_info[supergroup_id] = supergroup_full_info
         return supergroup_full_info
 
-    async def get_secret_chat(self, secret_chat_id: int) -> SecretChat:
+    async def get_secret_chat(self, secret_chat_id: int, *, force_update: bool = True) -> SecretChat:
         secret_chat = self.secret_chats.get(secret_chat_id)
 
-        if not bool(secret_chat):
+        if not bool(secret_chat) or force_update:
             secret_chat = await self.client.api.get_secret_chat(secret_chat_id)
+            self.secret_chats[secret_chat_id] = secret_chat
 
-        self.secret_chats[secret_chat_id] = secret_chat
         return secret_chat
 
     def __set_chat_positions(self, chat: Chat, positions: list[ChatPosition]):

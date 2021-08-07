@@ -855,56 +855,62 @@ class Client:
         """
         return await self.cache.get_main_list_chats(limit)
 
-    async def get_chat(self, chat_id: int) -> Chat:
+    async def get_chat(self, chat_id: int, *, force_update: bool = False) -> Chat:
         """
         Returns information about a chat by its identifier, this is an offline request if the current user is not a bot
         """
-        return await self.cache.get_chat(chat_id)
+        return await self.cache.get_chat(chat_id, force_update=force_update)
 
-    async def get_user(self, user_id: int) -> User:
-        return await self.cache.get_user(user_id)
+    async def get_user(self, user_id: int, *, force_update: bool = False) -> User:
+        return await self.cache.get_user(user_id, force_update=force_update)
 
-    async def get_user_full_info(self, user_id: int) -> UserFullInfo:
-        return await self.cache.get_user_full_info(user_id)
+    async def get_user_full_info(self, user_id: int, *, force_update: bool = False) -> UserFullInfo:
+        return await self.cache.get_user_full_info(user_id, force_update=force_update)
 
-    async def get_basic_group(self, basic_group_id: int) -> BasicGroup:
-        return await self.cache.get_basic_group(basic_group_id)
+    async def get_basic_group(self, basic_group_id: int, *, force_update: bool = False) -> BasicGroup:
+        return await self.cache.get_basic_group(basic_group_id, force_update=force_update)
 
-    async def get_basic_group_full_info(self, basic_group_id: int) -> BasicGroupFullInfo:
-        return await self.cache.get_basic_group_full_info(basic_group_id)
+    async def get_basic_group_full_info(self, basic_group_id: int, *, force_update: bool = False) -> BasicGroupFullInfo:
+        return await self.cache.get_basic_group_full_info(basic_group_id, force_update=force_update)
 
-    async def get_supergroup(self, supergroup_id: int) -> Supergroup:
-        return await self.cache.get_supergroup(supergroup_id)
+    async def get_supergroup(self, supergroup_id: int, *, force_update: bool = False) -> Supergroup:
+        return await self.cache.get_supergroup(supergroup_id, force_update=force_update)
 
-    async def get_supergroup_full_info(self, supergroup_id: int) -> SupergroupFullInfo:
-        return await self.cache.get_supergroup_full_info(supergroup_id)
+    async def get_supergroup_full_info(self, supergroup_id: int, *, force_update: bool = False) -> SupergroupFullInfo:
+        return await self.cache.get_supergroup_full_info(supergroup_id, force_update=force_update)
 
-    async def get_secret_chat(self, secret_chat_id: int) -> SecretChat:
-        return await self.cache.get_secret_chat(secret_chat_id)
+    async def get_secret_chat(self, secret_chat_id: int, *, force_update: bool = False) -> SecretChat:
+        return await self.cache.get_secret_chat(secret_chat_id, force_update=force_update)
 
-    async def get_chat_info(self, chat: Union[int, Chat], *, full: bool = False) -> Optional[ChatInfo]:
+    async def get_chat_info(
+            self, 
+            chat: Union[int, Chat], 
+            *, 
+            full: bool = False, 
+            force_update: bool = False
+    ) -> Optional[ChatInfo]:
         chat = await self.get_chat(chat) if isinstance(chat, int) else chat
 
         if isinstance(chat.type_, ChatTypePrivate):
             if full:
-                return await self.get_user_full_info(chat.type_.user_id)
+                return await self.get_user_full_info(chat.type_.user_id, force_update=force_update)
             else:
-                return await self.get_user(chat.type_.user_id)
+                return await self.get_user(chat.type_.user_id, force_update=force_update)
 
         if isinstance(chat.type_, ChatTypeBasicGroup):
             if full:
-                return await self.get_basic_group_full_info(chat.type_.basic_group_id)
+                return await self.get_basic_group_full_info(chat.type_.basic_group_id, force_update=force_update)
             else:
-                return await self.get_basic_group(chat.type_.basic_group_id)
+                return await self.get_basic_group(chat.type_.basic_group_id, force_update=force_update)
 
         if isinstance(chat.type_, ChatTypeSupergroup):
             if full:
-                return await self.get_supergroup_full_info(chat.type_.supergroup_id)
+                return await self.get_supergroup_full_info(chat.type_.supergroup_id, force_update=force_update)
             else:
-                return await self.get_supergroup(chat.type_.supergroup_id)
+                return await self.get_supergroup(chat.type_.supergroup_id, force_update=force_update)
 
         if isinstance(chat.type_, ChatTypeSecret):
-            return await self.get_secret_chat(chat.type_.secret_chat_id)
+            return await self.get_secret_chat(chat.type_.secret_chat_id, force_update=force_update)
 
         raise ValueError(f'Unknown chat.type {chat.type_.__class__.__qualname__}')
 
