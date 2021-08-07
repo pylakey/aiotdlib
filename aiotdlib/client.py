@@ -873,11 +873,11 @@ class Client:
     async def get_basic_group_full_info(self, basic_group_id: int) -> BasicGroupFullInfo:
         return await self.cache.get_basic_group_full_info(basic_group_id)
 
-    async def get_supergroup(self, supergroup_id: int) -> BasicGroup:
-        return await self.cache.get_basic_group(supergroup_id)
+    async def get_supergroup(self, supergroup_id: int) -> Supergroup:
+        return await self.cache.get_supergroup(supergroup_id)
 
-    async def get_supergroup_full_info(self, supergroup_id: int) -> BasicGroupFullInfo:
-        return await self.cache.get_basic_group_full_info(supergroup_id)
+    async def get_supergroup_full_info(self, supergroup_id: int) -> SupergroupFullInfo:
+        return await self.cache.get_supergroup_full_info(supergroup_id)
 
     async def get_secret_chat(self, secret_chat_id: int) -> SecretChat:
         return await self.cache.get_secret_chat(secret_chat_id)
