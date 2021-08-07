@@ -1,7 +1,7 @@
 FROM python:3.9-slim-buster
 
 LABEL maintainer="Pylakey <pylakey@protonmail.com>"
-ENV AIOTDLIB_VERSION="0.8.2"
+ENV AIOTDLIB_VERSION="0.8.3"
 
 RUN apt-get update && apt-get install -y \
     zlib1g-dev \

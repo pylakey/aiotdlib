@@ -1,5 +1,12 @@
 # aiotdlib CHANGELOG
 
+### 0.8.3 - Minor fixes
+
+#### Updated
+
+* Fixed an error when `Client.get_supergroup` and `Client.get_supergroup_full_info` returned `BasicGroup` and `BasicGroupFullInfo` instead of
+`Supergroup` and `SupergroupFullInfo` respectively
+
 ### 0.8.2 - Upgrade to latest TDLib
 
 #### Updated
