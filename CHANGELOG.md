@@ -1,5 +1,14 @@
 # aiotdlib CHANGELOG
 
+### 0.8.4 - Upgraded TDLib
+
+#### Updated
+
+* TDLib binaries upgraded to
+  latest [available version](https://github.com/tdlib/td/commit/d161323858a782bc500d188b9ae916982526c262) (1.7.6 for now)
+
+* API types and functions regenerated
+
 ### 0.8.3 - Minor fixes
 
 #### Added

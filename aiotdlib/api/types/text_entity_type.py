@@ -123,6 +123,24 @@ class TextEntityTypeItalic(TextEntityType):
         return TextEntityTypeItalic.construct(**q)
 
 
+class TextEntityTypeMediaTimestamp(TextEntityType):
+    """
+    A media timestamp
+    
+    Params:
+        media_timestamp (:class:`int`)
+            Timestamp from which a video/audio/video note/voice note playing should start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
+        
+    """
+
+    ID: str = Field("textEntityTypeMediaTimestamp", alias="@type")
+    media_timestamp: int
+
+    @staticmethod
+    def read(q: dict) -> TextEntityTypeMediaTimestamp:
+        return TextEntityTypeMediaTimestamp.construct(**q)
+
+
 class TextEntityTypeMention(TextEntityType):
     """
     A mention of a user by their username

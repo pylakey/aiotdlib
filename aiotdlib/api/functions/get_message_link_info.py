@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class GetMessageLinkInfo(BaseObject):
     """
-    Returns information about a public or private message link
+    Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
     
     Params:
         url (:class:`str`)

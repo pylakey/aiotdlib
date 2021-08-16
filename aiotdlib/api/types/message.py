@@ -63,6 +63,12 @@ class Message(BaseObject):
         can_get_message_thread (:class:`bool`)
             True, if the message thread info is available
         
+        can_get_media_timestamp_links (:class:`bool`)
+            True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description
+        
+        has_timestamped_media (:class:`bool`)
+            True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
+        
         is_channel_post (:class:`bool`)
             True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
         
@@ -130,6 +136,8 @@ class Message(BaseObject):
     can_be_deleted_for_all_users: bool
     can_get_statistics: bool
     can_get_message_thread: bool
+    can_get_media_timestamp_links: bool
+    has_timestamped_media: bool
     is_channel_post: bool
     contains_unread_mention: bool
     date: int

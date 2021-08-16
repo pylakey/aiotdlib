@@ -1281,6 +1281,7 @@ class API:
         TEXT_ENTITY_TYPE_EMAIL_ADDRESS = 'textEntityTypeEmailAddress'
         TEXT_ENTITY_TYPE_HASHTAG = 'textEntityTypeHashtag'
         TEXT_ENTITY_TYPE_ITALIC = 'textEntityTypeItalic'
+        TEXT_ENTITY_TYPE_MEDIA_TIMESTAMP = 'textEntityTypeMediaTimestamp'
         TEXT_ENTITY_TYPE_MENTION = 'textEntityTypeMention'
         TEXT_ENTITY_TYPE_MENTION_NAME = 'textEntityTypeMentionName'
         TEXT_ENTITY_TYPE_PHONE_NUMBER = 'textEntityTypePhoneNumber'
@@ -5406,7 +5407,7 @@ class API:
             skip_validation: bool = False
     ) -> Messages:
         """
-        Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance the number of returned messages is chosen by the library. This is an offline request if only_local is true
+        Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
         
         Params:
             chat_id (:class:`int`)
@@ -5419,7 +5420,7 @@ class API:
                 Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
             
             limit (:class:`int`)
-                The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
+                The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
             
             only_local (:class:`bool`)
                 If true, returns only messages that are available locally without sending network requests
@@ -5874,7 +5875,7 @@ class API:
             skip_validation: bool = False
     ) -> Chats:
         """
-        Returns an ordered list of chats in a chat list. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. (For example, to get a list of chats from the beginning, the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance the number of returned chats is chosen by the library
+        Returns an ordered list of chats in a chat list. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. (For example, to get a list of chats from the beginning, the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance, the number of returned chats is chosen by TDLib
         
         Params:
             chat_list (:class:`ChatList`)
@@ -5887,7 +5888,7 @@ class API:
                 Chat identifier to return chats from
             
             limit (:class:`int`)
-                The maximum number of chats to be returned. It is possible that fewer chats than the limit are returned even if the end of the list is not reached
+                The maximum number of chats to be returned. For optimal performance, the number of returned chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
             
         """
         _constructor = GetChats.construct if skip_validation else GetChats
@@ -6123,7 +6124,7 @@ class API:
             skip_validation: bool = False
     ) -> LoginUrlInfo:
         """
-        Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if link preview is disabled in secret chats
+        Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats
         
         Params:
             link (:class:`str`)
@@ -7113,7 +7114,7 @@ class API:
             skip_validation: bool = False
     ) -> MessageLink:
         """
-        Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels. This is an offline request
+        Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
         
         Params:
             chat_id (:class:`int`)
@@ -7123,7 +7124,7 @@ class API:
                 Identifier of the message
             
             media_timestamp (:class:`int`)
-                If not 0, timestamp from which the video/audio/video note/voice note playing should start, in seconds. The media can be in the message content or in its link preview
+                If not 0, timestamp from which the video/audio/video note/voice note playing should start, in seconds. The media can be in the message content or in its web page preview
             
             for_album (:class:`bool`)
                 Pass true to create a link for the whole media album
@@ -7155,7 +7156,7 @@ class API:
             skip_validation: bool = False
     ) -> MessageLinkInfo:
         """
-        Returns information about a public or private message link
+        Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
         
         Params:
             url (:class:`str`)
@@ -7215,7 +7216,7 @@ class API:
             skip_validation: bool = False
     ) -> FoundMessages:
         """
-        Returns forwarded copies of a channel message to different public channels. For optimal performance the number of returned messages is chosen by the library
+        Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
         
         Params:
             chat_id (:class:`int`)
@@ -7228,7 +7229,7 @@ class API:
                 Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
             
             limit (:class:`int`)
-                The maximum number of messages to be returned; must be positive and can't be greater than 100. Fewer messages may be returned than specified by the limit, even if the end of the list has not been reached
+                The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
             
         """
         _constructor = GetMessagePublicForwards.construct if skip_validation else GetMessagePublicForwards
@@ -7324,7 +7325,7 @@ class API:
             skip_validation: bool = False
     ) -> Messages:
         """
-        Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance the number of returned messages is chosen by the library
+        Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
         
         Params:
             chat_id (:class:`int`)
@@ -7340,7 +7341,7 @@ class API:
                 Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
             
             limit (:class:`int`)
-                The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. Fewer messages may be returned than specified by the limit, even if the end of the message thread history has not been reached
+                The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
             
         """
         _constructor = GetMessageThreadHistory.construct if skip_validation else GetMessageThreadHistory
@@ -7660,7 +7661,7 @@ class API:
             skip_validation: bool = False
     ) -> Users:
         """
-        Returns users voted for the specified option in a non-anonymous polls. For the optimal performance the number of returned users is chosen by the library
+        Returns users voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
         
         Params:
             chat_id (:class:`int`)
@@ -7676,7 +7677,7 @@ class API:
                 Number of users to skip in the result; must be non-negative
             
             limit (:class:`int`)
-                The maximum number of users to be returned; must be positive and can't be greater than 50. Fewer users may be returned than specified by the limit, even if the end of the voter list has not been reached
+                The maximum number of users to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned users is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
             
         """
         _constructor = GetPollVoters.construct if skip_validation else GetPollVoters
@@ -8439,14 +8440,14 @@ class API:
             skip_validation: bool = False
     ) -> StickerSets:
         """
-        Returns a list of trending sticker sets. For the optimal performance the number of returned sticker sets is chosen by the library
+        Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
         
         Params:
             offset (:class:`int`)
                 The offset from which to return the sticker sets; must be non-negative
             
             limit (:class:`int`)
-                The maximum number of sticker sets to be returned; must be non-negative. Fewer sticker sets may be returned than specified by the limit, even if the end of the list has not been reached
+                The maximum number of sticker sets to be returned; must be non-negative. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
             
         """
         _constructor = GetTrendingStickerSets.construct if skip_validation else GetTrendingStickerSets
@@ -10360,14 +10361,14 @@ class API:
             skip_validation: bool = False
     ) -> Messages:
         """
-        Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance the number of returned messages is chosen by the library
+        Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
         
         Params:
             from_message_id (:class:`int`)
                 Identifier of the message from which to search; use 0 to get results from the last message
             
             limit (:class:`int`)
-                The maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
+                The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
             
             only_missed (:class:`bool`)
                 If true, returns only messages with missed calls
@@ -10442,7 +10443,7 @@ class API:
             skip_validation: bool = False
     ) -> Messages:
         """
-        Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages should be used instead), or without an enabled message database. For optimal performance the number of returned messages is chosen by the library
+        Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages should be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         
         Params:
             chat_id (:class:`int`)
@@ -10461,7 +10462,7 @@ class API:
                 Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
             
             limit (:class:`int`)
-                The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
+                The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
             
             filter_ (:class:`SearchMessagesFilter`)
                 Filter for message content in the search results
@@ -10757,7 +10758,7 @@ class API:
             skip_validation: bool = False
     ) -> Messages:
         """
-        Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance the number of returned messages is chosen by the library
+        Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         
         Params:
             chat_list (:class:`ChatList`)
@@ -10776,7 +10777,7 @@ class API:
                 The message identifier of the last found message, or 0 for the first request
             
             limit (:class:`int`)
-                The maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
+                The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
             
             filter_ (:class:`SearchMessagesFilter`)
                 Filter for message content in the search results; searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
@@ -10871,7 +10872,7 @@ class API:
             skip_validation: bool = False
     ) -> FoundMessages:
         """
-        Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance the number of returned messages is chosen by the library
+        Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
         
         Params:
             chat_id (:class:`int`)
@@ -10884,7 +10885,7 @@ class API:
                 Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
             
             limit (:class:`int`)
-                The maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
+                The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
             
             filter_ (:class:`SearchMessagesFilter`)
                 A filter for message content in the search results

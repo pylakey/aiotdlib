@@ -13,7 +13,7 @@ from ..types import ChatList
 
 class GetChats(BaseObject):
     """
-    Returns an ordered list of chats in a chat list. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. (For example, to get a list of chats from the beginning, the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance the number of returned chats is chosen by the library
+    Returns an ordered list of chats in a chat list. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. (For example, to get a list of chats from the beginning, the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance, the number of returned chats is chosen by TDLib
     
     Params:
         chat_list (:class:`ChatList`)
@@ -26,7 +26,7 @@ class GetChats(BaseObject):
             Chat identifier to return chats from
         
         limit (:class:`int`)
-            The maximum number of chats to be returned. It is possible that fewer chats than the limit are returned even if the end of the list is not reached
+            The maximum number of chats to be returned. For optimal performance, the number of returned chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
         
     """
 

@@ -14,7 +14,7 @@ from ..types import SearchMessagesFilter
 
 class SearchMessages(BaseObject):
     """
-    Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance the number of returned messages is chosen by the library
+    Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     
     Params:
         chat_list (:class:`ChatList`)
@@ -33,7 +33,7 @@ class SearchMessages(BaseObject):
             The message identifier of the last found message, or 0 for the first request
         
         limit (:class:`int`)
-            The maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
+            The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         
         filter_ (:class:`SearchMessagesFilter`)
             Filter for message content in the search results; searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
