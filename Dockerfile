@@ -1,7 +1,6 @@
 FROM python:3.9-slim-buster
 
 LABEL maintainer="Pylakey <pylakey@protonmail.com>"
-ENV AIOTDLIB_VERSION="0.8.4"
 
 RUN apt-get update && apt-get install -y \
     zlib1g-dev \
@@ -11,4 +10,4 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install -U pip setuptools wheel
-RUN pip install --no-cache-dir "aiotdlib==$AIOTDLIB_VERSION"
+RUN pip install --no-cache-dir aiotdlib
