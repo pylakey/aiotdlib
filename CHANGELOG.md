@@ -1,5 +1,13 @@
 # aiotdlib CHANGELOG
 
+### 0.8.5 - Hotfix
+
+#### Updated
+
+* `stop_signals` parameter of `Client.idle` method is deprecated now and will be totally removed soon
+
+* Fixed [#2](https://github.com/pylakey/aiotdlib/issues/2) 
+
 ### 0.8.4 - Upgraded TDLib
 
 #### Updated

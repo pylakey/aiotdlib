@@ -5,10 +5,10 @@ import enum
 import hashlib
 import logging
 import os
-import signal
 import sys
 import typing
 import uuid
+import warnings
 from collections import AsyncIterator
 from functools import (
     partial,
@@ -164,7 +164,6 @@ class ClientProxySettings(BaseModel):
 class Client:
     logger: logging.Logger = None
     loop: asyncio.AbstractEventLoop = None
-    __stop_idle_event: asyncio.Event = None
 
     def __init__(
             self,
@@ -543,10 +542,6 @@ class Client:
     async def __auth_closed(self):
         self.logger.info('Auth session is closed')
 
-    async def __stop_signal_handler(self, signum: int) -> None:
-        self.logger.info('Signal %s received!', signum)
-        await self.stop()
-
     async def __setup_proxy(self):
         if not bool(self.proxy_settings):
             # If proxy is not set disabling all configured proxy
@@ -698,7 +693,7 @@ class Client:
             request_id: str = None,
             request_timeout: int = None
     ) -> Optional[RequestResult]:
-        if not bool(request_id):
+        if request_id is None:
             request_id = query.EXTRA.get('request_id') or uuid.uuid4().hex
 
         if request_timeout is None:
@@ -747,49 +742,6 @@ class Client:
             self.logger.error(f'Unable to parse incoming update! {e}', exc_info=True)
             return None
 
-    async def start(self) -> 'Client':
-        self.logger.info('Starting client')
-        self.logger.info(f'Session workdir: {self.files_directory}')
-
-        # Preparing middlewares handlers
-        self.__middlewares_handlers = list(reversed(self.__middlewares))
-
-        # Setting up asyncio stuff
-        self.loop = asyncio.get_running_loop()
-        self.__stop_idle_event = asyncio.Event()
-
-        # Starting updates loop
-        self.__running = True
-        self.loop.create_task(self.__updates_loop())
-
-        # Initialize authorization process
-        await self.authorize()
-        return self
-
-    async def idle(self, stop_signals: tuple = (signal.SIGINT, signal.SIGTERM, signal.SIGABRT, signal.SIGQUIT)):
-        if not self.__running:
-            raise ValueError('Client is already stopped')
-
-        self.logger.info('Started Idling...')
-
-        # Registering signals handlers for graceful shutdown
-        for sig in stop_signals:
-            self.loop.add_signal_handler(sig, lambda _s=sig: asyncio.create_task(self.__stop_signal_handler(sig)))
-
-        try:
-            await self.__stop_idle_event.wait()
-        except asyncio.CancelledError:
-            pass
-
-        self.logger.info('Stop Idling...')
-
-    async def stop(self):
-        self.logger.info('Stopping telegram client...')
-        await self.__close()
-
-        self.__running = False
-        self.__stop_idle_event.set()
-
     async def authorize(self):
         if bool(self.phone_number):
             self.logger.info('Authorization process has been started with phone')
@@ -834,6 +786,46 @@ class Client:
                 self.__current_authorization_state = result.authorization_state.ID
 
             await asyncio.sleep(0.1)
+
+    async def start(self) -> 'Client':
+        self.logger.info('Starting client')
+        self.logger.info(f'Session workdir: {self.files_directory}')
+
+        # Preparing middlewares handlers
+        self.__middlewares_handlers = list(reversed(self.__middlewares))
+
+        # Setting up asyncio stuff
+        self.loop = asyncio.get_running_loop()
+
+        # Starting updates loop
+        self.__running = True
+        self.loop.create_task(self.__updates_loop())
+
+        # Initialize authorization process
+        await self.authorize()
+        return self
+
+    async def idle(self, stop_signals: tuple = None):
+        if stop_signals is not None:
+            warnings.warn("stop_signals parameter is deprecated and has no effect", DeprecationWarning, stacklevel=2)
+
+        try:
+            while True:
+                await asyncio.sleep(0.1)
+        finally:
+            self.logger.info('Stop Idling...')
+
+    async def stop(self):
+        self.logger.info('Stopping telegram client...')
+        await self.__close()
+        self.__running = False
+
+    async def _run(self):
+        async with self:
+            await self.idle()
+
+    def run(self):
+        asyncio.run(self._run())
 
     # Cache related methods
     async def get_option_value(self, name: str) -> typing.Union[str, int, bool, None]:
@@ -883,10 +875,10 @@ class Client:
         return await self.cache.get_secret_chat(secret_chat_id, force_update=force_update)
 
     async def get_chat_info(
-            self, 
-            chat: Union[int, Chat], 
-            *, 
-            full: bool = False, 
+            self,
+            chat: Union[int, Chat],
+            *,
+            full: bool = False,
             force_update: bool = False
     ) -> Optional[ChatInfo]:
         chat = await self.get_chat(chat) if isinstance(chat, int) else chat
@@ -1926,10 +1918,3 @@ class Client:
                     break
 
             request_limit = min(100, limit - yielded_messages_count)
-
-    async def _run(self):
-        async with self:
-            await self.idle()
-
-    def run(self):
-        asyncio.run(self._run())
