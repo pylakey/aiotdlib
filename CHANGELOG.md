@@ -1,6 +1,6 @@
 # aiotdlib CHANGELOG
 
-### 0.8.5 - Hotfix
+### 0.8.5 - Bugfix
 
 #### Updated
 
