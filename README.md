@@ -33,7 +33,7 @@ pip install aiotdlib
 
 ### Docker
 
-You can use [this Docker image](https://hub.docker.com/repository/docker/pylakey/aiotdlib) as a base for your own image.
+You can use [this Docker image](https://hub.docker.com/r/pylakey/aiotdlib) as a base for your own image.
 
 ## Example
 
