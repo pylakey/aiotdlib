@@ -805,10 +805,7 @@ class Client:
         await self.authorize()
         return self
 
-    async def idle(self, stop_signals: tuple = None):
-        if stop_signals is not None:
-            warnings.warn("stop_signals parameter is deprecated and has no effect", DeprecationWarning, stacklevel=2)
-
+    async def idle(self):
         try:
             while True:
                 await asyncio.sleep(0.1)

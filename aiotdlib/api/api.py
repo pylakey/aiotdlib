@@ -2196,7 +2196,7 @@ class API:
                 Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups
             
             revoke_messages (:class:`bool`)
-                Pass true to delete all messages in the chat for the user. Always true for supergroups and channels
+                Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
             
         """
         _constructor = BanChatMember.construct if skip_validation else BanChatMember
@@ -10083,7 +10083,7 @@ class API:
             request_timeout: int = None
             ) -> AuthenticationCodeInfo:
         """
-        Re-sends the authentication code sent to confirm a new phone number for the user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
+        Re-sends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
         
         """
         return await self.client.request(
@@ -10533,7 +10533,7 @@ class API:
         
         Params:
             query (:class:`str`)
-                Query to search for. If the query is empty, returns up to 20 recently found chats
+                Query to search for. If the query is empty, returns up to 50 recently found chats
             
             limit (:class:`int`)
                 The maximum number of chats to be returned
@@ -12625,10 +12625,10 @@ class API:
         
         Params:
             first_name (:class:`str`)
-                The new value of the first name for the user; 1-64 characters
+                The new value of the first name for the current user; 1-64 characters
             
             last_name (:class:`str`)
-                The new value of the optional last name for the user; 0-64 characters
+                The new value of the optional last name for the current user; 0-64 characters
             
         """
         _constructor = SetName.construct if skip_validation else SetName
@@ -12774,7 +12774,7 @@ class API:
             skip_validation: bool = False
     ) -> PasswordState:
         """
-        Changes the password for the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
+        Changes the password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
         
         Params:
             old_password (:class:`str`)

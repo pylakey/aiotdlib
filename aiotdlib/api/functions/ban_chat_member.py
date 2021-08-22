@@ -26,7 +26,7 @@ class BanChatMember(BaseObject):
             Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups
         
         revoke_messages (:class:`bool`)
-            Pass true to delete all messages in the chat for the user. Always true for supergroups and channels
+            Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
         
     """
 

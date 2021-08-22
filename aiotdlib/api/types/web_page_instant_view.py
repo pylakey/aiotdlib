@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from pydantic import Field
 
+from .internal_link_type import InternalLinkType
 from .page_block import PageBlock
 from ..base_object import BaseObject
 
@@ -31,6 +32,9 @@ class WebPageInstantView(BaseObject):
         is_full (:class:`bool`)
             True, if the instant view contains the full page. A network request might be needed to get the full web page instant view
         
+        feedback_link (:class:`InternalLinkType`)
+            An internal link to be opened to leave feedback about the instant view
+        
     """
 
     ID: str = Field("webPageInstantView", alias="@type")
@@ -39,6 +43,7 @@ class WebPageInstantView(BaseObject):
     version: int
     is_rtl: bool
     is_full: bool
+    feedback_link: InternalLinkType
 
     @staticmethod
     def read(q: dict) -> WebPageInstantView:

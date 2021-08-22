@@ -16,7 +16,7 @@ class SearchChats(BaseObject):
     
     Params:
         query (:class:`str`)
-            Query to search for. If the query is empty, returns up to 20 recently found chats
+            Query to search for. If the query is empty, returns up to 50 recently found chats
         
         limit (:class:`int`)
             The maximum number of chats to be returned

@@ -18,10 +18,10 @@ class SetName(BaseObject):
     
     Params:
         first_name (:class:`str`)
-            The new value of the first name for the user; 1-64 characters
+            The new value of the first name for the current user; 1-64 characters
         
         last_name (:class:`str`)
-            The new value of the optional last name for the user; 0-64 characters
+            The new value of the optional last name for the current user; 0-64 characters
         
     """
 

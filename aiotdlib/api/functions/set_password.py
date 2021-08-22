@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class SetPassword(BaseObject):
     """
-    Changes the password for the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
+    Changes the password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
     
     Params:
         old_password (:class:`str`)

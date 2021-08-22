@@ -129,11 +129,16 @@ class InternalLinkTypeChangePhoneNumber(InternalLinkType):
 
 class InternalLinkTypeChatInvite(InternalLinkType):
     """
-    The link is a chat invite link. Call checkChatInviteLink to process the link
+    The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link
     
+    Params:
+        invite_link (:class:`str`)
+            Internal representation of the invite link
+        
     """
 
     ID: str = Field("internalLinkTypeChatInvite", alias="@type")
+    invite_link: str
 
     @staticmethod
     def read(q: dict) -> InternalLinkTypeChatInvite:
@@ -195,11 +200,16 @@ class InternalLinkTypeLanguagePack(InternalLinkType):
 
 class InternalLinkTypeMessage(InternalLinkType):
     """
-    The link is a link to a Telegram message. Call getMessageLinkInfo to process the link
+    The link is a link to a Telegram message. Call getMessageLinkInfo with the given URL to process the link
     
+    Params:
+        url (:class:`str`)
+            URL to be passed to getMessageLinkInfo
+        
     """
 
     ID: str = Field("internalLinkTypeMessage", alias="@type")
+    url: str
 
     @staticmethod
     def read(q: dict) -> InternalLinkTypeMessage:
@@ -230,7 +240,7 @@ class InternalLinkTypeMessageDraft(InternalLinkType):
 
 class InternalLinkTypePassportDataRequest(InternalLinkType):
     """
-    The link contains a request of Telegram passport data. Call getPassportAuthorizationForm to process the link if the link was received outside of the app, otherwise ignore it
+    The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the app, otherwise ignore it
     
     Params:
         bot_user_id (:class:`int`)
@@ -286,7 +296,7 @@ class InternalLinkTypePhoneNumberConfirmation(InternalLinkType):
 
 class InternalLinkTypeProxy(InternalLinkType):
     """
-    The link is a link to a proxy. Call addProxy to process the link and add the proxy
+    The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
     
     Params:
         server (:class:`str`)
@@ -407,9 +417,14 @@ class InternalLinkTypeUnknownDeepLink(InternalLinkType):
     """
     The link is an unknown tg: link. Call getDeepLinkInfo to process the link
     
+    Params:
+        link (:class:`str`)
+            Link to be passed to getDeepLinkInfo
+        
     """
 
     ID: str = Field("internalLinkTypeUnknownDeepLink", alias="@type")
+    link: str
 
     @staticmethod
     def read(q: dict) -> InternalLinkTypeUnknownDeepLink:

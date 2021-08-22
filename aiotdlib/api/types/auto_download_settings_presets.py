@@ -13,7 +13,7 @@ from ..base_object import BaseObject
 
 class AutoDownloadSettingsPresets(BaseObject):
     """
-    Contains auto-download settings presets for the user
+    Contains auto-download settings presets for the current user
     
     Params:
         low (:class:`AutoDownloadSettings`)
