@@ -33,7 +33,7 @@ class API:
     async def {{ entity.snake_name }}{% if entity.parameters %}(
             self,
             {%- for parameter in entity.parameters %}
-            {{ parameter.name }}: {{ parameter.type }},
+            {{ parameter.name }}: {% if parameter.nullable %}{{ parameter.optional_type }}{% else %}{{ parameter.type }}{% endif %},
             {%- endfor %}
             *,
             request_id: str = None,

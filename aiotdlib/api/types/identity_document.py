@@ -29,7 +29,7 @@ class IdentityDocument(BaseObject):
             Front side of the document
         
         reverse_side (:class:`DatedFile`)
-            Reverse side of the document; only for driver license and identity card
+            Reverse side of the document; only for driver license and identity card; may be null
         
         selfie (:class:`DatedFile`)
             Selfie with the document; may be null
@@ -43,7 +43,7 @@ class IdentityDocument(BaseObject):
     number: str = Field(..., min_length=1, max_length=24)
     expiry_date: typing.Optional[Date] = None
     front_side: DatedFile
-    reverse_side: DatedFile
+    reverse_side: typing.Optional[DatedFile] = None
     selfie: typing.Optional[DatedFile] = None
     translation: list[DatedFile]
 

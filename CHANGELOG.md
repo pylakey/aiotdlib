@@ -1,5 +1,20 @@
 # aiotdlib CHANGELOG
 
+### 0.9.0 - Upgrade to latest TDLib
+
+> This update may contain breaking changes in some scenarios
+
+#### Updated
+
+* TDLib binaries upgraded to
+  latest [available version](https://github.com/tdlib/td/commit/97fccf7f27c84009460389fdd294739db510f47f)
+
+* API types and functions regenerated
+
+#### Removed
+
+* Totally removed `stop_signals` parameter of `Client.idle` method
+
 ### 0.8.5 - Bugfix
 
 #### Updated
