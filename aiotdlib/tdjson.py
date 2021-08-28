@@ -9,9 +9,12 @@ from enum import IntEnum
 import pkg_resources
 import ujson
 
-TDLIB_VERSION = '1.7.6'
 TDLIB_MAX_INT = 2 ** 63 - 1
 log_message_callback_type = CFUNCTYPE(None, c_int, c_char_p)
+LINUX_MACHINE_SYNONYMS = {
+    "x86_64": "amd64",
+    "aarch64": "arm64"
+}
 
 
 def _get_tdjson_lib_path() -> str:
@@ -20,15 +23,27 @@ def _get_tdjson_lib_path() -> str:
     if tdjson_path is not None:
         return tdjson_path
 
-    if platform.system().lower() == 'darwin':
-        lib_name = f"libtdjson.{TDLIB_VERSION}.dylib"
-    elif platform.system().lower() == 'windows':
-        lib_name = f"libtdjson.{TDLIB_VERSION}.dll"
-    else:
-        # By default tdlib is built with this name
-        lib_name = f"libtdjson.so.{TDLIB_VERSION}"
+    uname = platform.uname()
+    system_name = uname.system.lower()
+    machine_name = uname.machine
 
-    return pkg_resources.resource_filename('aiotdlib', f'tdlib/{lib_name}')
+    if system_name == 'darwin':
+        extension = f"dylib"
+    elif system_name == 'linux':
+        extension = f"so"
+
+        if machine_name in LINUX_MACHINE_SYNONYMS.keys():
+            machine_name = LINUX_MACHINE_SYNONYMS[machine_name]
+    else:
+        raise RuntimeError('Prebuilt TDLib binary is not include for this system')
+
+    binary_path = f'tdlib/{system_name}/{machine_name}/libtdjson.{extension}'
+
+    if not pkg_resources.resource_exists('aiotdlib', binary_path):
+        # Binary for arm64 machines will be always provided for both Darwin and Linux
+        binary_path = f"tdlib/{system_name}/arm64/libtdjson.{extension}"
+
+    return pkg_resources.resource_filename('aiotdlib', binary_path)
 
 
 class TDLibLogVerbosity(IntEnum):

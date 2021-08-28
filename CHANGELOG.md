@@ -6,6 +6,10 @@
 
 #### Updated
 
+* Slightly improved generator. Nullable parameters of some api functions now have Optional type
+
+* Changed file structure for prebuilt binaries
+
 * TDLib binaries upgraded to
   latest [available version](https://github.com/tdlib/td/commit/97fccf7f27c84009460389fdd294739db510f47f)
 
