@@ -35,4 +35,4 @@ build:
 
     RUN cmake --build /build --target install
 
-    SAVE ARTIFACT /tdlib/lib/libtdjson.so.1.7.6 AS LOCAL ../aiotdlib/tdlib/linux/${TARGETARCH}/libtdjson.so
+    SAVE ARTIFACT /tdlib/lib/libtdjson.so.1.7.7 AS LOCAL ../aiotdlib/tdlib/linux/${TARGETARCH}/libtdjson.so
