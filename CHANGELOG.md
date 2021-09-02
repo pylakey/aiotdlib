@@ -9,17 +9,17 @@
 #### Updated
 
 * TDLib binaries upgraded to
-  latest [available version](https://github.com/tdlib/td/commit/7135caa2bef38939f58e9e206db83fd316236682)
+  latest [available version](https://github.com/pylakey/td/commit/7135caa2bef38939f58e9e206db83fd316236682)
 
 * Default value of `limit` parameter in method `Client.get_main_list_chats` was changed to 100
 
 * Default value of `limit` parameter in method `ClientCache.get_main_list_chats` was changed to 100
 
-* Chats in `ClientCache.get_main_list_chats` are loaded using new [loadChats](/blob/master/td/generate/scheme/td_api.tl#L4096) TDLib function
+* Chats in `ClientCache.get_main_list_chats` are loaded using new [loadChats](https://github.com/pylakey/td/blob/master/td/generate/scheme/td_api.tl#L4096) TDLib function
 
 * Added new NotFound helper exception for errors with code 400
 
-* Removed usage of deprecated `td_set_log_verbosity_level` function of TDJson instance. [setLogVerbosityLevel](/blob/master/td/generate/scheme/td_api.tl#L5587) is used instead
+* Removed usage of deprecated `td_set_log_verbosity_level` function of TDJson instance. [setLogVerbosityLevel](https://github.com/pylakey/td/blob/master/td/generate/scheme/td_api.tl#L5587) is used instead
 
 * API types and functions regenerated
 
@@ -34,7 +34,7 @@
 * Changed file structure for prebuilt binaries
 
 * TDLib binaries upgraded to
-  latest [available version](https://github.com/tdlib/td/commit/97fccf7f27c84009460389fdd294739db510f47f)
+  latest [available version](https://github.com/pylakey/td/commit/97fccf7f27c84009460389fdd294739db510f47f)
 
 * API types and functions regenerated
 
@@ -55,7 +55,7 @@
 #### Updated
 
 * TDLib binaries upgraded to
-  latest [available version](https://github.com/tdlib/td/commit/d161323858a782bc500d188b9ae916982526c262) (1.7.6 for now)
+  latest [available version](https://github.com/pylakey/td/commit/d161323858a782bc500d188b9ae916982526c262) (1.7.6 for now)
 
 * API types and functions regenerated
 
@@ -75,7 +75,7 @@
 #### Updated
 
 * TDLib binaries upgraded to
-  latest [available version](https://github.com/tdlib/td/commit/f8ab675ad14080b1609b5904c366052c814d1788)
+  latest [available version](https://github.com/pylakey/td/commit/f8ab675ad14080b1609b5904c366052c814d1788)
 
 * API types and functions regenerated
 
@@ -90,7 +90,7 @@
 #### Updated
 
 * TDLib binaries upgraded to
-  latest [available version](https://github.com/tdlib/td/commit/d4dc4f2a50f39b1c05efd955a6e9de0db2b197bc) (1.7.6 for now)
+  latest [available version](https://github.com/pylakey/td/commit/d4dc4f2a50f39b1c05efd955a6e9de0db2b197bc) (1.7.6 for now)
 
 * API types and functions regenerated
 
@@ -105,7 +105,7 @@
 #### Updated
 
 * TDLib binaries upgraded to
-  latest [available version](https://github.com/tdlib/td/commit/c45535d607463adb0cd20fcadf43e8f793b1fb24)
+  latest [available version](https://github.com/pylakey/td/commit/c45535d607463adb0cd20fcadf43e8f793b1fb24)
 
 * API types and functions regenerated
 
