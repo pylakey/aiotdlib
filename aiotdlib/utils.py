@@ -11,11 +11,13 @@ from typing import (
 )
 
 from .api import (
+    BadRequest,
     BaseObject,
     Error,
 )
 from .api.errors import (
     AioTDLibError,
+    NotFound,
     Unauthorized,
 )
 
@@ -83,8 +85,12 @@ class PendingRequest:
 
     def raise_error(self):
         if isinstance(self.update, Error):
-            if self.update.code == 401:
+            if self.update.code == 400:
+                raise BadRequest(self.update.message)
+            elif self.update.code == 401:
                 raise Unauthorized(self.update.message)
+            elif self.update.code == 404:
+                raise NotFound(self.update.message)
 
             raise AioTDLibError(self.update.code, self.update.message)
 

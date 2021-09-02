@@ -7,11 +7,14 @@ from sortedcontainers import SortedSet
 
 from .api import (
     API,
+    AioTDLibError,
     BasicGroup,
     BasicGroupFullInfo,
     Chat,
     ChatListMain,
     ChatPosition,
+    NotFound,
+    Ok,
     OptionValueBoolean,
     OptionValueEmpty,
     OptionValueInteger,
@@ -49,7 +52,6 @@ from .api import (
     User,
     UserFullInfo,
 )
-from .tdjson import TDLIB_MAX_INT
 
 if typing.TYPE_CHECKING:
     from .client import Client
@@ -239,27 +241,22 @@ class ClientCache:
 
         return value
 
-    async def get_main_list_chats(self, limit: int = 25) -> list[Chat]:
+    async def get_main_list_chats(self, limit: int = 100) -> list[Chat]:
         cached_chats_count = len(self.main_chats_list)
 
         if not self.have_full_main_chats_list and limit > cached_chats_count:
-            offset_order = TDLIB_MAX_INT
-            offset_chat_id = 0
-
-            if cached_chats_count > 0:
-                last_chat = self.main_chats_list[-1]
-                offset_order = last_chat.position.order
-                offset_chat_id = last_chat.chat_id
-
-            request_limit = max(100, limit - cached_chats_count)
-            result = await self.client.api.get_chats(ChatListMain(), offset_order, offset_chat_id, request_limit)
-
-            if len(result.chat_ids) == 0:
+            try:
+                load_limit = min(limit - cached_chats_count, 100)
+                result = await self.client.api.load_chats(ChatListMain(), load_limit)
+            except NotFound:
                 self.have_full_main_chats_list = True
+            except AioTDLibError as e:
+                self.logger.error(f'Received an error for get_main_list_chats: {e}')
+            else:
+                if isinstance(result, Ok):
+                    return await self.get_main_list_chats(limit)
 
-            return await self.get_main_list_chats(limit)
-
-        return [self.chats.get(oc.chat_id) for oc in self.main_chats_list[:limit]]
+        return [self.chats.get(ordered_chat.chat_id) for ordered_chat in self.main_chats_list[:limit]]
 
     async def get_chat(self, chat_id: int, *, force_update: bool = True) -> Chat:
         chat = self.chats.get(chat_id)
@@ -335,7 +332,7 @@ class ClientCache:
         return secret_chat
 
     def __set_chat_positions(self, chat: Chat, positions: list[ChatPosition]):
-        for position in positions:
+        for position in chat.positions:
             if isinstance(position.list, ChatListMain):
                 try:
                     self.main_chats_list.remove(OrderedChat(chat.id, position))
@@ -344,7 +341,7 @@ class ClientCache:
 
         chat.positions = positions
 
-        for position in positions:
+        for position in chat.positions:
             if isinstance(position.list, ChatListMain):
                 self.main_chats_list.add(OrderedChat(chat.id, position))
 

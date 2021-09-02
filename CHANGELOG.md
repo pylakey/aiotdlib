@@ -2,10 +2,24 @@
 
 ### 0.10.0 - TDLib 1.7.7
 
+#### Added
+
+* Added `Client.get_main_list_chats_all` helper method to get the whole main chats list 
+
 #### Updated
 
 * TDLib binaries upgraded to
   latest [available version](https://github.com/tdlib/td/commit/7135caa2bef38939f58e9e206db83fd316236682)
+
+* Default value of `limit` parameter in method `Client.get_main_list_chats` was changed to 100
+
+* Default value of `limit` parameter in method `ClientCache.get_main_list_chats` was changed to 100
+
+* Chats in `ClientCache.get_main_list_chats` are loaded using new [loadChats](/blob/master/td/generate/scheme/td_api.tl#L4096) TDLib function
+
+* Added new NotFound helper exception for errors with code 400
+
+* Removed usage of deprecated `td_set_log_verbosity_level` function of TDJson instance. [setLogVerbosityLevel](/blob/master/td/generate/scheme/td_api.tl#L5587) is used instead
 
 * API types and functions regenerated
 

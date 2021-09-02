@@ -65,7 +65,6 @@ class TDJson:
     __td_receive: typing.Callable[[float], bytes]
     __td_send: typing.Callable[[int, bytes], None]
     __td_execute: typing.Callable[[bytes], bytes]
-    __td_set_log_verbosity_level: typing.Callable[[int], None]
     __td_set_log_message_callback: typing.Callable[[log_message_callback_type], None]
 
     td_json_client: typing.Optional[int] = None
@@ -116,20 +115,15 @@ class TDJson:
         self.__td_set_log_message_callback.restype = None
         self.__td_set_log_message_callback.argtypes = [log_message_callback_type]
 
-        # td_set_log_verbosity_level
-        self.__td_set_log_verbosity_level = self.__tdjson.td_set_log_verbosity_level
-        self.__td_set_log_verbosity_level.restype = None
-        self.__td_set_log_verbosity_level.argtypes = [c_int]
-
     def initialize(self, library_path: str, verbosity: TDLibLogVerbosity) -> None:
         self.inject_library(library_path)
 
         if bool(self.td_json_client):
             raise RuntimeError('TDJson instance is already initialized')
 
-        self.__td_set_log_verbosity_level(int(verbosity))
         self.__td_set_log_message_callback(log_message_callback_type(self.__log_message_callback))
         self.td_json_client = self.__td_create_client_id()
+        self.execute({'@type': 'setLogVerbosityLevel', 'new_verbosity_level': verbosity})
 
     def send(self, query: dict):
         if not bool(self.td_json_client):

@@ -20,3 +20,8 @@ class BadRequest(AioTDLibError):
 class Unauthorized(AioTDLibError):
     def __init__(self, message: str):
         super(Unauthorized, self).__init__(401, message)
+
+
+class NotFound(AioTDLibError):
+    def __init__(self, message: str):
+        super(NotFound, self).__init__(404, message)

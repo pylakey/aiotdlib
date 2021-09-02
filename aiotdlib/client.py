@@ -8,7 +8,6 @@ import os
 import sys
 import typing
 import uuid
-import warnings
 from collections import AsyncIterator
 from functools import (
     partial,
@@ -88,6 +87,7 @@ from .handlers import (
 from .middlewares import MiddlewareCallable
 from .tdjson import (
     TDJson,
+    TDLIB_MAX_INT,
     TDLibLogVerbosity,
 )
 from .utils import (
@@ -526,17 +526,19 @@ class Client:
     async def __auth_completed(self):
         self.__pending_requests.pop('updateAuthorizationState', None)
 
-        if not bool(self.bot_token) and self.first_time_auth:
-            # Update chats list in cache after successful authorization
-            await self.get_main_list_chats(limit=500)
+        if not bool(self.bot_token):
+            # Preload main list chats
+            await self.get_main_list_chats()
 
         self.__is_authorized = True
         self.logger.info('Authorization is completed')
 
     async def __auth_logging_out(self):
+        self.__is_authorized = False
         self.logger.info('Auth session is logging out')
 
     async def __auth_closing(self):
+        self.__is_authorized = False
         self.logger.info('Auth session is closing')
 
     async def __auth_closed(self):
@@ -837,12 +839,15 @@ class Client:
         """
         return await self.cache.get_option_value(name)
 
-    async def get_main_list_chats(self, limit: int = 25) -> list[Chat]:
+    async def get_main_list_chats(self, limit: int = 100) -> list[Chat]:
         """
         Returns an ordered list of chats in a main chat list.
         Chats are sorted by the pair (chat.position.order, chat.id) in descending order
         """
         return await self.cache.get_main_list_chats(limit)
+
+    async def get_main_list_chats_all(self) -> list[Chat]:
+        return await self.get_main_list_chats(limit=TDLIB_MAX_INT)
 
     async def get_chat(self, chat_id: int, *, force_update: bool = False) -> Chat:
         """
