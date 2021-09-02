@@ -11,23 +11,23 @@ from ..base_object import BaseObject
 from ..types import ChatList
 
 
-class GetChats(BaseObject):
+class LoadChats(BaseObject):
     """
-    Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats instead to maintain chat lists
+    Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats has been loaded
     
     Params:
         chat_list (:class:`ChatList`)
-            The chat list in which to return chats
+            The chat list in which to load chats
         
         limit (:class:`int`)
-            The maximum number of chats to be returned
+            The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
         
     """
 
-    ID: str = Field("getChats", alias="@type")
+    ID: str = Field("loadChats", alias="@type")
     chat_list: ChatList
     limit: int
 
     @staticmethod
-    def read(q: dict) -> GetChats:
-        return GetChats.construct(**q)
+    def read(q: dict) -> LoadChats:
+        return LoadChats.construct(**q)

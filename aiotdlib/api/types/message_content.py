@@ -238,6 +238,24 @@ class MessageChatJoinByLink(MessageContent):
         return MessageChatJoinByLink.construct(**q)
 
 
+class MessageChatSetTheme(MessageContent):
+    """
+    A theme in the chat has been changed
+    
+    Params:
+        theme_name (:class:`str`)
+            If non-empty, name of the new theme set for the chat. Otherwise theme was deleted in the chat
+        
+    """
+
+    ID: str = Field("messageChatSetTheme", alias="@type")
+    theme_name: str
+
+    @staticmethod
+    def read(q: dict) -> MessageChatSetTheme:
+        return MessageChatSetTheme.construct(**q)
+
+
 class MessageChatSetTtl(MessageContent):
     """
     The TTL (Time To Live) setting for messages in the chat has been changed

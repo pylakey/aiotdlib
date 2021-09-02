@@ -129,6 +129,24 @@ class PushMessageContentChatChangePhoto(PushMessageContent):
         return PushMessageContentChatChangePhoto.construct(**q)
 
 
+class PushMessageContentChatChangeTheme(PushMessageContent):
+    """
+    A chat theme was edited
+    
+    Params:
+        theme_name (:class:`str`)
+            Name of the new chat theme
+        
+    """
+
+    ID: str = Field("pushMessageContentChatChangeTheme", alias="@type")
+    theme_name: str
+
+    @staticmethod
+    def read(q: dict) -> PushMessageContentChatChangeTheme:
+        return PushMessageContentChatChangeTheme.construct(**q)
+
+
 class PushMessageContentChatChangeTitle(PushMessageContent):
     """
     A chat title was edited

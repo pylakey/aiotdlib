@@ -25,7 +25,6 @@ class Generator:
     def __init__(
             self,
             destination: str = f"{LIBRARY_ROOT_PATH}/aiotdlib/api",
-            tl_schema_file_path: str = f"{LIBRARY_ROOT_PATH}/generator/source/td_api.tl",
             notice: str = "This file has been generated automatically!! Do not change this manually!",
     ):
         self.notice = notice

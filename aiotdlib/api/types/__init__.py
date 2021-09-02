@@ -122,6 +122,7 @@ from .chat_action import (
     ChatActionCancel,
     ChatActionChoosingContact,
     ChatActionChoosingLocation,
+    ChatActionChoosingSticker,
     ChatActionRecordingVideo,
     ChatActionRecordingVideoNote,
     ChatActionRecordingVoiceNote,
@@ -172,6 +173,7 @@ from .chat_event_action import (
     ChatEventSignMessagesToggled,
     ChatEventSlowModeDelayChanged,
     ChatEventStickerSetChanged,
+    ChatEventThemeChanged,
     ChatEventTitleChanged,
     ChatEventUsernameChanged,
     ChatEventVoiceChatCreated,
@@ -252,6 +254,8 @@ from .chat_statistics_administrator_actions_info import ChatStatisticsAdministra
 from .chat_statistics_inviter_info import ChatStatisticsInviterInfo
 from .chat_statistics_message_interaction_info import ChatStatisticsMessageInteractionInfo
 from .chat_statistics_message_sender_info import ChatStatisticsMessageSenderInfo
+from .chat_theme import ChatTheme
+from .chat_themes import ChatThemes
 from .chat_type import (
     ChatType,
     ChatTypeBasicGroup,
@@ -353,6 +357,12 @@ from .group_call_id import GroupCallId
 from .group_call_participant import GroupCallParticipant
 from .group_call_participant_video_info import GroupCallParticipantVideoInfo
 from .group_call_recent_speaker import GroupCallRecentSpeaker
+from .group_call_video_quality import (
+    GroupCallVideoQuality,
+    GroupCallVideoQualityFull,
+    GroupCallVideoQualityMedium,
+    GroupCallVideoQualityThumbnail,
+)
 from .group_call_video_source_group import GroupCallVideoSourceGroup
 from .hashtags import Hashtags
 from .http_url import HttpUrl
@@ -573,6 +583,7 @@ from .message_content import (
     MessageChatDeleteMember,
     MessageChatDeletePhoto,
     MessageChatJoinByLink,
+    MessageChatSetTheme,
     MessageChatSetTtl,
     MessageChatUpgradeFrom,
     MessageChatUpgradeTo,
@@ -836,6 +847,7 @@ from .push_message_content import (
     PushMessageContentBasicGroupChatCreate,
     PushMessageContentChatAddMembers,
     PushMessageContentChatChangePhoto,
+    PushMessageContentChatChangeTheme,
     PushMessageContentChatChangeTitle,
     PushMessageContentChatDeleteMember,
     PushMessageContentChatJoinByLink,
@@ -930,6 +942,8 @@ from .secret_chat_state import (
 from .session import Session
 from .sessions import Sessions
 from .shipping_option import ShippingOption
+from .sponsored_message import SponsoredMessage
+from .sponsored_messages import SponsoredMessages
 from .statistical_graph import (
     StatisticalGraph,
     StatisticalGraphAsync,
@@ -1015,6 +1029,7 @@ from .text_parse_mode import (
     TextParseModeHTML,
     TextParseModeMarkdown,
 )
+from .theme_settings import ThemeSettings
 from .thumbnail import Thumbnail
 from .thumbnail_format import (
     ThumbnailFormat,
@@ -1061,6 +1076,7 @@ from .update import (
     UpdateChatReadInbox,
     UpdateChatReadOutbox,
     UpdateChatReplyMarkup,
+    UpdateChatTheme,
     UpdateChatTitle,
     UpdateChatUnreadMentionCount,
     UpdateChatVoiceChat,
@@ -1276,6 +1292,7 @@ __all__ = [
     "ChatActionCancel",
     "ChatActionChoosingContact",
     "ChatActionChoosingLocation",
+    "ChatActionChoosingSticker",
     "ChatActionRecordingVideo",
     "ChatActionRecordingVideoNote",
     "ChatActionRecordingVoiceNote",
@@ -1322,6 +1339,7 @@ __all__ = [
     "ChatEventSignMessagesToggled",
     "ChatEventSlowModeDelayChanged",
     "ChatEventStickerSetChanged",
+    "ChatEventThemeChanged",
     "ChatEventTitleChanged",
     "ChatEventUsernameChanged",
     "ChatEventVoiceChatCreated",
@@ -1389,6 +1407,8 @@ __all__ = [
     "ChatStatisticsInviterInfo",
     "ChatStatisticsMessageInteractionInfo",
     "ChatStatisticsMessageSenderInfo",
+    "ChatTheme",
+    "ChatThemes",
     "ChatType",
     "ChatTypeBasicGroup",
     "ChatTypePrivate",
@@ -1476,6 +1496,10 @@ __all__ = [
     "GroupCallParticipant",
     "GroupCallParticipantVideoInfo",
     "GroupCallRecentSpeaker",
+    "GroupCallVideoQuality",
+    "GroupCallVideoQualityFull",
+    "GroupCallVideoQualityMedium",
+    "GroupCallVideoQualityThumbnail",
     "GroupCallVideoSourceGroup",
     "Hashtags",
     "HttpUrl",
@@ -1660,6 +1684,7 @@ __all__ = [
     "MessageChatDeleteMember",
     "MessageChatDeletePhoto",
     "MessageChatJoinByLink",
+    "MessageChatSetTheme",
     "MessageChatSetTtl",
     "MessageChatUpgradeFrom",
     "MessageChatUpgradeTo",
@@ -1880,6 +1905,7 @@ __all__ = [
     "PushMessageContentBasicGroupChatCreate",
     "PushMessageContentChatAddMembers",
     "PushMessageContentChatChangePhoto",
+    "PushMessageContentChatChangeTheme",
     "PushMessageContentChatChangeTitle",
     "PushMessageContentChatDeleteMember",
     "PushMessageContentChatJoinByLink",
@@ -1963,6 +1989,8 @@ __all__ = [
     "Session",
     "Sessions",
     "ShippingOption",
+    "SponsoredMessage",
+    "SponsoredMessages",
     "StatisticalGraph",
     "StatisticalGraphAsync",
     "StatisticalGraphData",
@@ -2036,6 +2064,7 @@ __all__ = [
     "TextParseMode",
     "TextParseModeHTML",
     "TextParseModeMarkdown",
+    "ThemeSettings",
     "Thumbnail",
     "ThumbnailFormat",
     "ThumbnailFormatGif",
@@ -2077,6 +2106,7 @@ __all__ = [
     "UpdateChatReadInbox",
     "UpdateChatReadOutbox",
     "UpdateChatReplyMarkup",
+    "UpdateChatTheme",
     "UpdateChatTitle",
     "UpdateChatUnreadMentionCount",
     "UpdateChatVoiceChat",

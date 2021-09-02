@@ -10,23 +10,23 @@ from pydantic import Field
 from ..base_object import BaseObject
 
 
-class PaymentResult(BaseObject):
+class ViewSponsoredMessage(BaseObject):
     """
-    Contains the result of a payment request
+    Informs TDLib that a sponsored message was viewed by the user
     
     Params:
-        success (:class:`bool`)
-            True, if the payment request was successful; otherwise the verification_url will be non-empty
+        chat_id (:class:`int`)
+            Chat identifier
         
-        verification_url (:class:`str`)
-            URL for additional payment credentials verification
+        message_id (:class:`str`)
+            The identifier of the sponsored message being viewed
         
     """
 
-    ID: str = Field("paymentResult", alias="@type")
-    success: bool
-    verification_url: str
+    ID: str = Field("viewSponsoredMessage", alias="@type")
+    chat_id: int
+    message_id: str
 
     @staticmethod
-    def read(q: dict) -> PaymentResult:
-        return PaymentResult.construct(**q)
+    def read(q: dict) -> ViewSponsoredMessage:
+        return ViewSponsoredMessage.construct(**q)

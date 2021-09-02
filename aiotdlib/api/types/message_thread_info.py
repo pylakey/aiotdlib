@@ -29,6 +29,9 @@ class MessageThreadInfo(BaseObject):
         reply_info (:class:`MessageReplyInfo`)
             Contains information about the message thread
         
+        unread_message_count (:class:`int`)
+            Approximate number of unread messages in the message thread
+        
         messages (:obj:`list[Message]`)
             The messages from which the thread starts. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
         
@@ -41,6 +44,7 @@ class MessageThreadInfo(BaseObject):
     chat_id: int
     message_thread_id: int
     reply_info: MessageReplyInfo
+    unread_message_count: int
     messages: list[Message]
     draft_message: typing.Optional[DraftMessage] = None
 

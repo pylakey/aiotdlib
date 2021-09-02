@@ -150,8 +150,10 @@ from .get_chat_message_count import GetChatMessageCount
 from .get_chat_notification_settings_exceptions import GetChatNotificationSettingsExceptions
 from .get_chat_pinned_message import GetChatPinnedMessage
 from .get_chat_scheduled_messages import GetChatScheduledMessages
+from .get_chat_sponsored_messages import GetChatSponsoredMessages
 from .get_chat_statistics import GetChatStatistics
 from .get_chat_statistics_url import GetChatStatisticsUrl
+from .get_chat_themes import GetChatThemes
 from .get_chats import GetChats
 from .get_commands import GetCommands
 from .get_connected_websites import GetConnectedWebsites
@@ -217,6 +219,7 @@ from .get_password_state import GetPasswordState
 from .get_payment_form import GetPaymentForm
 from .get_payment_receipt import GetPaymentReceipt
 from .get_phone_number_info import GetPhoneNumberInfo
+from .get_phone_number_info_sync import GetPhoneNumberInfoSync
 from .get_poll_voters import GetPollVoters
 from .get_preferred_country_language import GetPreferredCountryLanguage
 from .get_proxies import GetProxies
@@ -266,6 +269,7 @@ from .join_chat_by_invite_link import JoinChatByInviteLink
 from .join_group_call import JoinGroupCall
 from .leave_chat import LeaveChat
 from .leave_group_call import LeaveGroupCall
+from .load_chats import LoadChats
 from .load_group_call_participants import LoadGroupCallParticipants
 from .log_out import LogOut
 from .open_chat import OpenChat
@@ -370,6 +374,7 @@ from .set_chat_notification_settings import SetChatNotificationSettings
 from .set_chat_permissions import SetChatPermissions
 from .set_chat_photo import SetChatPhoto
 from .set_chat_slow_mode_delay import SetChatSlowModeDelay
+from .set_chat_theme import SetChatTheme
 from .set_chat_title import SetChatTitle
 from .set_commands import SetCommands
 from .set_custom_language_pack import SetCustomLanguagePack
@@ -447,6 +452,7 @@ from .upload_file import UploadFile
 from .upload_sticker_file import UploadStickerFile
 from .validate_order_info import ValidateOrderInfo
 from .view_messages import ViewMessages
+from .view_sponsored_message import ViewSponsoredMessage
 from .view_trending_sticker_sets import ViewTrendingStickerSets
 from .write_generated_file_part import WriteGeneratedFilePart
 
@@ -597,8 +603,10 @@ __all__ = [
     "GetChatNotificationSettingsExceptions",
     "GetChatPinnedMessage",
     "GetChatScheduledMessages",
+    "GetChatSponsoredMessages",
     "GetChatStatistics",
     "GetChatStatisticsUrl",
+    "GetChatThemes",
     "GetChats",
     "GetCommands",
     "GetConnectedWebsites",
@@ -664,6 +672,7 @@ __all__ = [
     "GetPaymentForm",
     "GetPaymentReceipt",
     "GetPhoneNumberInfo",
+    "GetPhoneNumberInfoSync",
     "GetPollVoters",
     "GetPreferredCountryLanguage",
     "GetProxies",
@@ -713,6 +722,7 @@ __all__ = [
     "JoinGroupCall",
     "LeaveChat",
     "LeaveGroupCall",
+    "LoadChats",
     "LoadGroupCallParticipants",
     "LogOut",
     "OpenChat",
@@ -817,6 +827,7 @@ __all__ = [
     "SetChatPermissions",
     "SetChatPhoto",
     "SetChatSlowModeDelay",
+    "SetChatTheme",
     "SetChatTitle",
     "SetCommands",
     "SetCustomLanguagePack",
@@ -894,6 +905,7 @@ __all__ = [
     "UploadStickerFile",
     "ValidateOrderInfo",
     "ViewMessages",
+    "ViewSponsoredMessage",
     "ViewTrendingStickerSets",
     "WriteGeneratedFilePart",
 ]

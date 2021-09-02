@@ -29,10 +29,13 @@ class ForwardMessages(BaseObject):
             Options to be used to send the messages
         
         send_copy (:class:`bool`)
-            True, if content of the messages needs to be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
+            If true, content of the messages will be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
         
         remove_caption (:class:`bool`)
-            True, if media caption of message copies needs to be removed. Ignored if send_copy is false
+            If true, media caption of message copies will be removed. Ignored if send_copy is false
+        
+        only_preview (:class:`bool`)
+            If true, messages will not be forwarded and instead fake messages will be returned
         
     """
 
@@ -43,6 +46,7 @@ class ForwardMessages(BaseObject):
     options: MessageSendOptions
     send_copy: bool
     remove_caption: bool
+    only_preview: bool
 
     @staticmethod
     def read(q: dict) -> ForwardMessages:

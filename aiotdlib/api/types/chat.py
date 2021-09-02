@@ -86,6 +86,9 @@ class Chat(BaseObject):
         message_ttl_setting (:class:`int`)
             Current message Time To Live setting (self-destruct timer) for the chat; 0 if not defined. TTL is counted from the time message or its content is viewed in secret chats and from the send date in other chats
         
+        theme_name (:class:`str`)
+            If non-empty, name of the theme set for the chat
+        
         action_bar (:class:`ChatActionBar`)
             Describes actions which should be possible to do through a chat action bar; may be null
         
@@ -124,6 +127,7 @@ class Chat(BaseObject):
     unread_mention_count: int
     notification_settings: ChatNotificationSettings
     message_ttl_setting: int
+    theme_name: str
     action_bar: typing.Optional[ChatActionBar] = None
     voice_chat: VoiceChat
     reply_markup_message_id: int

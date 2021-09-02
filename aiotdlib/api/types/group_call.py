@@ -67,6 +67,9 @@ class GroupCall(BaseObject):
         record_duration (:class:`int`)
             Duration of the ongoing group call recording, in seconds; 0 if none. An updateGroupCall update is not triggered when value of this field changes, but the same recording goes on
         
+        is_video_recorded (:class:`bool`)
+            True, if a video file is being recorded for the call
+        
         duration (:class:`int`)
             Call duration, in seconds; for ended calls only
         
@@ -90,6 +93,7 @@ class GroupCall(BaseObject):
     mute_new_participants: bool
     can_change_mute_new_participants: bool
     record_duration: int
+    is_video_recorded: bool
     duration: int
 
     @staticmethod

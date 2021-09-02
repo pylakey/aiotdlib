@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 set -e
+rm -rf td/
 git clone https://github.com/pylakey/td
 cd td
 mkdir build

@@ -25,7 +25,7 @@ class PhoneNumberInfo(BaseObject):
             The part of the phone number denoting country calling code or its part
         
         formatted_phone_number (:class:`str`)
-            The phone number without country calling code formatted accordingly to local rules
+            The phone number without country calling code formatted accordingly to local rules. Expected digits are returned as '-', but even more digits might be entered by the user
         
     """
 

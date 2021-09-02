@@ -10,23 +10,14 @@ from pydantic import Field
 from ..base_object import BaseObject
 
 
-class PaymentResult(BaseObject):
+class GetChatThemes(BaseObject):
     """
-    Contains the result of a payment request
+    Returns the list of available chat themes
     
-    Params:
-        success (:class:`bool`)
-            True, if the payment request was successful; otherwise the verification_url will be non-empty
-        
-        verification_url (:class:`str`)
-            URL for additional payment credentials verification
-        
     """
 
-    ID: str = Field("paymentResult", alias="@type")
-    success: bool
-    verification_url: str
+    ID: str = Field("getChatThemes", alias="@type")
 
     @staticmethod
-    def read(q: dict) -> PaymentResult:
-        return PaymentResult.construct(**q)
+    def read(q: dict) -> GetChatThemes:
+        return GetChatThemes.construct(**q)

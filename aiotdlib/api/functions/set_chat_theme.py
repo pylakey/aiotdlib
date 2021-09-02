@@ -10,23 +10,23 @@ from pydantic import Field
 from ..base_object import BaseObject
 
 
-class PaymentResult(BaseObject):
+class SetChatTheme(BaseObject):
     """
-    Contains the result of a payment request
+    Changes the chat theme. Requires can_change_info administrator right in groups, supergroups and channels
     
     Params:
-        success (:class:`bool`)
-            True, if the payment request was successful; otherwise the verification_url will be non-empty
+        chat_id (:class:`int`)
+            Chat identifier
         
-        verification_url (:class:`str`)
-            URL for additional payment credentials verification
+        theme_name (:class:`str`)
+            Name of the new chat theme; may be empty to return the default theme
         
     """
 
-    ID: str = Field("paymentResult", alias="@type")
-    success: bool
-    verification_url: str
+    ID: str = Field("setChatTheme", alias="@type")
+    chat_id: int
+    theme_name: str
 
     @staticmethod
-    def read(q: dict) -> PaymentResult:
-        return PaymentResult.construct(**q)
+    def read(q: dict) -> SetChatTheme:
+        return SetChatTheme.construct(**q)

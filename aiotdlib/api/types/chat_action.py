@@ -58,6 +58,19 @@ class ChatActionChoosingLocation(ChatAction):
         return ChatActionChoosingLocation.construct(**q)
 
 
+class ChatActionChoosingSticker(ChatAction):
+    """
+    The user is picking a sticker to send
+    
+    """
+
+    ID: str = Field("chatActionChoosingSticker", alias="@type")
+
+    @staticmethod
+    def read(q: dict) -> ChatActionChoosingSticker:
+        return ChatActionChoosingSticker.construct(**q)
+
+
 class ChatActionRecordingVideo(ChatAction):
     """
     The user is recording a video

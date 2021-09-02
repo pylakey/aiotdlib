@@ -145,6 +145,7 @@ class API:
         CHAT_ACTION_CANCEL = 'chatActionCancel'
         CHAT_ACTION_CHOOSING_CONTACT = 'chatActionChoosingContact'
         CHAT_ACTION_CHOOSING_LOCATION = 'chatActionChoosingLocation'
+        CHAT_ACTION_CHOOSING_STICKER = 'chatActionChoosingSticker'
         CHAT_ACTION_RECORDING_VIDEO = 'chatActionRecordingVideo'
         CHAT_ACTION_RECORDING_VIDEO_NOTE = 'chatActionRecordingVideoNote'
         CHAT_ACTION_RECORDING_VOICE_NOTE = 'chatActionRecordingVoiceNote'
@@ -191,6 +192,7 @@ class API:
         CHAT_EVENT_SIGN_MESSAGES_TOGGLED = 'chatEventSignMessagesToggled'
         CHAT_EVENT_SLOW_MODE_DELAY_CHANGED = 'chatEventSlowModeDelayChanged'
         CHAT_EVENT_STICKER_SET_CHANGED = 'chatEventStickerSetChanged'
+        CHAT_EVENT_THEME_CHANGED = 'chatEventThemeChanged'
         CHAT_EVENT_TITLE_CHANGED = 'chatEventTitleChanged'
         CHAT_EVENT_USERNAME_CHANGED = 'chatEventUsernameChanged'
         CHAT_EVENT_VOICE_CHAT_CREATED = 'chatEventVoiceChatCreated'
@@ -258,6 +260,8 @@ class API:
         CHAT_STATISTICS_INVITER_INFO = 'chatStatisticsInviterInfo'
         CHAT_STATISTICS_MESSAGE_INTERACTION_INFO = 'chatStatisticsMessageInteractionInfo'
         CHAT_STATISTICS_MESSAGE_SENDER_INFO = 'chatStatisticsMessageSenderInfo'
+        CHAT_THEME = 'chatTheme'
+        CHAT_THEMES = 'chatThemes'
         CHAT_TYPE = 'chatType'
         CHAT_TYPE_BASIC_GROUP = 'chatTypeBasicGroup'
         CHAT_TYPE_PRIVATE = 'chatTypePrivate'
@@ -456,8 +460,10 @@ class API:
         GET_CHAT_NOTIFICATION_SETTINGS_EXCEPTIONS = 'getChatNotificationSettingsExceptions'
         GET_CHAT_PINNED_MESSAGE = 'getChatPinnedMessage'
         GET_CHAT_SCHEDULED_MESSAGES = 'getChatScheduledMessages'
+        GET_CHAT_SPONSORED_MESSAGES = 'getChatSponsoredMessages'
         GET_CHAT_STATISTICS = 'getChatStatistics'
         GET_CHAT_STATISTICS_URL = 'getChatStatisticsUrl'
+        GET_CHAT_THEMES = 'getChatThemes'
         GET_CHATS = 'getChats'
         GET_COMMANDS = 'getCommands'
         GET_CONNECTED_WEBSITES = 'getConnectedWebsites'
@@ -523,6 +529,7 @@ class API:
         GET_PAYMENT_FORM = 'getPaymentForm'
         GET_PAYMENT_RECEIPT = 'getPaymentReceipt'
         GET_PHONE_NUMBER_INFO = 'getPhoneNumberInfo'
+        GET_PHONE_NUMBER_INFO_SYNC = 'getPhoneNumberInfoSync'
         GET_POLL_VOTERS = 'getPollVoters'
         GET_PREFERRED_COUNTRY_LANGUAGE = 'getPreferredCountryLanguage'
         GET_PROXIES = 'getProxies'
@@ -568,6 +575,10 @@ class API:
         GROUP_CALL_PARTICIPANT = 'groupCallParticipant'
         GROUP_CALL_PARTICIPANT_VIDEO_INFO = 'groupCallParticipantVideoInfo'
         GROUP_CALL_RECENT_SPEAKER = 'groupCallRecentSpeaker'
+        GROUP_CALL_VIDEO_QUALITY = 'groupCallVideoQuality'
+        GROUP_CALL_VIDEO_QUALITY_FULL = 'groupCallVideoQualityFull'
+        GROUP_CALL_VIDEO_QUALITY_MEDIUM = 'groupCallVideoQualityMedium'
+        GROUP_CALL_VIDEO_QUALITY_THUMBNAIL = 'groupCallVideoQualityThumbnail'
         GROUP_CALL_VIDEO_SOURCE_GROUP = 'groupCallVideoSourceGroup'
         HASHTAGS = 'hashtags'
         HIDE_SUGGESTED_ACTION = 'hideSuggestedAction'
@@ -730,6 +741,7 @@ class API:
         LANGUAGE_PACK_STRINGS = 'languagePackStrings'
         LEAVE_CHAT = 'leaveChat'
         LEAVE_GROUP_CALL = 'leaveGroupCall'
+        LOAD_CHATS = 'loadChats'
         LOAD_GROUP_CALL_PARTICIPANTS = 'loadGroupCallParticipants'
         LOCAL_FILE = 'localFile'
         LOCALIZATION_TARGET_INFO = 'localizationTargetInfo'
@@ -762,6 +774,7 @@ class API:
         MESSAGE_CHAT_DELETE_MEMBER = 'messageChatDeleteMember'
         MESSAGE_CHAT_DELETE_PHOTO = 'messageChatDeletePhoto'
         MESSAGE_CHAT_JOIN_BY_LINK = 'messageChatJoinByLink'
+        MESSAGE_CHAT_SET_THEME = 'messageChatSetTheme'
         MESSAGE_CHAT_SET_TTL = 'messageChatSetTtl'
         MESSAGE_CHAT_UPGRADE_FROM = 'messageChatUpgradeFrom'
         MESSAGE_CHAT_UPGRADE_TO = 'messageChatUpgradeTo'
@@ -989,6 +1002,7 @@ class API:
         PUSH_MESSAGE_CONTENT_BASIC_GROUP_CHAT_CREATE = 'pushMessageContentBasicGroupChatCreate'
         PUSH_MESSAGE_CONTENT_CHAT_ADD_MEMBERS = 'pushMessageContentChatAddMembers'
         PUSH_MESSAGE_CONTENT_CHAT_CHANGE_PHOTO = 'pushMessageContentChatChangePhoto'
+        PUSH_MESSAGE_CONTENT_CHAT_CHANGE_THEME = 'pushMessageContentChatChangeTheme'
         PUSH_MESSAGE_CONTENT_CHAT_CHANGE_TITLE = 'pushMessageContentChatChangeTitle'
         PUSH_MESSAGE_CONTENT_CHAT_DELETE_MEMBER = 'pushMessageContentChatDeleteMember'
         PUSH_MESSAGE_CONTENT_CHAT_JOIN_BY_LINK = 'pushMessageContentChatJoinByLink'
@@ -1165,6 +1179,7 @@ class API:
         SET_CHAT_PERMISSIONS = 'setChatPermissions'
         SET_CHAT_PHOTO = 'setChatPhoto'
         SET_CHAT_SLOW_MODE_DELAY = 'setChatSlowModeDelay'
+        SET_CHAT_THEME = 'setChatTheme'
         SET_CHAT_TITLE = 'setChatTitle'
         SET_COMMANDS = 'setCommands'
         SET_CUSTOM_LANGUAGE_PACK = 'setCustomLanguagePack'
@@ -1201,6 +1216,8 @@ class API:
         SET_VOICE_CHAT_DEFAULT_PARTICIPANT = 'setVoiceChatDefaultParticipant'
         SHARE_PHONE_NUMBER = 'sharePhoneNumber'
         SHIPPING_OPTION = 'shippingOption'
+        SPONSORED_MESSAGE = 'sponsoredMessage'
+        SPONSORED_MESSAGES = 'sponsoredMessages'
         START_GROUP_CALL_RECORDING = 'startGroupCallRecording'
         START_GROUP_CALL_SCREEN_SHARING = 'startGroupCallScreenSharing'
         START_SCHEDULED_GROUP_CALL = 'startScheduledGroupCall'
@@ -1294,6 +1311,7 @@ class API:
         TEXT_PARSE_MODE = 'textParseMode'
         TEXT_PARSE_MODE_HTML = 'textParseModeHTML'
         TEXT_PARSE_MODE_MARKDOWN = 'textParseModeMarkdown'
+        THEME_SETTINGS = 'themeSettings'
         THUMBNAIL = 'thumbnail'
         THUMBNAIL_FORMAT = 'thumbnailFormat'
         THUMBNAIL_FORMAT_GIF = 'thumbnailFormatGif'
@@ -1352,6 +1370,7 @@ class API:
         UPDATE_CHAT_READ_INBOX = 'updateChatReadInbox'
         UPDATE_CHAT_READ_OUTBOX = 'updateChatReadOutbox'
         UPDATE_CHAT_REPLY_MARKUP = 'updateChatReplyMarkup'
+        UPDATE_CHAT_THEME = 'updateChatTheme'
         UPDATE_CHAT_TITLE = 'updateChatTitle'
         UPDATE_CHAT_UNREAD_MENTION_COUNT = 'updateChatUnreadMentionCount'
         UPDATE_CHAT_VOICE_CHAT = 'updateChatVoiceChat'
@@ -1460,6 +1479,7 @@ class API:
         VIDEO = 'video'
         VIDEO_NOTE = 'videoNote'
         VIEW_MESSAGES = 'viewMessages'
+        VIEW_SPONSORED_MESSAGE = 'viewSponsoredMessage'
         VIEW_TRENDING_STICKER_SETS = 'viewTrendingStickerSets'
         VOICE_CHAT = 'voiceChat'
         VOICE_NOTE = 'voiceNote'
@@ -4778,6 +4798,7 @@ class API:
             options: MessageSendOptions,
             send_copy: bool,
             remove_caption: bool,
+            only_preview: bool,
             *,
             request_id: str = None,
             request_timeout: int = None,
@@ -4800,10 +4821,13 @@ class API:
                 Options to be used to send the messages
             
             send_copy (:class:`bool`)
-                True, if content of the messages needs to be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
+                If true, content of the messages will be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
             
             remove_caption (:class:`bool`)
-                True, if media caption of message copies needs to be removed. Ignored if send_copy is false
+                If true, media caption of message copies will be removed. Ignored if send_copy is false
+            
+            only_preview (:class:`bool`)
+                If true, messages will not be forwarded and instead fake messages will be returned
             
         """
         _constructor = ForwardMessages.construct if skip_validation else ForwardMessages
@@ -4816,6 +4840,7 @@ class API:
                 options=options,
                 send_copy=send_copy,
                 remove_caption=remove_caption,
+                only_preview=only_preview,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -5796,6 +5821,32 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_chat_sponsored_messages(
+            self,
+            chat_id: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> SponsoredMessages:
+        """
+        Returns sponsored messages to be shown in a chat; for channel chats only
+        
+        Params:
+            chat_id (:class:`int`)
+                Identifier of the chat
+            
+        """
+        _constructor = GetChatSponsoredMessages.construct if skip_validation else GetChatSponsoredMessages
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_chat_statistics(
             self,
             chat_id: int,
@@ -5863,11 +5914,20 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_chat_themes(self, *, request_id: str = None, request_timeout: int = None) -> ChatThemes:
+        """
+        Returns the list of available chat themes
+        
+        """
+        return await self.client.request(
+            GetChatThemes(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_chats(
             self,
             chat_list: ChatList,
-            offset_order: int,
-            offset_chat_id: int,
             limit: int,
             *,
             request_id: str = None,
@@ -5875,20 +5935,14 @@ class API:
             skip_validation: bool = False
     ) -> Chats:
         """
-        Returns an ordered list of chats in a chat list. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. (For example, to get a list of chats from the beginning, the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance, the number of returned chats is chosen by TDLib
+        Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats instead to maintain chat lists
         
         Params:
             chat_list (:class:`ChatList`)
                 The chat list in which to return chats
             
-            offset_order (:class:`int`)
-                Chat order to return chats from
-            
-            offset_chat_id (:class:`int`)
-                Chat identifier to return chats from
-            
             limit (:class:`int`)
-                The maximum number of chats to be returned. For optimal performance, the number of returned chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+                The maximum number of chats to be returned
             
         """
         _constructor = GetChats.construct if skip_validation else GetChats
@@ -5896,8 +5950,6 @@ class API:
         return await self.client.request(
             _constructor(
                 chat_list=chat_list,
-                offset_order=offset_order,
-                offset_chat_id=offset_chat_id,
                 limit=limit,
             ),
             request_id=request_id,
@@ -6359,13 +6411,15 @@ class API:
             group_call_id: int,
             time_offset: int,
             scale: int,
+            channel_id: int,
+            video_quality: GroupCallVideoQuality,
             *,
             request_id: str = None,
             request_timeout: int = None,
             skip_validation: bool = False
     ) -> FilePart:
         """
-        Returns a file with a segment of a group call stream in a modified OGG format
+        Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
         
         Params:
             group_call_id (:class:`int`)
@@ -6377,6 +6431,12 @@ class API:
             scale (:class:`int`)
                 Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
             
+            channel_id (:class:`int`)
+                Identifier of an audio/video channel to get as received from tgcalls
+            
+            video_quality (:class:`GroupCallVideoQuality`)
+                Video quality as received from tgcalls
+            
         """
         _constructor = GetGroupCallStreamSegment.construct if skip_validation else GetGroupCallStreamSegment
 
@@ -6385,6 +6445,8 @@ class API:
                 group_call_id=group_call_id,
                 time_offset=time_offset,
                 scale=scale,
+                channel_id=channel_id,
+                video_quality=video_quality,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -7642,6 +7704,37 @@ class API:
 
         return await self.client.request(
             _constructor(
+                phone_number_prefix=phone_number_prefix,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_phone_number_info_sync(
+            self,
+            language_code: str,
+            phone_number_prefix: str,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> PhoneNumberInfo:
+        """
+        Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
+        
+        Params:
+            language_code (:class:`str`)
+                A two-letter ISO 639-1 country code for country information localization
+            
+            phone_number_prefix (:class:`str`)
+                The phone number prefix
+            
+        """
+        _constructor = GetPhoneNumberInfoSync.construct if skip_validation else GetPhoneNumberInfoSync
+
+        return await self.client.request(
+            _constructor(
+                language_code=language_code,
                 phone_number_prefix=phone_number_prefix,
             ),
             request_id=request_id,
@@ -8932,6 +9025,37 @@ class API:
         return await self.client.request(
             _constructor(
                 group_call_id=group_call_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def load_chats(
+            self,
+            chat_list: ChatList,
+            limit: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats has been loaded
+        
+        Params:
+            chat_list (:class:`ChatList`)
+                The chat list in which to load chats
+            
+            limit (:class:`int`)
+                The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+            
+        """
+        _constructor = LoadChats.construct if skip_validation else LoadChats
+
+        return await self.client.request(
+            _constructor(
+                chat_list=chat_list,
+                limit=limit,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -12111,6 +12235,37 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def set_chat_theme(
+            self,
+            chat_id: int,
+            theme_name: str,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes the chat theme. Requires can_change_info administrator right in groups, supergroups and channels
+        
+        Params:
+            chat_id (:class:`int`)
+                Chat identifier
+            
+            theme_name (:class:`str`)
+                Name of the new chat theme; may be empty to return the default theme
+            
+        """
+        _constructor = SetChatTheme.construct if skip_validation else SetChatTheme
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                theme_name=theme_name,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def set_chat_title(
             self,
             chat_id: int,
@@ -13235,6 +13390,8 @@ class API:
             self,
             group_call_id: int,
             title: typing.Optional[str],
+            record_video: bool,
+            use_portrait_orientation: bool,
             *,
             request_id: str = None,
             request_timeout: int = None,
@@ -13250,6 +13407,12 @@ class API:
             title (:class:`str`)
                 Group call recording title; 0-64 characters
             
+            record_video (:class:`bool`)
+                Pass true to record a video file instead of an audio file
+            
+            use_portrait_orientation (:class:`bool`)
+                Pass true to use portrait orientation for video instead of landscape one
+            
         """
         _constructor = StartGroupCallRecording.construct if skip_validation else StartGroupCallRecording
 
@@ -13257,6 +13420,8 @@ class API:
             _constructor(
                 group_call_id=group_call_id,
                 title=title,
+                record_video=record_video,
+                use_portrait_orientation=use_portrait_orientation,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -14428,6 +14593,37 @@ class API:
                 message_thread_id=message_thread_id,
                 message_ids=message_ids,
                 force_read=force_read,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def view_sponsored_message(
+            self,
+            chat_id: int,
+            message_id: str,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Informs TDLib that a sponsored message was viewed by the user
+        
+        Params:
+            chat_id (:class:`int`)
+                Chat identifier
+            
+            message_id (:class:`str`)
+                The identifier of the sponsored message being viewed
+            
+        """
+        _constructor = ViewSponsoredMessage.construct if skip_validation else ViewSponsoredMessage
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                message_id=message_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,

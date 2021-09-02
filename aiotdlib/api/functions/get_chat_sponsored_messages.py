@@ -10,23 +10,19 @@ from pydantic import Field
 from ..base_object import BaseObject
 
 
-class PaymentResult(BaseObject):
+class GetChatSponsoredMessages(BaseObject):
     """
-    Contains the result of a payment request
+    Returns sponsored messages to be shown in a chat; for channel chats only
     
     Params:
-        success (:class:`bool`)
-            True, if the payment request was successful; otherwise the verification_url will be non-empty
-        
-        verification_url (:class:`str`)
-            URL for additional payment credentials verification
+        chat_id (:class:`int`)
+            Identifier of the chat
         
     """
 
-    ID: str = Field("paymentResult", alias="@type")
-    success: bool
-    verification_url: str
+    ID: str = Field("getChatSponsoredMessages", alias="@type")
+    chat_id: int
 
     @staticmethod
-    def read(q: dict) -> PaymentResult:
-        return PaymentResult.construct(**q)
+    def read(q: dict) -> GetChatSponsoredMessages:
+        return GetChatSponsoredMessages.construct(**q)

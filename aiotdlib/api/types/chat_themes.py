@@ -7,26 +7,23 @@ from __future__ import annotations
 
 from pydantic import Field
 
+from .chat_theme import ChatTheme
 from ..base_object import BaseObject
 
 
-class PaymentResult(BaseObject):
+class ChatThemes(BaseObject):
     """
-    Contains the result of a payment request
+    Contains a list of chat themes
     
     Params:
-        success (:class:`bool`)
-            True, if the payment request was successful; otherwise the verification_url will be non-empty
-        
-        verification_url (:class:`str`)
-            URL for additional payment credentials verification
+        chat_themes (:obj:`list[ChatTheme]`)
+            A list of chat themes
         
     """
 
-    ID: str = Field("paymentResult", alias="@type")
-    success: bool
-    verification_url: str
+    ID: str = Field("chatThemes", alias="@type")
+    chat_themes: list[ChatTheme]
 
     @staticmethod
-    def read(q: dict) -> PaymentResult:
-        return PaymentResult.construct(**q)
+    def read(q: dict) -> ChatThemes:
+        return ChatThemes.construct(**q)

@@ -10,7 +10,7 @@ from .entities import (
 )
 from .utils import upper_first
 
-DEFAULT_TD_API_SCHEME_URL = "https://raw.githubusercontent.com/tdlib/td/master/td/generate/scheme/td_api.tl"
+DEFAULT_TD_API_SCHEME_URL = "https://raw.githubusercontent.com/pylakey/td/master/td/generate/scheme/td_api.tl"
 
 
 class TDApiParser:

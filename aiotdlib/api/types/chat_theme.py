@@ -7,26 +7,31 @@ from __future__ import annotations
 
 from pydantic import Field
 
+from .theme_settings import ThemeSettings
 from ..base_object import BaseObject
 
 
-class PaymentResult(BaseObject):
+class ChatTheme(BaseObject):
     """
-    Contains the result of a payment request
+    Describes a chat theme
     
     Params:
-        success (:class:`bool`)
-            True, if the payment request was successful; otherwise the verification_url will be non-empty
+        name (:class:`str`)
+            Theme name
         
-        verification_url (:class:`str`)
-            URL for additional payment credentials verification
+        light_settings (:class:`ThemeSettings`)
+            Theme settings for a light chat theme
+        
+        dark_settings (:class:`ThemeSettings`)
+            Theme settings for a dark chat theme
         
     """
 
-    ID: str = Field("paymentResult", alias="@type")
-    success: bool
-    verification_url: str
+    ID: str = Field("chatTheme", alias="@type")
+    name: str
+    light_settings: ThemeSettings
+    dark_settings: ThemeSettings
 
     @staticmethod
-    def read(q: dict) -> PaymentResult:
-        return PaymentResult.construct(**q)
+    def read(q: dict) -> ChatTheme:
+        return ChatTheme.construct(**q)

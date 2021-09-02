@@ -609,6 +609,28 @@ class UpdateChatReplyMarkup(Update):
         return UpdateChatReplyMarkup.construct(**q)
 
 
+class UpdateChatTheme(Update):
+    """
+    The chat theme was changed
+    
+    Params:
+        chat_id (:class:`int`)
+            Chat identifier
+        
+        theme_name (:class:`str`)
+            The new name of the chat theme; may be empty if none
+        
+    """
+
+    ID: str = Field("updateChatTheme", alias="@type")
+    chat_id: int
+    theme_name: str
+
+    @staticmethod
+    def read(q: dict) -> UpdateChatTheme:
+        return UpdateChatTheme.construct(**q)
+
+
 class UpdateChatTitle(Update):
     """
     The title of a chat was changed
