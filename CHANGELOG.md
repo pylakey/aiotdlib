@@ -8,8 +8,7 @@
 
 #### Updated
 
-* TDLib binaries upgraded to
-  latest [available version](https://github.com/pylakey/td/commit/7135caa2bef38939f58e9e206db83fd316236682)
+* TDLib binaries upgraded to latest [available version](https://github.com/pylakey/td/commit/7135caa2bef38939f58e9e206db83fd316236682) (1.7.7 from now)
 
 * Default value of `limit` parameter in method `Client.get_main_list_chats` was changed to 100
 
@@ -17,7 +16,7 @@
 
 * Chats in `ClientCache.get_main_list_chats` are loaded using new [loadChats](https://github.com/pylakey/td/blob/master/td/generate/scheme/td_api.tl#L4096) TDLib function
 
-* Added new NotFound helper exception for errors with code 400
+* Added new `NotFound` helper exception for errors with code 400
 
 * Removed usage of deprecated `td_set_log_verbosity_level` function of TDJson instance. [setLogVerbosityLevel](https://github.com/pylakey/td/blob/master/td/generate/scheme/td_api.tl#L5587) is used instead
 
@@ -33,8 +32,7 @@
 
 * Changed file structure for prebuilt binaries
 
-* TDLib binaries upgraded to
-  latest [available version](https://github.com/pylakey/td/commit/97fccf7f27c84009460389fdd294739db510f47f)
+* TDLib binaries upgraded to latest [available version](https://github.com/pylakey/td/commit/97fccf7f27c84009460389fdd294739db510f47f)
 
 * API types and functions regenerated
 
@@ -54,8 +52,7 @@
 
 #### Updated
 
-* TDLib binaries upgraded to
-  latest [available version](https://github.com/pylakey/td/commit/d161323858a782bc500d188b9ae916982526c262) (1.7.6 for now)
+* TDLib binaries upgraded to latest [available version](https://github.com/pylakey/td/commit/d161323858a782bc500d188b9ae916982526c262)
 
 * API types and functions regenerated
 
@@ -67,15 +64,13 @@
 
 #### Updated
 
-* Fixed an error when `Client.get_supergroup` and `Client.get_supergroup_full_info` returned `BasicGroup` and `BasicGroupFullInfo` instead of
-`Supergroup` and `SupergroupFullInfo` respectively
+* Fixed an error when `Client.get_supergroup` and `Client.get_supergroup_full_info` returned `BasicGroup` and `BasicGroupFullInfo` instead of `Supergroup` and `SupergroupFullInfo` respectively
 
 ### 0.8.2 - Upgrade to latest TDLib
 
 #### Updated
 
-* TDLib binaries upgraded to
-  latest [available version](https://github.com/pylakey/td/commit/f8ab675ad14080b1609b5904c366052c814d1788)
+* TDLib binaries upgraded to latest [available version](https://github.com/pylakey/td/commit/f8ab675ad14080b1609b5904c366052c814d1788)
 
 * API types and functions regenerated
 
@@ -89,8 +84,7 @@
 
 #### Updated
 
-* TDLib binaries upgraded to
-  latest [available version](https://github.com/pylakey/td/commit/d4dc4f2a50f39b1c05efd955a6e9de0db2b197bc) (1.7.6 for now)
+* TDLib binaries upgraded to latest [available version](https://github.com/pylakey/td/commit/d4dc4f2a50f39b1c05efd955a6e9de0db2b197bc) (1.7.6 from now)
 
 * API types and functions regenerated
 
@@ -104,8 +98,7 @@
 
 #### Updated
 
-* TDLib binaries upgraded to
-  latest [available version](https://github.com/pylakey/td/commit/c45535d607463adb0cd20fcadf43e8f793b1fb24)
+* TDLib binaries upgraded to latest [available version](https://github.com/pylakey/td/commit/c45535d607463adb0cd20fcadf43e8f793b1fb24)
 
 * API types and functions regenerated
 
@@ -179,17 +172,13 @@
 
 * `PendingRequest.id` is property now and returns `request_id` of outgoing request passed to constructor
 
-* `ClientCache` now handles telegram options updates and provides `get_option_value` method to retrieve option value by
-  name
+* `ClientCache` now handles telegram options updates and provides `get_option_value` method to retrieve option value by name
 
-* Messages now can be sent in semi-synchronous way: `SendMessage` request would wait for `UpdateMessageSendSucceeded`
-  event.
+* Messages now can be sent in semi-synchronous way: `SendMessage` request would wait for `UpdateMessageSendSucceeded`event.
 
-* Added some high-level methods to `Client`: `send_photo`, `send_video`, `send_animation`, `send_document`, `send_audio`
-  , `send_voice_note`, `send_video_note`, `forward_messages`
+* Added some high-level methods to `Client`: `send_photo`, `send_video`, `send_animation`, `send_document`, `send_audio`, `send_voice_note`, `send_video_note`, `forward_messages`
 
-* Request main chats list if session was authorized for the first time to avoid Chat not found errors and initialize
-  inner TDLib chats cache
+* Request main chats list if session was authorized for the first time to avoid Chat not found errors and initialize inner TDLib chats cache
 
 ### 0.3.0 - Proxy
 
@@ -210,35 +199,31 @@
 
 #### Added
 
-* `@extra` field of incoming updates now available in `EXTRA` attribute of `BaseObject` and is empty dict by default. It
-  is useful to store some user data there
+* `@extra` field of incoming updates now available in `EXTRA` attribute of `BaseObject` and is empty dict by default. It is useful to store some user data there
 
-* New filter factory `create_bot_command_filter(command: str)` to create specified command handler (useful for bots).
-  This filter parses message text as command and puts `bot_command` and `bot_command_args` to `update.EXTRA`
+* New filter factory `create_bot_command_filter(command: str)` to create specified command handler (useful for bots). This filter parses message text as command and puts `bot_command` and `bot_command_args` to `update.EXTRA`
 
 * `Client.text_message_handler` method for registration of text message handlers
   > this method is universal and can be used directly or as decorator
 
 * `Client.bot_command_handler` method for registration of text message handlers with texts started with "/"
   > this method is universal and can be used directly or as decorator
-* `Client.parse_text` method to parse text entities according to `parse_mode` parameter. By default, `parse_mode`
-  parameter from constructor will is used
 
-* New high-level API method `Client.edit_message` - Edits the text of a message (or a text of a game message). Returns
-  the edited message after the edit is completed on the server side
+* `Client.parse_text` method to parse text entities according to `parse_mode` parameter. By default, `parse_mode` parameter from constructor will is used
+
+* New high-level API method `Client.edit_message` - Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
 
 ### 0.1.0 - Client cache, TDLib parameters constraints
 
 #### Added
 
 * Cache mechanism for chats, users and both types of groups
-* New high-level API method `Client.get_main_list_chats(limit: int)` - Returns an ordered list of chats in a main chat
-  list.
-* Multiple raw methods wrappers which work the same but returns cached entity if it was found in cache: `get_chat`
-  , `get_user`, `get_user_full_info`, `get_basic_group`, `get_basic_group_full_info`, `get_supergroup`
-  , `get_supergroup_full_info`, `get_secret_chat`
-* TL Schema parser now parses some parameters constraints in TL Schema such as nullability of parameter, min and max
-  length
+
+* New high-level API method `Client.get_main_list_chats(limit: int)` - Returns an ordered list of chats in a main chat list.
+
+* Multiple raw methods wrappers which work the same but returns cached entity if it was found in cache: `get_chat`, `get_user`, `get_user_full_info`, `get_basic_group`, `get_basic_group_full_info`, `get_supergroup`, `get_supergroup_full_info`, `get_secret_chat`
+
+* TL Schema parser now parses some parameters constraints in TL Schema such as nullability of parameter, min and max length
 
 #### Updated
 
@@ -248,13 +233,11 @@
 
 #### Added
 
-* added `parse_mode` param to `Client` class. Default parse mode for high-level methods like `send_message`. Default: "
-  html"
+* added `parse_mode` param to `Client` class. Default parse mode for high-level methods like `send_message`. Default: "html"
 
 #### Updated
 
-* `Client.send_message` now automatically parses text entities in text. Text will be parsed according to `parse_mode`
-  option passed in constructor
+* `Client.send_message` now automatically parses text entities in text. Text will be parsed according to `parse_mode` option passed in constructor
 
 #### Removed
 
