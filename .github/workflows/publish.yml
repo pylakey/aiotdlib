@@ -23,7 +23,6 @@ jobs:
           pypi_token: ${{ secrets.PYPI_API_TOKEN }}
           ignore_dev_requirements: true
           python_version: 3.9
-          poetry_version: 1.1.8
 
   publish_docker:
     needs: publish_pypi
