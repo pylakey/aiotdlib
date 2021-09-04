@@ -17,23 +17,11 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name: Build and publish to pypi
+        uses: JRubics/poetry-publish@v1.8
         with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install setuptools wheel twine
-
-      - name: Build and publish
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: |
-          python setup.py sdist bdist_wheel
-          twine upload dist/*
+          pypi_token: ${{ secrets.PYPI_API_TOKEN }}
+          ignore_dev_requirements: true
 
   publish_docker:
     needs: publish_pypi
