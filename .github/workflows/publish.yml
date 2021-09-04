@@ -12,7 +12,7 @@ on:
 jobs:
   publish_pypi:
     runs-on: ubuntu-latest
-    name: Push python package to PyPI using twine
+    name: Push python package to PyPI
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -22,6 +22,8 @@ jobs:
         with:
           pypi_token: ${{ secrets.PYPI_API_TOKEN }}
           ignore_dev_requirements: true
+          python_version: 3.9
+          poetry_version: 1.1.8
 
   publish_docker:
     needs: publish_pypi
