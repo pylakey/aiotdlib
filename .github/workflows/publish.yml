@@ -4,6 +4,8 @@
 name: Publish PyPI and docker
 
 on:
+  workflow_dispatch:
+
   release:
     types: [ published ]
 

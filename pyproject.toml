@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "aiotdlib"
+version = "0.10.1"
+description = "Python asyncio Telegram client based on TDLib"
+authors = ["pylakey <pylakey@protonmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/pylakey/aiotdlib"
+repository = "https://github.com/pylakey/aiotdlib"
+packages = [
+    { include = "aiotdlib" }
+]
+include = [
+    "aiotdlib/tdlib/**/libtdjson.so",
+    "aiotdlib/tdlib/**/libtdjson.dylib",
+]
+classifiers = [
+    "Framework :: AsyncIO",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pydantic = "^1.8.2"
+sortedcontainers = "^2.4.0"
+ujson = "^4.1.0"
+
+[tool.poetry.dev-dependencies]
+Jinja2 = "^3.0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
