@@ -11,8 +11,8 @@ packages = [
     { include = "aiotdlib" }
 ]
 include = [
-    "aiotdlib/tdlib/**/libtdjson.so",
-    "aiotdlib/tdlib/**/libtdjson.dylib",
+    "README.md",
+    "CHANGELOG.md",
 ]
 classifiers = [
     "Framework :: AsyncIO",
