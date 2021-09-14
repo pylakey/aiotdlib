@@ -20,7 +20,7 @@ class StorageStatisticsByChat(BaseObject):
             Chat identifier; 0 if none
         
         size (:class:`int`)
-            Total size of the files in the chat
+            Total size of the files in the chat, in bytes
         
         count (:class:`int`)
             Total number of files in the chat

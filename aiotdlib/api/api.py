@@ -261,7 +261,6 @@ class API:
         CHAT_STATISTICS_MESSAGE_INTERACTION_INFO = 'chatStatisticsMessageInteractionInfo'
         CHAT_STATISTICS_MESSAGE_SENDER_INFO = 'chatStatisticsMessageSenderInfo'
         CHAT_THEME = 'chatTheme'
-        CHAT_THEMES = 'chatThemes'
         CHAT_TYPE = 'chatType'
         CHAT_TYPE_BASIC_GROUP = 'chatTypeBasicGroup'
         CHAT_TYPE_PRIVATE = 'chatTypePrivate'
@@ -463,7 +462,6 @@ class API:
         GET_CHAT_SPONSORED_MESSAGES = 'getChatSponsoredMessages'
         GET_CHAT_STATISTICS = 'getChatStatistics'
         GET_CHAT_STATISTICS_URL = 'getChatStatisticsUrl'
-        GET_CHAT_THEMES = 'getChatThemes'
         GET_CHATS = 'getChats'
         GET_COMMANDS = 'getCommands'
         GET_CONNECTED_WEBSITES = 'getConnectedWebsites'
@@ -537,6 +535,7 @@ class API:
         GET_PUSH_RECEIVER_ID = 'getPushReceiverId'
         GET_RECENT_INLINE_BOTS = 'getRecentInlineBots'
         GET_RECENT_STICKERS = 'getRecentStickers'
+        GET_RECENTLY_OPENED_CHATS = 'getRecentlyOpenedChats'
         GET_RECENTLY_VISITED_T_ME_URLS = 'getRecentlyVisitedTMeUrls'
         GET_RECOMMENDED_CHAT_FILTERS = 'getRecommendedChatFilters'
         GET_RECOVERY_EMAIL_ADDRESS = 'getRecoveryEmailAddress'
@@ -1371,6 +1370,7 @@ class API:
         UPDATE_CHAT_READ_OUTBOX = 'updateChatReadOutbox'
         UPDATE_CHAT_REPLY_MARKUP = 'updateChatReplyMarkup'
         UPDATE_CHAT_THEME = 'updateChatTheme'
+        UPDATE_CHAT_THEMES = 'updateChatThemes'
         UPDATE_CHAT_TITLE = 'updateChatTitle'
         UPDATE_CHAT_UNREAD_MENTION_COUNT = 'updateChatUnreadMentionCount'
         UPDATE_CHAT_VOICE_CHAT = 'updateChatVoiceChat'
@@ -4493,7 +4493,7 @@ class API:
             skip_validation: bool = False
     ) -> Message:
         """
-        Edits the content of a message with an animation, an audio, a document, a photo or a video. The media in the message can't be replaced if the message was set to self-destruct. Media can't be replaced by self-destructing media. Media in an album can be edited only to contain a photo or a video. Returns the edited message after the edit is completed on the server side
+        Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
         
         Params:
             chat_id (:class:`int`)
@@ -5914,17 +5914,6 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_chat_themes(self, *, request_id: str = None, request_timeout: int = None) -> ChatThemes:
-        """
-        Returns the list of available chat themes
-        
-        """
-        return await self.client.request(
-            GetChatThemes(),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
     async def get_chats(
             self,
             chat_list: ChatList,
@@ -6240,7 +6229,7 @@ class API:
             skip_validation: bool = False
     ) -> Count:
         """
-        Returns file downloaded prefix size from a given offset
+        Returns file downloaded prefix size from a given offset, in bytes
         
         Params:
             file_id (:class:`int`)
@@ -7913,6 +7902,32 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_recently_opened_chats(
+            self,
+            limit: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Chats:
+        """
+        Returns recently opened chats, this is an offline request. Returns chats in the order of last opening
+        
+        Params:
+            limit (:class:`int`)
+                The maximum number of chats to be returned
+            
+        """
+        _constructor = GetRecentlyOpenedChats.construct if skip_validation else GetRecentlyOpenedChats
+
+        return await self.client.request(
+            _constructor(
+                limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_recently_visited_t_me_urls(
             self,
             referrer: str,
@@ -9181,7 +9196,7 @@ class API:
         
         Params:
             size (:class:`int`)
-                Limit on the total size of files after deletion. Pass -1 to use the default limit
+                Limit on the total size of files after deletion, in bytes. Pass -1 to use the default limit
             
             ttl (:class:`int`)
                 Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit
@@ -12245,7 +12260,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Changes the chat theme. Requires can_change_info administrator right in groups, supergroups and channels
+        Changes the chat theme. Supported only in private and secret chats
         
         Params:
             chat_id (:class:`int`)
@@ -14601,7 +14616,7 @@ class API:
     async def view_sponsored_message(
             self,
             chat_id: int,
-            message_id: str,
+            sponsored_message_id: int,
             *,
             request_id: str = None,
             request_timeout: int = None,
@@ -14612,9 +14627,9 @@ class API:
         
         Params:
             chat_id (:class:`int`)
-                Chat identifier
+                Identifier of the chat with the sponsored message
             
-            message_id (:class:`str`)
+            sponsored_message_id (:class:`int`)
                 The identifier of the sponsored message being viewed
             
         """
@@ -14623,7 +14638,7 @@ class API:
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
-                message_id=message_id,
+                sponsored_message_id=sponsored_message_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,

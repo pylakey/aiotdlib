@@ -28,6 +28,7 @@ from .chat_notification_settings import ChatNotificationSettings
 from .chat_permissions import ChatPermissions
 from .chat_photo_info import ChatPhotoInfo
 from .chat_position import ChatPosition
+from .chat_theme import ChatTheme
 from .chat_type import ChatType
 from .connection_state import ConnectionState
 from .draft_message import DraftMessage
@@ -618,7 +619,7 @@ class UpdateChatTheme(Update):
             Chat identifier
         
         theme_name (:class:`str`)
-            The new name of the chat theme; may be empty if none
+            The new name of the chat theme; may be empty if theme was reset to default
         
     """
 
@@ -629,6 +630,24 @@ class UpdateChatTheme(Update):
     @staticmethod
     def read(q: dict) -> UpdateChatTheme:
         return UpdateChatTheme.construct(**q)
+
+
+class UpdateChatThemes(Update):
+    """
+    The list of available chat themes has changed
+    
+    Params:
+        chat_themes (:obj:`list[ChatTheme]`)
+            The new list of chat themes
+        
+    """
+
+    ID: str = Field("updateChatThemes", alias="@type")
+    chat_themes: list[ChatTheme]
+
+    @staticmethod
+    def read(q: dict) -> UpdateChatThemes:
+        return UpdateChatThemes.construct(**q)
 
 
 class UpdateChatTitle(Update):

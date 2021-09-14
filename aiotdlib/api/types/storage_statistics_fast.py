@@ -16,7 +16,7 @@ class StorageStatisticsFast(BaseObject):
     
     Params:
         files_size (:class:`int`)
-            Approximate total size of files
+            Approximate total size of files, in bytes
         
         file_count (:class:`int`)
             Approximate number of files

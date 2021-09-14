@@ -54,7 +54,7 @@ class LogStreamFile(LogStream):
             Path to the file to where the internal TDLib log will be written
         
         max_file_size (:class:`int`)
-            The maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated
+            The maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated, in bytes
         
         redirect_stderr (:class:`bool`)
             Pass true to additionally redirect stderr to the log file. Ignored on Windows

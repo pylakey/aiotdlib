@@ -442,11 +442,15 @@ class InternalLinkTypeVoiceChat(InternalLinkType):
         invite_hash (:class:`str`)
             If non-empty, invite hash to be used to join the voice chat without being muted by administrators
         
+        is_live_stream (:class:`bool`)
+            True, if the voice chat is expected to be a live stream in a channel or a broadcast group
+        
     """
 
     ID: str = Field("internalLinkTypeVoiceChat", alias="@type")
     chat_username: str
     invite_hash: str
+    is_live_stream: bool
 
     @staticmethod
     def read(q: dict) -> InternalLinkTypeVoiceChat:

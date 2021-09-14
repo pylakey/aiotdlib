@@ -21,10 +21,10 @@ class File(BaseObject):
             Unique file identifier
         
         size (:class:`int`)
-            File size; 0 if unknown
+            File size, in bytes; 0 if unknown
         
         expected_size (:class:`int`)
-            Expected file size in case the exact file size is unknown, but an approximate size is known. Can be used to show download/upload progress
+            Approximate file size in bytes in case the exact file size is unknown. Can be used to show download/upload progress
         
         local (:class:`LocalFile`)
             Information about the local copy of the file

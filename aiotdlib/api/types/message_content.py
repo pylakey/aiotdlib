@@ -244,7 +244,7 @@ class MessageChatSetTheme(MessageContent):
     
     Params:
         theme_name (:class:`str`)
-            If non-empty, name of the new theme set for the chat. Otherwise theme was deleted in the chat
+            If non-empty, name of a new theme set for the chat. Otherwise chat theme was reset to the default one
         
     """
 

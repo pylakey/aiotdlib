@@ -29,7 +29,7 @@ class PhotoSize(BaseObject):
             Image height
         
         progressive_sizes (:obj:`list[int]`)
-            Sizes of progressive JPEG file prefixes, which can be used to preliminarily show the image
+            Sizes of progressive JPEG file prefixes, which can be used to preliminarily show the image; in bytes
         
     """
 

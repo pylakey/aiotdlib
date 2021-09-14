@@ -17,7 +17,7 @@ class StorageStatistics(BaseObject):
     
     Params:
         size (:class:`int`)
-            Total size of files
+            Total size of files, in bytes
         
         count (:class:`int`)
             Total number of files

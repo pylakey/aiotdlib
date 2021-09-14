@@ -17,7 +17,7 @@ class OptimizeStorage(BaseObject):
     
     Params:
         size (:class:`int`)
-            Limit on the total size of files after deletion. Pass -1 to use the default limit
+            Limit on the total size of files after deletion, in bytes. Pass -1 to use the default limit
         
         ttl (:class:`int`)
             Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit

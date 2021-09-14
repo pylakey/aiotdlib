@@ -87,7 +87,7 @@ class Chat(BaseObject):
             Current message Time To Live setting (self-destruct timer) for the chat; 0 if not defined. TTL is counted from the time message or its content is viewed in secret chats and from the send date in other chats
         
         theme_name (:class:`str`)
-            If non-empty, name of the theme set for the chat
+            If non-empty, name of a theme set for the chat
         
         action_bar (:class:`ChatActionBar`)
             Describes actions which should be possible to do through a chat action bar; may be null

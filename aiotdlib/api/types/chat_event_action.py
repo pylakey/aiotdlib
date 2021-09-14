@@ -530,14 +530,14 @@ class ChatEventStickerSetChanged(ChatEventAction):
 
 class ChatEventThemeChanged(ChatEventAction):
     """
-    The chat theme was changed
+    The chat theme was changed. This event shouldn't be received until chat themes would be supported in supergroups
     
     Params:
         old_theme_name (:class:`str`)
-            Previous chat theme name; empty if none
+            Previous chat theme name; empty if the previous theme was default one
         
         new_theme_name (:class:`str`)
-            New chat theme name; empty if none
+            New chat theme name; empty if the new theme is default one
         
     """
 

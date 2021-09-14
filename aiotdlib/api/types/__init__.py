@@ -255,7 +255,6 @@ from .chat_statistics_inviter_info import ChatStatisticsInviterInfo
 from .chat_statistics_message_interaction_info import ChatStatisticsMessageInteractionInfo
 from .chat_statistics_message_sender_info import ChatStatisticsMessageSenderInfo
 from .chat_theme import ChatTheme
-from .chat_themes import ChatThemes
 from .chat_type import (
     ChatType,
     ChatTypeBasicGroup,
@@ -1077,6 +1076,7 @@ from .update import (
     UpdateChatReadOutbox,
     UpdateChatReplyMarkup,
     UpdateChatTheme,
+    UpdateChatThemes,
     UpdateChatTitle,
     UpdateChatUnreadMentionCount,
     UpdateChatVoiceChat,
@@ -1408,7 +1408,6 @@ __all__ = [
     "ChatStatisticsMessageInteractionInfo",
     "ChatStatisticsMessageSenderInfo",
     "ChatTheme",
-    "ChatThemes",
     "ChatType",
     "ChatTypeBasicGroup",
     "ChatTypePrivate",
@@ -2107,6 +2106,7 @@ __all__ = [
     "UpdateChatReadOutbox",
     "UpdateChatReplyMarkup",
     "UpdateChatTheme",
+    "UpdateChatThemes",
     "UpdateChatTitle",
     "UpdateChatUnreadMentionCount",
     "UpdateChatVoiceChat",

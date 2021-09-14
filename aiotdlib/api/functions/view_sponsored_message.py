@@ -16,16 +16,16 @@ class ViewSponsoredMessage(BaseObject):
     
     Params:
         chat_id (:class:`int`)
-            Chat identifier
+            Identifier of the chat with the sponsored message
         
-        message_id (:class:`str`)
+        sponsored_message_id (:class:`int`)
             The identifier of the sponsored message being viewed
         
     """
 
     ID: str = Field("viewSponsoredMessage", alias="@type")
     chat_id: int
-    message_id: str
+    sponsored_message_id: int
 
     @staticmethod
     def read(q: dict) -> ViewSponsoredMessage:

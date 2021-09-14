@@ -47,7 +47,10 @@ class BackgroundTypePattern(BackgroundType):
             Description of the background fill
         
         intensity (:class:`int`)
-            Intensity of the pattern when it is shown above the filled background; -100-100. If negative, the pattern color and the filled background colors needs to be inverted
+            Intensity of the pattern when it is shown above the filled background; 0-100.
+        
+        is_inverted (:class:`bool`)
+            True, if the background fill must be applied only to the pattern itself. All other pixels are black in this case. For dark themes only
         
         is_moving (:class:`bool`)
             True, if the background needs to be slightly moved when device is tilted
@@ -57,6 +60,7 @@ class BackgroundTypePattern(BackgroundType):
     ID: str = Field("backgroundTypePattern", alias="@type")
     fill: BackgroundFill
     intensity: int
+    is_inverted: bool
     is_moving: bool
 
     @staticmethod

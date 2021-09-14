@@ -153,7 +153,6 @@ from .get_chat_scheduled_messages import GetChatScheduledMessages
 from .get_chat_sponsored_messages import GetChatSponsoredMessages
 from .get_chat_statistics import GetChatStatistics
 from .get_chat_statistics_url import GetChatStatisticsUrl
-from .get_chat_themes import GetChatThemes
 from .get_chats import GetChats
 from .get_commands import GetCommands
 from .get_connected_websites import GetConnectedWebsites
@@ -227,6 +226,7 @@ from .get_proxy_link import GetProxyLink
 from .get_push_receiver_id import GetPushReceiverId
 from .get_recent_inline_bots import GetRecentInlineBots
 from .get_recent_stickers import GetRecentStickers
+from .get_recently_opened_chats import GetRecentlyOpenedChats
 from .get_recently_visited_t_me_urls import GetRecentlyVisitedTMeUrls
 from .get_recommended_chat_filters import GetRecommendedChatFilters
 from .get_recovery_email_address import GetRecoveryEmailAddress
@@ -606,7 +606,6 @@ __all__ = [
     "GetChatSponsoredMessages",
     "GetChatStatistics",
     "GetChatStatisticsUrl",
-    "GetChatThemes",
     "GetChats",
     "GetCommands",
     "GetConnectedWebsites",
@@ -680,6 +679,7 @@ __all__ = [
     "GetPushReceiverId",
     "GetRecentInlineBots",
     "GetRecentStickers",
+    "GetRecentlyOpenedChats",
     "GetRecentlyVisitedTMeUrls",
     "GetRecommendedChatFilters",
     "GetRecoveryEmailAddress",

@@ -28,7 +28,7 @@ class RemoteFile(BaseObject):
             True, if a remote copy is fully available
         
         uploaded_size (:class:`int`)
-            Size of the remote available part of the file; 0 if unknown
+            Size of the remote available part of the file, in bytes; 0 if unknown
         
     """
 

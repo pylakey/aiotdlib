@@ -20,7 +20,7 @@ class StorageStatisticsByFileType(BaseObject):
             File type
         
         size (:class:`int`)
-            Total size of the files
+            Total size of the files, in bytes
         
         count (:class:`int`)
             Total number of files

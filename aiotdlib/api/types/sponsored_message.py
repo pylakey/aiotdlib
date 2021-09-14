@@ -16,7 +16,7 @@ class SponsoredMessage(BaseObject):
     Describes a sponsored message
     
     Params:
-        id (:class:`str`)
+        id (:class:`int`)
             Unique sponsored message identifier
         
         sponsor_chat_id (:class:`int`)
@@ -31,7 +31,7 @@ class SponsoredMessage(BaseObject):
     """
 
     ID: str = Field("sponsoredMessage", alias="@type")
-    id: str
+    id: int
     sponsor_chat_id: int
     start_parameter: str
     content: MessageContent

@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class SetChatTheme(BaseObject):
     """
-    Changes the chat theme. Requires can_change_info administrator right in groups, supergroups and channels
+    Changes the chat theme. Supported only in private and secret chats
     
     Params:
         chat_id (:class:`int`)

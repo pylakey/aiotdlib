@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class GetFileDownloadedPrefixSize(BaseObject):
     """
-    Returns file downloaded prefix size from a given offset
+    Returns file downloaded prefix size from a given offset, in bytes
     
     Params:
         file_id (:class:`int`)
