@@ -60,7 +60,7 @@ class TextEntityTypeBotCommand(TextEntityType):
 
 class TextEntityTypeCashtag(TextEntityType):
     """
-    A cashtag text, beginning with "$" and consisting of capital english letters (i.e. "$USD")
+    A cashtag text, beginning with "$" and consisting of capital english letters (e.g., "$USD")
     
     """
 

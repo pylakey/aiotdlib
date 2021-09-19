@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class DeleteChatHistory(BaseObject):
     """
-    Deletes all messages in the chat. Use Chat.can_be_deleted_only_for_self and Chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
+    Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
     
     Params:
         chat_id (:class:`int`)

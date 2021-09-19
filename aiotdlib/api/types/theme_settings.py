@@ -25,19 +25,23 @@ class ThemeSettings(BaseObject):
         background (:class:`Background`)
             The background to be used in chats; may be null
         
-        message_fill (:class:`BackgroundFill`)
+        outgoing_message_fill (:class:`BackgroundFill`)
             The fill to be used as a background for outgoing messages
         
-        animate_message_fill (:class:`bool`)
+        animate_outgoing_message_fill (:class:`bool`)
             If true, the freeform gradient fill needs to be animated on every sent message
+        
+        outgoing_message_accent_color (:class:`int`)
+            Accent color of outgoing messages in ARGB format
         
     """
 
     ID: str = Field("themeSettings", alias="@type")
     accent_color: int
     background: typing.Optional[Background] = None
-    message_fill: BackgroundFill
-    animate_message_fill: bool
+    outgoing_message_fill: BackgroundFill
+    animate_outgoing_message_fill: bool
+    outgoing_message_accent_color: int
 
     @staticmethod
     def read(q: dict) -> ThemeSettings:

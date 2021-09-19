@@ -47,7 +47,7 @@ class ChatActionBarInviteMembers(ChatActionBar):
 
 class ChatActionBarReportAddBlock(ChatActionBar):
     """
-    The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method blockUser, or the other user can be added to the contact list using the method addContact
+    The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method toggleMessageSenderIsBlocked, or the other user can be added to the contact list using the method addContact
     
     Params:
         can_unarchive (:class:`bool`)

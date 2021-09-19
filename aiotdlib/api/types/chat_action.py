@@ -224,3 +224,21 @@ class ChatActionUploadingVoiceNote(ChatAction):
     @staticmethod
     def read(q: dict) -> ChatActionUploadingVoiceNote:
         return ChatActionUploadingVoiceNote.construct(**q)
+
+
+class ChatActionWatchingAnimations(ChatAction):
+    """
+    The user is watching animations sent by the other party by clicking on an animated emoji
+    
+    Params:
+        emoji (:class:`str`)
+            The animated emoji
+        
+    """
+
+    ID: str = Field("chatActionWatchingAnimations", alias="@type")
+    emoji: str
+
+    @staticmethod
+    def read(q: dict) -> ChatActionWatchingAnimations:
+        return ChatActionWatchingAnimations.construct(**q)

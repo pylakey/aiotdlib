@@ -26,7 +26,7 @@ class InputInlineQueryResult(BaseObject):
 
 class InputInlineQueryResultAnimation(InputInlineQueryResult):
     """
-    Represents a link to an animated GIF or an animated (i.e. without sound) H.264/MPEG-4 AVC video
+    Represents a link to an animated GIF or an animated (i.e., without sound) H.264/MPEG-4 AVC video
     
     Params:
         id (:class:`str`)

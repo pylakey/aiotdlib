@@ -63,6 +63,9 @@ class Message(BaseObject):
         can_get_message_thread (:class:`bool`)
             True, if the message thread info is available
         
+        can_get_viewers (:class:`bool`)
+            True, if chat members already viewed the message can be received through getMessageViewers
+        
         can_get_media_timestamp_links (:class:`bool`)
             True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description
         
@@ -136,6 +139,7 @@ class Message(BaseObject):
     can_be_deleted_for_all_users: bool
     can_get_statistics: bool
     can_get_message_thread: bool
+    can_get_viewers: bool
     can_get_media_timestamp_links: bool
     has_timestamped_media: bool
     is_channel_post: bool

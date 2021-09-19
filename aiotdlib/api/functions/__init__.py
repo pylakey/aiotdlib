@@ -54,6 +54,7 @@ from .clear_all_draft_messages import ClearAllDraftMessages
 from .clear_imported_contacts import ClearImportedContacts
 from .clear_recent_stickers import ClearRecentStickers
 from .clear_recently_found_chats import ClearRecentlyFoundChats
+from .click_animated_emoji_message import ClickAnimatedEmojiMessage
 from .close import Close
 from .close_chat import CloseChat
 from .close_secret_chat import CloseSecretChat
@@ -208,6 +209,7 @@ from .get_message_public_forwards import GetMessagePublicForwards
 from .get_message_statistics import GetMessageStatistics
 from .get_message_thread import GetMessageThread
 from .get_message_thread_history import GetMessageThreadHistory
+from .get_message_viewers import GetMessageViewers
 from .get_messages import GetMessages
 from .get_network_statistics import GetNetworkStatistics
 from .get_option import GetOption
@@ -507,6 +509,7 @@ __all__ = [
     "ClearImportedContacts",
     "ClearRecentStickers",
     "ClearRecentlyFoundChats",
+    "ClickAnimatedEmojiMessage",
     "Close",
     "CloseChat",
     "CloseSecretChat",
@@ -661,6 +664,7 @@ __all__ = [
     "GetMessageStatistics",
     "GetMessageThread",
     "GetMessageThreadHistory",
+    "GetMessageViewers",
     "GetMessages",
     "GetNetworkStatistics",
     "GetOption",

@@ -133,6 +133,7 @@ from .chat_action import (
     ChatActionUploadingVideo,
     ChatActionUploadingVideoNote,
     ChatActionUploadingVoiceNote,
+    ChatActionWatchingAnimations,
 )
 from .chat_action_bar import (
     ChatActionBar,
@@ -173,7 +174,6 @@ from .chat_event_action import (
     ChatEventSignMessagesToggled,
     ChatEventSlowModeDelayChanged,
     ChatEventStickerSetChanged,
-    ChatEventThemeChanged,
     ChatEventTitleChanged,
     ChatEventUsernameChanged,
     ChatEventVoiceChatCreated,
@@ -1052,6 +1052,7 @@ from .top_chat_category import (
 from .update import (
     Update,
     UpdateActiveNotifications,
+    UpdateAnimatedEmojiMessageClicked,
     UpdateAnimationSearchParameters,
     UpdateAuthorizationState,
     UpdateBasicGroup,
@@ -1303,6 +1304,7 @@ __all__ = [
     "ChatActionUploadingVideo",
     "ChatActionUploadingVideoNote",
     "ChatActionUploadingVoiceNote",
+    "ChatActionWatchingAnimations",
     "ChatActionBar",
     "ChatActionBarAddContact",
     "ChatActionBarInviteMembers",
@@ -1339,7 +1341,6 @@ __all__ = [
     "ChatEventSignMessagesToggled",
     "ChatEventSlowModeDelayChanged",
     "ChatEventStickerSetChanged",
-    "ChatEventThemeChanged",
     "ChatEventTitleChanged",
     "ChatEventUsernameChanged",
     "ChatEventVoiceChatCreated",
@@ -2082,6 +2083,7 @@ __all__ = [
     "TopChatCategoryUsers",
     "Update",
     "UpdateActiveNotifications",
+    "UpdateAnimatedEmojiMessageClicked",
     "UpdateAnimationSearchParameters",
     "UpdateAuthorizationState",
     "UpdateBasicGroup",

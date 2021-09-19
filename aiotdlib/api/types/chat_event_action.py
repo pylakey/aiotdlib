@@ -528,28 +528,6 @@ class ChatEventStickerSetChanged(ChatEventAction):
         return ChatEventStickerSetChanged.construct(**q)
 
 
-class ChatEventThemeChanged(ChatEventAction):
-    """
-    The chat theme was changed. This event shouldn't be received until chat themes would be supported in supergroups
-    
-    Params:
-        old_theme_name (:class:`str`)
-            Previous chat theme name; empty if the previous theme was default one
-        
-        new_theme_name (:class:`str`)
-            New chat theme name; empty if the new theme is default one
-        
-    """
-
-    ID: str = Field("chatEventThemeChanged", alias="@type")
-    old_theme_name: str
-    new_theme_name: str
-
-    @staticmethod
-    def read(q: dict) -> ChatEventThemeChanged:
-        return ChatEventThemeChanged.construct(**q)
-
-
 class ChatEventTitleChanged(ChatEventAction):
     """
     The chat title was changed

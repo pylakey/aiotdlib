@@ -50,6 +50,7 @@ from .poll import Poll
 from .reply_markup import ReplyMarkup
 from .scope_notification_settings import ScopeNotificationSettings
 from .secret_chat import SecretChat
+from .sticker import Sticker
 from .sticker_set import StickerSet
 from .sticker_sets import StickerSets
 from .suggested_action import SuggestedAction
@@ -90,6 +91,32 @@ class UpdateActiveNotifications(Update):
     @staticmethod
     def read(q: dict) -> UpdateActiveNotifications:
         return UpdateActiveNotifications.construct(**q)
+
+
+class UpdateAnimatedEmojiMessageClicked(Update):
+    """
+    Some animated emoji message was clicked and a big animated sticker should be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
+    
+    Params:
+        chat_id (:class:`int`)
+            Chat identifier
+        
+        message_id (:class:`int`)
+            Message identifier
+        
+        sticker (:class:`Sticker`)
+            The animated sticker to be played
+        
+    """
+
+    ID: str = Field("updateAnimatedEmojiMessageClicked", alias="@type")
+    chat_id: int
+    message_id: int
+    sticker: Sticker
+
+    @staticmethod
+    def read(q: dict) -> UpdateAnimatedEmojiMessageClicked:
+        return UpdateAnimatedEmojiMessageClicked.construct(**q)
 
 
 class UpdateAnimationSearchParameters(Update):

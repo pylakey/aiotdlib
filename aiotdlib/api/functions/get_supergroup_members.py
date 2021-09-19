@@ -13,7 +13,7 @@ from ..types import SupergroupMembersFilter
 
 class GetSupergroupMembers(BaseObject):
     """
-    Returns information about members or banned users in a supergroup or channel. Can be used only if SupergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
+    Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
     
     Params:
         supergroup_id (:class:`int`)

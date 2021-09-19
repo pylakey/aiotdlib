@@ -22,7 +22,7 @@ class ChatStatisticsMessageSenderInfo(BaseObject):
             Number of sent messages
         
         average_character_count (:class:`int`)
-            Average number of characters in sent messages
+            Average number of characters in sent messages; 0 if unknown
         
     """
 

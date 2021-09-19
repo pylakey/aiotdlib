@@ -17,7 +17,7 @@ class AddSavedAnimation(BaseObject):
     
     Params:
         animation (:class:`InputFile`)
-            The animation file to be added. Only animations known to the server (i.e. successfully sent via a message) can be added to the list
+            The animation file to be added. Only animations known to the server (i.e., successfully sent via a message) can be added to the list
         
     """
 

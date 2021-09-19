@@ -156,6 +156,7 @@ class API:
         CHAT_ACTION_UPLOADING_VIDEO = 'chatActionUploadingVideo'
         CHAT_ACTION_UPLOADING_VIDEO_NOTE = 'chatActionUploadingVideoNote'
         CHAT_ACTION_UPLOADING_VOICE_NOTE = 'chatActionUploadingVoiceNote'
+        CHAT_ACTION_WATCHING_ANIMATIONS = 'chatActionWatchingAnimations'
         CHAT_ACTION_BAR = 'chatActionBar'
         CHAT_ACTION_BAR_ADD_CONTACT = 'chatActionBarAddContact'
         CHAT_ACTION_BAR_INVITE_MEMBERS = 'chatActionBarInviteMembers'
@@ -192,7 +193,6 @@ class API:
         CHAT_EVENT_SIGN_MESSAGES_TOGGLED = 'chatEventSignMessagesToggled'
         CHAT_EVENT_SLOW_MODE_DELAY_CHANGED = 'chatEventSlowModeDelayChanged'
         CHAT_EVENT_STICKER_SET_CHANGED = 'chatEventStickerSetChanged'
-        CHAT_EVENT_THEME_CHANGED = 'chatEventThemeChanged'
         CHAT_EVENT_TITLE_CHANGED = 'chatEventTitleChanged'
         CHAT_EVENT_USERNAME_CHANGED = 'chatEventUsernameChanged'
         CHAT_EVENT_VOICE_CHAT_CREATED = 'chatEventVoiceChatCreated'
@@ -298,6 +298,7 @@ class API:
         CLEAR_IMPORTED_CONTACTS = 'clearImportedContacts'
         CLEAR_RECENT_STICKERS = 'clearRecentStickers'
         CLEAR_RECENTLY_FOUND_CHATS = 'clearRecentlyFoundChats'
+        CLICK_ANIMATED_EMOJI_MESSAGE = 'clickAnimatedEmojiMessage'
         CLOSE = 'close'
         CLOSE_CHAT = 'closeChat'
         CLOSE_SECRET_CHAT = 'closeSecretChat'
@@ -517,6 +518,7 @@ class API:
         GET_MESSAGE_STATISTICS = 'getMessageStatistics'
         GET_MESSAGE_THREAD = 'getMessageThread'
         GET_MESSAGE_THREAD_HISTORY = 'getMessageThreadHistory'
+        GET_MESSAGE_VIEWERS = 'getMessageViewers'
         GET_MESSAGES = 'getMessages'
         GET_NETWORK_STATISTICS = 'getNetworkStatistics'
         GET_OPTION = 'getOption'
@@ -1346,6 +1348,7 @@ class API:
         UNPIN_CHAT_MESSAGE = 'unpinChatMessage'
         UPDATE = 'update'
         UPDATE_ACTIVE_NOTIFICATIONS = 'updateActiveNotifications'
+        UPDATE_ANIMATED_EMOJI_MESSAGE_CLICKED = 'updateAnimatedEmojiMessageClicked'
         UPDATE_ANIMATION_SEARCH_PARAMETERS = 'updateAnimationSearchParameters'
         UPDATE_AUTHORIZATION_STATE = 'updateAuthorizationState'
         UPDATE_BASIC_GROUP = 'updateBasicGroup'
@@ -1662,7 +1665,7 @@ class API:
                 The contact to add or edit; phone number can be empty and needs to be specified only if known, vCard is ignored
             
             share_phone_number (:class:`bool`)
-                True, if the new contact needs to be allowed to see current user's phone number. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field UserFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
+                True, if the new contact needs to be allowed to see current user's phone number. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
             
         """
         _constructor = AddContact.construct if skip_validation else AddContact
@@ -1942,7 +1945,7 @@ class API:
         
         Params:
             animation (:class:`InputFile`)
-                The animation file to be added. Only animations known to the server (i.e. successfully sent via a message) can be added to the list
+                The animation file to be added. Only animations known to the server (i.e., successfully sent via a message) can be added to the list
             
         """
         _constructor = AddSavedAnimation.construct if skip_validation else AddSavedAnimation
@@ -2945,6 +2948,37 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def click_animated_emoji_message(
+            self,
+            chat_id: int,
+            message_id: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Sticker:
+        """
+        Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played
+        
+        Params:
+            chat_id (:class:`int`)
+                Chat identifier of the message
+            
+            message_id (:class:`int`)
+                Identifier of the clicked message
+            
+        """
+        _constructor = ClickAnimatedEmojiMessage.construct if skip_validation else ClickAnimatedEmojiMessage
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                message_id=message_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def close(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
@@ -3618,7 +3652,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Deletes all messages in the chat. Use Chat.can_be_deleted_only_for_self and Chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
+        Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
         
         Params:
             chat_id (:class:`int`)
@@ -5857,7 +5891,7 @@ class API:
             skip_validation: bool = False
     ) -> ChatStatistics:
         """
-        Returns detailed statistics about a chat. Currently this method can be used only for supergroups and channels. Can be used only if SupergroupFullInfo.can_get_statistics == true
+        Returns detailed statistics about a chat. Currently this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
         
         Params:
             chat_id (:class:`int`)
@@ -7307,7 +7341,7 @@ class API:
             skip_validation: bool = False
     ) -> MessageStatistics:
         """
-        Returns detailed statistics about a message. Can be used only if Message.can_get_statistics == true
+        Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
         
         Params:
             chat_id (:class:`int`)
@@ -7404,6 +7438,37 @@ class API:
                 from_message_id=from_message_id,
                 offset=offset,
                 limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_message_viewers(
+            self,
+            chat_id: int,
+            message_id: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Users:
+        """
+        Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true
+        
+        Params:
+            chat_id (:class:`int`)
+                Chat identifier
+            
+            message_id (:class:`int`)
+                Identifier of the message
+            
+        """
+        _constructor = GetMessageViewers.construct if skip_validation else GetMessageViewers
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                message_id=message_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -8425,7 +8490,7 @@ class API:
             skip_validation: bool = False
     ) -> ChatMembers:
         """
-        Returns information about members or banned users in a supergroup or channel. Can be used only if SupergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
+        Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
         
         Params:
             supergroup_id (:class:`int`)

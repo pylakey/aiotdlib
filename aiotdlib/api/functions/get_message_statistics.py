@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class GetMessageStatistics(BaseObject):
     """
-    Returns detailed statistics about a message. Can be used only if Message.can_get_statistics == true
+    Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
     
     Params:
         chat_id (:class:`int`)

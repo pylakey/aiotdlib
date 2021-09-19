@@ -21,7 +21,7 @@ class ChatType(BaseObject):
 
 class ChatTypeBasicGroup(ChatType):
     """
-    A basic group (i.e., a chat with 0-200 other users)
+    A basic group (a chat with 0-200 other users)
     
     Params:
         basic_group_id (:class:`int`)
@@ -79,7 +79,7 @@ class ChatTypeSecret(ChatType):
 
 class ChatTypeSupergroup(ChatType):
     """
-    A supergroup (i.e. a chat with up to GetOption("supergroup_max_size") other users), or channel (with unlimited members)
+    A supergroup or channel (with unlimited members)
     
     Params:
         supergroup_id (:class:`int`)
