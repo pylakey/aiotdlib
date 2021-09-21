@@ -12,7 +12,5 @@ cmake -DCMAKE_BUILD_TYPE=Release \
       ..
 cmake --build . --target install
 cd ../..
-BINARY_DIR="../aiotdlib/tdlib/darwin/$(uname -m)"
-mkdir -p "$BINARY_DIR"
-mv td/tdlib/lib/libtdjson.1.7.7.dylib "$BINARY_DIR/libtdjson.dylib"
+mv td/tdlib/lib/libtdjson.dylib "aiotdlib/tdlib/libtdjson_darwin_$(uname -m).dylib"
 rm -rf td
