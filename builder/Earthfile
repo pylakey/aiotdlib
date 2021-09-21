@@ -1,28 +1,28 @@
-FROM debian:buster
+build-all-platforms:
+    BUILD --platform=linux/arm64 +build
 
-ENV DEBIAN_FRONTEND noninteractive
-ENV DEBCONF_NONINTERACTIVE_SEEN true
+builder:
+    FROM debian:bullseye
 
-# install build dependencies, then clean up system packages
-RUN apt-get update && apt-get -y install \
-    make \
-    zlib1g-dev \
-    libssl-dev \
-    gperf \
-    cmake \
-    clang \
-    libc++-dev \
-    libc++abi-dev \
-    && rm -rf /var/lib/apt/lists/*
+    ENV DEBIAN_FRONTEND noninteractive
+    ENV DEBCONF_NONINTERACTIVE_SEEN true
 
-WORKDIR /build
+    RUN apt-get update && apt-get -y install \
+        make \
+        zlib1g-dev \
+        libssl-dev \
+        gperf \
+        cmake \
+        clang \
+        libc++-dev \
+        libc++abi-dev \
+        && rm -rf /var/lib/apt/lists/*
 
-code:
-    GIT CLONE https://github.com/pylakey/td /code
 
 build:
-    FROM +code
-    ARG TARGETARCH
+    FROM +builder
+    GIT CLONE https://github.com/pylakey/td /code
+    WORKDIR /build
 
     RUN CXXFLAGS="-stdlib=libc++" \
         CC=/usr/bin/clang \
@@ -31,8 +31,9 @@ build:
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX:PATH=/tdlib \
         -S /code \
-        -B /build
+        -B .
 
-    RUN cmake --build /build --target install
+    RUN cmake --build . --target install
 
-    SAVE ARTIFACT /tdlib/lib/libtdjson.so.1.7.7 AS LOCAL ../aiotdlib/tdlib/linux/${TARGETARCH}/libtdjson.so
+    ARG TARGETARCH
+    SAVE ARTIFACT /tdlib/lib/libtdjson.so AS LOCAL ../aiotdlib/tdlib/linux/${TARGETARCH}/libtdjson.so
