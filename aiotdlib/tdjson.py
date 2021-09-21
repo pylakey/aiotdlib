@@ -5,6 +5,7 @@ import typing
 from ctypes import *
 from ctypes.util import find_library
 from enum import IntEnum
+from pathlib import Path
 
 import pkg_resources
 import ujson
@@ -38,11 +39,11 @@ def _get_tdjson_lib_path() -> str:
     else:
         raise RuntimeError('Prebuilt TDLib binary is not include for this system')
 
-    binary_path = f'tdlib/{system_name}/{machine_name}/libtdjson.{extension}'
+    binary_path = Path(__file__).parent / f'tdlib/libtdjson_{system_name}_{machine_name}.{extension}'
 
     if not pkg_resources.resource_exists('aiotdlib', binary_path):
         # Binary for arm64 machines will be always provided for both Darwin and Linux
-        binary_path = f"tdlib/{system_name}/arm64/libtdjson.{extension}"
+        binary_path = Path(__file__).parent / f"tdlib/libtdjson_{system_name}_arm64.{extension}"
 
     return pkg_resources.resource_filename('aiotdlib', binary_path)
 
