@@ -12,5 +12,4 @@ cmake -DCMAKE_BUILD_TYPE=Release \
       ..
 cmake --build . --target install
 cd ../..
-mv td/tdlib/lib/libtdjson.dylib "aiotdlib/tdlib/libtdjson_darwin_$(uname -m).dylib"
-rm -rf td
+cp -L td/tdlib/lib/libtdjson.dylib "aiotdlib/tdlib/libtdjson_darwin_$(uname -m).dylib"
