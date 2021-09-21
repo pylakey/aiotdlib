@@ -160,6 +160,7 @@ class TDJson:
             # Each returned object will have an "@client_id" field,
             # containing the identifier of the client for which a response or an update was received.
             if result.pop('@client_id', None) != self.td_json_client:
+                # TODO: Support handling multiple clients with single TDJson instance
                 return None
 
         return result
