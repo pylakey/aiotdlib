@@ -135,7 +135,7 @@ class PushMessageContentChatChangeTheme(PushMessageContent):
     
     Params:
         theme_name (:class:`str`)
-            If non-empty, name of a new theme set for the chat. Otherwise chat theme was reset to the default one
+            If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset to the default one
         
     """
 
