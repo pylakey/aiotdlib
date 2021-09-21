@@ -30,11 +30,10 @@ build:
         cmake \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX:PATH=/tdlib \
-        -DTD_ENABLE_LTO=ON \
         -S /code \
-        -B .
+        -B /build
 
-    RUN cmake --build . --target install
+    RUN cmake --build /build --target install
 
     ARG TARGETARCH
     SAVE ARTIFACT /tdlib/lib/libtdjson.so AS LOCAL aiotdlib/tdlib/libtdjson_linux_${TARGETARCH}.so
