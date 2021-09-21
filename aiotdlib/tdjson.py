@@ -11,9 +11,10 @@ import ujson
 
 TDLIB_MAX_INT = 2 ** 63 - 1
 log_message_callback_type = CFUNCTYPE(None, c_int, c_char_p)
-LINUX_MACHINE_SYNONYMS = {
+ARCH_ALIASES = {
     "x86_64": "amd64",
-    "aarch64": "arm64"
+    "aarch64": "arm64",
+    "arm64v8": "arm64",
 }
 
 
@@ -25,15 +26,15 @@ def _get_tdjson_lib_path() -> str:
 
     uname = platform.uname()
     system_name = uname.system.lower()
-    machine_name = uname.machine
+    machine_name = uname.machine.lower()
 
     if system_name == 'darwin':
         extension = f"dylib"
     elif system_name == 'linux':
         extension = f"so"
 
-        if machine_name in LINUX_MACHINE_SYNONYMS.keys():
-            machine_name = LINUX_MACHINE_SYNONYMS[machine_name]
+        if machine_name in ARCH_ALIASES.keys():
+            machine_name = ARCH_ALIASES[machine_name]
     else:
         raise RuntimeError('Prebuilt TDLib binary is not include for this system')
 
