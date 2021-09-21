@@ -8,7 +8,8 @@ readme = "README.md"
 homepage = "https://github.com/pylakey/aiotdlib"
 repository = "https://github.com/pylakey/aiotdlib"
 packages = [
-    { include = "aiotdlib" }
+    { include = "aiotdlib" },
+    { include = "aiotdlib_generator" },
 ]
 include = [
     "README.md",
@@ -30,6 +31,9 @@ ujson = "^4.1.0"
 
 [tool.poetry.dev-dependencies]
 Jinja2 = "^3.0.1"
+
+[tool.poetry.scripts]
+aiotdlib_generator = "aiotdlib_generator.__main__:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
