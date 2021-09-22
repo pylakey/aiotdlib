@@ -5,29 +5,30 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import CallProblem
+from ..base_object import BaseObject
 
 
 class SendCallRating(BaseObject):
     """
     Sends a call rating
     
-    Params:
-        call_id (:class:`int`)
-            Call identifier
-        
-        rating (:class:`int`)
-            Call rating; 1-5
-        
-        comment (:class:`str`)
-            An optional user comment if the rating is less than 5
-        
-        problems (:obj:`list[CallProblem]`)
-            List of the exact types of problems with the call, specified by the user
-        
+    :param call_id: Call identifier
+    :type call_id: :class:`int`
+    
+    :param rating: Call rating; 1-5
+    :type rating: :class:`int`
+    
+    :param comment: An optional user comment if the rating is less than 5
+    :type comment: :class:`str`
+    
+    :param problems: List of the exact types of problems with the call, specified by the user
+    :type problems: :class:`list[CallProblem]`
+    
     """
 
     ID: str = Field("sendCallRating", alias="@type")

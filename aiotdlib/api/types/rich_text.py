@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .document import Document
@@ -24,10 +26,9 @@ class RichTextAnchor(RichText):
     """
     An anchor
     
-    Params:
-        name (:class:`str`)
-            Anchor name
-        
+    :param name: Anchor name
+    :type name: :class:`str`
+    
     """
 
     ID: str = Field("richTextAnchor", alias="@type")
@@ -42,16 +43,15 @@ class RichTextAnchorLink(RichText):
     """
     A link to an anchor on the same web page
     
-    Params:
-        text (:class:`RichText`)
-            The link text
-        
-        anchor_name (:class:`str`)
-            The anchor name. If the name is empty, the link should bring back to top
-        
-        url (:class:`str`)
-            An HTTP URL, opening the anchor
-        
+    :param text: The link text
+    :type text: :class:`RichText`
+    
+    :param anchor_name: The anchor name. If the name is empty, the link should bring back to top
+    :type anchor_name: :class:`str`
+    
+    :param url: An HTTP URL, opening the anchor
+    :type url: :class:`str`
+    
     """
 
     ID: str = Field("richTextAnchorLink", alias="@type")
@@ -68,10 +68,9 @@ class RichTextBold(RichText):
     """
     A bold rich text
     
-    Params:
-        text (:class:`RichText`)
-            Text
-        
+    :param text: Text
+    :type text: :class:`RichText`
+    
     """
 
     ID: str = Field("richTextBold", alias="@type")
@@ -86,13 +85,12 @@ class RichTextEmailAddress(RichText):
     """
     A rich text email link
     
-    Params:
-        text (:class:`RichText`)
-            Text
-        
-        email_address (:class:`str`)
-            Email address
-        
+    :param text: Text
+    :type text: :class:`RichText`
+    
+    :param email_address: Email address
+    :type email_address: :class:`str`
+    
     """
 
     ID: str = Field("richTextEmailAddress", alias="@type")
@@ -108,10 +106,9 @@ class RichTextFixed(RichText):
     """
     A fixed-width rich text
     
-    Params:
-        text (:class:`RichText`)
-            Text
-        
+    :param text: Text
+    :type text: :class:`RichText`
+    
     """
 
     ID: str = Field("richTextFixed", alias="@type")
@@ -126,16 +123,15 @@ class RichTextIcon(RichText):
     """
     A small image inside the text
     
-    Params:
-        document (:class:`Document`)
-            The image represented as a document. The image can be in GIF, JPEG or PNG format
-        
-        width (:class:`int`)
-            Width of a bounding box in which the image should be shown; 0 if unknown
-        
-        height (:class:`int`)
-            Height of a bounding box in which the image should be shown; 0 if unknown
-        
+    :param document: The image represented as a document. The image can be in GIF, JPEG or PNG format
+    :type document: :class:`Document`
+    
+    :param width: Width of a bounding box in which the image should be shown; 0 if unknown
+    :type width: :class:`int`
+    
+    :param height: Height of a bounding box in which the image should be shown; 0 if unknown
+    :type height: :class:`int`
+    
     """
 
     ID: str = Field("richTextIcon", alias="@type")
@@ -152,10 +148,9 @@ class RichTextItalic(RichText):
     """
     An italicized rich text
     
-    Params:
-        text (:class:`RichText`)
-            Text
-        
+    :param text: Text
+    :type text: :class:`RichText`
+    
     """
 
     ID: str = Field("richTextItalic", alias="@type")
@@ -170,10 +165,9 @@ class RichTextMarked(RichText):
     """
     A marked rich text
     
-    Params:
-        text (:class:`RichText`)
-            Text
-        
+    :param text: Text
+    :type text: :class:`RichText`
+    
     """
 
     ID: str = Field("richTextMarked", alias="@type")
@@ -188,13 +182,12 @@ class RichTextPhoneNumber(RichText):
     """
     A rich text phone number
     
-    Params:
-        text (:class:`RichText`)
-            Text
-        
-        phone_number (:class:`str`)
-            Phone number
-        
+    :param text: Text
+    :type text: :class:`RichText`
+    
+    :param phone_number: Phone number
+    :type phone_number: :class:`str`
+    
     """
 
     ID: str = Field("richTextPhoneNumber", alias="@type")
@@ -210,10 +203,9 @@ class RichTextPlain(RichText):
     """
     A plain text
     
-    Params:
-        text (:class:`str`)
-            Text
-        
+    :param text: Text
+    :type text: :class:`str`
+    
     """
 
     ID: str = Field("richTextPlain", alias="@type")
@@ -228,16 +220,15 @@ class RichTextReference(RichText):
     """
     A reference to a richTexts object on the same web page
     
-    Params:
-        text (:class:`RichText`)
-            The text
-        
-        anchor_name (:class:`str`)
-            The name of a richTextAnchor object, which is the first element of the target richTexts object
-        
-        url (:class:`str`)
-            An HTTP URL, opening the reference
-        
+    :param text: The text
+    :type text: :class:`RichText`
+    
+    :param anchor_name: The name of a richTextAnchor object, which is the first element of the target richTexts object
+    :type anchor_name: :class:`str`
+    
+    :param url: An HTTP URL, opening the reference
+    :type url: :class:`str`
+    
     """
 
     ID: str = Field("richTextReference", alias="@type")
@@ -254,10 +245,9 @@ class RichTextStrikethrough(RichText):
     """
     A strikethrough rich text
     
-    Params:
-        text (:class:`RichText`)
-            Text
-        
+    :param text: Text
+    :type text: :class:`RichText`
+    
     """
 
     ID: str = Field("richTextStrikethrough", alias="@type")
@@ -272,10 +262,9 @@ class RichTextSubscript(RichText):
     """
     A subscript rich text
     
-    Params:
-        text (:class:`RichText`)
-            Text
-        
+    :param text: Text
+    :type text: :class:`RichText`
+    
     """
 
     ID: str = Field("richTextSubscript", alias="@type")
@@ -290,10 +279,9 @@ class RichTextSuperscript(RichText):
     """
     A superscript rich text
     
-    Params:
-        text (:class:`RichText`)
-            Text
-        
+    :param text: Text
+    :type text: :class:`RichText`
+    
     """
 
     ID: str = Field("richTextSuperscript", alias="@type")
@@ -308,10 +296,9 @@ class RichTextUnderline(RichText):
     """
     An underlined rich text
     
-    Params:
-        text (:class:`RichText`)
-            Text
-        
+    :param text: Text
+    :type text: :class:`RichText`
+    
     """
 
     ID: str = Field("richTextUnderline", alias="@type")
@@ -326,16 +313,15 @@ class RichTextUrl(RichText):
     """
     A rich text URL link
     
-    Params:
-        text (:class:`RichText`)
-            Text
-        
-        url (:class:`str`)
-            URL
-        
-        is_cached (:class:`bool`)
-            True, if the URL has cached instant view server-side
-        
+    :param text: Text
+    :type text: :class:`RichText`
+    
+    :param url: URL
+    :type url: :class:`str`
+    
+    :param is_cached: True, if the URL has cached instant view server-side
+    :type is_cached: :class:`bool`
+    
     """
 
     ID: str = Field("richTextUrl", alias="@type")
@@ -352,10 +338,9 @@ class RichTexts(RichText):
     """
     A concatenation of rich texts
     
-    Params:
-        texts (:obj:`list[RichText]`)
-            Texts
-        
+    :param texts: Texts
+    :type texts: :class:`list[RichText]`
+    
     """
 
     ID: str = Field("richTexts", alias="@type")

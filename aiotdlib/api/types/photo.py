@@ -18,16 +18,15 @@ class Photo(BaseObject):
     """
     Describes a photo
     
-    Params:
-        has_stickers (:class:`bool`)
-            True, if stickers were added to the photo. The list of corresponding sticker sets can be received using getAttachedStickerSets
-        
-        minithumbnail (:class:`Minithumbnail`)
-            Photo minithumbnail; may be null
-        
-        sizes (:obj:`list[PhotoSize]`)
-            Available variants of the photo, in different sizes
-        
+    :param has_stickers: True, if stickers were added to the photo. The list of corresponding sticker sets can be received using getAttachedStickerSets
+    :type has_stickers: :class:`bool`
+    
+    :param minithumbnail: Photo minithumbnail; may be null, defaults to None
+    :type minithumbnail: :class:`Minithumbnail`, optional
+    
+    :param sizes: Available variants of the photo, in different sizes
+    :type sizes: :class:`list[PhotoSize]`
+    
     """
 
     ID: str = Field("photo", alias="@type")

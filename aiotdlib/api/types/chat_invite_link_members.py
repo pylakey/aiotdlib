@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_invite_link_member import ChatInviteLinkMember
@@ -15,13 +17,12 @@ class ChatInviteLinkMembers(BaseObject):
     """
     Contains a list of chat members joined a chat by an invite link
     
-    Params:
-        total_count (:class:`int`)
-            Approximate total count of chat members found
-        
-        members (:obj:`list[ChatInviteLinkMember]`)
-            List of chat members, joined a chat by an invite link
-        
+    :param total_count: Approximate total count of chat members found
+    :type total_count: :class:`int`
+    
+    :param members: List of chat members, joined a chat by an invite link
+    :type members: :class:`list[ChatInviteLinkMember]`
+    
     """
 
     ID: str = Field("chatInviteLinkMembers", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetChatSponsoredMessages(BaseObject):
     """
     Returns sponsored messages to be shown in a chat; for channel chats only
     
-    Params:
-        chat_id (:class:`int`)
-            Identifier of the chat
-        
+    :param chat_id: Identifier of the chat
+    :type chat_id: :class:`int`
+    
     """
 
     ID: str = Field("getChatSponsoredMessages", alias="@type")

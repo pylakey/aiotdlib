@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -36,10 +38,9 @@ class TextParseModeMarkdown(TextParseMode):
     """
     The text uses Markdown-style formatting
     
-    Params:
-        version (:class:`int`)
-            Version of the parser: 0 or 1 - Telegram Bot API "Markdown" parse mode, 2 - Telegram Bot API "MarkdownV2" parse mode
-        
+    :param version: Version of the parser: 0 or 1 - Telegram Bot API "Markdown" parse mode, 2 - Telegram Bot API "MarkdownV2" parse mode
+    :type version: :class:`int`
+    
     """
 
     ID: str = Field("textParseModeMarkdown", alias="@type")

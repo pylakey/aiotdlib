@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,16 +16,15 @@ class StatisticalValue(BaseObject):
     """
     A value with information about its recent changes
     
-    Params:
-        value (:class:`float`)
-            The current value
-        
-        previous_value (:class:`float`)
-            The value for the previous day
-        
-        growth_rate_percentage (:class:`float`)
-            The growth rate of the value, as a percentage
-        
+    :param value: The current value
+    :type value: :class:`float`
+    
+    :param previous_value: The value for the previous day
+    :type previous_value: :class:`float`
+    
+    :param growth_rate_percentage: The growth rate of the value, as a percentage
+    :type growth_rate_percentage: :class:`float`
+    
     """
 
     ID: str = Field("statisticalValue", alias="@type")

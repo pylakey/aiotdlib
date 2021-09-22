@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,10 +25,9 @@ class JsonValueArray(JsonValue):
     """
     Represents a JSON array
     
-    Params:
-        values (:obj:`list[JsonValue]`)
-            The list of array elements
-        
+    :param values: The list of array elements
+    :type values: :class:`list[JsonValue]`
+    
     """
 
     ID: str = Field("jsonValueArray", alias="@type")
@@ -41,10 +42,9 @@ class JsonValueBoolean(JsonValue):
     """
     Represents a boolean JSON value
     
-    Params:
-        value (:class:`bool`)
-            The value
-        
+    :param value: The value
+    :type value: :class:`bool`
+    
     """
 
     ID: str = Field("jsonValueBoolean", alias="@type")
@@ -72,10 +72,9 @@ class JsonValueNumber(JsonValue):
     """
     Represents a numeric JSON value
     
-    Params:
-        value (:class:`float`)
-            The value
-        
+    :param value: The value
+    :type value: :class:`float`
+    
     """
 
     ID: str = Field("jsonValueNumber", alias="@type")
@@ -90,10 +89,9 @@ class JsonValueObject(JsonValue):
     """
     Represents a JSON object
     
-    Params:
-        members (:obj:`list[JsonObjectMember]`)
-            The list of object members
-        
+    :param members: The list of object members
+    :type members: :class:`list[JsonObjectMember]`
+    
     """
 
     ID: str = Field("jsonValueObject", alias="@type")
@@ -108,10 +106,9 @@ class JsonValueString(JsonValue):
     """
     Represents a string JSON value
     
-    Params:
-        value (:class:`str`)
-            The value
-        
+    :param value: The value
+    :type value: :class:`str`
+    
     """
 
     ID: str = Field("jsonValueString", alias="@type")
@@ -126,13 +123,12 @@ class JsonObjectMember(BaseObject):
     """
     Represents one member of a JSON object
     
-    Params:
-        key (:class:`str`)
-            Member's key
-        
-        value (:class:`JsonValue`)
-            Member's value
-        
+    :param key: Member's key
+    :type key: :class:`str`
+    
+    :param value: Member's value
+    :type value: :class:`JsonValue`
+    
     """
 
     ID: str = Field("jsonObjectMember", alias="@type")

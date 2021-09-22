@@ -48,16 +48,15 @@ class MessageAnimation(MessageContent):
     """
     An animation message (GIF-style).
     
-    Params:
-        animation (:class:`Animation`)
-            The animation description
-        
-        caption (:class:`FormattedText`)
-            Animation caption
-        
-        is_secret (:class:`bool`)
-            True, if the animation thumbnail must be blurred and the animation must be shown only while tapped
-        
+    :param animation: The animation description
+    :type animation: :class:`Animation`
+    
+    :param caption: Animation caption
+    :type caption: :class:`FormattedText`
+    
+    :param is_secret: True, if the animation thumbnail must be blurred and the animation must be shown only while tapped
+    :type is_secret: :class:`bool`
+    
     """
 
     ID: str = Field("messageAnimation", alias="@type")
@@ -74,13 +73,12 @@ class MessageAudio(MessageContent):
     """
     An audio message
     
-    Params:
-        audio (:class:`Audio`)
-            The audio description
-        
-        caption (:class:`FormattedText`)
-            Audio caption
-        
+    :param audio: The audio description
+    :type audio: :class:`Audio`
+    
+    :param caption: Audio caption
+    :type caption: :class:`FormattedText`
+    
     """
 
     ID: str = Field("messageAudio", alias="@type")
@@ -96,13 +94,12 @@ class MessageBasicGroupChatCreate(MessageContent):
     """
     A newly created basic group
     
-    Params:
-        title (:class:`str`)
-            Title of the basic group
-        
-        member_user_ids (:obj:`list[int]`)
-            User identifiers of members in the basic group
-        
+    :param title: Title of the basic group
+    :type title: :class:`str`
+    
+    :param member_user_ids: User identifiers of members in the basic group
+    :type member_user_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("messageBasicGroupChatCreate", alias="@type")
@@ -118,16 +115,15 @@ class MessageCall(MessageContent):
     """
     A message with information about an ended call
     
-    Params:
-        is_video (:class:`bool`)
-            True, if the call was a video call
-        
-        discard_reason (:class:`CallDiscardReason`)
-            Reason why the call was discarded
-        
-        duration (:class:`int`)
-            Call duration, in seconds
-        
+    :param is_video: True, if the call was a video call
+    :type is_video: :class:`bool`
+    
+    :param discard_reason: Reason why the call was discarded
+    :type discard_reason: :class:`CallDiscardReason`
+    
+    :param duration: Call duration, in seconds
+    :type duration: :class:`int`
+    
     """
 
     ID: str = Field("messageCall", alias="@type")
@@ -144,10 +140,9 @@ class MessageChatAddMembers(MessageContent):
     """
     New chat members were added
     
-    Params:
-        member_user_ids (:obj:`list[int]`)
-            User identifiers of the new members
-        
+    :param member_user_ids: User identifiers of the new members
+    :type member_user_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("messageChatAddMembers", alias="@type")
@@ -162,10 +157,9 @@ class MessageChatChangePhoto(MessageContent):
     """
     An updated chat photo
     
-    Params:
-        photo (:class:`ChatPhoto`)
-            New chat photo
-        
+    :param photo: New chat photo
+    :type photo: :class:`ChatPhoto`
+    
     """
 
     ID: str = Field("messageChatChangePhoto", alias="@type")
@@ -180,10 +174,9 @@ class MessageChatChangeTitle(MessageContent):
     """
     An updated chat title
     
-    Params:
-        title (:class:`str`)
-            New chat title
-        
+    :param title: New chat title
+    :type title: :class:`str`
+    
     """
 
     ID: str = Field("messageChatChangeTitle", alias="@type")
@@ -198,10 +191,9 @@ class MessageChatDeleteMember(MessageContent):
     """
     A chat member was deleted
     
-    Params:
-        user_id (:class:`int`)
-            User identifier of the deleted chat member
-        
+    :param user_id: User identifier of the deleted chat member
+    :type user_id: :class:`int`
+    
     """
 
     ID: str = Field("messageChatDeleteMember", alias="@type")
@@ -242,10 +234,9 @@ class MessageChatSetTheme(MessageContent):
     """
     A theme in the chat has been changed
     
-    Params:
-        theme_name (:class:`str`)
-            If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset to the default one
-        
+    :param theme_name: If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset to the default one
+    :type theme_name: :class:`str`
+    
     """
 
     ID: str = Field("messageChatSetTheme", alias="@type")
@@ -260,10 +251,9 @@ class MessageChatSetTtl(MessageContent):
     """
     The TTL (Time To Live) setting for messages in the chat has been changed
     
-    Params:
-        ttl (:class:`int`)
-            New message TTL setting
-        
+    :param ttl: New message TTL setting
+    :type ttl: :class:`int`
+    
     """
 
     ID: str = Field("messageChatSetTtl", alias="@type")
@@ -278,13 +268,12 @@ class MessageChatUpgradeFrom(MessageContent):
     """
     A supergroup has been created from a basic group
     
-    Params:
-        title (:class:`str`)
-            Title of the newly created supergroup
-        
-        basic_group_id (:class:`int`)
-            The identifier of the original basic group
-        
+    :param title: Title of the newly created supergroup
+    :type title: :class:`str`
+    
+    :param basic_group_id: The identifier of the original basic group
+    :type basic_group_id: :class:`int`
+    
     """
 
     ID: str = Field("messageChatUpgradeFrom", alias="@type")
@@ -300,10 +289,9 @@ class MessageChatUpgradeTo(MessageContent):
     """
     A basic group was upgraded to a supergroup and was deactivated as the result
     
-    Params:
-        supergroup_id (:class:`int`)
-            Identifier of the supergroup to which the basic group was upgraded
-        
+    :param supergroup_id: Identifier of the supergroup to which the basic group was upgraded
+    :type supergroup_id: :class:`int`
+    
     """
 
     ID: str = Field("messageChatUpgradeTo", alias="@type")
@@ -318,10 +306,9 @@ class MessageContact(MessageContent):
     """
     A message with a user contact
     
-    Params:
-        contact (:class:`Contact`)
-            The contact description
-        
+    :param contact: The contact description
+    :type contact: :class:`Contact`
+    
     """
 
     ID: str = Field("messageContact", alias="@type")
@@ -349,10 +336,9 @@ class MessageCustomServiceAction(MessageContent):
     """
     A non-standard action has happened in the chat
     
-    Params:
-        text (:class:`str`)
-            Message text to be shown in the chat
-        
+    :param text: Message text to be shown in the chat
+    :type text: :class:`str`
+    
     """
 
     ID: str = Field("messageCustomServiceAction", alias="@type")
@@ -367,22 +353,21 @@ class MessageDice(MessageContent):
     """
     A dice message. The dice value is randomly generated by the server
     
-    Params:
-        initial_state (:class:`DiceStickers`)
-            The animated stickers with the initial dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
-        
-        final_state (:class:`DiceStickers`)
-            The animated stickers with the final dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known
-        
-        emoji (:class:`str`)
-            Emoji on which the dice throw animation is based
-        
-        value (:class:`int`)
-            The dice value. If the value is 0, the dice don't have final state yet
-        
-        success_animation_frame_number (:class:`int`)
-            Number of frame after which a success animation like a shower of confetti needs to be shown on updateMessageSendSucceeded
-        
+    :param initial_state: The animated stickers with the initial dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known, defaults to None
+    :type initial_state: :class:`DiceStickers`, optional
+    
+    :param final_state: The animated stickers with the final dice animation; may be null if unknown. updateMessageContent will be sent when the sticker became known, defaults to None
+    :type final_state: :class:`DiceStickers`, optional
+    
+    :param emoji: Emoji on which the dice throw animation is based
+    :type emoji: :class:`str`
+    
+    :param value: The dice value. If the value is 0, the dice don't have final state yet
+    :type value: :class:`int`
+    
+    :param success_animation_frame_number: Number of frame after which a success animation like a shower of confetti needs to be shown on updateMessageSendSucceeded
+    :type success_animation_frame_number: :class:`int`
+    
     """
 
     ID: str = Field("messageDice", alias="@type")
@@ -401,13 +386,12 @@ class MessageDocument(MessageContent):
     """
     A document message (general file)
     
-    Params:
-        document (:class:`Document`)
-            The document description
-        
-        caption (:class:`FormattedText`)
-            Document caption
-        
+    :param document: The document description
+    :type document: :class:`Document`
+    
+    :param caption: Document caption
+    :type caption: :class:`FormattedText`
+    
     """
 
     ID: str = Field("messageDocument", alias="@type")
@@ -449,10 +433,9 @@ class MessageGame(MessageContent):
     """
     A message with a game
     
-    Params:
-        game (:class:`Game`)
-            The game description
-        
+    :param game: The game description
+    :type game: :class:`Game`
+    
     """
 
     ID: str = Field("messageGame", alias="@type")
@@ -467,16 +450,15 @@ class MessageGameScore(MessageContent):
     """
     A new high score was achieved in a game
     
-    Params:
-        game_message_id (:class:`int`)
-            Identifier of the message with the game, can be an identifier of a deleted message
-        
-        game_id (:class:`int`)
-            Identifier of the game; may be different from the games presented in the message with the game
-        
-        score (:class:`int`)
-            New score
-        
+    :param game_message_id: Identifier of the message with the game, can be an identifier of a deleted message
+    :type game_message_id: :class:`int`
+    
+    :param game_id: Identifier of the game; may be different from the games presented in the message with the game
+    :type game_id: :class:`int`
+    
+    :param score: New score
+    :type score: :class:`int`
+    
     """
 
     ID: str = Field("messageGameScore", alias="@type")
@@ -493,13 +475,12 @@ class MessageInviteVoiceChatParticipants(MessageContent):
     """
     A message with information about an invite to a voice chat
     
-    Params:
-        group_call_id (:class:`int`)
-            Identifier of the voice chat. The voice chat can be received through the method getGroupCall
-        
-        user_ids (:obj:`list[int]`)
-            Invited user identifiers
-        
+    :param group_call_id: Identifier of the voice chat. The voice chat can be received through the method getGroupCall
+    :type group_call_id: :class:`int`
+    
+    :param user_ids: Invited user identifiers
+    :type user_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("messageInviteVoiceChatParticipants", alias="@type")
@@ -515,34 +496,33 @@ class MessageInvoice(MessageContent):
     """
     A message with an invoice from a bot
     
-    Params:
-        title (:class:`str`)
-            Product title
-        
-        param_description (:class:`str`)
-            Product description
-        
-        photo (:class:`Photo`)
-            Product photo; may be null
-        
-        currency (:class:`str`)
-            Currency for the product price
-        
-        total_amount (:class:`int`)
-            Product total price in the smallest units of the currency
-        
-        start_parameter (:class:`str`)
-            Unique invoice bot start_parameter. To share an invoice use the URL https://t.me/{bot_username}?start={start_parameter}
-        
-        is_test (:class:`bool`)
-            True, if the invoice is a test invoice
-        
-        need_shipping_address (:class:`bool`)
-            True, if the shipping address should be specified
-        
-        receipt_message_id (:class:`int`)
-            The identifier of the message with the receipt, after the product has been purchased
-        
+    :param title: Product title
+    :type title: :class:`str`
+    
+    :param param_description: Product description
+    :type param_description: :class:`str`
+    
+    :param photo: Product photo; may be null, defaults to None
+    :type photo: :class:`Photo`, optional
+    
+    :param currency: Currency for the product price
+    :type currency: :class:`str`
+    
+    :param total_amount: Product total price in the smallest units of the currency
+    :type total_amount: :class:`int`
+    
+    :param start_parameter: Unique invoice bot start_parameter. To share an invoice use the URL https://t.me/{bot_username}?start={start_parameter}
+    :type start_parameter: :class:`str`
+    
+    :param is_test: True, if the invoice is a test invoice
+    :type is_test: :class:`bool`
+    
+    :param need_shipping_address: True, if the shipping address should be specified
+    :type need_shipping_address: :class:`bool`
+    
+    :param receipt_message_id: The identifier of the message with the receipt, after the product has been purchased
+    :type receipt_message_id: :class:`int`
+    
     """
 
     ID: str = Field("messageInvoice", alias="@type")
@@ -565,22 +545,21 @@ class MessageLocation(MessageContent):
     """
     A message with a location
     
-    Params:
-        location (:class:`Location`)
-            The location description
-        
-        live_period (:class:`int`)
-            Time relative to the message send date, for which the location can be updated, in seconds
-        
-        expires_in (:class:`int`)
-            Left time for which the location can be updated, in seconds. updateMessageContent is not sent when this field changes
-        
-        heading (:class:`int`)
-            For live locations, a direction in which the location moves, in degrees; 1-360. If 0 the direction is unknown
-        
-        proximity_alert_radius (:class:`int`)
-            For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). 0 if the notification is disabled. Available only for the message sender
-        
+    :param location: The location description
+    :type location: :class:`Location`
+    
+    :param live_period: Time relative to the message send date, for which the location can be updated, in seconds
+    :type live_period: :class:`int`
+    
+    :param expires_in: Left time for which the location can be updated, in seconds. updateMessageContent is not sent when this field changes
+    :type expires_in: :class:`int`
+    
+    :param heading: For live locations, a direction in which the location moves, in degrees; 1-360. If 0 the direction is unknown
+    :type heading: :class:`int`
+    
+    :param proximity_alert_radius: For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). 0 if the notification is disabled. Available only for the message sender
+    :type proximity_alert_radius: :class:`int`
+    
     """
 
     ID: str = Field("messageLocation", alias="@type")
@@ -599,13 +578,12 @@ class MessagePassportDataReceived(MessageContent):
     """
     Telegram Passport data has been received; for bots only
     
-    Params:
-        elements (:obj:`list[EncryptedPassportElement]`)
-            List of received Telegram Passport elements
-        
-        credentials (:class:`EncryptedCredentials`)
-            Encrypted data credentials
-        
+    :param elements: List of received Telegram Passport elements
+    :type elements: :class:`list[EncryptedPassportElement]`
+    
+    :param credentials: Encrypted data credentials
+    :type credentials: :class:`EncryptedCredentials`
+    
     """
 
     ID: str = Field("messagePassportDataReceived", alias="@type")
@@ -621,10 +599,9 @@ class MessagePassportDataSent(MessageContent):
     """
     Telegram Passport data has been sent
     
-    Params:
-        types (:obj:`list[PassportElementType]`)
-            List of Telegram Passport element types sent
-        
+    :param types: List of Telegram Passport element types sent
+    :type types: :class:`list[PassportElementType]`
+    
     """
 
     ID: str = Field("messagePassportDataSent", alias="@type")
@@ -639,19 +616,18 @@ class MessagePaymentSuccessful(MessageContent):
     """
     A payment has been completed
     
-    Params:
-        invoice_chat_id (:class:`int`)
-            Identifier of the chat, containing the corresponding invoice message; 0 if unknown
-        
-        invoice_message_id (:class:`int`)
-            Identifier of the message with the corresponding invoice; can be an identifier of a deleted message
-        
-        currency (:class:`str`)
-            Currency for the price of the product
-        
-        total_amount (:class:`int`)
-            Total price for the product, in the smallest units of the currency
-        
+    :param invoice_chat_id: Identifier of the chat, containing the corresponding invoice message; 0 if unknown
+    :type invoice_chat_id: :class:`int`
+    
+    :param invoice_message_id: Identifier of the message with the corresponding invoice; can be an identifier of a deleted message
+    :type invoice_message_id: :class:`int`
+    
+    :param currency: Currency for the price of the product
+    :type currency: :class:`str`
+    
+    :param total_amount: Total price for the product, in the smallest units of the currency
+    :type total_amount: :class:`int`
+    
     """
 
     ID: str = Field("messagePaymentSuccessful", alias="@type")
@@ -669,28 +645,27 @@ class MessagePaymentSuccessfulBot(MessageContent):
     """
     A payment has been completed; for bots only
     
-    Params:
-        currency (:class:`str`)
-            Currency for price of the product
-        
-        total_amount (:class:`int`)
-            Total price for the product, in the smallest units of the currency
-        
-        invoice_payload (:class:`str`)
-            Invoice payload
-        
-        shipping_option_id (:class:`str`)
-            Identifier of the shipping option chosen by the user; may be empty if not applicable
-        
-        order_info (:class:`OrderInfo`)
-            Information about the order; may be null
-        
-        telegram_payment_charge_id (:class:`str`)
-            Telegram payment identifier
-        
-        provider_payment_charge_id (:class:`str`)
-            Provider payment identifier
-        
+    :param currency: Currency for price of the product
+    :type currency: :class:`str`
+    
+    :param total_amount: Total price for the product, in the smallest units of the currency
+    :type total_amount: :class:`int`
+    
+    :param invoice_payload: Invoice payload
+    :type invoice_payload: :class:`str`
+    
+    :param shipping_option_id: Identifier of the shipping option chosen by the user; may be empty if not applicable
+    :type shipping_option_id: :class:`str`
+    
+    :param order_info: Information about the order; may be null, defaults to None
+    :type order_info: :class:`OrderInfo`, optional
+    
+    :param telegram_payment_charge_id: Telegram payment identifier
+    :type telegram_payment_charge_id: :class:`str`
+    
+    :param provider_payment_charge_id: Provider payment identifier
+    :type provider_payment_charge_id: :class:`str`
+    
     """
 
     ID: str = Field("messagePaymentSuccessfulBot", alias="@type")
@@ -711,16 +686,15 @@ class MessagePhoto(MessageContent):
     """
     A photo message
     
-    Params:
-        photo (:class:`Photo`)
-            The photo description
-        
-        caption (:class:`FormattedText`)
-            Photo caption
-        
-        is_secret (:class:`bool`)
-            True, if the photo must be blurred and must be shown only while tapped
-        
+    :param photo: The photo description
+    :type photo: :class:`Photo`
+    
+    :param caption: Photo caption
+    :type caption: :class:`FormattedText`
+    
+    :param is_secret: True, if the photo must be blurred and must be shown only while tapped
+    :type is_secret: :class:`bool`
+    
     """
 
     ID: str = Field("messagePhoto", alias="@type")
@@ -737,10 +711,9 @@ class MessagePinMessage(MessageContent):
     """
     A message has been pinned
     
-    Params:
-        message_id (:class:`int`)
-            Identifier of the pinned message, can be an identifier of a deleted message or 0
-        
+    :param message_id: Identifier of the pinned message, can be an identifier of a deleted message or 0
+    :type message_id: :class:`int`
+    
     """
 
     ID: str = Field("messagePinMessage", alias="@type")
@@ -755,10 +728,9 @@ class MessagePoll(MessageContent):
     """
     A message with a poll
     
-    Params:
-        poll (:class:`Poll`)
-            The poll description
-        
+    :param poll: The poll description
+    :type poll: :class:`Poll`
+    
     """
 
     ID: str = Field("messagePoll", alias="@type")
@@ -773,16 +745,15 @@ class MessageProximityAlertTriggered(MessageContent):
     """
     A user in the chat came within proximity alert range
     
-    Params:
-        traveler (:class:`MessageSender`)
-            The user or chat, which triggered the proximity alert
-        
-        watcher (:class:`MessageSender`)
-            The user or chat, which subscribed for the proximity alert
-        
-        distance (:class:`int`)
-            The distance between the users
-        
+    :param traveler: The user or chat, which triggered the proximity alert
+    :type traveler: :class:`MessageSender`
+    
+    :param watcher: The user or chat, which subscribed for the proximity alert
+    :type watcher: :class:`MessageSender`
+    
+    :param distance: The distance between the users
+    :type distance: :class:`int`
+    
     """
 
     ID: str = Field("messageProximityAlertTriggered", alias="@type")
@@ -812,10 +783,9 @@ class MessageSticker(MessageContent):
     """
     A sticker message
     
-    Params:
-        sticker (:class:`Sticker`)
-            The sticker description
-        
+    :param sticker: The sticker description
+    :type sticker: :class:`Sticker`
+    
     """
 
     ID: str = Field("messageSticker", alias="@type")
@@ -830,10 +800,9 @@ class MessageSupergroupChatCreate(MessageContent):
     """
     A newly created supergroup or channel
     
-    Params:
-        title (:class:`str`)
-            Title of the supergroup or channel
-        
+    :param title: Title of the supergroup or channel
+    :type title: :class:`str`
+    
     """
 
     ID: str = Field("messageSupergroupChatCreate", alias="@type")
@@ -848,13 +817,12 @@ class MessageText(MessageContent):
     """
     A text message
     
-    Params:
-        text (:class:`FormattedText`)
-            Text of the message
-        
-        web_page (:class:`WebPage`)
-            A preview of the web page that's mentioned in the text; may be null
-        
+    :param text: Text of the message
+    :type text: :class:`FormattedText`
+    
+    :param web_page: A preview of the web page that's mentioned in the text; may be null, defaults to None
+    :type web_page: :class:`WebPage`, optional
+    
     """
 
     ID: str = Field("messageText", alias="@type")
@@ -883,10 +851,9 @@ class MessageVenue(MessageContent):
     """
     A message with information about a venue
     
-    Params:
-        venue (:class:`Venue`)
-            The venue description
-        
+    :param venue: The venue description
+    :type venue: :class:`Venue`
+    
     """
 
     ID: str = Field("messageVenue", alias="@type")
@@ -901,16 +868,15 @@ class MessageVideo(MessageContent):
     """
     A video message
     
-    Params:
-        video (:class:`Video`)
-            The video description
-        
-        caption (:class:`FormattedText`)
-            Video caption
-        
-        is_secret (:class:`bool`)
-            True, if the video thumbnail must be blurred and the video must be shown only while tapped
-        
+    :param video: The video description
+    :type video: :class:`Video`
+    
+    :param caption: Video caption
+    :type caption: :class:`FormattedText`
+    
+    :param is_secret: True, if the video thumbnail must be blurred and the video must be shown only while tapped
+    :type is_secret: :class:`bool`
+    
     """
 
     ID: str = Field("messageVideo", alias="@type")
@@ -927,16 +893,15 @@ class MessageVideoNote(MessageContent):
     """
     A video note message
     
-    Params:
-        video_note (:class:`VideoNote`)
-            The video note description
-        
-        is_viewed (:class:`bool`)
-            True, if at least one of the recipients has viewed the video note
-        
-        is_secret (:class:`bool`)
-            True, if the video note thumbnail must be blurred and the video note must be shown only while tapped
-        
+    :param video_note: The video note description
+    :type video_note: :class:`VideoNote`
+    
+    :param is_viewed: True, if at least one of the recipients has viewed the video note
+    :type is_viewed: :class:`bool`
+    
+    :param is_secret: True, if the video note thumbnail must be blurred and the video note must be shown only while tapped
+    :type is_secret: :class:`bool`
+    
     """
 
     ID: str = Field("messageVideoNote", alias="@type")
@@ -953,10 +918,9 @@ class MessageVoiceChatEnded(MessageContent):
     """
     A message with information about an ended voice chat
     
-    Params:
-        duration (:class:`int`)
-            Call duration, in seconds
-        
+    :param duration: Call duration, in seconds
+    :type duration: :class:`int`
+    
     """
 
     ID: str = Field("messageVoiceChatEnded", alias="@type")
@@ -971,13 +935,12 @@ class MessageVoiceChatScheduled(MessageContent):
     """
     A new voice chat was scheduled
     
-    Params:
-        group_call_id (:class:`int`)
-            Identifier of the voice chat. The voice chat can be received through the method getGroupCall
-        
-        start_date (:class:`int`)
-            Point in time (Unix timestamp) when the group call is supposed to be started by an administrator
-        
+    :param group_call_id: Identifier of the voice chat. The voice chat can be received through the method getGroupCall
+    :type group_call_id: :class:`int`
+    
+    :param start_date: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator
+    :type start_date: :class:`int`
+    
     """
 
     ID: str = Field("messageVoiceChatScheduled", alias="@type")
@@ -993,10 +956,9 @@ class MessageVoiceChatStarted(MessageContent):
     """
     A newly created voice chat
     
-    Params:
-        group_call_id (:class:`int`)
-            Identifier of the voice chat. The voice chat can be received through the method getGroupCall
-        
+    :param group_call_id: Identifier of the voice chat. The voice chat can be received through the method getGroupCall
+    :type group_call_id: :class:`int`
+    
     """
 
     ID: str = Field("messageVoiceChatStarted", alias="@type")
@@ -1011,16 +973,15 @@ class MessageVoiceNote(MessageContent):
     """
     A voice note message
     
-    Params:
-        voice_note (:class:`VoiceNote`)
-            The voice note description
-        
-        caption (:class:`FormattedText`)
-            Voice note caption
-        
-        is_listened (:class:`bool`)
-            True, if at least one of the recipients has listened to the voice note
-        
+    :param voice_note: The voice note description
+    :type voice_note: :class:`VoiceNote`
+    
+    :param caption: Voice note caption
+    :type caption: :class:`FormattedText`
+    
+    :param is_listened: True, if at least one of the recipients has listened to the voice note
+    :type is_listened: :class:`bool`
+    
     """
 
     ID: str = Field("messageVoiceNote", alias="@type")
@@ -1037,10 +998,9 @@ class MessageWebsiteConnected(MessageContent):
     """
     The current user has connected a website by logging in using Telegram Login Widget on it
     
-    Params:
-        domain_name (:class:`str`)
-            Domain name of the connected website
-        
+    :param domain_name: Domain name of the connected website
+    :type domain_name: :class:`str`
+    
     """
 
     ID: str = Field("messageWebsiteConnected", alias="@type")

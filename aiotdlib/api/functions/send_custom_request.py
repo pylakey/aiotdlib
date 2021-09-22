@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class SendCustomRequest(BaseObject):
     """
     Sends a custom request; for bots only
     
-    Params:
-        method (:class:`str`)
-            The method name
-        
-        parameters (:class:`str`)
-            JSON-serialized method parameters
-        
+    :param method: The method name
+    :type method: :class:`str`
+    
+    :param parameters: JSON-serialized method parameters
+    :type parameters: :class:`str`
+    
     """
 
     ID: str = Field("sendCustomRequest", alias="@type")

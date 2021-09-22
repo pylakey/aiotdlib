@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,25 +16,24 @@ class SetGameScore(BaseObject):
     """
     Updates the game score of the specified user in the game; for bots only
     
-    Params:
-        chat_id (:class:`int`)
-            The chat to which the message with the game belongs
-        
-        message_id (:class:`int`)
-            Identifier of the message
-        
-        edit_message (:class:`bool`)
-            True, if the message should be edited
-        
-        user_id (:class:`int`)
-            User identifier
-        
-        score (:class:`int`)
-            The new score
-        
-        force (:class:`bool`)
-            Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
-        
+    :param chat_id: The chat to which the message with the game belongs
+    :type chat_id: :class:`int`
+    
+    :param message_id: Identifier of the message
+    :type message_id: :class:`int`
+    
+    :param edit_message: True, if the message should be edited
+    :type edit_message: :class:`bool`
+    
+    :param user_id: User identifier
+    :type user_id: :class:`int`
+    
+    :param score: The new score
+    :type score: :class:`int`
+    
+    :param force: Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
+    :type force: :class:`bool`
+    
     """
 
     ID: str = Field("setGameScore", alias="@type")

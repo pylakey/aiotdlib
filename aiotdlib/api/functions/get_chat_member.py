@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import MessageSender
+from ..base_object import BaseObject
 
 
 class GetChatMember(BaseObject):
     """
     Returns information about a single member of a chat
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        member_id (:class:`MessageSender`)
-            Member identifier
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param member_id: Member identifier
+    :type member_id: :class:`MessageSender`
+    
     """
 
     ID: str = Field("getChatMember", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class CheckPasswordRecoveryCode(BaseObject):
     """
     Checks whether a 2-step verification password recovery code sent to an email address is valid
     
-    Params:
-        recovery_code (:class:`str`)
-            Recovery code to check
-        
+    :param recovery_code: Recovery code to check
+    :type recovery_code: :class:`str`
+    
     """
 
     ID: str = Field("checkPasswordRecoveryCode", alias="@type")

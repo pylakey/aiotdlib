@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -36,10 +38,9 @@ class UserPrivacySettingRuleAllowChatMembers(UserPrivacySettingRule):
     """
     A rule to allow all members of certain specified basic groups and supergroups to doing something
     
-    Params:
-        chat_ids (:obj:`list[int]`)
-            The chat identifiers, total number of chats in all rules must not exceed 20
-        
+    :param chat_ids: The chat identifiers, total number of chats in all rules must not exceed 20
+    :type chat_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("userPrivacySettingRuleAllowChatMembers", alias="@type")
@@ -67,10 +68,9 @@ class UserPrivacySettingRuleAllowUsers(UserPrivacySettingRule):
     """
     A rule to allow certain specified users to do something
     
-    Params:
-        user_ids (:obj:`list[int]`)
-            The user identifiers, total number of users in all rules must not exceed 1000
-        
+    :param user_ids: The user identifiers, total number of users in all rules must not exceed 1000
+    :type user_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("userPrivacySettingRuleAllowUsers", alias="@type")
@@ -98,10 +98,9 @@ class UserPrivacySettingRuleRestrictChatMembers(UserPrivacySettingRule):
     """
     A rule to restrict all members of specified basic groups and supergroups from doing something
     
-    Params:
-        chat_ids (:obj:`list[int]`)
-            The chat identifiers, total number of chats in all rules must not exceed 20
-        
+    :param chat_ids: The chat identifiers, total number of chats in all rules must not exceed 20
+    :type chat_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("userPrivacySettingRuleRestrictChatMembers", alias="@type")
@@ -129,10 +128,9 @@ class UserPrivacySettingRuleRestrictUsers(UserPrivacySettingRule):
     """
     A rule to restrict all specified users from doing something
     
-    Params:
-        user_ids (:obj:`list[int]`)
-            The user identifiers, total number of users in all rules must not exceed 1000
-        
+    :param user_ids: The user identifiers, total number of users in all rules must not exceed 1000
+    :type user_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("userPrivacySettingRuleRestrictUsers", alias="@type")

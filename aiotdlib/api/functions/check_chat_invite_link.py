@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class CheckChatInviteLink(BaseObject):
     """
     Checks the validity of an invite link for a chat and returns information about the corresponding chat
     
-    Params:
-        invite_link (:class:`str`)
-            Invite link to be checked
-        
+    :param invite_link: Invite link to be checked
+    :type invite_link: :class:`str`
+    
     """
 
     ID: str = Field("checkChatInviteLink", alias="@type")

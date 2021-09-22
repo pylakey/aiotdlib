@@ -5,26 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import MessageSender
+from ..base_object import BaseObject
 
 
 class ToggleGroupCallParticipantIsMuted(BaseObject):
     """
     Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
     
-    Params:
-        group_call_id (:class:`int`)
-            Group call identifier
-        
-        participant_id (:class:`MessageSender`)
-            Participant identifier
-        
-        is_muted (:class:`bool`)
-            Pass true if the user must be muted and false otherwise
-        
+    :param group_call_id: Group call identifier
+    :type group_call_id: :class:`int`
+    
+    :param participant_id: Participant identifier
+    :type participant_id: :class:`MessageSender`
+    
+    :param is_muted: Pass true if the user must be muted and false otherwise
+    :type is_muted: :class:`bool`
+    
     """
 
     ID: str = Field("toggleGroupCallParticipantIsMuted", alias="@type")

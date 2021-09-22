@@ -5,27 +5,28 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import InputMessageContent
 from ..types import ReplyMarkup
+from ..base_object import BaseObject
 
 
 class EditInlineMessageText(BaseObject):
     """
     Edits the text of an inline text or game message sent via a bot; for bots only
     
-    Params:
-        inline_message_id (:class:`str`)
-            Inline message identifier
-        
-        reply_markup (:class:`ReplyMarkup`)
-            The new message reply markup
-        
-        input_message_content (:class:`InputMessageContent`)
-            New text content of the message. Should be of type inputMessageText
-        
+    :param inline_message_id: Inline message identifier
+    :type inline_message_id: :class:`str`
+    
+    :param reply_markup: The new message reply markup
+    :type reply_markup: :class:`ReplyMarkup`
+    
+    :param input_message_content: New text content of the message. Should be of type inputMessageText
+    :type input_message_content: :class:`InputMessageContent`
+    
     """
 
     ID: str = Field("editInlineMessageText", alias="@type")

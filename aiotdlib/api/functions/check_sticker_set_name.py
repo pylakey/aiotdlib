@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class CheckStickerSetName(BaseObject):
     """
     Checks whether a name can be used for a new sticker set
     
-    Params:
-        name (:class:`str`)
-            Name to be checked
-        
+    :param name: Name to be checked
+    :type name: :class:`str`
+    
     """
 
     ID: str = Field("checkStickerSetName", alias="@type")

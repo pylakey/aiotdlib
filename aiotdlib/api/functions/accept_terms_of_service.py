@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class AcceptTermsOfService(BaseObject):
     """
     Accepts Telegram terms of services
     
-    Params:
-        terms_of_service_id (:class:`str`)
-            Terms of service identifier
-        
+    :param terms_of_service_id: Terms of service identifier
+    :type terms_of_service_id: :class:`str`
+    
     """
 
     ID: str = Field("acceptTermsOfService", alias="@type")

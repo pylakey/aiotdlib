@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .labeled_price_part import LabeledPricePart
@@ -15,43 +17,42 @@ class Invoice(BaseObject):
     """
     Product invoice
     
-    Params:
-        currency (:class:`str`)
-            ISO 4217 currency code
-        
-        price_parts (:obj:`list[LabeledPricePart]`)
-            A list of objects used to calculate the total price of the product
-        
-        max_tip_amount (:class:`int`)
-            The maximum allowed amount of tip in the smallest units of the currency
-        
-        suggested_tip_amounts (:obj:`list[int]`)
-            Suggested amounts of tip in the smallest units of the currency
-        
-        is_test (:class:`bool`)
-            True, if the payment is a test payment
-        
-        need_name (:class:`bool`)
-            True, if the user's name is needed for payment
-        
-        need_phone_number (:class:`bool`)
-            True, if the user's phone number is needed for payment
-        
-        need_email_address (:class:`bool`)
-            True, if the user's email address is needed for payment
-        
-        need_shipping_address (:class:`bool`)
-            True, if the user's shipping address is needed for payment
-        
-        send_phone_number_to_provider (:class:`bool`)
-            True, if the user's phone number will be sent to the provider
-        
-        send_email_address_to_provider (:class:`bool`)
-            True, if the user's email address will be sent to the provider
-        
-        is_flexible (:class:`bool`)
-            True, if the total price depends on the shipping method
-        
+    :param currency: ISO 4217 currency code
+    :type currency: :class:`str`
+    
+    :param price_parts: A list of objects used to calculate the total price of the product
+    :type price_parts: :class:`list[LabeledPricePart]`
+    
+    :param max_tip_amount: The maximum allowed amount of tip in the smallest units of the currency
+    :type max_tip_amount: :class:`int`
+    
+    :param suggested_tip_amounts: Suggested amounts of tip in the smallest units of the currency
+    :type suggested_tip_amounts: :class:`list[int]`
+    
+    :param is_test: True, if the payment is a test payment
+    :type is_test: :class:`bool`
+    
+    :param need_name: True, if the user's name is needed for payment
+    :type need_name: :class:`bool`
+    
+    :param need_phone_number: True, if the user's phone number is needed for payment
+    :type need_phone_number: :class:`bool`
+    
+    :param need_email_address: True, if the user's email address is needed for payment
+    :type need_email_address: :class:`bool`
+    
+    :param need_shipping_address: True, if the user's shipping address is needed for payment
+    :type need_shipping_address: :class:`bool`
+    
+    :param send_phone_number_to_provider: True, if the user's phone number will be sent to the provider
+    :type send_phone_number_to_provider: :class:`bool`
+    
+    :param send_email_address_to_provider: True, if the user's email address will be sent to the provider
+    :type send_email_address_to_provider: :class:`bool`
+    
+    :param is_flexible: True, if the total price depends on the shipping method
+    :type is_flexible: :class:`bool`
+    
     """
 
     ID: str = Field("invoice", alias="@type")

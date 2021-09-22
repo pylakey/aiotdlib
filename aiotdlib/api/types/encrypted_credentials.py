@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,16 +16,15 @@ class EncryptedCredentials(BaseObject):
     """
     Contains encrypted Telegram Passport data credentials
     
-    Params:
-        data (:class:`str`)
-            The encrypted credentials
-        
-        hash_ (:class:`str`)
-            The decrypted data hash
-        
-        secret (:class:`str`)
-            Secret for data decryption, encrypted with the service's public key
-        
+    :param data: The encrypted credentials
+    :type data: :class:`str`
+    
+    :param hash_: The decrypted data hash
+    :type hash_: :class:`str`
+    
+    :param secret: Secret for data decryption, encrypted with the service's public key
+    :type secret: :class:`str`
+    
     """
 
     ID: str = Field("encryptedCredentials", alias="@type")

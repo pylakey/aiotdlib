@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .user_privacy_setting_rule import UserPrivacySettingRule
@@ -15,10 +17,9 @@ class UserPrivacySettingRules(BaseObject):
     """
     A list of privacy rules. Rules are matched in the specified order. The first matched rule defines the privacy setting for a given user. If no rule matches, the action is not allowed
     
-    Params:
-        rules (:obj:`list[UserPrivacySettingRule]`)
-            A list of rules
-        
+    :param rules: A list of rules
+    :type rules: :class:`list[UserPrivacySettingRule]`
+    
     """
 
     ID: str = Field("userPrivacySettingRules", alias="@type")

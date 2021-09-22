@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .t_me_url_type import TMeUrlType
@@ -15,13 +17,12 @@ class TMeUrl(BaseObject):
     """
     Represents a URL linking to an internal Telegram entity
     
-    Params:
-        url (:class:`str`)
-            URL
-        
-        type_ (:class:`TMeUrlType`)
-            Type of the URL
-        
+    :param url: URL
+    :type url: :class:`str`
+    
+    :param type_: Type of the URL
+    :type type_: :class:`TMeUrlType`
+    
     """
 
     ID: str = Field("tMeUrl", alias="@type")

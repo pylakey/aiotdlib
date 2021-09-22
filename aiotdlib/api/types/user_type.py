@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,22 +25,21 @@ class UserTypeBot(UserType):
     """
     A bot (see https://core.telegram.org/bots)
     
-    Params:
-        can_join_groups (:class:`bool`)
-            True, if the bot can be invited to basic group and supergroup chats
-        
-        can_read_all_group_messages (:class:`bool`)
-            True, if the bot can read all messages in basic group or supergroup chats and not just those addressed to the bot. In private and channel chats a bot can always read all messages
-        
-        is_inline (:class:`bool`)
-            True, if the bot supports inline queries
-        
-        inline_query_placeholder (:class:`str`)
-            Placeholder for inline queries (displayed on the application input field)
-        
-        need_location (:class:`bool`)
-            True, if the location of the user should be sent with every inline query to this bot
-        
+    :param can_join_groups: True, if the bot can be invited to basic group and supergroup chats
+    :type can_join_groups: :class:`bool`
+    
+    :param can_read_all_group_messages: True, if the bot can read all messages in basic group or supergroup chats and not just those addressed to the bot. In private and channel chats a bot can always read all messages
+    :type can_read_all_group_messages: :class:`bool`
+    
+    :param is_inline: True, if the bot supports inline queries
+    :type is_inline: :class:`bool`
+    
+    :param inline_query_placeholder: Placeholder for inline queries (displayed on the application input field)
+    :type inline_query_placeholder: :class:`str`
+    
+    :param need_location: True, if the location of the user should be sent with every inline query to this bot
+    :type need_location: :class:`bool`
+    
     """
 
     ID: str = Field("userTypeBot", alias="@type")

@@ -5,26 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import ShippingOption
+from ..base_object import BaseObject
 
 
 class AnswerShippingQuery(BaseObject):
     """
     Sets the result of a shipping query; for bots only
     
-    Params:
-        shipping_query_id (:class:`int`)
-            Identifier of the shipping query
-        
-        shipping_options (:obj:`list[ShippingOption]`)
-            Available shipping options
-        
-        error_message (:class:`str`)
-            An error message, empty on success
-        
+    :param shipping_query_id: Identifier of the shipping query
+    :type shipping_query_id: :class:`int`
+    
+    :param shipping_options: Available shipping options
+    :type shipping_options: :class:`list[ShippingOption]`
+    
+    :param error_message: An error message, empty on success
+    :type error_message: :class:`str`
+    
     """
 
     ID: str = Field("answerShippingQuery", alias="@type")

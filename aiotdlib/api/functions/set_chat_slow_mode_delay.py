@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class SetChatSlowModeDelay(BaseObject):
     """
     Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        slow_mode_delay (:class:`int`)
-            New slow mode delay for the chat; must be one of 0, 10, 30, 60, 300, 900, 3600
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param slow_mode_delay: New slow mode delay for the chat; must be one of 0, 10, 30, 60, 300, 900, 3600
+    :type slow_mode_delay: :class:`int`
+    
     """
 
     ID: str = Field("setChatSlowModeDelay", alias="@type")

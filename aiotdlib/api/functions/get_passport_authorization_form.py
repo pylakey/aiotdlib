@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,19 +16,18 @@ class GetPassportAuthorizationForm(BaseObject):
     """
     Returns a Telegram Passport authorization form for sharing data with a service
     
-    Params:
-        bot_user_id (:class:`int`)
-            User identifier of the service's bot
-        
-        scope (:class:`str`)
-            Telegram Passport element types requested by the service
-        
-        public_key (:class:`str`)
-            Service's public key
-        
-        nonce (:class:`str`)
-            Unique request identifier provided by the service
-        
+    :param bot_user_id: User identifier of the service's bot
+    :type bot_user_id: :class:`int`
+    
+    :param scope: Telegram Passport element types requested by the service
+    :type scope: :class:`str`
+    
+    :param public_key: Service's public key
+    :type public_key: :class:`str`
+    
+    :param nonce: Unique request identifier provided by the service
+    :type nonce: :class:`str`
+    
     """
 
     ID: str = Field("getPassportAuthorizationForm", alias="@type")

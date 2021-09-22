@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import InputFile
+from ..base_object import BaseObject
 
 
 class RemoveRecentSticker(BaseObject):
     """
     Removes a sticker from the list of recently used stickers
     
-    Params:
-        is_attached (:class:`bool`)
-            Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers
-        
-        sticker (:class:`InputFile`)
-            Sticker file to delete
-        
+    :param is_attached: Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers
+    :type is_attached: :class:`bool`
+    
+    :param sticker: Sticker file to delete
+    :type sticker: :class:`InputFile`
+    
     """
 
     ID: str = Field("removeRecentSticker", alias="@type")

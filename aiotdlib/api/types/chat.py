@@ -25,85 +25,84 @@ class Chat(BaseObject):
     """
     A chat. (Can be a private chat, basic group, supergroup, or secret chat)
     
-    Params:
-        id (:class:`int`)
-            Chat unique identifier
-        
-        type_ (:class:`ChatType`)
-            Type of the chat
-        
-        title (:class:`str`)
-            Chat title
-        
-        photo (:class:`ChatPhotoInfo`)
-            Chat photo; may be null
-        
-        permissions (:class:`ChatPermissions`)
-            Actions that non-administrator chat members are allowed to take in the chat
-        
-        last_message (:class:`Message`)
-            Last message in the chat; may be null
-        
-        positions (:obj:`list[ChatPosition]`)
-            Positions of the chat in chat lists
-        
-        is_marked_as_unread (:class:`bool`)
-            True, if the chat is marked as unread
-        
-        is_blocked (:class:`bool`)
-            True, if the chat is blocked by the current user and private messages from the chat can't be received
-        
-        has_scheduled_messages (:class:`bool`)
-            True, if the chat has scheduled messages
-        
-        can_be_deleted_only_for_self (:class:`bool`)
-            True, if the chat messages can be deleted only for the current user while other users will continue to see the messages
-        
-        can_be_deleted_for_all_users (:class:`bool`)
-            True, if the chat messages can be deleted for all users
-        
-        can_be_reported (:class:`bool`)
-            True, if the chat can be reported to Telegram moderators through reportChat or reportChatPhoto
-        
-        default_disable_notification (:class:`bool`)
-            Default value of the disable_notification parameter, used when a message is sent to the chat
-        
-        unread_count (:class:`int`)
-            Number of unread messages in the chat
-        
-        last_read_inbox_message_id (:class:`int`)
-            Identifier of the last read incoming message
-        
-        last_read_outbox_message_id (:class:`int`)
-            Identifier of the last read outgoing message
-        
-        unread_mention_count (:class:`int`)
-            Number of unread messages with a mention/reply in the chat
-        
-        notification_settings (:class:`ChatNotificationSettings`)
-            Notification settings for this chat
-        
-        message_ttl_setting (:class:`int`)
-            Current message Time To Live setting (self-destruct timer) for the chat; 0 if not defined. TTL is counted from the time message or its content is viewed in secret chats and from the send date in other chats
-        
-        theme_name (:class:`str`)
-            If non-empty, name of a theme, set for the chat
-        
-        action_bar (:class:`ChatActionBar`)
-            Describes actions which should be possible to do through a chat action bar; may be null
-        
-        voice_chat (:class:`VoiceChat`)
-            Contains information about voice chat of the chat
-        
-        reply_markup_message_id (:class:`int`)
-            Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
-        
-        draft_message (:class:`DraftMessage`)
-            A draft of a message in the chat; may be null
-        
-        client_data (:class:`str`)
-            Contains application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
-        
+    :param id: Chat unique identifier
+    :type id: :class:`int`
+    
+    :param type_: Type of the chat
+    :type type_: :class:`ChatType`
+    
+    :param title: Chat title
+    :type title: :class:`str`
+    
+    :param photo: Chat photo; may be null, defaults to None
+    :type photo: :class:`ChatPhotoInfo`, optional
+    
+    :param permissions: Actions that non-administrator chat members are allowed to take in the chat
+    :type permissions: :class:`ChatPermissions`
+    
+    :param last_message: Last message in the chat; may be null, defaults to None
+    :type last_message: :class:`Message`, optional
+    
+    :param positions: Positions of the chat in chat lists
+    :type positions: :class:`list[ChatPosition]`
+    
+    :param is_marked_as_unread: True, if the chat is marked as unread
+    :type is_marked_as_unread: :class:`bool`
+    
+    :param is_blocked: True, if the chat is blocked by the current user and private messages from the chat can't be received
+    :type is_blocked: :class:`bool`
+    
+    :param has_scheduled_messages: True, if the chat has scheduled messages
+    :type has_scheduled_messages: :class:`bool`
+    
+    :param can_be_deleted_only_for_self: True, if the chat messages can be deleted only for the current user while other users will continue to see the messages
+    :type can_be_deleted_only_for_self: :class:`bool`
+    
+    :param can_be_deleted_for_all_users: True, if the chat messages can be deleted for all users
+    :type can_be_deleted_for_all_users: :class:`bool`
+    
+    :param can_be_reported: True, if the chat can be reported to Telegram moderators through reportChat or reportChatPhoto
+    :type can_be_reported: :class:`bool`
+    
+    :param default_disable_notification: Default value of the disable_notification parameter, used when a message is sent to the chat
+    :type default_disable_notification: :class:`bool`
+    
+    :param unread_count: Number of unread messages in the chat
+    :type unread_count: :class:`int`
+    
+    :param last_read_inbox_message_id: Identifier of the last read incoming message
+    :type last_read_inbox_message_id: :class:`int`
+    
+    :param last_read_outbox_message_id: Identifier of the last read outgoing message
+    :type last_read_outbox_message_id: :class:`int`
+    
+    :param unread_mention_count: Number of unread messages with a mention/reply in the chat
+    :type unread_mention_count: :class:`int`
+    
+    :param notification_settings: Notification settings for this chat
+    :type notification_settings: :class:`ChatNotificationSettings`
+    
+    :param message_ttl_setting: Current message Time To Live setting (self-destruct timer) for the chat; 0 if not defined. TTL is counted from the time message or its content is viewed in secret chats and from the send date in other chats
+    :type message_ttl_setting: :class:`int`
+    
+    :param theme_name: If non-empty, name of a theme, set for the chat
+    :type theme_name: :class:`str`
+    
+    :param action_bar: Describes actions which should be possible to do through a chat action bar; may be null, defaults to None
+    :type action_bar: :class:`ChatActionBar`, optional
+    
+    :param voice_chat: Contains information about voice chat of the chat
+    :type voice_chat: :class:`VoiceChat`
+    
+    :param reply_markup_message_id: Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
+    :type reply_markup_message_id: :class:`int`
+    
+    :param draft_message: A draft of a message in the chat; may be null, defaults to None
+    :type draft_message: :class:`DraftMessage`, optional
+    
+    :param client_data: Contains application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
+    :type client_data: :class:`str`
+    
     """
 
     ID: str = Field("chat", alias="@type")

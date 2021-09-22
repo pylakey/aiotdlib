@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class ToggleGroupCallIsMyVideoPaused(BaseObject):
     """
     Toggles whether current user's video is paused
     
-    Params:
-        group_call_id (:class:`int`)
-            Group call identifier
-        
-        is_my_video_paused (:class:`bool`)
-            Pass true if the current user's video is paused
-        
+    :param group_call_id: Group call identifier
+    :type group_call_id: :class:`int`
+    
+    :param is_my_video_paused: Pass true if the current user's video is paused
+    :type is_my_video_paused: :class:`bool`
+    
     """
 
     ID: str = Field("toggleGroupCallIsMyVideoPaused", alias="@type")

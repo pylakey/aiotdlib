@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .file import File
@@ -15,22 +17,21 @@ class PhotoSize(BaseObject):
     """
     Describes an image in JPEG format
     
-    Params:
-        type_ (:class:`str`)
-            Image type (see https://core.telegram.org/constructor/photoSize)
-        
-        photo (:class:`File`)
-            Information about the image file
-        
-        width (:class:`int`)
-            Image width
-        
-        height (:class:`int`)
-            Image height
-        
-        progressive_sizes (:obj:`list[int]`)
-            Sizes of progressive JPEG file prefixes, which can be used to preliminarily show the image; in bytes
-        
+    :param type_: Image type (see https://core.telegram.org/constructor/photoSize)
+    :type type_: :class:`str`
+    
+    :param photo: Information about the image file
+    :type photo: :class:`File`
+    
+    :param width: Image width
+    :type width: :class:`int`
+    
+    :param height: Image height
+    :type height: :class:`int`
+    
+    :param progressive_sizes: Sizes of progressive JPEG file prefixes, which can be used to preliminarily show the image; in bytes
+    :type progressive_sizes: :class:`list[int]`
+    
     """
 
     ID: str = Field("photoSize", alias="@type")

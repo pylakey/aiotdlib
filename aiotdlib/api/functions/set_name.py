@@ -16,13 +16,12 @@ class SetName(BaseObject):
     """
     Changes the first and last name of the current user
     
-    Params:
-        first_name (:class:`str`)
-            The new value of the first name for the current user; 1-64 characters
-        
-        last_name (:class:`str`)
-            The new value of the optional last name for the current user; 0-64 characters
-        
+    :param first_name: The new value of the first name for the current user; 1-64 characters
+    :type first_name: :class:`str`
+    
+    :param last_name: The new value of the optional last name for the current user; 0-64 characters, defaults to None
+    :type last_name: :class:`str`, optional
+    
     """
 
     ID: str = Field("setName", alias="@type")

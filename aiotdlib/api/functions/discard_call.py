@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,22 +16,21 @@ class DiscardCall(BaseObject):
     """
     Discards a call
     
-    Params:
-        call_id (:class:`int`)
-            Call identifier
-        
-        is_disconnected (:class:`bool`)
-            True, if the user was disconnected
-        
-        duration (:class:`int`)
-            The call duration, in seconds
-        
-        is_video (:class:`bool`)
-            True, if the call was a video call
-        
-        connection_id (:class:`int`)
-            Identifier of the connection used during the call
-        
+    :param call_id: Call identifier
+    :type call_id: :class:`int`
+    
+    :param is_disconnected: True, if the user was disconnected
+    :type is_disconnected: :class:`bool`
+    
+    :param duration: The call duration, in seconds
+    :type duration: :class:`int`
+    
+    :param is_video: True, if the call was a video call
+    :type is_video: :class:`bool`
+    
+    :param connection_id: Identifier of the connection used during the call
+    :type connection_id: :class:`int`
+    
     """
 
     ID: str = Field("discardCall", alias="@type")

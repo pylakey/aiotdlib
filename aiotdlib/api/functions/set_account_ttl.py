@@ -5,20 +5,21 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import AccountTtl
+from ..base_object import BaseObject
 
 
 class SetAccountTtl(BaseObject):
     """
     Changes the period of inactivity after which the account of the current user will automatically be deleted
     
-    Params:
-        ttl (:class:`AccountTtl`)
-            New account TTL
-        
+    :param ttl: New account TTL
+    :type ttl: :class:`AccountTtl`
+    
     """
 
     ID: str = Field("setAccountTtl", alias="@type")

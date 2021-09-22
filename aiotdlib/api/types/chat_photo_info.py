@@ -18,19 +18,18 @@ class ChatPhotoInfo(BaseObject):
     """
     Contains basic information about the photo of a chat
     
-    Params:
-        small (:class:`File`)
-            A small (160x160) chat photo variant in JPEG format. The file can be downloaded only before the photo is changed
-        
-        big (:class:`File`)
-            A big (640x640) chat photo variant in JPEG format. The file can be downloaded only before the photo is changed
-        
-        minithumbnail (:class:`Minithumbnail`)
-            Chat photo minithumbnail; may be null
-        
-        has_animation (:class:`bool`)
-            True, if the photo has animated variant
-        
+    :param small: A small (160x160) chat photo variant in JPEG format. The file can be downloaded only before the photo is changed
+    :type small: :class:`File`
+    
+    :param big: A big (640x640) chat photo variant in JPEG format. The file can be downloaded only before the photo is changed
+    :type big: :class:`File`
+    
+    :param minithumbnail: Chat photo minithumbnail; may be null, defaults to None
+    :type minithumbnail: :class:`Minithumbnail`, optional
+    
+    :param has_animation: True, if the photo has animated variant
+    :type has_animation: :class:`bool`
+    
     """
 
     ID: str = Field("chatPhotoInfo", alias="@type")

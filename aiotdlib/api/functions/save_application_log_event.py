@@ -5,26 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import JsonValue
+from ..base_object import BaseObject
 
 
 class SaveApplicationLogEvent(BaseObject):
     """
     Saves application log event on the server. Can be called before authorization
     
-    Params:
-        type_ (:class:`str`)
-            Event type
-        
-        chat_id (:class:`int`)
-            Optional chat identifier, associated with the event
-        
-        data (:class:`JsonValue`)
-            The log event data
-        
+    :param type_: Event type
+    :type type_: :class:`str`
+    
+    :param chat_id: Optional chat identifier, associated with the event
+    :type chat_id: :class:`int`
+    
+    :param data: The log event data
+    :type data: :class:`JsonValue`
+    
     """
 
     ID: str = Field("saveApplicationLogEvent", alias="@type")

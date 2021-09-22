@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,16 +16,15 @@ class ChatFilterInfo(BaseObject):
     """
     Contains basic information about a chat filter
     
-    Params:
-        id (:class:`int`)
-            Unique chat filter identifier
-        
-        title (:class:`str`)
-            The title of the filter; 1-12 characters without line feeds
-        
-        icon_name (:class:`str`)
-            The icon name for short filter representation. One of "All", "Unread", "Unmuted", "Bots", "Channels", "Groups", "Private", "Custom", "Setup", "Cat", "Crown", "Favorite", "Flower", "Game", "Home", "Love", "Mask", "Party", "Sport", "Study", "Trade", "Travel", "Work"
-        
+    :param id: Unique chat filter identifier
+    :type id: :class:`int`
+    
+    :param title: The title of the filter; 1-12 characters without line feeds
+    :type title: :class:`str`
+    
+    :param icon_name: The icon name for short filter representation. One of "All", "Unread", "Unmuted", "Bots", "Channels", "Groups", "Private", "Custom", "Setup", "Cat", "Crown", "Favorite", "Flower", "Game", "Home", "Love", "Mask", "Party", "Sport", "Study", "Trade", "Travel", "Work"
+    :type icon_name: :class:`str`
+    
     """
 
     ID: str = Field("chatFilterInfo", alias="@type")

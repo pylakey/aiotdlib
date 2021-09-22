@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .statistical_graph import StatisticalGraph
@@ -15,10 +17,9 @@ class MessageStatistics(BaseObject):
     """
     A detailed statistics about a message
     
-    Params:
-        message_interaction_graph (:class:`StatisticalGraph`)
-            A graph containing number of message views and shares
-        
+    :param message_interaction_graph: A graph containing number of message views and shares
+    :type message_interaction_graph: :class:`StatisticalGraph`
+    
     """
 
     ID: str = Field("messageStatistics", alias="@type")

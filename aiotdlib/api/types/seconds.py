@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class Seconds(BaseObject):
     """
     Contains a value representing a number of seconds
     
-    Params:
-        seconds (:class:`float`)
-            Number of seconds
-        
+    :param seconds: Number of seconds
+    :type seconds: :class:`float`
+    
     """
 
     ID: str = Field("seconds", alias="@type")

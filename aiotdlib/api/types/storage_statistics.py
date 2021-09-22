@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .storage_statistics_by_chat import StorageStatisticsByChat
@@ -15,16 +17,15 @@ class StorageStatistics(BaseObject):
     """
     Contains the exact storage usage statistics split by chats and file type
     
-    Params:
-        size (:class:`int`)
-            Total size of files, in bytes
-        
-        count (:class:`int`)
-            Total number of files
-        
-        by_chat (:obj:`list[StorageStatisticsByChat]`)
-            Statistics split by chats
-        
+    :param size: Total size of files, in bytes
+    :type size: :class:`int`
+    
+    :param count: Total number of files
+    :type count: :class:`int`
+    
+    :param by_chat: Statistics split by chats
+    :type by_chat: :class:`list[StorageStatisticsByChat]`
+    
     """
 
     ID: str = Field("storageStatistics", alias="@type")

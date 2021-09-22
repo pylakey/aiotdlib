@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class CreateNewBasicGroupChat(BaseObject):
     """
     Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
     
-    Params:
-        user_ids (:obj:`list[int]`)
-            Identifiers of users to be added to the basic group
-        
-        title (:class:`str`)
-            Title of the new basic group; 1-128 characters
-        
+    :param user_ids: Identifiers of users to be added to the basic group
+    :type user_ids: :class:`list[int]`
+    
+    :param title: Title of the new basic group; 1-128 characters
+    :type title: :class:`str`
+    
     """
 
     ID: str = Field("createNewBasicGroupChat", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class RemoveRecentlyFoundChat(BaseObject):
     """
     Removes a chat from the list of recently found chats
     
-    Params:
-        chat_id (:class:`int`)
-            Identifier of the chat to be removed
-        
+    :param chat_id: Identifier of the chat to be removed
+    :type chat_id: :class:`int`
+    
     """
 
     ID: str = Field("removeRecentlyFoundChat", alias="@type")

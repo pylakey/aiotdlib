@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class ReorderChatFilters(BaseObject):
     """
     Changes the order of chat filters
     
-    Params:
-        chat_filter_ids (:obj:`list[int]`)
-            Identifiers of chat filters in the new correct order
-        
+    :param chat_filter_ids: Identifiers of chat filters in the new correct order
+    :type chat_filter_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("reorderChatFilters", alias="@type")

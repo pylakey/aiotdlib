@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .proxy import Proxy
@@ -15,10 +17,9 @@ class Proxies(BaseObject):
     """
     Represents a list of proxy servers
     
-    Params:
-        proxies (:obj:`list[Proxy]`)
-            List of proxy servers
-        
+    :param proxies: List of proxy servers
+    :type proxies: :class:`list[Proxy]`
+    
     """
 
     ID: str = Field("proxies", alias="@type")

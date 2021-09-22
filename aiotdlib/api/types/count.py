@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class Count(BaseObject):
     """
     Contains a counter
     
-    Params:
-        count (:class:`int`)
-            Count
-        
+    :param count: Count
+    :type count: :class:`int`
+    
     """
 
     ID: str = Field("count", alias="@type")

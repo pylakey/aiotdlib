@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,16 +25,15 @@ class ProxyTypeHttp(ProxyType):
     """
     A HTTP transparent proxy server
     
-    Params:
-        username (:class:`str`)
-            Username for logging in; may be empty
-        
-        password (:class:`str`)
-            Password for logging in; may be empty
-        
-        http_only (:class:`bool`)
-            Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
-        
+    :param username: Username for logging in; may be empty
+    :type username: :class:`str`
+    
+    :param password: Password for logging in; may be empty
+    :type password: :class:`str`
+    
+    :param http_only: Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
+    :type http_only: :class:`bool`
+    
     """
 
     ID: str = Field("proxyTypeHttp", alias="@type")
@@ -49,10 +50,9 @@ class ProxyTypeMtproto(ProxyType):
     """
     An MTProto proxy server
     
-    Params:
-        secret (:class:`str`)
-            The proxy's secret in hexadecimal encoding
-        
+    :param secret: The proxy's secret in hexadecimal encoding
+    :type secret: :class:`str`
+    
     """
 
     ID: str = Field("proxyTypeMtproto", alias="@type")
@@ -67,13 +67,12 @@ class ProxyTypeSocks5(ProxyType):
     """
     A SOCKS5 proxy server
     
-    Params:
-        username (:class:`str`)
-            Username for logging in; may be empty
-        
-        password (:class:`str`)
-            Password for logging in; may be empty
-        
+    :param username: Username for logging in; may be empty
+    :type username: :class:`str`
+    
+    :param password: Password for logging in; may be empty
+    :type password: :class:`str`
+    
     """
 
     ID: str = Field("proxyTypeSocks5", alias="@type")

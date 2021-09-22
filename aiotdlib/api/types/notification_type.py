@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .message import Message
@@ -26,10 +28,9 @@ class NotificationTypeNewCall(NotificationType):
     """
     New call was received
     
-    Params:
-        call_id (:class:`int`)
-            Call identifier
-        
+    :param call_id: Call identifier
+    :type call_id: :class:`int`
+    
     """
 
     ID: str = Field("notificationTypeNewCall", alias="@type")
@@ -44,10 +45,9 @@ class NotificationTypeNewMessage(NotificationType):
     """
     New message was received
     
-    Params:
-        message (:class:`Message`)
-            The message
-        
+    :param message: The message
+    :type message: :class:`Message`
+    
     """
 
     ID: str = Field("notificationTypeNewMessage", alias="@type")
@@ -62,22 +62,21 @@ class NotificationTypeNewPushMessage(NotificationType):
     """
     New message was received through a push notification
     
-    Params:
-        message_id (:class:`int`)
-            The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages, or as reply_to_message_id
-        
-        sender (:class:`MessageSender`)
-            The sender of the message. Corresponding user or chat may be inaccessible
-        
-        sender_name (:class:`str`)
-            Name of the sender
-        
-        is_outgoing (:class:`bool`)
-            True, if the message is outgoing
-        
-        content (:class:`PushMessageContent`)
-            Push message content
-        
+    :param message_id: The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages, or as reply_to_message_id
+    :type message_id: :class:`int`
+    
+    :param sender: The sender of the message. Corresponding user or chat may be inaccessible
+    :type sender: :class:`MessageSender`
+    
+    :param sender_name: Name of the sender
+    :type sender_name: :class:`str`
+    
+    :param is_outgoing: True, if the message is outgoing
+    :type is_outgoing: :class:`bool`
+    
+    :param content: Push message content
+    :type content: :class:`PushMessageContent`
+    
     """
 
     ID: str = Field("notificationTypeNewPushMessage", alias="@type")

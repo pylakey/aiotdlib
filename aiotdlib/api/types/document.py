@@ -19,22 +19,21 @@ class Document(BaseObject):
     """
     Describes a document of any type
     
-    Params:
-        file_name (:class:`str`)
-            Original name of the file; as defined by the sender
-        
-        mime_type (:class:`str`)
-            MIME type of the file; as defined by the sender
-        
-        minithumbnail (:class:`Minithumbnail`)
-            Document minithumbnail; may be null
-        
-        thumbnail (:class:`Thumbnail`)
-            Document thumbnail in JPEG or PNG format (PNG will be used only for background patterns); as defined by the sender; may be null
-        
-        document (:class:`File`)
-            File containing the document
-        
+    :param file_name: Original name of the file; as defined by the sender
+    :type file_name: :class:`str`
+    
+    :param mime_type: MIME type of the file; as defined by the sender
+    :type mime_type: :class:`str`
+    
+    :param minithumbnail: Document minithumbnail; may be null, defaults to None
+    :type minithumbnail: :class:`Minithumbnail`, optional
+    
+    :param thumbnail: Document thumbnail in JPEG or PNG format (PNG will be used only for background patterns); as defined by the sender; may be null, defaults to None
+    :type thumbnail: :class:`Thumbnail`, optional
+    
+    :param document: File containing the document
+    :type document: :class:`File`
+    
     """
 
     ID: str = Field("document", alias="@type")

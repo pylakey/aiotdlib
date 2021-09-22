@@ -37,16 +37,15 @@ class InlineQueryResultAnimation(InlineQueryResult):
     """
     Represents an animation file
     
-    Params:
-        id (:class:`str`)
-            Unique identifier of the query result
-        
-        animation (:class:`Animation`)
-            Animation file
-        
-        title (:class:`str`)
-            Animation title
-        
+    :param id: Unique identifier of the query result
+    :type id: :class:`str`
+    
+    :param animation: Animation file
+    :type animation: :class:`Animation`
+    
+    :param title: Animation title
+    :type title: :class:`str`
+    
     """
 
     ID: str = Field("inlineQueryResultAnimation", alias="@type")
@@ -63,25 +62,24 @@ class InlineQueryResultArticle(InlineQueryResult):
     """
     Represents a link to an article or web page
     
-    Params:
-        id (:class:`str`)
-            Unique identifier of the query result
-        
-        url (:class:`str`)
-            URL of the result, if it exists
-        
-        hide_url (:class:`bool`)
-            True, if the URL must be not shown
-        
-        title (:class:`str`)
-            Title of the result
-        
-        param_description (:class:`str`)
-            A short description of the result
-        
-        thumbnail (:class:`Thumbnail`)
-            Result thumbnail in JPEG format; may be null
-        
+    :param id: Unique identifier of the query result
+    :type id: :class:`str`
+    
+    :param url: URL of the result, if it exists
+    :type url: :class:`str`
+    
+    :param hide_url: True, if the URL must be not shown
+    :type hide_url: :class:`bool`
+    
+    :param title: Title of the result
+    :type title: :class:`str`
+    
+    :param param_description: A short description of the result
+    :type param_description: :class:`str`
+    
+    :param thumbnail: Result thumbnail in JPEG format; may be null, defaults to None
+    :type thumbnail: :class:`Thumbnail`, optional
+    
     """
 
     ID: str = Field("inlineQueryResultArticle", alias="@type")
@@ -101,13 +99,12 @@ class InlineQueryResultAudio(InlineQueryResult):
     """
     Represents an audio file
     
-    Params:
-        id (:class:`str`)
-            Unique identifier of the query result
-        
-        audio (:class:`Audio`)
-            Audio file
-        
+    :param id: Unique identifier of the query result
+    :type id: :class:`str`
+    
+    :param audio: Audio file
+    :type audio: :class:`Audio`
+    
     """
 
     ID: str = Field("inlineQueryResultAudio", alias="@type")
@@ -123,16 +120,15 @@ class InlineQueryResultContact(InlineQueryResult):
     """
     Represents a user contact
     
-    Params:
-        id (:class:`str`)
-            Unique identifier of the query result
-        
-        contact (:class:`Contact`)
-            A user contact
-        
-        thumbnail (:class:`Thumbnail`)
-            Result thumbnail in JPEG format; may be null
-        
+    :param id: Unique identifier of the query result
+    :type id: :class:`str`
+    
+    :param contact: A user contact
+    :type contact: :class:`Contact`
+    
+    :param thumbnail: Result thumbnail in JPEG format; may be null, defaults to None
+    :type thumbnail: :class:`Thumbnail`, optional
+    
     """
 
     ID: str = Field("inlineQueryResultContact", alias="@type")
@@ -149,19 +145,18 @@ class InlineQueryResultDocument(InlineQueryResult):
     """
     Represents a document
     
-    Params:
-        id (:class:`str`)
-            Unique identifier of the query result
-        
-        document (:class:`Document`)
-            Document
-        
-        title (:class:`str`)
-            Document title
-        
-        param_description (:class:`str`)
-            Document description
-        
+    :param id: Unique identifier of the query result
+    :type id: :class:`str`
+    
+    :param document: Document
+    :type document: :class:`Document`
+    
+    :param title: Document title
+    :type title: :class:`str`
+    
+    :param param_description: Document description
+    :type param_description: :class:`str`
+    
     """
 
     ID: str = Field("inlineQueryResultDocument", alias="@type")
@@ -179,13 +174,12 @@ class InlineQueryResultGame(InlineQueryResult):
     """
     Represents information about a game
     
-    Params:
-        id (:class:`str`)
-            Unique identifier of the query result
-        
-        game (:class:`Game`)
-            Game result
-        
+    :param id: Unique identifier of the query result
+    :type id: :class:`str`
+    
+    :param game: Game result
+    :type game: :class:`Game`
+    
     """
 
     ID: str = Field("inlineQueryResultGame", alias="@type")
@@ -201,19 +195,18 @@ class InlineQueryResultLocation(InlineQueryResult):
     """
     Represents a point on the map
     
-    Params:
-        id (:class:`str`)
-            Unique identifier of the query result
-        
-        location (:class:`Location`)
-            Location result
-        
-        title (:class:`str`)
-            Title of the result
-        
-        thumbnail (:class:`Thumbnail`)
-            Result thumbnail in JPEG format; may be null
-        
+    :param id: Unique identifier of the query result
+    :type id: :class:`str`
+    
+    :param location: Location result
+    :type location: :class:`Location`
+    
+    :param title: Title of the result
+    :type title: :class:`str`
+    
+    :param thumbnail: Result thumbnail in JPEG format; may be null, defaults to None
+    :type thumbnail: :class:`Thumbnail`, optional
+    
     """
 
     ID: str = Field("inlineQueryResultLocation", alias="@type")
@@ -231,19 +224,18 @@ class InlineQueryResultPhoto(InlineQueryResult):
     """
     Represents a photo
     
-    Params:
-        id (:class:`str`)
-            Unique identifier of the query result
-        
-        photo (:class:`Photo`)
-            Photo
-        
-        title (:class:`str`)
-            Title of the result, if known
-        
-        param_description (:class:`str`)
-            A short description of the result, if known
-        
+    :param id: Unique identifier of the query result
+    :type id: :class:`str`
+    
+    :param photo: Photo
+    :type photo: :class:`Photo`
+    
+    :param title: Title of the result, if known
+    :type title: :class:`str`
+    
+    :param param_description: A short description of the result, if known
+    :type param_description: :class:`str`
+    
     """
 
     ID: str = Field("inlineQueryResultPhoto", alias="@type")
@@ -261,13 +253,12 @@ class InlineQueryResultSticker(InlineQueryResult):
     """
     Represents a sticker
     
-    Params:
-        id (:class:`str`)
-            Unique identifier of the query result
-        
-        sticker (:class:`Sticker`)
-            Sticker
-        
+    :param id: Unique identifier of the query result
+    :type id: :class:`str`
+    
+    :param sticker: Sticker
+    :type sticker: :class:`Sticker`
+    
     """
 
     ID: str = Field("inlineQueryResultSticker", alias="@type")
@@ -283,16 +274,15 @@ class InlineQueryResultVenue(InlineQueryResult):
     """
     Represents information about a venue
     
-    Params:
-        id (:class:`str`)
-            Unique identifier of the query result
-        
-        venue (:class:`Venue`)
-            Venue result
-        
-        thumbnail (:class:`Thumbnail`)
-            Result thumbnail in JPEG format; may be null
-        
+    :param id: Unique identifier of the query result
+    :type id: :class:`str`
+    
+    :param venue: Venue result
+    :type venue: :class:`Venue`
+    
+    :param thumbnail: Result thumbnail in JPEG format; may be null, defaults to None
+    :type thumbnail: :class:`Thumbnail`, optional
+    
     """
 
     ID: str = Field("inlineQueryResultVenue", alias="@type")
@@ -309,19 +299,18 @@ class InlineQueryResultVideo(InlineQueryResult):
     """
     Represents a video
     
-    Params:
-        id (:class:`str`)
-            Unique identifier of the query result
-        
-        video (:class:`Video`)
-            Video
-        
-        title (:class:`str`)
-            Title of the video
-        
-        param_description (:class:`str`)
-            Description of the video
-        
+    :param id: Unique identifier of the query result
+    :type id: :class:`str`
+    
+    :param video: Video
+    :type video: :class:`Video`
+    
+    :param title: Title of the video
+    :type title: :class:`str`
+    
+    :param param_description: Description of the video
+    :type param_description: :class:`str`
+    
     """
 
     ID: str = Field("inlineQueryResultVideo", alias="@type")
@@ -339,16 +328,15 @@ class InlineQueryResultVoiceNote(InlineQueryResult):
     """
     Represents a voice note
     
-    Params:
-        id (:class:`str`)
-            Unique identifier of the query result
-        
-        voice_note (:class:`VoiceNote`)
-            Voice note
-        
-        title (:class:`str`)
-            Title of the voice note
-        
+    :param id: Unique identifier of the query result
+    :type id: :class:`str`
+    
+    :param voice_note: Voice note
+    :type voice_note: :class:`VoiceNote`
+    
+    :param title: Title of the voice note
+    :type title: :class:`str`
+    
     """
 
     ID: str = Field("inlineQueryResultVoiceNote", alias="@type")

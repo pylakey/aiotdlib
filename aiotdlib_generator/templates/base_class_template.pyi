@@ -3,11 +3,10 @@ class {{ entity.uf_name }}({{ parent }}):
     """
     {{ entity.doc }}
     {% if entity.parameters %}
-    Params:
-        {%- for parameter in entity.parameters %}
-        {{ parameter.name }} {{ parameter.doc_type }}
-            {{ parameter.doc }}
-        {% endfor -%}
+    {%- for parameter in entity.parameters %}
+    :param {{ parameter.name }}: {{ parameter.doc }}{% if parameter.nullable %}, defaults to None{% endif %}
+    :type {{ parameter.name }}: {{ parameter.doc_type }}{% if parameter.nullable %}, optional{% endif %}
+    {% endfor -%}
     {% endif %}
     """
 

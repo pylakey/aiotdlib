@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,10 +25,9 @@ class OptionValueBoolean(OptionValue):
     """
     Represents a boolean option
     
-    Params:
-        value (:class:`bool`)
-            The value of the option
-        
+    :param value: The value of the option
+    :type value: :class:`bool`
+    
     """
 
     ID: str = Field("optionValueBoolean", alias="@type")
@@ -54,10 +55,9 @@ class OptionValueInteger(OptionValue):
     """
     Represents an integer option
     
-    Params:
-        value (:class:`int`)
-            The value of the option
-        
+    :param value: The value of the option
+    :type value: :class:`int`
+    
     """
 
     ID: str = Field("optionValueInteger", alias="@type")
@@ -72,10 +72,9 @@ class OptionValueString(OptionValue):
     """
     Represents a string option
     
-    Params:
-        value (:class:`str`)
-            The value of the option
-        
+    :param value: The value of the option
+    :type value: :class:`str`
+    
     """
 
     ID: str = Field("optionValueString", alias="@type")

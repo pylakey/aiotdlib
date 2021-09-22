@@ -27,13 +27,12 @@ class ReplyMarkupForceReply(ReplyMarkup):
     """
     Instructs application to force a reply to this message
     
-    Params:
-        is_personal (:class:`bool`)
-            True, if a forced reply must automatically be shown to the current user. For outgoing messages, specify true to show the forced reply only for the mentioned users and for the target user of a reply
-        
-        input_field_placeholder (:class:`str`)
-            If non-empty, the placeholder to be shown in the input field when the reply is active; 0-64 characters
-        
+    :param is_personal: True, if a forced reply must automatically be shown to the current user. For outgoing messages, specify true to show the forced reply only for the mentioned users and for the target user of a reply
+    :type is_personal: :class:`bool`
+    
+    :param input_field_placeholder: If non-empty, the placeholder to be shown in the input field when the reply is active; 0-64 characters, defaults to None
+    :type input_field_placeholder: :class:`str`, optional
+    
     """
 
     ID: str = Field("replyMarkupForceReply", alias="@type")
@@ -49,10 +48,9 @@ class ReplyMarkupInlineKeyboard(ReplyMarkup):
     """
     Contains an inline keyboard layout
     
-    Params:
-        rows (:obj:`list[list[InlineKeyboardButton]]`)
-            A list of rows of inline keyboard buttons
-        
+    :param rows: A list of rows of inline keyboard buttons
+    :type rows: :class:`list[list[InlineKeyboardButton]]`
+    
     """
 
     ID: str = Field("replyMarkupInlineKeyboard", alias="@type")
@@ -67,10 +65,9 @@ class ReplyMarkupRemoveKeyboard(ReplyMarkup):
     """
     Instructs application to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup with message_id == 0 will be sent
     
-    Params:
-        is_personal (:class:`bool`)
-            True, if the keyboard is removed only for the mentioned users or the target user of a reply
-        
+    :param is_personal: True, if the keyboard is removed only for the mentioned users or the target user of a reply
+    :type is_personal: :class:`bool`
+    
     """
 
     ID: str = Field("replyMarkupRemoveKeyboard", alias="@type")
@@ -85,22 +82,21 @@ class ReplyMarkupShowKeyboard(ReplyMarkup):
     """
     Contains a custom keyboard layout to quickly reply to bots
     
-    Params:
-        rows (:obj:`list[list[KeyboardButton]]`)
-            A list of rows of bot keyboard buttons
-        
-        resize_keyboard (:class:`bool`)
-            True, if the application needs to resize the keyboard vertically
-        
-        one_time (:class:`bool`)
-            True, if the application needs to hide the keyboard after use
-        
-        is_personal (:class:`bool`)
-            True, if the keyboard must automatically be shown to the current user. For outgoing messages, specify true to show the keyboard only for the mentioned users and for the target user of a reply
-        
-        input_field_placeholder (:class:`str`)
-            If non-empty, the placeholder to be shown in the input field when the keyboard is active; 0-64 characters
-        
+    :param rows: A list of rows of bot keyboard buttons
+    :type rows: :class:`list[list[KeyboardButton]]`
+    
+    :param resize_keyboard: True, if the application needs to resize the keyboard vertically
+    :type resize_keyboard: :class:`bool`
+    
+    :param one_time: True, if the application needs to hide the keyboard after use
+    :type one_time: :class:`bool`
+    
+    :param is_personal: True, if the keyboard must automatically be shown to the current user. For outgoing messages, specify true to show the keyboard only for the mentioned users and for the target user of a reply
+    :type is_personal: :class:`bool`
+    
+    :param input_field_placeholder: If non-empty, the placeholder to be shown in the input field when the keyboard is active; 0-64 characters, defaults to None
+    :type input_field_placeholder: :class:`str`, optional
+    
     """
 
     ID: str = Field("replyMarkupShowKeyboard", alias="@type")

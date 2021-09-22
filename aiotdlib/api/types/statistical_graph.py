@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,10 +25,9 @@ class StatisticalGraphAsync(StatisticalGraph):
     """
     The graph data to be asynchronously loaded through getStatisticalGraph
     
-    Params:
-        token (:class:`str`)
-            The token to use for data loading
-        
+    :param token: The token to use for data loading
+    :type token: :class:`str`
+    
     """
 
     ID: str = Field("statisticalGraphAsync", alias="@type")
@@ -41,13 +42,12 @@ class StatisticalGraphData(StatisticalGraph):
     """
     A graph data
     
-    Params:
-        json_data (:class:`str`)
-            Graph data in JSON format
-        
-        zoom_token (:class:`str`)
-            If non-empty, a token which can be used to receive a zoomed in graph
-        
+    :param json_data: Graph data in JSON format
+    :type json_data: :class:`str`
+    
+    :param zoom_token: If non-empty, a token which can be used to receive a zoomed in graph
+    :type zoom_token: :class:`str`
+    
     """
 
     ID: str = Field("statisticalGraphData", alias="@type")
@@ -63,10 +63,9 @@ class StatisticalGraphError(StatisticalGraph):
     """
     An error message to be shown to the user instead of the graph
     
-    Params:
-        error_message (:class:`str`)
-            The error message
-        
+    :param error_message: The error message
+    :type error_message: :class:`str`
+    
     """
 
     ID: str = Field("statisticalGraphError", alias="@type")

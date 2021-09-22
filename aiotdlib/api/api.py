@@ -6,9 +6,9 @@
 
 import typing
 
-from .base_object import BaseObject
 from .functions import *
 from .types import *
+from .base_object import BaseObject
 
 if typing.TYPE_CHECKING:
     from aiotdlib.client import Client
@@ -17,6 +17,10 @@ ReturnType = typing.TypeVar('ReturnType', bound=BaseObject)
 
 
 class API:
+    """
+    This class contains all TDJson API methods
+    """
+
     class Types:
         # Types and Functions
         ANY = '*'
@@ -1505,13 +1509,21 @@ class API:
         """
         Accepts an incoming call
         
-        Params:
-            call_id (:class:`int`)
-                Call identifier
-            
-            protocol (:class:`CallProtocol`)
-                Description of the call protocols supported by the application
-            
+        :param call_id: Call identifier
+        :type call_id: :class:`int`
+        
+        :param protocol: Description of the call protocols supported by the application
+        :type protocol: :class:`CallProtocol`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AcceptCall.construct if skip_validation else AcceptCall
 
@@ -1535,10 +1547,18 @@ class API:
         """
         Accepts Telegram terms of services
         
-        Params:
-            terms_of_service_id (:class:`str`)
-                Terms of service identifier
-            
+        :param terms_of_service_id: Terms of service identifier
+        :type terms_of_service_id: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AcceptTermsOfService.construct if skip_validation else AcceptTermsOfService
 
@@ -1563,16 +1583,24 @@ class API:
         """
         Adds a new member to a chat. Members can't be added to private or secret chats
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            user_id (:class:`int`)
-                Identifier of the user
-            
-            forward_limit (:class:`int`)
-                The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param user_id: Identifier of the user
+        :type user_id: :class:`int`
+        
+        :param forward_limit: The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels
+        :type forward_limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AddChatMember.construct if skip_validation else AddChatMember
 
@@ -1598,13 +1626,21 @@ class API:
         """
         Adds multiple new members to a chat. Currently this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            user_ids (:obj:`list[int]`)
-                Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param user_ids: Identifiers of the users to be added to the chat. The maximum number of added users is 20 for supergroups and 100 for channels
+        :type user_ids: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AddChatMembers.construct if skip_validation else AddChatMembers
 
@@ -1629,13 +1665,21 @@ class API:
         """
         Adds a chat to a chat list. A chat can't be simultaneously in Main and Archive chat lists, so it is automatically removed from another one if needed
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            chat_list (:class:`ChatList`)
-                The chat list. Use getChatListsToAddChat to get suitable chat lists
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param chat_list: The chat list. Use getChatListsToAddChat to get suitable chat lists
+        :type chat_list: :class:`ChatList`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AddChatToList.construct if skip_validation else AddChatToList
 
@@ -1660,13 +1704,21 @@ class API:
         """
         Adds a user to the contact list or edits an existing contact by their user identifier
         
-        Params:
-            contact (:class:`Contact`)
-                The contact to add or edit; phone number can be empty and needs to be specified only if known, vCard is ignored
-            
-            share_phone_number (:class:`bool`)
-                True, if the new contact needs to be allowed to see current user's phone number. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
-            
+        :param contact: The contact to add or edit; phone number can be empty and needs to be specified only if known, vCard is ignored
+        :type contact: :class:`Contact`
+        
+        :param share_phone_number: True, if the new contact needs to be allowed to see current user's phone number. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
+        :type share_phone_number: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AddContact.construct if skip_validation else AddContact
 
@@ -1690,10 +1742,18 @@ class API:
         """
         Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
         
-        Params:
-            language_pack_id (:class:`str`)
-                Identifier of a language pack to be added; may be different from a name that is used in an "https://t.me/setlanguage/" link
-            
+        :param language_pack_id: Identifier of a language pack to be added; may be different from a name that is used in an "https://t.me/setlanguage/" link
+        :type language_pack_id: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AddCustomServerLanguagePack.construct if skip_validation else AddCustomServerLanguagePack
 
@@ -1716,10 +1776,18 @@ class API:
         """
         Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list
         
-        Params:
-            sticker (:class:`InputFile`)
-                Sticker file to add
-            
+        :param sticker: Sticker file to add
+        :type sticker: :class:`InputFile`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AddFavoriteSticker.construct if skip_validation else AddFavoriteSticker
 
@@ -1746,22 +1814,30 @@ class API:
         """
         Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
         
-        Params:
-            chat_id (:class:`int`)
-                Target chat
-            
-            sender (:class:`MessageSender`)
-                The sender sender of the message
-            
-            reply_to_message_id (:class:`int`)
-                Identifier of the message to reply to or 0
-            
-            disable_notification (:class:`bool`)
-                Pass true to disable notification for the message
-            
-            input_message_content (:class:`InputMessageContent`)
-                The content of the message to be added
-            
+        :param chat_id: Target chat
+        :type chat_id: :class:`int`
+        
+        :param sender: The sender sender of the message
+        :type sender: :class:`MessageSender`
+        
+        :param reply_to_message_id: Identifier of the message to reply to or 0
+        :type reply_to_message_id: :class:`int`
+        
+        :param disable_notification: Pass true to disable notification for the message
+        :type disable_notification: :class:`bool`
+        
+        :param input_message_content: The content of the message to be added
+        :type input_message_content: :class:`InputMessageContent`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = AddLocalMessage.construct if skip_validation else AddLocalMessage
 
@@ -1789,13 +1865,21 @@ class API:
         """
         Adds a message to TDLib internal log. Can be called synchronously
         
-        Params:
-            verbosity_level (:class:`int`)
-                The minimum verbosity level needed for the message to be logged; 0-1023
-            
-            text (:class:`str`)
-                Text of a message to log
-            
+        :param verbosity_level: The minimum verbosity level needed for the message to be logged; 0-1023
+        :type verbosity_level: :class:`int`
+        
+        :param text: Text of a message to log
+        :type text: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AddLogMessage.construct if skip_validation else AddLogMessage
 
@@ -1819,10 +1903,18 @@ class API:
         """
         Adds the specified data to data usage statistics. Can be called before authorization
         
-        Params:
-            entry (:class:`NetworkStatisticsEntry`)
-                The network statistics entry with the data to be added to statistics
-            
+        :param entry: The network statistics entry with the data to be added to statistics
+        :type entry: :class:`NetworkStatisticsEntry`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AddNetworkStatistics.construct if skip_validation else AddNetworkStatistics
 
@@ -1848,19 +1940,27 @@ class API:
         """
         Adds a proxy server for network requests. Can be called before authorization
         
-        Params:
-            server (:class:`str`)
-                Proxy server IP address
-            
-            port (:class:`int`)
-                Proxy server port
-            
-            enable (:class:`bool`)
-                True, if the proxy should be enabled
-            
-            type_ (:class:`ProxyType`)
-                Proxy type
-            
+        :param server: Proxy server IP address
+        :type server: :class:`str`
+        
+        :param port: Proxy server port
+        :type port: :class:`int`
+        
+        :param enable: True, if the proxy should be enabled
+        :type enable: :class:`bool`
+        
+        :param type_: Proxy type
+        :type type_: :class:`ProxyType`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Proxy`
         """
         _constructor = AddProxy.construct if skip_validation else AddProxy
 
@@ -1887,13 +1987,21 @@ class API:
         """
         Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list
         
-        Params:
-            is_attached (:class:`bool`)
-                Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers
-            
-            sticker (:class:`InputFile`)
-                Sticker file to add
-            
+        :param is_attached: Pass true to add the sticker to the list of stickers recently attached to photo or video files; pass false to add the sticker to the list of recently sent stickers
+        :type is_attached: :class:`bool`
+        
+        :param sticker: Sticker file to add
+        :type sticker: :class:`InputFile`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Stickers`
         """
         _constructor = AddRecentSticker.construct if skip_validation else AddRecentSticker
 
@@ -1917,10 +2025,18 @@ class API:
         """
         Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat to add
-            
+        :param chat_id: Identifier of the chat to add
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AddRecentlyFoundChat.construct if skip_validation else AddRecentlyFoundChat
 
@@ -1943,10 +2059,18 @@ class API:
         """
         Manually adds a new animation to the list of saved animations. The new animation is added to the beginning of the list. If the animation was already in the list, it is removed first. Only non-secret video animations with MIME type "video/mp4" can be added to the list
         
-        Params:
-            animation (:class:`InputFile`)
-                The animation file to be added. Only animations known to the server (i.e., successfully sent via a message) can be added to the list
-            
+        :param animation: The animation file to be added. Only animations known to the server (i.e., successfully sent via a message) can be added to the list
+        :type animation: :class:`InputFile`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AddSavedAnimation.construct if skip_validation else AddSavedAnimation
 
@@ -1971,16 +2095,24 @@ class API:
         """
         Adds a new sticker to a set; for bots only. Returns the sticker set
         
-        Params:
-            user_id (:class:`int`)
-                Sticker set owner
-            
-            name (:class:`str`)
-                Sticker set name
-            
-            sticker (:class:`InputSticker`)
-                Sticker to add to the set
-            
+        :param user_id: Sticker set owner
+        :type user_id: :class:`int`
+        
+        :param name: Sticker set name
+        :type name: :class:`str`
+        
+        :param sticker: Sticker to add to the set
+        :type sticker: :class:`InputSticker`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StickerSet`
         """
         _constructor = AddStickerToSet.construct if skip_validation else AddStickerToSet
 
@@ -2009,22 +2141,30 @@ class API:
         """
         Sets the result of a callback query; for bots only
         
-        Params:
-            callback_query_id (:class:`int`)
-                Identifier of the callback query
-            
-            text (:class:`str`)
-                Text of the answer
-            
-            show_alert (:class:`bool`)
-                If true, an alert should be shown to the user instead of a toast notification
-            
-            url (:class:`str`)
-                URL to be opened
-            
-            cache_time (:class:`int`)
-                Time during which the result of the query can be cached, in seconds
-            
+        :param callback_query_id: Identifier of the callback query
+        :type callback_query_id: :class:`int`
+        
+        :param text: Text of the answer
+        :type text: :class:`str`
+        
+        :param show_alert: If true, an alert should be shown to the user instead of a toast notification
+        :type show_alert: :class:`bool`
+        
+        :param url: URL to be opened
+        :type url: :class:`str`
+        
+        :param cache_time: Time during which the result of the query can be cached, in seconds
+        :type cache_time: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AnswerCallbackQuery.construct if skip_validation else AnswerCallbackQuery
 
@@ -2052,13 +2192,21 @@ class API:
         """
         Answers a custom query; for bots only
         
-        Params:
-            custom_query_id (:class:`int`)
-                Identifier of a custom query
-            
-            data (:class:`str`)
-                JSON-serialized answer to the query
-            
+        :param custom_query_id: Identifier of a custom query
+        :type custom_query_id: :class:`int`
+        
+        :param data: JSON-serialized answer to the query
+        :type data: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AnswerCustomQuery.construct if skip_validation else AnswerCustomQuery
 
@@ -2088,28 +2236,36 @@ class API:
         """
         Sets the result of an inline query; for bots only
         
-        Params:
-            inline_query_id (:class:`int`)
-                Identifier of the inline query
-            
-            is_personal (:class:`bool`)
-                True, if the result of the query can be cached for the specified user
-            
-            results (:obj:`list[InputInlineQueryResult]`)
-                The results of the query
-            
-            cache_time (:class:`int`)
-                Allowed time to cache the results of the query, in seconds
-            
-            next_offset (:class:`str`)
-                Offset for the next inline query; pass an empty string if there are no more results
-            
-            switch_pm_text (:class:`str`)
-                If non-empty, this text should be shown on the button that opens a private chat with the bot and sends a start message to the bot with the parameter switch_pm_parameter
-            
-            switch_pm_parameter (:class:`str`)
-                The parameter for the bot start message
-            
+        :param inline_query_id: Identifier of the inline query
+        :type inline_query_id: :class:`int`
+        
+        :param is_personal: True, if the result of the query can be cached for the specified user
+        :type is_personal: :class:`bool`
+        
+        :param results: The results of the query
+        :type results: :class:`list[InputInlineQueryResult]`
+        
+        :param cache_time: Allowed time to cache the results of the query, in seconds
+        :type cache_time: :class:`int`
+        
+        :param next_offset: Offset for the next inline query; pass an empty string if there are no more results
+        :type next_offset: :class:`str`
+        
+        :param switch_pm_text: If non-empty, this text should be shown on the button that opens a private chat with the bot and sends a start message to the bot with the parameter switch_pm_parameter
+        :type switch_pm_text: :class:`str`
+        
+        :param switch_pm_parameter: The parameter for the bot start message
+        :type switch_pm_parameter: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AnswerInlineQuery.construct if skip_validation else AnswerInlineQuery
 
@@ -2139,13 +2295,21 @@ class API:
         """
         Sets the result of a pre-checkout query; for bots only
         
-        Params:
-            pre_checkout_query_id (:class:`int`)
-                Identifier of the pre-checkout query
-            
-            error_message (:class:`str`)
-                An error message, empty on success
-            
+        :param pre_checkout_query_id: Identifier of the pre-checkout query
+        :type pre_checkout_query_id: :class:`int`
+        
+        :param error_message: An error message, empty on success
+        :type error_message: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AnswerPreCheckoutQuery.construct if skip_validation else AnswerPreCheckoutQuery
 
@@ -2171,16 +2335,24 @@ class API:
         """
         Sets the result of a shipping query; for bots only
         
-        Params:
-            shipping_query_id (:class:`int`)
-                Identifier of the shipping query
-            
-            shipping_options (:obj:`list[ShippingOption]`)
-                Available shipping options
-            
-            error_message (:class:`str`)
-                An error message, empty on success
-            
+        :param shipping_query_id: Identifier of the shipping query
+        :type shipping_query_id: :class:`int`
+        
+        :param shipping_options: Available shipping options
+        :type shipping_options: :class:`list[ShippingOption]`
+        
+        :param error_message: An error message, empty on success
+        :type error_message: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = AnswerShippingQuery.construct if skip_validation else AnswerShippingQuery
 
@@ -2208,19 +2380,27 @@ class API:
         """
         Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            member_id (:class:`MessageSender`)
-                Member identifier
-            
-            banned_until_date (:class:`int`)
-                Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups
-            
-            revoke_messages (:class:`bool`)
-                Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param member_id: Member identifier
+        :type member_id: :class:`MessageSender`
+        
+        :param banned_until_date: Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups
+        :type banned_until_date: :class:`int`
+        
+        :param revoke_messages: Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
+        :type revoke_messages: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = BanChatMember.construct if skip_validation else BanChatMember
 
@@ -2249,19 +2429,27 @@ class API:
         """
         Blocks an original sender of a message in the Replies chat
         
-        Params:
-            message_id (:class:`int`)
-                The identifier of an incoming message in the Replies chat
-            
-            delete_message (:class:`bool`)
-                Pass true if the message must be deleted
-            
-            delete_all_messages (:class:`bool`)
-                Pass true if all messages from the same sender must be deleted
-            
-            report_spam (:class:`bool`)
-                Pass true if the sender must be reported to the Telegram moderators
-            
+        :param message_id: The identifier of an incoming message in the Replies chat
+        :type message_id: :class:`int`
+        
+        :param delete_message: Pass true if the message must be deleted
+        :type delete_message: :class:`bool`
+        
+        :param delete_all_messages: Pass true if all messages from the same sender must be deleted
+        :type delete_all_messages: :class:`bool`
+        
+        :param report_spam: Pass true if the sender must be reported to the Telegram moderators
+        :type report_spam: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = BlockMessageSenderFromReplies.construct if skip_validation else BlockMessageSenderFromReplies
 
@@ -2304,13 +2492,21 @@ class API:
         """
         Stops the downloading of a file. If a file has already been downloaded, does nothing
         
-        Params:
-            file_id (:class:`int`)
-                Identifier of a file to stop downloading
-            
-            only_if_pending (:class:`bool`)
-                Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server
-            
+        :param file_id: Identifier of a file to stop downloading
+        :type file_id: :class:`int`
+        
+        :param only_if_pending: Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server
+        :type only_if_pending: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CancelDownloadFile.construct if skip_validation else CancelDownloadFile
 
@@ -2345,10 +2541,18 @@ class API:
         """
         Stops the uploading of a file. Supported only for files uploaded by using uploadFile. For other files the behavior is undefined
         
-        Params:
-            file_id (:class:`int`)
-                Identifier of the file to stop uploading
-            
+        :param file_id: Identifier of the file to stop uploading
+        :type file_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CancelUploadFile.construct if skip_validation else CancelUploadFile
 
@@ -2371,10 +2575,18 @@ class API:
         """
         Changes imported contacts using the list of contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts. Query result depends on the result of the previous query, so only one query is possible at the same time
         
-        Params:
-            contacts (:obj:`list[Contact]`)
-                The new list of contacts, contact's vCard are ignored and are not imported
-            
+        :param contacts: The new list of contacts, contact's vCard are ignored and are not imported
+        :type contacts: :class:`list[Contact]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ImportedContacts`
         """
         _constructor = ChangeImportedContacts.construct if skip_validation else ChangeImportedContacts
 
@@ -2398,13 +2610,21 @@ class API:
         """
         Changes the phone number of the user and sends an authentication code to the user's new phone number. On success, returns information about the sent code
         
-        Params:
-            phone_number (:class:`str`)
-                The new phone number of the user in international format
-            
-            settings (:class:`PhoneNumberAuthenticationSettings`)
-                Settings for the authentication of the user's phone number
-            
+        :param phone_number: The new phone number of the user in international format
+        :type phone_number: :class:`str`
+        
+        :param settings: Settings for the authentication of the user's phone number
+        :type settings: :class:`PhoneNumberAuthenticationSettings`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.AuthenticationCodeInfo`
         """
         _constructor = ChangePhoneNumber.construct if skip_validation else ChangePhoneNumber
 
@@ -2430,16 +2650,24 @@ class API:
         """
         Installs/uninstalls or activates/archives a sticker set
         
-        Params:
-            set_id (:class:`int`)
-                Identifier of the sticker set
-            
-            is_installed (:class:`bool`)
-                The new value of is_installed
-            
-            is_archived (:class:`bool`)
-                The new value of is_archived. A sticker set can't be installed and archived simultaneously
-            
+        :param set_id: Identifier of the sticker set
+        :type set_id: :class:`int`
+        
+        :param is_installed: The new value of is_installed
+        :type is_installed: :class:`bool`
+        
+        :param is_archived: The new value of is_archived. A sticker set can't be installed and archived simultaneously
+        :type is_archived: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ChangeStickerSet.construct if skip_validation else ChangeStickerSet
 
@@ -2464,10 +2692,18 @@ class API:
         """
         Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in
         
-        Params:
-            token (:class:`str`)
-                The bot token
-            
+        :param token: The bot token
+        :type token: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CheckAuthenticationBotToken.construct if skip_validation else CheckAuthenticationBotToken
 
@@ -2490,10 +2726,18 @@ class API:
         """
         Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
         
-        Params:
-            code (:class:`str`)
-                The verification code received via SMS, Telegram message, phone call, or flash call
-            
+        :param code: The verification code received via SMS, Telegram message, phone call, or flash call
+        :type code: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CheckAuthenticationCode.construct if skip_validation else CheckAuthenticationCode
 
@@ -2516,10 +2760,18 @@ class API:
         """
         Checks the authentication password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
         
-        Params:
-            password (:class:`str`)
-                The password to check
-            
+        :param password: The password to check
+        :type password: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CheckAuthenticationPassword.construct if skip_validation else CheckAuthenticationPassword
 
@@ -2542,10 +2794,18 @@ class API:
         """
         Checks whether a password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
         
-        Params:
-            recovery_code (:class:`str`)
-                Recovery code to check
-            
+        :param recovery_code: Recovery code to check
+        :type recovery_code: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CheckAuthenticationPasswordRecoveryCode.construct if skip_validation else CheckAuthenticationPasswordRecoveryCode
 
@@ -2568,10 +2828,18 @@ class API:
         """
         Checks the authentication code sent to confirm a new phone number of the user
         
-        Params:
-            code (:class:`str`)
-                Verification code received by SMS, phone call or flash call
-            
+        :param code: Verification code received by SMS, phone call or flash call
+        :type code: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CheckChangePhoneNumberCode.construct if skip_validation else CheckChangePhoneNumberCode
 
@@ -2594,10 +2862,18 @@ class API:
         """
         Checks the validity of an invite link for a chat and returns information about the corresponding chat
         
-        Params:
-            invite_link (:class:`str`)
-                Invite link to be checked
-            
+        :param invite_link: Invite link to be checked
+        :type invite_link: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatInviteLinkInfo`
         """
         _constructor = CheckChatInviteLink.construct if skip_validation else CheckChatInviteLink
 
@@ -2621,13 +2897,21 @@ class API:
         """
         Checks whether a username can be set for a chat
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier; should be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
-            
-            username (:class:`str`)
-                Username to be checked
-            
+        :param chat_id: Chat identifier; should be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
+        :type chat_id: :class:`int`
+        
+        :param username: Username to be checked
+        :type username: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.CheckChatUsernameResult`
         """
         _constructor = CheckChatUsername.construct if skip_validation else CheckChatUsername
 
@@ -2651,10 +2935,18 @@ class API:
         """
         Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached
         
-        Params:
-            type_ (:class:`PublicChatType`)
-                Type of the public chats, for which to check the limit
-            
+        :param type_: Type of the public chats, for which to check the limit
+        :type type_: :class:`PublicChatType`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CheckCreatedPublicChatsLimit.construct if skip_validation else CheckCreatedPublicChatsLimit
 
@@ -2677,10 +2969,18 @@ class API:
         """
         Checks the database encryption key for correctness. Works only when the current authorization state is authorizationStateWaitEncryptionKey
         
-        Params:
-            encryption_key (:class:`str`)
-                Encryption key to check or set up
-            
+        :param encryption_key: Encryption key to check or set up
+        :type encryption_key: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CheckDatabaseEncryptionKey.construct if skip_validation else CheckDatabaseEncryptionKey
 
@@ -2703,10 +3003,18 @@ class API:
         """
         Checks the email address verification code for Telegram Passport
         
-        Params:
-            code (:class:`str`)
-                Verification code
-            
+        :param code: Verification code
+        :type code: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CheckEmailAddressVerificationCode.construct if skip_validation else CheckEmailAddressVerificationCode
 
@@ -2729,10 +3037,18 @@ class API:
         """
         Checks whether a 2-step verification password recovery code sent to an email address is valid
         
-        Params:
-            recovery_code (:class:`str`)
-                Recovery code to check
-            
+        :param recovery_code: Recovery code to check
+        :type recovery_code: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CheckPasswordRecoveryCode.construct if skip_validation else CheckPasswordRecoveryCode
 
@@ -2755,10 +3071,18 @@ class API:
         """
         Checks phone number confirmation code
         
-        Params:
-            code (:class:`str`)
-                The phone number confirmation code
-            
+        :param code: The phone number confirmation code
+        :type code: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CheckPhoneNumberConfirmationCode.construct if skip_validation else CheckPhoneNumberConfirmationCode
 
@@ -2781,10 +3105,18 @@ class API:
         """
         Checks the phone number verification code for Telegram Passport
         
-        Params:
-            code (:class:`str`)
-                Verification code
-            
+        :param code: Verification code
+        :type code: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CheckPhoneNumberVerificationCode.construct if skip_validation else CheckPhoneNumberVerificationCode
 
@@ -2807,10 +3139,18 @@ class API:
         """
         Checks the 2-step verification recovery email address verification code
         
-        Params:
-            code (:class:`str`)
-                Verification code
-            
+        :param code: Verification code
+        :type code: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PasswordState`
         """
         _constructor = CheckRecoveryEmailAddressCode.construct if skip_validation else CheckRecoveryEmailAddressCode
 
@@ -2833,10 +3173,18 @@ class API:
         """
         Checks whether a name can be used for a new sticker set
         
-        Params:
-            name (:class:`str`)
-                Name to be checked
-            
+        :param name: Name to be checked
+        :type name: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.CheckStickerSetNameResult`
         """
         _constructor = CheckStickerSetName.construct if skip_validation else CheckStickerSetName
 
@@ -2859,10 +3207,18 @@ class API:
         """
         Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. Can be called synchronously
         
-        Params:
-            file_name (:class:`str`)
-                File name or path to the file
-            
+        :param file_name: File name or path to the file
+        :type file_name: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Text`
         """
         _constructor = CleanFileName.construct if skip_validation else CleanFileName
 
@@ -2885,10 +3241,18 @@ class API:
         """
         Clears draft messages in all chats
         
-        Params:
-            exclude_secret_chats (:class:`bool`)
-                If true, local draft messages in secret chats will not be cleared
-            
+        :param exclude_secret_chats: If true, local draft messages in secret chats will not be cleared
+        :type exclude_secret_chats: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ClearAllDraftMessages.construct if skip_validation else ClearAllDraftMessages
 
@@ -2922,10 +3286,18 @@ class API:
         """
         Clears the list of recently used stickers
         
-        Params:
-            is_attached (:class:`bool`)
-                Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers
-            
+        :param is_attached: Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers
+        :type is_attached: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ClearRecentStickers.construct if skip_validation else ClearRecentStickers
 
@@ -2960,13 +3332,21 @@ class API:
         """
         Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier of the message
-            
-            message_id (:class:`int`)
-                Identifier of the clicked message
-            
+        :param chat_id: Chat identifier of the message
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the clicked message
+        :type message_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Sticker`
         """
         _constructor = ClickAnimatedEmojiMessage.construct if skip_validation else ClickAnimatedEmojiMessage
 
@@ -3001,10 +3381,18 @@ class API:
         """
         Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CloseChat.construct if skip_validation else CloseChat
 
@@ -3027,10 +3415,18 @@ class API:
         """
         Closes a secret chat, effectively transferring its state to secretChatStateClosed
         
-        Params:
-            secret_chat_id (:class:`int`)
-                Secret chat identifier
-            
+        :param secret_chat_id: Secret chat identifier
+        :type secret_chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = CloseSecretChat.construct if skip_validation else CloseSecretChat
 
@@ -3053,10 +3449,18 @@ class API:
         """
         Confirms QR code authentication on another device. Returns created session on success
         
-        Params:
-            link (:class:`str`)
-                A link from a QR code. The link must be scanned by the in-app camera
-            
+        :param link: A link from a QR code. The link must be scanned by the in-app camera
+        :type link: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Session`
         """
         _constructor = ConfirmQrCodeAuthentication.construct if skip_validation else ConfirmQrCodeAuthentication
 
@@ -3080,13 +3484,21 @@ class API:
         """
         Returns an existing chat corresponding to a known basic group
         
-        Params:
-            basic_group_id (:class:`int`)
-                Basic group identifier
-            
-            force (:class:`bool`)
-                If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
-            
+        :param basic_group_id: Basic group identifier
+        :type basic_group_id: :class:`int`
+        
+        :param force: If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
+        :type force: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chat`
         """
         _constructor = CreateBasicGroupChat.construct if skip_validation else CreateBasicGroupChat
 
@@ -3112,16 +3524,24 @@ class API:
         """
         Creates a new call
         
-        Params:
-            user_id (:class:`int`)
-                Identifier of the user to be called
-            
-            protocol (:class:`CallProtocol`)
-                Description of the call protocols supported by the application
-            
-            is_video (:class:`bool`)
-                True, if a video call needs to be created
-            
+        :param user_id: Identifier of the user to be called
+        :type user_id: :class:`int`
+        
+        :param protocol: Description of the call protocols supported by the application
+        :type protocol: :class:`CallProtocol`
+        
+        :param is_video: True, if a video call needs to be created
+        :type is_video: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.CallId`
         """
         _constructor = CreateCall.construct if skip_validation else CreateCall
 
@@ -3146,10 +3566,18 @@ class API:
         """
         Creates new chat filter. Returns information about the created chat filter
         
-        Params:
-            filter_ (:class:`ChatFilter`)
-                Chat filter
-            
+        :param filter_: Chat filter
+        :type filter_: :class:`ChatFilter`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatFilterInfo`
         """
         _constructor = CreateChatFilter.construct if skip_validation else CreateChatFilter
 
@@ -3174,16 +3602,24 @@ class API:
         """
         Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            expire_date (:class:`int`)
-                Point in time (Unix timestamp) when the link will expire; pass 0 if never
-            
-            member_limit (:class:`int`)
-                The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param expire_date: Point in time (Unix timestamp) when the link will expire; pass 0 if never
+        :type expire_date: :class:`int`
+        
+        :param member_limit: The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+        :type member_limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatInviteLink`
         """
         _constructor = CreateChatInviteLink.construct if skip_validation else CreateChatInviteLink
 
@@ -3209,13 +3645,21 @@ class API:
         """
         Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
         
-        Params:
-            user_ids (:obj:`list[int]`)
-                Identifiers of users to be added to the basic group
-            
-            title (:class:`str`)
-                Title of the new basic group; 1-128 characters
-            
+        :param user_ids: Identifiers of users to be added to the basic group
+        :type user_ids: :class:`list[int]`
+        
+        :param title: Title of the new basic group; 1-128 characters
+        :type title: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chat`
         """
         _constructor = CreateNewBasicGroupChat.construct if skip_validation else CreateNewBasicGroupChat
 
@@ -3239,10 +3683,18 @@ class API:
         """
         Creates a new secret chat. Returns the newly created chat
         
-        Params:
-            user_id (:class:`int`)
-                Identifier of the target user
-            
+        :param user_id: Identifier of the target user
+        :type user_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chat`
         """
         _constructor = CreateNewSecretChat.construct if skip_validation else CreateNewSecretChat
 
@@ -3270,25 +3722,33 @@ class API:
         """
         Creates a new sticker set. Returns the newly created sticker set
         
-        Params:
-            user_id (:class:`int`)
-                Sticker set owner; ignored for regular users
-            
-            title (:class:`str`)
-                Sticker set title; 1-64 characters
-            
-            name (:class:`str`)
-                Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
-            
-            is_masks (:class:`bool`)
-                True, if stickers are masks. Animated stickers can't be masks
-            
-            stickers (:obj:`list[InputSticker]`)
-                List of stickers to be added to the set; must be non-empty. All stickers must be of the same type. For animated stickers, uploadStickerFile must be used before the sticker is shown
-            
-            source (:class:`str`)
-                Source of the sticker set; may be empty if unknown
-            
+        :param user_id: Sticker set owner; ignored for regular users
+        :type user_id: :class:`int`
+        
+        :param title: Sticker set title; 1-64 characters
+        :type title: :class:`str`
+        
+        :param name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
+        :type name: :class:`str`
+        
+        :param is_masks: True, if stickers are masks. Animated stickers can't be masks
+        :type is_masks: :class:`bool`
+        
+        :param stickers: List of stickers to be added to the set; must be non-empty. All stickers must be of the same type. For animated stickers, uploadStickerFile must be used before the sticker is shown
+        :type stickers: :class:`list[InputSticker]`
+        
+        :param source: Source of the sticker set; may be empty if unknown
+        :type source: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StickerSet`
         """
         _constructor = CreateNewStickerSet.construct if skip_validation else CreateNewStickerSet
 
@@ -3320,22 +3780,30 @@ class API:
         """
         Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
         
-        Params:
-            title (:class:`str`)
-                Title of the new chat; 1-128 characters
-            
-            is_channel (:class:`bool`)
-                True, if a channel chat needs to be created
-            
-            param_description (:class:`str`)
-                Chat description; 0-255 characters
-            
-            location (:class:`ChatLocation`)
-                Chat location if a location-based supergroup is being created
-            
-            for_import (:class:`bool`)
-                True, if the supergroup is created for importing messages using importMessage
-            
+        :param title: Title of the new chat; 1-128 characters
+        :type title: :class:`str`
+        
+        :param is_channel: True, if a channel chat needs to be created
+        :type is_channel: :class:`bool`
+        
+        :param param_description: Chat description; 0-255 characters, defaults to None
+        :type param_description: :class:`str`, optional
+        
+        :param location: Chat location if a location-based supergroup is being created
+        :type location: :class:`ChatLocation`
+        
+        :param for_import: True, if the supergroup is created for importing messages using importMessage
+        :type for_import: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chat`
         """
         _constructor = CreateNewSupergroupChat.construct if skip_validation else CreateNewSupergroupChat
 
@@ -3363,13 +3831,21 @@ class API:
         """
         Returns an existing chat corresponding to a given user
         
-        Params:
-            user_id (:class:`int`)
-                User identifier
-            
-            force (:class:`bool`)
-                If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
-            
+        :param user_id: User identifier
+        :type user_id: :class:`int`
+        
+        :param force: If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
+        :type force: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chat`
         """
         _constructor = CreatePrivateChat.construct if skip_validation else CreatePrivateChat
 
@@ -3393,10 +3869,18 @@ class API:
         """
         Returns an existing chat corresponding to a known secret chat
         
-        Params:
-            secret_chat_id (:class:`int`)
-                Secret chat identifier
-            
+        :param secret_chat_id: Secret chat identifier
+        :type secret_chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chat`
         """
         _constructor = CreateSecretChat.construct if skip_validation else CreateSecretChat
 
@@ -3420,13 +3904,21 @@ class API:
         """
         Returns an existing chat corresponding to a known supergroup or channel
         
-        Params:
-            supergroup_id (:class:`int`)
-                Supergroup or channel identifier
-            
-            force (:class:`bool`)
-                If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
-            
+        :param supergroup_id: Supergroup or channel identifier
+        :type supergroup_id: :class:`int`
+        
+        :param force: If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
+        :type force: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chat`
         """
         _constructor = CreateSupergroupChat.construct if skip_validation else CreateSupergroupChat
 
@@ -3451,13 +3943,21 @@ class API:
         """
         Creates a new temporary password for processing payments
         
-        Params:
-            password (:class:`str`)
-                Persistent user password
-            
-            valid_for (:class:`int`)
-                Time during which the temporary password will be valid, in seconds; should be between 60 and 86400
-            
+        :param password: Persistent user password
+        :type password: :class:`str`
+        
+        :param valid_for: Time during which the temporary password will be valid, in seconds; should be between 60 and 86400
+        :type valid_for: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.TemporaryPasswordState`
         """
         _constructor = CreateTemporaryPassword.construct if skip_validation else CreateTemporaryPassword
 
@@ -3483,16 +3983,24 @@ class API:
         """
         Creates a voice chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_voice_chats rights
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier, in which the voice chat will be created
-            
-            title (:class:`str`)
-                Group call title; if empty, chat title will be used
-            
-            start_date (:class:`int`)
-                Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the voice chat immediately. The date must be at least 10 seconds and at most 8 days in the future
-            
+        :param chat_id: Chat identifier, in which the voice chat will be created
+        :type chat_id: :class:`int`
+        
+        :param title: Group call title; if empty, chat title will be used
+        :type title: :class:`str`
+        
+        :param start_date: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the voice chat immediately. The date must be at least 10 seconds and at most 8 days in the future
+        :type start_date: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.GroupCallId`
         """
         _constructor = CreateVoiceChat.construct if skip_validation else CreateVoiceChat
 
@@ -3517,10 +4025,18 @@ class API:
         """
         Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword
         
-        Params:
-            reason (:class:`str`)
-                The reason why the account was deleted; optional
-            
+        :param reason: The reason why the account was deleted; optional
+        :type reason: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeleteAccount.construct if skip_validation else DeleteAccount
 
@@ -3543,10 +4059,18 @@ class API:
         """
         Deletes all call messages
         
-        Params:
-            revoke (:class:`bool`)
-                Pass true to delete the messages for all users
-            
+        :param revoke: Pass true to delete the messages for all users
+        :type revoke: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeleteAllCallMessages.construct if skip_validation else DeleteAllCallMessages
 
@@ -3570,13 +4094,21 @@ class API:
         """
         Deletes all revoked chat invite links created by a given chat administrator. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            creator_user_id (:class:`int`)
-                User identifier of a chat administrator, which links will be deleted. Must be an identifier of the current user for non-owner
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param creator_user_id: User identifier of a chat administrator, which links will be deleted. Must be an identifier of the current user for non-owner
+        :type creator_user_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeleteAllRevokedChatInviteLinks.construct if skip_validation else DeleteAllRevokedChatInviteLinks
 
@@ -3600,10 +4132,18 @@ class API:
         """
         Deletes a chat along with all messages in the corresponding chat for all chat members; requires owner privileges. For group chats this will release the username and remove all members. Chats with more than 1000 members can't be deleted using this method
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeleteChat.construct if skip_validation else DeleteChat
 
@@ -3626,10 +4166,18 @@ class API:
         """
         Deletes existing chat filter
         
-        Params:
-            chat_filter_id (:class:`int`)
-                Chat filter identifier
-            
+        :param chat_filter_id: Chat filter identifier
+        :type chat_filter_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeleteChatFilter.construct if skip_validation else DeleteChatFilter
 
@@ -3654,16 +4202,24 @@ class API:
         """
         Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            remove_from_chat_list (:class:`bool`)
-                Pass true if the chat should be removed from the chat list
-            
-            revoke (:class:`bool`)
-                Pass true to try to delete chat history for all users
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param remove_from_chat_list: Pass true if the chat should be removed from the chat list
+        :type remove_from_chat_list: :class:`bool`
+        
+        :param revoke: Pass true to try to delete chat history for all users
+        :type revoke: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeleteChatHistory.construct if skip_validation else DeleteChatHistory
 
@@ -3689,13 +4245,21 @@ class API:
         """
         Deletes all messages sent by the specified user to a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            user_id (:class:`int`)
-                User identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param user_id: User identifier
+        :type user_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeleteChatMessagesFromUser.construct if skip_validation else DeleteChatMessagesFromUser
 
@@ -3720,13 +4284,21 @@ class API:
         """
         Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a ForceReply reply markup has been used. UpdateChatReplyMarkup will be sent if the reply markup will be changed
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            message_id (:class:`int`)
-                The message identifier of the used keyboard
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param message_id: The message identifier of the used keyboard
+        :type message_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeleteChatReplyMarkup.construct if skip_validation else DeleteChatReplyMarkup
 
@@ -3751,13 +4323,21 @@ class API:
         """
         Deletes commands supported by the bot for the given user scope and language; for bots only
         
-        Params:
-            scope (:class:`BotCommandScope`)
-                The scope to which the commands are relevant
-            
-            language_code (:class:`str`)
-                A two-letter ISO 639-1 country code or an empty string
-            
+        :param scope: The scope to which the commands are relevant
+        :type scope: :class:`BotCommandScope`
+        
+        :param language_code: A two-letter ISO 639-1 country code or an empty string
+        :type language_code: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeleteCommands.construct if skip_validation else DeleteCommands
 
@@ -3781,10 +4361,18 @@ class API:
         """
         Deletes a file from the TDLib file cache
         
-        Params:
-            file_id (:class:`int`)
-                Identifier of the file to delete
-            
+        :param file_id: Identifier of the file to delete
+        :type file_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeleteFile.construct if skip_validation else DeleteFile
 
@@ -3807,10 +4395,18 @@ class API:
         """
         Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization
         
-        Params:
-            language_pack_id (:class:`str`)
-                Identifier of the language pack to delete
-            
+        :param language_pack_id: Identifier of the language pack to delete
+        :type language_pack_id: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeleteLanguagePack.construct if skip_validation else DeleteLanguagePack
 
@@ -3835,16 +4431,24 @@ class API:
         """
         Deletes messages
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            message_ids (:obj:`list[int]`)
-                Identifiers of the messages to be deleted
-            
-            revoke (:class:`bool`)
-                Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param message_ids: Identifiers of the messages to be deleted
+        :type message_ids: :class:`list[int]`
+        
+        :param revoke: Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
+        :type revoke: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeleteMessages.construct if skip_validation else DeleteMessages
 
@@ -3869,10 +4473,18 @@ class API:
         """
         Deletes a Telegram Passport element
         
-        Params:
-            type_ (:class:`PassportElementType`)
-                Element type
-            
+        :param type_: Element type
+        :type type_: :class:`PassportElementType`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeletePassportElement.construct if skip_validation else DeletePassportElement
 
@@ -3895,10 +4507,18 @@ class API:
         """
         Deletes a profile photo
         
-        Params:
-            profile_photo_id (:class:`int`)
-                Identifier of the profile photo to delete
-            
+        :param profile_photo_id: Identifier of the profile photo to delete
+        :type profile_photo_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeleteProfilePhoto.construct if skip_validation else DeleteProfilePhoto
 
@@ -3922,13 +4542,21 @@ class API:
         """
         Deletes revoked chat invite links. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            invite_link (:class:`str`)
-                Invite link to revoke
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param invite_link: Invite link to revoke
+        :type invite_link: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DeleteRevokedChatInviteLink.construct if skip_validation else DeleteRevokedChatInviteLink
 
@@ -4000,22 +4628,30 @@ class API:
         """
         Discards a call
         
-        Params:
-            call_id (:class:`int`)
-                Call identifier
-            
-            is_disconnected (:class:`bool`)
-                True, if the user was disconnected
-            
-            duration (:class:`int`)
-                The call duration, in seconds
-            
-            is_video (:class:`bool`)
-                True, if the call was a video call
-            
-            connection_id (:class:`int`)
-                Identifier of the connection used during the call
-            
+        :param call_id: Call identifier
+        :type call_id: :class:`int`
+        
+        :param is_disconnected: True, if the user was disconnected
+        :type is_disconnected: :class:`bool`
+        
+        :param duration: The call duration, in seconds
+        :type duration: :class:`int`
+        
+        :param is_video: True, if the call was a video call
+        :type is_video: :class:`bool`
+        
+        :param connection_id: Identifier of the connection used during the call
+        :type connection_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DiscardCall.construct if skip_validation else DiscardCall
 
@@ -4042,10 +4678,18 @@ class API:
         """
         Discards a group call. Requires groupCall.can_be_managed
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DiscardGroupCall.construct if skip_validation else DiscardGroupCall
 
@@ -4079,10 +4723,18 @@ class API:
         """
         Disconnects website from the current user's Telegram account
         
-        Params:
-            website_id (:class:`int`)
-                Website identifier
-            
+        :param website_id: Website identifier
+        :type website_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = DisconnectWebsite.construct if skip_validation else DisconnectWebsite
 
@@ -4109,22 +4761,30 @@ class API:
         """
         Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
         
-        Params:
-            file_id (:class:`int`)
-                Identifier of the file to download
-            
-            priority (:class:`int`)
-                Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first
-            
-            offset (:class:`int`)
-                The starting position from which the file should be downloaded
-            
-            limit (:class:`int`)
-                Number of bytes which should be downloaded starting from the "offset" position before the download will be automatically canceled; use 0 to download without a limit
-            
-            synchronous (:class:`bool`)
-                If false, this request returns file state just after the download has been started. If true, this request returns file state only after the download has succeeded, has failed, has been canceled or a new downloadFile request with different offset/limit parameters was sent
-            
+        :param file_id: Identifier of the file to download
+        :type file_id: :class:`int`
+        
+        :param priority: Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first
+        :type priority: :class:`int`
+        
+        :param offset: The starting position from which the file should be downloaded
+        :type offset: :class:`int`
+        
+        :param limit: Number of bytes which should be downloaded starting from the "offset" position before the download will be automatically canceled; use 0 to download without a limit
+        :type limit: :class:`int`
+        
+        :param synchronous: If false, this request returns file state just after the download has been started. If true, this request returns file state only after the download has succeeded, has failed, has been canceled or a new downloadFile request with different offset/limit parameters was sent
+        :type synchronous: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.File`
         """
         _constructor = DownloadFile.construct if skip_validation else DownloadFile
 
@@ -4152,13 +4812,21 @@ class API:
         """
         Edits existing chat filter. Returns information about the edited chat filter
         
-        Params:
-            chat_filter_id (:class:`int`)
-                Chat filter identifier
-            
-            filter_ (:class:`ChatFilter`)
-                The edited chat filter
-            
+        :param chat_filter_id: Chat filter identifier
+        :type chat_filter_id: :class:`int`
+        
+        :param filter_: The edited chat filter
+        :type filter_: :class:`ChatFilter`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatFilterInfo`
         """
         _constructor = EditChatFilter.construct if skip_validation else EditChatFilter
 
@@ -4185,19 +4853,27 @@ class API:
         """
         Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            invite_link (:class:`str`)
-                Invite link to be edited
-            
-            expire_date (:class:`int`)
-                Point in time (Unix timestamp) when the link will expire; pass 0 if never
-            
-            member_limit (:class:`int`)
-                The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param invite_link: Invite link to be edited
+        :type invite_link: :class:`str`
+        
+        :param expire_date: Point in time (Unix timestamp) when the link will expire; pass 0 if never
+        :type expire_date: :class:`int`
+        
+        :param member_limit: The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+        :type member_limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatInviteLink`
         """
         _constructor = EditChatInviteLink.construct if skip_validation else EditChatInviteLink
 
@@ -4223,10 +4899,18 @@ class API:
         """
         Edits information about a custom local language pack in the current localization target. Can be called before authorization
         
-        Params:
-            info (:class:`LanguagePackInfo`)
-                New information about the custom local language pack
-            
+        :param info: New information about the custom local language pack
+        :type info: :class:`LanguagePackInfo`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = EditCustomLanguagePackInfo.construct if skip_validation else EditCustomLanguagePackInfo
 
@@ -4251,16 +4935,24 @@ class API:
         """
         Edits the caption of an inline message sent via a bot; for bots only
         
-        Params:
-            inline_message_id (:class:`str`)
-                Inline message identifier
-            
-            reply_markup (:class:`ReplyMarkup`)
-                The new message reply markup
-            
-            caption (:class:`FormattedText`)
-                New message content caption; 0-GetOption("message_caption_length_max") characters
-            
+        :param inline_message_id: Inline message identifier
+        :type inline_message_id: :class:`str`
+        
+        :param reply_markup: The new message reply markup
+        :type reply_markup: :class:`ReplyMarkup`
+        
+        :param caption: New message content caption; 0-GetOption("message_caption_length_max") characters
+        :type caption: :class:`FormattedText`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = EditInlineMessageCaption.construct if skip_validation else EditInlineMessageCaption
 
@@ -4289,22 +4981,30 @@ class API:
         """
         Edits the content of a live location in an inline message sent via a bot; for bots only
         
-        Params:
-            inline_message_id (:class:`str`)
-                Inline message identifier
-            
-            reply_markup (:class:`ReplyMarkup`)
-                The new message reply markup
-            
-            location (:class:`Location`)
-                New location content of the message; may be null. Pass null to stop sharing the live location
-            
-            heading (:class:`int`)
-                The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
-            
-            proximity_alert_radius (:class:`int`)
-                The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
-            
+        :param inline_message_id: Inline message identifier
+        :type inline_message_id: :class:`str`
+        
+        :param reply_markup: The new message reply markup
+        :type reply_markup: :class:`ReplyMarkup`
+        
+        :param location: New location content of the message; may be null. Pass null to stop sharing the live location, defaults to None
+        :type location: :class:`Location`, optional
+        
+        :param heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+        :type heading: :class:`int`
+        
+        :param proximity_alert_radius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
+        :type proximity_alert_radius: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = EditInlineMessageLiveLocation.construct if skip_validation else EditInlineMessageLiveLocation
 
@@ -4333,16 +5033,24 @@ class API:
         """
         Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
         
-        Params:
-            inline_message_id (:class:`str`)
-                Inline message identifier
-            
-            reply_markup (:class:`ReplyMarkup`)
-                The new message reply markup; for bots only
-            
-            input_message_content (:class:`InputMessageContent`)
-                New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
-            
+        :param inline_message_id: Inline message identifier
+        :type inline_message_id: :class:`str`
+        
+        :param reply_markup: The new message reply markup; for bots only
+        :type reply_markup: :class:`ReplyMarkup`
+        
+        :param input_message_content: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+        :type input_message_content: :class:`InputMessageContent`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = EditInlineMessageMedia.construct if skip_validation else EditInlineMessageMedia
 
@@ -4368,13 +5076,21 @@ class API:
         """
         Edits the reply markup of an inline message sent via a bot; for bots only
         
-        Params:
-            inline_message_id (:class:`str`)
-                Inline message identifier
-            
-            reply_markup (:class:`ReplyMarkup`)
-                The new message reply markup
-            
+        :param inline_message_id: Inline message identifier
+        :type inline_message_id: :class:`str`
+        
+        :param reply_markup: The new message reply markup
+        :type reply_markup: :class:`ReplyMarkup`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = EditInlineMessageReplyMarkup.construct if skip_validation else EditInlineMessageReplyMarkup
 
@@ -4400,16 +5116,24 @@ class API:
         """
         Edits the text of an inline text or game message sent via a bot; for bots only
         
-        Params:
-            inline_message_id (:class:`str`)
-                Inline message identifier
-            
-            reply_markup (:class:`ReplyMarkup`)
-                The new message reply markup
-            
-            input_message_content (:class:`InputMessageContent`)
-                New text content of the message. Should be of type inputMessageText
-            
+        :param inline_message_id: Inline message identifier
+        :type inline_message_id: :class:`str`
+        
+        :param reply_markup: The new message reply markup
+        :type reply_markup: :class:`ReplyMarkup`
+        
+        :param input_message_content: New text content of the message. Should be of type inputMessageText
+        :type input_message_content: :class:`InputMessageContent`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = EditInlineMessageText.construct if skip_validation else EditInlineMessageText
 
@@ -4437,19 +5161,27 @@ class API:
         """
         Edits the message content caption. Returns the edited message after the edit is completed on the server side
         
-        Params:
-            chat_id (:class:`int`)
-                The chat the message belongs to
-            
-            message_id (:class:`int`)
-                Identifier of the message
-            
-            reply_markup (:class:`ReplyMarkup`)
-                The new message reply markup; for bots only
-            
-            caption (:class:`FormattedText`)
-                New message content caption; 0-GetOption("message_caption_length_max") characters
-            
+        :param chat_id: The chat the message belongs to
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param reply_markup: The new message reply markup; for bots only
+        :type reply_markup: :class:`ReplyMarkup`
+        
+        :param caption: New message content caption; 0-GetOption("message_caption_length_max") characters
+        :type caption: :class:`FormattedText`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = EditMessageCaption.construct if skip_validation else EditMessageCaption
 
@@ -4480,25 +5212,33 @@ class API:
         """
         Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
         
-        Params:
-            chat_id (:class:`int`)
-                The chat the message belongs to
-            
-            message_id (:class:`int`)
-                Identifier of the message
-            
-            reply_markup (:class:`ReplyMarkup`)
-                The new message reply markup; for bots only
-            
-            location (:class:`Location`)
-                New location content of the message; may be null. Pass null to stop sharing the live location
-            
-            heading (:class:`int`)
-                The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
-            
-            proximity_alert_radius (:class:`int`)
-                The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
-            
+        :param chat_id: The chat the message belongs to
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param reply_markup: The new message reply markup; for bots only
+        :type reply_markup: :class:`ReplyMarkup`
+        
+        :param location: New location content of the message; may be null. Pass null to stop sharing the live location, defaults to None
+        :type location: :class:`Location`, optional
+        
+        :param heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+        :type heading: :class:`int`
+        
+        :param proximity_alert_radius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
+        :type proximity_alert_radius: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = EditMessageLiveLocation.construct if skip_validation else EditMessageLiveLocation
 
@@ -4529,19 +5269,27 @@ class API:
         """
         Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
         
-        Params:
-            chat_id (:class:`int`)
-                The chat the message belongs to
-            
-            message_id (:class:`int`)
-                Identifier of the message
-            
-            reply_markup (:class:`ReplyMarkup`)
-                The new message reply markup; for bots only
-            
-            input_message_content (:class:`InputMessageContent`)
-                New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
-            
+        :param chat_id: The chat the message belongs to
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param reply_markup: The new message reply markup; for bots only
+        :type reply_markup: :class:`ReplyMarkup`
+        
+        :param input_message_content: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+        :type input_message_content: :class:`InputMessageContent`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = EditMessageMedia.construct if skip_validation else EditMessageMedia
 
@@ -4569,16 +5317,24 @@ class API:
         """
         Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
         
-        Params:
-            chat_id (:class:`int`)
-                The chat the message belongs to
-            
-            message_id (:class:`int`)
-                Identifier of the message
-            
-            reply_markup (:class:`ReplyMarkup`)
-                The new message reply markup
-            
+        :param chat_id: The chat the message belongs to
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param reply_markup: The new message reply markup
+        :type reply_markup: :class:`ReplyMarkup`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = EditMessageReplyMarkup.construct if skip_validation else EditMessageReplyMarkup
 
@@ -4605,16 +5361,24 @@ class API:
         """
         Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
         
-        Params:
-            chat_id (:class:`int`)
-                The chat the message belongs to
-            
-            message_id (:class:`int`)
-                Identifier of the message
-            
-            scheduling_state (:class:`MessageSchedulingState`)
-                The new message scheduling state. Pass null to send the message immediately
-            
+        :param chat_id: The chat the message belongs to
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param scheduling_state: The new message scheduling state. Pass null to send the message immediately
+        :type scheduling_state: :class:`MessageSchedulingState`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = EditMessageSchedulingState.construct if skip_validation else EditMessageSchedulingState
 
@@ -4642,19 +5406,27 @@ class API:
         """
         Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
         
-        Params:
-            chat_id (:class:`int`)
-                The chat the message belongs to
-            
-            message_id (:class:`int`)
-                Identifier of the message
-            
-            reply_markup (:class:`ReplyMarkup`)
-                The new message reply markup; for bots only
-            
-            input_message_content (:class:`InputMessageContent`)
-                New text content of the message. Should be of type inputMessageText
-            
+        :param chat_id: The chat the message belongs to
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param reply_markup: The new message reply markup; for bots only
+        :type reply_markup: :class:`ReplyMarkup`
+        
+        :param input_message_content: New text content of the message. Should be of type inputMessageText
+        :type input_message_content: :class:`InputMessageContent`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = EditMessageText.construct if skip_validation else EditMessageText
 
@@ -4684,22 +5456,30 @@ class API:
         """
         Edits an existing proxy server for network requests. Can be called before authorization
         
-        Params:
-            proxy_id (:class:`int`)
-                Proxy identifier
-            
-            server (:class:`str`)
-                Proxy server IP address
-            
-            port (:class:`int`)
-                Proxy server port
-            
-            enable (:class:`bool`)
-                True, if the proxy should be enabled
-            
-            type_ (:class:`ProxyType`)
-                Proxy type
-            
+        :param proxy_id: Proxy identifier
+        :type proxy_id: :class:`int`
+        
+        :param server: Proxy server IP address
+        :type server: :class:`str`
+        
+        :param port: Proxy server port
+        :type port: :class:`int`
+        
+        :param enable: True, if the proxy should be enabled
+        :type enable: :class:`bool`
+        
+        :param type_: Proxy type
+        :type type_: :class:`ProxyType`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Proxy`
         """
         _constructor = EditProxy.construct if skip_validation else EditProxy
 
@@ -4726,10 +5506,18 @@ class API:
         """
         Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization
         
-        Params:
-            proxy_id (:class:`int`)
-                Proxy identifier
-            
+        :param proxy_id: Proxy identifier
+        :type proxy_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = EnableProxy.construct if skip_validation else EnableProxy
 
@@ -4752,10 +5540,18 @@ class API:
         """
         Ends recording of an active group call. Requires groupCall.can_be_managed group call flag
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = EndGroupCallRecording.construct if skip_validation else EndGroupCallRecording
 
@@ -4778,10 +5574,18 @@ class API:
         """
         Ends screen sharing in a joined group call
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = EndGroupCallScreenSharing.construct if skip_validation else EndGroupCallScreenSharing
 
@@ -4805,13 +5609,21 @@ class API:
         """
         Finishes the file generation
         
-        Params:
-            generation_id (:class:`int`)
-                The identifier of the generation process
-            
-            error (:class:`Error`)
-                If set, means that file generation has failed and should be terminated
-            
+        :param generation_id: The identifier of the generation process
+        :type generation_id: :class:`int`
+        
+        :param error: If set, means that file generation has failed and should be terminated
+        :type error: :class:`Error`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = FinishFileGeneration.construct if skip_validation else FinishFileGeneration
 
@@ -4841,28 +5653,36 @@ class API:
         """
         Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat to which to forward messages
-            
-            from_chat_id (:class:`int`)
-                Identifier of the chat from which to forward messages
-            
-            message_ids (:obj:`list[int]`)
-                Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
-            
-            options (:class:`MessageSendOptions`)
-                Options to be used to send the messages
-            
-            send_copy (:class:`bool`)
-                If true, content of the messages will be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
-            
-            remove_caption (:class:`bool`)
-                If true, media caption of message copies will be removed. Ignored if send_copy is false
-            
-            only_preview (:class:`bool`)
-                If true, messages will not be forwarded and instead fake messages will be returned
-            
+        :param chat_id: Identifier of the chat to which to forward messages
+        :type chat_id: :class:`int`
+        
+        :param from_chat_id: Identifier of the chat from which to forward messages
+        :type from_chat_id: :class:`int`
+        
+        :param message_ids: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
+        :type message_ids: :class:`list[int]`
+        
+        :param options: Options to be used to send the messages
+        :type options: :class:`MessageSendOptions`
+        
+        :param send_copy: If true, content of the messages will be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
+        :type send_copy: :class:`bool`
+        
+        :param remove_caption: If true, media caption of message copies will be removed. Ignored if send_copy is false
+        :type remove_caption: :class:`bool`
+        
+        :param only_preview: If true, messages will not be forwarded and instead fake messages will be returned
+        :type only_preview: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Messages`
         """
         _constructor = ForwardMessages.construct if skip_validation else ForwardMessages
 
@@ -4929,10 +5749,18 @@ class API:
         """
         Returns all available Telegram Passport elements
         
-        Params:
-            password (:class:`str`)
-                Password of the current user
-            
+        :param password: Password of the current user
+        :type password: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PassportElements`
         """
         _constructor = GetAllPassportElements.construct if skip_validation else GetAllPassportElements
 
@@ -4979,16 +5807,24 @@ class API:
         """
         Returns a list of archived sticker sets
         
-        Params:
-            is_masks (:class:`bool`)
-                Pass true to return mask stickers sets; pass false to return ordinary sticker sets
-            
-            offset_sticker_set_id (:class:`int`)
-                Identifier of the sticker set from which to return the result
-            
-            limit (:class:`int`)
-                The maximum number of sticker sets to return
-            
+        :param is_masks: Pass true to return mask stickers sets; pass false to return ordinary sticker sets
+        :type is_masks: :class:`bool`
+        
+        :param offset_sticker_set_id: Identifier of the sticker set from which to return the result
+        :type offset_sticker_set_id: :class:`int`
+        
+        :param limit: The maximum number of sticker sets to return
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StickerSets`
         """
         _constructor = GetArchivedStickerSets.construct if skip_validation else GetArchivedStickerSets
 
@@ -5013,10 +5849,18 @@ class API:
         """
         Returns a list of sticker sets attached to a file. Currently only photos and videos can have attached sticker sets
         
-        Params:
-            file_id (:class:`int`)
-                File identifier
-            
+        :param file_id: File identifier
+        :type file_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StickerSets`
         """
         _constructor = GetAttachedStickerSets.construct if skip_validation else GetAttachedStickerSets
 
@@ -5072,13 +5916,21 @@ class API:
         """
         Constructs a persistent HTTP URL for a background
         
-        Params:
-            name (:class:`str`)
-                Background name
-            
-            type_ (:class:`BackgroundType`)
-                Background type
-            
+        :param name: Background name
+        :type name: :class:`str`
+        
+        :param type_: Background type
+        :type type_: :class:`BackgroundType`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
         _constructor = GetBackgroundUrl.construct if skip_validation else GetBackgroundUrl
 
@@ -5102,10 +5954,18 @@ class API:
         """
         Returns backgrounds installed by the user
         
-        Params:
-            for_dark_theme (:class:`bool`)
-                True, if the backgrounds must be ordered for dark theme
-            
+        :param for_dark_theme: True, if the backgrounds must be ordered for dark theme
+        :type for_dark_theme: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Backgrounds`
         """
         _constructor = GetBackgrounds.construct if skip_validation else GetBackgrounds
 
@@ -5128,10 +5988,18 @@ class API:
         """
         Returns information about a bank card
         
-        Params:
-            bank_card_number (:class:`str`)
-                The bank card number
-            
+        :param bank_card_number: The bank card number
+        :type bank_card_number: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BankCardInfo`
         """
         _constructor = GetBankCardInfo.construct if skip_validation else GetBankCardInfo
 
@@ -5154,10 +6022,18 @@ class API:
         """
         Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot
         
-        Params:
-            basic_group_id (:class:`int`)
-                Basic group identifier
-            
+        :param basic_group_id: Basic group identifier
+        :type basic_group_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BasicGroup`
         """
         _constructor = GetBasicGroup.construct if skip_validation else GetBasicGroup
 
@@ -5180,10 +6056,18 @@ class API:
         """
         Returns full information about a basic group by its identifier
         
-        Params:
-            basic_group_id (:class:`int`)
-                Basic group identifier
-            
+        :param basic_group_id: Basic group identifier
+        :type basic_group_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BasicGroupFullInfo`
         """
         _constructor = GetBasicGroupFullInfo.construct if skip_validation else GetBasicGroupFullInfo
 
@@ -5207,13 +6091,21 @@ class API:
         """
         Returns users and chats that were blocked by the current user
         
-        Params:
-            offset (:class:`int`)
-                Number of users and chats to skip in the result; must be non-negative
-            
-            limit (:class:`int`)
-                The maximum number of users and chats to return; up to 100
-            
+        :param offset: Number of users and chats to skip in the result; must be non-negative
+        :type offset: :class:`int`
+        
+        :param limit: The maximum number of users and chats to return; up to 100
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.MessageSenders`
         """
         _constructor = GetBlockedMessageSenders.construct if skip_validation else GetBlockedMessageSenders
 
@@ -5239,16 +6131,24 @@ class API:
         """
         Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat with the message
-            
-            message_id (:class:`int`)
-                Identifier of the message from which the query originated
-            
-            payload (:class:`CallbackQueryPayload`)
-                Query payload
-            
+        :param chat_id: Identifier of the chat with the message
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message from which the query originated
+        :type message_id: :class:`int`
+        
+        :param payload: Query payload
+        :type payload: :class:`CallbackQueryPayload`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.CallbackQueryAnswer`
         """
         _constructor = GetCallbackQueryAnswer.construct if skip_validation else GetCallbackQueryAnswer
 
@@ -5275,16 +6175,24 @@ class API:
         """
         Returns information about a message with the callback button that originated a callback query; for bots only
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat the message belongs to
-            
-            message_id (:class:`int`)
-                Message identifier
-            
-            callback_query_id (:class:`int`)
-                Identifier of the callback query
-            
+        :param chat_id: Identifier of the chat the message belongs to
+        :type chat_id: :class:`int`
+        
+        :param message_id: Message identifier
+        :type message_id: :class:`int`
+        
+        :param callback_query_id: Identifier of the callback query
+        :type callback_query_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = GetCallbackQueryMessage.construct if skip_validation else GetCallbackQueryMessage
 
@@ -5309,10 +6217,18 @@ class API:
         """
         Returns information about a chat by its identifier, this is an offline request if the current user is not a bot
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chat`
         """
         _constructor = GetChat.construct if skip_validation else GetChat
 
@@ -5335,10 +6251,18 @@ class API:
         """
         Returns a list of administrators of the chat with their custom titles
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatAdministrators`
         """
         _constructor = GetChatAdministrators.construct if skip_validation else GetChatAdministrators
 
@@ -5366,25 +6290,33 @@ class API:
         """
         Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i. e., in order of decreasing event_id)
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            query (:class:`str`)
-                Search query by which to filter events
-            
-            from_event_id (:class:`int`)
-                Identifier of an event from which to return results. Use 0 to get results from the latest events
-            
-            limit (:class:`int`)
-                The maximum number of events to return; up to 100
-            
-            filters (:class:`ChatEventLogFilters`)
-                The types of events to return. By default, all types will be returned
-            
-            user_ids (:obj:`list[int]`)
-                User identifiers by which to filter events. By default, events relating to all users will be returned
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param query: Search query by which to filter events
+        :type query: :class:`str`
+        
+        :param from_event_id: Identifier of an event from which to return results. Use 0 to get results from the latest events
+        :type from_event_id: :class:`int`
+        
+        :param limit: The maximum number of events to return; up to 100
+        :type limit: :class:`int`
+        
+        :param filters: The types of events to return. By default, all types will be returned
+        :type filters: :class:`ChatEventLogFilters`
+        
+        :param user_ids: User identifiers by which to filter events. By default, events relating to all users will be returned
+        :type user_ids: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatEvents`
         """
         _constructor = GetChatEventLog.construct if skip_validation else GetChatEventLog
 
@@ -5412,10 +6344,18 @@ class API:
         """
         Returns information about a chat filter by its identifier
         
-        Params:
-            chat_filter_id (:class:`int`)
-                Chat filter identifier
-            
+        :param chat_filter_id: Chat filter identifier
+        :type chat_filter_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatFilter`
         """
         _constructor = GetChatFilter.construct if skip_validation else GetChatFilter
 
@@ -5438,10 +6378,18 @@ class API:
         """
         Returns default icon name for a filter. Can be called synchronously
         
-        Params:
-            filter_ (:class:`ChatFilter`)
-                Chat filter
-            
+        :param filter_: Chat filter
+        :type filter_: :class:`ChatFilter`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Text`
         """
         _constructor = GetChatFilterDefaultIconName.construct if skip_validation else GetChatFilterDefaultIconName
 
@@ -5468,22 +6416,30 @@ class API:
         """
         Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            from_message_id (:class:`int`)
-                Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-            
-            offset (:class:`int`)
-                Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
-            
-            limit (:class:`int`)
-                The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-            
-            only_local (:class:`bool`)
-                If true, returns only messages that are available locally without sending network requests
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param from_message_id: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+        :type from_message_id: :class:`int`
+        
+        :param offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+        :type offset: :class:`int`
+        
+        :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`int`
+        
+        :param only_local: If true, returns only messages that are available locally without sending network requests
+        :type only_local: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Messages`
         """
         _constructor = GetChatHistory.construct if skip_validation else GetChatHistory
 
@@ -5511,13 +6467,21 @@ class API:
         """
         Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            invite_link (:class:`str`)
-                Invite link to get
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param invite_link: Invite link to get
+        :type invite_link: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatInviteLink`
         """
         _constructor = GetChatInviteLink.construct if skip_validation else GetChatInviteLink
 
@@ -5541,10 +6505,18 @@ class API:
         """
         Returns list of chat administrators with number of their invite links. Requires owner privileges in the chat
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatInviteLinkCounts`
         """
         _constructor = GetChatInviteLinkCounts.construct if skip_validation else GetChatInviteLinkCounts
 
@@ -5570,19 +6542,27 @@ class API:
         """
         Returns chat members joined a chat by an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            invite_link (:class:`str`)
-                Invite link for which to return chat members
-            
-            offset_member (:class:`ChatInviteLinkMember`)
-                A chat member from which to return next chat members; use null to get results from the beginning
-            
-            limit (:class:`int`)
-                The maximum number of chat members to return
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param invite_link: Invite link for which to return chat members
+        :type invite_link: :class:`str`
+        
+        :param offset_member: A chat member from which to return next chat members; use null to get results from the beginning
+        :type offset_member: :class:`ChatInviteLinkMember`
+        
+        :param limit: The maximum number of chat members to return
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatInviteLinkMembers`
         """
         _constructor = GetChatInviteLinkMembers.construct if skip_validation else GetChatInviteLinkMembers
 
@@ -5613,25 +6593,33 @@ class API:
         """
         Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            creator_user_id (:class:`int`)
-                User identifier of a chat administrator. Must be an identifier of the current user for non-owner
-            
-            is_revoked (:class:`bool`)
-                Pass true if revoked links needs to be returned instead of active or expired
-            
-            offset_date (:class:`int`)
-                Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
-            
-            offset_invite_link (:class:`str`)
-                Invite link starting after which to return invite links; use empty string to get results from the beginning
-            
-            limit (:class:`int`)
-                The maximum number of invite links to return
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param creator_user_id: User identifier of a chat administrator. Must be an identifier of the current user for non-owner
+        :type creator_user_id: :class:`int`
+        
+        :param is_revoked: Pass true if revoked links needs to be returned instead of active or expired
+        :type is_revoked: :class:`bool`
+        
+        :param offset_date: Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
+        :type offset_date: :class:`int`
+        
+        :param offset_invite_link: Invite link starting after which to return invite links; use empty string to get results from the beginning
+        :type offset_invite_link: :class:`str`
+        
+        :param limit: The maximum number of invite links to return
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatInviteLinks`
         """
         _constructor = GetChatInviteLinks.construct if skip_validation else GetChatInviteLinks
 
@@ -5659,10 +6647,18 @@ class API:
         """
         Returns chat lists to which the chat can be added. This is an offline request
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatLists`
         """
         _constructor = GetChatListsToAddChat.construct if skip_validation else GetChatListsToAddChat
 
@@ -5686,13 +6682,21 @@ class API:
         """
         Returns information about a single member of a chat
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            member_id (:class:`MessageSender`)
-                Member identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param member_id: Member identifier
+        :type member_id: :class:`MessageSender`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatMember`
         """
         _constructor = GetChatMember.construct if skip_validation else GetChatMember
 
@@ -5717,13 +6721,21 @@ class API:
         """
         Returns the last message sent in a chat no later than the specified date
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            date (:class:`int`)
-                Point in time (Unix timestamp) relative to which to search for messages
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param date: Point in time (Unix timestamp) relative to which to search for messages
+        :type date: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = GetChatMessageByDate.construct if skip_validation else GetChatMessageByDate
 
@@ -5749,16 +6761,24 @@ class API:
         """
         Returns approximate number of messages of the specified type in the chat
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat in which to count messages
-            
-            filter_ (:class:`SearchMessagesFilter`)
-                Filter for message content; searchMessagesFilterEmpty is unsupported in this function
-            
-            return_local (:class:`bool`)
-                If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown
-            
+        :param chat_id: Identifier of the chat in which to count messages
+        :type chat_id: :class:`int`
+        
+        :param filter_: Filter for message content; searchMessagesFilterEmpty is unsupported in this function
+        :type filter_: :class:`SearchMessagesFilter`
+        
+        :param return_local: If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown
+        :type return_local: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Count`
         """
         _constructor = GetChatMessageCount.construct if skip_validation else GetChatMessageCount
 
@@ -5784,13 +6804,21 @@ class API:
         """
         Returns list of chats with non-default notification settings
         
-        Params:
-            scope (:class:`NotificationSettingsScope`)
-                If specified, only chats from the specified scope will be returned
-            
-            compare_sound (:class:`bool`)
-                If true, also chats with non-default sound will be returned
-            
+        :param scope: If specified, only chats from the specified scope will be returned
+        :type scope: :class:`NotificationSettingsScope`
+        
+        :param compare_sound: If true, also chats with non-default sound will be returned
+        :type compare_sound: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chats`
         """
         _constructor = GetChatNotificationSettingsExceptions.construct if skip_validation else GetChatNotificationSettingsExceptions
 
@@ -5814,10 +6842,18 @@ class API:
         """
         Returns information about a newest pinned message in the chat
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat the message belongs to
-            
+        :param chat_id: Identifier of the chat the message belongs to
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = GetChatPinnedMessage.construct if skip_validation else GetChatPinnedMessage
 
@@ -5840,10 +6876,18 @@ class API:
         """
         Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Messages`
         """
         _constructor = GetChatScheduledMessages.construct if skip_validation else GetChatScheduledMessages
 
@@ -5866,10 +6910,18 @@ class API:
         """
         Returns sponsored messages to be shown in a chat; for channel chats only
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat
-            
+        :param chat_id: Identifier of the chat
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.SponsoredMessages`
         """
         _constructor = GetChatSponsoredMessages.construct if skip_validation else GetChatSponsoredMessages
 
@@ -5893,13 +6945,21 @@ class API:
         """
         Returns detailed statistics about a chat. Currently this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            is_dark (:class:`bool`)
-                Pass true if a dark theme is used by the application
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param is_dark: Pass true if a dark theme is used by the application
+        :type is_dark: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatStatistics`
         """
         _constructor = GetChatStatistics.construct if skip_validation else GetChatStatistics
 
@@ -5925,16 +6985,24 @@ class API:
         """
         Returns an HTTP URL with the chat statistics. Currently this method of getting the statistics are disabled and can be deleted in the future
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            parameters (:class:`str`)
-                Parameters for the request
-            
-            is_dark (:class:`bool`)
-                Pass true if a URL with the dark theme must be returned
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param parameters: Parameters for the request
+        :type parameters: :class:`str`
+        
+        :param is_dark: Pass true if a URL with the dark theme must be returned
+        :type is_dark: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
         _constructor = GetChatStatisticsUrl.construct if skip_validation else GetChatStatisticsUrl
 
@@ -5960,13 +7028,21 @@ class API:
         """
         Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats instead to maintain chat lists
         
-        Params:
-            chat_list (:class:`ChatList`)
-                The chat list in which to return chats
-            
-            limit (:class:`int`)
-                The maximum number of chats to be returned
-            
+        :param chat_list: The chat list in which to return chats
+        :type chat_list: :class:`ChatList`
+        
+        :param limit: The maximum number of chats to be returned
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chats`
         """
         _constructor = GetChats.construct if skip_validation else GetChats
 
@@ -5991,13 +7067,21 @@ class API:
         """
         Returns the list of commands supported by the bot for the given user scope and language; for bots only
         
-        Params:
-            scope (:class:`BotCommandScope`)
-                The scope to which the commands are relevant
-            
-            language_code (:class:`str`)
-                A two-letter ISO 639-1 country code or an empty string
-            
+        :param scope: The scope to which the commands are relevant
+        :type scope: :class:`BotCommandScope`
+        
+        :param language_code: A two-letter ISO 639-1 country code or an empty string
+        :type language_code: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BotCommands`
         """
         _constructor = GetCommands.construct if skip_validation else GetCommands
 
@@ -6065,10 +7149,18 @@ class API:
         """
         Returns a list of public chats of the specified type, owned by the user
         
-        Params:
-            type_ (:class:`PublicChatType`)
-                Type of the public chats to return
-            
+        :param type_: Type of the public chats to return
+        :type type_: :class:`PublicChatType`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chats`
         """
         _constructor = GetCreatedPublicChats.construct if skip_validation else GetCreatedPublicChats
 
@@ -6118,10 +7210,18 @@ class API:
         """
         Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for unknown links. Can be called before authorization
         
-        Params:
-            link (:class:`str`)
-                The link
-            
+        :param link: The link
+        :type link: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.DeepLinkInfo`
         """
         _constructor = GetDeepLinkInfo.construct if skip_validation else GetDeepLinkInfo
 
@@ -6144,10 +7244,18 @@ class API:
         """
         Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation
         
-        Params:
-            language_code (:class:`str`)
-                Language code for which the emoji replacements will be suggested
-            
+        :param language_code: Language code for which the emoji replacements will be suggested
+        :type language_code: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
         _constructor = GetEmojiSuggestionsUrl.construct if skip_validation else GetEmojiSuggestionsUrl
 
@@ -6171,13 +7279,21 @@ class API:
         """
         Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
         
-        Params:
-            link (:class:`str`)
-                The HTTP link
-            
-            allow_write_access (:class:`bool`)
-                True, if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
-            
+        :param link: The HTTP link
+        :type link: :class:`str`
+        
+        :param allow_write_access: True, if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
+        :type allow_write_access: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
         _constructor = GetExternalLink.construct if skip_validation else GetExternalLink
 
@@ -6201,10 +7317,18 @@ class API:
         """
         Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats
         
-        Params:
-            link (:class:`str`)
-                The link
-            
+        :param link: The link
+        :type link: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.LoginUrlInfo`
         """
         _constructor = GetExternalLinkInfo.construct if skip_validation else GetExternalLinkInfo
 
@@ -6238,10 +7362,18 @@ class API:
         """
         Returns information about a file; this is an offline request
         
-        Params:
-            file_id (:class:`int`)
-                Identifier of the file to get
-            
+        :param file_id: Identifier of the file to get
+        :type file_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.File`
         """
         _constructor = GetFile.construct if skip_validation else GetFile
 
@@ -6265,13 +7397,21 @@ class API:
         """
         Returns file downloaded prefix size from a given offset, in bytes
         
-        Params:
-            file_id (:class:`int`)
-                Identifier of the file
-            
-            offset (:class:`int`)
-                Offset from which downloaded prefix size should be calculated
-            
+        :param file_id: Identifier of the file
+        :type file_id: :class:`int`
+        
+        :param offset: Offset from which downloaded prefix size should be calculated
+        :type offset: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Count`
         """
         _constructor = GetFileDownloadedPrefixSize.construct if skip_validation else GetFileDownloadedPrefixSize
 
@@ -6295,10 +7435,18 @@ class API:
         """
         Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously
         
-        Params:
-            mime_type (:class:`str`)
-                The MIME type of the file
-            
+        :param mime_type: The MIME type of the file
+        :type mime_type: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Text`
         """
         _constructor = GetFileExtension.construct if skip_validation else GetFileExtension
 
@@ -6321,10 +7469,18 @@ class API:
         """
         Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously
         
-        Params:
-            file_name (:class:`str`)
-                The name of the file or path to the file
-            
+        :param file_name: The name of the file or path to the file
+        :type file_name: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Text`
         """
         _constructor = GetFileMimeType.construct if skip_validation else GetFileMimeType
 
@@ -6349,16 +7505,24 @@ class API:
         """
         Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only
         
-        Params:
-            chat_id (:class:`int`)
-                The chat that contains the message with the game
-            
-            message_id (:class:`int`)
-                Identifier of the message
-            
-            user_id (:class:`int`)
-                User identifier
-            
+        :param chat_id: The chat that contains the message with the game
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param user_id: User identifier
+        :type user_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.GameHighScores`
         """
         _constructor = GetGameHighScores.construct if skip_validation else GetGameHighScores
 
@@ -6383,10 +7547,18 @@ class API:
         """
         Returns information about a group call
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.GroupCall`
         """
         _constructor = GetGroupCall.construct if skip_validation else GetGroupCall
 
@@ -6410,13 +7582,21 @@ class API:
         """
         Returns invite link to a voice chat in a public chat
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            can_self_unmute (:class:`bool`)
-                Pass true if the invite_link should contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param can_self_unmute: Pass true if the invite_link should contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
+        :type can_self_unmute: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
         _constructor = GetGroupCallInviteLink.construct if skip_validation else GetGroupCallInviteLink
 
@@ -6444,22 +7624,30 @@ class API:
         """
         Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            time_offset (:class:`int`)
-                Point in time when the stream segment begins; Unix timestamp in milliseconds
-            
-            scale (:class:`int`)
-                Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
-            
-            channel_id (:class:`int`)
-                Identifier of an audio/video channel to get as received from tgcalls
-            
-            video_quality (:class:`GroupCallVideoQuality`)
-                Video quality as received from tgcalls
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param time_offset: Point in time when the stream segment begins; Unix timestamp in milliseconds
+        :type time_offset: :class:`int`
+        
+        :param scale: Segment duration scale; 0-1. Segment's duration is 1000/(2**scale) milliseconds
+        :type scale: :class:`int`
+        
+        :param channel_id: Identifier of an audio/video channel to get as received from tgcalls
+        :type channel_id: :class:`int`
+        
+        :param video_quality: Video quality as received from tgcalls
+        :type video_quality: :class:`GroupCallVideoQuality`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FilePart`
         """
         _constructor = GetGroupCallStreamSegment.construct if skip_validation else GetGroupCallStreamSegment
 
@@ -6488,16 +7676,24 @@ class API:
         """
         Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
         
-        Params:
-            user_id (:class:`int`)
-                User identifier
-            
-            offset_chat_id (:class:`int`)
-                Chat identifier starting from which to return chats; use 0 for the first request
-            
-            limit (:class:`int`)
-                The maximum number of chats to be returned; up to 100
-            
+        :param user_id: User identifier
+        :type user_id: :class:`int`
+        
+        :param offset_chat_id: Chat identifier starting from which to return chats; use 0 for the first request
+        :type offset_chat_id: :class:`int`
+        
+        :param limit: The maximum number of chats to be returned; up to 100
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chats`
         """
         _constructor = GetGroupsInCommon.construct if skip_validation else GetGroupsInCommon
 
@@ -6545,13 +7741,21 @@ class API:
         """
         Returns game high scores and some part of the high score table in the range of the specified user; for bots only
         
-        Params:
-            inline_message_id (:class:`str`)
-                Inline message identifier
-            
-            user_id (:class:`int`)
-                User identifier
-            
+        :param inline_message_id: Inline message identifier
+        :type inline_message_id: :class:`str`
+        
+        :param user_id: User identifier
+        :type user_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.GameHighScores`
         """
         _constructor = GetInlineGameHighScores.construct if skip_validation else GetInlineGameHighScores
 
@@ -6579,22 +7783,30 @@ class API:
         """
         Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
         
-        Params:
-            bot_user_id (:class:`int`)
-                The identifier of the target bot
-            
-            chat_id (:class:`int`)
-                Identifier of the chat where the query was sent
-            
-            user_location (:class:`Location`)
-                Location of the user, only if needed
-            
-            query (:class:`str`)
-                Text of the query
-            
-            offset (:class:`str`)
-                Offset of the first entry to return
-            
+        :param bot_user_id: The identifier of the target bot
+        :type bot_user_id: :class:`int`
+        
+        :param chat_id: Identifier of the chat where the query was sent
+        :type chat_id: :class:`int`
+        
+        :param user_location: Location of the user, only if needed
+        :type user_location: :class:`Location`
+        
+        :param query: Text of the query
+        :type query: :class:`str`
+        
+        :param offset: Offset of the first entry to return
+        :type offset: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.InlineQueryResults`
         """
         _constructor = GetInlineQueryResults.construct if skip_validation else GetInlineQueryResults
 
@@ -6621,10 +7833,18 @@ class API:
         """
         Returns a list of installed sticker sets
         
-        Params:
-            is_masks (:class:`bool`)
-                Pass true to return mask sticker sets; pass false to return ordinary sticker sets
-            
+        :param is_masks: Pass true to return mask sticker sets; pass false to return ordinary sticker sets
+        :type is_masks: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StickerSets`
         """
         _constructor = GetInstalledStickerSets.construct if skip_validation else GetInstalledStickerSets
 
@@ -6647,10 +7867,18 @@ class API:
         """
         Returns information about the type of an internal link. Returns a 404 error if the link is not internal. Can be called before authorization
         
-        Params:
-            link (:class:`str`)
-                The link
-            
+        :param link: The link
+        :type link: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.InternalLinkType`
         """
         _constructor = GetInternalLinkType.construct if skip_validation else GetInternalLinkType
 
@@ -6673,10 +7901,18 @@ class API:
         """
         Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously
         
-        Params:
-            json_value (:class:`JsonValue`)
-                The JsonValue object
-            
+        :param json_value: The JsonValue object
+        :type json_value: :class:`JsonValue`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Text`
         """
         _constructor = GetJsonString.construct if skip_validation else GetJsonString
 
@@ -6699,10 +7935,18 @@ class API:
         """
         Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously
         
-        Params:
-            json_ (:class:`str`)
-                The JSON-serialized string
-            
+        :param json_: The JSON-serialized string
+        :type json_: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.JsonValue`
         """
         _constructor = GetJsonValue.construct if skip_validation else GetJsonValue
 
@@ -6725,10 +7969,18 @@ class API:
         """
         Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
         
-        Params:
-            language_pack_id (:class:`str`)
-                Language pack identifier
-            
+        :param language_pack_id: Language pack identifier
+        :type language_pack_id: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.LanguagePackInfo`
         """
         _constructor = GetLanguagePackInfo.construct if skip_validation else GetLanguagePackInfo
 
@@ -6754,19 +8006,27 @@ class API:
         """
         Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously
         
-        Params:
-            language_pack_database_path (:class:`str`)
-                Path to the language pack database in which strings are stored
-            
-            localization_target (:class:`str`)
-                Localization target to which the language pack belongs
-            
-            language_pack_id (:class:`str`)
-                Language pack identifier
-            
-            key (:class:`str`)
-                Language pack key of the string to be returned
-            
+        :param language_pack_database_path: Path to the language pack database in which strings are stored
+        :type language_pack_database_path: :class:`str`
+        
+        :param localization_target: Localization target to which the language pack belongs
+        :type localization_target: :class:`str`
+        
+        :param language_pack_id: Language pack identifier
+        :type language_pack_id: :class:`str`
+        
+        :param key: Language pack key of the string to be returned
+        :type key: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.LanguagePackStringValue`
         """
         _constructor = GetLanguagePackString.construct if skip_validation else GetLanguagePackString
 
@@ -6793,13 +8053,21 @@ class API:
         """
         Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
         
-        Params:
-            language_pack_id (:class:`str`)
-                Language pack identifier of the strings to be returned
-            
-            keys (:obj:`list[str]`)
-                Language pack keys of the strings to be returned; leave empty to request all available strings
-            
+        :param language_pack_id: Language pack identifier of the strings to be returned
+        :type language_pack_id: :class:`str`
+        
+        :param keys: Language pack keys of the strings to be returned; leave empty to request all available strings
+        :type keys: :class:`list[str]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.LanguagePackStrings`
         """
         _constructor = GetLanguagePackStrings.construct if skip_validation else GetLanguagePackStrings
 
@@ -6823,10 +8091,18 @@ class API:
         """
         Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
         
-        Params:
-            only_local (:class:`bool`)
-                If true, returns only locally available information without sending network requests
-            
+        :param only_local: If true, returns only locally available information without sending network requests
+        :type only_local: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.LocalizationTargetInfo`
         """
         _constructor = GetLocalizationTargetInfo.construct if skip_validation else GetLocalizationTargetInfo
 
@@ -6860,10 +8136,18 @@ class API:
         """
         Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously
         
-        Params:
-            tag (:class:`str`)
-                Logging tag to change verbosity level
-            
+        :param tag: Logging tag to change verbosity level
+        :type tag: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.LogVerbosityLevel`
         """
         _constructor = GetLogTagVerbosityLevel.construct if skip_validation else GetLogTagVerbosityLevel
 
@@ -6916,19 +8200,27 @@ class API:
         """
         Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier of the message with the button
-            
-            message_id (:class:`int`)
-                Message identifier of the message with the button
-            
-            button_id (:class:`int`)
-                Button identifier
-            
-            allow_write_access (:class:`bool`)
-                True, if the user allowed the bot to send them messages
-            
+        :param chat_id: Chat identifier of the message with the button
+        :type chat_id: :class:`int`
+        
+        :param message_id: Message identifier of the message with the button
+        :type message_id: :class:`int`
+        
+        :param button_id: Button identifier
+        :type button_id: :class:`int`
+        
+        :param allow_write_access: True, if the user allowed the bot to send them messages
+        :type allow_write_access: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
         _constructor = GetLoginUrl.construct if skip_validation else GetLoginUrl
 
@@ -6956,16 +8248,24 @@ class API:
         """
         Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier of the message with the button
-            
-            message_id (:class:`int`)
-                Message identifier of the message with the button
-            
-            button_id (:class:`int`)
-                Button identifier
-            
+        :param chat_id: Chat identifier of the message with the button
+        :type chat_id: :class:`int`
+        
+        :param message_id: Message identifier of the message with the button
+        :type message_id: :class:`int`
+        
+        :param button_id: Button identifier
+        :type button_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.LoginUrlInfo`
         """
         _constructor = GetLoginUrlInfo.construct if skip_validation else GetLoginUrlInfo
 
@@ -6995,25 +8295,33 @@ class API:
         """
         Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
         
-        Params:
-            location (:class:`Location`)
-                Location of the map center
-            
-            zoom (:class:`int`)
-                Map zoom level; 13-20
-            
-            width (:class:`int`)
-                Map width in pixels before applying scale; 16-1024
-            
-            height (:class:`int`)
-                Map height in pixels before applying scale; 16-1024
-            
-            scale (:class:`int`)
-                Map scale; 1-3
-            
-            chat_id (:class:`int`)
-                Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
-            
+        :param location: Location of the map center
+        :type location: :class:`Location`
+        
+        :param zoom: Map zoom level; 13-20
+        :type zoom: :class:`int`
+        
+        :param width: Map width in pixels before applying scale; 16-1024
+        :type width: :class:`int`
+        
+        :param height: Map height in pixels before applying scale; 16-1024
+        :type height: :class:`int`
+        
+        :param scale: Map scale; 1-3
+        :type scale: :class:`int`
+        
+        :param chat_id: Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.File`
         """
         _constructor = GetMapThumbnailFile.construct if skip_validation else GetMapThumbnailFile
 
@@ -7041,10 +8349,18 @@ class API:
         """
         Replaces text entities with Markdown formatting in a human-friendly format. Entities that can't be represented in Markdown unambiguously are kept as is. Can be called synchronously
         
-        Params:
-            text (:class:`FormattedText`)
-                The text
-            
+        :param text: The text
+        :type text: :class:`FormattedText`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FormattedText`
         """
         _constructor = GetMarkdownText.construct if skip_validation else GetMarkdownText
 
@@ -7079,13 +8395,21 @@ class API:
         """
         Returns information about a message
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat the message belongs to
-            
-            message_id (:class:`int`)
-                Identifier of the message to get
-            
+        :param chat_id: Identifier of the chat the message belongs to
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message to get
+        :type message_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = GetMessage.construct if skip_validation else GetMessage
 
@@ -7111,16 +8435,24 @@ class API:
         """
         Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat to which the message belongs
-            
-            message_id (:class:`int`)
-                Identifier of the message
-            
-            for_album (:class:`bool`)
-                Pass true to return an HTML code for embedding of the whole media album
-            
+        :param chat_id: Identifier of the chat to which the message belongs
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param for_album: Pass true to return an HTML code for embedding of the whole media album
+        :type for_album: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Text`
         """
         _constructor = GetMessageEmbeddingCode.construct if skip_validation else GetMessageEmbeddingCode
 
@@ -7145,10 +8477,18 @@ class API:
         """
         Returns information about a file with messages exported from another app
         
-        Params:
-            message_file_head (:class:`str`)
-                Beginning of the message file; up to 100 first lines
-            
+        :param message_file_head: Beginning of the message file; up to 100 first lines
+        :type message_file_head: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.MessageFileType`
         """
         _constructor = GetMessageFileType.construct if skip_validation else GetMessageFileType
 
@@ -7171,10 +8511,18 @@ class API:
         """
         Returns a confirmation text to be shown to the user before starting message import
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
-            
+        :param chat_id: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Text`
         """
         _constructor = GetMessageImportConfirmationText.construct if skip_validation else GetMessageImportConfirmationText
 
@@ -7201,22 +8549,30 @@ class API:
         """
         Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat to which the message belongs
-            
-            message_id (:class:`int`)
-                Identifier of the message
-            
-            media_timestamp (:class:`int`)
-                If not 0, timestamp from which the video/audio/video note/voice note playing should start, in seconds. The media can be in the message content or in its web page preview
-            
-            for_album (:class:`bool`)
-                Pass true to create a link for the whole media album
-            
-            for_comment (:class:`bool`)
-                Pass true to create a link to the message as a channel post comment, or from a message thread
-            
+        :param chat_id: Identifier of the chat to which the message belongs
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param media_timestamp: If not 0, timestamp from which the video/audio/video note/voice note playing should start, in seconds. The media can be in the message content or in its web page preview
+        :type media_timestamp: :class:`int`
+        
+        :param for_album: Pass true to create a link for the whole media album
+        :type for_album: :class:`bool`
+        
+        :param for_comment: Pass true to create a link to the message as a channel post comment, or from a message thread
+        :type for_comment: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.MessageLink`
         """
         _constructor = GetMessageLink.construct if skip_validation else GetMessageLink
 
@@ -7243,10 +8599,18 @@ class API:
         """
         Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
         
-        Params:
-            url (:class:`str`)
-                The message link
-            
+        :param url: The message link
+        :type url: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.MessageLinkInfo`
         """
         _constructor = GetMessageLinkInfo.construct if skip_validation else GetMessageLinkInfo
 
@@ -7270,13 +8634,21 @@ class API:
         """
         Returns information about a message, if it is available locally without sending network request. This is an offline request
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat the message belongs to
-            
-            message_id (:class:`int`)
-                Identifier of the message to get
-            
+        :param chat_id: Identifier of the chat the message belongs to
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message to get
+        :type message_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = GetMessageLocally.construct if skip_validation else GetMessageLocally
 
@@ -7303,19 +8675,27 @@ class API:
         """
         Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier of the message
-            
-            message_id (:class:`int`)
-                Message identifier
-            
-            offset (:class:`str`)
-                Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
-            
-            limit (:class:`int`)
-                The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-            
+        :param chat_id: Chat identifier of the message
+        :type chat_id: :class:`int`
+        
+        :param message_id: Message identifier
+        :type message_id: :class:`int`
+        
+        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
+        :type offset: :class:`str`
+        
+        :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FoundMessages`
         """
         _constructor = GetMessagePublicForwards.construct if skip_validation else GetMessagePublicForwards
 
@@ -7343,16 +8723,24 @@ class API:
         """
         Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            message_id (:class:`int`)
-                Message identifier
-            
-            is_dark (:class:`bool`)
-                Pass true if a dark theme is used by the application
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param message_id: Message identifier
+        :type message_id: :class:`int`
+        
+        :param is_dark: Pass true if a dark theme is used by the application
+        :type is_dark: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.MessageStatistics`
         """
         _constructor = GetMessageStatistics.construct if skip_validation else GetMessageStatistics
 
@@ -7378,13 +8766,21 @@ class API:
         """
         Returns information about a message thread. Can be used only if message.can_get_message_thread == true
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            message_id (:class:`int`)
-                Identifier of the message
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.MessageThreadInfo`
         """
         _constructor = GetMessageThread.construct if skip_validation else GetMessageThread
 
@@ -7412,22 +8808,30 @@ class API:
         """
         Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            message_id (:class:`int`)
-                Message identifier, which thread history needs to be returned
-            
-            from_message_id (:class:`int`)
-                Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-            
-            offset (:class:`int`)
-                Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
-            
-            limit (:class:`int`)
-                The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param message_id: Message identifier, which thread history needs to be returned
+        :type message_id: :class:`int`
+        
+        :param from_message_id: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+        :type from_message_id: :class:`int`
+        
+        :param offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+        :type offset: :class:`int`
+        
+        :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Messages`
         """
         _constructor = GetMessageThreadHistory.construct if skip_validation else GetMessageThreadHistory
 
@@ -7455,13 +8859,21 @@ class API:
         """
         Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            message_id (:class:`int`)
-                Identifier of the message
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Users`
         """
         _constructor = GetMessageViewers.construct if skip_validation else GetMessageViewers
 
@@ -7486,13 +8898,21 @@ class API:
         """
         Returns information about messages. If a message is not found, returns null on the corresponding position of the result
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat the messages belong to
-            
-            message_ids (:obj:`list[int]`)
-                Identifiers of the messages to get
-            
+        :param chat_id: Identifier of the chat the messages belong to
+        :type chat_id: :class:`int`
+        
+        :param message_ids: Identifiers of the messages to get
+        :type message_ids: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Messages`
         """
         _constructor = GetMessages.construct if skip_validation else GetMessages
 
@@ -7516,10 +8936,18 @@ class API:
         """
         Returns network data usage statistics. Can be called before authorization
         
-        Params:
-            only_current (:class:`bool`)
-                If true, returns only data for the current library launch
-            
+        :param only_current: If true, returns only data for the current library launch
+        :type only_current: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.NetworkStatistics`
         """
         _constructor = GetNetworkStatistics.construct if skip_validation else GetNetworkStatistics
 
@@ -7542,10 +8970,18 @@ class API:
         """
         Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization
         
-        Params:
-            name (:class:`str`)
-                The name of the option
-            
+        :param name: The name of the option
+        :type name: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.OptionValue`
         """
         _constructor = GetOption.construct if skip_validation else GetOption
 
@@ -7571,19 +9007,27 @@ class API:
         """
         Returns a Telegram Passport authorization form for sharing data with a service
         
-        Params:
-            bot_user_id (:class:`int`)
-                User identifier of the service's bot
-            
-            scope (:class:`str`)
-                Telegram Passport element types requested by the service
-            
-            public_key (:class:`str`)
-                Service's public key
-            
-            nonce (:class:`str`)
-                Unique request identifier provided by the service
-            
+        :param bot_user_id: User identifier of the service's bot
+        :type bot_user_id: :class:`int`
+        
+        :param scope: Telegram Passport element types requested by the service
+        :type scope: :class:`str`
+        
+        :param public_key: Service's public key
+        :type public_key: :class:`str`
+        
+        :param nonce: Unique request identifier provided by the service
+        :type nonce: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PassportAuthorizationForm`
         """
         _constructor = GetPassportAuthorizationForm.construct if skip_validation else GetPassportAuthorizationForm
 
@@ -7610,13 +9054,21 @@ class API:
         """
         Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
         
-        Params:
-            autorization_form_id (:class:`int`)
-                Authorization form identifier
-            
-            password (:class:`str`)
-                Password of the current user
-            
+        :param autorization_form_id: Authorization form identifier
+        :type autorization_form_id: :class:`int`
+        
+        :param password: Password of the current user
+        :type password: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PassportElementsWithErrors`
         """
         _constructor = GetPassportAuthorizationFormAvailableElements.construct if skip_validation else GetPassportAuthorizationFormAvailableElements
 
@@ -7641,13 +9093,21 @@ class API:
         """
         Returns one of the available Telegram Passport elements
         
-        Params:
-            type_ (:class:`PassportElementType`)
-                Telegram Passport element type
-            
-            password (:class:`str`)
-                Password of the current user
-            
+        :param type_: Telegram Passport element type
+        :type type_: :class:`PassportElementType`
+        
+        :param password: Password of the current user
+        :type password: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PassportElement`
         """
         _constructor = GetPassportElement.construct if skip_validation else GetPassportElement
 
@@ -7684,16 +9144,24 @@ class API:
         """
         Returns an invoice payment form. This method should be called when the user presses inlineKeyboardButtonBuy
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier of the Invoice message
-            
-            message_id (:class:`int`)
-                Message identifier
-            
-            theme (:class:`PaymentFormTheme`)
-                Preferred payment form theme
-            
+        :param chat_id: Chat identifier of the Invoice message
+        :type chat_id: :class:`int`
+        
+        :param message_id: Message identifier
+        :type message_id: :class:`int`
+        
+        :param theme: Preferred payment form theme
+        :type theme: :class:`PaymentFormTheme`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PaymentForm`
         """
         _constructor = GetPaymentForm.construct if skip_validation else GetPaymentForm
 
@@ -7719,13 +9187,21 @@ class API:
         """
         Returns information about a successful payment
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier of the PaymentSuccessful message
-            
-            message_id (:class:`int`)
-                Message identifier
-            
+        :param chat_id: Chat identifier of the PaymentSuccessful message
+        :type chat_id: :class:`int`
+        
+        :param message_id: Message identifier
+        :type message_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PaymentReceipt`
         """
         _constructor = GetPaymentReceipt.construct if skip_validation else GetPaymentReceipt
 
@@ -7749,10 +9225,18 @@ class API:
         """
         Returns information about a phone number by its prefix. Can be called before authorization
         
-        Params:
-            phone_number_prefix (:class:`str`)
-                The phone number prefix
-            
+        :param phone_number_prefix: The phone number prefix
+        :type phone_number_prefix: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PhoneNumberInfo`
         """
         _constructor = GetPhoneNumberInfo.construct if skip_validation else GetPhoneNumberInfo
 
@@ -7776,13 +9260,21 @@ class API:
         """
         Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
         
-        Params:
-            language_code (:class:`str`)
-                A two-letter ISO 639-1 country code for country information localization
-            
-            phone_number_prefix (:class:`str`)
-                The phone number prefix
-            
+        :param language_code: A two-letter ISO 639-1 country code for country information localization
+        :type language_code: :class:`str`
+        
+        :param phone_number_prefix: The phone number prefix
+        :type phone_number_prefix: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PhoneNumberInfo`
         """
         _constructor = GetPhoneNumberInfoSync.construct if skip_validation else GetPhoneNumberInfoSync
 
@@ -7810,22 +9302,30 @@ class API:
         """
         Returns users voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat to which the poll belongs
-            
-            message_id (:class:`int`)
-                Identifier of the message containing the poll
-            
-            option_id (:class:`int`)
-                0-based identifier of the answer option
-            
-            offset (:class:`int`)
-                Number of users to skip in the result; must be non-negative
-            
-            limit (:class:`int`)
-                The maximum number of users to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned users is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
-            
+        :param chat_id: Identifier of the chat to which the poll belongs
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message containing the poll
+        :type message_id: :class:`int`
+        
+        :param option_id: 0-based identifier of the answer option
+        :type option_id: :class:`int`
+        
+        :param offset: Number of users to skip in the result; must be non-negative
+        :type offset: :class:`int`
+        
+        :param limit: The maximum number of users to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned users is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Users`
         """
         _constructor = GetPollVoters.construct if skip_validation else GetPollVoters
 
@@ -7852,10 +9352,18 @@ class API:
         """
         Returns an IETF language tag of the language preferred in the country, which should be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
         
-        Params:
-            country_code (:class:`str`)
-                A two-letter ISO 3166-1 alpha-2 country code
-            
+        :param country_code: A two-letter ISO 3166-1 alpha-2 country code
+        :type country_code: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Text`
         """
         _constructor = GetPreferredCountryLanguage.construct if skip_validation else GetPreferredCountryLanguage
 
@@ -7889,10 +9397,18 @@ class API:
         """
         Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
         
-        Params:
-            proxy_id (:class:`int`)
-                Proxy identifier
-            
+        :param proxy_id: Proxy identifier
+        :type proxy_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
         _constructor = GetProxyLink.construct if skip_validation else GetProxyLink
 
@@ -7915,10 +9431,18 @@ class API:
         """
         Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
         
-        Params:
-            payload (:class:`str`)
-                JSON-encoded push notification payload
-            
+        :param payload: JSON-encoded push notification payload
+        :type payload: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PushReceiverId`
         """
         _constructor = GetPushReceiverId.construct if skip_validation else GetPushReceiverId
 
@@ -7952,10 +9476,18 @@ class API:
         """
         Returns a list of recently used stickers
         
-        Params:
-            is_attached (:class:`bool`)
-                Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
-            
+        :param is_attached: Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
+        :type is_attached: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Stickers`
         """
         _constructor = GetRecentStickers.construct if skip_validation else GetRecentStickers
 
@@ -7978,10 +9510,18 @@ class API:
         """
         Returns recently opened chats, this is an offline request. Returns chats in the order of last opening
         
-        Params:
-            limit (:class:`int`)
-                The maximum number of chats to be returned
-            
+        :param limit: The maximum number of chats to be returned
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chats`
         """
         _constructor = GetRecentlyOpenedChats.construct if skip_validation else GetRecentlyOpenedChats
 
@@ -8004,10 +9544,18 @@ class API:
         """
         Returns t.me URLs recently visited by a newly registered user
         
-        Params:
-            referrer (:class:`str`)
-                Google Play referrer to identify the user
-            
+        :param referrer: Google Play referrer to identify the user
+        :type referrer: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.TMeUrls`
         """
         _constructor = GetRecentlyVisitedTMeUrls.construct if skip_validation else GetRecentlyVisitedTMeUrls
 
@@ -8046,10 +9594,18 @@ class API:
         """
         Returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user
         
-        Params:
-            password (:class:`str`)
-                The password for the current user
-            
+        :param password: The password for the current user
+        :type password: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.RecoveryEmailAddress`
         """
         _constructor = GetRecoveryEmailAddress.construct if skip_validation else GetRecoveryEmailAddress
 
@@ -8073,13 +9629,21 @@ class API:
         """
         Returns information about a file by its remote ID; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
         
-        Params:
-            remote_file_id (:class:`str`)
-                Remote identifier of the file to get
-            
-            file_type (:class:`FileType`)
-                File type, if known
-            
+        :param remote_file_id: Remote identifier of the file to get
+        :type remote_file_id: :class:`str`
+        
+        :param file_type: File type, if known
+        :type file_type: :class:`FileType`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.File`
         """
         _constructor = GetRemoteFile.construct if skip_validation else GetRemoteFile
 
@@ -8104,13 +9668,21 @@ class API:
         """
         Returns information about a message that is replied by a given message. Also returns the pinned message, the game message, and the invoice message for messages of the types messagePinMessage, messageGameScore, and messagePaymentSuccessful respectively
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat the message belongs to
-            
-            message_id (:class:`int`)
-                Identifier of the message reply to which to get
-            
+        :param chat_id: Identifier of the chat the message belongs to
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message reply to which to get
+        :type message_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = GetRepliedMessage.construct if skip_validation else GetRepliedMessage
 
@@ -8156,10 +9728,18 @@ class API:
         """
         Returns the notification settings for chats of a given type
         
-        Params:
-            scope (:class:`NotificationSettingsScope`)
-                Types of chats for which to return the notification settings information
-            
+        :param scope: Types of chats for which to return the notification settings information
+        :type scope: :class:`NotificationSettingsScope`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ScopeNotificationSettings`
         """
         _constructor = GetScopeNotificationSettings.construct if skip_validation else GetScopeNotificationSettings
 
@@ -8182,10 +9762,18 @@ class API:
         """
         Returns information about a secret chat by its identifier. This is an offline request
         
-        Params:
-            secret_chat_id (:class:`int`)
-                Secret chat identifier
-            
+        :param secret_chat_id: Secret chat identifier
+        :type secret_chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.SecretChat`
         """
         _constructor = GetSecretChat.construct if skip_validation else GetSecretChat
 
@@ -8210,16 +9798,24 @@ class API:
         """
         Loads an asynchronous or a zoomed in statistical graph
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            token (:class:`str`)
-                The token for graph loading
-            
-            x (:class:`int`)
-                X-value for zoomed in graph or 0 otherwise
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param token: The token for graph loading
+        :type token: :class:`str`
+        
+        :param x: X-value for zoomed in graph or 0 otherwise
+        :type x: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StatisticalGraph`
         """
         _constructor = GetStatisticalGraph.construct if skip_validation else GetStatisticalGraph
 
@@ -8244,10 +9840,18 @@ class API:
         """
         Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
         
-        Params:
-            sticker (:class:`InputFile`)
-                Sticker file identifier
-            
+        :param sticker: Sticker file identifier
+        :type sticker: :class:`InputFile`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Emojis`
         """
         _constructor = GetStickerEmojis.construct if skip_validation else GetStickerEmojis
 
@@ -8270,10 +9874,18 @@ class API:
         """
         Returns information about a sticker set by its identifier
         
-        Params:
-            set_id (:class:`int`)
-                Identifier of the sticker set
-            
+        :param set_id: Identifier of the sticker set
+        :type set_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StickerSet`
         """
         _constructor = GetStickerSet.construct if skip_validation else GetStickerSet
 
@@ -8297,13 +9909,21 @@ class API:
         """
         Returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is not empty, favorite and recently used stickers may also be returned
         
-        Params:
-            emoji (:class:`str`)
-                String representation of emoji. If empty, returns all known installed stickers
-            
-            limit (:class:`int`)
-                The maximum number of stickers to be returned
-            
+        :param emoji: String representation of emoji. If empty, returns all known installed stickers
+        :type emoji: :class:`str`
+        
+        :param limit: The maximum number of stickers to be returned
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Stickers`
         """
         _constructor = GetStickers.construct if skip_validation else GetStickers
 
@@ -8327,10 +9947,18 @@ class API:
         """
         Returns storage usage statistics. Can be called before authorization
         
-        Params:
-            chat_limit (:class:`int`)
-                The maximum number of chats with the largest storage usage for which separate statistics should be returned. All other chats will be grouped in entries with chat_id == 0. If the chat info database is not used, the chat_limit is ignored and is always set to 0
-            
+        :param chat_limit: The maximum number of chats with the largest storage usage for which separate statistics should be returned. All other chats will be grouped in entries with chat_id == 0. If the chat info database is not used, the chat_limit is ignored and is always set to 0
+        :type chat_limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StorageStatistics`
         """
         _constructor = GetStorageStatistics.construct if skip_validation else GetStorageStatistics
 
@@ -8370,13 +9998,21 @@ class API:
         """
         Returns suggested name for saving a file in a given directory
         
-        Params:
-            file_id (:class:`int`)
-                Identifier of the file
-            
-            directory (:class:`str`)
-                Directory in which the file is supposed to be saved
-            
+        :param file_id: Identifier of the file
+        :type file_id: :class:`int`
+        
+        :param directory: Directory in which the file is supposed to be saved
+        :type directory: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Text`
         """
         _constructor = GetSuggestedFileName.construct if skip_validation else GetSuggestedFileName
 
@@ -8400,10 +10036,18 @@ class API:
         """
         Returns a suggested name for a new sticker set with a given title
         
-        Params:
-            title (:class:`str`)
-                Sticker set title; 1-64 characters
-            
+        :param title: Sticker set title; 1-64 characters
+        :type title: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Text`
         """
         _constructor = GetSuggestedStickerSetName.construct if skip_validation else GetSuggestedStickerSetName
 
@@ -8437,10 +10081,18 @@ class API:
         """
         Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot
         
-        Params:
-            supergroup_id (:class:`int`)
-                Supergroup or channel identifier
-            
+        :param supergroup_id: Supergroup or channel identifier
+        :type supergroup_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Supergroup`
         """
         _constructor = GetSupergroup.construct if skip_validation else GetSupergroup
 
@@ -8463,10 +10115,18 @@ class API:
         """
         Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
         
-        Params:
-            supergroup_id (:class:`int`)
-                Supergroup or channel identifier
-            
+        :param supergroup_id: Supergroup or channel identifier
+        :type supergroup_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.SupergroupFullInfo`
         """
         _constructor = GetSupergroupFullInfo.construct if skip_validation else GetSupergroupFullInfo
 
@@ -8492,19 +10152,27 @@ class API:
         """
         Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
         
-        Params:
-            supergroup_id (:class:`int`)
-                Identifier of the supergroup or channel
-            
-            filter_ (:class:`SupergroupMembersFilter`)
-                The type of users to return. By default, supergroupMembersFilterRecent
-            
-            offset (:class:`int`)
-                Number of users to skip
-            
-            limit (:class:`int`)
-                The maximum number of users be returned; up to 200
-            
+        :param supergroup_id: Identifier of the supergroup or channel
+        :type supergroup_id: :class:`int`
+        
+        :param filter_: The type of users to return. By default, supergroupMembersFilterRecent
+        :type filter_: :class:`SupergroupMembersFilter`
+        
+        :param offset: Number of users to skip
+        :type offset: :class:`int`
+        
+        :param limit: The maximum number of users be returned; up to 200
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatMembers`
         """
         _constructor = GetSupergroupMembers.construct if skip_validation else GetSupergroupMembers
 
@@ -8557,10 +10225,18 @@ class API:
         """
         Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) contained in the text. Can be called synchronously
         
-        Params:
-            text (:class:`str`)
-                The text in which to look for entites
-            
+        :param text: The text in which to look for entites
+        :type text: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.TextEntities`
         """
         _constructor = GetTextEntities.construct if skip_validation else GetTextEntities
 
@@ -8584,13 +10260,21 @@ class API:
         """
         Returns a list of frequently used chats. Supported only if the chat info database is enabled
         
-        Params:
-            category (:class:`TopChatCategory`)
-                Category of chats to be returned
-            
-            limit (:class:`int`)
-                The maximum number of chats to be returned; up to 30
-            
+        :param category: Category of chats to be returned
+        :type category: :class:`TopChatCategory`
+        
+        :param limit: The maximum number of chats to be returned; up to 30
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chats`
         """
         _constructor = GetTopChats.construct if skip_validation else GetTopChats
 
@@ -8615,13 +10299,21 @@ class API:
         """
         Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
         
-        Params:
-            offset (:class:`int`)
-                The offset from which to return the sticker sets; must be non-negative
-            
-            limit (:class:`int`)
-                The maximum number of sticker sets to be returned; must be non-negative. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
-            
+        :param offset: The offset from which to return the sticker sets; must be non-negative
+        :type offset: :class:`int`
+        
+        :param limit: The maximum number of sticker sets to be returned; must be non-negative. For optimal performance, the number of returned sticker sets is chosen by TDLib and can be smaller than the specified limit, even if the end of the list has not been reached
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StickerSets`
         """
         _constructor = GetTrendingStickerSets.construct if skip_validation else GetTrendingStickerSets
 
@@ -8645,10 +10337,18 @@ class API:
         """
         Returns information about a user by their identifier. This is an offline request if the current user is not a bot
         
-        Params:
-            user_id (:class:`int`)
-                User identifier
-            
+        :param user_id: User identifier
+        :type user_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.User`
         """
         _constructor = GetUser.construct if skip_validation else GetUser
 
@@ -8671,10 +10371,18 @@ class API:
         """
         Returns full information about a user by their identifier
         
-        Params:
-            user_id (:class:`int`)
-                User identifier
-            
+        :param user_id: User identifier
+        :type user_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.UserFullInfo`
         """
         _constructor = GetUserFullInfo.construct if skip_validation else GetUserFullInfo
 
@@ -8697,10 +10405,18 @@ class API:
         """
         Returns the current privacy settings
         
-        Params:
-            setting (:class:`UserPrivacySetting`)
-                The privacy setting
-            
+        :param setting: The privacy setting
+        :type setting: :class:`UserPrivacySetting`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.UserPrivacySettingRules`
         """
         _constructor = GetUserPrivacySettingRules.construct if skip_validation else GetUserPrivacySettingRules
 
@@ -8725,16 +10441,24 @@ class API:
         """
         Returns the profile photos of a user. The result of this query may be outdated: some photos might have been deleted already
         
-        Params:
-            user_id (:class:`int`)
-                User identifier
-            
-            offset (:class:`int`)
-                The number of photos to skip; must be non-negative
-            
-            limit (:class:`int`)
-                The maximum number of photos to be returned; up to 100
-            
+        :param user_id: User identifier
+        :type user_id: :class:`int`
+        
+        :param offset: The number of photos to skip; must be non-negative
+        :type offset: :class:`int`
+        
+        :param limit: The maximum number of photos to be returned; up to 100
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatPhotos`
         """
         _constructor = GetUserProfilePhotos.construct if skip_validation else GetUserProfilePhotos
 
@@ -8759,10 +10483,18 @@ class API:
         """
         Returns list of participant identifiers, which can be used to join voice chats in a chat
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.MessageSenders`
         """
         _constructor = GetVoiceChatAvailableParticipants.construct if skip_validation else GetVoiceChatAvailableParticipants
 
@@ -8786,13 +10518,21 @@ class API:
         """
         Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
         
-        Params:
-            url (:class:`str`)
-                The web page URL
-            
-            force_full (:class:`bool`)
-                If true, the full instant view for the web page will be returned
-            
+        :param url: The web page URL
+        :type url: :class:`str`
+        
+        :param force_full: If true, the full instant view for the web page will be returned
+        :type force_full: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.WebPageInstantView`
         """
         _constructor = GetWebPageInstantView.construct if skip_validation else GetWebPageInstantView
 
@@ -8816,10 +10556,18 @@ class API:
         """
         Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview
         
-        Params:
-            text (:class:`FormattedText`)
-                Message text with formatting
-            
+        :param text: Message text with formatting
+        :type text: :class:`FormattedText`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.WebPage`
         """
         _constructor = GetWebPagePreview.construct if skip_validation else GetWebPagePreview
 
@@ -8842,10 +10590,18 @@ class API:
         """
         Hides a suggested action
         
-        Params:
-            action (:class:`SuggestedAction`)
-                Suggested action to hide
-            
+        :param action: Suggested action to hide
+        :type action: :class:`SuggestedAction`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = HideSuggestedAction.construct if skip_validation else HideSuggestedAction
 
@@ -8868,10 +10624,18 @@ class API:
         """
         Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
         
-        Params:
-            contacts (:obj:`list[Contact]`)
-                The list of contacts to import or edit; contacts' vCard are ignored and are not imported
-            
+        :param contacts: The list of contacts to import or edit; contacts' vCard are ignored and are not imported
+        :type contacts: :class:`list[Contact]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ImportedContacts`
         """
         _constructor = ImportContacts.construct if skip_validation else ImportContacts
 
@@ -8896,16 +10660,24 @@ class API:
         """
         Imports messages exported from another app
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
-            
-            message_file (:class:`InputFile`)
-                File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
-            
-            attached_files (:obj:`list[InputFile]`)
-                Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
-            
+        :param chat_id: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+        :type chat_id: :class:`int`
+        
+        :param message_file: File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
+        :type message_file: :class:`InputFile`
+        
+        :param attached_files: Files used in the imported messages. Only inputFileLocal and inputFileGenerated are supported. The files must not be previously uploaded
+        :type attached_files: :class:`list[InputFile]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ImportMessages.construct if skip_validation else ImportMessages
 
@@ -8931,13 +10703,21 @@ class API:
         """
         Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for voice chats
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            user_ids (:obj:`list[int]`)
-                User identifiers. At most 10 users can be invited simultaneously
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param user_ids: User identifiers. At most 10 users can be invited simultaneously
+        :type user_ids: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = InviteGroupCallParticipants.construct if skip_validation else InviteGroupCallParticipants
 
@@ -8961,10 +10741,18 @@ class API:
         """
         Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = JoinChat.construct if skip_validation else JoinChat
 
@@ -8987,10 +10775,18 @@ class API:
         """
         Uses an invite link to add the current user to the chat if possible
         
-        Params:
-            invite_link (:class:`str`)
-                Invite link to use
-            
+        :param invite_link: Invite link to use
+        :type invite_link: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chat`
         """
         _constructor = JoinChatByInviteLink.construct if skip_validation else JoinChatByInviteLink
 
@@ -9019,28 +10815,36 @@ class API:
         """
         Joins an active group call. Returns join response payload for tgcalls
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            participant_id (:class:`MessageSender`)
-                Identifier of a group call participant, which will be used to join the call; voice chats only
-            
-            audio_source_id (:class:`int`)
-                Caller audio channel synchronization source identifier; received from tgcalls
-            
-            payload (:class:`str`)
-                Group call join payload; received from tgcalls
-            
-            is_muted (:class:`bool`)
-                True, if the user's microphone is muted
-            
-            is_my_video_enabled (:class:`bool`)
-                True, if the user's video is enabled
-            
-            invite_hash (:class:`str`)
-                If non-empty, invite hash to be used to join the group call without being muted by administrators
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param participant_id: Identifier of a group call participant, which will be used to join the call; voice chats only
+        :type participant_id: :class:`MessageSender`
+        
+        :param audio_source_id: Caller audio channel synchronization source identifier; received from tgcalls
+        :type audio_source_id: :class:`int`
+        
+        :param payload: Group call join payload; received from tgcalls
+        :type payload: :class:`str`
+        
+        :param is_muted: True, if the user's microphone is muted
+        :type is_muted: :class:`bool`
+        
+        :param is_my_video_enabled: True, if the user's video is enabled
+        :type is_my_video_enabled: :class:`bool`
+        
+        :param invite_hash: If non-empty, invite hash to be used to join the group call without being muted by administrators
+        :type invite_hash: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Text`
         """
         _constructor = JoinGroupCall.construct if skip_validation else JoinGroupCall
 
@@ -9069,10 +10873,18 @@ class API:
         """
         Removes the current user from chat members. Private and secret chats can't be left using this method
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = LeaveChat.construct if skip_validation else LeaveChat
 
@@ -9095,10 +10907,18 @@ class API:
         """
         Leaves a group call
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = LeaveGroupCall.construct if skip_validation else LeaveGroupCall
 
@@ -9122,13 +10942,21 @@ class API:
         """
         Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats has been loaded
         
-        Params:
-            chat_list (:class:`ChatList`)
-                The chat list in which to load chats
-            
-            limit (:class:`int`)
-                The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
-            
+        :param chat_list: The chat list in which to load chats
+        :type chat_list: :class:`ChatList`
+        
+        :param limit: The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = LoadChats.construct if skip_validation else LoadChats
 
@@ -9153,13 +10981,21 @@ class API:
         """
         Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants has already been loaded
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
-            
-            limit (:class:`int`)
-                The maximum number of participants to load
-            
+        :param group_call_id: Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
+        :type group_call_id: :class:`int`
+        
+        :param limit: The maximum number of participants to load
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = LoadGroupCallParticipants.construct if skip_validation else LoadGroupCallParticipants
 
@@ -9194,10 +11030,18 @@ class API:
         """
         Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats)
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = OpenChat.construct if skip_validation else OpenChat
 
@@ -9221,13 +11065,21 @@ class API:
         """
         Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier of the message
-            
-            message_id (:class:`int`)
-                Identifier of the message with the opened content
-            
+        :param chat_id: Chat identifier of the message
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message with the opened content
+        :type message_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = OpenMessageContent.construct if skip_validation else OpenMessageContent
 
@@ -9259,34 +11111,42 @@ class API:
         """
         Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
         
-        Params:
-            size (:class:`int`)
-                Limit on the total size of files after deletion, in bytes. Pass -1 to use the default limit
-            
-            ttl (:class:`int`)
-                Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit
-            
-            count (:class:`int`)
-                Limit on the total count of files after deletion. Pass -1 to use the default limit
-            
-            immunity_delay (:class:`int`)
-                The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value
-            
-            file_types (:obj:`list[FileType]`)
-                If not empty, only files with the given type(s) are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
-            
-            chat_ids (:obj:`list[int]`)
-                If not empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
-            
-            exclude_chat_ids (:obj:`list[int]`)
-                If not empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
-            
-            return_deleted_file_statistics (:class:`bool`)
-                Pass true if statistics about the files that were deleted must be returned instead of the whole storage usage statistics. Affects only returned statistics
-            
-            chat_limit (:class:`int`)
-                Same as in getStorageStatistics. Affects only returned statistics
-            
+        :param size: Limit on the total size of files after deletion, in bytes. Pass -1 to use the default limit
+        :type size: :class:`int`
+        
+        :param ttl: Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit
+        :type ttl: :class:`int`
+        
+        :param count: Limit on the total count of files after deletion. Pass -1 to use the default limit
+        :type count: :class:`int`
+        
+        :param immunity_delay: The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value
+        :type immunity_delay: :class:`int`
+        
+        :param file_types: If not empty, only files with the given type(s) are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
+        :type file_types: :class:`list[FileType]`
+        
+        :param chat_ids: If not empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
+        :type chat_ids: :class:`list[int]`
+        
+        :param exclude_chat_ids: If not empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
+        :type exclude_chat_ids: :class:`list[int]`
+        
+        :param return_deleted_file_statistics: Pass true if statistics about the files that were deleted must be returned instead of the whole storage usage statistics. Affects only returned statistics
+        :type return_deleted_file_statistics: :class:`bool`
+        
+        :param chat_limit: Same as in getStorageStatistics. Affects only returned statistics
+        :type chat_limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StorageStatistics`
         """
         _constructor = OptimizeStorage.construct if skip_validation else OptimizeStorage
 
@@ -9317,10 +11177,18 @@ class API:
         """
         Parses Markdown entities in a human-friendly format, ignoring markup errors. Can be called synchronously
         
-        Params:
-            text (:class:`FormattedText`)
-                The text to parse. For example, "__italic__ ~~strikethrough~~ **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
-            
+        :param text: The text to parse. For example, "__italic__ ~~strikethrough~~ **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
+        :type text: :class:`FormattedText`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FormattedText`
         """
         _constructor = ParseMarkdown.construct if skip_validation else ParseMarkdown
 
@@ -9344,13 +11212,21 @@ class API:
         """
         Parses Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. Can be called synchronously
         
-        Params:
-            text (:class:`str`)
-                The text to parse
-            
-            parse_mode (:class:`TextParseMode`)
-                Text parse mode
-            
+        :param text: The text to parse
+        :type text: :class:`str`
+        
+        :param parse_mode: Text parse mode
+        :type parse_mode: :class:`TextParseMode`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FormattedText`
         """
         _constructor = ParseTextEntities.construct if skip_validation else ParseTextEntities
 
@@ -9377,19 +11253,27 @@ class API:
         """
         Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat
-            
-            message_id (:class:`int`)
-                Identifier of the new pinned message
-            
-            disable_notification (:class:`bool`)
-                True, if there should be no notification about the pinned message. Notifications are always disabled in channels and private chats
-            
-            only_for_self (:class:`bool`)
-                True, if the message needs to be pinned for one side only; private chats only
-            
+        :param chat_id: Identifier of the chat
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the new pinned message
+        :type message_id: :class:`int`
+        
+        :param disable_notification: True, if there should be no notification about the pinned message. Notifications are always disabled in channels and private chats
+        :type disable_notification: :class:`bool`
+        
+        :param only_for_self: True, if the message needs to be pinned for one side only; private chats only
+        :type only_for_self: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = PinChatMessage.construct if skip_validation else PinChatMessage
 
@@ -9415,10 +11299,18 @@ class API:
         """
         Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
         
-        Params:
-            proxy_id (:class:`int`)
-                Proxy identifier. Use 0 to ping a Telegram server without a proxy
-            
+        :param proxy_id: Proxy identifier. Use 0 to ping a Telegram server without a proxy
+        :type proxy_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Seconds`
         """
         _constructor = PingProxy.construct if skip_validation else PingProxy
 
@@ -9441,10 +11333,18 @@ class API:
         """
         Handles a push notification. Returns error with code 406 if the push notification is not supported and connection to the server is required to fetch new data. Can be called before authorization
         
-        Params:
-            payload (:class:`str`)
-                JSON-encoded push notification payload with all fields sent by the server, and "google.sent_time" and "google.notification.sound" fields added
-            
+        :param payload: JSON-encoded push notification payload with all fields sent by the server, and "google.sent_time" and "google.notification.sound" fields added
+        :type payload: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ProcessPushNotification.construct if skip_validation else ProcessPushNotification
 
@@ -9467,10 +11367,18 @@ class API:
         """
         Marks all mentions in a chat as read
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ReadAllChatMentions.construct if skip_validation else ReadAllChatMentions
 
@@ -9495,16 +11403,24 @@ class API:
         """
         Reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct read from the file
         
-        Params:
-            file_id (:class:`int`)
-                Identifier of the file. The file must be located in the TDLib file cache
-            
-            offset (:class:`int`)
-                The offset from which to read the file
-            
-            count (:class:`int`)
-                Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
-            
+        :param file_id: Identifier of the file. The file must be located in the TDLib file cache
+        :type file_id: :class:`int`
+        
+        :param offset: The offset from which to read the file
+        :type offset: :class:`int`
+        
+        :param count: Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
+        :type count: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FilePart`
         """
         _constructor = ReadFilePart.construct if skip_validation else ReadFilePart
 
@@ -9531,16 +11447,24 @@ class API:
         """
         Recovers the password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
         
-        Params:
-            recovery_code (:class:`str`)
-                Recovery code to check
-            
-            new_password (:class:`str`)
-                New password of the user; may be empty to remove the password
-            
-            new_hint (:class:`str`)
-                New password hint; may be empty
-            
+        :param recovery_code: Recovery code to check
+        :type recovery_code: :class:`str`
+        
+        :param new_password: New password of the user; may be empty to remove the password
+        :type new_password: :class:`str`
+        
+        :param new_hint: New password hint; may be empty
+        :type new_hint: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RecoverAuthenticationPassword.construct if skip_validation else RecoverAuthenticationPassword
 
@@ -9567,16 +11491,24 @@ class API:
         """
         Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
         
-        Params:
-            recovery_code (:class:`str`)
-                Recovery code to check
-            
-            new_password (:class:`str`)
-                New password of the user; may be empty to remove the password
-            
-            new_hint (:class:`str`)
-                New password hint; may be empty
-            
+        :param recovery_code: Recovery code to check
+        :type recovery_code: :class:`str`
+        
+        :param new_password: New password of the user; may be empty to remove the password
+        :type new_password: :class:`str`
+        
+        :param new_hint: New password hint; may be empty
+        :type new_hint: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PasswordState`
         """
         _constructor = RecoverPassword.construct if skip_validation else RecoverPassword
 
@@ -9602,13 +11534,21 @@ class API:
         """
         Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
         
-        Params:
-            device_token (:class:`DeviceToken`)
-                Device token
-            
-            other_user_ids (:obj:`list[int]`)
-                List of user identifiers of other users currently using the application
-            
+        :param device_token: Device token
+        :type device_token: :class:`DeviceToken`
+        
+        :param other_user_ids: List of user identifiers of other users currently using the application
+        :type other_user_ids: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PushReceiverId`
         """
         _constructor = RegisterDevice.construct if skip_validation else RegisterDevice
 
@@ -9633,13 +11573,21 @@ class API:
         """
         Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
         
-        Params:
-            first_name (:class:`str`)
-                The first name of the user; 1-64 characters
-            
-            last_name (:class:`str`)
-                The last name of the user; 0-64 characters
-            
+        :param first_name: The first name of the user; 1-64 characters
+        :type first_name: :class:`str`
+        
+        :param last_name: The last name of the user; 0-64 characters, defaults to None
+        :type last_name: :class:`str`, optional
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RegisterUser.construct if skip_validation else RegisterUser
 
@@ -9663,10 +11611,18 @@ class API:
         """
         Removes background from the list of installed backgrounds
         
-        Params:
-            background_id (:class:`int`)
-                The background identifier
-            
+        :param background_id: The background identifier
+        :type background_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RemoveBackground.construct if skip_validation else RemoveBackground
 
@@ -9689,10 +11645,18 @@ class API:
         """
         Removes a chat action bar without any other action
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RemoveChatActionBar.construct if skip_validation else RemoveChatActionBar
 
@@ -9715,10 +11679,18 @@ class API:
         """
         Removes users from the contact list
         
-        Params:
-            user_ids (:obj:`list[int]`)
-                Identifiers of users to be deleted
-            
+        :param user_ids: Identifiers of users to be deleted
+        :type user_ids: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RemoveContacts.construct if skip_validation else RemoveContacts
 
@@ -9741,10 +11713,18 @@ class API:
         """
         Removes a sticker from the list of favorite stickers
         
-        Params:
-            sticker (:class:`InputFile`)
-                Sticker file to delete from the list
-            
+        :param sticker: Sticker file to delete from the list
+        :type sticker: :class:`InputFile`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RemoveFavoriteSticker.construct if skip_validation else RemoveFavoriteSticker
 
@@ -9768,13 +11748,21 @@ class API:
         """
         Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user
         
-        Params:
-            notification_group_id (:class:`int`)
-                Identifier of notification group to which the notification belongs
-            
-            notification_id (:class:`int`)
-                Identifier of removed notification
-            
+        :param notification_group_id: Identifier of notification group to which the notification belongs
+        :type notification_group_id: :class:`int`
+        
+        :param notification_id: Identifier of removed notification
+        :type notification_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RemoveNotification.construct if skip_validation else RemoveNotification
 
@@ -9799,13 +11787,21 @@ class API:
         """
         Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user
         
-        Params:
-            notification_group_id (:class:`int`)
-                Notification group identifier
-            
-            max_notification_id (:class:`int`)
-                The maximum identifier of removed notifications
-            
+        :param notification_group_id: Notification group identifier
+        :type notification_group_id: :class:`int`
+        
+        :param max_notification_id: The maximum identifier of removed notifications
+        :type max_notification_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RemoveNotificationGroup.construct if skip_validation else RemoveNotificationGroup
 
@@ -9829,10 +11825,18 @@ class API:
         """
         Removes a proxy server. Can be called before authorization
         
-        Params:
-            proxy_id (:class:`int`)
-                Proxy identifier
-            
+        :param proxy_id: Proxy identifier
+        :type proxy_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RemoveProxy.construct if skip_validation else RemoveProxy
 
@@ -9855,10 +11859,18 @@ class API:
         """
         Removes a hashtag from the list of recently used hashtags
         
-        Params:
-            hashtag (:class:`str`)
-                Hashtag to delete
-            
+        :param hashtag: Hashtag to delete
+        :type hashtag: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RemoveRecentHashtag.construct if skip_validation else RemoveRecentHashtag
 
@@ -9882,13 +11894,21 @@ class API:
         """
         Removes a sticker from the list of recently used stickers
         
-        Params:
-            is_attached (:class:`bool`)
-                Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers
-            
-            sticker (:class:`InputFile`)
-                Sticker file to delete
-            
+        :param is_attached: Pass true to remove the sticker from the list of stickers recently attached to photo or video files; pass false to remove the sticker from the list of recently sent stickers
+        :type is_attached: :class:`bool`
+        
+        :param sticker: Sticker file to delete
+        :type sticker: :class:`InputFile`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RemoveRecentSticker.construct if skip_validation else RemoveRecentSticker
 
@@ -9912,10 +11932,18 @@ class API:
         """
         Removes a chat from the list of recently found chats
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat to be removed
-            
+        :param chat_id: Identifier of the chat to be removed
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RemoveRecentlyFoundChat.construct if skip_validation else RemoveRecentlyFoundChat
 
@@ -9938,10 +11966,18 @@ class API:
         """
         Removes an animation from the list of saved animations
         
-        Params:
-            animation (:class:`InputFile`)
-                Animation file to be removed
-            
+        :param animation: Animation file to be removed
+        :type animation: :class:`InputFile`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RemoveSavedAnimation.construct if skip_validation else RemoveSavedAnimation
 
@@ -9964,10 +12000,18 @@ class API:
         """
         Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot
         
-        Params:
-            sticker (:class:`InputFile`)
-                Sticker
-            
+        :param sticker: Sticker
+        :type sticker: :class:`InputFile`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RemoveStickerFromSet.construct if skip_validation else RemoveStickerFromSet
 
@@ -9991,13 +12035,21 @@ class API:
         """
         Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled
         
-        Params:
-            category (:class:`TopChatCategory`)
-                Category of frequently used chats
-            
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param category: Category of frequently used chats
+        :type category: :class:`TopChatCategory`
+        
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RemoveTopChat.construct if skip_validation else RemoveTopChat
 
@@ -10021,10 +12073,18 @@ class API:
         """
         Changes the order of chat filters
         
-        Params:
-            chat_filter_ids (:obj:`list[int]`)
-                Identifiers of chat filters in the new correct order
-            
+        :param chat_filter_ids: Identifiers of chat filters in the new correct order
+        :type chat_filter_ids: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ReorderChatFilters.construct if skip_validation else ReorderChatFilters
 
@@ -10048,13 +12108,21 @@ class API:
         """
         Changes the order of installed sticker sets
         
-        Params:
-            is_masks (:class:`bool`)
-                Pass true to change the order of mask sticker sets; pass false to change the order of ordinary sticker sets
-            
-            sticker_set_ids (:obj:`list[int]`)
-                Identifiers of installed sticker sets in the new correct order
-            
+        :param is_masks: Pass true to change the order of mask sticker sets; pass false to change the order of ordinary sticker sets
+        :type is_masks: :class:`bool`
+        
+        :param sticker_set_ids: Identifiers of installed sticker sets in the new correct order
+        :type sticker_set_ids: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ReorderInstalledStickerSets.construct if skip_validation else ReorderInstalledStickerSets
 
@@ -10078,10 +12146,18 @@ class API:
         """
         Replaces current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatInviteLink`
         """
         _constructor = ReplacePrimaryChatInviteLink.construct if skip_validation else ReplacePrimaryChatInviteLink
 
@@ -10107,19 +12183,27 @@ class API:
         """
         Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if this is a private chat with a bot, a private chat with a user sharing their location, a supergroup, or a channel, since other chats can't be checked by moderators
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            message_ids (:obj:`list[int]`)
-                Identifiers of reported messages, if any
-            
-            reason (:class:`ChatReportReason`)
-                The reason for reporting the chat
-            
-            text (:class:`str`)
-                Additional report details; 0-1024 characters
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param message_ids: Identifiers of reported messages, if any
+        :type message_ids: :class:`list[int]`
+        
+        :param reason: The reason for reporting the chat
+        :type reason: :class:`ChatReportReason`
+        
+        :param text: Additional report details; 0-1024 characters, defaults to None
+        :type text: :class:`str`, optional
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ReportChat.construct if skip_validation else ReportChat
 
@@ -10148,19 +12232,27 @@ class API:
         """
         Reports a chat photo to the Telegram moderators. A chat photo can be reported only if this is a private chat with a bot, a private chat with a user sharing their location, a supergroup, or a channel, since other chats can't be checked by moderators
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            file_id (:class:`int`)
-                Identifier of the photo to report. Only full photos from chatPhoto can be reported
-            
-            reason (:class:`ChatReportReason`)
-                The reason for reporting the chat photo
-            
-            text (:class:`str`)
-                Additional report details; 0-1024 characters
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param file_id: Identifier of the photo to report. Only full photos from chatPhoto can be reported
+        :type file_id: :class:`int`
+        
+        :param reason: The reason for reporting the chat photo
+        :type reason: :class:`ChatReportReason`
+        
+        :param text: Additional report details; 0-1024 characters, defaults to None
+        :type text: :class:`str`, optional
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ReportChatPhoto.construct if skip_validation else ReportChatPhoto
 
@@ -10188,16 +12280,24 @@ class API:
         """
         Reports some messages from a user in a supergroup as spam; requires administrator rights in the supergroup
         
-        Params:
-            supergroup_id (:class:`int`)
-                Supergroup identifier
-            
-            user_id (:class:`int`)
-                User identifier
-            
-            message_ids (:obj:`list[int]`)
-                Identifiers of messages sent in the supergroup by the user. This list must be non-empty
-            
+        :param supergroup_id: Supergroup identifier
+        :type supergroup_id: :class:`int`
+        
+        :param user_id: User identifier
+        :type user_id: :class:`int`
+        
+        :param message_ids: Identifiers of messages sent in the supergroup by the user. This list must be non-empty
+        :type message_ids: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ReportSupergroupSpam.construct if skip_validation else ReportSupergroupSpam
 
@@ -10254,10 +12354,18 @@ class API:
         """
         Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
         
-        Params:
-            other_user_ids (:obj:`list[int]`)
-                List of user identifiers of other users currently using the application
-            
+        :param other_user_ids: List of user identifiers of other users currently using the application
+        :type other_user_ids: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RequestQrCodeAuthentication.construct if skip_validation else RequestQrCodeAuthentication
 
@@ -10324,13 +12432,21 @@ class API:
         """
         Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat to send messages
-            
-            message_ids (:obj:`list[int]`)
-                Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
-            
+        :param chat_id: Identifier of the chat to send messages
+        :type chat_id: :class:`int`
+        
+        :param message_ids: Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
+        :type message_ids: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Messages`
         """
         _constructor = ResendMessages.construct if skip_validation else ResendMessages
 
@@ -10447,13 +12563,21 @@ class API:
         """
         Revokes invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links. If a primary link is revoked, then additionally to the revoked link returns new primary link
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            invite_link (:class:`str`)
-                Invite link to be revoked
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param invite_link: Invite link to be revoked
+        :type invite_link: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatInviteLinks`
         """
         _constructor = RevokeChatInviteLink.construct if skip_validation else RevokeChatInviteLink
 
@@ -10477,10 +12601,18 @@ class API:
         """
         Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = RevokeGroupCallInviteLink.construct if skip_validation else RevokeGroupCallInviteLink
 
@@ -10505,16 +12637,24 @@ class API:
         """
         Saves application log event on the server. Can be called before authorization
         
-        Params:
-            type_ (:class:`str`)
-                Event type
-            
-            chat_id (:class:`int`)
-                Optional chat identifier, associated with the event
-            
-            data (:class:`JsonValue`)
-                The log event data
-            
+        :param type_: Event type
+        :type type_: :class:`str`
+        
+        :param chat_id: Optional chat identifier, associated with the event
+        :type chat_id: :class:`int`
+        
+        :param data: The log event data
+        :type data: :class:`JsonValue`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SaveApplicationLogEvent.construct if skip_validation else SaveApplicationLogEvent
 
@@ -10539,10 +12679,18 @@ class API:
         """
         Searches for a background by its name
         
-        Params:
-            name (:class:`str`)
-                The name of the background
-            
+        :param name: The name of the background
+        :type name: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Background`
         """
         _constructor = SearchBackground.construct if skip_validation else SearchBackground
 
@@ -10567,16 +12715,24 @@ class API:
         """
         Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
         
-        Params:
-            from_message_id (:class:`int`)
-                Identifier of the message from which to search; use 0 to get results from the last message
-            
-            limit (:class:`int`)
-                The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-            
-            only_missed (:class:`bool`)
-                If true, returns only messages with missed calls
-            
+        :param from_message_id: Identifier of the message from which to search; use 0 to get results from the last message
+        :type from_message_id: :class:`int`
+        
+        :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`int`
+        
+        :param only_missed: If true, returns only messages with missed calls
+        :type only_missed: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Messages`
         """
         _constructor = SearchCallMessages.construct if skip_validation else SearchCallMessages
 
@@ -10604,19 +12760,27 @@ class API:
         """
         Searches for a specified query in the first name, last name and username of the members of a specified chat. Requires administrator rights in channels
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            query (:class:`str`)
-                Query to search for
-            
-            limit (:class:`int`)
-                The maximum number of users to be returned
-            
-            filter_ (:class:`ChatMembersFilter`)
-                The type of users to return. By default, chatMembersFilterMembers
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param query: Query to search for
+        :type query: :class:`str`
+        
+        :param limit: The maximum number of users to be returned
+        :type limit: :class:`int`
+        
+        :param filter_: The type of users to return. By default, chatMembersFilterMembers
+        :type filter_: :class:`ChatMembersFilter`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatMembers`
         """
         _constructor = SearchChatMembers.construct if skip_validation else SearchChatMembers
 
@@ -10649,31 +12813,39 @@ class API:
         """
         Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages should be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat in which to search messages
-            
-            query (:class:`str`)
-                Query to search for
-            
-            sender (:class:`MessageSender`)
-                If not null, only messages sent by the specified sender will be returned. Not supported in secret chats
-            
-            from_message_id (:class:`int`)
-                Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-            
-            offset (:class:`int`)
-                Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
-            
-            limit (:class:`int`)
-                The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-            
-            filter_ (:class:`SearchMessagesFilter`)
-                Filter for message content in the search results
-            
-            message_thread_id (:class:`int`)
-                If not 0, only messages in the specified thread will be returned; supergroups only
-            
+        :param chat_id: Identifier of the chat in which to search messages
+        :type chat_id: :class:`int`
+        
+        :param query: Query to search for
+        :type query: :class:`str`
+        
+        :param sender: If not null, only messages sent by the specified sender will be returned. Not supported in secret chats
+        :type sender: :class:`MessageSender`
+        
+        :param from_message_id: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+        :type from_message_id: :class:`int`
+        
+        :param offset: Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
+        :type offset: :class:`int`
+        
+        :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`int`
+        
+        :param filter_: Filter for message content in the search results
+        :type filter_: :class:`SearchMessagesFilter`
+        
+        :param message_thread_id: If not 0, only messages in the specified thread will be returned; supergroups only
+        :type message_thread_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Messages`
         """
         _constructor = SearchChatMessages.construct if skip_validation else SearchChatMessages
 
@@ -10704,13 +12876,21 @@ class API:
         """
         Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            limit (:class:`int`)
-                The maximum number of messages to be returned
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param limit: The maximum number of messages to be returned
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Messages`
         """
         _constructor = SearchChatRecentLocationMessages.construct if skip_validation else SearchChatRecentLocationMessages
 
@@ -10735,13 +12915,21 @@ class API:
         """
         Searches for the specified query in the title and username of already known chats, this is an offline request. Returns chats in the order seen in the main chat list
         
-        Params:
-            query (:class:`str`)
-                Query to search for. If the query is empty, returns up to 50 recently found chats
-            
-            limit (:class:`int`)
-                The maximum number of chats to be returned
-            
+        :param query: Query to search for. If the query is empty, returns up to 50 recently found chats
+        :type query: :class:`str`
+        
+        :param limit: The maximum number of chats to be returned
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chats`
         """
         _constructor = SearchChats.construct if skip_validation else SearchChats
 
@@ -10765,10 +12953,18 @@ class API:
         """
         Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request should be sent again every 25 seconds with adjusted location to not miss new chats
         
-        Params:
-            location (:class:`Location`)
-                Current user location
-            
+        :param location: Current user location
+        :type location: :class:`Location`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatsNearby`
         """
         _constructor = SearchChatsNearby.construct if skip_validation else SearchChatsNearby
 
@@ -10792,13 +12988,21 @@ class API:
         """
         Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
         
-        Params:
-            query (:class:`str`)
-                Query to search for
-            
-            limit (:class:`int`)
-                The maximum number of chats to be returned
-            
+        :param query: Query to search for
+        :type query: :class:`str`
+        
+        :param limit: The maximum number of chats to be returned
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chats`
         """
         _constructor = SearchChatsOnServer.construct if skip_validation else SearchChatsOnServer
 
@@ -10823,13 +13027,21 @@ class API:
         """
         Searches for the specified query in the first names, last names and usernames of the known user contacts
         
-        Params:
-            query (:class:`str`)
-                Query to search for; may be empty to return all contacts
-            
-            limit (:class:`int`)
-                The maximum number of users to be returned
-            
+        :param query: Query to search for; may be empty to return all contacts
+        :type query: :class:`str`
+        
+        :param limit: The maximum number of users to be returned
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Users`
         """
         _constructor = SearchContacts.construct if skip_validation else SearchContacts
 
@@ -10855,16 +13067,24 @@ class API:
         """
         Searches for emojis by keywords. Supported only if the file database is enabled
         
-        Params:
-            text (:class:`str`)
-                Text to search for
-            
-            exact_match (:class:`bool`)
-                True, if only emojis, which exactly match text needs to be returned
-            
-            input_language_codes (:obj:`list[str]`)
-                List of possible IETF language tags of the user's input language; may be empty if unknown
-            
+        :param text: Text to search for
+        :type text: :class:`str`
+        
+        :param exact_match: True, if only emojis, which exactly match text needs to be returned
+        :type exact_match: :class:`bool`
+        
+        :param input_language_codes: List of possible IETF language tags of the user's input language; may be empty if unknown
+        :type input_language_codes: :class:`list[str]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Emojis`
         """
         _constructor = SearchEmojis.construct if skip_validation else SearchEmojis
 
@@ -10890,13 +13110,21 @@ class API:
         """
         Searches for recently used hashtags by their prefix
         
-        Params:
-            prefix (:class:`str`)
-                Hashtag prefix to search for
-            
-            limit (:class:`int`)
-                The maximum number of hashtags to be returned
-            
+        :param prefix: Hashtag prefix to search for
+        :type prefix: :class:`str`
+        
+        :param limit: The maximum number of hashtags to be returned
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Hashtags`
         """
         _constructor = SearchHashtags.construct if skip_validation else SearchHashtags
 
@@ -10922,16 +13150,24 @@ class API:
         """
         Searches for installed sticker sets by looking for specified query in their title and name
         
-        Params:
-            is_masks (:class:`bool`)
-                Pass true to return mask sticker sets; pass false to return ordinary sticker sets
-            
-            query (:class:`str`)
-                Query to search for
-            
-            limit (:class:`int`)
-                The maximum number of sticker sets to return
-            
+        :param is_masks: Pass true to return mask sticker sets; pass false to return ordinary sticker sets
+        :type is_masks: :class:`bool`
+        
+        :param query: Query to search for
+        :type query: :class:`str`
+        
+        :param limit: The maximum number of sticker sets to return
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StickerSets`
         """
         _constructor = SearchInstalledStickerSets.construct if skip_validation else SearchInstalledStickerSets
 
@@ -10964,34 +13200,42 @@ class API:
         """
         Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         
-        Params:
-            chat_list (:class:`ChatList`)
-                Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
-            
-            query (:class:`str`)
-                Query to search for
-            
-            offset_date (:class:`int`)
-                The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the last message
-            
-            offset_chat_id (:class:`int`)
-                The chat identifier of the last found message, or 0 for the first request
-            
-            offset_message_id (:class:`int`)
-                The message identifier of the last found message, or 0 for the first request
-            
-            limit (:class:`int`)
-                The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-            
-            filter_ (:class:`SearchMessagesFilter`)
-                Filter for message content in the search results; searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
-            
-            min_date (:class:`int`)
-                If not 0, the minimum date of the messages to return
-            
-            max_date (:class:`int`)
-                If not 0, the maximum date of the messages to return
-            
+        :param chat_list: Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
+        :type chat_list: :class:`ChatList`
+        
+        :param query: Query to search for
+        :type query: :class:`str`
+        
+        :param offset_date: The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the last message
+        :type offset_date: :class:`int`
+        
+        :param offset_chat_id: The chat identifier of the last found message, or 0 for the first request
+        :type offset_chat_id: :class:`int`
+        
+        :param offset_message_id: The message identifier of the last found message, or 0 for the first request
+        :type offset_message_id: :class:`int`
+        
+        :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`int`
+        
+        :param filter_: Filter for message content in the search results; searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
+        :type filter_: :class:`SearchMessagesFilter`
+        
+        :param min_date: If not 0, the minimum date of the messages to return
+        :type min_date: :class:`int`
+        
+        :param max_date: If not 0, the maximum date of the messages to return
+        :type max_date: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Messages`
         """
         _constructor = SearchMessages.construct if skip_validation else SearchMessages
 
@@ -11022,10 +13266,18 @@ class API:
         """
         Searches a public chat by its username. Currently only private chats, supergroups and channels can be public. Returns the chat if found; otherwise an error is returned
         
-        Params:
-            username (:class:`str`)
-                Username to be resolved
-            
+        :param username: Username to be resolved
+        :type username: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chat`
         """
         _constructor = SearchPublicChat.construct if skip_validation else SearchPublicChat
 
@@ -11048,10 +13300,18 @@ class API:
         """
         Searches public chats by looking for specified query in their username and title. Currently only private chats, supergroups and channels can be public. Returns a meaningful number of results. Returns nothing if the length of the searched username prefix is less than 5. Excludes private chats with contacts and chats from the chat list from the results
         
-        Params:
-            query (:class:`str`)
-                Query to search for
-            
+        :param query: Query to search for
+        :type query: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chats`
         """
         _constructor = SearchPublicChats.construct if skip_validation else SearchPublicChats
 
@@ -11078,22 +13338,30 @@ class API:
         """
         Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat in which to search. Specify 0 to search in all secret chats
-            
-            query (:class:`str`)
-                Query to search for. If empty, searchChatMessages should be used instead
-            
-            offset (:class:`str`)
-                Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
-            
-            limit (:class:`int`)
-                The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-            
-            filter_ (:class:`SearchMessagesFilter`)
-                A filter for message content in the search results
-            
+        :param chat_id: Identifier of the chat in which to search. Specify 0 to search in all secret chats
+        :type chat_id: :class:`int`
+        
+        :param query: Query to search for. If empty, searchChatMessages should be used instead
+        :type query: :class:`str`
+        
+        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
+        :type offset: :class:`str`
+        
+        :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`int`
+        
+        :param filter_: A filter for message content in the search results
+        :type filter_: :class:`SearchMessagesFilter`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FoundMessages`
         """
         _constructor = SearchSecretMessages.construct if skip_validation else SearchSecretMessages
 
@@ -11120,10 +13388,18 @@ class API:
         """
         Searches for a sticker set by its name
         
-        Params:
-            name (:class:`str`)
-                Name of the sticker set
-            
+        :param name: Name of the sticker set
+        :type name: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StickerSet`
         """
         _constructor = SearchStickerSet.construct if skip_validation else SearchStickerSet
 
@@ -11146,10 +13422,18 @@ class API:
         """
         Searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
         
-        Params:
-            query (:class:`str`)
-                Query to search for
-            
+        :param query: Query to search for
+        :type query: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StickerSets`
         """
         _constructor = SearchStickerSets.construct if skip_validation else SearchStickerSets
 
@@ -11173,13 +13457,21 @@ class API:
         """
         Searches for stickers from public sticker sets that correspond to a given emoji
         
-        Params:
-            emoji (:class:`str`)
-                String representation of emoji; must be non-empty
-            
-            limit (:class:`int`)
-                The maximum number of stickers to be returned
-            
+        :param emoji: String representation of emoji; must be non-empty
+        :type emoji: :class:`str`
+        
+        :param limit: The maximum number of stickers to be returned
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Stickers`
         """
         _constructor = SearchStickers.construct if skip_validation else SearchStickers
 
@@ -11205,16 +13497,24 @@ class API:
         """
         Invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
         
-        Params:
-            bot_user_id (:class:`int`)
-                Identifier of the bot
-            
-            chat_id (:class:`int`)
-                Identifier of the target chat
-            
-            parameter (:class:`str`)
-                A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
-            
+        :param bot_user_id: Identifier of the bot
+        :type bot_user_id: :class:`int`
+        
+        :param chat_id: Identifier of the target chat
+        :type chat_id: :class:`int`
+        
+        :param parameter: A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
+        :type parameter: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = SendBotStartMessage.construct if skip_validation else SendBotStartMessage
 
@@ -11240,13 +13540,21 @@ class API:
         """
         Sends debug information for a call
         
-        Params:
-            call_id (:class:`int`)
-                Call identifier
-            
-            debug_information (:class:`str`)
-                Debug information in application-specific format
-            
+        :param call_id: Call identifier
+        :type call_id: :class:`int`
+        
+        :param debug_information: Debug information in application-specific format
+        :type debug_information: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SendCallDebugInformation.construct if skip_validation else SendCallDebugInformation
 
@@ -11273,19 +13581,27 @@ class API:
         """
         Sends a call rating
         
-        Params:
-            call_id (:class:`int`)
-                Call identifier
-            
-            rating (:class:`int`)
-                Call rating; 1-5
-            
-            comment (:class:`str`)
-                An optional user comment if the rating is less than 5
-            
-            problems (:obj:`list[CallProblem]`)
-                List of the exact types of problems with the call, specified by the user
-            
+        :param call_id: Call identifier
+        :type call_id: :class:`int`
+        
+        :param rating: Call rating; 1-5
+        :type rating: :class:`int`
+        
+        :param comment: An optional user comment if the rating is less than 5
+        :type comment: :class:`str`
+        
+        :param problems: List of the exact types of problems with the call, specified by the user
+        :type problems: :class:`list[CallProblem]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SendCallRating.construct if skip_validation else SendCallRating
 
@@ -11312,13 +13628,21 @@ class API:
         """
         Sends call signaling data
         
-        Params:
-            call_id (:class:`int`)
-                Call identifier
-            
-            data (:class:`str`)
-                The data
-            
+        :param call_id: Call identifier
+        :type call_id: :class:`int`
+        
+        :param data: The data
+        :type data: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SendCallSignalingData.construct if skip_validation else SendCallSignalingData
 
@@ -11344,16 +13668,24 @@ class API:
         """
         Sends a notification about user activity in a chat
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            message_thread_id (:class:`int`)
-                If not 0, a message thread identifier in which the action was performed
-            
-            action (:class:`ChatAction`)
-                The action description
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param message_thread_id: If not 0, a message thread identifier in which the action was performed
+        :type message_thread_id: :class:`int`
+        
+        :param action: The action description
+        :type action: :class:`ChatAction`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SendChatAction.construct if skip_validation else SendChatAction
 
@@ -11378,10 +13710,18 @@ class API:
         """
         Sends a notification about a screenshot taken in a chat. Supported only in private and secret chats
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SendChatScreenshotTakenNotification.construct if skip_validation else SendChatScreenshotTakenNotification
 
@@ -11405,13 +13745,21 @@ class API:
         """
         Sends a custom request; for bots only
         
-        Params:
-            method (:class:`str`)
-                The method name
-            
-            parameters (:class:`str`)
-                JSON-serialized method parameters
-            
+        :param method: The method name
+        :type method: :class:`str`
+        
+        :param parameters: JSON-serialized method parameters
+        :type parameters: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.CustomRequestResult`
         """
         _constructor = SendCustomRequest.construct if skip_validation else SendCustomRequest
 
@@ -11435,10 +13783,18 @@ class API:
         """
         Sends a code to verify an email address to be added to a user's Telegram Passport
         
-        Params:
-            email_address (:class:`str`)
-                Email address
-            
+        :param email_address: Email address
+        :type email_address: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.EmailAddressAuthenticationCodeInfo`
         """
         _constructor = SendEmailAddressVerificationCode.construct if skip_validation else SendEmailAddressVerificationCode
 
@@ -11467,28 +13823,36 @@ class API:
         """
         Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
         
-        Params:
-            chat_id (:class:`int`)
-                Target chat
-            
-            message_thread_id (:class:`int`)
-                If not 0, a message thread identifier in which the message will be sent
-            
-            reply_to_message_id (:class:`int`)
-                Identifier of a message to reply to or 0
-            
-            options (:class:`MessageSendOptions`)
-                Options to be used to send the message
-            
-            query_id (:class:`int`)
-                Identifier of the inline query
-            
-            result_id (:class:`str`)
-                Identifier of the inline result
-            
-            hide_via_bot (:class:`bool`)
-                If true, there will be no mention of a bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username") and GetOption("venue_search_bot_username")
-            
+        :param chat_id: Target chat
+        :type chat_id: :class:`int`
+        
+        :param message_thread_id: If not 0, a message thread identifier in which the message will be sent
+        :type message_thread_id: :class:`int`
+        
+        :param reply_to_message_id: Identifier of a message to reply to or 0
+        :type reply_to_message_id: :class:`int`
+        
+        :param options: Options to be used to send the message
+        :type options: :class:`MessageSendOptions`
+        
+        :param query_id: Identifier of the inline query
+        :type query_id: :class:`int`
+        
+        :param result_id: Identifier of the inline result
+        :type result_id: :class:`str`
+        
+        :param hide_via_bot: If true, there will be no mention of a bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username") and GetOption("venue_search_bot_username")
+        :type hide_via_bot: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = SendInlineQueryResultMessage.construct if skip_validation else SendInlineQueryResultMessage
 
@@ -11522,25 +13886,33 @@ class API:
         """
         Sends a message. Returns the sent message
         
-        Params:
-            chat_id (:class:`int`)
-                Target chat
-            
-            message_thread_id (:class:`int`)
-                If not 0, a message thread identifier in which the message will be sent
-            
-            reply_to_message_id (:class:`int`)
-                Identifier of the message to reply to or 0
-            
-            options (:class:`MessageSendOptions`)
-                Options to be used to send the message
-            
-            reply_markup (:class:`ReplyMarkup`)
-                Markup for replying to the message; for bots only
-            
-            input_message_content (:class:`InputMessageContent`)
-                The content of the message to be sent
-            
+        :param chat_id: Target chat
+        :type chat_id: :class:`int`
+        
+        :param message_thread_id: If not 0, a message thread identifier in which the message will be sent
+        :type message_thread_id: :class:`int`
+        
+        :param reply_to_message_id: Identifier of the message to reply to or 0
+        :type reply_to_message_id: :class:`int`
+        
+        :param options: Options to be used to send the message
+        :type options: :class:`MessageSendOptions`
+        
+        :param reply_markup: Markup for replying to the message; for bots only
+        :type reply_markup: :class:`ReplyMarkup`
+        
+        :param input_message_content: The content of the message to be sent
+        :type input_message_content: :class:`InputMessageContent`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = SendMessage.construct if skip_validation else SendMessage
 
@@ -11572,22 +13944,30 @@ class API:
         """
         Sends 2-10 messages grouped together into an album. Currently only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
         
-        Params:
-            chat_id (:class:`int`)
-                Target chat
-            
-            message_thread_id (:class:`int`)
-                If not 0, a message thread identifier in which the messages will be sent
-            
-            reply_to_message_id (:class:`int`)
-                Identifier of a message to reply to or 0
-            
-            options (:class:`MessageSendOptions`)
-                Options to be used to send the messages
-            
-            input_message_contents (:obj:`list[InputMessageContent]`)
-                Contents of messages to be sent. At most 10 messages can be added to an album
-            
+        :param chat_id: Target chat
+        :type chat_id: :class:`int`
+        
+        :param message_thread_id: If not 0, a message thread identifier in which the messages will be sent
+        :type message_thread_id: :class:`int`
+        
+        :param reply_to_message_id: Identifier of a message to reply to or 0
+        :type reply_to_message_id: :class:`int`
+        
+        :param options: Options to be used to send the messages
+        :type options: :class:`MessageSendOptions`
+        
+        :param input_message_contents: Contents of messages to be sent. At most 10 messages can be added to an album
+        :type input_message_contents: :class:`list[InputMessageContent]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Messages`
         """
         _constructor = SendMessageAlbum.construct if skip_validation else SendMessageAlbum
 
@@ -11615,13 +13995,21 @@ class API:
         """
         Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
         
-        Params:
-            autorization_form_id (:class:`int`)
-                Authorization form identifier
-            
-            types (:obj:`list[PassportElementType]`)
-                Types of Telegram Passport elements chosen by user to complete the authorization form
-            
+        :param autorization_form_id: Authorization form identifier
+        :type autorization_form_id: :class:`int`
+        
+        :param types: Types of Telegram Passport elements chosen by user to complete the authorization form
+        :type types: :class:`list[PassportElementType]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SendPassportAuthorizationForm.construct if skip_validation else SendPassportAuthorizationForm
 
@@ -11651,28 +14039,36 @@ class API:
         """
         Sends a filled-out payment form to the bot for final verification
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier of the Invoice message
-            
-            message_id (:class:`int`)
-                Message identifier
-            
-            payment_form_id (:class:`int`)
-                Payment form identifier returned by getPaymentForm
-            
-            order_info_id (:class:`str`)
-                Identifier returned by validateOrderInfo, or an empty string
-            
-            shipping_option_id (:class:`str`)
-                Identifier of a chosen shipping option, if applicable
-            
-            credentials (:class:`InputCredentials`)
-                The credentials chosen by user for payment
-            
-            tip_amount (:class:`int`)
-                Chosen by the user amount of tip in the smallest units of the currency
-            
+        :param chat_id: Chat identifier of the Invoice message
+        :type chat_id: :class:`int`
+        
+        :param message_id: Message identifier
+        :type message_id: :class:`int`
+        
+        :param payment_form_id: Payment form identifier returned by getPaymentForm
+        :type payment_form_id: :class:`int`
+        
+        :param order_info_id: Identifier returned by validateOrderInfo, or an empty string
+        :type order_info_id: :class:`str`
+        
+        :param shipping_option_id: Identifier of a chosen shipping option, if applicable
+        :type shipping_option_id: :class:`str`
+        
+        :param credentials: The credentials chosen by user for payment
+        :type credentials: :class:`InputCredentials`
+        
+        :param tip_amount: Chosen by the user amount of tip in the smallest units of the currency
+        :type tip_amount: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PaymentResult`
         """
         _constructor = SendPaymentForm.construct if skip_validation else SendPaymentForm
 
@@ -11703,16 +14099,24 @@ class API:
         """
         Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
         
-        Params:
-            hash_ (:class:`str`)
-                Hash value from the link
-            
-            phone_number (:class:`str`)
-                Phone number value from the link
-            
-            settings (:class:`PhoneNumberAuthenticationSettings`)
-                Settings for the authentication of the user's phone number
-            
+        :param hash_: Hash value from the link
+        :type hash_: :class:`str`
+        
+        :param phone_number: Phone number value from the link
+        :type phone_number: :class:`str`
+        
+        :param settings: Settings for the authentication of the user's phone number
+        :type settings: :class:`PhoneNumberAuthenticationSettings`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.AuthenticationCodeInfo`
         """
         _constructor = SendPhoneNumberConfirmationCode.construct if skip_validation else SendPhoneNumberConfirmationCode
 
@@ -11738,13 +14142,21 @@ class API:
         """
         Sends a code to verify a phone number to be added to a user's Telegram Passport
         
-        Params:
-            phone_number (:class:`str`)
-                The phone number of the user, in international format
-            
-            settings (:class:`PhoneNumberAuthenticationSettings`)
-                Settings for the authentication of the user's phone number
-            
+        :param phone_number: The phone number of the user, in international format
+        :type phone_number: :class:`str`
+        
+        :param settings: Settings for the authentication of the user's phone number
+        :type settings: :class:`PhoneNumberAuthenticationSettings`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.AuthenticationCodeInfo`
         """
         _constructor = SendPhoneNumberVerificationCode.construct if skip_validation else SendPhoneNumberVerificationCode
 
@@ -11768,10 +14180,18 @@ class API:
         """
         Changes the period of inactivity after which the account of the current user will automatically be deleted
         
-        Params:
-            ttl (:class:`AccountTtl`)
-                New account TTL
-            
+        :param ttl: New account TTL
+        :type ttl: :class:`AccountTtl`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetAccountTtl.construct if skip_validation else SetAccountTtl
 
@@ -11794,10 +14214,18 @@ class API:
         """
         Succeeds after a specified amount of time has passed. Can be called before initialization
         
-        Params:
-            seconds (:class:`float`)
-                Number of seconds before the function returns
-            
+        :param seconds: Number of seconds before the function returns
+        :type seconds: :class:`float`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetAlarm.construct if skip_validation else SetAlarm
 
@@ -11821,13 +14249,21 @@ class API:
         """
         Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
         
-        Params:
-            phone_number (:class:`str`)
-                The phone number of the user, in international format
-            
-            settings (:class:`PhoneNumberAuthenticationSettings`)
-                Settings for the authentication of the user's phone number
-            
+        :param phone_number: The phone number of the user, in international format
+        :type phone_number: :class:`str`
+        
+        :param settings: Settings for the authentication of the user's phone number
+        :type settings: :class:`PhoneNumberAuthenticationSettings`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetAuthenticationPhoneNumber.construct if skip_validation else SetAuthenticationPhoneNumber
 
@@ -11852,13 +14288,21 @@ class API:
         """
         Sets auto-download settings
         
-        Params:
-            settings (:class:`AutoDownloadSettings`)
-                New user auto-download settings
-            
-            type_ (:class:`NetworkType`)
-                Type of the network for which the new settings are relevant
-            
+        :param settings: New user auto-download settings
+        :type settings: :class:`AutoDownloadSettings`
+        
+        :param type_: Type of the network for which the new settings are relevant
+        :type type_: :class:`NetworkType`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetAutoDownloadSettings.construct if skip_validation else SetAutoDownloadSettings
 
@@ -11884,16 +14328,24 @@ class API:
         """
         Changes the background selected by the user; adds background to the list of installed backgrounds
         
-        Params:
-            background (:class:`InputBackground`)
-                The input background to use. Pass null to create a new filled backgrounds. Pass null to remove the current background
-            
-            type_ (:class:`BackgroundType`)
-                Background type. Pass null to use default type of the remote background. Pass null to remove the current background
-            
-            for_dark_theme (:class:`bool`)
-                True, if the background is chosen for dark theme
-            
+        :param background: The input background to use. Pass null to create a new filled backgrounds. Pass null to remove the current background
+        :type background: :class:`InputBackground`
+        
+        :param type_: Background type. Pass null to use default type of the remote background. Pass null to remove the current background
+        :type type_: :class:`BackgroundType`
+        
+        :param for_dark_theme: True, if the background is chosen for dark theme
+        :type for_dark_theme: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Background`
         """
         _constructor = SetBackground.construct if skip_validation else SetBackground
 
@@ -11918,10 +14370,18 @@ class API:
         """
         Changes the bio of the current user
         
-        Params:
-            bio (:class:`str`)
-                The new value of the user bio; 0-70 characters without line feeds
-            
+        :param bio: The new value of the user bio; 0-70 characters without line feeds, defaults to None
+        :type bio: :class:`str`, optional
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetBio.construct if skip_validation else SetBio
 
@@ -11945,13 +14405,21 @@ class API:
         """
         Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only
         
-        Params:
-            pending_update_count (:class:`int`)
-                The number of pending updates
-            
-            error_message (:class:`str`)
-                The last error message
-            
+        :param pending_update_count: The number of pending updates
+        :type pending_update_count: :class:`int`
+        
+        :param error_message: The last error message
+        :type error_message: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetBotUpdatesStatus.construct if skip_validation else SetBotUpdatesStatus
 
@@ -11976,13 +14444,21 @@ class API:
         """
         Changes application-specific data associated with a chat
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            client_data (:class:`str`)
-                New value of client_data
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param client_data: New value of client_data
+        :type client_data: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetChatClientData.construct if skip_validation else SetChatClientData
 
@@ -12007,13 +14483,21 @@ class API:
         """
         Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat
-            
-            param_description (:class:`str`)
-                New chat description; 0-255 characters
-            
+        :param chat_id: Identifier of the chat
+        :type chat_id: :class:`int`
+        
+        :param param_description: New chat description; 0-255 characters, defaults to None
+        :type param_description: :class:`str`, optional
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetChatDescription.construct if skip_validation else SetChatDescription
 
@@ -12038,13 +14522,21 @@ class API:
         """
         Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)
-            
-            discussion_chat_id (:class:`int`)
-                Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups. Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
-            
+        :param chat_id: Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)
+        :type chat_id: :class:`int`
+        
+        :param discussion_chat_id: Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups. Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
+        :type discussion_chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetChatDiscussionGroup.construct if skip_validation else SetChatDiscussionGroup
 
@@ -12070,16 +14562,24 @@ class API:
         """
         Changes the draft message in a chat
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            message_thread_id (:class:`int`)
-                If not 0, a message thread identifier in which the draft was changed
-            
-            draft_message (:class:`DraftMessage`)
-                New draft message; may be null
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param message_thread_id: If not 0, a message thread identifier in which the draft was changed
+        :type message_thread_id: :class:`int`
+        
+        :param draft_message: New draft message; may be null, defaults to None
+        :type draft_message: :class:`DraftMessage`, optional
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetChatDraftMessage.construct if skip_validation else SetChatDraftMessage
 
@@ -12105,13 +14605,21 @@ class API:
         """
         Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            location (:class:`ChatLocation`)
-                New location for the chat; must be valid and not null
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param location: New location for the chat; must be valid and not null
+        :type location: :class:`ChatLocation`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetChatLocation.construct if skip_validation else SetChatLocation
 
@@ -12137,16 +14645,24 @@ class API:
         """
         Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for adding new members to the chat and transferring chat ownership; instead, use addChatMember or transferChatOwnership
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            member_id (:class:`MessageSender`)
-                Member identifier. Chats can be only banned and unbanned in supergroups and channels
-            
-            status (:class:`ChatMemberStatus`)
-                The new status of the member in the chat
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param member_id: Member identifier. Chats can be only banned and unbanned in supergroups and channels
+        :type member_id: :class:`MessageSender`
+        
+        :param status: The new status of the member in the chat
+        :type status: :class:`ChatMemberStatus`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetChatMemberStatus.construct if skip_validation else SetChatMemberStatus
 
@@ -12172,13 +14688,21 @@ class API:
         """
         Changes the message TTL setting (sets a new self-destruct timer) in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL setting of a chat with the current user (Saved Messages) and the chat 777000 (Telegram) can't be changed
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            ttl (:class:`int`)
-                New TTL value, in seconds; must be one of 0, 86400, 7 * 86400, or 31 * 86400 unless the chat is secret
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param ttl: New TTL value, in seconds; must be one of 0, 86400, 7 * 86400, or 31 * 86400 unless the chat is secret
+        :type ttl: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetChatMessageTtlSetting.construct if skip_validation else SetChatMessageTtlSetting
 
@@ -12203,13 +14727,21 @@ class API:
         """
         Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            notification_settings (:class:`ChatNotificationSettings`)
-                New notification settings for the chat. If the chat is muted for more than 1 week, it is considered to be muted forever
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param notification_settings: New notification settings for the chat. If the chat is muted for more than 1 week, it is considered to be muted forever
+        :type notification_settings: :class:`ChatNotificationSettings`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetChatNotificationSettings.construct if skip_validation else SetChatNotificationSettings
 
@@ -12234,13 +14766,21 @@ class API:
         """
         Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            permissions (:class:`ChatPermissions`)
-                New non-administrator members permissions in the chat
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param permissions: New non-administrator members permissions in the chat
+        :type permissions: :class:`ChatPermissions`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetChatPermissions.construct if skip_validation else SetChatPermissions
 
@@ -12265,13 +14805,21 @@ class API:
         """
         Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            photo (:class:`InputChatPhoto`)
-                New chat photo. Pass null to delete the chat photo
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param photo: New chat photo. Pass null to delete the chat photo
+        :type photo: :class:`InputChatPhoto`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetChatPhoto.construct if skip_validation else SetChatPhoto
 
@@ -12296,13 +14844,21 @@ class API:
         """
         Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            slow_mode_delay (:class:`int`)
-                New slow mode delay for the chat; must be one of 0, 10, 30, 60, 300, 900, 3600
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param slow_mode_delay: New slow mode delay for the chat; must be one of 0, 10, 30, 60, 300, 900, 3600
+        :type slow_mode_delay: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetChatSlowModeDelay.construct if skip_validation else SetChatSlowModeDelay
 
@@ -12327,13 +14883,21 @@ class API:
         """
         Changes the chat theme. Supported only in private and secret chats
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            theme_name (:class:`str`)
-                Name of the new chat theme; may be empty to return the default theme
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param theme_name: Name of the new chat theme; may be empty to return the default theme
+        :type theme_name: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetChatTheme.construct if skip_validation else SetChatTheme
 
@@ -12358,13 +14922,21 @@ class API:
         """
         Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            title (:class:`str`)
-                New title of the chat; 1-128 characters
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param title: New title of the chat; 1-128 characters
+        :type title: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetChatTitle.construct if skip_validation else SetChatTitle
 
@@ -12390,16 +14962,24 @@ class API:
         """
         Sets the list of commands supported by the bot for the given user scope and language; for bots only
         
-        Params:
-            scope (:class:`BotCommandScope`)
-                The scope to which the commands are relevant
-            
-            language_code (:class:`str`)
-                A two-letter ISO 639-1 country code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
-            
-            commands (:obj:`list[BotCommand]`)
-                List of the bot's commands
-            
+        :param scope: The scope to which the commands are relevant
+        :type scope: :class:`BotCommandScope`
+        
+        :param language_code: A two-letter ISO 639-1 country code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
+        :type language_code: :class:`str`
+        
+        :param commands: List of the bot's commands
+        :type commands: :class:`list[BotCommand]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetCommands.construct if skip_validation else SetCommands
 
@@ -12425,13 +15005,21 @@ class API:
         """
         Adds or changes a custom local language pack to the current localization target
         
-        Params:
-            info (:class:`LanguagePackInfo`)
-                Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
-            
-            strings (:obj:`list[LanguagePackString]`)
-                Strings of the new language pack
-            
+        :param info: Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
+        :type info: :class:`LanguagePackInfo`
+        
+        :param strings: Strings of the new language pack
+        :type strings: :class:`list[LanguagePackString]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetCustomLanguagePack.construct if skip_validation else SetCustomLanguagePack
 
@@ -12456,13 +15044,21 @@ class API:
         """
         Adds, edits or deletes a string in a custom local language pack. Can be called before authorization
         
-        Params:
-            language_pack_id (:class:`str`)
-                Identifier of a previously added custom local language pack in the current localization target
-            
-            new_string (:class:`LanguagePackString`)
-                New language pack string
-            
+        :param language_pack_id: Identifier of a previously added custom local language pack in the current localization target
+        :type language_pack_id: :class:`str`
+        
+        :param new_string: New language pack string
+        :type new_string: :class:`LanguagePackString`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetCustomLanguagePackString.construct if skip_validation else SetCustomLanguagePackString
 
@@ -12486,10 +15082,18 @@ class API:
         """
         Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain
         
-        Params:
-            new_encryption_key (:class:`str`)
-                New encryption key
-            
+        :param new_encryption_key: New encryption key
+        :type new_encryption_key: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetDatabaseEncryptionKey.construct if skip_validation else SetDatabaseEncryptionKey
 
@@ -12514,16 +15118,24 @@ class API:
         """
         Informs TDLib on a file generation progress
         
-        Params:
-            generation_id (:class:`int`)
-                The identifier of the generation process
-            
-            expected_size (:class:`int`)
-                Expected size of the generated file, in bytes; 0 if unknown
-            
-            local_prefix_size (:class:`int`)
-                The number of bytes already generated
-            
+        :param generation_id: The identifier of the generation process
+        :type generation_id: :class:`int`
+        
+        :param expected_size: Expected size of the generated file, in bytes; 0 if unknown
+        :type expected_size: :class:`int`
+        
+        :param local_prefix_size: The number of bytes already generated
+        :type local_prefix_size: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetFileGenerationProgress.construct if skip_validation else SetFileGenerationProgress
 
@@ -12553,25 +15165,33 @@ class API:
         """
         Updates the game score of the specified user in the game; for bots only
         
-        Params:
-            chat_id (:class:`int`)
-                The chat to which the message with the game belongs
-            
-            message_id (:class:`int`)
-                Identifier of the message
-            
-            edit_message (:class:`bool`)
-                True, if the message should be edited
-            
-            user_id (:class:`int`)
-                User identifier
-            
-            score (:class:`int`)
-                The new score
-            
-            force (:class:`bool`)
-                Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
-            
+        :param chat_id: The chat to which the message with the game belongs
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param edit_message: True, if the message should be edited
+        :type edit_message: :class:`bool`
+        
+        :param user_id: User identifier
+        :type user_id: :class:`int`
+        
+        :param score: The new score
+        :type score: :class:`int`
+        
+        :param force: Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
+        :type force: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
         """
         _constructor = SetGameScore.construct if skip_validation else SetGameScore
 
@@ -12601,16 +15221,24 @@ class API:
         """
         Informs TDLib that speaking state of a participant of an active group has changed
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            audio_source (:class:`int`)
-                Group call participant's synchronization audio source identifier, or 0 for the current user
-            
-            is_speaking (:class:`bool`)
-                True, if the user is speaking
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param audio_source: Group call participant's synchronization audio source identifier, or 0 for the current user
+        :type audio_source: :class:`int`
+        
+        :param is_speaking: True, if the user is speaking
+        :type is_speaking: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetGroupCallParticipantIsSpeaking.construct if skip_validation else SetGroupCallParticipantIsSpeaking
 
@@ -12637,16 +15265,24 @@ class API:
         """
         Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with default volume level
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            participant_id (:class:`MessageSender`)
-                Participant identifier
-            
-            volume_level (:class:`int`)
-                New participant's volume level; 1-20000 in hundreds of percents
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param participant_id: Participant identifier
+        :type participant_id: :class:`MessageSender`
+        
+        :param volume_level: New participant's volume level; 1-20000 in hundreds of percents
+        :type volume_level: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetGroupCallParticipantVolumeLevel.construct if skip_validation else SetGroupCallParticipantVolumeLevel
 
@@ -12672,13 +15308,21 @@ class API:
         """
         Sets group call title. Requires groupCall.can_be_managed group call flag
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            title (:class:`str`)
-                New group call title; 1-64 characters
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param title: New group call title; 1-64 characters
+        :type title: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetGroupCallTitle.construct if skip_validation else SetGroupCallTitle
 
@@ -12706,22 +15350,30 @@ class API:
         """
         Updates the game score of the specified user in a game; for bots only
         
-        Params:
-            inline_message_id (:class:`str`)
-                Inline message identifier
-            
-            edit_message (:class:`bool`)
-                True, if the message should be edited
-            
-            user_id (:class:`int`)
-                User identifier
-            
-            score (:class:`int`)
-                The new score
-            
-            force (:class:`bool`)
-                Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
-            
+        :param inline_message_id: Inline message identifier
+        :type inline_message_id: :class:`str`
+        
+        :param edit_message: True, if the message should be edited
+        :type edit_message: :class:`bool`
+        
+        :param user_id: User identifier
+        :type user_id: :class:`int`
+        
+        :param score: The new score
+        :type score: :class:`int`
+        
+        :param force: Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
+        :type force: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetInlineGameScore.construct if skip_validation else SetInlineGameScore
 
@@ -12748,10 +15400,18 @@ class API:
         """
         Changes the location of the current user. Needs to be called if GetOption("is_location_visible") is true and location changes for more than 1 kilometer
         
-        Params:
-            location (:class:`Location`)
-                The new location of the user
-            
+        :param location: The new location of the user
+        :type location: :class:`Location`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetLocation.construct if skip_validation else SetLocation
 
@@ -12774,10 +15434,18 @@ class API:
         """
         Sets new log stream for internal logging of TDLib. Can be called synchronously
         
-        Params:
-            log_stream (:class:`LogStream`)
-                New log stream
-            
+        :param log_stream: New log stream
+        :type log_stream: :class:`LogStream`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetLogStream.construct if skip_validation else SetLogStream
 
@@ -12801,13 +15469,21 @@ class API:
         """
         Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously
         
-        Params:
-            tag (:class:`str`)
-                Logging tag to change verbosity level
-            
-            new_verbosity_level (:class:`int`)
-                New verbosity level; 1-1024
-            
+        :param tag: Logging tag to change verbosity level
+        :type tag: :class:`str`
+        
+        :param new_verbosity_level: New verbosity level; 1-1024
+        :type new_verbosity_level: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetLogTagVerbosityLevel.construct if skip_validation else SetLogTagVerbosityLevel
 
@@ -12831,10 +15507,18 @@ class API:
         """
         Sets the verbosity level of the internal logging of TDLib. Can be called synchronously
         
-        Params:
-            new_verbosity_level (:class:`int`)
-                New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging
-            
+        :param new_verbosity_level: New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging
+        :type new_verbosity_level: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetLogVerbosityLevel.construct if skip_validation else SetLogVerbosityLevel
 
@@ -12858,13 +15542,21 @@ class API:
         """
         Changes the first and last name of the current user
         
-        Params:
-            first_name (:class:`str`)
-                The new value of the first name for the current user; 1-64 characters
-            
-            last_name (:class:`str`)
-                The new value of the optional last name for the current user; 0-64 characters
-            
+        :param first_name: The new value of the first name for the current user; 1-64 characters
+        :type first_name: :class:`str`
+        
+        :param last_name: The new value of the optional last name for the current user; 0-64 characters, defaults to None
+        :type last_name: :class:`str`, optional
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetName.construct if skip_validation else SetName
 
@@ -12888,10 +15580,18 @@ class API:
         """
         Sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks, so it should be called whenever the network is changed, even if the network type remains the same. Network type is used to check whether the library can use the network at all and also for collecting detailed network data usage statistics
         
-        Params:
-            type_ (:class:`NetworkType`)
-                The new network type. By default, networkTypeOther
-            
+        :param type_: The new network type. By default, networkTypeOther
+        :type type_: :class:`NetworkType`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetNetworkType.construct if skip_validation else SetNetworkType
 
@@ -12915,13 +15615,21 @@ class API:
         """
         Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization
         
-        Params:
-            name (:class:`str`)
-                The name of the option
-            
-            value (:class:`OptionValue`)
-                The new value of the option
-            
+        :param name: The name of the option
+        :type name: :class:`str`
+        
+        :param value: The new value of the option
+        :type value: :class:`OptionValue`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetOption.construct if skip_validation else SetOption
 
@@ -12946,13 +15654,21 @@ class API:
         """
         Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
         
-        Params:
-            element (:class:`InputPassportElement`)
-                Input Telegram Passport element
-            
-            password (:class:`str`)
-                Password of the current user
-            
+        :param element: Input Telegram Passport element
+        :type element: :class:`InputPassportElement`
+        
+        :param password: Password of the current user
+        :type password: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PassportElement`
         """
         _constructor = SetPassportElement.construct if skip_validation else SetPassportElement
 
@@ -12977,13 +15693,21 @@ class API:
         """
         Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
         
-        Params:
-            user_id (:class:`int`)
-                User identifier
-            
-            errors (:obj:`list[InputPassportElementError]`)
-                The errors
-            
+        :param user_id: User identifier
+        :type user_id: :class:`int`
+        
+        :param errors: The errors
+        :type errors: :class:`list[InputPassportElementError]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetPassportElementErrors.construct if skip_validation else SetPassportElementErrors
 
@@ -13011,22 +15735,30 @@ class API:
         """
         Changes the password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
         
-        Params:
-            old_password (:class:`str`)
-                Previous password of the user
-            
-            new_password (:class:`str`)
-                New password of the user; may be empty to remove the password
-            
-            new_hint (:class:`str`)
-                New password hint; may be empty
-            
-            set_recovery_email_address (:class:`bool`)
-                Pass true if the recovery email address should be changed
-            
-            new_recovery_email_address (:class:`str`)
-                New recovery email address; may be empty
-            
+        :param old_password: Previous password of the user
+        :type old_password: :class:`str`
+        
+        :param new_password: New password of the user; may be empty to remove the password
+        :type new_password: :class:`str`
+        
+        :param new_hint: New password hint; may be empty
+        :type new_hint: :class:`str`
+        
+        :param set_recovery_email_address: Pass true if the recovery email address should be changed
+        :type set_recovery_email_address: :class:`bool`
+        
+        :param new_recovery_email_address: New recovery email address; may be empty
+        :type new_recovery_email_address: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PasswordState`
         """
         _constructor = SetPassword.construct if skip_validation else SetPassword
 
@@ -13054,13 +15786,21 @@ class API:
         """
         Changes the order of pinned chats
         
-        Params:
-            chat_list (:class:`ChatList`)
-                Chat list in which to change the order of pinned chats
-            
-            chat_ids (:obj:`list[int]`)
-                The new list of pinned chats
-            
+        :param chat_list: Chat list in which to change the order of pinned chats
+        :type chat_list: :class:`ChatList`
+        
+        :param chat_ids: The new list of pinned chats
+        :type chat_ids: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetPinnedChats.construct if skip_validation else SetPinnedChats
 
@@ -13086,16 +15826,24 @@ class API:
         """
         Changes the user answer to a poll. A poll in quiz mode can be answered only once
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat to which the poll belongs
-            
-            message_id (:class:`int`)
-                Identifier of the message containing the poll
-            
-            option_ids (:obj:`list[int]`)
-                0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
-            
+        :param chat_id: Identifier of the chat to which the poll belongs
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message containing the poll
+        :type message_id: :class:`int`
+        
+        :param option_ids: 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
+        :type option_ids: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetPollAnswer.construct if skip_validation else SetPollAnswer
 
@@ -13120,10 +15868,18 @@ class API:
         """
         Changes a profile photo for the current user
         
-        Params:
-            photo (:class:`InputChatPhoto`)
-                Profile photo to set
-            
+        :param photo: Profile photo to set
+        :type photo: :class:`InputChatPhoto`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetProfilePhoto.construct if skip_validation else SetProfilePhoto
 
@@ -13147,13 +15903,21 @@ class API:
         """
         Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed. If new_recovery_email_address is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation
         
-        Params:
-            password (:class:`str`)
-                Password of the current user
-            
-            new_recovery_email_address (:class:`str`)
-                New recovery email address
-            
+        :param password: Password of the current user
+        :type password: :class:`str`
+        
+        :param new_recovery_email_address: New recovery email address
+        :type new_recovery_email_address: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PasswordState`
         """
         _constructor = SetRecoveryEmailAddress.construct if skip_validation else SetRecoveryEmailAddress
 
@@ -13178,13 +15942,21 @@ class API:
         """
         Changes notification settings for chats of a given type
         
-        Params:
-            scope (:class:`NotificationSettingsScope`)
-                Types of chats for which to change the notification settings
-            
-            notification_settings (:class:`ScopeNotificationSettings`)
-                The new notification settings for the given scope
-            
+        :param scope: Types of chats for which to change the notification settings
+        :type scope: :class:`NotificationSettingsScope`
+        
+        :param notification_settings: The new notification settings for the given scope
+        :type notification_settings: :class:`ScopeNotificationSettings`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetScopeNotificationSettings.construct if skip_validation else SetScopeNotificationSettings
 
@@ -13209,13 +15981,21 @@ class API:
         """
         Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
         
-        Params:
-            sticker (:class:`InputFile`)
-                Sticker
-            
-            position (:class:`int`)
-                New position of the sticker in the set, zero-based
-            
+        :param sticker: Sticker
+        :type sticker: :class:`InputFile`
+        
+        :param position: New position of the sticker in the set, zero-based
+        :type position: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetStickerPositionInSet.construct if skip_validation else SetStickerPositionInSet
 
@@ -13241,16 +16021,24 @@ class API:
         """
         Sets a sticker set thumbnail; for bots only. Returns the sticker set
         
-        Params:
-            user_id (:class:`int`)
-                Sticker set owner
-            
-            name (:class:`str`)
-                Sticker set name
-            
-            thumbnail (:class:`InputFile`)
-                Thumbnail to set in PNG or TGS format. Animated thumbnail must be set for animated sticker sets and only for them. Pass a zero InputFileId to delete the thumbnail
-            
+        :param user_id: Sticker set owner
+        :type user_id: :class:`int`
+        
+        :param name: Sticker set name
+        :type name: :class:`str`
+        
+        :param thumbnail: Thumbnail to set in PNG or TGS format. Animated thumbnail must be set for animated sticker sets and only for them. Pass a zero InputFileId to delete the thumbnail
+        :type thumbnail: :class:`InputFile`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StickerSet`
         """
         _constructor = SetStickerSetThumbnail.construct if skip_validation else SetStickerSetThumbnail
 
@@ -13276,13 +16064,21 @@ class API:
         """
         Changes the sticker set of a supergroup; requires can_change_info administrator right
         
-        Params:
-            supergroup_id (:class:`int`)
-                Identifier of the supergroup
-            
-            sticker_set_id (:class:`int`)
-                New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
-            
+        :param supergroup_id: Identifier of the supergroup
+        :type supergroup_id: :class:`int`
+        
+        :param sticker_set_id: New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
+        :type sticker_set_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetSupergroupStickerSet.construct if skip_validation else SetSupergroupStickerSet
 
@@ -13307,13 +16103,21 @@ class API:
         """
         Changes the username of a supergroup or channel, requires owner privileges in the supergroup or channel
         
-        Params:
-            supergroup_id (:class:`int`)
-                Identifier of the supergroup or channel
-            
-            username (:class:`str`)
-                New value of the username. Use an empty string to remove the username
-            
+        :param supergroup_id: Identifier of the supergroup or channel
+        :type supergroup_id: :class:`int`
+        
+        :param username: New value of the username. Use an empty string to remove the username
+        :type username: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetSupergroupUsername.construct if skip_validation else SetSupergroupUsername
 
@@ -13337,10 +16141,18 @@ class API:
         """
         Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
         
-        Params:
-            parameters (:class:`TdlibParameters`)
-                Parameters
-            
+        :param parameters: Parameters
+        :type parameters: :class:`TdlibParameters`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetTdlibParameters.construct if skip_validation else SetTdlibParameters
 
@@ -13364,13 +16176,21 @@ class API:
         """
         Changes user privacy settings
         
-        Params:
-            setting (:class:`UserPrivacySetting`)
-                The privacy setting
-            
-            rules (:class:`UserPrivacySettingRules`)
-                The new privacy rules
-            
+        :param setting: The privacy setting
+        :type setting: :class:`UserPrivacySetting`
+        
+        :param rules: The new privacy rules
+        :type rules: :class:`UserPrivacySettingRules`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetUserPrivacySettingRules.construct if skip_validation else SetUserPrivacySettingRules
 
@@ -13394,10 +16214,18 @@ class API:
         """
         Changes the username of the current user
         
-        Params:
-            username (:class:`str`)
-                The new value of the username. Use an empty string to remove the username
-            
+        :param username: The new value of the username. Use an empty string to remove the username
+        :type username: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetUsername.construct if skip_validation else SetUsername
 
@@ -13421,13 +16249,21 @@ class API:
         """
         Changes default participant identifier, which can be used to join voice chats in a chat
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            default_participant_id (:class:`MessageSender`)
-                Default group call participant identifier to join the voice chats
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param default_participant_id: Default group call participant identifier to join the voice chats
+        :type default_participant_id: :class:`MessageSender`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SetVoiceChatDefaultParticipant.construct if skip_validation else SetVoiceChatDefaultParticipant
 
@@ -13451,10 +16287,18 @@ class API:
         """
         Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber
         
-        Params:
-            user_id (:class:`int`)
-                Identifier of the user with whom to share the phone number. The user must be a mutual contact
-            
+        :param user_id: Identifier of the user with whom to share the phone number. The user must be a mutual contact
+        :type user_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SharePhoneNumber.construct if skip_validation else SharePhoneNumber
 
@@ -13480,19 +16324,27 @@ class API:
         """
         Starts recording of an active group call. Requires groupCall.can_be_managed group call flag
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            title (:class:`str`)
-                Group call recording title; 0-64 characters
-            
-            record_video (:class:`bool`)
-                Pass true to record a video file instead of an audio file
-            
-            use_portrait_orientation (:class:`bool`)
-                Pass true to use portrait orientation for video instead of landscape one
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param title: Group call recording title; 0-64 characters, defaults to None
+        :type title: :class:`str`, optional
+        
+        :param record_video: Pass true to record a video file instead of an audio file
+        :type record_video: :class:`bool`
+        
+        :param use_portrait_orientation: Pass true to use portrait orientation for video instead of landscape one
+        :type use_portrait_orientation: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = StartGroupCallRecording.construct if skip_validation else StartGroupCallRecording
 
@@ -13520,16 +16372,24 @@ class API:
         """
         Starts screen sharing in a joined group call. Returns join response payload for tgcalls
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            audio_source_id (:class:`int`)
-                Screen sharing audio channel synchronization source identifier; received from tgcalls
-            
-            payload (:class:`str`)
-                Group call join payload; received from tgcalls
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param audio_source_id: Screen sharing audio channel synchronization source identifier; received from tgcalls
+        :type audio_source_id: :class:`int`
+        
+        :param payload: Group call join payload; received from tgcalls
+        :type payload: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Text`
         """
         _constructor = StartGroupCallScreenSharing.construct if skip_validation else StartGroupCallScreenSharing
 
@@ -13554,10 +16414,18 @@ class API:
         """
         Starts a scheduled group call
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = StartScheduledGroupCall.construct if skip_validation else StartScheduledGroupCall
 
@@ -13582,16 +16450,24 @@ class API:
         """
         Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat to which the poll belongs
-            
-            message_id (:class:`int`)
-                Identifier of the message containing the poll
-            
-            reply_markup (:class:`ReplyMarkup`)
-                The new message reply markup; for bots only
-            
+        :param chat_id: Identifier of the chat to which the poll belongs
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message containing the poll
+        :type message_id: :class:`int`
+        
+        :param reply_markup: The new message reply markup; for bots only
+        :type reply_markup: :class:`ReplyMarkup`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = StopPoll.construct if skip_validation else StopPoll
 
@@ -13616,10 +16492,18 @@ class API:
         """
         Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method shouldn't be called explicitly for the current used/base language packs. Can be called before authorization
         
-        Params:
-            language_pack_id (:class:`str`)
-                Language pack identifier
-            
+        :param language_pack_id: Language pack identifier
+        :type language_pack_id: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = SynchronizeLanguagePack.construct if skip_validation else SynchronizeLanguagePack
 
@@ -13653,10 +16537,18 @@ class API:
         """
         Terminates a session of the current user
         
-        Params:
-            session_id (:class:`int`)
-                Session identifier
-            
+        :param session_id: Session identifier
+        :type session_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = TerminateSession.construct if skip_validation else TerminateSession
 
@@ -13679,10 +16571,18 @@ class API:
         """
         Returns the received bytes; for testing only. This is an offline method. Can be called before authorization
         
-        Params:
-            x (:class:`str`)
-                Bytes to return
-            
+        :param x: Bytes to return
+        :type x: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.TestBytes`
         """
         _constructor = TestCallBytes.construct if skip_validation else TestCallBytes
 
@@ -13716,10 +16616,18 @@ class API:
         """
         Returns the received string; for testing only. This is an offline method. Can be called before authorization
         
-        Params:
-            x (:class:`str`)
-                String to return
-            
+        :param x: String to return
+        :type x: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.TestString`
         """
         _constructor = TestCallString.construct if skip_validation else TestCallString
 
@@ -13742,10 +16650,18 @@ class API:
         """
         Returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization
         
-        Params:
-            x (:obj:`list[int]`)
-                Vector of numbers to return
-            
+        :param x: Vector of numbers to return
+        :type x: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.TestVectorInt`
         """
         _constructor = TestCallVectorInt.construct if skip_validation else TestCallVectorInt
 
@@ -13768,10 +16684,18 @@ class API:
         """
         Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization
         
-        Params:
-            x (:obj:`list[TestInt]`)
-                Vector of objects to return
-            
+        :param x: Vector of objects to return
+        :type x: :class:`list[TestInt]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.TestVectorIntObject`
         """
         _constructor = TestCallVectorIntObject.construct if skip_validation else TestCallVectorIntObject
 
@@ -13794,10 +16718,18 @@ class API:
         """
         Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization
         
-        Params:
-            x (:obj:`list[str]`)
-                Vector of strings to return
-            
+        :param x: Vector of strings to return
+        :type x: :class:`list[str]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.TestVectorString`
         """
         _constructor = TestCallVectorString.construct if skip_validation else TestCallVectorString
 
@@ -13820,10 +16752,18 @@ class API:
         """
         Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization
         
-        Params:
-            x (:obj:`list[TestString]`)
-                Vector of objects to return
-            
+        :param x: Vector of objects to return
+        :type x: :class:`list[TestString]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.TestVectorStringObject`
         """
         _constructor = TestCallVectorStringObject.construct if skip_validation else TestCallVectorStringObject
 
@@ -13872,22 +16812,30 @@ class API:
         """
         Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
         
-        Params:
-            server (:class:`str`)
-                Proxy server IP address
-            
-            port (:class:`int`)
-                Proxy server port
-            
-            type_ (:class:`ProxyType`)
-                Proxy type
-            
-            dc_id (:class:`int`)
-                Identifier of a datacenter, with which to test connection
-            
-            timeout (:class:`float`)
-                The maximum overall timeout for the request
-            
+        :param server: Proxy server IP address
+        :type server: :class:`str`
+        
+        :param port: Proxy server port
+        :type port: :class:`int`
+        
+        :param type_: Proxy type
+        :type type_: :class:`ProxyType`
+        
+        :param dc_id: Identifier of a datacenter, with which to test connection
+        :type dc_id: :class:`int`
+        
+        :param timeout: The maximum overall timeout for the request
+        :type timeout: :class:`float`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = TestProxy.construct if skip_validation else TestProxy
 
@@ -13914,10 +16862,18 @@ class API:
         """
         Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously
         
-        Params:
-            error (:class:`Error`)
-                The error to be returned
-            
+        :param error: The error to be returned
+        :type error: :class:`Error`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Error`
         """
         _constructor = TestReturnError.construct if skip_validation else TestReturnError
 
@@ -13940,10 +16896,18 @@ class API:
         """
         Returns the squared received number; for testing only. This is an offline method. Can be called before authorization
         
-        Params:
-            x (:class:`int`)
-                Number to square
-            
+        :param x: Number to square
+        :type x: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.TestInt`
         """
         _constructor = TestSquareInt.construct if skip_validation else TestSquareInt
 
@@ -13978,13 +16942,21 @@ class API:
         """
         Changes the value of the default disable_notification parameter, used when a message is sent to a chat
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            default_disable_notification (:class:`bool`)
-                New value of default_disable_notification
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param default_disable_notification: New value of default_disable_notification
+        :type default_disable_notification: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ToggleChatDefaultDisableNotification.construct if skip_validation else ToggleChatDefaultDisableNotification
 
@@ -14009,13 +16981,21 @@ class API:
         """
         Changes the marked as unread state of a chat
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            is_marked_as_unread (:class:`bool`)
-                New value of is_marked_as_unread
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param is_marked_as_unread: New value of is_marked_as_unread
+        :type is_marked_as_unread: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ToggleChatIsMarkedAsUnread.construct if skip_validation else ToggleChatIsMarkedAsUnread
 
@@ -14041,16 +17021,24 @@ class API:
         """
         Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/arhive chat list
         
-        Params:
-            chat_list (:class:`ChatList`)
-                Chat list in which to change the pinned state of the chat
-            
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            is_pinned (:class:`bool`)
-                True, if the chat is pinned
-            
+        :param chat_list: Chat list in which to change the pinned state of the chat
+        :type chat_list: :class:`ChatList`
+        
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param is_pinned: True, if the chat is pinned
+        :type is_pinned: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ToggleChatIsPinned.construct if skip_validation else ToggleChatIsPinned
 
@@ -14076,13 +17064,21 @@ class API:
         """
         Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            enabled_start_notification (:class:`bool`)
-                New value of the enabled_start_notification setting
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param enabled_start_notification: New value of the enabled_start_notification setting
+        :type enabled_start_notification: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ToggleGroupCallEnabledStartNotification.construct if skip_validation else ToggleGroupCallEnabledStartNotification
 
@@ -14107,13 +17103,21 @@ class API:
         """
         Toggles whether current user's video is enabled
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            is_my_video_enabled (:class:`bool`)
-                Pass true if the current user's video is enabled
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param is_my_video_enabled: Pass true if the current user's video is enabled
+        :type is_my_video_enabled: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ToggleGroupCallIsMyVideoEnabled.construct if skip_validation else ToggleGroupCallIsMyVideoEnabled
 
@@ -14138,13 +17142,21 @@ class API:
         """
         Toggles whether current user's video is paused
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            is_my_video_paused (:class:`bool`)
-                Pass true if the current user's video is paused
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param is_my_video_paused: Pass true if the current user's video is paused
+        :type is_my_video_paused: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ToggleGroupCallIsMyVideoPaused.construct if skip_validation else ToggleGroupCallIsMyVideoPaused
 
@@ -14169,13 +17181,21 @@ class API:
         """
         Toggles whether new participants of a group call can be unmuted only by administrators of the group call. Requires groupCall.can_change_mute_new_participants group call flag
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            mute_new_participants (:class:`bool`)
-                New value of the mute_new_participants setting
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param mute_new_participants: New value of the mute_new_participants setting
+        :type mute_new_participants: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ToggleGroupCallMuteNewParticipants.construct if skip_validation else ToggleGroupCallMuteNewParticipants
 
@@ -14201,16 +17221,24 @@ class API:
         """
         Toggles whether a group call participant hand is rased
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            participant_id (:class:`MessageSender`)
-                Participant identifier
-            
-            is_hand_raised (:class:`bool`)
-                Pass true if the user's hand should be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param participant_id: Participant identifier
+        :type participant_id: :class:`MessageSender`
+        
+        :param is_hand_raised: Pass true if the user's hand should be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
+        :type is_hand_raised: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ToggleGroupCallParticipantIsHandRaised.construct if skip_validation else ToggleGroupCallParticipantIsHandRaised
 
@@ -14237,16 +17265,24 @@ class API:
         """
         Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            participant_id (:class:`MessageSender`)
-                Participant identifier
-            
-            is_muted (:class:`bool`)
-                Pass true if the user must be muted and false otherwise
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param participant_id: Participant identifier
+        :type participant_id: :class:`MessageSender`
+        
+        :param is_muted: Pass true if the user must be muted and false otherwise
+        :type is_muted: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ToggleGroupCallParticipantIsMuted.construct if skip_validation else ToggleGroupCallParticipantIsMuted
 
@@ -14272,13 +17308,21 @@ class API:
         """
         Pauses or unpauses screen sharing in a joined group call
         
-        Params:
-            group_call_id (:class:`int`)
-                Group call identifier
-            
-            is_paused (:class:`bool`)
-                True if screen sharing is paused
-            
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param is_paused: True if screen sharing is paused
+        :type is_paused: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ToggleGroupCallScreenSharingIsPaused.construct if skip_validation else ToggleGroupCallScreenSharingIsPaused
 
@@ -14303,13 +17347,21 @@ class API:
         """
         Changes the block state of a message sender. Currently, only users and supergroup chats can be blocked
         
-        Params:
-            sender (:class:`MessageSender`)
-                Message Sender
-            
-            is_blocked (:class:`bool`)
-                New value of is_blocked
-            
+        :param sender: Message Sender
+        :type sender: :class:`MessageSender`
+        
+        :param is_blocked: New value of is_blocked
+        :type is_blocked: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ToggleMessageSenderIsBlocked.construct if skip_validation else ToggleMessageSenderIsBlocked
 
@@ -14334,13 +17386,21 @@ class API:
         """
         Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right
         
-        Params:
-            supergroup_id (:class:`int`)
-                The identifier of the supergroup
-            
-            is_all_history_available (:class:`bool`)
-                The new value of is_all_history_available
-            
+        :param supergroup_id: The identifier of the supergroup
+        :type supergroup_id: :class:`int`
+        
+        :param is_all_history_available: The new value of is_all_history_available
+        :type is_all_history_available: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ToggleSupergroupIsAllHistoryAvailable.construct if skip_validation else ToggleSupergroupIsAllHistoryAvailable
 
@@ -14364,10 +17424,18 @@ class API:
         """
         Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup
         
-        Params:
-            supergroup_id (:class:`int`)
-                Identifier of the supergroup
-            
+        :param supergroup_id: Identifier of the supergroup
+        :type supergroup_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ToggleSupergroupIsBroadcastGroup.construct if skip_validation else ToggleSupergroupIsBroadcastGroup
 
@@ -14391,13 +17459,21 @@ class API:
         """
         Toggles sender signatures messages sent in a channel; requires can_change_info administrator right
         
-        Params:
-            supergroup_id (:class:`int`)
-                Identifier of the channel
-            
-            sign_messages (:class:`bool`)
-                New value of sign_messages
-            
+        :param supergroup_id: Identifier of the channel
+        :type supergroup_id: :class:`int`
+        
+        :param sign_messages: New value of sign_messages
+        :type sign_messages: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ToggleSupergroupSignMessages.construct if skip_validation else ToggleSupergroupSignMessages
 
@@ -14423,16 +17499,24 @@ class API:
         """
         Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            user_id (:class:`int`)
-                Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
-            
-            password (:class:`str`)
-                The password of the current user
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param user_id: Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
+        :type user_id: :class:`int`
+        
+        :param password: The password of the current user
+        :type password: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = TransferChatOwnership.construct if skip_validation else TransferChatOwnership
 
@@ -14457,10 +17541,18 @@ class API:
         """
         Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat
-            
+        :param chat_id: Identifier of the chat
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = UnpinAllChatMessages.construct if skip_validation else UnpinAllChatMessages
 
@@ -14484,13 +17576,21 @@ class API:
         """
         Removes a pinned message from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat
-            
-            message_id (:class:`int`)
-                Identifier of the removed pinned message
-            
+        :param chat_id: Identifier of the chat
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the removed pinned message
+        :type message_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = UnpinChatMessage.construct if skip_validation else UnpinChatMessage
 
@@ -14514,10 +17614,18 @@ class API:
         """
         Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat to upgrade
-            
+        :param chat_id: Identifier of the chat to upgrade
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chat`
         """
         _constructor = UpgradeBasicGroupChatToSupergroupChat.construct if skip_validation else UpgradeBasicGroupChatToSupergroupChat
 
@@ -14542,16 +17650,24 @@ class API:
         """
         Asynchronously uploads a file to the cloud without sending it in a message. updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
         
-        Params:
-            file (:class:`InputFile`)
-                File to upload
-            
-            file_type (:class:`FileType`)
-                File type
-            
-            priority (:class:`int`)
-                Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first
-            
+        :param file: File to upload
+        :type file: :class:`InputFile`
+        
+        :param file_type: File type
+        :type file_type: :class:`FileType`
+        
+        :param priority: Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first
+        :type priority: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.File`
         """
         _constructor = UploadFile.construct if skip_validation else UploadFile
 
@@ -14577,13 +17693,21 @@ class API:
         """
         Uploads a PNG image with a sticker; returns the uploaded file
         
-        Params:
-            user_id (:class:`int`)
-                Sticker file owner; ignored for regular users
-            
-            sticker (:class:`InputSticker`)
-                Sticker file to upload
-            
+        :param user_id: Sticker file owner; ignored for regular users
+        :type user_id: :class:`int`
+        
+        :param sticker: Sticker file to upload
+        :type sticker: :class:`InputSticker`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.File`
         """
         _constructor = UploadStickerFile.construct if skip_validation else UploadStickerFile
 
@@ -14610,19 +17734,27 @@ class API:
         """
         Validates the order information provided by a user and returns the available shipping options for a flexible invoice
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier of the Invoice message
-            
-            message_id (:class:`int`)
-                Message identifier
-            
-            order_info (:class:`OrderInfo`)
-                The order information, provided by the user
-            
-            allow_save (:class:`bool`)
-                True, if the order information can be saved
-            
+        :param chat_id: Chat identifier of the Invoice message
+        :type chat_id: :class:`int`
+        
+        :param message_id: Message identifier
+        :type message_id: :class:`int`
+        
+        :param order_info: The order information, provided by the user
+        :type order_info: :class:`OrderInfo`
+        
+        :param allow_save: True, if the order information can be saved
+        :type allow_save: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ValidatedOrderInfo`
         """
         _constructor = ValidateOrderInfo.construct if skip_validation else ValidateOrderInfo
 
@@ -14651,19 +17783,27 @@ class API:
         """
         Informs TDLib that messages are being viewed by the user. Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
         
-        Params:
-            chat_id (:class:`int`)
-                Chat identifier
-            
-            message_thread_id (:class:`int`)
-                If not 0, a message thread identifier in which the messages are being viewed
-            
-            message_ids (:obj:`list[int]`)
-                The identifiers of the messages being viewed
-            
-            force_read (:class:`bool`)
-                True, if messages in closed chats should be marked as read by the request
-            
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param message_thread_id: If not 0, a message thread identifier in which the messages are being viewed
+        :type message_thread_id: :class:`int`
+        
+        :param message_ids: The identifiers of the messages being viewed
+        :type message_ids: :class:`list[int]`
+        
+        :param force_read: True, if messages in closed chats should be marked as read by the request
+        :type force_read: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ViewMessages.construct if skip_validation else ViewMessages
 
@@ -14690,13 +17830,21 @@ class API:
         """
         Informs TDLib that a sponsored message was viewed by the user
         
-        Params:
-            chat_id (:class:`int`)
-                Identifier of the chat with the sponsored message
-            
-            sponsored_message_id (:class:`int`)
-                The identifier of the sponsored message being viewed
-            
+        :param chat_id: Identifier of the chat with the sponsored message
+        :type chat_id: :class:`int`
+        
+        :param sponsored_message_id: The identifier of the sponsored message being viewed
+        :type sponsored_message_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ViewSponsoredMessage.construct if skip_validation else ViewSponsoredMessage
 
@@ -14720,10 +17868,18 @@ class API:
         """
         Informs the server that some trending sticker sets have been viewed by the user
         
-        Params:
-            sticker_set_ids (:obj:`list[int]`)
-                Identifiers of viewed trending sticker sets
-            
+        :param sticker_set_ids: Identifiers of viewed trending sticker sets
+        :type sticker_set_ids: :class:`list[int]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ViewTrendingStickerSets.construct if skip_validation else ViewTrendingStickerSets
 
@@ -14748,16 +17904,24 @@ class API:
         """
         Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
         
-        Params:
-            generation_id (:class:`int`)
-                The identifier of the generation process
-            
-            offset (:class:`int`)
-                The offset from which to write the data to the file
-            
-            data (:class:`str`)
-                The data to write
-            
+        :param generation_id: The identifier of the generation process
+        :type generation_id: :class:`int`
+        
+        :param offset: The offset from which to write the data to the file
+        :type offset: :class:`int`
+        
+        :param data: The data to write
+        :type data: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = WriteGeneratedFilePart.construct if skip_validation else WriteGeneratedFilePart
 

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class FilePart(BaseObject):
     """
     Contains a part of a file
     
-    Params:
-        data (:class:`str`)
-            File bytes
-        
+    :param data: File bytes
+    :type data: :class:`str`
+    
     """
 
     ID: str = Field("filePart", alias="@type")

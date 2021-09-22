@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,22 +16,21 @@ class Contact(BaseObject):
     """
     Describes a user contact
     
-    Params:
-        phone_number (:class:`str`)
-            Phone number of the user
-        
-        first_name (:class:`str`)
-            First name of the user; 1-255 characters in length
-        
-        last_name (:class:`str`)
-            Last name of the user
-        
-        vcard (:class:`str`)
-            Additional data about the user in a form of vCard; 0-2048 bytes in length
-        
-        user_id (:class:`int`)
-            Identifier of the user, if known; otherwise 0
-        
+    :param phone_number: Phone number of the user
+    :type phone_number: :class:`str`
+    
+    :param first_name: First name of the user; 1-255 characters in length
+    :type first_name: :class:`str`
+    
+    :param last_name: Last name of the user
+    :type last_name: :class:`str`
+    
+    :param vcard: Additional data about the user in a form of vCard; 0-2048 bytes in length
+    :type vcard: :class:`str`
+    
+    :param user_id: Identifier of the user, if known; otherwise 0
+    :type user_id: :class:`int`
+    
     """
 
     ID: str = Field("contact", alias="@type")

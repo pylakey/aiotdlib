@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_event_action import ChatEventAction
@@ -15,19 +17,18 @@ class ChatEvent(BaseObject):
     """
     Represents a chat event
     
-    Params:
-        id (:class:`int`)
-            Chat event identifier
-        
-        date (:class:`int`)
-            Point in time (Unix timestamp) when the event happened
-        
-        user_id (:class:`int`)
-            Identifier of the user who performed the action that triggered the event
-        
-        action (:class:`ChatEventAction`)
-            Action performed by the user
-        
+    :param id: Chat event identifier
+    :type id: :class:`int`
+    
+    :param date: Point in time (Unix timestamp) when the event happened
+    :type date: :class:`int`
+    
+    :param user_id: Identifier of the user who performed the action that triggered the event
+    :type user_id: :class:`int`
+    
+    :param action: Action performed by the user
+    :type action: :class:`ChatEventAction`
+    
     """
 
     ID: str = Field("chatEvent", alias="@type")

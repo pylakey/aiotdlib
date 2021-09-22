@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -49,10 +51,9 @@ class SuggestedActionConvertToBroadcastGroup(SuggestedAction):
     """
     Suggests the user to convert specified supergroup to a broadcast group
     
-    Params:
-        supergroup_id (:class:`int`)
-            Supergroup identifier
-        
+    :param supergroup_id: Supergroup identifier
+    :type supergroup_id: :class:`int`
+    
     """
 
     ID: str = Field("suggestedActionConvertToBroadcastGroup", alias="@type")

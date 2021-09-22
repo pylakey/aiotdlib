@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .session import Session
@@ -15,10 +17,9 @@ class Sessions(BaseObject):
     """
     Contains a list of sessions
     
-    Params:
-        sessions (:obj:`list[Session]`)
-            List of sessions
-        
+    :param sessions: List of sessions
+    :type sessions: :class:`list[Session]`
+    
     """
 
     ID: str = Field("sessions", alias="@type")

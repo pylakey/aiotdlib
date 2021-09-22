@@ -5,20 +5,21 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import PublicChatType
+from ..base_object import BaseObject
 
 
 class GetCreatedPublicChats(BaseObject):
     """
     Returns a list of public chats of the specified type, owned by the user
     
-    Params:
-        type_ (:class:`PublicChatType`)
-            Type of the public chats to return
-        
+    :param type_: Type of the public chats to return
+    :type type_: :class:`PublicChatType`
+    
     """
 
     ID: str = Field("getCreatedPublicChats", alias="@type")

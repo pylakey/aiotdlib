@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class AddLogMessage(BaseObject):
     """
     Adds a message to TDLib internal log. Can be called synchronously
     
-    Params:
-        verbosity_level (:class:`int`)
-            The minimum verbosity level needed for the message to be logged; 0-1023
-        
-        text (:class:`str`)
-            Text of a message to log
-        
+    :param verbosity_level: The minimum verbosity level needed for the message to be logged; 0-1023
+    :type verbosity_level: :class:`int`
+    
+    :param text: Text of a message to log
+    :type text: :class:`str`
+    
     """
 
     ID: str = Field("addLogMessage", alias="@type")

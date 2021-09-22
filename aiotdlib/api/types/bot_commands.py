@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .bot_command import BotCommand
@@ -15,13 +17,12 @@ class BotCommands(BaseObject):
     """
     Contains a list of bot commands
     
-    Params:
-        bot_user_id (:class:`int`)
-            Bot's user identifier
-        
-        commands (:obj:`list[BotCommand]`)
-            List of bot commands
-        
+    :param bot_user_id: Bot's user identifier
+    :type bot_user_id: :class:`int`
+    
+    :param commands: List of bot commands
+    :type commands: :class:`list[BotCommand]`
+    
     """
 
     ID: str = Field("botCommands", alias="@type")

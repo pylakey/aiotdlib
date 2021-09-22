@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import ChatLocation
+from ..base_object import BaseObject
 
 
 class SetChatLocation(BaseObject):
     """
     Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        location (:class:`ChatLocation`)
-            New location for the chat; must be valid and not null
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param location: New location for the chat; must be valid and not null
+    :type location: :class:`ChatLocation`
+    
     """
 
     ID: str = Field("setChatLocation", alias="@type")

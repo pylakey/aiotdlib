@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class SearchChatRecentLocationMessages(BaseObject):
     """
     Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        limit (:class:`int`)
-            The maximum number of messages to be returned
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param limit: The maximum number of messages to be returned
+    :type limit: :class:`int`
+    
     """
 
     ID: str = Field("searchChatRecentLocationMessages", alias="@type")

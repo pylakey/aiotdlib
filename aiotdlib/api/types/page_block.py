@@ -36,10 +36,9 @@ class PageBlockAnchor(PageBlock):
     """
     An invisible anchor on a page, which can be used in a URL to open the page from the specified anchor
     
-    Params:
-        name (:class:`str`)
-            Name of the anchor
-        
+    :param name: Name of the anchor
+    :type name: :class:`str`
+    
     """
 
     ID: str = Field("pageBlockAnchor", alias="@type")
@@ -54,16 +53,15 @@ class PageBlockAnimation(PageBlock):
     """
     An animation
     
-    Params:
-        animation (:class:`Animation`)
-            Animation file; may be null
-        
-        caption (:class:`PageBlockCaption`)
-            Animation caption
-        
-        need_autoplay (:class:`bool`)
-            True, if the animation should be played automatically
-        
+    :param animation: Animation file; may be null, defaults to None
+    :type animation: :class:`Animation`, optional
+    
+    :param caption: Animation caption
+    :type caption: :class:`PageBlockCaption`
+    
+    :param need_autoplay: True, if the animation should be played automatically
+    :type need_autoplay: :class:`bool`
+    
     """
 
     ID: str = Field("pageBlockAnimation", alias="@type")
@@ -80,13 +78,12 @@ class PageBlockAudio(PageBlock):
     """
     An audio file
     
-    Params:
-        audio (:class:`Audio`)
-            Audio file; may be null
-        
-        caption (:class:`PageBlockCaption`)
-            Audio file caption
-        
+    :param audio: Audio file; may be null, defaults to None
+    :type audio: :class:`Audio`, optional
+    
+    :param caption: Audio file caption
+    :type caption: :class:`PageBlockCaption`
+    
     """
 
     ID: str = Field("pageBlockAudio", alias="@type")
@@ -102,13 +99,12 @@ class PageBlockAuthorDate(PageBlock):
     """
     The author and publishing date of a page
     
-    Params:
-        author (:class:`RichText`)
-            Author
-        
-        publish_date (:class:`int`)
-            Point in time (Unix timestamp) when the article was published; 0 if unknown
-        
+    :param author: Author
+    :type author: :class:`RichText`
+    
+    :param publish_date: Point in time (Unix timestamp) when the article was published; 0 if unknown
+    :type publish_date: :class:`int`
+    
     """
 
     ID: str = Field("pageBlockAuthorDate", alias="@type")
@@ -124,13 +120,12 @@ class PageBlockBlockQuote(PageBlock):
     """
     A block quote
     
-    Params:
-        text (:class:`RichText`)
-            Quote text
-        
-        credit (:class:`RichText`)
-            Quote credit
-        
+    :param text: Quote text
+    :type text: :class:`RichText`
+    
+    :param credit: Quote credit
+    :type credit: :class:`RichText`
+    
     """
 
     ID: str = Field("pageBlockBlockQuote", alias="@type")
@@ -146,16 +141,15 @@ class PageBlockChatLink(PageBlock):
     """
     A link to a chat
     
-    Params:
-        title (:class:`str`)
-            Chat title
-        
-        photo (:class:`ChatPhotoInfo`)
-            Chat photo; may be null
-        
-        username (:class:`str`)
-            Chat username, by which all other information about the chat should be resolved
-        
+    :param title: Chat title
+    :type title: :class:`str`
+    
+    :param photo: Chat photo; may be null, defaults to None
+    :type photo: :class:`ChatPhotoInfo`, optional
+    
+    :param username: Chat username, by which all other information about the chat should be resolved
+    :type username: :class:`str`
+    
     """
 
     ID: str = Field("pageBlockChatLink", alias="@type")
@@ -172,13 +166,12 @@ class PageBlockCollage(PageBlock):
     """
     A collage
     
-    Params:
-        page_blocks (:obj:`list[PageBlock]`)
-            Collage item contents
-        
-        caption (:class:`PageBlockCaption`)
-            Block caption
-        
+    :param page_blocks: Collage item contents
+    :type page_blocks: :class:`list[PageBlock]`
+    
+    :param caption: Block caption
+    :type caption: :class:`PageBlockCaption`
+    
     """
 
     ID: str = Field("pageBlockCollage", alias="@type")
@@ -194,10 +187,9 @@ class PageBlockCover(PageBlock):
     """
     A page cover
     
-    Params:
-        cover (:class:`PageBlock`)
-            Cover
-        
+    :param cover: Cover
+    :type cover: :class:`PageBlock`
+    
     """
 
     ID: str = Field("pageBlockCover", alias="@type")
@@ -212,16 +204,15 @@ class PageBlockDetails(PageBlock):
     """
     A collapsible block
     
-    Params:
-        header (:class:`RichText`)
-            Always visible heading for the block
-        
-        page_blocks (:obj:`list[PageBlock]`)
-            Block contents
-        
-        is_open (:class:`bool`)
-            True, if the block is open by default
-        
+    :param header: Always visible heading for the block
+    :type header: :class:`RichText`
+    
+    :param page_blocks: Block contents
+    :type page_blocks: :class:`list[PageBlock]`
+    
+    :param is_open: True, if the block is open by default
+    :type is_open: :class:`bool`
+    
     """
 
     ID: str = Field("pageBlockDetails", alias="@type")
@@ -251,31 +242,30 @@ class PageBlockEmbedded(PageBlock):
     """
     An embedded web page
     
-    Params:
-        url (:class:`str`)
-            Web page URL, if available
-        
-        html (:class:`str`)
-            HTML-markup of the embedded page
-        
-        poster_photo (:class:`Photo`)
-            Poster photo, if available; may be null
-        
-        width (:class:`int`)
-            Block width; 0 if unknown
-        
-        height (:class:`int`)
-            Block height; 0 if unknown
-        
-        caption (:class:`PageBlockCaption`)
-            Block caption
-        
-        is_full_width (:class:`bool`)
-            True, if the block should be full width
-        
-        allow_scrolling (:class:`bool`)
-            True, if scrolling should be allowed
-        
+    :param url: Web page URL, if available
+    :type url: :class:`str`
+    
+    :param html: HTML-markup of the embedded page
+    :type html: :class:`str`
+    
+    :param poster_photo: Poster photo, if available; may be null, defaults to None
+    :type poster_photo: :class:`Photo`, optional
+    
+    :param width: Block width; 0 if unknown
+    :type width: :class:`int`
+    
+    :param height: Block height; 0 if unknown
+    :type height: :class:`int`
+    
+    :param caption: Block caption
+    :type caption: :class:`PageBlockCaption`
+    
+    :param is_full_width: True, if the block should be full width
+    :type is_full_width: :class:`bool`
+    
+    :param allow_scrolling: True, if scrolling should be allowed
+    :type allow_scrolling: :class:`bool`
+    
     """
 
     ID: str = Field("pageBlockEmbedded", alias="@type")
@@ -297,25 +287,24 @@ class PageBlockEmbeddedPost(PageBlock):
     """
     An embedded post
     
-    Params:
-        url (:class:`str`)
-            Web page URL
-        
-        author (:class:`str`)
-            Post author
-        
-        author_photo (:class:`Photo`)
-            Post author photo; may be null
-        
-        date (:class:`int`)
-            Point in time (Unix timestamp) when the post was created; 0 if unknown
-        
-        page_blocks (:obj:`list[PageBlock]`)
-            Post content
-        
-        caption (:class:`PageBlockCaption`)
-            Post caption
-        
+    :param url: Web page URL
+    :type url: :class:`str`
+    
+    :param author: Post author
+    :type author: :class:`str`
+    
+    :param author_photo: Post author photo; may be null, defaults to None
+    :type author_photo: :class:`Photo`, optional
+    
+    :param date: Point in time (Unix timestamp) when the post was created; 0 if unknown
+    :type date: :class:`int`
+    
+    :param page_blocks: Post content
+    :type page_blocks: :class:`list[PageBlock]`
+    
+    :param caption: Post caption
+    :type caption: :class:`PageBlockCaption`
+    
     """
 
     ID: str = Field("pageBlockEmbeddedPost", alias="@type")
@@ -335,10 +324,9 @@ class PageBlockFooter(PageBlock):
     """
     The footer of a page
     
-    Params:
-        footer (:class:`RichText`)
-            Footer
-        
+    :param footer: Footer
+    :type footer: :class:`RichText`
+    
     """
 
     ID: str = Field("pageBlockFooter", alias="@type")
@@ -353,10 +341,9 @@ class PageBlockHeader(PageBlock):
     """
     A header
     
-    Params:
-        header (:class:`RichText`)
-            Header
-        
+    :param header: Header
+    :type header: :class:`RichText`
+    
     """
 
     ID: str = Field("pageBlockHeader", alias="@type")
@@ -371,10 +358,9 @@ class PageBlockKicker(PageBlock):
     """
     A kicker
     
-    Params:
-        kicker (:class:`RichText`)
-            Kicker
-        
+    :param kicker: Kicker
+    :type kicker: :class:`RichText`
+    
     """
 
     ID: str = Field("pageBlockKicker", alias="@type")
@@ -389,10 +375,9 @@ class PageBlockList(PageBlock):
     """
     A list of data blocks
     
-    Params:
-        items (:obj:`list[PageBlockListItem]`)
-            The items of the list
-        
+    :param items: The items of the list
+    :type items: :class:`list[PageBlockListItem]`
+    
     """
 
     ID: str = Field("pageBlockList", alias="@type")
@@ -407,22 +392,21 @@ class PageBlockMap(PageBlock):
     """
     A map
     
-    Params:
-        location (:class:`Location`)
-            Location of the map center
-        
-        zoom (:class:`int`)
-            Map zoom level
-        
-        width (:class:`int`)
-            Map width
-        
-        height (:class:`int`)
-            Map height
-        
-        caption (:class:`PageBlockCaption`)
-            Block caption
-        
+    :param location: Location of the map center
+    :type location: :class:`Location`
+    
+    :param zoom: Map zoom level
+    :type zoom: :class:`int`
+    
+    :param width: Map width
+    :type width: :class:`int`
+    
+    :param height: Map height
+    :type height: :class:`int`
+    
+    :param caption: Block caption
+    :type caption: :class:`PageBlockCaption`
+    
     """
 
     ID: str = Field("pageBlockMap", alias="@type")
@@ -441,10 +425,9 @@ class PageBlockParagraph(PageBlock):
     """
     A text paragraph
     
-    Params:
-        text (:class:`RichText`)
-            Paragraph text
-        
+    :param text: Paragraph text
+    :type text: :class:`RichText`
+    
     """
 
     ID: str = Field("pageBlockParagraph", alias="@type")
@@ -459,16 +442,15 @@ class PageBlockPhoto(PageBlock):
     """
     A photo
     
-    Params:
-        photo (:class:`Photo`)
-            Photo file; may be null
-        
-        caption (:class:`PageBlockCaption`)
-            Photo caption
-        
-        url (:class:`str`)
-            URL that needs to be opened when the photo is clicked
-        
+    :param photo: Photo file; may be null, defaults to None
+    :type photo: :class:`Photo`, optional
+    
+    :param caption: Photo caption
+    :type caption: :class:`PageBlockCaption`
+    
+    :param url: URL that needs to be opened when the photo is clicked
+    :type url: :class:`str`
+    
     """
 
     ID: str = Field("pageBlockPhoto", alias="@type")
@@ -485,13 +467,12 @@ class PageBlockPreformatted(PageBlock):
     """
     A preformatted text paragraph
     
-    Params:
-        text (:class:`RichText`)
-            Paragraph text
-        
-        language (:class:`str`)
-            Programming language for which the text should be formatted
-        
+    :param text: Paragraph text
+    :type text: :class:`RichText`
+    
+    :param language: Programming language for which the text should be formatted
+    :type language: :class:`str`
+    
     """
 
     ID: str = Field("pageBlockPreformatted", alias="@type")
@@ -507,13 +488,12 @@ class PageBlockPullQuote(PageBlock):
     """
     A pull quote
     
-    Params:
-        text (:class:`RichText`)
-            Quote text
-        
-        credit (:class:`RichText`)
-            Quote credit
-        
+    :param text: Quote text
+    :type text: :class:`RichText`
+    
+    :param credit: Quote credit
+    :type credit: :class:`RichText`
+    
     """
 
     ID: str = Field("pageBlockPullQuote", alias="@type")
@@ -529,13 +509,12 @@ class PageBlockRelatedArticles(PageBlock):
     """
     Related articles
     
-    Params:
-        header (:class:`RichText`)
-            Block header
-        
-        articles (:obj:`list[PageBlockRelatedArticle]`)
-            List of related articles
-        
+    :param header: Block header
+    :type header: :class:`RichText`
+    
+    :param articles: List of related articles
+    :type articles: :class:`list[PageBlockRelatedArticle]`
+    
     """
 
     ID: str = Field("pageBlockRelatedArticles", alias="@type")
@@ -551,13 +530,12 @@ class PageBlockSlideshow(PageBlock):
     """
     A slideshow
     
-    Params:
-        page_blocks (:obj:`list[PageBlock]`)
-            Slideshow item contents
-        
-        caption (:class:`PageBlockCaption`)
-            Block caption
-        
+    :param page_blocks: Slideshow item contents
+    :type page_blocks: :class:`list[PageBlock]`
+    
+    :param caption: Block caption
+    :type caption: :class:`PageBlockCaption`
+    
     """
 
     ID: str = Field("pageBlockSlideshow", alias="@type")
@@ -573,10 +551,9 @@ class PageBlockSubheader(PageBlock):
     """
     A subheader
     
-    Params:
-        subheader (:class:`RichText`)
-            Subheader
-        
+    :param subheader: Subheader
+    :type subheader: :class:`RichText`
+    
     """
 
     ID: str = Field("pageBlockSubheader", alias="@type")
@@ -591,10 +568,9 @@ class PageBlockSubtitle(PageBlock):
     """
     The subtitle of a page
     
-    Params:
-        subtitle (:class:`RichText`)
-            Subtitle
-        
+    :param subtitle: Subtitle
+    :type subtitle: :class:`RichText`
+    
     """
 
     ID: str = Field("pageBlockSubtitle", alias="@type")
@@ -609,19 +585,18 @@ class PageBlockTable(PageBlock):
     """
     A table
     
-    Params:
-        caption (:class:`RichText`)
-            Table caption
-        
-        cells (:obj:`list[list[PageBlockTableCell]]`)
-            Table cells
-        
-        is_bordered (:class:`bool`)
-            True, if the table is bordered
-        
-        is_striped (:class:`bool`)
-            True, if the table is striped
-        
+    :param caption: Table caption
+    :type caption: :class:`RichText`
+    
+    :param cells: Table cells
+    :type cells: :class:`list[list[PageBlockTableCell]]`
+    
+    :param is_bordered: True, if the table is bordered
+    :type is_bordered: :class:`bool`
+    
+    :param is_striped: True, if the table is striped
+    :type is_striped: :class:`bool`
+    
     """
 
     ID: str = Field("pageBlockTable", alias="@type")
@@ -639,10 +614,9 @@ class PageBlockTitle(PageBlock):
     """
     The title of a page
     
-    Params:
-        title (:class:`RichText`)
-            Title
-        
+    :param title: Title
+    :type title: :class:`RichText`
+    
     """
 
     ID: str = Field("pageBlockTitle", alias="@type")
@@ -657,19 +631,18 @@ class PageBlockVideo(PageBlock):
     """
     A video
     
-    Params:
-        video (:class:`Video`)
-            Video file; may be null
-        
-        caption (:class:`PageBlockCaption`)
-            Video caption
-        
-        need_autoplay (:class:`bool`)
-            True, if the video should be played automatically
-        
-        is_looped (:class:`bool`)
-            True, if the video should be looped
-        
+    :param video: Video file; may be null, defaults to None
+    :type video: :class:`Video`, optional
+    
+    :param caption: Video caption
+    :type caption: :class:`PageBlockCaption`
+    
+    :param need_autoplay: True, if the video should be played automatically
+    :type need_autoplay: :class:`bool`
+    
+    :param is_looped: True, if the video should be looped
+    :type is_looped: :class:`bool`
+    
     """
 
     ID: str = Field("pageBlockVideo", alias="@type")
@@ -687,13 +660,12 @@ class PageBlockVoiceNote(PageBlock):
     """
     A voice note
     
-    Params:
-        voice_note (:class:`VoiceNote`)
-            Voice note; may be null
-        
-        caption (:class:`PageBlockCaption`)
-            Voice note caption
-        
+    :param voice_note: Voice note; may be null, defaults to None
+    :type voice_note: :class:`VoiceNote`, optional
+    
+    :param caption: Voice note caption
+    :type caption: :class:`PageBlockCaption`
+    
     """
 
     ID: str = Field("pageBlockVoiceNote", alias="@type")
@@ -709,13 +681,12 @@ class PageBlockListItem(BaseObject):
     """
     Describes an item of a list page block
     
-    Params:
-        label (:class:`str`)
-            Item label
-        
-        page_blocks (:obj:`list[PageBlock]`)
-            Item blocks
-        
+    :param label: Item label
+    :type label: :class:`str`
+    
+    :param page_blocks: Item blocks
+    :type page_blocks: :class:`list[PageBlock]`
+    
     """
 
     ID: str = Field("pageBlockListItem", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .language_pack_string import LanguagePackString
@@ -15,10 +17,9 @@ class LanguagePackStrings(BaseObject):
     """
     Contains a list of language pack strings
     
-    Params:
-        strings (:obj:`list[LanguagePackString]`)
-            A list of language pack strings
-        
+    :param strings: A list of language pack strings
+    :type strings: :class:`list[LanguagePackString]`
+    
     """
 
     ID: str = Field("languagePackStrings", alias="@type")

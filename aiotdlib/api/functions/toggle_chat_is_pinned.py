@@ -5,26 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import ChatList
+from ..base_object import BaseObject
 
 
 class ToggleChatIsPinned(BaseObject):
     """
     Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/arhive chat list
     
-    Params:
-        chat_list (:class:`ChatList`)
-            Chat list in which to change the pinned state of the chat
-        
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        is_pinned (:class:`bool`)
-            True, if the chat is pinned
-        
+    :param chat_list: Chat list in which to change the pinned state of the chat
+    :type chat_list: :class:`ChatList`
+    
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param is_pinned: True, if the chat is pinned
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("toggleChatIsPinned", alias="@type")

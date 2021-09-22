@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -36,10 +38,9 @@ class ChatListFilter(ChatList):
     """
     A list of chats belonging to a chat filter
     
-    Params:
-        chat_filter_id (:class:`int`)
-            Chat filter identifier
-        
+    :param chat_filter_id: Chat filter identifier
+    :type chat_filter_id: :class:`int`
+    
     """
 
     ID: str = Field("chatListFilter", alias="@type")

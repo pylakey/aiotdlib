@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,16 +16,15 @@ class GetArchivedStickerSets(BaseObject):
     """
     Returns a list of archived sticker sets
     
-    Params:
-        is_masks (:class:`bool`)
-            Pass true to return mask stickers sets; pass false to return ordinary sticker sets
-        
-        offset_sticker_set_id (:class:`int`)
-            Identifier of the sticker set from which to return the result
-        
-        limit (:class:`int`)
-            The maximum number of sticker sets to return
-        
+    :param is_masks: Pass true to return mask stickers sets; pass false to return ordinary sticker sets
+    :type is_masks: :class:`bool`
+    
+    :param offset_sticker_set_id: Identifier of the sticker set from which to return the result
+    :type offset_sticker_set_id: :class:`int`
+    
+    :param limit: The maximum number of sticker sets to return
+    :type limit: :class:`int`
+    
     """
 
     ID: str = Field("getArchivedStickerSets", alias="@type")

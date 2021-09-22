@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .game_high_score import GameHighScore
@@ -15,10 +17,9 @@ class GameHighScores(BaseObject):
     """
     Contains a list of game high scores
     
-    Params:
-        scores (:obj:`list[GameHighScore]`)
-            A list of game high scores
-        
+    :param scores: A list of game high scores
+    :type scores: :class:`list[GameHighScore]`
+    
     """
 
     ID: str = Field("gameHighScores", alias="@type")

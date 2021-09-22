@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .passport_suitable_element import PassportSuitableElement
@@ -15,10 +17,9 @@ class PassportRequiredElement(BaseObject):
     """
     Contains a description of the required Telegram Passport element that was requested by a service
     
-    Params:
-        suitable_elements (:obj:`list[PassportSuitableElement]`)
-            List of Telegram Passport elements any of which is enough to provide
-        
+    :param suitable_elements: List of Telegram Passport elements any of which is enough to provide
+    :type suitable_elements: :class:`list[PassportSuitableElement]`
+    
     """
 
     ID: str = Field("passportRequiredElement", alias="@type")

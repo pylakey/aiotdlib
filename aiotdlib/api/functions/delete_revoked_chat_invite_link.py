@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class DeleteRevokedChatInviteLink(BaseObject):
     """
     Deletes revoked chat invite links. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        invite_link (:class:`str`)
-            Invite link to revoke
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param invite_link: Invite link to revoke
+    :type invite_link: :class:`str`
+    
     """
 
     ID: str = Field("deleteRevokedChatInviteLink", alias="@type")

@@ -5,24 +5,25 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import AutoDownloadSettings
 from ..types import NetworkType
+from ..base_object import BaseObject
 
 
 class SetAutoDownloadSettings(BaseObject):
     """
     Sets auto-download settings
     
-    Params:
-        settings (:class:`AutoDownloadSettings`)
-            New user auto-download settings
-        
-        type_ (:class:`NetworkType`)
-            Type of the network for which the new settings are relevant
-        
+    :param settings: New user auto-download settings
+    :type settings: :class:`AutoDownloadSettings`
+    
+    :param type_: Type of the network for which the new settings are relevant
+    :type type_: :class:`NetworkType`
+    
     """
 
     ID: str = Field("setAutoDownloadSettings", alias="@type")

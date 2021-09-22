@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,16 +16,15 @@ class WriteGeneratedFilePart(BaseObject):
     """
     Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
     
-    Params:
-        generation_id (:class:`int`)
-            The identifier of the generation process
-        
-        offset (:class:`int`)
-            The offset from which to write the data to the file
-        
-        data (:class:`str`)
-            The data to write
-        
+    :param generation_id: The identifier of the generation process
+    :type generation_id: :class:`int`
+    
+    :param offset: The offset from which to write the data to the file
+    :type offset: :class:`int`
+    
+    :param data: The data to write
+    :type data: :class:`str`
+    
     """
 
     ID: str = Field("writeGeneratedFilePart", alias="@type")

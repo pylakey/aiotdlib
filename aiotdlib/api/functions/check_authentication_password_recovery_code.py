@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class CheckAuthenticationPasswordRecoveryCode(BaseObject):
     """
     Checks whether a password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
     
-    Params:
-        recovery_code (:class:`str`)
-            Recovery code to check
-        
+    :param recovery_code: Recovery code to check
+    :type recovery_code: :class:`str`
+    
     """
 
     ID: str = Field("checkAuthenticationPasswordRecoveryCode", alias="@type")

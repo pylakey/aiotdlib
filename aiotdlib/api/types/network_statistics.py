@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .network_statistics_entry import NetworkStatisticsEntry
@@ -15,13 +17,12 @@ class NetworkStatistics(BaseObject):
     """
     A full list of available network statistic entries
     
-    Params:
-        since_date (:class:`int`)
-            Point in time (Unix timestamp) from which the statistics are collected
-        
-        entries (:obj:`list[NetworkStatisticsEntry]`)
-            Network statistics entries
-        
+    :param since_date: Point in time (Unix timestamp) from which the statistics are collected
+    :type since_date: :class:`int`
+    
+    :param entries: Network statistics entries
+    :type entries: :class:`list[NetworkStatisticsEntry]`
+    
     """
 
     ID: str = Field("networkStatistics", alias="@type")

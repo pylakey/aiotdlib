@@ -5,20 +5,21 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import FormattedText
+from ..base_object import BaseObject
 
 
 class GetWebPagePreview(BaseObject):
     """
     Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview
     
-    Params:
-        text (:class:`FormattedText`)
-            Message text with formatting
-        
+    :param text: Message text with formatting
+    :type text: :class:`FormattedText`
+    
     """
 
     ID: str = Field("getWebPagePreview", alias="@type")

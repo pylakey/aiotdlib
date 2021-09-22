@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,16 +16,15 @@ class GetCallbackQueryMessage(BaseObject):
     """
     Returns information about a message with the callback button that originated a callback query; for bots only
     
-    Params:
-        chat_id (:class:`int`)
-            Identifier of the chat the message belongs to
-        
-        message_id (:class:`int`)
-            Message identifier
-        
-        callback_query_id (:class:`int`)
-            Identifier of the callback query
-        
+    :param chat_id: Identifier of the chat the message belongs to
+    :type chat_id: :class:`int`
+    
+    :param message_id: Message identifier
+    :type message_id: :class:`int`
+    
+    :param callback_query_id: Identifier of the callback query
+    :type callback_query_id: :class:`int`
+    
     """
 
     ID: str = Field("getCallbackQueryMessage", alias="@type")

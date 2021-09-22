@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class TestInt(BaseObject):
     """
     A simple object containing a number; for testing only
     
-    Params:
-        value (:class:`int`)
-            Number
-        
+    :param value: Number
+    :type value: :class:`int`
+    
     """
 
     ID: str = Field("testInt", alias="@type")

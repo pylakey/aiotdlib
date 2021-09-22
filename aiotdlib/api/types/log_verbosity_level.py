@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class LogVerbosityLevel(BaseObject):
     """
     Contains a TDLib internal log verbosity level
     
-    Params:
-        verbosity_level (:class:`int`)
-            Log verbosity level
-        
+    :param verbosity_level: Log verbosity level
+    :type verbosity_level: :class:`int`
+    
     """
 
     ID: str = Field("logVerbosityLevel", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class CreateNewSecretChat(BaseObject):
     """
     Creates a new secret chat. Returns the newly created chat
     
-    Params:
-        user_id (:class:`int`)
-            Identifier of the target user
-        
+    :param user_id: Identifier of the target user
+    :type user_id: :class:`int`
+    
     """
 
     ID: str = Field("createNewSecretChat", alias="@type")

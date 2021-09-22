@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,16 +16,15 @@ class ChatAdministrator(BaseObject):
     """
     Contains information about a chat administrator
     
-    Params:
-        user_id (:class:`int`)
-            User identifier of the administrator
-        
-        custom_title (:class:`str`)
-            Custom title of the administrator
-        
-        is_owner (:class:`bool`)
-            True, if the user is the owner of the chat
-        
+    :param user_id: User identifier of the administrator
+    :type user_id: :class:`int`
+    
+    :param custom_title: Custom title of the administrator
+    :type custom_title: :class:`str`
+    
+    :param is_owner: True, if the user is the owner of the chat
+    :type is_owner: :class:`bool`
+    
     """
 
     ID: str = Field("chatAdministrator", alias="@type")

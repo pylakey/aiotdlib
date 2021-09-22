@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class Point(BaseObject):
     """
     A point on a Cartesian plane
     
-    Params:
-        x (:class:`float`)
-            The point's first coordinate
-        
-        y (:class:`float`)
-            The point's second coordinate
-        
+    :param x: The point's first coordinate
+    :type x: :class:`float`
+    
+    :param y: The point's second coordinate
+    :type y: :class:`float`
+    
     """
 
     ID: str = Field("point", alias="@type")

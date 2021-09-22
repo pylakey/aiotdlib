@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,16 +16,15 @@ class Location(BaseObject):
     """
     Describes a location on planet Earth
     
-    Params:
-        latitude (:class:`float`)
-            Latitude of the location in degrees; as defined by the sender
-        
-        longitude (:class:`float`)
-            Longitude of the location, in degrees; as defined by the sender
-        
-        horizontal_accuracy (:class:`float`)
-            The estimated horizontal accuracy of the location, in meters; as defined by the sender. 0 if unknown
-        
+    :param latitude: Latitude of the location in degrees; as defined by the sender
+    :type latitude: :class:`float`
+    
+    :param longitude: Longitude of the location, in degrees; as defined by the sender
+    :type longitude: :class:`float`
+    
+    :param horizontal_accuracy: The estimated horizontal accuracy of the location, in meters; as defined by the sender. 0 if unknown
+    :type horizontal_accuracy: :class:`float`
+    
     """
 
     ID: str = Field("location", alias="@type")

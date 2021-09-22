@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -36,13 +38,12 @@ class ChatSourcePublicServiceAnnouncement(ChatSource):
     """
     The chat contains a public service announcement
     
-    Params:
-        type_ (:class:`str`)
-            The type of the announcement
-        
-        text (:class:`str`)
-            The text of the announcement
-        
+    :param type_: The type of the announcement
+    :type type_: :class:`str`
+    
+    :param text: The text of the announcement
+    :type text: :class:`str`
+    
     """
 
     ID: str = Field("chatSourcePublicServiceAnnouncement", alias="@type")

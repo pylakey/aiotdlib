@@ -9,24 +9,23 @@ import typing
 
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import DraftMessage
+from ..base_object import BaseObject
 
 
 class SetChatDraftMessage(BaseObject):
     """
     Changes the draft message in a chat
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        message_thread_id (:class:`int`)
-            If not 0, a message thread identifier in which the draft was changed
-        
-        draft_message (:class:`DraftMessage`)
-            New draft message; may be null
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_thread_id: If not 0, a message thread identifier in which the draft was changed
+    :type message_thread_id: :class:`int`
+    
+    :param draft_message: New draft message; may be null, defaults to None
+    :type draft_message: :class:`DraftMessage`, optional
+    
     """
 
     ID: str = Field("setChatDraftMessage", alias="@type")

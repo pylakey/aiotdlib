@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_invite_link_info import ChatInviteLinkInfo
@@ -24,10 +26,9 @@ class TMeUrlTypeChatInvite(TMeUrlType):
     """
     A chat invite link
     
-    Params:
-        info (:class:`ChatInviteLinkInfo`)
-            Chat invite link info
-        
+    :param info: Chat invite link info
+    :type info: :class:`ChatInviteLinkInfo`
+    
     """
 
     ID: str = Field("tMeUrlTypeChatInvite", alias="@type")
@@ -42,10 +43,9 @@ class TMeUrlTypeStickerSet(TMeUrlType):
     """
     A URL linking to a sticker set
     
-    Params:
-        sticker_set_id (:class:`int`)
-            Identifier of the sticker set
-        
+    :param sticker_set_id: Identifier of the sticker set
+    :type sticker_set_id: :class:`int`
+    
     """
 
     ID: str = Field("tMeUrlTypeStickerSet", alias="@type")
@@ -60,10 +60,9 @@ class TMeUrlTypeSupergroup(TMeUrlType):
     """
     A URL linking to a public supergroup or channel
     
-    Params:
-        supergroup_id (:class:`int`)
-            Identifier of the supergroup or channel
-        
+    :param supergroup_id: Identifier of the supergroup or channel
+    :type supergroup_id: :class:`int`
+    
     """
 
     ID: str = Field("tMeUrlTypeSupergroup", alias="@type")
@@ -78,10 +77,9 @@ class TMeUrlTypeUser(TMeUrlType):
     """
     A URL linking to a user
     
-    Params:
-        user_id (:class:`int`)
-            Identifier of the user
-        
+    :param user_id: Identifier of the user
+    :type user_id: :class:`int`
+    
     """
 
     ID: str = Field("tMeUrlTypeUser", alias="@type")

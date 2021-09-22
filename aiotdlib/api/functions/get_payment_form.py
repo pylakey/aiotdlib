@@ -5,26 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import PaymentFormTheme
+from ..base_object import BaseObject
 
 
 class GetPaymentForm(BaseObject):
     """
     Returns an invoice payment form. This method should be called when the user presses inlineKeyboardButtonBuy
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier of the Invoice message
-        
-        message_id (:class:`int`)
-            Message identifier
-        
-        theme (:class:`PaymentFormTheme`)
-            Preferred payment form theme
-        
+    :param chat_id: Chat identifier of the Invoice message
+    :type chat_id: :class:`int`
+    
+    :param message_id: Message identifier
+    :type message_id: :class:`int`
+    
+    :param theme: Preferred payment form theme
+    :type theme: :class:`PaymentFormTheme`
+    
     """
 
     ID: str = Field("getPaymentForm", alias="@type")

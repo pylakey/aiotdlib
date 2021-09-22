@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class Text(BaseObject):
     """
     Contains some text
     
-    Params:
-        text (:class:`str`)
-            Text
-        
+    :param text: Text
+    :type text: :class:`str`
+    
     """
 
     ID: str = Field("text", alias="@type")

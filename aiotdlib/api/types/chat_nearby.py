@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class ChatNearby(BaseObject):
     """
     Describes a chat located nearby
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        distance (:class:`int`)
-            Distance to the chat location, in meters
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param distance: Distance to the chat location, in meters
+    :type distance: :class:`int`
+    
     """
 
     ID: str = Field("chatNearby", alias="@type")

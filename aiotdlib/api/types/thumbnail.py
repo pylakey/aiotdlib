@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .file import File
@@ -16,19 +18,18 @@ class Thumbnail(BaseObject):
     """
     Represents a thumbnail
     
-    Params:
-        format (:class:`ThumbnailFormat`)
-            Thumbnail format
-        
-        width (:class:`int`)
-            Thumbnail width
-        
-        height (:class:`int`)
-            Thumbnail height
-        
-        file (:class:`File`)
-            The thumbnail
-        
+    :param format: Thumbnail format
+    :type format: :class:`ThumbnailFormat`
+    
+    :param width: Thumbnail width
+    :type width: :class:`int`
+    
+    :param height: Thumbnail height
+    :type height: :class:`int`
+    
+    :param file: The thumbnail
+    :type file: :class:`File`
+    
     """
 
     ID: str = Field("thumbnail", alias="@type")

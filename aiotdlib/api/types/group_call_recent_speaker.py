@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .message_sender import MessageSender
@@ -15,13 +17,12 @@ class GroupCallRecentSpeaker(BaseObject):
     """
     Describes a recently speaking participant in a group call
     
-    Params:
-        participant_id (:class:`MessageSender`)
-            Group call participant identifier
-        
-        is_speaking (:class:`bool`)
-            True, is the user has spoken recently
-        
+    :param participant_id: Group call participant identifier
+    :type participant_id: :class:`MessageSender`
+    
+    :param is_speaking: True, is the user has spoken recently
+    :type is_speaking: :class:`bool`
+    
     """
 
     ID: str = Field("groupCallRecentSpeaker", alias="@type")

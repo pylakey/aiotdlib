@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetJsonValue(BaseObject):
     """
     Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously
     
-    Params:
-        json_ (:class:`str`)
-            The JSON-serialized string
-        
+    :param json_: The JSON-serialized string
+    :type json_: :class:`str`
+    
     """
 
     ID: str = Field("getJsonValue", alias="@type")

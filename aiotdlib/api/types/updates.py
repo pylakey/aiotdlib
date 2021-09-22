@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .update import Update
@@ -15,10 +17,9 @@ class Updates(BaseObject):
     """
     Contains a list of updates
     
-    Params:
-        updates (:obj:`list[Update]`)
-            List of updates
-        
+    :param updates: List of updates
+    :type updates: :class:`list[Update]`
+    
     """
 
     ID: str = Field("updates", alias="@type")

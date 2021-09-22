@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetRecentStickers(BaseObject):
     """
     Returns a list of recently used stickers
     
-    Params:
-        is_attached (:class:`bool`)
-            Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
-        
+    :param is_attached: Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers
+    :type is_attached: :class:`bool`
+    
     """
 
     ID: str = Field("getRecentStickers", alias="@type")

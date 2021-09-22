@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class SharePhoneNumber(BaseObject):
     """
     Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber
     
-    Params:
-        user_id (:class:`int`)
-            Identifier of the user with whom to share the phone number. The user must be a mutual contact
-        
+    :param user_id: Identifier of the user with whom to share the phone number. The user must be a mutual contact
+    :type user_id: :class:`int`
+    
     """
 
     ID: str = Field("sharePhoneNumber", alias="@type")

@@ -20,37 +20,36 @@ class PaymentForm(BaseObject):
     """
     Contains information about an invoice payment form
     
-    Params:
-        id (:class:`int`)
-            The payment form identifier
-        
-        invoice (:class:`Invoice`)
-            Full information of the invoice
-        
-        url (:class:`str`)
-            Payment form URL
-        
-        seller_bot_user_id (:class:`int`)
-            User identifier of the seller bot
-        
-        payments_provider_user_id (:class:`int`)
-            User identifier of the payment provider bot
-        
-        payments_provider (:class:`PaymentsProviderStripe`)
-            Contains information about the payment provider, if available, to support it natively without the need for opening the URL; may be null
-        
-        saved_order_info (:class:`OrderInfo`)
-            Saved server-side order information; may be null
-        
-        saved_credentials (:class:`SavedCredentials`)
-            Contains information about saved card credentials; may be null
-        
-        can_save_credentials (:class:`bool`)
-            True, if the user can choose to save credentials
-        
-        need_password (:class:`bool`)
-            True, if the user will be able to save credentials protected by a password they set up
-        
+    :param id: The payment form identifier
+    :type id: :class:`int`
+    
+    :param invoice: Full information of the invoice
+    :type invoice: :class:`Invoice`
+    
+    :param url: Payment form URL
+    :type url: :class:`str`
+    
+    :param seller_bot_user_id: User identifier of the seller bot
+    :type seller_bot_user_id: :class:`int`
+    
+    :param payments_provider_user_id: User identifier of the payment provider bot
+    :type payments_provider_user_id: :class:`int`
+    
+    :param payments_provider: Contains information about the payment provider, if available, to support it natively without the need for opening the URL; may be null, defaults to None
+    :type payments_provider: :class:`PaymentsProviderStripe`, optional
+    
+    :param saved_order_info: Saved server-side order information; may be null, defaults to None
+    :type saved_order_info: :class:`OrderInfo`, optional
+    
+    :param saved_credentials: Contains information about saved card credentials; may be null, defaults to None
+    :type saved_credentials: :class:`SavedCredentials`, optional
+    
+    :param can_save_credentials: True, if the user can choose to save credentials
+    :type can_save_credentials: :class:`bool`
+    
+    :param need_password: True, if the user will be able to save credentials protected by a password they set up
+    :type need_password: :class:`bool`
+    
     """
 
     ID: str = Field("paymentForm", alias="@type")

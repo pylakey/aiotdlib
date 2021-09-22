@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class GetBlockedMessageSenders(BaseObject):
     """
     Returns users and chats that were blocked by the current user
     
-    Params:
-        offset (:class:`int`)
-            Number of users and chats to skip in the result; must be non-negative
-        
-        limit (:class:`int`)
-            The maximum number of users and chats to return; up to 100
-        
+    :param offset: Number of users and chats to skip in the result; must be non-negative
+    :type offset: :class:`int`
+    
+    :param limit: The maximum number of users and chats to return; up to 100
+    :type limit: :class:`int`
+    
     """
 
     ID: str = Field("getBlockedMessageSenders", alias="@type")

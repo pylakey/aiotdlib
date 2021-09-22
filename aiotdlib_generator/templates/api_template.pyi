@@ -17,6 +17,10 @@ ReturnType = typing.TypeVar('ReturnType', bound=BaseObject)
 
 
 class API:
+    """
+    This class contains all TDJson API methods
+    """
+
     class Types:
         # Types and Functions
         ANY = '*'
@@ -43,11 +47,20 @@ class API:
         """
         {{ entity.doc }}
         {% if entity.parameters %}
-        Params:
-            {%- for parameter in entity.parameters %}
-            {{ parameter.name }} {{ parameter.doc_type }}
-                {{ parameter.doc }}
-            {% endfor %}
+        {%- for parameter in entity.parameters %}
+        :param {{ parameter.name }}: {{ parameter.doc }}{% if parameter.nullable %}, defaults to None{% endif %}
+        :type {{ parameter.name }}: {{ parameter.doc_type }}{% if parameter.nullable %}, optional{% endif %}
+        {% endfor %}
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        {% if entity.return_type_str %}
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.{{ entity.return_type_str }}`
+        {%- endif %}
         {%- endif %}
         """
 

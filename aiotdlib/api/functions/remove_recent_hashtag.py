@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class RemoveRecentHashtag(BaseObject):
     """
     Removes a hashtag from the list of recently used hashtags
     
-    Params:
-        hashtag (:class:`str`)
-            Hashtag to delete
-        
+    :param hashtag: Hashtag to delete
+    :type hashtag: :class:`str`
+    
     """
 
     ID: str = Field("removeRecentHashtag", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .authentication_code_info import AuthenticationCodeInfo
@@ -77,10 +79,9 @@ class AuthorizationStateWaitCode(AuthorizationState):
     """
     TDLib needs the user's authentication code to authorize
     
-    Params:
-        code_info (:class:`AuthenticationCodeInfo`)
-            Information about the authorization code that was sent
-        
+    :param code_info: Information about the authorization code that was sent
+    :type code_info: :class:`AuthenticationCodeInfo`
+    
     """
 
     ID: str = Field("authorizationStateWaitCode", alias="@type")
@@ -95,10 +96,9 @@ class AuthorizationStateWaitEncryptionKey(AuthorizationState):
     """
     TDLib needs an encryption key to decrypt the local database
     
-    Params:
-        is_encrypted (:class:`bool`)
-            True, if the database is currently encrypted
-        
+    :param is_encrypted: True, if the database is currently encrypted
+    :type is_encrypted: :class:`bool`
+    
     """
 
     ID: str = Field("authorizationStateWaitEncryptionKey", alias="@type")
@@ -113,10 +113,9 @@ class AuthorizationStateWaitOtherDeviceConfirmation(AuthorizationState):
     """
     The user needs to confirm authorization on another logged in device by scanning a QR code with the provided link
     
-    Params:
-        link (:class:`str`)
-            A tg:// URL for the QR code. The link will be updated frequently
-        
+    :param link: A tg:// URL for the QR code. The link will be updated frequently
+    :type link: :class:`str`
+    
     """
 
     ID: str = Field("authorizationStateWaitOtherDeviceConfirmation", alias="@type")
@@ -131,16 +130,15 @@ class AuthorizationStateWaitPassword(AuthorizationState):
     """
     The user has been authorized, but needs to enter a password to start using the application
     
-    Params:
-        password_hint (:class:`str`)
-            Hint for the password; may be empty
-        
-        has_recovery_email_address (:class:`bool`)
-            True, if a recovery email address has been set up
-        
-        recovery_email_address_pattern (:class:`str`)
-            Pattern of the email address to which the recovery email was sent; empty until a recovery email has been sent
-        
+    :param password_hint: Hint for the password; may be empty
+    :type password_hint: :class:`str`
+    
+    :param has_recovery_email_address: True, if a recovery email address has been set up
+    :type has_recovery_email_address: :class:`bool`
+    
+    :param recovery_email_address_pattern: Pattern of the email address to which the recovery email was sent; empty until a recovery email has been sent
+    :type recovery_email_address_pattern: :class:`str`
+    
     """
 
     ID: str = Field("authorizationStateWaitPassword", alias="@type")
@@ -170,10 +168,9 @@ class AuthorizationStateWaitRegistration(AuthorizationState):
     """
     The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration
     
-    Params:
-        terms_of_service (:class:`TermsOfService`)
-            Telegram terms of service
-        
+    :param terms_of_service: Telegram terms of service
+    :type terms_of_service: :class:`TermsOfService`
+    
     """
 
     ID: str = Field("authorizationStateWaitRegistration", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetUserFullInfo(BaseObject):
     """
     Returns full information about a user by their identifier
     
-    Params:
-        user_id (:class:`int`)
-            User identifier
-        
+    :param user_id: User identifier
+    :type user_id: :class:`int`
+    
     """
 
     ID: str = Field("getUserFullInfo", alias="@type")

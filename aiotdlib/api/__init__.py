@@ -4,6 +4,8 @@
 #                                                                                 #
 # =============================================================================== #
 
+from enum import Enum
+
 from .api import API
 from .base_object import BaseObject
 from .errors import *

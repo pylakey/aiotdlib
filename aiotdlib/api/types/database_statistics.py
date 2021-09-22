@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class DatabaseStatistics(BaseObject):
     """
     Contains database statistics
     
-    Params:
-        statistics (:class:`str`)
-            Database statistics in an unspecified human-readable format
-        
+    :param statistics: Database statistics in an unspecified human-readable format
+    :type statistics: :class:`str`
+    
     """
 
     ID: str = Field("databaseStatistics", alias="@type")

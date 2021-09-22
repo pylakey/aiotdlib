@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class SynchronizeLanguagePack(BaseObject):
     """
     Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method shouldn't be called explicitly for the current used/base language packs. Can be called before authorization
     
-    Params:
-        language_pack_id (:class:`str`)
-            Language pack identifier
-        
+    :param language_pack_id: Language pack identifier
+    :type language_pack_id: :class:`str`
+    
     """
 
     ID: str = Field("synchronizeLanguagePack", alias="@type")

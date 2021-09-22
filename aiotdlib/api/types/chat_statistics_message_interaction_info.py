@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,16 +16,15 @@ class ChatStatisticsMessageInteractionInfo(BaseObject):
     """
     Contains statistics about interactions with a message
     
-    Params:
-        message_id (:class:`int`)
-            Message identifier
-        
-        view_count (:class:`int`)
-            Number of times the message was viewed
-        
-        forward_count (:class:`int`)
-            Number of times the message was forwarded
-        
+    :param message_id: Message identifier
+    :type message_id: :class:`int`
+    
+    :param view_count: Number of times the message was viewed
+    :type view_count: :class:`int`
+    
+    :param forward_count: Number of times the message was forwarded
+    :type forward_count: :class:`int`
+    
     """
 
     ID: str = Field("chatStatisticsMessageInteractionInfo", alias="@type")

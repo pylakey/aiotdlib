@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class EndGroupCallRecording(BaseObject):
     """
     Ends recording of an active group call. Requires groupCall.can_be_managed group call flag
     
-    Params:
-        group_call_id (:class:`int`)
-            Group call identifier
-        
+    :param group_call_id: Group call identifier
+    :type group_call_id: :class:`int`
+    
     """
 
     ID: str = Field("endGroupCallRecording", alias="@type")

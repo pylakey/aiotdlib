@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,10 +25,9 @@ class MessageSenderChat(MessageSender):
     """
     The message was sent on behalf of a chat
     
-    Params:
-        chat_id (:class:`int`)
-            Identifier of the chat that sent the message
-        
+    :param chat_id: Identifier of the chat that sent the message
+    :type chat_id: :class:`int`
+    
     """
 
     ID: str = Field("messageSenderChat", alias="@type")
@@ -41,10 +42,9 @@ class MessageSenderUser(MessageSender):
     """
     The message was sent by a known user
     
-    Params:
-        user_id (:class:`int`)
-            Identifier of the user that sent the message
-        
+    :param user_id: Identifier of the user that sent the message
+    :type user_id: :class:`int`
+    
     """
 
     ID: str = Field("messageSenderUser", alias="@type")

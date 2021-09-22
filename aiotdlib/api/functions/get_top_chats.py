@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import TopChatCategory
+from ..base_object import BaseObject
 
 
 class GetTopChats(BaseObject):
     """
     Returns a list of frequently used chats. Supported only if the chat info database is enabled
     
-    Params:
-        category (:class:`TopChatCategory`)
-            Category of chats to be returned
-        
-        limit (:class:`int`)
-            The maximum number of chats to be returned; up to 30
-        
+    :param category: Category of chats to be returned
+    :type category: :class:`TopChatCategory`
+    
+    :param limit: The maximum number of chats to be returned; up to 30
+    :type limit: :class:`int`
+    
     """
 
     ID: str = Field("getTopChats", alias="@type")

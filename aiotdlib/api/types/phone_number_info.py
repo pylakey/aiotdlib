@@ -17,16 +17,15 @@ class PhoneNumberInfo(BaseObject):
     """
     Contains information about a phone number
     
-    Params:
-        country (:class:`CountryInfo`)
-            Information about the country to which the phone number belongs; may be null
-        
-        country_calling_code (:class:`str`)
-            The part of the phone number denoting country calling code or its part
-        
-        formatted_phone_number (:class:`str`)
-            The phone number without country calling code formatted accordingly to local rules. Expected digits are returned as '-', but even more digits might be entered by the user
-        
+    :param country: Information about the country to which the phone number belongs; may be null, defaults to None
+    :type country: :class:`CountryInfo`, optional
+    
+    :param country_calling_code: The part of the phone number denoting country calling code or its part
+    :type country_calling_code: :class:`str`
+    
+    :param formatted_phone_number: The phone number without country calling code formatted accordingly to local rules. Expected digits are returned as '-', but even more digits might be entered by the user
+    :type formatted_phone_number: :class:`str`
+    
     """
 
     ID: str = Field("phoneNumberInfo", alias="@type")

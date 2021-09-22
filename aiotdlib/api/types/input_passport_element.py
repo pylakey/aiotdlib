@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .address import Address
@@ -27,10 +29,9 @@ class InputPassportElementAddress(InputPassportElement):
     """
     A Telegram Passport element to be saved containing the user's address
     
-    Params:
-        address (:class:`Address`)
-            The address to be saved
-        
+    :param address: The address to be saved
+    :type address: :class:`Address`
+    
     """
 
     ID: str = Field("inputPassportElementAddress", alias="@type")
@@ -45,10 +46,9 @@ class InputPassportElementBankStatement(InputPassportElement):
     """
     A Telegram Passport element to be saved containing the user's bank statement
     
-    Params:
-        bank_statement (:class:`InputPersonalDocument`)
-            The bank statement to be saved
-        
+    :param bank_statement: The bank statement to be saved
+    :type bank_statement: :class:`InputPersonalDocument`
+    
     """
 
     ID: str = Field("inputPassportElementBankStatement", alias="@type")
@@ -63,10 +63,9 @@ class InputPassportElementDriverLicense(InputPassportElement):
     """
     A Telegram Passport element to be saved containing the user's driver license
     
-    Params:
-        driver_license (:class:`InputIdentityDocument`)
-            The driver license to be saved
-        
+    :param driver_license: The driver license to be saved
+    :type driver_license: :class:`InputIdentityDocument`
+    
     """
 
     ID: str = Field("inputPassportElementDriverLicense", alias="@type")
@@ -81,10 +80,9 @@ class InputPassportElementEmailAddress(InputPassportElement):
     """
     A Telegram Passport element to be saved containing the user's email address
     
-    Params:
-        email_address (:class:`str`)
-            The email address to be saved
-        
+    :param email_address: The email address to be saved
+    :type email_address: :class:`str`
+    
     """
 
     ID: str = Field("inputPassportElementEmailAddress", alias="@type")
@@ -99,10 +97,9 @@ class InputPassportElementIdentityCard(InputPassportElement):
     """
     A Telegram Passport element to be saved containing the user's identity card
     
-    Params:
-        identity_card (:class:`InputIdentityDocument`)
-            The identity card to be saved
-        
+    :param identity_card: The identity card to be saved
+    :type identity_card: :class:`InputIdentityDocument`
+    
     """
 
     ID: str = Field("inputPassportElementIdentityCard", alias="@type")
@@ -117,10 +114,9 @@ class InputPassportElementInternalPassport(InputPassportElement):
     """
     A Telegram Passport element to be saved containing the user's internal passport
     
-    Params:
-        internal_passport (:class:`InputIdentityDocument`)
-            The internal passport to be saved
-        
+    :param internal_passport: The internal passport to be saved
+    :type internal_passport: :class:`InputIdentityDocument`
+    
     """
 
     ID: str = Field("inputPassportElementInternalPassport", alias="@type")
@@ -135,10 +131,9 @@ class InputPassportElementPassport(InputPassportElement):
     """
     A Telegram Passport element to be saved containing the user's passport
     
-    Params:
-        passport (:class:`InputIdentityDocument`)
-            The passport to be saved
-        
+    :param passport: The passport to be saved
+    :type passport: :class:`InputIdentityDocument`
+    
     """
 
     ID: str = Field("inputPassportElementPassport", alias="@type")
@@ -153,10 +148,9 @@ class InputPassportElementPassportRegistration(InputPassportElement):
     """
     A Telegram Passport element to be saved containing the user's passport registration
     
-    Params:
-        passport_registration (:class:`InputPersonalDocument`)
-            The passport registration page to be saved
-        
+    :param passport_registration: The passport registration page to be saved
+    :type passport_registration: :class:`InputPersonalDocument`
+    
     """
 
     ID: str = Field("inputPassportElementPassportRegistration", alias="@type")
@@ -171,10 +165,9 @@ class InputPassportElementPersonalDetails(InputPassportElement):
     """
     A Telegram Passport element to be saved containing the user's personal details
     
-    Params:
-        personal_details (:class:`PersonalDetails`)
-            Personal details of the user
-        
+    :param personal_details: Personal details of the user
+    :type personal_details: :class:`PersonalDetails`
+    
     """
 
     ID: str = Field("inputPassportElementPersonalDetails", alias="@type")
@@ -189,10 +182,9 @@ class InputPassportElementPhoneNumber(InputPassportElement):
     """
     A Telegram Passport element to be saved containing the user's phone number
     
-    Params:
-        phone_number (:class:`str`)
-            The phone number to be saved
-        
+    :param phone_number: The phone number to be saved
+    :type phone_number: :class:`str`
+    
     """
 
     ID: str = Field("inputPassportElementPhoneNumber", alias="@type")
@@ -207,10 +199,9 @@ class InputPassportElementRentalAgreement(InputPassportElement):
     """
     A Telegram Passport element to be saved containing the user's rental agreement
     
-    Params:
-        rental_agreement (:class:`InputPersonalDocument`)
-            The rental agreement to be saved
-        
+    :param rental_agreement: The rental agreement to be saved
+    :type rental_agreement: :class:`InputPersonalDocument`
+    
     """
 
     ID: str = Field("inputPassportElementRentalAgreement", alias="@type")
@@ -225,10 +216,9 @@ class InputPassportElementTemporaryRegistration(InputPassportElement):
     """
     A Telegram Passport element to be saved containing the user's temporary registration
     
-    Params:
-        temporary_registration (:class:`InputPersonalDocument`)
-            The temporary registration document to be saved
-        
+    :param temporary_registration: The temporary registration document to be saved
+    :type temporary_registration: :class:`InputPersonalDocument`
+    
     """
 
     ID: str = Field("inputPassportElementTemporaryRegistration", alias="@type")
@@ -243,10 +233,9 @@ class InputPassportElementUtilityBill(InputPassportElement):
     """
     A Telegram Passport element to be saved containing the user's utility bill
     
-    Params:
-        utility_bill (:class:`InputPersonalDocument`)
-            The utility bill to be saved
-        
+    :param utility_bill: The utility bill to be saved
+    :type utility_bill: :class:`InputPersonalDocument`
+    
     """
 
     ID: str = Field("inputPassportElementUtilityBill", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class ToggleSupergroupSignMessages(BaseObject):
     """
     Toggles sender signatures messages sent in a channel; requires can_change_info administrator right
     
-    Params:
-        supergroup_id (:class:`int`)
-            Identifier of the channel
-        
-        sign_messages (:class:`bool`)
-            New value of sign_messages
-        
+    :param supergroup_id: Identifier of the channel
+    :type supergroup_id: :class:`int`
+    
+    :param sign_messages: New value of sign_messages
+    :type sign_messages: :class:`bool`
+    
     """
 
     ID: str = Field("toggleSupergroupSignMessages", alias="@type")

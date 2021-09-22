@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class SetSupergroupUsername(BaseObject):
     """
     Changes the username of a supergroup or channel, requires owner privileges in the supergroup or channel
     
-    Params:
-        supergroup_id (:class:`int`)
-            Identifier of the supergroup or channel
-        
-        username (:class:`str`)
-            New value of the username. Use an empty string to remove the username
-        
+    :param supergroup_id: Identifier of the supergroup or channel
+    :type supergroup_id: :class:`int`
+    
+    :param username: New value of the username. Use an empty string to remove the username
+    :type username: :class:`str`
+    
     """
 
     ID: str = Field("setSupergroupUsername", alias="@type")

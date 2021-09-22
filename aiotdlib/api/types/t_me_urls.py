@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .t_me_url import TMeUrl
@@ -15,10 +17,9 @@ class TMeUrls(BaseObject):
     """
     Contains a list of t.me URLs
     
-    Params:
-        urls (:obj:`list[TMeUrl]`)
-            List of URLs
-        
+    :param urls: List of URLs
+    :type urls: :class:`list[TMeUrl]`
+    
     """
 
     ID: str = Field("tMeUrls", alias="@type")

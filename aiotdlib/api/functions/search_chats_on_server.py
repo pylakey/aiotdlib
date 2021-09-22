@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class SearchChatsOnServer(BaseObject):
     """
     Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
     
-    Params:
-        query (:class:`str`)
-            Query to search for
-        
-        limit (:class:`int`)
-            The maximum number of chats to be returned
-        
+    :param query: Query to search for
+    :type query: :class:`str`
+    
+    :param limit: The maximum number of chats to be returned
+    :type limit: :class:`int`
+    
     """
 
     ID: str = Field("searchChatsOnServer", alias="@type")

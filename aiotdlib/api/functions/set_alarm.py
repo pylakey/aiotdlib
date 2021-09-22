@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class SetAlarm(BaseObject):
     """
     Succeeds after a specified amount of time has passed. Can be called before initialization
     
-    Params:
-        seconds (:class:`float`)
-            Number of seconds before the function returns
-        
+    :param seconds: Number of seconds before the function returns
+    :type seconds: :class:`float`
+    
     """
 
     ID: str = Field("setAlarm", alias="@type")

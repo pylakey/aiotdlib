@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import DeviceToken
+from ..base_object import BaseObject
 
 
 class RegisterDevice(BaseObject):
     """
     Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
     
-    Params:
-        device_token (:class:`DeviceToken`)
-            Device token
-        
-        other_user_ids (:obj:`list[int]`)
-            List of user identifiers of other users currently using the application
-        
+    :param device_token: Device token
+    :type device_token: :class:`DeviceToken`
+    
+    :param other_user_ids: List of user identifiers of other users currently using the application
+    :type other_user_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("registerDevice", alias="@type")

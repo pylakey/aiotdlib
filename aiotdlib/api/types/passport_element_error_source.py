@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,10 +25,9 @@ class PassportElementErrorSourceDataField(PassportElementErrorSource):
     """
     One of the data fields contains an error. The error will be considered resolved when the value of the field changes
     
-    Params:
-        field_name (:class:`str`)
-            Field name
-        
+    :param field_name: Field name
+    :type field_name: :class:`str`
+    
     """
 
     ID: str = Field("passportElementErrorSourceDataField", alias="@type")
@@ -41,10 +42,9 @@ class PassportElementErrorSourceFile(PassportElementErrorSource):
     """
     The file contains an error. The error will be considered resolved when the file changes
     
-    Params:
-        file_index (:class:`int`)
-            Index of a file with the error
-        
+    :param file_index: Index of a file with the error
+    :type file_index: :class:`int`
+    
     """
 
     ID: str = Field("passportElementErrorSourceFile", alias="@type")
@@ -111,10 +111,9 @@ class PassportElementErrorSourceTranslationFile(PassportElementErrorSource):
     """
     One of files with the translation of the document contains an error. The error will be considered resolved when the file changes
     
-    Params:
-        file_index (:class:`int`)
-            Index of a file with the error
-        
+    :param file_index: Index of a file with the error
+    :type file_index: :class:`int`
+    
     """
 
     ID: str = Field("passportElementErrorSourceTranslationFile", alias="@type")

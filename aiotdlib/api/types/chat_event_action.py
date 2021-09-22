@@ -32,13 +32,12 @@ class ChatEventDescriptionChanged(ChatEventAction):
     """
     The chat description was changed
     
-    Params:
-        old_description (:class:`str`)
-            Previous chat description
-        
-        new_description (:class:`str`)
-            New chat description
-        
+    :param old_description: Previous chat description
+    :type old_description: :class:`str`
+    
+    :param new_description: New chat description
+    :type new_description: :class:`str`
+    
     """
 
     ID: str = Field("chatEventDescriptionChanged", alias="@type")
@@ -54,10 +53,9 @@ class ChatEventInviteLinkDeleted(ChatEventAction):
     """
     A revoked chat invite link was deleted
     
-    Params:
-        invite_link (:class:`ChatInviteLink`)
-            The invite link
-        
+    :param invite_link: The invite link
+    :type invite_link: :class:`ChatInviteLink`
+    
     """
 
     ID: str = Field("chatEventInviteLinkDeleted", alias="@type")
@@ -72,13 +70,12 @@ class ChatEventInviteLinkEdited(ChatEventAction):
     """
     A chat invite link was edited
     
-    Params:
-        old_invite_link (:class:`ChatInviteLink`)
-            Previous information about the invite link
-        
-        new_invite_link (:class:`ChatInviteLink`)
-            New information about the invite link
-        
+    :param old_invite_link: Previous information about the invite link
+    :type old_invite_link: :class:`ChatInviteLink`
+    
+    :param new_invite_link: New information about the invite link
+    :type new_invite_link: :class:`ChatInviteLink`
+    
     """
 
     ID: str = Field("chatEventInviteLinkEdited", alias="@type")
@@ -94,10 +91,9 @@ class ChatEventInviteLinkRevoked(ChatEventAction):
     """
     A chat invite link was revoked
     
-    Params:
-        invite_link (:class:`ChatInviteLink`)
-            The invite link
-        
+    :param invite_link: The invite link
+    :type invite_link: :class:`ChatInviteLink`
+    
     """
 
     ID: str = Field("chatEventInviteLinkRevoked", alias="@type")
@@ -112,10 +108,9 @@ class ChatEventInvitesToggled(ChatEventAction):
     """
     The can_invite_users permission of a supergroup chat was toggled
     
-    Params:
-        can_invite_users (:class:`bool`)
-            New value of can_invite_users permission
-        
+    :param can_invite_users: New value of can_invite_users permission
+    :type can_invite_users: :class:`bool`
+    
     """
 
     ID: str = Field("chatEventInvitesToggled", alias="@type")
@@ -130,10 +125,9 @@ class ChatEventIsAllHistoryAvailableToggled(ChatEventAction):
     """
     The is_all_history_available setting of a supergroup was toggled
     
-    Params:
-        is_all_history_available (:class:`bool`)
-            New value of is_all_history_available
-        
+    :param is_all_history_available: New value of is_all_history_available
+    :type is_all_history_available: :class:`bool`
+    
     """
 
     ID: str = Field("chatEventIsAllHistoryAvailableToggled", alias="@type")
@@ -148,13 +142,12 @@ class ChatEventLinkedChatChanged(ChatEventAction):
     """
     The linked chat of a supergroup was changed
     
-    Params:
-        old_linked_chat_id (:class:`int`)
-            Previous supergroup linked chat identifier
-        
-        new_linked_chat_id (:class:`int`)
-            New supergroup linked chat identifier
-        
+    :param old_linked_chat_id: Previous supergroup linked chat identifier
+    :type old_linked_chat_id: :class:`int`
+    
+    :param new_linked_chat_id: New supergroup linked chat identifier
+    :type new_linked_chat_id: :class:`int`
+    
     """
 
     ID: str = Field("chatEventLinkedChatChanged", alias="@type")
@@ -170,13 +163,12 @@ class ChatEventLocationChanged(ChatEventAction):
     """
     The supergroup location was changed
     
-    Params:
-        old_location (:class:`ChatLocation`)
-            Previous location; may be null
-        
-        new_location (:class:`ChatLocation`)
-            New location; may be null
-        
+    :param old_location: Previous location; may be null, defaults to None
+    :type old_location: :class:`ChatLocation`, optional
+    
+    :param new_location: New location; may be null, defaults to None
+    :type new_location: :class:`ChatLocation`, optional
+    
     """
 
     ID: str = Field("chatEventLocationChanged", alias="@type")
@@ -192,13 +184,12 @@ class ChatEventMemberInvited(ChatEventAction):
     """
     A new chat member was invited
     
-    Params:
-        user_id (:class:`int`)
-            New member user identifier
-        
-        status (:class:`ChatMemberStatus`)
-            New member status
-        
+    :param user_id: New member user identifier
+    :type user_id: :class:`int`
+    
+    :param status: New member status
+    :type status: :class:`ChatMemberStatus`
+    
     """
 
     ID: str = Field("chatEventMemberInvited", alias="@type")
@@ -227,10 +218,9 @@ class ChatEventMemberJoinedByInviteLink(ChatEventAction):
     """
     A new member joined the chat by an invite link
     
-    Params:
-        invite_link (:class:`ChatInviteLink`)
-            Invite link used to join the chat
-        
+    :param invite_link: Invite link used to join the chat
+    :type invite_link: :class:`ChatInviteLink`
+    
     """
 
     ID: str = Field("chatEventMemberJoinedByInviteLink", alias="@type")
@@ -258,16 +248,15 @@ class ChatEventMemberPromoted(ChatEventAction):
     """
     A chat member has gained/lost administrator status, or the list of their administrator privileges has changed
     
-    Params:
-        user_id (:class:`int`)
-            Affected chat member user identifier
-        
-        old_status (:class:`ChatMemberStatus`)
-            Previous status of the chat member
-        
-        new_status (:class:`ChatMemberStatus`)
-            New status of the chat member
-        
+    :param user_id: Affected chat member user identifier
+    :type user_id: :class:`int`
+    
+    :param old_status: Previous status of the chat member
+    :type old_status: :class:`ChatMemberStatus`
+    
+    :param new_status: New status of the chat member
+    :type new_status: :class:`ChatMemberStatus`
+    
     """
 
     ID: str = Field("chatEventMemberPromoted", alias="@type")
@@ -284,16 +273,15 @@ class ChatEventMemberRestricted(ChatEventAction):
     """
     A chat member was restricted/unrestricted or banned/unbanned, or the list of their restrictions has changed
     
-    Params:
-        member_id (:class:`MessageSender`)
-            Affected chat member identifier
-        
-        old_status (:class:`ChatMemberStatus`)
-            Previous status of the chat member
-        
-        new_status (:class:`ChatMemberStatus`)
-            New status of the chat member
-        
+    :param member_id: Affected chat member identifier
+    :type member_id: :class:`MessageSender`
+    
+    :param old_status: Previous status of the chat member
+    :type old_status: :class:`ChatMemberStatus`
+    
+    :param new_status: New status of the chat member
+    :type new_status: :class:`ChatMemberStatus`
+    
     """
 
     ID: str = Field("chatEventMemberRestricted", alias="@type")
@@ -310,10 +298,9 @@ class ChatEventMessageDeleted(ChatEventAction):
     """
     A message was deleted
     
-    Params:
-        message (:class:`Message`)
-            Deleted message
-        
+    :param message: Deleted message
+    :type message: :class:`Message`
+    
     """
 
     ID: str = Field("chatEventMessageDeleted", alias="@type")
@@ -328,13 +315,12 @@ class ChatEventMessageEdited(ChatEventAction):
     """
     A message was edited
     
-    Params:
-        old_message (:class:`Message`)
-            The original message before the edit
-        
-        new_message (:class:`Message`)
-            The message after it was edited
-        
+    :param old_message: The original message before the edit
+    :type old_message: :class:`Message`
+    
+    :param new_message: The message after it was edited
+    :type new_message: :class:`Message`
+    
     """
 
     ID: str = Field("chatEventMessageEdited", alias="@type")
@@ -350,10 +336,9 @@ class ChatEventMessagePinned(ChatEventAction):
     """
     A message was pinned
     
-    Params:
-        message (:class:`Message`)
-            Pinned message
-        
+    :param message: Pinned message
+    :type message: :class:`Message`
+    
     """
 
     ID: str = Field("chatEventMessagePinned", alias="@type")
@@ -368,13 +353,12 @@ class ChatEventMessageTtlSettingChanged(ChatEventAction):
     """
     The message TTL setting was changed
     
-    Params:
-        old_message_ttl_setting (:class:`int`)
-            Previous value of message_ttl_setting
-        
-        new_message_ttl_setting (:class:`int`)
-            New value of message_ttl_setting
-        
+    :param old_message_ttl_setting: Previous value of message_ttl_setting
+    :type old_message_ttl_setting: :class:`int`
+    
+    :param new_message_ttl_setting: New value of message_ttl_setting
+    :type new_message_ttl_setting: :class:`int`
+    
     """
 
     ID: str = Field("chatEventMessageTtlSettingChanged", alias="@type")
@@ -390,10 +374,9 @@ class ChatEventMessageUnpinned(ChatEventAction):
     """
     A message was unpinned
     
-    Params:
-        message (:class:`Message`)
-            Unpinned message
-        
+    :param message: Unpinned message
+    :type message: :class:`Message`
+    
     """
 
     ID: str = Field("chatEventMessageUnpinned", alias="@type")
@@ -408,13 +391,12 @@ class ChatEventPermissionsChanged(ChatEventAction):
     """
     The chat permissions was changed
     
-    Params:
-        old_permissions (:class:`ChatPermissions`)
-            Previous chat permissions
-        
-        new_permissions (:class:`ChatPermissions`)
-            New chat permissions
-        
+    :param old_permissions: Previous chat permissions
+    :type old_permissions: :class:`ChatPermissions`
+    
+    :param new_permissions: New chat permissions
+    :type new_permissions: :class:`ChatPermissions`
+    
     """
 
     ID: str = Field("chatEventPermissionsChanged", alias="@type")
@@ -430,13 +412,12 @@ class ChatEventPhotoChanged(ChatEventAction):
     """
     The chat photo was changed
     
-    Params:
-        old_photo (:class:`ChatPhoto`)
-            Previous chat photo value; may be null
-        
-        new_photo (:class:`ChatPhoto`)
-            New chat photo value; may be null
-        
+    :param old_photo: Previous chat photo value; may be null, defaults to None
+    :type old_photo: :class:`ChatPhoto`, optional
+    
+    :param new_photo: New chat photo value; may be null, defaults to None
+    :type new_photo: :class:`ChatPhoto`, optional
+    
     """
 
     ID: str = Field("chatEventPhotoChanged", alias="@type")
@@ -452,10 +433,9 @@ class ChatEventPollStopped(ChatEventAction):
     """
     A poll in a message was stopped
     
-    Params:
-        message (:class:`Message`)
-            The message with the poll
-        
+    :param message: The message with the poll
+    :type message: :class:`Message`
+    
     """
 
     ID: str = Field("chatEventPollStopped", alias="@type")
@@ -470,10 +450,9 @@ class ChatEventSignMessagesToggled(ChatEventAction):
     """
     The sign_messages setting of a channel was toggled
     
-    Params:
-        sign_messages (:class:`bool`)
-            New value of sign_messages
-        
+    :param sign_messages: New value of sign_messages
+    :type sign_messages: :class:`bool`
+    
     """
 
     ID: str = Field("chatEventSignMessagesToggled", alias="@type")
@@ -488,13 +467,12 @@ class ChatEventSlowModeDelayChanged(ChatEventAction):
     """
     The slow_mode_delay setting of a supergroup was changed
     
-    Params:
-        old_slow_mode_delay (:class:`int`)
-            Previous value of slow_mode_delay
-        
-        new_slow_mode_delay (:class:`int`)
-            New value of slow_mode_delay
-        
+    :param old_slow_mode_delay: Previous value of slow_mode_delay
+    :type old_slow_mode_delay: :class:`int`
+    
+    :param new_slow_mode_delay: New value of slow_mode_delay
+    :type new_slow_mode_delay: :class:`int`
+    
     """
 
     ID: str = Field("chatEventSlowModeDelayChanged", alias="@type")
@@ -510,13 +488,12 @@ class ChatEventStickerSetChanged(ChatEventAction):
     """
     The supergroup sticker set was changed
     
-    Params:
-        old_sticker_set_id (:class:`int`)
-            Previous identifier of the chat sticker set; 0 if none
-        
-        new_sticker_set_id (:class:`int`)
-            New identifier of the chat sticker set; 0 if none
-        
+    :param old_sticker_set_id: Previous identifier of the chat sticker set; 0 if none
+    :type old_sticker_set_id: :class:`int`
+    
+    :param new_sticker_set_id: New identifier of the chat sticker set; 0 if none
+    :type new_sticker_set_id: :class:`int`
+    
     """
 
     ID: str = Field("chatEventStickerSetChanged", alias="@type")
@@ -532,13 +509,12 @@ class ChatEventTitleChanged(ChatEventAction):
     """
     The chat title was changed
     
-    Params:
-        old_title (:class:`str`)
-            Previous chat title
-        
-        new_title (:class:`str`)
-            New chat title
-        
+    :param old_title: Previous chat title
+    :type old_title: :class:`str`
+    
+    :param new_title: New chat title
+    :type new_title: :class:`str`
+    
     """
 
     ID: str = Field("chatEventTitleChanged", alias="@type")
@@ -554,13 +530,12 @@ class ChatEventUsernameChanged(ChatEventAction):
     """
     The chat username was changed
     
-    Params:
-        old_username (:class:`str`)
-            Previous chat username
-        
-        new_username (:class:`str`)
-            New chat username
-        
+    :param old_username: Previous chat username
+    :type old_username: :class:`str`
+    
+    :param new_username: New chat username
+    :type new_username: :class:`str`
+    
     """
 
     ID: str = Field("chatEventUsernameChanged", alias="@type")
@@ -576,10 +551,9 @@ class ChatEventVoiceChatCreated(ChatEventAction):
     """
     A voice chat was created
     
-    Params:
-        group_call_id (:class:`int`)
-            Identifier of the voice chat. The voice chat can be received through the method getGroupCall
-        
+    :param group_call_id: Identifier of the voice chat. The voice chat can be received through the method getGroupCall
+    :type group_call_id: :class:`int`
+    
     """
 
     ID: str = Field("chatEventVoiceChatCreated", alias="@type")
@@ -594,10 +568,9 @@ class ChatEventVoiceChatDiscarded(ChatEventAction):
     """
     A voice chat was discarded
     
-    Params:
-        group_call_id (:class:`int`)
-            Identifier of the voice chat. The voice chat can be received through the method getGroupCall
-        
+    :param group_call_id: Identifier of the voice chat. The voice chat can be received through the method getGroupCall
+    :type group_call_id: :class:`int`
+    
     """
 
     ID: str = Field("chatEventVoiceChatDiscarded", alias="@type")
@@ -612,10 +585,9 @@ class ChatEventVoiceChatMuteNewParticipantsToggled(ChatEventAction):
     """
     The mute_new_participants setting of a voice chat was toggled
     
-    Params:
-        mute_new_participants (:class:`bool`)
-            New value of the mute_new_participants setting
-        
+    :param mute_new_participants: New value of the mute_new_participants setting
+    :type mute_new_participants: :class:`bool`
+    
     """
 
     ID: str = Field("chatEventVoiceChatMuteNewParticipantsToggled", alias="@type")
@@ -630,13 +602,12 @@ class ChatEventVoiceChatParticipantIsMutedToggled(ChatEventAction):
     """
     A voice chat participant was muted or unmuted
     
-    Params:
-        participant_id (:class:`MessageSender`)
-            Identifier of the affected group call participant
-        
-        is_muted (:class:`bool`)
-            New value of is_muted
-        
+    :param participant_id: Identifier of the affected group call participant
+    :type participant_id: :class:`MessageSender`
+    
+    :param is_muted: New value of is_muted
+    :type is_muted: :class:`bool`
+    
     """
 
     ID: str = Field("chatEventVoiceChatParticipantIsMutedToggled", alias="@type")
@@ -652,13 +623,12 @@ class ChatEventVoiceChatParticipantVolumeLevelChanged(ChatEventAction):
     """
     A voice chat participant volume level was changed
     
-    Params:
-        participant_id (:class:`MessageSender`)
-            Identifier of the affected group call participant
-        
-        volume_level (:class:`int`)
-            New value of volume_level; 1-20000 in hundreds of percents
-        
+    :param participant_id: Identifier of the affected group call participant
+    :type participant_id: :class:`MessageSender`
+    
+    :param volume_level: New value of volume_level; 1-20000 in hundreds of percents
+    :type volume_level: :class:`int`
+    
     """
 
     ID: str = Field("chatEventVoiceChatParticipantVolumeLevelChanged", alias="@type")

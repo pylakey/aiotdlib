@@ -5,26 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import PhoneNumberAuthenticationSettings
+from ..base_object import BaseObject
 
 
 class SendPhoneNumberConfirmationCode(BaseObject):
     """
     Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
     
-    Params:
-        hash_ (:class:`str`)
-            Hash value from the link
-        
-        phone_number (:class:`str`)
-            Phone number value from the link
-        
-        settings (:class:`PhoneNumberAuthenticationSettings`)
-            Settings for the authentication of the user's phone number
-        
+    :param hash_: Hash value from the link
+    :type hash_: :class:`str`
+    
+    :param phone_number: Phone number value from the link
+    :type phone_number: :class:`str`
+    
+    :param settings: Settings for the authentication of the user's phone number
+    :type settings: :class:`PhoneNumberAuthenticationSettings`
+    
     """
 
     ID: str = Field("sendPhoneNumberConfirmationCode", alias="@type")

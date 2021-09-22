@@ -27,13 +27,12 @@ class InputStickerAnimated(InputSticker):
     """
     An animated sticker in TGS format
     
-    Params:
-        sticker (:class:`InputFile`)
-            File with the animated sticker. Only local or uploaded within a week files are supported. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
-        
-        emojis (:class:`str`)
-            Emojis corresponding to the sticker
-        
+    :param sticker: File with the animated sticker. Only local or uploaded within a week files are supported. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
+    :type sticker: :class:`InputFile`
+    
+    :param emojis: Emojis corresponding to the sticker
+    :type emojis: :class:`str`
+    
     """
 
     ID: str = Field("inputStickerAnimated", alias="@type")
@@ -49,16 +48,15 @@ class InputStickerStatic(InputSticker):
     """
     A static sticker in PNG format, which will be converted to WEBP server-side
     
-    Params:
-        sticker (:class:`InputFile`)
-            PNG image with the sticker; must be up to 512 KB in size and fit in a 512x512 square
-        
-        emojis (:class:`str`)
-            Emojis corresponding to the sticker
-        
-        mask_position (:class:`MaskPosition`)
-            For masks, position where the mask should be placed; may be null
-        
+    :param sticker: PNG image with the sticker; must be up to 512 KB in size and fit in a 512x512 square
+    :type sticker: :class:`InputFile`
+    
+    :param emojis: Emojis corresponding to the sticker
+    :type emojis: :class:`str`
+    
+    :param mask_position: For masks, position where the mask should be placed; may be null, defaults to None
+    :type mask_position: :class:`MaskPosition`, optional
+    
     """
 
     ID: str = Field("inputStickerStatic", alias="@type")

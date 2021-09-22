@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -36,10 +38,9 @@ class SupergroupMembersFilterBanned(SupergroupMembersFilter):
     """
     Returns users banned from the supergroup or channel; can be used only by administrators
     
-    Params:
-        query (:class:`str`)
-            Query to search for
-        
+    :param query: Query to search for
+    :type query: :class:`str`
+    
     """
 
     ID: str = Field("supergroupMembersFilterBanned", alias="@type")
@@ -67,10 +68,9 @@ class SupergroupMembersFilterContacts(SupergroupMembersFilter):
     """
     Returns contacts of the user, which are members of the supergroup or channel
     
-    Params:
-        query (:class:`str`)
-            Query to search for
-        
+    :param query: Query to search for
+    :type query: :class:`str`
+    
     """
 
     ID: str = Field("supergroupMembersFilterContacts", alias="@type")
@@ -85,13 +85,12 @@ class SupergroupMembersFilterMention(SupergroupMembersFilter):
     """
     Returns users which can be mentioned in the supergroup
     
-    Params:
-        query (:class:`str`)
-            Query to search for
-        
-        message_thread_id (:class:`int`)
-            If non-zero, the identifier of the current message thread
-        
+    :param query: Query to search for
+    :type query: :class:`str`
+    
+    :param message_thread_id: If non-zero, the identifier of the current message thread
+    :type message_thread_id: :class:`int`
+    
     """
 
     ID: str = Field("supergroupMembersFilterMention", alias="@type")
@@ -120,10 +119,9 @@ class SupergroupMembersFilterRestricted(SupergroupMembersFilter):
     """
     Returns restricted supergroup members; can be used only by administrators
     
-    Params:
-        query (:class:`str`)
-            Query to search for
-        
+    :param query: Query to search for
+    :type query: :class:`str`
+    
     """
 
     ID: str = Field("supergroupMembersFilterRestricted", alias="@type")
@@ -138,10 +136,9 @@ class SupergroupMembersFilterSearch(SupergroupMembersFilter):
     """
     Used to search for supergroup or channel members via a (string) query
     
-    Params:
-        query (:class:`str`)
-            Query to search for
-        
+    :param query: Query to search for
+    :type query: :class:`str`
+    
     """
 
     ID: str = Field("supergroupMembersFilterSearch", alias="@type")

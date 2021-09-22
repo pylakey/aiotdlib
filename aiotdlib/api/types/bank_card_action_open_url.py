@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class BankCardActionOpenUrl(BaseObject):
     """
     Describes an action associated with a bank card number
     
-    Params:
-        text (:class:`str`)
-            Action text
-        
-        url (:class:`str`)
-            The URL to be opened
-        
+    :param text: Action text
+    :type text: :class:`str`
+    
+    :param url: The URL to be opened
+    :type url: :class:`str`
+    
     """
 
     ID: str = Field("bankCardActionOpenUrl", alias="@type")

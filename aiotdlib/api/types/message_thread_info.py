@@ -19,25 +19,24 @@ class MessageThreadInfo(BaseObject):
     """
     Contains information about a message thread
     
-    Params:
-        chat_id (:class:`int`)
-            Identifier of the chat to which the message thread belongs
-        
-        message_thread_id (:class:`int`)
-            Message thread identifier, unique within the chat
-        
-        reply_info (:class:`MessageReplyInfo`)
-            Contains information about the message thread
-        
-        unread_message_count (:class:`int`)
-            Approximate number of unread messages in the message thread
-        
-        messages (:obj:`list[Message]`)
-            The messages from which the thread starts. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
-        
-        draft_message (:class:`DraftMessage`)
-            A draft of a message in the message thread; may be null
-        
+    :param chat_id: Identifier of the chat to which the message thread belongs
+    :type chat_id: :class:`int`
+    
+    :param message_thread_id: Message thread identifier, unique within the chat
+    :type message_thread_id: :class:`int`
+    
+    :param reply_info: Contains information about the message thread
+    :type reply_info: :class:`MessageReplyInfo`
+    
+    :param unread_message_count: Approximate number of unread messages in the message thread
+    :type unread_message_count: :class:`int`
+    
+    :param messages: The messages from which the thread starts. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    :type messages: :class:`list[Message]`
+    
+    :param draft_message: A draft of a message in the message thread; may be null, defaults to None
+    :type draft_message: :class:`DraftMessage`, optional
+    
     """
 
     ID: str = Field("messageThreadInfo", alias="@type")

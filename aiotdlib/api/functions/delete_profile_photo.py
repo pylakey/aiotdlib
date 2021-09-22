@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class DeleteProfilePhoto(BaseObject):
     """
     Deletes a profile photo
     
-    Params:
-        profile_photo_id (:class:`int`)
-            Identifier of the profile photo to delete
-        
+    :param profile_photo_id: Identifier of the profile photo to delete
+    :type profile_photo_id: :class:`int`
+    
     """
 
     ID: str = Field("deleteProfilePhoto", alias="@type")

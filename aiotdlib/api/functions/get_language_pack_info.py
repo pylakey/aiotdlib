@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetLanguagePackInfo(BaseObject):
     """
     Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
     
-    Params:
-        language_pack_id (:class:`str`)
-            Language pack identifier
-        
+    :param language_pack_id: Language pack identifier
+    :type language_pack_id: :class:`str`
+    
     """
 
     ID: str = Field("getLanguagePackInfo", alias="@type")

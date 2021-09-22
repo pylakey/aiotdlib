@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -88,10 +90,9 @@ class ChatMembersFilterMention(ChatMembersFilter):
     """
     Returns users which can be mentioned in the chat
     
-    Params:
-        message_thread_id (:class:`int`)
-            If non-zero, the identifier of the current message thread
-        
+    :param message_thread_id: If non-zero, the identifier of the current message thread
+    :type message_thread_id: :class:`int`
+    
     """
 
     ID: str = Field("chatMembersFilterMention", alias="@type")

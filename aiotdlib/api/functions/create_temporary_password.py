@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class CreateTemporaryPassword(BaseObject):
     """
     Creates a new temporary password for processing payments
     
-    Params:
-        password (:class:`str`)
-            Persistent user password
-        
-        valid_for (:class:`int`)
-            Time during which the temporary password will be valid, in seconds; should be between 60 and 86400
-        
+    :param password: Persistent user password
+    :type password: :class:`str`
+    
+    :param valid_for: Time during which the temporary password will be valid, in seconds; should be between 60 and 86400
+    :type valid_for: :class:`int`
+    
     """
 
     ID: str = Field("createTemporaryPassword", alias="@type")

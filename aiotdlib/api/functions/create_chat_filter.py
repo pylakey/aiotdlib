@@ -5,20 +5,21 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import ChatFilter
+from ..base_object import BaseObject
 
 
 class CreateChatFilter(BaseObject):
     """
     Creates new chat filter. Returns information about the created chat filter
     
-    Params:
-        filter_ (:class:`ChatFilter`)
-            Chat filter
-        
+    :param filter_: Chat filter
+    :type filter_: :class:`ChatFilter`
+    
     """
 
     ID: str = Field("createChatFilter", alias="@type")

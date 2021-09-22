@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .point import Point
@@ -24,16 +26,15 @@ class VectorPathCommandCubicBezierCurve(VectorPathCommand):
     """
     A cubic Bézier curve to a given point
     
-    Params:
-        start_control_point (:class:`Point`)
-            The start control point of the curve
-        
-        end_control_point (:class:`Point`)
-            The end control point of the curve
-        
-        end_point (:class:`Point`)
-            The end point of the curve
-        
+    :param start_control_point: The start control point of the curve
+    :type start_control_point: :class:`Point`
+    
+    :param end_control_point: The end control point of the curve
+    :type end_control_point: :class:`Point`
+    
+    :param end_point: The end point of the curve
+    :type end_point: :class:`Point`
+    
     """
 
     ID: str = Field("vectorPathCommandCubicBezierCurve", alias="@type")
@@ -50,10 +51,9 @@ class VectorPathCommandLine(VectorPathCommand):
     """
     A straight line to a given point
     
-    Params:
-        end_point (:class:`Point`)
-            The end point of the straight line
-        
+    :param end_point: The end point of the straight line
+    :type end_point: :class:`Point`
+    
     """
 
     ID: str = Field("vectorPathCommandLine", alias="@type")

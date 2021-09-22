@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class LabeledPricePart(BaseObject):
     """
     Portion of the price of a product (e.g., "delivery cost", "tax amount")
     
-    Params:
-        label (:class:`str`)
-            Label for this portion of the product price
-        
-        amount (:class:`int`)
-            Currency amount in the smallest units of the currency
-        
+    :param label: Label for this portion of the product price
+    :type label: :class:`str`
+    
+    :param amount: Currency amount in the smallest units of the currency
+    :type amount: :class:`int`
+    
     """
 
     ID: str = Field("labeledPricePart", alias="@type")

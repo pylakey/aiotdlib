@@ -5,20 +5,21 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import SuggestedAction
+from ..base_object import BaseObject
 
 
 class HideSuggestedAction(BaseObject):
     """
     Hides a suggested action
     
-    Params:
-        action (:class:`SuggestedAction`)
-            Suggested action to hide
-        
+    :param action: Suggested action to hide
+    :type action: :class:`SuggestedAction`
+    
     """
 
     ID: str = Field("hideSuggestedAction", alias="@type")

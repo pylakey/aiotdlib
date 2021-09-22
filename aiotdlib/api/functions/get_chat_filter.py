@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetChatFilter(BaseObject):
     """
     Returns information about a chat filter by its identifier
     
-    Params:
-        chat_filter_id (:class:`int`)
-            Chat filter identifier
-        
+    :param chat_filter_id: Chat filter identifier
+    :type chat_filter_id: :class:`int`
+    
     """
 
     ID: str = Field("getChatFilter", alias="@type")

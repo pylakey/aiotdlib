@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetFileExtension(BaseObject):
     """
     Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously
     
-    Params:
-        mime_type (:class:`str`)
-            The MIME type of the file
-        
+    :param mime_type: The MIME type of the file
+    :type mime_type: :class:`str`
+    
     """
 
     ID: str = Field("getFileExtension", alias="@type")

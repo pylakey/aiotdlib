@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,19 +25,18 @@ class MessageSendingStateFailed(MessageSendingState):
     """
     The message failed to be sent
     
-    Params:
-        error_code (:class:`int`)
-            An error code; 0 if unknown
-        
-        error_message (:class:`str`)
-            Error message
-        
-        can_retry (:class:`bool`)
-            True, if the message can be re-sent
-        
-        retry_after (:class:`float`)
-            Time left before the message can be re-sent, in seconds. No update is sent when this field changes
-        
+    :param error_code: An error code; 0 if unknown
+    :type error_code: :class:`int`
+    
+    :param error_message: Error message
+    :type error_message: :class:`str`
+    
+    :param can_retry: True, if the message can be re-sent
+    :type can_retry: :class:`bool`
+    
+    :param retry_after: Time left before the message can be re-sent, in seconds. No update is sent when this field changes
+    :type retry_after: :class:`float`
+    
     """
 
     ID: str = Field("messageSendingStateFailed", alias="@type")

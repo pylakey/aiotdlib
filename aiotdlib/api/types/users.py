@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class Users(BaseObject):
     """
     Represents a list of users
     
-    Params:
-        total_count (:class:`int`)
-            Approximate total count of users found
-        
-        user_ids (:obj:`list[int]`)
-            A list of user identifiers
-        
+    :param total_count: Approximate total count of users found
+    :type total_count: :class:`int`
+    
+    :param user_ids: A list of user identifiers
+    :type user_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("users", alias="@type")

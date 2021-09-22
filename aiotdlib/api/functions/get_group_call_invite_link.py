@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class GetGroupCallInviteLink(BaseObject):
     """
     Returns invite link to a voice chat in a public chat
     
-    Params:
-        group_call_id (:class:`int`)
-            Group call identifier
-        
-        can_self_unmute (:class:`bool`)
-            Pass true if the invite_link should contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
-        
+    :param group_call_id: Group call identifier
+    :type group_call_id: :class:`int`
+    
+    :param can_self_unmute: Pass true if the invite_link should contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
+    :type can_self_unmute: :class:`bool`
+    
     """
 
     ID: str = Field("getGroupCallInviteLink", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class AnswerPreCheckoutQuery(BaseObject):
     """
     Sets the result of a pre-checkout query; for bots only
     
-    Params:
-        pre_checkout_query_id (:class:`int`)
-            Identifier of the pre-checkout query
-        
-        error_message (:class:`str`)
-            An error message, empty on success
-        
+    :param pre_checkout_query_id: Identifier of the pre-checkout query
+    :type pre_checkout_query_id: :class:`int`
+    
+    :param error_message: An error message, empty on success
+    :type error_message: :class:`str`
+    
     """
 
     ID: str = Field("answerPreCheckoutQuery", alias="@type")

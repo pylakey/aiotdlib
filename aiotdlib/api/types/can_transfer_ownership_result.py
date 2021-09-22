@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -49,10 +51,9 @@ class CanTransferOwnershipResultPasswordTooFresh(CanTransferOwnershipResult):
     """
     The 2-step verification was enabled recently, user needs to wait
     
-    Params:
-        retry_after (:class:`int`)
-            Time left before the session can be used to transfer ownership of a chat, in seconds
-        
+    :param retry_after: Time left before the session can be used to transfer ownership of a chat, in seconds
+    :type retry_after: :class:`int`
+    
     """
 
     ID: str = Field("canTransferOwnershipResultPasswordTooFresh", alias="@type")
@@ -67,10 +68,9 @@ class CanTransferOwnershipResultSessionTooFresh(CanTransferOwnershipResult):
     """
     The session was created recently, user needs to wait
     
-    Params:
-        retry_after (:class:`int`)
-            Time left before the session can be used to transfer ownership of a chat, in seconds
-        
+    :param retry_after: Time left before the session can be used to transfer ownership of a chat, in seconds
+    :type retry_after: :class:`int`
+    
     """
 
     ID: str = Field("canTransferOwnershipResultSessionTooFresh", alias="@type")

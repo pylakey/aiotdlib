@@ -16,13 +16,12 @@ class RegisterUser(BaseObject):
     """
     Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
     
-    Params:
-        first_name (:class:`str`)
-            The first name of the user; 1-64 characters
-        
-        last_name (:class:`str`)
-            The last name of the user; 0-64 characters
-        
+    :param first_name: The first name of the user; 1-64 characters
+    :type first_name: :class:`str`
+    
+    :param last_name: The last name of the user; 0-64 characters, defaults to None
+    :type last_name: :class:`str`, optional
+    
     """
 
     ID: str = Field("registerUser", alias="@type")

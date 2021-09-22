@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,10 +25,9 @@ class ChatTypeBasicGroup(ChatType):
     """
     A basic group (a chat with 0-200 other users)
     
-    Params:
-        basic_group_id (:class:`int`)
-            Basic group identifier
-        
+    :param basic_group_id: Basic group identifier
+    :type basic_group_id: :class:`int`
+    
     """
 
     ID: str = Field("chatTypeBasicGroup", alias="@type")
@@ -41,10 +42,9 @@ class ChatTypePrivate(ChatType):
     """
     An ordinary chat with a user
     
-    Params:
-        user_id (:class:`int`)
-            User identifier
-        
+    :param user_id: User identifier
+    :type user_id: :class:`int`
+    
     """
 
     ID: str = Field("chatTypePrivate", alias="@type")
@@ -59,13 +59,12 @@ class ChatTypeSecret(ChatType):
     """
     A secret chat with a user
     
-    Params:
-        secret_chat_id (:class:`int`)
-            Secret chat identifier
-        
-        user_id (:class:`int`)
-            User identifier of the secret chat peer
-        
+    :param secret_chat_id: Secret chat identifier
+    :type secret_chat_id: :class:`int`
+    
+    :param user_id: User identifier of the secret chat peer
+    :type user_id: :class:`int`
+    
     """
 
     ID: str = Field("chatTypeSecret", alias="@type")
@@ -81,13 +80,12 @@ class ChatTypeSupergroup(ChatType):
     """
     A supergroup or channel (with unlimited members)
     
-    Params:
-        supergroup_id (:class:`int`)
-            Supergroup or channel identifier
-        
-        is_channel (:class:`bool`)
-            True, if the supergroup is a channel
-        
+    :param supergroup_id: Supergroup or channel identifier
+    :type supergroup_id: :class:`int`
+    
+    :param is_channel: True, if the supergroup is a channel
+    :type is_channel: :class:`bool`
+    
     """
 
     ID: str = Field("chatTypeSupergroup", alias="@type")

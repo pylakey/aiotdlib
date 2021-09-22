@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class JoinChatByInviteLink(BaseObject):
     """
     Uses an invite link to add the current user to the chat if possible
     
-    Params:
-        invite_link (:class:`str`)
-            Invite link to use
-        
+    :param invite_link: Invite link to use
+    :type invite_link: :class:`str`
+    
     """
 
     ID: str = Field("joinChatByInviteLink", alias="@type")

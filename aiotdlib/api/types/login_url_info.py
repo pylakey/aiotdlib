@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,13 +25,12 @@ class LoginUrlInfoOpen(LoginUrlInfo):
     """
     An HTTP url needs to be open
     
-    Params:
-        url (:class:`str`)
-            The URL to open
-        
-        skip_confirm (:class:`bool`)
-            True, if there is no need to show an ordinary open URL confirm
-        
+    :param url: The URL to open
+    :type url: :class:`str`
+    
+    :param skip_confirm: True, if there is no need to show an ordinary open URL confirm
+    :type skip_confirm: :class:`bool`
+    
     """
 
     ID: str = Field("loginUrlInfoOpen", alias="@type")
@@ -45,19 +46,18 @@ class LoginUrlInfoRequestConfirmation(LoginUrlInfo):
     """
     An authorization confirmation dialog needs to be shown to the user
     
-    Params:
-        url (:class:`str`)
-            An HTTP URL to be opened
-        
-        domain (:class:`str`)
-            A domain of the URL
-        
-        bot_user_id (:class:`int`)
-            User identifier of a bot linked with the website
-        
-        request_write_access (:class:`bool`)
-            True, if the user needs to be requested to give the permission to the bot to send them messages
-        
+    :param url: An HTTP URL to be opened
+    :type url: :class:`str`
+    
+    :param domain: A domain of the URL
+    :type domain: :class:`str`
+    
+    :param bot_user_id: User identifier of a bot linked with the website
+    :type bot_user_id: :class:`int`
+    
+    :param request_write_access: True, if the user needs to be requested to give the permission to the bot to send them messages
+    :type request_write_access: :class:`bool`
+    
     """
 
     ID: str = Field("loginUrlInfoRequestConfirmation", alias="@type")

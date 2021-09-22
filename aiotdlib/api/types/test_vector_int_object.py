@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .test_int import TestInt
@@ -15,10 +17,9 @@ class TestVectorIntObject(BaseObject):
     """
     A simple object containing a vector of objects that hold a number; for testing only
     
-    Params:
-        value (:obj:`list[TestInt]`)
-            Vector of objects
-        
+    :param value: Vector of objects
+    :type value: :class:`list[TestInt]`
+    
     """
 
     ID: str = Field("testVectorIntObject", alias="@type")

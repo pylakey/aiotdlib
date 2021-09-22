@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -62,10 +64,9 @@ class UserStatusOffline(UserStatus):
     """
     The user is offline
     
-    Params:
-        was_online (:class:`int`)
-            Point in time (Unix timestamp) when the user was last online
-        
+    :param was_online: Point in time (Unix timestamp) when the user was last online
+    :type was_online: :class:`int`
+    
     """
 
     ID: str = Field("userStatusOffline", alias="@type")
@@ -80,10 +81,9 @@ class UserStatusOnline(UserStatus):
     """
     The user is online
     
-    Params:
-        expires (:class:`int`)
-            Point in time (Unix timestamp) when the user's online status will expire
-        
+    :param expires: Point in time (Unix timestamp) when the user's online status will expire
+    :type expires: :class:`int`
+    
     """
 
     ID: str = Field("userStatusOnline", alias="@type")

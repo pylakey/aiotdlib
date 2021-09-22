@@ -5,20 +5,21 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import InputFile
+from ..base_object import BaseObject
 
 
 class RemoveFavoriteSticker(BaseObject):
     """
     Removes a sticker from the list of favorite stickers
     
-    Params:
-        sticker (:class:`InputFile`)
-            Sticker file to delete from the list
-        
+    :param sticker: Sticker file to delete from the list
+    :type sticker: :class:`InputFile`
+    
     """
 
     ID: str = Field("removeFavoriteSticker", alias="@type")

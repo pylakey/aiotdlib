@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,10 +25,9 @@ class CallServerTypeTelegramReflector(CallServerType):
     """
     A Telegram call reflector
     
-    Params:
-        peer_tag (:class:`str`)
-            A peer tag to be used with the reflector
-        
+    :param peer_tag: A peer tag to be used with the reflector
+    :type peer_tag: :class:`str`
+    
     """
 
     ID: str = Field("callServerTypeTelegramReflector", alias="@type")
@@ -41,19 +42,18 @@ class CallServerTypeWebrtc(CallServerType):
     """
     A WebRTC server
     
-    Params:
-        username (:class:`str`)
-            Username to be used for authentication
-        
-        password (:class:`str`)
-            Authentication password
-        
-        supports_turn (:class:`bool`)
-            True, if the server supports TURN
-        
-        supports_stun (:class:`bool`)
-            True, if the server supports STUN
-        
+    :param username: Username to be used for authentication
+    :type username: :class:`str`
+    
+    :param password: Authentication password
+    :type password: :class:`str`
+    
+    :param supports_turn: True, if the server supports TURN
+    :type supports_turn: :class:`bool`
+    
+    :param supports_stun: True, if the server supports STUN
+    :type supports_stun: :class:`bool`
+    
     """
 
     ID: str = Field("callServerTypeWebrtc", alias="@type")

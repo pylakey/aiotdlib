@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .animation import Animation
@@ -15,10 +17,9 @@ class Animations(BaseObject):
     """
     Represents a list of animations
     
-    Params:
-        animations (:obj:`list[Animation]`)
-            List of animations
-        
+    :param animations: List of animations
+    :type animations: :class:`list[Animation]`
+    
     """
 
     ID: str = Field("animations", alias="@type")

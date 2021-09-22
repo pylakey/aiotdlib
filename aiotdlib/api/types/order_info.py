@@ -17,19 +17,18 @@ class OrderInfo(BaseObject):
     """
     Order information
     
-    Params:
-        name (:class:`str`)
-            Name of the user
-        
-        phone_number (:class:`str`)
-            Phone number of the user
-        
-        email_address (:class:`str`)
-            Email address of the user
-        
-        shipping_address (:class:`Address`)
-            Shipping address for this order; may be null
-        
+    :param name: Name of the user
+    :type name: :class:`str`
+    
+    :param phone_number: Phone number of the user
+    :type phone_number: :class:`str`
+    
+    :param email_address: Email address of the user
+    :type email_address: :class:`str`
+    
+    :param shipping_address: Shipping address for this order; may be null, defaults to None
+    :type shipping_address: :class:`Address`, optional
+    
     """
 
     ID: str = Field("orderInfo", alias="@type")

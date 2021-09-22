@@ -118,9 +118,9 @@ class Parameter(BaseModel):
     @property
     def doc_type(self) -> str:
         if self.is_vector_type:
-            return f"(:obj:`{self.type}`)"
+            return f":class:`{self.type}`"
 
-        return f"(:class:`{self.type}`)"
+        return f":class:`{self.type}`"
 
     @property
     def import_type(self) -> typing.Optional[str]:

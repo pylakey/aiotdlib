@@ -5,20 +5,21 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import ChatFilter
+from ..base_object import BaseObject
 
 
 class GetChatFilterDefaultIconName(BaseObject):
     """
     Returns default icon name for a filter. Can be called synchronously
     
-    Params:
-        filter_ (:class:`ChatFilter`)
-            Chat filter
-        
+    :param filter_: Chat filter
+    :type filter_: :class:`ChatFilter`
+    
     """
 
     ID: str = Field("getChatFilterDefaultIconName", alias="@type")

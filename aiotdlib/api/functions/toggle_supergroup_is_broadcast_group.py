@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class ToggleSupergroupIsBroadcastGroup(BaseObject):
     """
     Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup
     
-    Params:
-        supergroup_id (:class:`int`)
-            Identifier of the supergroup
-        
+    :param supergroup_id: Identifier of the supergroup
+    :type supergroup_id: :class:`int`
+    
     """
 
     ID: str = Field("toggleSupergroupIsBroadcastGroup", alias="@type")

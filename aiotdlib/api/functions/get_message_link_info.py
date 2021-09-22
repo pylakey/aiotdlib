@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetMessageLinkInfo(BaseObject):
     """
     Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
     
-    Params:
-        url (:class:`str`)
-            The message link
-        
+    :param url: The message link
+    :type url: :class:`str`
+    
     """
 
     ID: str = Field("getMessageLinkInfo", alias="@type")

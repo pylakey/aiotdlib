@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class SetChatTitle(BaseObject):
     """
     Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        title (:class:`str`)
-            New title of the chat; 1-128 characters
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param title: New title of the chat; 1-128 characters
+    :type title: :class:`str`
+    
     """
 
     ID: str = Field("setChatTitle", alias="@type")

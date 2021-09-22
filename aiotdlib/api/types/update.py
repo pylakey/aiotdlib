@@ -79,10 +79,9 @@ class UpdateActiveNotifications(Update):
     """
     Contains active notifications that was shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update
     
-    Params:
-        groups (:obj:`list[NotificationGroup]`)
-            Lists of active notification groups
-        
+    :param groups: Lists of active notification groups
+    :type groups: :class:`list[NotificationGroup]`
+    
     """
 
     ID: str = Field("updateActiveNotifications", alias="@type")
@@ -97,16 +96,15 @@ class UpdateAnimatedEmojiMessageClicked(Update):
     """
     Some animated emoji message was clicked and a big animated sticker should be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        message_id (:class:`int`)
-            Message identifier
-        
-        sticker (:class:`Sticker`)
-            The animated sticker to be played
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_id: Message identifier
+    :type message_id: :class:`int`
+    
+    :param sticker: The animated sticker to be played
+    :type sticker: :class:`Sticker`
+    
     """
 
     ID: str = Field("updateAnimatedEmojiMessageClicked", alias="@type")
@@ -123,13 +121,12 @@ class UpdateAnimationSearchParameters(Update):
     """
     The parameters of animation search through GetOption("animation_search_bot_username") bot has changed
     
-    Params:
-        provider (:class:`str`)
-            Name of the animation search provider
-        
-        emojis (:obj:`list[str]`)
-            The new list of emojis suggested for searching
-        
+    :param provider: Name of the animation search provider
+    :type provider: :class:`str`
+    
+    :param emojis: The new list of emojis suggested for searching
+    :type emojis: :class:`list[str]`
+    
     """
 
     ID: str = Field("updateAnimationSearchParameters", alias="@type")
@@ -145,10 +142,9 @@ class UpdateAuthorizationState(Update):
     """
     The user authorization state has changed
     
-    Params:
-        authorization_state (:class:`AuthorizationState`)
-            New authorization state
-        
+    :param authorization_state: New authorization state
+    :type authorization_state: :class:`AuthorizationState`
+    
     """
 
     ID: str = Field("updateAuthorizationState", alias="@type")
@@ -163,10 +159,9 @@ class UpdateBasicGroup(Update):
     """
     Some data of a basic group has changed. This update is guaranteed to come before the basic group identifier is returned to the application
     
-    Params:
-        basic_group (:class:`BasicGroup`)
-            New data about the group
-        
+    :param basic_group: New data about the group
+    :type basic_group: :class:`BasicGroup`
+    
     """
 
     ID: str = Field("updateBasicGroup", alias="@type")
@@ -181,13 +176,12 @@ class UpdateBasicGroupFullInfo(Update):
     """
     Some data from basicGroupFullInfo has been changed
     
-    Params:
-        basic_group_id (:class:`int`)
-            Identifier of a basic group
-        
-        basic_group_full_info (:class:`BasicGroupFullInfo`)
-            New full information about the group
-        
+    :param basic_group_id: Identifier of a basic group
+    :type basic_group_id: :class:`int`
+    
+    :param basic_group_full_info: New full information about the group
+    :type basic_group_full_info: :class:`BasicGroupFullInfo`
+    
     """
 
     ID: str = Field("updateBasicGroupFullInfo", alias="@type")
@@ -203,10 +197,9 @@ class UpdateCall(Update):
     """
     New call was created or information about a call was updated
     
-    Params:
-        call (:class:`Call`)
-            New data about a call
-        
+    :param call: New data about a call
+    :type call: :class:`Call`
+    
     """
 
     ID: str = Field("updateCall", alias="@type")
@@ -221,13 +214,12 @@ class UpdateChatActionBar(Update):
     """
     The chat action bar was changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        action_bar (:class:`ChatActionBar`)
-            The new value of the action bar; may be null
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param action_bar: The new value of the action bar; may be null, defaults to None
+    :type action_bar: :class:`ChatActionBar`, optional
+    
     """
 
     ID: str = Field("updateChatActionBar", alias="@type")
@@ -243,13 +235,12 @@ class UpdateChatDefaultDisableNotification(Update):
     """
     The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        default_disable_notification (:class:`bool`)
-            The new default_disable_notification value
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param default_disable_notification: The new default_disable_notification value
+    :type default_disable_notification: :class:`bool`
+    
     """
 
     ID: str = Field("updateChatDefaultDisableNotification", alias="@type")
@@ -265,16 +256,15 @@ class UpdateChatDraftMessage(Update):
     """
     A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update shouldn't be applied
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        draft_message (:class:`DraftMessage`)
-            The new draft message; may be null
-        
-        positions (:obj:`list[ChatPosition]`)
-            The new chat positions in the chat lists
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param draft_message: The new draft message; may be null, defaults to None
+    :type draft_message: :class:`DraftMessage`, optional
+    
+    :param positions: The new chat positions in the chat lists
+    :type positions: :class:`list[ChatPosition]`
+    
     """
 
     ID: str = Field("updateChatDraftMessage", alias="@type")
@@ -291,10 +281,9 @@ class UpdateChatFilters(Update):
     """
     The list of chat filters or a chat filter has changed
     
-    Params:
-        chat_filters (:obj:`list[ChatFilterInfo]`)
-            The new list of chat filters
-        
+    :param chat_filters: The new list of chat filters
+    :type chat_filters: :class:`list[ChatFilterInfo]`
+    
     """
 
     ID: str = Field("updateChatFilters", alias="@type")
@@ -309,13 +298,12 @@ class UpdateChatHasScheduledMessages(Update):
     """
     A chat's has_scheduled_messages field has changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        has_scheduled_messages (:class:`bool`)
-            New value of has_scheduled_messages
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param has_scheduled_messages: New value of has_scheduled_messages
+    :type has_scheduled_messages: :class:`bool`
+    
     """
 
     ID: str = Field("updateChatHasScheduledMessages", alias="@type")
@@ -331,13 +319,12 @@ class UpdateChatIsBlocked(Update):
     """
     A chat was blocked or unblocked
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        is_blocked (:class:`bool`)
-            New value of is_blocked
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param is_blocked: New value of is_blocked
+    :type is_blocked: :class:`bool`
+    
     """
 
     ID: str = Field("updateChatIsBlocked", alias="@type")
@@ -353,13 +340,12 @@ class UpdateChatIsMarkedAsUnread(Update):
     """
     A chat was marked as unread or was read
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        is_marked_as_unread (:class:`bool`)
-            New value of is_marked_as_unread
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param is_marked_as_unread: New value of is_marked_as_unread
+    :type is_marked_as_unread: :class:`bool`
+    
     """
 
     ID: str = Field("updateChatIsMarkedAsUnread", alias="@type")
@@ -375,16 +361,15 @@ class UpdateChatLastMessage(Update):
     """
     The last message of a chat was changed. If last_message is null, then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        last_message (:class:`Message`)
-            The new last message in the chat; may be null
-        
-        positions (:obj:`list[ChatPosition]`)
-            The new chat positions in the chat lists
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param last_message: The new last message in the chat; may be null, defaults to None
+    :type last_message: :class:`Message`, optional
+    
+    :param positions: The new chat positions in the chat lists
+    :type positions: :class:`list[ChatPosition]`
+    
     """
 
     ID: str = Field("updateChatLastMessage", alias="@type")
@@ -401,25 +386,24 @@ class UpdateChatMember(Update):
     """
     User rights changed in a chat; for bots only
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        actor_user_id (:class:`int`)
-            Identifier of the user, changing the rights
-        
-        date (:class:`int`)
-            Point in time (Unix timestamp) when the user rights was changed
-        
-        invite_link (:class:`ChatInviteLink`)
-            If user has joined the chat using an invite link, the invite link; may be null
-        
-        old_chat_member (:class:`ChatMember`)
-            Previous chat member
-        
-        new_chat_member (:class:`ChatMember`)
-            New chat member
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param actor_user_id: Identifier of the user, changing the rights
+    :type actor_user_id: :class:`int`
+    
+    :param date: Point in time (Unix timestamp) when the user rights was changed
+    :type date: :class:`int`
+    
+    :param invite_link: If user has joined the chat using an invite link, the invite link; may be null, defaults to None
+    :type invite_link: :class:`ChatInviteLink`, optional
+    
+    :param old_chat_member: Previous chat member
+    :type old_chat_member: :class:`ChatMember`
+    
+    :param new_chat_member: New chat member
+    :type new_chat_member: :class:`ChatMember`
+    
     """
 
     ID: str = Field("updateChatMember", alias="@type")
@@ -439,13 +423,12 @@ class UpdateChatMessageTtlSetting(Update):
     """
     The message Time To Live setting for a chat was changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        message_ttl_setting (:class:`int`)
-            New value of message_ttl_setting
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_ttl_setting: New value of message_ttl_setting
+    :type message_ttl_setting: :class:`int`
+    
     """
 
     ID: str = Field("updateChatMessageTtlSetting", alias="@type")
@@ -461,13 +444,12 @@ class UpdateChatNotificationSettings(Update):
     """
     Notification settings for a chat were changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        notification_settings (:class:`ChatNotificationSettings`)
-            The new notification settings
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param notification_settings: The new notification settings
+    :type notification_settings: :class:`ChatNotificationSettings`
+    
     """
 
     ID: str = Field("updateChatNotificationSettings", alias="@type")
@@ -483,13 +465,12 @@ class UpdateChatOnlineMemberCount(Update):
     """
     The number of online group members has changed. This update with non-zero count is sent only for currently opened chats. There is no guarantee that it will be sent just after the count has changed
     
-    Params:
-        chat_id (:class:`int`)
-            Identifier of the chat
-        
-        online_member_count (:class:`int`)
-            New number of online members in the chat, or 0 if unknown
-        
+    :param chat_id: Identifier of the chat
+    :type chat_id: :class:`int`
+    
+    :param online_member_count: New number of online members in the chat, or 0 if unknown
+    :type online_member_count: :class:`int`
+    
     """
 
     ID: str = Field("updateChatOnlineMemberCount", alias="@type")
@@ -505,13 +486,12 @@ class UpdateChatPermissions(Update):
     """
     Chat permissions was changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        permissions (:class:`ChatPermissions`)
-            The new chat permissions
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param permissions: The new chat permissions
+    :type permissions: :class:`ChatPermissions`
+    
     """
 
     ID: str = Field("updateChatPermissions", alias="@type")
@@ -527,13 +507,12 @@ class UpdateChatPhoto(Update):
     """
     A chat photo was changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        photo (:class:`ChatPhotoInfo`)
-            The new chat photo; may be null
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param photo: The new chat photo; may be null, defaults to None
+    :type photo: :class:`ChatPhotoInfo`, optional
+    
     """
 
     ID: str = Field("updateChatPhoto", alias="@type")
@@ -549,13 +528,12 @@ class UpdateChatPosition(Update):
     """
     The position of a chat in a chat list has changed. Instead of this update updateChatLastMessage or updateChatDraftMessage might be sent
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        position (:class:`ChatPosition`)
-            New chat position. If new order is 0, then the chat needs to be removed from the list
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param position: New chat position. If new order is 0, then the chat needs to be removed from the list
+    :type position: :class:`ChatPosition`
+    
     """
 
     ID: str = Field("updateChatPosition", alias="@type")
@@ -571,16 +549,15 @@ class UpdateChatReadInbox(Update):
     """
     Incoming messages were read or number of unread messages has been changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        last_read_inbox_message_id (:class:`int`)
-            Identifier of the last read incoming message
-        
-        unread_count (:class:`int`)
-            The number of unread messages left in the chat
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param last_read_inbox_message_id: Identifier of the last read incoming message
+    :type last_read_inbox_message_id: :class:`int`
+    
+    :param unread_count: The number of unread messages left in the chat
+    :type unread_count: :class:`int`
+    
     """
 
     ID: str = Field("updateChatReadInbox", alias="@type")
@@ -597,13 +574,12 @@ class UpdateChatReadOutbox(Update):
     """
     Outgoing messages were read
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        last_read_outbox_message_id (:class:`int`)
-            Identifier of last read outgoing message
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param last_read_outbox_message_id: Identifier of last read outgoing message
+    :type last_read_outbox_message_id: :class:`int`
+    
     """
 
     ID: str = Field("updateChatReadOutbox", alias="@type")
@@ -619,13 +595,12 @@ class UpdateChatReplyMarkup(Update):
     """
     The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        reply_markup_message_id (:class:`int`)
-            Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param reply_markup_message_id: Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
+    :type reply_markup_message_id: :class:`int`
+    
     """
 
     ID: str = Field("updateChatReplyMarkup", alias="@type")
@@ -641,13 +616,12 @@ class UpdateChatTheme(Update):
     """
     The chat theme was changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        theme_name (:class:`str`)
-            The new name of the chat theme; may be empty if theme was reset to default
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param theme_name: The new name of the chat theme; may be empty if theme was reset to default
+    :type theme_name: :class:`str`
+    
     """
 
     ID: str = Field("updateChatTheme", alias="@type")
@@ -663,10 +637,9 @@ class UpdateChatThemes(Update):
     """
     The list of available chat themes has changed
     
-    Params:
-        chat_themes (:obj:`list[ChatTheme]`)
-            The new list of chat themes
-        
+    :param chat_themes: The new list of chat themes
+    :type chat_themes: :class:`list[ChatTheme]`
+    
     """
 
     ID: str = Field("updateChatThemes", alias="@type")
@@ -681,13 +654,12 @@ class UpdateChatTitle(Update):
     """
     The title of a chat was changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        title (:class:`str`)
-            The new chat title
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param title: The new chat title
+    :type title: :class:`str`
+    
     """
 
     ID: str = Field("updateChatTitle", alias="@type")
@@ -703,13 +675,12 @@ class UpdateChatUnreadMentionCount(Update):
     """
     The chat unread_mention_count has changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        unread_mention_count (:class:`int`)
-            The number of unread mention messages left in the chat
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param unread_mention_count: The number of unread mention messages left in the chat
+    :type unread_mention_count: :class:`int`
+    
     """
 
     ID: str = Field("updateChatUnreadMentionCount", alias="@type")
@@ -725,13 +696,12 @@ class UpdateChatVoiceChat(Update):
     """
     A chat voice chat state has changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        voice_chat (:class:`VoiceChat`)
-            New value of voice_chat
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param voice_chat: New value of voice_chat
+    :type voice_chat: :class:`VoiceChat`
+    
     """
 
     ID: str = Field("updateChatVoiceChat", alias="@type")
@@ -747,10 +717,9 @@ class UpdateConnectionState(Update):
     """
     The connection state has changed. This update must be used only to show a human-readable description of the connection state
     
-    Params:
-        state (:class:`ConnectionState`)
-            The new connection state
-        
+    :param state: The new connection state
+    :type state: :class:`ConnectionState`
+    
     """
 
     ID: str = Field("updateConnectionState", alias="@type")
@@ -765,19 +734,18 @@ class UpdateDeleteMessages(Update):
     """
     Some messages were deleted
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        message_ids (:obj:`list[int]`)
-            Identifiers of the deleted messages
-        
-        is_permanent (:class:`bool`)
-            True, if the messages are permanently deleted by a user (as opposed to just becoming inaccessible)
-        
-        from_cache (:class:`bool`)
-            True, if the messages are deleted only from the cache and can possibly be retrieved again in the future
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_ids: Identifiers of the deleted messages
+    :type message_ids: :class:`list[int]`
+    
+    :param is_permanent: True, if the messages are permanently deleted by a user (as opposed to just becoming inaccessible)
+    :type is_permanent: :class:`bool`
+    
+    :param from_cache: True, if the messages are deleted only from the cache and can possibly be retrieved again in the future
+    :type from_cache: :class:`bool`
+    
     """
 
     ID: str = Field("updateDeleteMessages", alias="@type")
@@ -795,10 +763,9 @@ class UpdateDiceEmojis(Update):
     """
     The list of supported dice emojis has changed
     
-    Params:
-        emojis (:obj:`list[str]`)
-            The new list of supported dice emojis
-        
+    :param emojis: The new list of supported dice emojis
+    :type emojis: :class:`list[str]`
+    
     """
 
     ID: str = Field("updateDiceEmojis", alias="@type")
@@ -813,10 +780,9 @@ class UpdateFavoriteStickers(Update):
     """
     The list of favorite stickers was updated
     
-    Params:
-        sticker_ids (:obj:`list[int]`)
-            The new list of file identifiers of favorite stickers
-        
+    :param sticker_ids: The new list of file identifiers of favorite stickers
+    :type sticker_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("updateFavoriteStickers", alias="@type")
@@ -831,10 +797,9 @@ class UpdateFile(Update):
     """
     Information about a file was updated
     
-    Params:
-        file (:class:`File`)
-            New data about the file
-        
+    :param file: New data about the file
+    :type file: :class:`File`
+    
     """
 
     ID: str = Field("updateFile", alias="@type")
@@ -849,19 +814,18 @@ class UpdateFileGenerationStart(Update):
     """
     The file generation process needs to be started by the application
     
-    Params:
-        generation_id (:class:`int`)
-            Unique identifier for the generation process
-        
-        original_path (:class:`str`)
-            The path to a file from which a new file is generated; may be empty
-        
-        destination_path (:class:`str`)
-            The path to a file that should be created and where the new file should be generated
-        
-        conversion (:class:`str`)
-            String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which should be downloaded by the application
-        
+    :param generation_id: Unique identifier for the generation process
+    :type generation_id: :class:`int`
+    
+    :param original_path: The path to a file from which a new file is generated; may be empty
+    :type original_path: :class:`str`
+    
+    :param destination_path: The path to a file that should be created and where the new file should be generated
+    :type destination_path: :class:`str`
+    
+    :param conversion: String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which should be downloaded by the application
+    :type conversion: :class:`str`
+    
     """
 
     ID: str = Field("updateFileGenerationStart", alias="@type")
@@ -879,10 +843,9 @@ class UpdateFileGenerationStop(Update):
     """
     File generation is no longer needed
     
-    Params:
-        generation_id (:class:`int`)
-            Unique identifier for the generation process
-        
+    :param generation_id: Unique identifier for the generation process
+    :type generation_id: :class:`int`
+    
     """
 
     ID: str = Field("updateFileGenerationStop", alias="@type")
@@ -897,10 +860,9 @@ class UpdateGroupCall(Update):
     """
     Information about a group call was updated
     
-    Params:
-        group_call (:class:`GroupCall`)
-            New data about a group call
-        
+    :param group_call: New data about a group call
+    :type group_call: :class:`GroupCall`
+    
     """
 
     ID: str = Field("updateGroupCall", alias="@type")
@@ -915,13 +877,12 @@ class UpdateGroupCallParticipant(Update):
     """
     Information about a group call participant was changed. The updates are sent only after the group call is received through getGroupCall and only if the call is joined or being joined
     
-    Params:
-        group_call_id (:class:`int`)
-            Identifier of group call
-        
-        participant (:class:`GroupCallParticipant`)
-            New data about a participant
-        
+    :param group_call_id: Identifier of group call
+    :type group_call_id: :class:`int`
+    
+    :param participant: New data about a participant
+    :type participant: :class:`GroupCallParticipant`
+    
     """
 
     ID: str = Field("updateGroupCallParticipant", alias="@type")
@@ -937,13 +898,12 @@ class UpdateHavePendingNotifications(Update):
     """
     Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications
     
-    Params:
-        have_delayed_notifications (:class:`bool`)
-            True, if there are some delayed notification updates, which will be sent soon
-        
-        have_unreceived_notifications (:class:`bool`)
-            True, if there can be some yet unreceived notifications, which are being fetched from the server
-        
+    :param have_delayed_notifications: True, if there are some delayed notification updates, which will be sent soon
+    :type have_delayed_notifications: :class:`bool`
+    
+    :param have_unreceived_notifications: True, if there can be some yet unreceived notifications, which are being fetched from the server
+    :type have_unreceived_notifications: :class:`bool`
+    
     """
 
     ID: str = Field("updateHavePendingNotifications", alias="@type")
@@ -959,13 +919,12 @@ class UpdateInstalledStickerSets(Update):
     """
     The list of installed sticker sets was updated
     
-    Params:
-        is_masks (:class:`bool`)
-            True, if the list of installed mask sticker sets was updated
-        
-        sticker_set_ids (:obj:`list[int]`)
-            The new list of installed ordinary sticker sets
-        
+    :param is_masks: True, if the list of installed mask sticker sets was updated
+    :type is_masks: :class:`bool`
+    
+    :param sticker_set_ids: The new list of installed ordinary sticker sets
+    :type sticker_set_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("updateInstalledStickerSets", alias="@type")
@@ -981,16 +940,15 @@ class UpdateLanguagePackStrings(Update):
     """
     Some language pack strings have been updated
     
-    Params:
-        localization_target (:class:`str`)
-            Localization target to which the language pack belongs
-        
-        language_pack_id (:class:`str`)
-            Identifier of the updated language pack
-        
-        strings (:obj:`list[LanguagePackString]`)
-            List of changed language pack strings
-        
+    :param localization_target: Localization target to which the language pack belongs
+    :type localization_target: :class:`str`
+    
+    :param language_pack_id: Identifier of the updated language pack
+    :type language_pack_id: :class:`str`
+    
+    :param strings: List of changed language pack strings
+    :type strings: :class:`list[LanguagePackString]`
+    
     """
 
     ID: str = Field("updateLanguagePackStrings", alias="@type")
@@ -1007,16 +965,15 @@ class UpdateMessageContent(Update):
     """
     The message content has changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        message_id (:class:`int`)
-            Message identifier
-        
-        new_content (:class:`MessageContent`)
-            New message content
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_id: Message identifier
+    :type message_id: :class:`int`
+    
+    :param new_content: New message content
+    :type new_content: :class:`MessageContent`
+    
     """
 
     ID: str = Field("updateMessageContent", alias="@type")
@@ -1033,13 +990,12 @@ class UpdateMessageContentOpened(Update):
     """
     The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the TTL timer for self-destructing messages
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        message_id (:class:`int`)
-            Message identifier
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_id: Message identifier
+    :type message_id: :class:`int`
+    
     """
 
     ID: str = Field("updateMessageContentOpened", alias="@type")
@@ -1055,19 +1011,18 @@ class UpdateMessageEdited(Update):
     """
     A message was edited. Changes in the message content will come in a separate updateMessageContent
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        message_id (:class:`int`)
-            Message identifier
-        
-        edit_date (:class:`int`)
-            Point in time (Unix timestamp) when the message was edited
-        
-        reply_markup (:class:`ReplyMarkup`)
-            New message reply markup; may be null
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_id: Message identifier
+    :type message_id: :class:`int`
+    
+    :param edit_date: Point in time (Unix timestamp) when the message was edited
+    :type edit_date: :class:`int`
+    
+    :param reply_markup: New message reply markup; may be null, defaults to None
+    :type reply_markup: :class:`ReplyMarkup`, optional
+    
     """
 
     ID: str = Field("updateMessageEdited", alias="@type")
@@ -1085,16 +1040,15 @@ class UpdateMessageInteractionInfo(Update):
     """
     The information about interactions with a message has changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        message_id (:class:`int`)
-            Message identifier
-        
-        interaction_info (:class:`MessageInteractionInfo`)
-            New information about interactions with the message; may be null
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_id: Message identifier
+    :type message_id: :class:`int`
+    
+    :param interaction_info: New information about interactions with the message; may be null, defaults to None
+    :type interaction_info: :class:`MessageInteractionInfo`, optional
+    
     """
 
     ID: str = Field("updateMessageInteractionInfo", alias="@type")
@@ -1111,16 +1065,15 @@ class UpdateMessageIsPinned(Update):
     """
     The message pinned state was changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        message_id (:class:`int`)
-            The message identifier
-        
-        is_pinned (:class:`bool`)
-            True, if the message is pinned
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_id: The message identifier
+    :type message_id: :class:`int`
+    
+    :param is_pinned: True, if the message is pinned
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("updateMessageIsPinned", alias="@type")
@@ -1137,13 +1090,12 @@ class UpdateMessageLiveLocationViewed(Update):
     """
     A message with a live location was viewed. When the update is received, the application is supposed to update the live location
     
-    Params:
-        chat_id (:class:`int`)
-            Identifier of the chat with the live location message
-        
-        message_id (:class:`int`)
-            Identifier of the message with live location
-        
+    :param chat_id: Identifier of the chat with the live location message
+    :type chat_id: :class:`int`
+    
+    :param message_id: Identifier of the message with live location
+    :type message_id: :class:`int`
+    
     """
 
     ID: str = Field("updateMessageLiveLocationViewed", alias="@type")
@@ -1159,16 +1111,15 @@ class UpdateMessageMentionRead(Update):
     """
     A message with an unread mention was read
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        message_id (:class:`int`)
-            Message identifier
-        
-        unread_mention_count (:class:`int`)
-            The new number of unread mention messages left in the chat
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_id: Message identifier
+    :type message_id: :class:`int`
+    
+    :param unread_mention_count: The new number of unread mention messages left in the chat
+    :type unread_mention_count: :class:`int`
+    
     """
 
     ID: str = Field("updateMessageMentionRead", alias="@type")
@@ -1185,13 +1136,12 @@ class UpdateMessageSendAcknowledged(Update):
     """
     A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully or even that the send message request will be processed. This update will be sent only if the option "use_quick_ack" is set to true. This update may be sent multiple times for the same message
     
-    Params:
-        chat_id (:class:`int`)
-            The chat identifier of the sent message
-        
-        message_id (:class:`int`)
-            A temporary message identifier
-        
+    :param chat_id: The chat identifier of the sent message
+    :type chat_id: :class:`int`
+    
+    :param message_id: A temporary message identifier
+    :type message_id: :class:`int`
+    
     """
 
     ID: str = Field("updateMessageSendAcknowledged", alias="@type")
@@ -1207,19 +1157,18 @@ class UpdateMessageSendFailed(Update):
     """
     A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
     
-    Params:
-        message (:class:`Message`)
-            Contains information about the message which failed to send
-        
-        old_message_id (:class:`int`)
-            The previous temporary message identifier
-        
-        error_code (:class:`int`)
-            An error code
-        
-        error_message (:class:`str`)
-            Error message
-        
+    :param message: Contains information about the message which failed to send
+    :type message: :class:`Message`
+    
+    :param old_message_id: The previous temporary message identifier
+    :type old_message_id: :class:`int`
+    
+    :param error_code: An error code
+    :type error_code: :class:`int`
+    
+    :param error_message: Error message
+    :type error_message: :class:`str`
+    
     """
 
     ID: str = Field("updateMessageSendFailed", alias="@type")
@@ -1237,13 +1186,12 @@ class UpdateMessageSendSucceeded(Update):
     """
     A message has been successfully sent
     
-    Params:
-        message (:class:`Message`)
-            Information about the sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
-        
-        old_message_id (:class:`int`)
-            The previous temporary message identifier
-        
+    :param message: Information about the sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
+    :type message: :class:`Message`
+    
+    :param old_message_id: The previous temporary message identifier
+    :type old_message_id: :class:`int`
+    
     """
 
     ID: str = Field("updateMessageSendSucceeded", alias="@type")
@@ -1259,13 +1207,12 @@ class UpdateNewCallSignalingData(Update):
     """
     New call signaling data arrived
     
-    Params:
-        call_id (:class:`int`)
-            The call identifier
-        
-        data (:class:`str`)
-            The data
-        
+    :param call_id: The call identifier
+    :type call_id: :class:`int`
+    
+    :param data: The data
+    :type data: :class:`str`
+    
     """
 
     ID: str = Field("updateNewCallSignalingData", alias="@type")
@@ -1281,25 +1228,24 @@ class UpdateNewCallbackQuery(Update):
     """
     A new incoming callback query; for bots only
     
-    Params:
-        id (:class:`int`)
-            Unique query identifier
-        
-        sender_user_id (:class:`int`)
-            Identifier of the user who sent the query
-        
-        chat_id (:class:`int`)
-            Identifier of the chat where the query was sent
-        
-        message_id (:class:`int`)
-            Identifier of the message, from which the query originated
-        
-        chat_instance (:class:`int`)
-            Identifier that uniquely corresponds to the chat to which the message was sent
-        
-        payload (:class:`CallbackQueryPayload`)
-            Query payload
-        
+    :param id: Unique query identifier
+    :type id: :class:`int`
+    
+    :param sender_user_id: Identifier of the user who sent the query
+    :type sender_user_id: :class:`int`
+    
+    :param chat_id: Identifier of the chat where the query was sent
+    :type chat_id: :class:`int`
+    
+    :param message_id: Identifier of the message, from which the query originated
+    :type message_id: :class:`int`
+    
+    :param chat_instance: Identifier that uniquely corresponds to the chat to which the message was sent
+    :type chat_instance: :class:`int`
+    
+    :param payload: Query payload
+    :type payload: :class:`CallbackQueryPayload`
+    
     """
 
     ID: str = Field("updateNewCallbackQuery", alias="@type")
@@ -1319,10 +1265,9 @@ class UpdateNewChat(Update):
     """
     A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the application. The chat field changes will be reported through separate updates
     
-    Params:
-        chat (:class:`Chat`)
-            The chat
-        
+    :param chat: The chat
+    :type chat: :class:`Chat`
+    
     """
 
     ID: str = Field("updateNewChat", alias="@type")
@@ -1337,22 +1282,21 @@ class UpdateNewChosenInlineResult(Update):
     """
     The user has chosen a result of an inline query; for bots only
     
-    Params:
-        sender_user_id (:class:`int`)
-            Identifier of the user who sent the query
-        
-        user_location (:class:`Location`)
-            User location; may be null
-        
-        query (:class:`str`)
-            Text of the query
-        
-        result_id (:class:`str`)
-            Identifier of the chosen result
-        
-        inline_message_id (:class:`str`)
-            Identifier of the sent inline message, if known
-        
+    :param sender_user_id: Identifier of the user who sent the query
+    :type sender_user_id: :class:`int`
+    
+    :param user_location: User location; may be null, defaults to None
+    :type user_location: :class:`Location`, optional
+    
+    :param query: Text of the query
+    :type query: :class:`str`
+    
+    :param result_id: Identifier of the chosen result
+    :type result_id: :class:`str`
+    
+    :param inline_message_id: Identifier of the sent inline message, if known
+    :type inline_message_id: :class:`str`
+    
     """
 
     ID: str = Field("updateNewChosenInlineResult", alias="@type")
@@ -1371,10 +1315,9 @@ class UpdateNewCustomEvent(Update):
     """
     A new incoming event; for bots only
     
-    Params:
-        event (:class:`str`)
-            A JSON-serialized event
-        
+    :param event: A JSON-serialized event
+    :type event: :class:`str`
+    
     """
 
     ID: str = Field("updateNewCustomEvent", alias="@type")
@@ -1389,16 +1332,15 @@ class UpdateNewCustomQuery(Update):
     """
     A new incoming query; for bots only
     
-    Params:
-        id (:class:`int`)
-            The query identifier
-        
-        data (:class:`str`)
-            JSON-serialized query data
-        
-        timeout (:class:`int`)
-            Query timeout
-        
+    :param id: The query identifier
+    :type id: :class:`int`
+    
+    :param data: JSON-serialized query data
+    :type data: :class:`str`
+    
+    :param timeout: Query timeout
+    :type timeout: :class:`int`
+    
     """
 
     ID: str = Field("updateNewCustomQuery", alias="@type")
@@ -1415,22 +1357,21 @@ class UpdateNewInlineCallbackQuery(Update):
     """
     A new incoming callback query from a message sent via a bot; for bots only
     
-    Params:
-        id (:class:`int`)
-            Unique query identifier
-        
-        sender_user_id (:class:`int`)
-            Identifier of the user who sent the query
-        
-        inline_message_id (:class:`str`)
-            Identifier of the inline message, from which the query originated
-        
-        chat_instance (:class:`int`)
-            An identifier uniquely corresponding to the chat a message was sent to
-        
-        payload (:class:`CallbackQueryPayload`)
-            Query payload
-        
+    :param id: Unique query identifier
+    :type id: :class:`int`
+    
+    :param sender_user_id: Identifier of the user who sent the query
+    :type sender_user_id: :class:`int`
+    
+    :param inline_message_id: Identifier of the inline message, from which the query originated
+    :type inline_message_id: :class:`str`
+    
+    :param chat_instance: An identifier uniquely corresponding to the chat a message was sent to
+    :type chat_instance: :class:`int`
+    
+    :param payload: Query payload
+    :type payload: :class:`CallbackQueryPayload`
+    
     """
 
     ID: str = Field("updateNewInlineCallbackQuery", alias="@type")
@@ -1449,25 +1390,24 @@ class UpdateNewInlineQuery(Update):
     """
     A new incoming inline query; for bots only
     
-    Params:
-        id (:class:`int`)
-            Unique query identifier
-        
-        sender_user_id (:class:`int`)
-            Identifier of the user who sent the query
-        
-        user_location (:class:`Location`)
-            User location; may be null
-        
-        chat_type (:class:`ChatType`)
-            Contains information about the type of the chat, from which the query originated; may be null if unknown
-        
-        query (:class:`str`)
-            Text of the query
-        
-        offset (:class:`str`)
-            Offset of the first entry to return
-        
+    :param id: Unique query identifier
+    :type id: :class:`int`
+    
+    :param sender_user_id: Identifier of the user who sent the query
+    :type sender_user_id: :class:`int`
+    
+    :param user_location: User location; may be null, defaults to None
+    :type user_location: :class:`Location`, optional
+    
+    :param chat_type: Contains information about the type of the chat, from which the query originated; may be null if unknown, defaults to None
+    :type chat_type: :class:`ChatType`, optional
+    
+    :param query: Text of the query
+    :type query: :class:`str`
+    
+    :param offset: Offset of the first entry to return
+    :type offset: :class:`str`
+    
     """
 
     ID: str = Field("updateNewInlineQuery", alias="@type")
@@ -1487,10 +1427,9 @@ class UpdateNewMessage(Update):
     """
     A new message was received; can also be an outgoing message
     
-    Params:
-        message (:class:`Message`)
-            The new message
-        
+    :param message: The new message
+    :type message: :class:`Message`
+    
     """
 
     ID: str = Field("updateNewMessage", alias="@type")
@@ -1505,28 +1444,27 @@ class UpdateNewPreCheckoutQuery(Update):
     """
     A new incoming pre-checkout query; for bots only. Contains full information about a checkout
     
-    Params:
-        id (:class:`int`)
-            Unique query identifier
-        
-        sender_user_id (:class:`int`)
-            Identifier of the user who sent the query
-        
-        currency (:class:`str`)
-            Currency for the product price
-        
-        total_amount (:class:`int`)
-            Total price for the product, in the smallest units of the currency
-        
-        invoice_payload (:class:`str`)
-            Invoice payload
-        
-        shipping_option_id (:class:`str`)
-            Identifier of a shipping option chosen by the user; may be empty if not applicable
-        
-        order_info (:class:`OrderInfo`)
-            Information about the order; may be null
-        
+    :param id: Unique query identifier
+    :type id: :class:`int`
+    
+    :param sender_user_id: Identifier of the user who sent the query
+    :type sender_user_id: :class:`int`
+    
+    :param currency: Currency for the product price
+    :type currency: :class:`str`
+    
+    :param total_amount: Total price for the product, in the smallest units of the currency
+    :type total_amount: :class:`int`
+    
+    :param invoice_payload: Invoice payload
+    :type invoice_payload: :class:`str`
+    
+    :param shipping_option_id: Identifier of a shipping option chosen by the user; may be empty if not applicable
+    :type shipping_option_id: :class:`str`
+    
+    :param order_info: Information about the order; may be null, defaults to None
+    :type order_info: :class:`OrderInfo`, optional
+    
     """
 
     ID: str = Field("updateNewPreCheckoutQuery", alias="@type")
@@ -1547,19 +1485,18 @@ class UpdateNewShippingQuery(Update):
     """
     A new incoming shipping query; for bots only. Only for invoices with flexible price
     
-    Params:
-        id (:class:`int`)
-            Unique query identifier
-        
-        sender_user_id (:class:`int`)
-            Identifier of the user who sent the query
-        
-        invoice_payload (:class:`str`)
-            Invoice payload
-        
-        shipping_address (:class:`Address`)
-            User shipping address
-        
+    :param id: Unique query identifier
+    :type id: :class:`int`
+    
+    :param sender_user_id: Identifier of the user who sent the query
+    :type sender_user_id: :class:`int`
+    
+    :param invoice_payload: Invoice payload
+    :type invoice_payload: :class:`str`
+    
+    :param shipping_address: User shipping address
+    :type shipping_address: :class:`Address`
+    
     """
 
     ID: str = Field("updateNewShippingQuery", alias="@type")
@@ -1577,13 +1514,12 @@ class UpdateNotification(Update):
     """
     A notification was changed
     
-    Params:
-        notification_group_id (:class:`int`)
-            Unique notification group identifier
-        
-        notification (:class:`Notification`)
-            Changed notification
-        
+    :param notification_group_id: Unique notification group identifier
+    :type notification_group_id: :class:`int`
+    
+    :param notification: Changed notification
+    :type notification: :class:`Notification`
+    
     """
 
     ID: str = Field("updateNotification", alias="@type")
@@ -1599,31 +1535,30 @@ class UpdateNotificationGroup(Update):
     """
     A list of active notifications in a notification group has changed
     
-    Params:
-        notification_group_id (:class:`int`)
-            Unique notification group identifier
-        
-        type_ (:class:`NotificationGroupType`)
-            New type of the notification group
-        
-        chat_id (:class:`int`)
-            Identifier of a chat to which all notifications in the group belong
-        
-        notification_settings_chat_id (:class:`int`)
-            Chat identifier, which notification settings must be applied to the added notifications
-        
-        is_silent (:class:`bool`)
-            True, if the notifications should be shown without sound
-        
-        total_count (:class:`int`)
-            Total number of unread notifications in the group, can be bigger than number of active notifications
-        
-        added_notifications (:obj:`list[Notification]`)
-            List of added group notifications, sorted by notification ID
-        
-        removed_notification_ids (:obj:`list[int]`)
-            Identifiers of removed group notifications, sorted by notification ID
-        
+    :param notification_group_id: Unique notification group identifier
+    :type notification_group_id: :class:`int`
+    
+    :param type_: New type of the notification group
+    :type type_: :class:`NotificationGroupType`
+    
+    :param chat_id: Identifier of a chat to which all notifications in the group belong
+    :type chat_id: :class:`int`
+    
+    :param notification_settings_chat_id: Chat identifier, which notification settings must be applied to the added notifications
+    :type notification_settings_chat_id: :class:`int`
+    
+    :param is_silent: True, if the notifications should be shown without sound
+    :type is_silent: :class:`bool`
+    
+    :param total_count: Total number of unread notifications in the group, can be bigger than number of active notifications
+    :type total_count: :class:`int`
+    
+    :param added_notifications: List of added group notifications, sorted by notification ID
+    :type added_notifications: :class:`list[Notification]`
+    
+    :param removed_notification_ids: Identifiers of removed group notifications, sorted by notification ID
+    :type removed_notification_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("updateNotificationGroup", alias="@type")
@@ -1645,13 +1580,12 @@ class UpdateOption(Update):
     """
     An option changed its value
     
-    Params:
-        name (:class:`str`)
-            The option name
-        
-        value (:class:`OptionValue`)
-            The new option value
-        
+    :param name: The option name
+    :type name: :class:`str`
+    
+    :param value: The new option value
+    :type value: :class:`OptionValue`
+    
     """
 
     ID: str = Field("updateOption", alias="@type")
@@ -1667,10 +1601,9 @@ class UpdatePoll(Update):
     """
     A poll was updated; for bots only
     
-    Params:
-        poll (:class:`Poll`)
-            New data about the poll
-        
+    :param poll: New data about the poll
+    :type poll: :class:`Poll`
+    
     """
 
     ID: str = Field("updatePoll", alias="@type")
@@ -1685,16 +1618,15 @@ class UpdatePollAnswer(Update):
     """
     A user changed the answer to a poll; for bots only
     
-    Params:
-        poll_id (:class:`int`)
-            Unique poll identifier
-        
-        user_id (:class:`int`)
-            The user, who changed the answer to the poll
-        
-        option_ids (:obj:`list[int]`)
-            0-based identifiers of answer options, chosen by the user
-        
+    :param poll_id: Unique poll identifier
+    :type poll_id: :class:`int`
+    
+    :param user_id: The user, who changed the answer to the poll
+    :type user_id: :class:`int`
+    
+    :param option_ids: 0-based identifiers of answer options, chosen by the user
+    :type option_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("updatePollAnswer", alias="@type")
@@ -1711,13 +1643,12 @@ class UpdateRecentStickers(Update):
     """
     The list of recently used stickers was updated
     
-    Params:
-        is_attached (:class:`bool`)
-            True, if the list of stickers attached to photo or video files was updated, otherwise the list of sent stickers is updated
-        
-        sticker_ids (:obj:`list[int]`)
-            The new list of file identifiers of recently used stickers
-        
+    :param is_attached: True, if the list of stickers attached to photo or video files was updated, otherwise the list of sent stickers is updated
+    :type is_attached: :class:`bool`
+    
+    :param sticker_ids: The new list of file identifiers of recently used stickers
+    :type sticker_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("updateRecentStickers", alias="@type")
@@ -1733,10 +1664,9 @@ class UpdateSavedAnimations(Update):
     """
     The list of saved animations was updated
     
-    Params:
-        animation_ids (:obj:`list[int]`)
-            The new list of file identifiers of saved animations
-        
+    :param animation_ids: The new list of file identifiers of saved animations
+    :type animation_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("updateSavedAnimations", alias="@type")
@@ -1751,13 +1681,12 @@ class UpdateScopeNotificationSettings(Update):
     """
     Notification settings for some type of chats were updated
     
-    Params:
-        scope (:class:`NotificationSettingsScope`)
-            Types of chats for which notification settings were updated
-        
-        notification_settings (:class:`ScopeNotificationSettings`)
-            The new notification settings
-        
+    :param scope: Types of chats for which notification settings were updated
+    :type scope: :class:`NotificationSettingsScope`
+    
+    :param notification_settings: The new notification settings
+    :type notification_settings: :class:`ScopeNotificationSettings`
+    
     """
 
     ID: str = Field("updateScopeNotificationSettings", alias="@type")
@@ -1773,10 +1702,9 @@ class UpdateSecretChat(Update):
     """
     Some data of a secret chat has changed. This update is guaranteed to come before the secret chat identifier is returned to the application
     
-    Params:
-        secret_chat (:class:`SecretChat`)
-            New data about the secret chat
-        
+    :param secret_chat: New data about the secret chat
+    :type secret_chat: :class:`SecretChat`
+    
     """
 
     ID: str = Field("updateSecretChat", alias="@type")
@@ -1791,13 +1719,12 @@ class UpdateSelectedBackground(Update):
     """
     The selected background has changed
     
-    Params:
-        for_dark_theme (:class:`bool`)
-            True, if background for dark theme has changed
-        
-        background (:class:`Background`)
-            The new selected background; may be null
-        
+    :param for_dark_theme: True, if background for dark theme has changed
+    :type for_dark_theme: :class:`bool`
+    
+    :param background: The new selected background; may be null, defaults to None
+    :type background: :class:`Background`, optional
+    
     """
 
     ID: str = Field("updateSelectedBackground", alias="@type")
@@ -1813,13 +1740,12 @@ class UpdateServiceNotification(Update):
     """
     Service notification from the server. Upon receiving this the application must show a popup with the content of the notification
     
-    Params:
-        type_ (:class:`str`)
-            Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" should be shown under notification; if user presses the second, all local data should be destroyed using Destroy method
-        
-        content (:class:`MessageContent`)
-            Notification content
-        
+    :param type_: Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" should be shown under notification; if user presses the second, all local data should be destroyed using Destroy method
+    :type type_: :class:`str`
+    
+    :param content: Notification content
+    :type content: :class:`MessageContent`
+    
     """
 
     ID: str = Field("updateServiceNotification", alias="@type")
@@ -1835,10 +1761,9 @@ class UpdateStickerSet(Update):
     """
     A sticker set has changed
     
-    Params:
-        sticker_set (:class:`StickerSet`)
-            The sticker set
-        
+    :param sticker_set: The sticker set
+    :type sticker_set: :class:`StickerSet`
+    
     """
 
     ID: str = Field("updateStickerSet", alias="@type")
@@ -1853,13 +1778,12 @@ class UpdateSuggestedActions(Update):
     """
     The list of suggested to the user actions has changed
     
-    Params:
-        added_actions (:obj:`list[SuggestedAction]`)
-            Added suggested actions
-        
-        removed_actions (:obj:`list[SuggestedAction]`)
-            Removed suggested actions
-        
+    :param added_actions: Added suggested actions
+    :type added_actions: :class:`list[SuggestedAction]`
+    
+    :param removed_actions: Removed suggested actions
+    :type removed_actions: :class:`list[SuggestedAction]`
+    
     """
 
     ID: str = Field("updateSuggestedActions", alias="@type")
@@ -1875,10 +1799,9 @@ class UpdateSupergroup(Update):
     """
     Some data of a supergroup or a channel has changed. This update is guaranteed to come before the supergroup identifier is returned to the application
     
-    Params:
-        supergroup (:class:`Supergroup`)
-            New data about the supergroup
-        
+    :param supergroup: New data about the supergroup
+    :type supergroup: :class:`Supergroup`
+    
     """
 
     ID: str = Field("updateSupergroup", alias="@type")
@@ -1893,13 +1816,12 @@ class UpdateSupergroupFullInfo(Update):
     """
     Some data from supergroupFullInfo has been changed
     
-    Params:
-        supergroup_id (:class:`int`)
-            Identifier of the supergroup or channel
-        
-        supergroup_full_info (:class:`SupergroupFullInfo`)
-            New full information about the supergroup
-        
+    :param supergroup_id: Identifier of the supergroup or channel
+    :type supergroup_id: :class:`int`
+    
+    :param supergroup_full_info: New full information about the supergroup
+    :type supergroup_full_info: :class:`SupergroupFullInfo`
+    
     """
 
     ID: str = Field("updateSupergroupFullInfo", alias="@type")
@@ -1915,13 +1837,12 @@ class UpdateTermsOfService(Update):
     """
     New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method should be called with the reason "Decline ToS update"
     
-    Params:
-        terms_of_service_id (:class:`str`)
-            Identifier of the terms of service
-        
-        terms_of_service (:class:`TermsOfService`)
-            The new terms of service
-        
+    :param terms_of_service_id: Identifier of the terms of service
+    :type terms_of_service_id: :class:`str`
+    
+    :param terms_of_service: The new terms of service
+    :type terms_of_service: :class:`TermsOfService`
+    
     """
 
     ID: str = Field("updateTermsOfService", alias="@type")
@@ -1937,10 +1858,9 @@ class UpdateTrendingStickerSets(Update):
     """
     The list of trending sticker sets was updated or some of them were viewed
     
-    Params:
-        sticker_sets (:class:`StickerSets`)
-            The prefix of the list of trending sticker sets with the newest trending sticker sets
-        
+    :param sticker_sets: The prefix of the list of trending sticker sets with the newest trending sticker sets
+    :type sticker_sets: :class:`StickerSets`
+    
     """
 
     ID: str = Field("updateTrendingStickerSets", alias="@type")
@@ -1955,25 +1875,24 @@ class UpdateUnreadChatCount(Update):
     """
     Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used
     
-    Params:
-        chat_list (:class:`ChatList`)
-            The chat list with changed number of unread messages
-        
-        total_count (:class:`int`)
-            Approximate total number of chats in the chat list
-        
-        unread_count (:class:`int`)
-            Total number of unread chats
-        
-        unread_unmuted_count (:class:`int`)
-            Total number of unread unmuted chats
-        
-        marked_as_unread_count (:class:`int`)
-            Total number of chats marked as unread
-        
-        marked_as_unread_unmuted_count (:class:`int`)
-            Total number of unmuted chats marked as unread
-        
+    :param chat_list: The chat list with changed number of unread messages
+    :type chat_list: :class:`ChatList`
+    
+    :param total_count: Approximate total number of chats in the chat list
+    :type total_count: :class:`int`
+    
+    :param unread_count: Total number of unread chats
+    :type unread_count: :class:`int`
+    
+    :param unread_unmuted_count: Total number of unread unmuted chats
+    :type unread_unmuted_count: :class:`int`
+    
+    :param marked_as_unread_count: Total number of chats marked as unread
+    :type marked_as_unread_count: :class:`int`
+    
+    :param marked_as_unread_unmuted_count: Total number of unmuted chats marked as unread
+    :type marked_as_unread_unmuted_count: :class:`int`
+    
     """
 
     ID: str = Field("updateUnreadChatCount", alias="@type")
@@ -1993,16 +1912,15 @@ class UpdateUnreadMessageCount(Update):
     """
     Number of unread messages in a chat list has changed. This update is sent only if the message database is used
     
-    Params:
-        chat_list (:class:`ChatList`)
-            The chat list with changed number of unread messages
-        
-        unread_count (:class:`int`)
-            Total number of unread messages
-        
-        unread_unmuted_count (:class:`int`)
-            Total number of unread messages in unmuted chats
-        
+    :param chat_list: The chat list with changed number of unread messages
+    :type chat_list: :class:`ChatList`
+    
+    :param unread_count: Total number of unread messages
+    :type unread_count: :class:`int`
+    
+    :param unread_unmuted_count: Total number of unread messages in unmuted chats
+    :type unread_unmuted_count: :class:`int`
+    
     """
 
     ID: str = Field("updateUnreadMessageCount", alias="@type")
@@ -2019,10 +1937,9 @@ class UpdateUser(Update):
     """
     Some data of a user has changed. This update is guaranteed to come before the user identifier is returned to the application
     
-    Params:
-        user (:class:`User`)
-            New data about the user
-        
+    :param user: New data about the user
+    :type user: :class:`User`
+    
     """
 
     ID: str = Field("updateUser", alias="@type")
@@ -2037,19 +1954,18 @@ class UpdateUserChatAction(Update):
     """
     User activity in the chat has changed
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        message_thread_id (:class:`int`)
-            If not 0, a message thread identifier in which the action was performed
-        
-        user_id (:class:`int`)
-            Identifier of a user performing an action
-        
-        action (:class:`ChatAction`)
-            The action description
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_thread_id: If not 0, a message thread identifier in which the action was performed
+    :type message_thread_id: :class:`int`
+    
+    :param user_id: Identifier of a user performing an action
+    :type user_id: :class:`int`
+    
+    :param action: The action description
+    :type action: :class:`ChatAction`
+    
     """
 
     ID: str = Field("updateUserChatAction", alias="@type")
@@ -2067,13 +1983,12 @@ class UpdateUserFullInfo(Update):
     """
     Some data from userFullInfo has been changed
     
-    Params:
-        user_id (:class:`int`)
-            User identifier
-        
-        user_full_info (:class:`UserFullInfo`)
-            New full information about the user
-        
+    :param user_id: User identifier
+    :type user_id: :class:`int`
+    
+    :param user_full_info: New full information about the user
+    :type user_full_info: :class:`UserFullInfo`
+    
     """
 
     ID: str = Field("updateUserFullInfo", alias="@type")
@@ -2089,13 +2004,12 @@ class UpdateUserPrivacySettingRules(Update):
     """
     Some privacy setting rules have been changed
     
-    Params:
-        setting (:class:`UserPrivacySetting`)
-            The privacy setting
-        
-        rules (:class:`UserPrivacySettingRules`)
-            New privacy rules
-        
+    :param setting: The privacy setting
+    :type setting: :class:`UserPrivacySetting`
+    
+    :param rules: New privacy rules
+    :type rules: :class:`UserPrivacySettingRules`
+    
     """
 
     ID: str = Field("updateUserPrivacySettingRules", alias="@type")
@@ -2111,13 +2025,12 @@ class UpdateUserStatus(Update):
     """
     The user went online or offline
     
-    Params:
-        user_id (:class:`int`)
-            User identifier
-        
-        status (:class:`UserStatus`)
-            New status of the user
-        
+    :param user_id: User identifier
+    :type user_id: :class:`int`
+    
+    :param status: New status of the user
+    :type status: :class:`UserStatus`
+    
     """
 
     ID: str = Field("updateUserStatus", alias="@type")
@@ -2133,10 +2046,9 @@ class UpdateUsersNearby(Update):
     """
     The list of users nearby has changed. The update is guaranteed to be sent only 60 seconds after a successful searchChatsNearby request
     
-    Params:
-        users_nearby (:obj:`list[ChatNearby]`)
-            The new list of users nearby
-        
+    :param users_nearby: The new list of users nearby
+    :type users_nearby: :class:`list[ChatNearby]`
+    
     """
 
     ID: str = Field("updateUsersNearby", alias="@type")

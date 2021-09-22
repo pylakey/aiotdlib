@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .input_file import InputFile
@@ -24,13 +26,12 @@ class InputChatPhotoAnimation(InputChatPhoto):
     """
     An animation in MPEG4 format; must be square, at most 10 seconds long, have width between 160 and 800 and be at most 2MB in size
     
-    Params:
-        animation (:class:`InputFile`)
-            Animation to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed
-        
-        main_frame_timestamp (:class:`float`)
-            Timestamp of the frame, which will be used as static chat photo
-        
+    :param animation: Animation to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed
+    :type animation: :class:`InputFile`
+    
+    :param main_frame_timestamp: Timestamp of the frame, which will be used as static chat photo
+    :type main_frame_timestamp: :class:`float`
+    
     """
 
     ID: str = Field("inputChatPhotoAnimation", alias="@type")
@@ -46,10 +47,9 @@ class InputChatPhotoPrevious(InputChatPhoto):
     """
     A previously used profile photo of the current user
     
-    Params:
-        chat_photo_id (:class:`int`)
-            Identifier of the current user's profile photo to reuse
-        
+    :param chat_photo_id: Identifier of the current user's profile photo to reuse
+    :type chat_photo_id: :class:`int`
+    
     """
 
     ID: str = Field("inputChatPhotoPrevious", alias="@type")
@@ -64,10 +64,9 @@ class InputChatPhotoStatic(InputChatPhoto):
     """
     A static photo in JPEG format
     
-    Params:
-        photo (:class:`InputFile`)
-            Photo to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed
-        
+    :param photo: Photo to be set as profile photo. Only inputFileLocal and inputFileGenerated are allowed
+    :type photo: :class:`InputFile`
+    
     """
 
     ID: str = Field("inputChatPhotoStatic", alias="@type")

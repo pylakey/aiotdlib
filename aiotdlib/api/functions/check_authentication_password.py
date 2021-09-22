@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class CheckAuthenticationPassword(BaseObject):
     """
     Checks the authentication password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
     
-    Params:
-        password (:class:`str`)
-            The password to check
-        
+    :param password: The password to check
+    :type password: :class:`str`
+    
     """
 
     ID: str = Field("checkAuthenticationPassword", alias="@type")

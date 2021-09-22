@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class DisconnectWebsite(BaseObject):
     """
     Disconnects website from the current user's Telegram account
     
-    Params:
-        website_id (:class:`int`)
-            Website identifier
-        
+    :param website_id: Website identifier
+    :type website_id: :class:`int`
+    
     """
 
     ID: str = Field("disconnectWebsite", alias="@type")

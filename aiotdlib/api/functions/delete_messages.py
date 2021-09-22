@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,16 +16,15 @@ class DeleteMessages(BaseObject):
     """
     Deletes messages
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        message_ids (:obj:`list[int]`)
-            Identifiers of the messages to be deleted
-        
-        revoke (:class:`bool`)
-            Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_ids: Identifiers of the messages to be deleted
+    :type message_ids: :class:`list[int]`
+    
+    :param revoke: Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
+    :type revoke: :class:`bool`
+    
     """
 
     ID: str = Field("deleteMessages", alias="@type")

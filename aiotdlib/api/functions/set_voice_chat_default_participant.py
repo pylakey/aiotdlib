@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import MessageSender
+from ..base_object import BaseObject
 
 
 class SetVoiceChatDefaultParticipant(BaseObject):
     """
     Changes default participant identifier, which can be used to join voice chats in a chat
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        default_participant_id (:class:`MessageSender`)
-            Default group call participant identifier to join the voice chats
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param default_participant_id: Default group call participant identifier to join the voice chats
+    :type default_participant_id: :class:`MessageSender`
+    
     """
 
     ID: str = Field("setVoiceChatDefaultParticipant", alias="@type")

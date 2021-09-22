@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import InputSticker
+from ..base_object import BaseObject
 
 
 class UploadStickerFile(BaseObject):
     """
     Uploads a PNG image with a sticker; returns the uploaded file
     
-    Params:
-        user_id (:class:`int`)
-            Sticker file owner; ignored for regular users
-        
-        sticker (:class:`InputSticker`)
-            Sticker file to upload
-        
+    :param user_id: Sticker file owner; ignored for regular users
+    :type user_id: :class:`int`
+    
+    :param sticker: Sticker file to upload
+    :type sticker: :class:`InputSticker`
+    
     """
 
     ID: str = Field("uploadStickerFile", alias="@type")

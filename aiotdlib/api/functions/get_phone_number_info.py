@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetPhoneNumberInfo(BaseObject):
     """
     Returns information about a phone number by its prefix. Can be called before authorization
     
-    Params:
-        phone_number_prefix (:class:`str`)
-            The phone number prefix
-        
+    :param phone_number_prefix: The phone number prefix
+    :type phone_number_prefix: :class:`str`
+    
     """
 
     ID: str = Field("getPhoneNumberInfo", alias="@type")

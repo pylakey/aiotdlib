@@ -17,16 +17,15 @@ class VoiceChat(BaseObject):
     """
     Describes a voice chat
     
-    Params:
-        group_call_id (:class:`int`)
-            Group call identifier of an active voice chat; 0 if none. Full informationa about the voice chat can be received through the method getGroupCall
-        
-        has_participants (:class:`bool`)
-            True, if the voice chat has participants
-        
-        default_participant_id (:class:`MessageSender`)
-            Default group call participant identifier to join the voice chat; may be null
-        
+    :param group_call_id: Group call identifier of an active voice chat; 0 if none. Full informationa about the voice chat can be received through the method getGroupCall
+    :type group_call_id: :class:`int`
+    
+    :param has_participants: True, if the voice chat has participants
+    :type has_participants: :class:`bool`
+    
+    :param default_participant_id: Default group call participant identifier to join the voice chat; may be null, defaults to None
+    :type default_participant_id: :class:`MessageSender`, optional
+    
     """
 
     ID: str = Field("voiceChat", alias="@type")

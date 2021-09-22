@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class ChatInviteLinkMember(BaseObject):
     """
     Describes a chat member joined a chat by an invite link
     
-    Params:
-        user_id (:class:`int`)
-            User identifier
-        
-        joined_chat_date (:class:`int`)
-            Point in time (Unix timestamp) when the user joined the chat
-        
+    :param user_id: User identifier
+    :type user_id: :class:`int`
+    
+    :param joined_chat_date: Point in time (Unix timestamp) when the user joined the chat
+    :type joined_chat_date: :class:`int`
+    
     """
 
     ID: str = Field("chatInviteLinkMember", alias="@type")

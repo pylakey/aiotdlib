@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class SearchBackground(BaseObject):
     """
     Searches for a background by its name
     
-    Params:
-        name (:class:`str`)
-            The name of the background
-        
+    :param name: The name of the background
+    :type name: :class:`str`
+    
     """
 
     ID: str = Field("searchBackground", alias="@type")

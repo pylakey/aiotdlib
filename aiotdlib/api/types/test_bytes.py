@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class TestBytes(BaseObject):
     """
     A simple object containing a sequence of bytes; for testing only
     
-    Params:
-        value (:class:`str`)
-            Bytes
-        
+    :param value: Bytes
+    :type value: :class:`str`
+    
     """
 
     ID: str = Field("testBytes", alias="@type")

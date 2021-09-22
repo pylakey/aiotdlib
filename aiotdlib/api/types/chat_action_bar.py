@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -49,13 +51,12 @@ class ChatActionBarReportAddBlock(ChatActionBar):
     """
     The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method toggleMessageSenderIsBlocked, or the other user can be added to the contact list using the method addContact
     
-    Params:
-        can_unarchive (:class:`bool`)
-            If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
-        
-        distance (:class:`int`)
-            If non-negative, the current user was found by the peer through searchChatsNearby and this is the distance between the users
-        
+    :param can_unarchive: If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
+    :type can_unarchive: :class:`bool`
+    
+    :param distance: If non-negative, the current user was found by the peer through searchChatsNearby and this is the distance between the users
+    :type distance: :class:`int`
+    
     """
 
     ID: str = Field("chatActionBarReportAddBlock", alias="@type")
@@ -71,10 +72,9 @@ class ChatActionBarReportSpam(ChatActionBar):
     """
     The chat can be reported as spam using the method reportChat with the reason chatReportReasonSpam
     
-    Params:
-        can_unarchive (:class:`bool`)
-            If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
-        
+    :param can_unarchive: If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
+    :type can_unarchive: :class:`bool`
+    
     """
 
     ID: str = Field("chatActionBarReportSpam", alias="@type")

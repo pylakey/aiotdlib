@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import ChatFilter
+from ..base_object import BaseObject
 
 
 class EditChatFilter(BaseObject):
     """
     Edits existing chat filter. Returns information about the edited chat filter
     
-    Params:
-        chat_filter_id (:class:`int`)
-            Chat filter identifier
-        
-        filter_ (:class:`ChatFilter`)
-            The edited chat filter
-        
+    :param chat_filter_id: Chat filter identifier
+    :type chat_filter_id: :class:`int`
+    
+    :param filter_: The edited chat filter
+    :type filter_: :class:`ChatFilter`
+    
     """
 
     ID: str = Field("editChatFilter", alias="@type")

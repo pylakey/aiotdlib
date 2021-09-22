@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import BackgroundType
+from ..base_object import BaseObject
 
 
 class GetBackgroundUrl(BaseObject):
     """
     Constructs a persistent HTTP URL for a background
     
-    Params:
-        name (:class:`str`)
-            Background name
-        
-        type_ (:class:`BackgroundType`)
-            Background type
-        
+    :param name: Background name
+    :type name: :class:`str`
+    
+    :param type_: Background type
+    :type type_: :class:`BackgroundType`
+    
     """
 
     ID: str = Field("getBackgroundUrl", alias="@type")

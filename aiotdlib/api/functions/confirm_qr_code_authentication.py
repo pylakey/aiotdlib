@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class ConfirmQrCodeAuthentication(BaseObject):
     """
     Confirms QR code authentication on another device. Returns created session on success
     
-    Params:
-        link (:class:`str`)
-            A link from a QR code. The link must be scanned by the in-app camera
-        
+    :param link: A link from a QR code. The link must be scanned by the in-app camera
+    :type link: :class:`str`
+    
     """
 
     ID: str = Field("confirmQrCodeAuthentication", alias="@type")

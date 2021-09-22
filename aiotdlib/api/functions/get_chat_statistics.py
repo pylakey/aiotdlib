@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class GetChatStatistics(BaseObject):
     """
     Returns detailed statistics about a chat. Currently this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        is_dark (:class:`bool`)
-            Pass true if a dark theme is used by the application
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param is_dark: Pass true if a dark theme is used by the application
+    :type is_dark: :class:`bool`
+    
     """
 
     ID: str = Field("getChatStatistics", alias="@type")

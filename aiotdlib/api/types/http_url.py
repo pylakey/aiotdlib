@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class HttpUrl(BaseObject):
     """
     Contains an HTTP URL
     
-    Params:
-        url (:class:`str`)
-            The URL
-        
+    :param url: The URL
+    :type url: :class:`str`
+    
     """
 
     ID: str = Field("httpUrl", alias="@type")

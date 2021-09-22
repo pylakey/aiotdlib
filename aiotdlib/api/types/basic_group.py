@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_member_status import ChatMemberStatus
@@ -15,22 +17,21 @@ class BasicGroup(BaseObject):
     """
     Represents a basic group of 0-200 users (must be upgraded to a supergroup to accommodate more than 200 users)
     
-    Params:
-        id (:class:`int`)
-            Group identifier
-        
-        member_count (:class:`int`)
-            Number of members in the group
-        
-        status (:class:`ChatMemberStatus`)
-            Status of the current user in the group
-        
-        is_active (:class:`bool`)
-            True, if the group is active
-        
-        upgraded_to_supergroup_id (:class:`int`)
-            Identifier of the supergroup to which this group was upgraded; 0 if none
-        
+    :param id: Group identifier
+    :type id: :class:`int`
+    
+    :param member_count: Number of members in the group
+    :type member_count: :class:`int`
+    
+    :param status: Status of the current user in the group
+    :type status: :class:`ChatMemberStatus`
+    
+    :param is_active: True, if the group is active
+    :type is_active: :class:`bool`
+    
+    :param upgraded_to_supergroup_id: Identifier of the supergroup to which this group was upgraded; 0 if none
+    :type upgraded_to_supergroup_id: :class:`int`
+    
     """
 
     ID: str = Field("basicGroup", alias="@type")

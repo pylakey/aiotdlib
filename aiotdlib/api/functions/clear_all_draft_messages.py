@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class ClearAllDraftMessages(BaseObject):
     """
     Clears draft messages in all chats
     
-    Params:
-        exclude_secret_chats (:class:`bool`)
-            If true, local draft messages in secret chats will not be cleared
-        
+    :param exclude_secret_chats: If true, local draft messages in secret chats will not be cleared
+    :type exclude_secret_chats: :class:`bool`
+    
     """
 
     ID: str = Field("clearAllDraftMessages", alias="@type")

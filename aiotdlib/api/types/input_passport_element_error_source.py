@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,13 +25,12 @@ class InputPassportElementErrorSourceDataField(InputPassportElementErrorSource):
     """
     A data field contains an error. The error is considered resolved when the field's value changes
     
-    Params:
-        field_name (:class:`str`)
-            Field name
-        
-        data_hash (:class:`str`)
-            Current data hash
-        
+    :param field_name: Field name
+    :type field_name: :class:`str`
+    
+    :param data_hash: Current data hash
+    :type data_hash: :class:`str`
+    
     """
 
     ID: str = Field("inputPassportElementErrorSourceDataField", alias="@type")
@@ -45,10 +46,9 @@ class InputPassportElementErrorSourceFile(InputPassportElementErrorSource):
     """
     The file contains an error. The error is considered resolved when the file changes
     
-    Params:
-        file_hash (:class:`str`)
-            Current hash of the file which has the error
-        
+    :param file_hash: Current hash of the file which has the error
+    :type file_hash: :class:`str`
+    
     """
 
     ID: str = Field("inputPassportElementErrorSourceFile", alias="@type")
@@ -63,10 +63,9 @@ class InputPassportElementErrorSourceFiles(InputPassportElementErrorSource):
     """
     The list of attached files contains an error. The error is considered resolved when the file list changes
     
-    Params:
-        file_hashes (:obj:`list[str]`)
-            Current hashes of all attached files
-        
+    :param file_hashes: Current hashes of all attached files
+    :type file_hashes: :class:`list[str]`
+    
     """
 
     ID: str = Field("inputPassportElementErrorSourceFiles", alias="@type")
@@ -81,10 +80,9 @@ class InputPassportElementErrorSourceFrontSide(InputPassportElementErrorSource):
     """
     The front side of the document contains an error. The error is considered resolved when the file with the front side of the document changes
     
-    Params:
-        file_hash (:class:`str`)
-            Current hash of the file containing the front side
-        
+    :param file_hash: Current hash of the file containing the front side
+    :type file_hash: :class:`str`
+    
     """
 
     ID: str = Field("inputPassportElementErrorSourceFrontSide", alias="@type")
@@ -99,10 +97,9 @@ class InputPassportElementErrorSourceReverseSide(InputPassportElementErrorSource
     """
     The reverse side of the document contains an error. The error is considered resolved when the file with the reverse side of the document changes
     
-    Params:
-        file_hash (:class:`str`)
-            Current hash of the file containing the reverse side
-        
+    :param file_hash: Current hash of the file containing the reverse side
+    :type file_hash: :class:`str`
+    
     """
 
     ID: str = Field("inputPassportElementErrorSourceReverseSide", alias="@type")
@@ -117,10 +114,9 @@ class InputPassportElementErrorSourceSelfie(InputPassportElementErrorSource):
     """
     The selfie contains an error. The error is considered resolved when the file with the selfie changes
     
-    Params:
-        file_hash (:class:`str`)
-            Current hash of the file containing the selfie
-        
+    :param file_hash: Current hash of the file containing the selfie
+    :type file_hash: :class:`str`
+    
     """
 
     ID: str = Field("inputPassportElementErrorSourceSelfie", alias="@type")
@@ -135,10 +131,9 @@ class InputPassportElementErrorSourceTranslationFile(InputPassportElementErrorSo
     """
     One of the files containing the translation of the document contains an error. The error is considered resolved when the file with the translation changes
     
-    Params:
-        file_hash (:class:`str`)
-            Current hash of the file containing the translation
-        
+    :param file_hash: Current hash of the file containing the translation
+    :type file_hash: :class:`str`
+    
     """
 
     ID: str = Field("inputPassportElementErrorSourceTranslationFile", alias="@type")
@@ -153,10 +148,9 @@ class InputPassportElementErrorSourceTranslationFiles(InputPassportElementErrorS
     """
     The translation of the document contains an error. The error is considered resolved when the list of files changes
     
-    Params:
-        file_hashes (:obj:`list[str]`)
-            Current hashes of all files with the translation
-        
+    :param file_hashes: Current hashes of all files with the translation
+    :type file_hashes: :class:`list[str]`
+    
     """
 
     ID: str = Field("inputPassportElementErrorSourceTranslationFiles", alias="@type")
@@ -171,10 +165,9 @@ class InputPassportElementErrorSourceUnspecified(InputPassportElementErrorSource
     """
     The element contains an error in an unspecified place. The error will be considered resolved when new data is added
     
-    Params:
-        element_hash (:class:`str`)
-            Current hash of the entire element
-        
+    :param element_hash: Current hash of the entire element
+    :type element_hash: :class:`str`
+    
     """
 
     ID: str = Field("inputPassportElementErrorSourceUnspecified", alias="@type")

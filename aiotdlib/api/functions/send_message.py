@@ -5,37 +5,38 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import InputMessageContent
 from ..types import MessageSendOptions
 from ..types import ReplyMarkup
+from ..base_object import BaseObject
 
 
 class SendMessage(BaseObject):
     """
     Sends a message. Returns the sent message
     
-    Params:
-        chat_id (:class:`int`)
-            Target chat
-        
-        message_thread_id (:class:`int`)
-            If not 0, a message thread identifier in which the message will be sent
-        
-        reply_to_message_id (:class:`int`)
-            Identifier of the message to reply to or 0
-        
-        options (:class:`MessageSendOptions`)
-            Options to be used to send the message
-        
-        reply_markup (:class:`ReplyMarkup`)
-            Markup for replying to the message; for bots only
-        
-        input_message_content (:class:`InputMessageContent`)
-            The content of the message to be sent
-        
+    :param chat_id: Target chat
+    :type chat_id: :class:`int`
+    
+    :param message_thread_id: If not 0, a message thread identifier in which the message will be sent
+    :type message_thread_id: :class:`int`
+    
+    :param reply_to_message_id: Identifier of the message to reply to or 0
+    :type reply_to_message_id: :class:`int`
+    
+    :param options: Options to be used to send the message
+    :type options: :class:`MessageSendOptions`
+    
+    :param reply_markup: Markup for replying to the message; for bots only
+    :type reply_markup: :class:`ReplyMarkup`
+    
+    :param input_message_content: The content of the message to be sent
+    :type input_message_content: :class:`InputMessageContent`
+    
     """
 
     ID: str = Field("sendMessage", alias="@type")

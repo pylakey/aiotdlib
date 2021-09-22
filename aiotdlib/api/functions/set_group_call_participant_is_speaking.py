@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,16 +16,15 @@ class SetGroupCallParticipantIsSpeaking(BaseObject):
     """
     Informs TDLib that speaking state of a participant of an active group has changed
     
-    Params:
-        group_call_id (:class:`int`)
-            Group call identifier
-        
-        audio_source (:class:`int`)
-            Group call participant's synchronization audio source identifier, or 0 for the current user
-        
-        is_speaking (:class:`bool`)
-            True, if the user is speaking
-        
+    :param group_call_id: Group call identifier
+    :type group_call_id: :class:`int`
+    
+    :param audio_source: Group call participant's synchronization audio source identifier, or 0 for the current user
+    :type audio_source: :class:`int`
+    
+    :param is_speaking: True, if the user is speaking
+    :type is_speaking: :class:`bool`
+    
     """
 
     ID: str = Field("setGroupCallParticipantIsSpeaking", alias="@type")

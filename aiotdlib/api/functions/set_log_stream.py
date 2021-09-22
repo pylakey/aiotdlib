@@ -5,20 +5,21 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import LogStream
+from ..base_object import BaseObject
 
 
 class SetLogStream(BaseObject):
     """
     Sets new log stream for internal logging of TDLib. Can be called synchronously
     
-    Params:
-        log_stream (:class:`LogStream`)
-            New log stream
-        
+    :param log_stream: New log stream
+    :type log_stream: :class:`LogStream`
+    
     """
 
     ID: str = Field("setLogStream", alias="@type")

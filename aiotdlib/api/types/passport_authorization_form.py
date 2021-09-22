@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .passport_required_element import PassportRequiredElement
@@ -15,16 +17,15 @@ class PassportAuthorizationForm(BaseObject):
     """
     Contains information about a Telegram Passport authorization form that was requested
     
-    Params:
-        id (:class:`int`)
-            Unique identifier of the authorization form
-        
-        required_elements (:obj:`list[PassportRequiredElement]`)
-            Information about the Telegram Passport elements that must be provided to complete the form
-        
-        privacy_policy_url (:class:`str`)
-            URL for the privacy policy of the service; may be empty
-        
+    :param id: Unique identifier of the authorization form
+    :type id: :class:`int`
+    
+    :param required_elements: Information about the Telegram Passport elements that must be provided to complete the form
+    :type required_elements: :class:`list[PassportRequiredElement]`
+    
+    :param privacy_policy_url: URL for the privacy policy of the service; may be empty
+    :type privacy_policy_url: :class:`str`
+    
     """
 
     ID: str = Field("passportAuthorizationForm", alias="@type")

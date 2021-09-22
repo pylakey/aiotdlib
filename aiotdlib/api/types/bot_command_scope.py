@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -62,10 +64,9 @@ class BotCommandScopeChat(BotCommandScope):
     """
     A scope covering all members of a chat
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
     """
 
     ID: str = Field("botCommandScopeChat", alias="@type")
@@ -80,10 +81,9 @@ class BotCommandScopeChatAdministrators(BotCommandScope):
     """
     A scope covering all administrators of a chat
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
     """
 
     ID: str = Field("botCommandScopeChatAdministrators", alias="@type")
@@ -98,13 +98,12 @@ class BotCommandScopeChatMember(BotCommandScope):
     """
     A scope covering a member of a chat
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        user_id (:class:`int`)
-            User identifier
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param user_id: User identifier
+    :type user_id: :class:`int`
+    
     """
 
     ID: str = Field("botCommandScopeChatMember", alias="@type")

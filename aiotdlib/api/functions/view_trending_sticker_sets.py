@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class ViewTrendingStickerSets(BaseObject):
     """
     Informs the server that some trending sticker sets have been viewed by the user
     
-    Params:
-        sticker_set_ids (:obj:`list[int]`)
-            Identifiers of viewed trending sticker sets
-        
+    :param sticker_set_ids: Identifiers of viewed trending sticker sets
+    :type sticker_set_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("viewTrendingStickerSets", alias="@type")

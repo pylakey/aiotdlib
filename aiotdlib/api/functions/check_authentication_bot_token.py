@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class CheckAuthenticationBotToken(BaseObject):
     """
     Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in
     
-    Params:
-        token (:class:`str`)
-            The bot token
-        
+    :param token: The bot token
+    :type token: :class:`str`
+    
     """
 
     ID: str = Field("checkAuthenticationBotToken", alias="@type")

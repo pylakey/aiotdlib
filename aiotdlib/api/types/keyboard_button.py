@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .keyboard_button_type import KeyboardButtonType
@@ -15,13 +17,12 @@ class KeyboardButton(BaseObject):
     """
     Represents a single button in a bot keyboard
     
-    Params:
-        text (:class:`str`)
-            Text of the button
-        
-        type_ (:class:`KeyboardButtonType`)
-            Type of the button
-        
+    :param text: Text of the button
+    :type text: :class:`str`
+    
+    :param type_: Type of the button
+    :type type_: :class:`KeyboardButtonType`
+    
     """
 
     ID: str = Field("keyboardButton", alias="@type")

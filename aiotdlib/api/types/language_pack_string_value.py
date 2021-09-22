@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -36,10 +38,9 @@ class LanguagePackStringValueOrdinary(LanguagePackStringValue):
     """
     An ordinary language pack string
     
-    Params:
-        value (:class:`str`)
-            String value
-        
+    :param value: String value
+    :type value: :class:`str`
+    
     """
 
     ID: str = Field("languagePackStringValueOrdinary", alias="@type")
@@ -54,25 +55,24 @@ class LanguagePackStringValuePluralized(LanguagePackStringValue):
     """
     A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info
     
-    Params:
-        zero_value (:class:`str`)
-            Value for zero objects
-        
-        one_value (:class:`str`)
-            Value for one object
-        
-        two_value (:class:`str`)
-            Value for two objects
-        
-        few_value (:class:`str`)
-            Value for few objects
-        
-        many_value (:class:`str`)
-            Value for many objects
-        
-        other_value (:class:`str`)
-            Default value
-        
+    :param zero_value: Value for zero objects
+    :type zero_value: :class:`str`
+    
+    :param one_value: Value for one object
+    :type one_value: :class:`str`
+    
+    :param two_value: Value for two objects
+    :type two_value: :class:`str`
+    
+    :param few_value: Value for few objects
+    :type few_value: :class:`str`
+    
+    :param many_value: Value for many objects
+    :type many_value: :class:`str`
+    
+    :param other_value: Default value
+    :type other_value: :class:`str`
+    
     """
 
     ID: str = Field("languagePackStringValuePluralized", alias="@type")

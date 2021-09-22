@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,22 +16,21 @@ class CallProtocol(BaseObject):
     """
     Specifies the supported call protocols
     
-    Params:
-        udp_p2p (:class:`bool`)
-            True, if UDP peer-to-peer connections are supported
-        
-        udp_reflector (:class:`bool`)
-            True, if connection through UDP reflectors is supported
-        
-        min_layer (:class:`int`)
-            The minimum supported API layer; use 65
-        
-        max_layer (:class:`int`)
-            The maximum supported API layer; use 65
-        
-        library_versions (:obj:`list[str]`)
-            List of supported tgcalls versions
-        
+    :param udp_p2p: True, if UDP peer-to-peer connections are supported
+    :type udp_p2p: :class:`bool`
+    
+    :param udp_reflector: True, if connection through UDP reflectors is supported
+    :type udp_reflector: :class:`bool`
+    
+    :param min_layer: The minimum supported API layer; use 65
+    :type min_layer: :class:`int`
+    
+    :param max_layer: The maximum supported API layer; use 65
+    :type max_layer: :class:`int`
+    
+    :param library_versions: List of supported tgcalls versions
+    :type library_versions: :class:`list[str]`
+    
     """
 
     ID: str = Field("callProtocol", alias="@type")

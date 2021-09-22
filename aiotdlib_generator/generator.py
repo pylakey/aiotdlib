@@ -29,7 +29,7 @@ class Generator:
     ):
         self.notice = notice
         self.destination = destination
-        self.jinja_env = Environment(loader=FileSystemLoader(f'{LIBRARY_ROOT_PATH}/generator/templates'))
+        self.jinja_env = Environment(loader=FileSystemLoader(f'{pathlib.Path(__file__).parent}/templates'))
 
     def __prepare_directories(self):
         types_dir = f"{self.destination}/types/"

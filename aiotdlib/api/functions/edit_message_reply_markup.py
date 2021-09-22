@@ -5,26 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import ReplyMarkup
+from ..base_object import BaseObject
 
 
 class EditMessageReplyMarkup(BaseObject):
     """
     Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
     
-    Params:
-        chat_id (:class:`int`)
-            The chat the message belongs to
-        
-        message_id (:class:`int`)
-            Identifier of the message
-        
-        reply_markup (:class:`ReplyMarkup`)
-            The new message reply markup
-        
+    :param chat_id: The chat the message belongs to
+    :type chat_id: :class:`int`
+    
+    :param message_id: Identifier of the message
+    :type message_id: :class:`int`
+    
+    :param reply_markup: The new message reply markup
+    :type reply_markup: :class:`ReplyMarkup`
+    
     """
 
     ID: str = Field("editMessageReplyMarkup", alias="@type")

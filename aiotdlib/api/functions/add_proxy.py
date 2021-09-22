@@ -5,29 +5,30 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import ProxyType
+from ..base_object import BaseObject
 
 
 class AddProxy(BaseObject):
     """
     Adds a proxy server for network requests. Can be called before authorization
     
-    Params:
-        server (:class:`str`)
-            Proxy server IP address
-        
-        port (:class:`int`)
-            Proxy server port
-        
-        enable (:class:`bool`)
-            True, if the proxy should be enabled
-        
-        type_ (:class:`ProxyType`)
-            Proxy type
-        
+    :param server: Proxy server IP address
+    :type server: :class:`str`
+    
+    :param port: Proxy server port
+    :type port: :class:`int`
+    
+    :param enable: True, if the proxy should be enabled
+    :type enable: :class:`bool`
+    
+    :param type_: Proxy type
+    :type type_: :class:`ProxyType`
+    
     """
 
     ID: str = Field("addProxy", alias="@type")

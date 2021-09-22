@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class SavedCredentials(BaseObject):
     """
     Contains information about saved card credentials
     
-    Params:
-        id (:class:`str`)
-            Unique identifier of the saved credentials
-        
-        title (:class:`str`)
-            Title of the saved credentials
-        
+    :param id: Unique identifier of the saved credentials
+    :type id: :class:`str`
+    
+    :param title: Title of the saved credentials
+    :type title: :class:`str`
+    
     """
 
     ID: str = Field("savedCredentials", alias="@type")

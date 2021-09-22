@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,46 +16,45 @@ class LanguagePackInfo(BaseObject):
     """
     Contains information about a language pack
     
-    Params:
-        id (:class:`str`)
-            Unique language pack identifier
-        
-        base_language_pack_id (:class:`str`)
-            Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it should be fetched from base language pack. Unsupported in custom language packs
-        
-        name (:class:`str`)
-            Language name
-        
-        native_name (:class:`str`)
-            Name of the language in that language
-        
-        plural_code (:class:`str`)
-            A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info
-        
-        is_official (:class:`bool`)
-            True, if the language pack is official
-        
-        is_rtl (:class:`bool`)
-            True, if the language pack strings are RTL
-        
-        is_beta (:class:`bool`)
-            True, if the language pack is a beta language pack
-        
-        is_installed (:class:`bool`)
-            True, if the language pack is installed by the current user
-        
-        total_string_count (:class:`int`)
-            Total number of non-deleted strings from the language pack
-        
-        translated_string_count (:class:`int`)
-            Total number of translated strings from the language pack
-        
-        local_string_count (:class:`int`)
-            Total number of non-deleted strings from the language pack available locally
-        
-        translation_url (:class:`str`)
-            Link to language translation interface; empty for custom local language packs
-        
+    :param id: Unique language pack identifier
+    :type id: :class:`str`
+    
+    :param base_language_pack_id: Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it should be fetched from base language pack. Unsupported in custom language packs
+    :type base_language_pack_id: :class:`str`
+    
+    :param name: Language name
+    :type name: :class:`str`
+    
+    :param native_name: Name of the language in that language
+    :type native_name: :class:`str`
+    
+    :param plural_code: A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info
+    :type plural_code: :class:`str`
+    
+    :param is_official: True, if the language pack is official
+    :type is_official: :class:`bool`
+    
+    :param is_rtl: True, if the language pack strings are RTL
+    :type is_rtl: :class:`bool`
+    
+    :param is_beta: True, if the language pack is a beta language pack
+    :type is_beta: :class:`bool`
+    
+    :param is_installed: True, if the language pack is installed by the current user
+    :type is_installed: :class:`bool`
+    
+    :param total_string_count: Total number of non-deleted strings from the language pack
+    :type total_string_count: :class:`int`
+    
+    :param translated_string_count: Total number of translated strings from the language pack
+    :type translated_string_count: :class:`int`
+    
+    :param local_string_count: Total number of non-deleted strings from the language pack available locally
+    :type local_string_count: :class:`int`
+    
+    :param translation_url: Link to language translation interface; empty for custom local language packs
+    :type translation_url: :class:`str`
+    
     """
 
     ID: str = Field("languagePackInfo", alias="@type")

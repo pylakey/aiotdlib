@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .notification_type import NotificationType
@@ -15,19 +17,18 @@ class Notification(BaseObject):
     """
     Contains information about a notification
     
-    Params:
-        id (:class:`int`)
-            Unique persistent identifier of this notification
-        
-        date (:class:`int`)
-            Notification date
-        
-        is_silent (:class:`bool`)
-            True, if the notification was initially silent
-        
-        type_ (:class:`NotificationType`)
-            Notification type
-        
+    :param id: Unique persistent identifier of this notification
+    :type id: :class:`int`
+    
+    :param date: Notification date
+    :type date: :class:`int`
+    
+    :param is_silent: True, if the notification was initially silent
+    :type is_silent: :class:`bool`
+    
+    :param type_: Notification type
+    :type type_: :class:`NotificationType`
+    
     """
 
     ID: str = Field("notification", alias="@type")

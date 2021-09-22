@@ -33,16 +33,15 @@ class PushMessageContentAnimation(PushMessageContent):
     """
     An animation message (GIF-style).
     
-    Params:
-        animation (:class:`Animation`)
-            Message content; may be null
-        
-        caption (:class:`str`)
-            Animation caption
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param animation: Message content; may be null, defaults to None
+    :type animation: :class:`Animation`, optional
+    
+    :param caption: Animation caption
+    :type caption: :class:`str`
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentAnimation", alias="@type")
@@ -59,13 +58,12 @@ class PushMessageContentAudio(PushMessageContent):
     """
     An audio message
     
-    Params:
-        audio (:class:`Audio`)
-            Message content; may be null
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param audio: Message content; may be null, defaults to None
+    :type audio: :class:`Audio`, optional
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentAudio", alias="@type")
@@ -94,16 +92,15 @@ class PushMessageContentChatAddMembers(PushMessageContent):
     """
     New chat members were invited to a group
     
-    Params:
-        member_name (:class:`str`)
-            Name of the added member
-        
-        is_current_user (:class:`bool`)
-            True, if the current user was added to the group
-        
-        is_returned (:class:`bool`)
-            True, if the user has returned to the group themselves
-        
+    :param member_name: Name of the added member
+    :type member_name: :class:`str`
+    
+    :param is_current_user: True, if the current user was added to the group
+    :type is_current_user: :class:`bool`
+    
+    :param is_returned: True, if the user has returned to the group themselves
+    :type is_returned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentChatAddMembers", alias="@type")
@@ -133,10 +130,9 @@ class PushMessageContentChatChangeTheme(PushMessageContent):
     """
     A chat theme was edited
     
-    Params:
-        theme_name (:class:`str`)
-            If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset to the default one
-        
+    :param theme_name: If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset to the default one
+    :type theme_name: :class:`str`
+    
     """
 
     ID: str = Field("pushMessageContentChatChangeTheme", alias="@type")
@@ -151,10 +147,9 @@ class PushMessageContentChatChangeTitle(PushMessageContent):
     """
     A chat title was edited
     
-    Params:
-        title (:class:`str`)
-            New chat title
-        
+    :param title: New chat title
+    :type title: :class:`str`
+    
     """
 
     ID: str = Field("pushMessageContentChatChangeTitle", alias="@type")
@@ -169,16 +164,15 @@ class PushMessageContentChatDeleteMember(PushMessageContent):
     """
     A chat member was deleted
     
-    Params:
-        member_name (:class:`str`)
-            Name of the deleted member
-        
-        is_current_user (:class:`bool`)
-            True, if the current user was deleted from the group
-        
-        is_left (:class:`bool`)
-            True, if the user has left the group themselves
-        
+    :param member_name: Name of the deleted member
+    :type member_name: :class:`str`
+    
+    :param is_current_user: True, if the current user was deleted from the group
+    :type is_current_user: :class:`bool`
+    
+    :param is_left: True, if the user has left the group themselves
+    :type is_left: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentChatDeleteMember", alias="@type")
@@ -208,13 +202,12 @@ class PushMessageContentContact(PushMessageContent):
     """
     A message with a user contact
     
-    Params:
-        name (:class:`str`)
-            Contact's name
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param name: Contact's name
+    :type name: :class:`str`
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentContact", alias="@type")
@@ -243,13 +236,12 @@ class PushMessageContentDocument(PushMessageContent):
     """
     A document message (a general file)
     
-    Params:
-        document (:class:`Document`)
-            Message content; may be null
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param document: Message content; may be null, defaults to None
+    :type document: :class:`Document`, optional
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentDocument", alias="@type")
@@ -265,13 +257,12 @@ class PushMessageContentGame(PushMessageContent):
     """
     A message with a game
     
-    Params:
-        title (:class:`str`)
-            Game title, empty for pinned game message
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param title: Game title, empty for pinned game message
+    :type title: :class:`str`
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentGame", alias="@type")
@@ -287,16 +278,15 @@ class PushMessageContentGameScore(PushMessageContent):
     """
     A new high score was achieved in a game
     
-    Params:
-        title (:class:`str`)
-            Game title, empty for pinned message
-        
-        score (:class:`int`)
-            New score, 0 for pinned message
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param title: Game title, empty for pinned message
+    :type title: :class:`str`
+    
+    :param score: New score, 0 for pinned message
+    :type score: :class:`int`
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentGameScore", alias="@type")
@@ -313,10 +303,9 @@ class PushMessageContentHidden(PushMessageContent):
     """
     A general message with hidden content
     
-    Params:
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentHidden", alias="@type")
@@ -331,13 +320,12 @@ class PushMessageContentInvoice(PushMessageContent):
     """
     A message with an invoice from a bot
     
-    Params:
-        price (:class:`str`)
-            Product price
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param price: Product price
+    :type price: :class:`str`
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentInvoice", alias="@type")
@@ -353,13 +341,12 @@ class PushMessageContentLocation(PushMessageContent):
     """
     A message with a location
     
-    Params:
-        is_live (:class:`bool`)
-            True, if the location is live
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param is_live: True, if the location is live
+    :type is_live: :class:`bool`
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentLocation", alias="@type")
@@ -375,22 +362,21 @@ class PushMessageContentMediaAlbum(PushMessageContent):
     """
     A media album
     
-    Params:
-        total_count (:class:`int`)
-            Number of messages in the album
-        
-        has_photos (:class:`bool`)
-            True, if the album has at least one photo
-        
-        has_videos (:class:`bool`)
-            True, if the album has at least one video
-        
-        has_audios (:class:`bool`)
-            True, if the album has at least one audio file
-        
-        has_documents (:class:`bool`)
-            True, if the album has at least one document
-        
+    :param total_count: Number of messages in the album
+    :type total_count: :class:`int`
+    
+    :param has_photos: True, if the album has at least one photo
+    :type has_photos: :class:`bool`
+    
+    :param has_videos: True, if the album has at least one video
+    :type has_videos: :class:`bool`
+    
+    :param has_audios: True, if the album has at least one audio file
+    :type has_audios: :class:`bool`
+    
+    :param has_documents: True, if the album has at least one document
+    :type has_documents: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentMediaAlbum", alias="@type")
@@ -409,10 +395,9 @@ class PushMessageContentMessageForwards(PushMessageContent):
     """
     A forwarded messages
     
-    Params:
-        total_count (:class:`int`)
-            Number of forwarded messages
-        
+    :param total_count: Number of forwarded messages
+    :type total_count: :class:`int`
+    
     """
 
     ID: str = Field("pushMessageContentMessageForwards", alias="@type")
@@ -427,19 +412,18 @@ class PushMessageContentPhoto(PushMessageContent):
     """
     A photo message
     
-    Params:
-        photo (:class:`Photo`)
-            Message content; may be null
-        
-        caption (:class:`str`)
-            Photo caption
-        
-        is_secret (:class:`bool`)
-            True, if the photo is secret
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param photo: Message content; may be null, defaults to None
+    :type photo: :class:`Photo`, optional
+    
+    :param caption: Photo caption
+    :type caption: :class:`str`
+    
+    :param is_secret: True, if the photo is secret
+    :type is_secret: :class:`bool`
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentPhoto", alias="@type")
@@ -457,16 +441,15 @@ class PushMessageContentPoll(PushMessageContent):
     """
     A message with a poll
     
-    Params:
-        question (:class:`str`)
-            Poll question
-        
-        is_regular (:class:`bool`)
-            True, if the poll is regular and not in quiz mode
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param question: Poll question
+    :type question: :class:`str`
+    
+    :param is_regular: True, if the poll is regular and not in quiz mode
+    :type is_regular: :class:`bool`
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentPoll", alias="@type")
@@ -496,16 +479,15 @@ class PushMessageContentSticker(PushMessageContent):
     """
     A message with a sticker
     
-    Params:
-        sticker (:class:`Sticker`)
-            Message content; may be null
-        
-        emoji (:class:`str`)
-            Emoji corresponding to the sticker; may be empty
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param sticker: Message content; may be null, defaults to None
+    :type sticker: :class:`Sticker`, optional
+    
+    :param emoji: Emoji corresponding to the sticker; may be empty
+    :type emoji: :class:`str`
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentSticker", alias="@type")
@@ -522,13 +504,12 @@ class PushMessageContentText(PushMessageContent):
     """
     A text message
     
-    Params:
-        text (:class:`str`)
-            Message text
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param text: Message text
+    :type text: :class:`str`
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentText", alias="@type")
@@ -544,19 +525,18 @@ class PushMessageContentVideo(PushMessageContent):
     """
     A video message
     
-    Params:
-        video (:class:`Video`)
-            Message content; may be null
-        
-        caption (:class:`str`)
-            Video caption
-        
-        is_secret (:class:`bool`)
-            True, if the video is secret
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param video: Message content; may be null, defaults to None
+    :type video: :class:`Video`, optional
+    
+    :param caption: Video caption
+    :type caption: :class:`str`
+    
+    :param is_secret: True, if the video is secret
+    :type is_secret: :class:`bool`
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentVideo", alias="@type")
@@ -574,13 +554,12 @@ class PushMessageContentVideoNote(PushMessageContent):
     """
     A video note message
     
-    Params:
-        video_note (:class:`VideoNote`)
-            Message content; may be null
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param video_note: Message content; may be null, defaults to None
+    :type video_note: :class:`VideoNote`, optional
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentVideoNote", alias="@type")
@@ -596,13 +575,12 @@ class PushMessageContentVoiceNote(PushMessageContent):
     """
     A voice note message
     
-    Params:
-        voice_note (:class:`VoiceNote`)
-            Message content; may be null
-        
-        is_pinned (:class:`bool`)
-            True, if the message is a pinned message with the specified content
-        
+    :param voice_note: Message content; may be null, defaults to None
+    :type voice_note: :class:`VoiceNote`, optional
+    
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`bool`
+    
     """
 
     ID: str = Field("pushMessageContentVoiceNote", alias="@type")

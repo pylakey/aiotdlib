@@ -20,70 +20,69 @@ class SupergroupFullInfo(BaseObject):
     """
     Contains full information about a supergroup or channel
     
-    Params:
-        photo (:class:`ChatPhoto`)
-            Chat photo; may be null
-        
-        param_description (:class:`str`)
-            Supergroup or channel description
-        
-        member_count (:class:`int`)
-            Number of members in the supergroup or channel; 0 if unknown
-        
-        administrator_count (:class:`int`)
-            Number of privileged users in the supergroup or channel; 0 if unknown
-        
-        restricted_count (:class:`int`)
-            Number of restricted users in the supergroup; 0 if unknown
-        
-        banned_count (:class:`int`)
-            Number of users banned from chat; 0 if unknown
-        
-        linked_chat_id (:class:`int`)
-            Chat identifier of a discussion group for the channel, or a channel, for which the supergroup is the designated discussion group; 0 if none or unknown
-        
-        slow_mode_delay (:class:`int`)
-            Delay between consecutive sent messages for non-administrator supergroup members, in seconds
-        
-        slow_mode_delay_expires_in (:class:`float`)
-            Time left before next message can be sent in the supergroup, in seconds. An updateSupergroupFullInfo update is not triggered when value of this field changes, but both new and old values are non-zero
-        
-        can_get_members (:class:`bool`)
-            True, if members of the chat can be retrieved
-        
-        can_set_username (:class:`bool`)
-            True, if the chat username can be changed
-        
-        can_set_sticker_set (:class:`bool`)
-            True, if the supergroup sticker set can be changed
-        
-        can_set_location (:class:`bool`)
-            True, if the supergroup location can be changed
-        
-        can_get_statistics (:class:`bool`)
-            True, if the supergroup or channel statistics are available
-        
-        is_all_history_available (:class:`bool`)
-            True, if new chat members will have access to old messages. In public or discussion groups and both public and private channels, old messages are always available, so this option affects only private supergroups without a linked chat. The value of this field is only available for chat administrators
-        
-        sticker_set_id (:class:`int`)
-            Identifier of the supergroup sticker set; 0 if none
-        
-        location (:class:`ChatLocation`)
-            Location to which the supergroup is connected; may be null
-        
-        invite_link (:class:`ChatInviteLink`)
-            Primary invite link for this chat; may be null. For chat administrators with can_invite_users right only
-        
-        bot_commands (:obj:`list[BotCommands]`)
-            List of commands of bots in the group
-        
-        upgraded_from_basic_group_id (:class:`int`)
-            Identifier of the basic group from which supergroup was upgraded; 0 if none
-        
-        upgraded_from_max_message_id (:class:`int`)
-            Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none
-        
+    :param photo: Chat photo; may be null, defaults to None
+    :type photo: :class:`ChatPhoto`, optional
+    
+    :param param_description: Supergroup or channel description
+    :type param_description: :class:`str`
+    
+    :param member_count: Number of members in the supergroup or channel; 0 if unknown
+    :type member_count: :class:`int`
+    
+    :param administrator_count: Number of privileged users in the supergroup or channel; 0 if unknown
+    :type administrator_count: :class:`int`
+    
+    :param restricted_count: Number of restricted users in the supergroup; 0 if unknown
+    :type restricted_count: :class:`int`
+    
+    :param banned_count: Number of users banned from chat; 0 if unknown
+    :type banned_count: :class:`int`
+    
+    :param linked_chat_id: Chat identifier of a discussion group for the channel, or a channel, for which the supergroup is the designated discussion group; 0 if none or unknown
+    :type linked_chat_id: :class:`int`
+    
+    :param slow_mode_delay: Delay between consecutive sent messages for non-administrator supergroup members, in seconds
+    :type slow_mode_delay: :class:`int`
+    
+    :param slow_mode_delay_expires_in: Time left before next message can be sent in the supergroup, in seconds. An updateSupergroupFullInfo update is not triggered when value of this field changes, but both new and old values are non-zero
+    :type slow_mode_delay_expires_in: :class:`float`
+    
+    :param can_get_members: True, if members of the chat can be retrieved
+    :type can_get_members: :class:`bool`
+    
+    :param can_set_username: True, if the chat username can be changed
+    :type can_set_username: :class:`bool`
+    
+    :param can_set_sticker_set: True, if the supergroup sticker set can be changed
+    :type can_set_sticker_set: :class:`bool`
+    
+    :param can_set_location: True, if the supergroup location can be changed
+    :type can_set_location: :class:`bool`
+    
+    :param can_get_statistics: True, if the supergroup or channel statistics are available
+    :type can_get_statistics: :class:`bool`
+    
+    :param is_all_history_available: True, if new chat members will have access to old messages. In public or discussion groups and both public and private channels, old messages are always available, so this option affects only private supergroups without a linked chat. The value of this field is only available for chat administrators
+    :type is_all_history_available: :class:`bool`
+    
+    :param sticker_set_id: Identifier of the supergroup sticker set; 0 if none
+    :type sticker_set_id: :class:`int`
+    
+    :param location: Location to which the supergroup is connected; may be null, defaults to None
+    :type location: :class:`ChatLocation`, optional
+    
+    :param invite_link: Primary invite link for this chat; may be null. For chat administrators with can_invite_users right only, defaults to None
+    :type invite_link: :class:`ChatInviteLink`, optional
+    
+    :param bot_commands: List of commands of bots in the group
+    :type bot_commands: :class:`list[BotCommands]`
+    
+    :param upgraded_from_basic_group_id: Identifier of the basic group from which supergroup was upgraded; 0 if none
+    :type upgraded_from_basic_group_id: :class:`int`
+    
+    :param upgraded_from_max_message_id: Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none
+    :type upgraded_from_max_message_id: :class:`int`
+    
     """
 
     ID: str = Field("supergroupFullInfo", alias="@type")

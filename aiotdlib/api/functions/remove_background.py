@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class RemoveBackground(BaseObject):
     """
     Removes background from the list of installed backgrounds
     
-    Params:
-        background_id (:class:`int`)
-            The background identifier
-        
+    :param background_id: The background identifier
+    :type background_id: :class:`int`
+    
     """
 
     ID: str = Field("removeBackground", alias="@type")

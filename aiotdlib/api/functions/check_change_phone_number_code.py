@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class CheckChangePhoneNumberCode(BaseObject):
     """
     Checks the authentication code sent to confirm a new phone number of the user
     
-    Params:
-        code (:class:`str`)
-            Verification code received by SMS, phone call or flash call
-        
+    :param code: Verification code received by SMS, phone call or flash call
+    :type code: :class:`str`
+    
     """
 
     ID: str = Field("checkChangePhoneNumberCode", alias="@type")

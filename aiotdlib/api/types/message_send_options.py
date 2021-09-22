@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .message_scheduling_state import MessageSchedulingState
@@ -15,16 +17,15 @@ class MessageSendOptions(BaseObject):
     """
     Options to be used when a message is sent
     
-    Params:
-        disable_notification (:class:`bool`)
-            Pass true to disable notification for the message
-        
-        from_background (:class:`bool`)
-            Pass true if the message is sent from the background
-        
-        scheduling_state (:class:`MessageSchedulingState`)
-            Message scheduling state. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled
-        
+    :param disable_notification: Pass true to disable notification for the message
+    :type disable_notification: :class:`bool`
+    
+    :param from_background: Pass true if the message is sent from the background
+    :type from_background: :class:`bool`
+    
+    :param scheduling_state: Message scheduling state. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled
+    :type scheduling_state: :class:`MessageSchedulingState`
+    
     """
 
     ID: str = Field("messageSendOptions", alias="@type")

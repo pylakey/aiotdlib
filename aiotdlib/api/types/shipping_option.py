@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .labeled_price_part import LabeledPricePart
@@ -15,16 +17,15 @@ class ShippingOption(BaseObject):
     """
     One shipping option
     
-    Params:
-        id (:class:`str`)
-            Shipping option identifier
-        
-        title (:class:`str`)
-            Option title
-        
-        price_parts (:obj:`list[LabeledPricePart]`)
-            A list of objects used to calculate the total shipping costs
-        
+    :param id: Shipping option identifier
+    :type id: :class:`str`
+    
+    :param title: Option title
+    :type title: :class:`str`
+    
+    :param price_parts: A list of objects used to calculate the total shipping costs
+    :type price_parts: :class:`list[LabeledPricePart]`
+    
     """
 
     ID: str = Field("shippingOption", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class ToggleGroupCallScreenSharingIsPaused(BaseObject):
     """
     Pauses or unpauses screen sharing in a joined group call
     
-    Params:
-        group_call_id (:class:`int`)
-            Group call identifier
-        
-        is_paused (:class:`bool`)
-            True if screen sharing is paused
-        
+    :param group_call_id: Group call identifier
+    :type group_call_id: :class:`int`
+    
+    :param is_paused: True if screen sharing is paused
+    :type is_paused: :class:`bool`
+    
     """
 
     ID: str = Field("toggleGroupCallScreenSharingIsPaused", alias="@type")

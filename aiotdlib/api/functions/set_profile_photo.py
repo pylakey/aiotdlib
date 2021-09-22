@@ -5,20 +5,21 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import InputChatPhoto
+from ..base_object import BaseObject
 
 
 class SetProfilePhoto(BaseObject):
     """
     Changes a profile photo for the current user
     
-    Params:
-        photo (:class:`InputChatPhoto`)
-            Profile photo to set
-        
+    :param photo: Profile photo to set
+    :type photo: :class:`InputChatPhoto`
+    
     """
 
     ID: str = Field("setProfilePhoto", alias="@type")

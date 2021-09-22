@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .file import File
@@ -15,16 +17,15 @@ class AnimatedChatPhoto(BaseObject):
     """
     Animated variant of a chat photo in MPEG4 format
     
-    Params:
-        length (:class:`int`)
-            Animation width and height
-        
-        file (:class:`File`)
-            Information about the animation file
-        
-        main_frame_timestamp (:class:`float`)
-            Timestamp of the frame, used as a static chat photo
-        
+    :param length: Animation width and height
+    :type length: :class:`int`
+    
+    :param file: Information about the animation file
+    :type file: :class:`File`
+    
+    :param main_frame_timestamp: Timestamp of the frame, used as a static chat photo
+    :type main_frame_timestamp: :class:`float`
+    
     """
 
     ID: str = Field("animatedChatPhoto", alias="@type")

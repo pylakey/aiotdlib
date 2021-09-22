@@ -5,20 +5,21 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import InputFile
+from ..base_object import BaseObject
 
 
 class RemoveSavedAnimation(BaseObject):
     """
     Removes an animation from the list of saved animations
     
-    Params:
-        animation (:class:`InputFile`)
-            Animation file to be removed
-        
+    :param animation: Animation file to be removed
+    :type animation: :class:`InputFile`
+    
     """
 
     ID: str = Field("removeSavedAnimation", alias="@type")

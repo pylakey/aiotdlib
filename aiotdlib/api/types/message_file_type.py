@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,10 +25,9 @@ class MessageFileTypeGroup(MessageFileType):
     """
     The messages was exported from a group chat
     
-    Params:
-        title (:class:`str`)
-            Title of the group chat; may be empty if unrecognized
-        
+    :param title: Title of the group chat; may be empty if unrecognized
+    :type title: :class:`str`
+    
     """
 
     ID: str = Field("messageFileTypeGroup", alias="@type")
@@ -41,10 +42,9 @@ class MessageFileTypePrivate(MessageFileType):
     """
     The messages was exported from a private chat
     
-    Params:
-        name (:class:`str`)
-            Name of the other party; may be empty if unrecognized
-        
+    :param name: Name of the other party; may be empty if unrecognized
+    :type name: :class:`str`
+    
     """
 
     ID: str = Field("messageFileTypePrivate", alias="@type")

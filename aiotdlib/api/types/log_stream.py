@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -49,16 +51,15 @@ class LogStreamFile(LogStream):
     """
     The log is written to a file
     
-    Params:
-        path (:class:`str`)
-            Path to the file to where the internal TDLib log will be written
-        
-        max_file_size (:class:`int`)
-            The maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated, in bytes
-        
-        redirect_stderr (:class:`bool`)
-            Pass true to additionally redirect stderr to the log file. Ignored on Windows
-        
+    :param path: Path to the file to where the internal TDLib log will be written
+    :type path: :class:`str`
+    
+    :param max_file_size: The maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated, in bytes
+    :type max_file_size: :class:`int`
+    
+    :param redirect_stderr: Pass true to additionally redirect stderr to the log file. Ignored on Windows
+    :type redirect_stderr: :class:`bool`
+    
     """
 
     ID: str = Field("logStreamFile", alias="@type")

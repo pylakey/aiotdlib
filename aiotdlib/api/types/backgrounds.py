@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .background import Background
@@ -15,10 +17,9 @@ class Backgrounds(BaseObject):
     """
     Contains a list of backgrounds
     
-    Params:
-        backgrounds (:obj:`list[Background]`)
-            A list of backgrounds
-        
+    :param backgrounds: A list of backgrounds
+    :type backgrounds: :class:`list[Background]`
+    
     """
 
     ID: str = Field("backgrounds", alias="@type")

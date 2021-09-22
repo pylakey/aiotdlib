@@ -5,20 +5,21 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import PublicChatType
+from ..base_object import BaseObject
 
 
 class CheckCreatedPublicChatsLimit(BaseObject):
     """
     Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached
     
-    Params:
-        type_ (:class:`PublicChatType`)
-            Type of the public chats, for which to check the limit
-        
+    :param type_: Type of the public chats, for which to check the limit
+    :type type_: :class:`PublicChatType`
+    
     """
 
     ID: str = Field("checkCreatedPublicChatsLimit", alias="@type")

@@ -19,25 +19,24 @@ class PageBlockTableCell(BaseObject):
     """
     Represents a cell of a table
     
-    Params:
-        text (:class:`RichText`)
-            Cell text; may be null. If the text is null, then the cell should be invisible
-        
-        is_header (:class:`bool`)
-            True, if it is a header cell
-        
-        colspan (:class:`int`)
-            The number of columns the cell should span
-        
-        rowspan (:class:`int`)
-            The number of rows the cell should span
-        
-        align (:class:`PageBlockHorizontalAlignment`)
-            Horizontal cell content alignment
-        
-        valign (:class:`PageBlockVerticalAlignment`)
-            Vertical cell content alignment
-        
+    :param text: Cell text; may be null. If the text is null, then the cell should be invisible, defaults to None
+    :type text: :class:`RichText`, optional
+    
+    :param is_header: True, if it is a header cell
+    :type is_header: :class:`bool`
+    
+    :param colspan: The number of columns the cell should span
+    :type colspan: :class:`int`
+    
+    :param rowspan: The number of rows the cell should span
+    :type rowspan: :class:`int`
+    
+    :param align: Horizontal cell content alignment
+    :type align: :class:`PageBlockHorizontalAlignment`
+    
+    :param valign: Vertical cell content alignment
+    :type valign: :class:`PageBlockVerticalAlignment`
+    
     """
 
     ID: str = Field("pageBlockTableCell", alias="@type")

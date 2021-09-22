@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .message_content import MessageContent
@@ -15,19 +17,18 @@ class SponsoredMessage(BaseObject):
     """
     Describes a sponsored message
     
-    Params:
-        id (:class:`int`)
-            Unique sponsored message identifier
-        
-        sponsor_chat_id (:class:`int`)
-            Chat identifier
-        
-        start_parameter (:class:`str`)
-            Parameter for the bot start message if the sponsored chat is a chat with a bot
-        
-        content (:class:`MessageContent`)
-            Content of the message
-        
+    :param id: Unique sponsored message identifier
+    :type id: :class:`int`
+    
+    :param sponsor_chat_id: Chat identifier
+    :type sponsor_chat_id: :class:`int`
+    
+    :param start_parameter: Parameter for the bot start message if the sponsored chat is a chat with a bot
+    :type start_parameter: :class:`str`
+    
+    :param content: Content of the message
+    :type content: :class:`MessageContent`
+    
     """
 
     ID: str = Field("sponsoredMessage", alias="@type")

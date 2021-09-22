@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetBankCardInfo(BaseObject):
     """
     Returns information about a bank card
     
-    Params:
-        bank_card_number (:class:`str`)
-            The bank card number
-        
+    :param bank_card_number: The bank card number
+    :type bank_card_number: :class:`str`
+    
     """
 
     ID: str = Field("getBankCardInfo", alias="@type")

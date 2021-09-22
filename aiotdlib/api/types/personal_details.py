@@ -17,37 +17,36 @@ class PersonalDetails(BaseObject):
     """
     Contains the user's personal details
     
-    Params:
-        first_name (:class:`str`)
-            First name of the user written in English; 1-255 characters
-        
-        middle_name (:class:`str`)
-            Middle name of the user written in English; 0-255 characters
-        
-        last_name (:class:`str`)
-            Last name of the user written in English; 1-255 characters
-        
-        native_first_name (:class:`str`)
-            Native first name of the user; 1-255 characters
-        
-        native_middle_name (:class:`str`)
-            Native middle name of the user; 0-255 characters
-        
-        native_last_name (:class:`str`)
-            Native last name of the user; 1-255 characters
-        
-        birthdate (:class:`Date`)
-            Birthdate of the user
-        
-        gender (:class:`str`)
-            Gender of the user, "male" or "female"
-        
-        country_code (:class:`str`)
-            A two-letter ISO 3166-1 alpha-2 country code of the user's country
-        
-        residence_country_code (:class:`str`)
-            A two-letter ISO 3166-1 alpha-2 country code of the user's residence country
-        
+    :param first_name: First name of the user written in English; 1-255 characters
+    :type first_name: :class:`str`
+    
+    :param middle_name: Middle name of the user written in English; 0-255 characters, defaults to None
+    :type middle_name: :class:`str`, optional
+    
+    :param last_name: Last name of the user written in English; 1-255 characters
+    :type last_name: :class:`str`
+    
+    :param native_first_name: Native first name of the user; 1-255 characters
+    :type native_first_name: :class:`str`
+    
+    :param native_middle_name: Native middle name of the user; 0-255 characters, defaults to None
+    :type native_middle_name: :class:`str`, optional
+    
+    :param native_last_name: Native last name of the user; 1-255 characters
+    :type native_last_name: :class:`str`
+    
+    :param birthdate: Birthdate of the user
+    :type birthdate: :class:`Date`
+    
+    :param gender: Gender of the user, "male" or "female"
+    :type gender: :class:`str`
+    
+    :param country_code: A two-letter ISO 3166-1 alpha-2 country code of the user's country
+    :type country_code: :class:`str`
+    
+    :param residence_country_code: A two-letter ISO 3166-1 alpha-2 country code of the user's residence country
+    :type residence_country_code: :class:`str`
+    
     """
 
     ID: str = Field("personalDetails", alias="@type")

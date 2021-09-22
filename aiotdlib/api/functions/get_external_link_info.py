@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetExternalLinkInfo(BaseObject):
     """
     Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats
     
-    Params:
-        link (:class:`str`)
-            The link
-        
+    :param link: The link
+    :type link: :class:`str`
+    
     """
 
     ID: str = Field("getExternalLinkInfo", alias="@type")

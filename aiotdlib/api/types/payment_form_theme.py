@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,25 +16,24 @@ class PaymentFormTheme(BaseObject):
     """
     Theme colors for a payment form
     
-    Params:
-        background_color (:class:`int`)
-            A color of the payment form background in the RGB24 format
-        
-        text_color (:class:`int`)
-            A color of text in the RGB24 format
-        
-        hint_color (:class:`int`)
-            A color of hints in the RGB24 format
-        
-        link_color (:class:`int`)
-            A color of links in the RGB24 format
-        
-        button_color (:class:`int`)
-            A color of thebuttons in the RGB24 format
-        
-        button_text_color (:class:`int`)
-            A color of text on the buttons in the RGB24 format
-        
+    :param background_color: A color of the payment form background in the RGB24 format
+    :type background_color: :class:`int`
+    
+    :param text_color: A color of text in the RGB24 format
+    :type text_color: :class:`int`
+    
+    :param hint_color: A color of hints in the RGB24 format
+    :type hint_color: :class:`int`
+    
+    :param link_color: A color of links in the RGB24 format
+    :type link_color: :class:`int`
+    
+    :param button_color: A color of thebuttons in the RGB24 format
+    :type button_color: :class:`int`
+    
+    :param button_text_color: A color of text on the buttons in the RGB24 format
+    :type button_text_color: :class:`int`
+    
     """
 
     ID: str = Field("paymentFormTheme", alias="@type")

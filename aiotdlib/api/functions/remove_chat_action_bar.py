@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class RemoveChatActionBar(BaseObject):
     """
     Removes a chat action bar without any other action
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
     """
 
     ID: str = Field("removeChatActionBar", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetMessageFileType(BaseObject):
     """
     Returns information about a file with messages exported from another app
     
-    Params:
-        message_file_head (:class:`str`)
-            Beginning of the message file; up to 100 first lines
-        
+    :param message_file_head: Beginning of the message file; up to 100 first lines
+    :type message_file_head: :class:`str`
+    
     """
 
     ID: str = Field("getMessageFileType", alias="@type")

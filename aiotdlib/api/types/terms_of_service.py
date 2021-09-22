@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .formatted_text import FormattedText
@@ -15,16 +17,15 @@ class TermsOfService(BaseObject):
     """
     Contains Telegram terms of service
     
-    Params:
-        text (:class:`FormattedText`)
-            Text of the terms of service
-        
-        min_user_age (:class:`int`)
-            The minimum age of a user to be able to accept the terms; 0 if any
-        
-        show_popup (:class:`bool`)
-            True, if a blocking popup with terms of service must be shown to the user
-        
+    :param text: Text of the terms of service
+    :type text: :class:`FormattedText`
+    
+    :param min_user_age: The minimum age of a user to be able to accept the terms; 0 if any
+    :type min_user_age: :class:`int`
+    
+    :param show_popup: True, if a blocking popup with terms of service must be shown to the user
+    :type show_popup: :class:`bool`
+    
     """
 
     ID: str = Field("termsOfService", alias="@type")

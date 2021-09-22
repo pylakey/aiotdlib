@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,10 +25,9 @@ class MessageSchedulingStateSendAtDate(MessageSchedulingState):
     """
     The message will be sent at the specified date
     
-    Params:
-        send_date (:class:`int`)
-            Date the message will be sent. The date must be within 367 days in the future
-        
+    :param send_date: Date the message will be sent. The date must be within 367 days in the future
+    :type send_date: :class:`int`
+    
     """
 
     ID: str = Field("messageSchedulingStateSendAtDate", alias="@type")

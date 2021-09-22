@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class AddCustomServerLanguagePack(BaseObject):
     """
     Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
     
-    Params:
-        language_pack_id (:class:`str`)
-            Identifier of a language pack to be added; may be different from a name that is used in an "https://t.me/setlanguage/" link
-        
+    :param language_pack_id: Identifier of a language pack to be added; may be different from a name that is used in an "https://t.me/setlanguage/" link
+    :type language_pack_id: :class:`str`
+    
     """
 
     ID: str = Field("addCustomServerLanguagePack", alias="@type")

@@ -5,24 +5,25 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import UserPrivacySetting
 from ..types import UserPrivacySettingRules
+from ..base_object import BaseObject
 
 
 class SetUserPrivacySettingRules(BaseObject):
     """
     Changes user privacy settings
     
-    Params:
-        setting (:class:`UserPrivacySetting`)
-            The privacy setting
-        
-        rules (:class:`UserPrivacySettingRules`)
-            The new privacy rules
-        
+    :param setting: The privacy setting
+    :type setting: :class:`UserPrivacySetting`
+    
+    :param rules: The new privacy rules
+    :type rules: :class:`UserPrivacySettingRules`
+    
     """
 
     ID: str = Field("setUserPrivacySettingRules", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .vector_path_command import VectorPathCommand
@@ -15,10 +17,9 @@ class ClosedVectorPath(BaseObject):
     """
     Represents a closed vector path. The path begins at the end point of the last command
     
-    Params:
-        commands (:obj:`list[VectorPathCommand]`)
-            List of vector path commands
-        
+    :param commands: List of vector path commands
+    :type commands: :class:`list[VectorPathCommand]`
+    
     """
 
     ID: str = Field("closedVectorPath", alias="@type")

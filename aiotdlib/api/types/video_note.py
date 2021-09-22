@@ -19,22 +19,21 @@ class VideoNote(BaseObject):
     """
     Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format
     
-    Params:
-        duration (:class:`int`)
-            Duration of the video, in seconds; as defined by the sender
-        
-        length (:class:`int`)
-            Video width and height; as defined by the sender
-        
-        minithumbnail (:class:`Minithumbnail`)
-            Video minithumbnail; may be null
-        
-        thumbnail (:class:`Thumbnail`)
-            Video thumbnail in JPEG format; as defined by the sender; may be null
-        
-        video (:class:`File`)
-            File containing the video
-        
+    :param duration: Duration of the video, in seconds; as defined by the sender
+    :type duration: :class:`int`
+    
+    :param length: Video width and height; as defined by the sender
+    :type length: :class:`int`
+    
+    :param minithumbnail: Video minithumbnail; may be null, defaults to None
+    :type minithumbnail: :class:`Minithumbnail`, optional
+    
+    :param thumbnail: Video thumbnail in JPEG format; as defined by the sender; may be null, defaults to None
+    :type thumbnail: :class:`Thumbnail`, optional
+    
+    :param video: File containing the video
+    :type video: :class:`File`
+    
     """
 
     ID: str = Field("videoNote", alias="@type")

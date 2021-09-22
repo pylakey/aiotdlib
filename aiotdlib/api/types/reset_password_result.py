@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,10 +25,9 @@ class ResetPasswordResultDeclined(ResetPasswordResult):
     """
     The password reset request was declined
     
-    Params:
-        retry_date (:class:`int`)
-            Point in time (Unix timestamp) when the password reset can be retried
-        
+    :param retry_date: Point in time (Unix timestamp) when the password reset can be retried
+    :type retry_date: :class:`int`
+    
     """
 
     ID: str = Field("resetPasswordResultDeclined", alias="@type")
@@ -54,10 +55,9 @@ class ResetPasswordResultPending(ResetPasswordResult):
     """
     The password reset request is pending
     
-    Params:
-        pending_reset_date (:class:`int`)
-            Point in time (Unix timestamp) after which the password can be reset immediately using resetPassword
-        
+    :param pending_reset_date: Point in time (Unix timestamp) after which the password can be reset immediately using resetPassword
+    :type pending_reset_date: :class:`int`
+    
     """
 
     ID: str = Field("resetPasswordResultPending", alias="@type")

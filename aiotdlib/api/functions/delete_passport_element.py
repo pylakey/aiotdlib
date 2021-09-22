@@ -5,20 +5,21 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import PassportElementType
+from ..base_object import BaseObject
 
 
 class DeletePassportElement(BaseObject):
     """
     Deletes a Telegram Passport element
     
-    Params:
-        type_ (:class:`PassportElementType`)
-            Element type
-        
+    :param type_: Element type
+    :type type_: :class:`PassportElementType`
+    
     """
 
     ID: str = Field("deletePassportElement", alias="@type")

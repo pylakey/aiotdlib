@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GroupCallId(BaseObject):
     """
     Contains the group call identifier
     
-    Params:
-        id (:class:`int`)
-            Group call identifier
-        
+    :param id: Group call identifier
+    :type id: :class:`int`
+    
     """
 
     ID: str = Field("groupCallId", alias="@type")

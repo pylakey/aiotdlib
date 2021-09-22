@@ -5,20 +5,21 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import NotificationSettingsScope
+from ..base_object import BaseObject
 
 
 class GetScopeNotificationSettings(BaseObject):
     """
     Returns the notification settings for chats of a given type
     
-    Params:
-        scope (:class:`NotificationSettingsScope`)
-            Types of chats for which to return the notification settings information
-        
+    :param scope: Types of chats for which to return the notification settings information
+    :type scope: :class:`NotificationSettingsScope`
+    
     """
 
     ID: str = Field("getScopeNotificationSettings", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .notification import Notification
@@ -16,22 +18,21 @@ class NotificationGroup(BaseObject):
     """
     Describes a group of notifications
     
-    Params:
-        id (:class:`int`)
-            Unique persistent auto-incremented from 1 identifier of the notification group
-        
-        type_ (:class:`NotificationGroupType`)
-            Type of the group
-        
-        chat_id (:class:`int`)
-            Identifier of a chat to which all notifications in the group belong
-        
-        total_count (:class:`int`)
-            Total number of active notifications in the group
-        
-        notifications (:obj:`list[Notification]`)
-            The list of active notifications
-        
+    :param id: Unique persistent auto-incremented from 1 identifier of the notification group
+    :type id: :class:`int`
+    
+    :param type_: Type of the group
+    :type type_: :class:`NotificationGroupType`
+    
+    :param chat_id: Identifier of a chat to which all notifications in the group belong
+    :type chat_id: :class:`int`
+    
+    :param total_count: Total number of active notifications in the group
+    :type total_count: :class:`int`
+    
+    :param notifications: The list of active notifications
+    :type notifications: :class:`list[Notification]`
+    
     """
 
     ID: str = Field("notificationGroup", alias="@type")

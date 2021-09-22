@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetOption(BaseObject):
     """
     Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization
     
-    Params:
-        name (:class:`str`)
-            The name of the option
-        
+    :param name: The name of the option
+    :type name: :class:`str`
+    
     """
 
     ID: str = Field("getOption", alias="@type")

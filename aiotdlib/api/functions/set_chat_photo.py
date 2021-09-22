@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import InputChatPhoto
+from ..base_object import BaseObject
 
 
 class SetChatPhoto(BaseObject):
     """
     Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        photo (:class:`InputChatPhoto`)
-            New chat photo. Pass null to delete the chat photo
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param photo: New chat photo. Pass null to delete the chat photo
+    :type photo: :class:`InputChatPhoto`
+    
     """
 
     ID: str = Field("setChatPhoto", alias="@type")

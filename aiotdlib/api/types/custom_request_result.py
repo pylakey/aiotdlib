@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class CustomRequestResult(BaseObject):
     """
     Contains the result of a custom request
     
-    Params:
-        result (:class:`str`)
-            A JSON-serialized result
-        
+    :param result: A JSON-serialized result
+    :type result: :class:`str`
+    
     """
 
     ID: str = Field("customRequestResult", alias="@type")

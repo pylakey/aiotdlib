@@ -5,20 +5,21 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import TestString
+from ..base_object import BaseObject
 
 
 class TestCallVectorStringObject(BaseObject):
     """
     Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization
     
-    Params:
-        x (:obj:`list[TestString]`)
-            Vector of objects to return
-        
+    :param x: Vector of objects to return
+    :type x: :class:`list[TestString]`
+    
     """
 
     ID: str = Field("testCallVectorStringObject", alias="@type")

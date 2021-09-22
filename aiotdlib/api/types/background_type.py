@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .background_fill import BackgroundFill
@@ -24,10 +26,9 @@ class BackgroundTypeFill(BackgroundType):
     """
     A filled background
     
-    Params:
-        fill (:class:`BackgroundFill`)
-            Description of the background fill
-        
+    :param fill: Description of the background fill
+    :type fill: :class:`BackgroundFill`
+    
     """
 
     ID: str = Field("backgroundTypeFill", alias="@type")
@@ -42,19 +43,18 @@ class BackgroundTypePattern(BackgroundType):
     """
     A PNG or TGV (gzipped subset of SVG with MIME type "application/x-tgwallpattern") pattern to be combined with the background fill chosen by the user
     
-    Params:
-        fill (:class:`BackgroundFill`)
-            Description of the background fill
-        
-        intensity (:class:`int`)
-            Intensity of the pattern when it is shown above the filled background; 0-100.
-        
-        is_inverted (:class:`bool`)
-            True, if the background fill must be applied only to the pattern itself. All other pixels are black in this case. For dark themes only
-        
-        is_moving (:class:`bool`)
-            True, if the background needs to be slightly moved when device is tilted
-        
+    :param fill: Description of the background fill
+    :type fill: :class:`BackgroundFill`
+    
+    :param intensity: Intensity of the pattern when it is shown above the filled background; 0-100.
+    :type intensity: :class:`int`
+    
+    :param is_inverted: True, if the background fill must be applied only to the pattern itself. All other pixels are black in this case. For dark themes only
+    :type is_inverted: :class:`bool`
+    
+    :param is_moving: True, if the background needs to be slightly moved when device is tilted
+    :type is_moving: :class:`bool`
+    
     """
 
     ID: str = Field("backgroundTypePattern", alias="@type")
@@ -72,13 +72,12 @@ class BackgroundTypeWallpaper(BackgroundType):
     """
     A wallpaper in JPEG format
     
-    Params:
-        is_blurred (:class:`bool`)
-            True, if the wallpaper must be downscaled to fit in 450x450 square and then box-blurred with radius 12
-        
-        is_moving (:class:`bool`)
-            True, if the background needs to be slightly moved when device is tilted
-        
+    :param is_blurred: True, if the wallpaper must be downscaled to fit in 450x450 square and then box-blurred with radius 12
+    :type is_blurred: :class:`bool`
+    
+    :param is_moving: True, if the background needs to be slightly moved when device is tilted
+    :type is_moving: :class:`bool`
+    
     """
 
     ID: str = Field("backgroundTypeWallpaper", alias="@type")

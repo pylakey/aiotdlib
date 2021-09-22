@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .location import Location
@@ -15,13 +17,12 @@ class ChatLocation(BaseObject):
     """
     Represents a location to which a chat is connected
     
-    Params:
-        location (:class:`Location`)
-            The location
-        
-        address (:class:`str`)
-            Location address; 1-64 characters, as defined by the chat owner
-        
+    :param location: The location
+    :type location: :class:`Location`
+    
+    :param address: Location address; 1-64 characters, as defined by the chat owner
+    :type address: :class:`str`
+    
     """
 
     ID: str = Field("chatLocation", alias="@type")

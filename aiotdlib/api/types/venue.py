@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .location import Location
@@ -15,25 +17,24 @@ class Venue(BaseObject):
     """
     Describes a venue
     
-    Params:
-        location (:class:`Location`)
-            Venue location; as defined by the sender
-        
-        title (:class:`str`)
-            Venue name; as defined by the sender
-        
-        address (:class:`str`)
-            Venue address; as defined by the sender
-        
-        provider (:class:`str`)
-            Provider of the venue database; as defined by the sender. Currently only "foursquare" and "gplaces" (Google Places) need to be supported
-        
-        id (:class:`str`)
-            Identifier of the venue in the provider database; as defined by the sender
-        
-        type_ (:class:`str`)
-            Type of the venue in the provider database; as defined by the sender
-        
+    :param location: Venue location; as defined by the sender
+    :type location: :class:`Location`
+    
+    :param title: Venue name; as defined by the sender
+    :type title: :class:`str`
+    
+    :param address: Venue address; as defined by the sender
+    :type address: :class:`str`
+    
+    :param provider: Provider of the venue database; as defined by the sender. Currently only "foursquare" and "gplaces" (Google Places) need to be supported
+    :type provider: :class:`str`
+    
+    :param id: Identifier of the venue in the provider database; as defined by the sender
+    :type id: :class:`str`
+    
+    :param type_: Type of the venue in the provider database; as defined by the sender
+    :type type_: :class:`str`
+    
     """
 
     ID: str = Field("venue", alias="@type")

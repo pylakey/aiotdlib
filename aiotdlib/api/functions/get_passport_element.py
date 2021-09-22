@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import PassportElementType
+from ..base_object import BaseObject
 
 
 class GetPassportElement(BaseObject):
     """
     Returns one of the available Telegram Passport elements
     
-    Params:
-        type_ (:class:`PassportElementType`)
-            Telegram Passport element type
-        
-        password (:class:`str`)
-            Password of the current user
-        
+    :param type_: Telegram Passport element type
+    :type type_: :class:`PassportElementType`
+    
+    :param password: Password of the current user
+    :type password: :class:`str`
+    
     """
 
     ID: str = Field("getPassportElement", alias="@type")

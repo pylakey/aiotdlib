@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -140,10 +142,9 @@ class ChatActionUploadingDocument(ChatAction):
     """
     The user is uploading a document
     
-    Params:
-        progress (:class:`int`)
-            Upload progress, as a percentage
-        
+    :param progress: Upload progress, as a percentage
+    :type progress: :class:`int`
+    
     """
 
     ID: str = Field("chatActionUploadingDocument", alias="@type")
@@ -158,10 +159,9 @@ class ChatActionUploadingPhoto(ChatAction):
     """
     The user is uploading a photo
     
-    Params:
-        progress (:class:`int`)
-            Upload progress, as a percentage
-        
+    :param progress: Upload progress, as a percentage
+    :type progress: :class:`int`
+    
     """
 
     ID: str = Field("chatActionUploadingPhoto", alias="@type")
@@ -176,10 +176,9 @@ class ChatActionUploadingVideo(ChatAction):
     """
     The user is uploading a video
     
-    Params:
-        progress (:class:`int`)
-            Upload progress, as a percentage
-        
+    :param progress: Upload progress, as a percentage
+    :type progress: :class:`int`
+    
     """
 
     ID: str = Field("chatActionUploadingVideo", alias="@type")
@@ -194,10 +193,9 @@ class ChatActionUploadingVideoNote(ChatAction):
     """
     The user is uploading a video note
     
-    Params:
-        progress (:class:`int`)
-            Upload progress, as a percentage
-        
+    :param progress: Upload progress, as a percentage
+    :type progress: :class:`int`
+    
     """
 
     ID: str = Field("chatActionUploadingVideoNote", alias="@type")
@@ -212,10 +210,9 @@ class ChatActionUploadingVoiceNote(ChatAction):
     """
     The user is uploading a voice note
     
-    Params:
-        progress (:class:`int`)
-            Upload progress, as a percentage
-        
+    :param progress: Upload progress, as a percentage
+    :type progress: :class:`int`
+    
     """
 
     ID: str = Field("chatActionUploadingVoiceNote", alias="@type")
@@ -230,10 +227,9 @@ class ChatActionWatchingAnimations(ChatAction):
     """
     The user is watching animations sent by the other party by clicking on an animated emoji
     
-    Params:
-        emoji (:class:`str`)
-            The animated emoji
-        
+    :param emoji: The animated emoji
+    :type emoji: :class:`str`
+    
     """
 
     ID: str = Field("chatActionWatchingAnimations", alias="@type")

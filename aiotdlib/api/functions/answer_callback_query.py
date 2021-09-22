@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,22 +16,21 @@ class AnswerCallbackQuery(BaseObject):
     """
     Sets the result of a callback query; for bots only
     
-    Params:
-        callback_query_id (:class:`int`)
-            Identifier of the callback query
-        
-        text (:class:`str`)
-            Text of the answer
-        
-        show_alert (:class:`bool`)
-            If true, an alert should be shown to the user instead of a toast notification
-        
-        url (:class:`str`)
-            URL to be opened
-        
-        cache_time (:class:`int`)
-            Time during which the result of the query can be cached, in seconds
-        
+    :param callback_query_id: Identifier of the callback query
+    :type callback_query_id: :class:`int`
+    
+    :param text: Text of the answer
+    :type text: :class:`str`
+    
+    :param show_alert: If true, an alert should be shown to the user instead of a toast notification
+    :type show_alert: :class:`bool`
+    
+    :param url: URL to be opened
+    :type url: :class:`str`
+    
+    :param cache_time: Time during which the result of the query can be cached, in seconds
+    :type cache_time: :class:`int`
+    
     """
 
     ID: str = Field("answerCallbackQuery", alias="@type")

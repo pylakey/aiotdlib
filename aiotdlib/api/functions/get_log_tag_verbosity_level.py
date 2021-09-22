@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetLogTagVerbosityLevel(BaseObject):
     """
     Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously
     
-    Params:
-        tag (:class:`str`)
-            Logging tag to change verbosity level
-        
+    :param tag: Logging tag to change verbosity level
+    :type tag: :class:`str`
+    
     """
 
     ID: str = Field("getLogTagVerbosityLevel", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetStickerSet(BaseObject):
     """
     Returns information about a sticker set by its identifier
     
-    Params:
-        set_id (:class:`int`)
-            Identifier of the sticker set
-        
+    :param set_id: Identifier of the sticker set
+    :type set_id: :class:`int`
+    
     """
 
     ID: str = Field("getStickerSet", alias="@type")

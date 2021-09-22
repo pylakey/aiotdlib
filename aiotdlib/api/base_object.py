@@ -25,6 +25,7 @@ class BaseObject(BaseModel):
         underscore_attrs_are_private = True
         use_enum_values = True
         json_loads = ujson.loads
+        json_dumps = ujson.dumps
 
     _all: Optional[Dict[str, Type[BaseObject]]] = {}
     ID: str = Field(..., alias='@type')

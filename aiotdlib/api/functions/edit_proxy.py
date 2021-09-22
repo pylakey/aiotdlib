@@ -5,32 +5,33 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import ProxyType
+from ..base_object import BaseObject
 
 
 class EditProxy(BaseObject):
     """
     Edits an existing proxy server for network requests. Can be called before authorization
     
-    Params:
-        proxy_id (:class:`int`)
-            Proxy identifier
-        
-        server (:class:`str`)
-            Proxy server IP address
-        
-        port (:class:`int`)
-            Proxy server port
-        
-        enable (:class:`bool`)
-            True, if the proxy should be enabled
-        
-        type_ (:class:`ProxyType`)
-            Proxy type
-        
+    :param proxy_id: Proxy identifier
+    :type proxy_id: :class:`int`
+    
+    :param server: Proxy server IP address
+    :type server: :class:`str`
+    
+    :param port: Proxy server port
+    :type port: :class:`int`
+    
+    :param enable: True, if the proxy should be enabled
+    :type enable: :class:`bool`
+    
+    :param type_: Proxy type
+    :type type_: :class:`ProxyType`
+    
     """
 
     ID: str = Field("editProxy", alias="@type")

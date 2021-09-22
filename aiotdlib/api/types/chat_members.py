@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_member import ChatMember
@@ -15,13 +17,12 @@ class ChatMembers(BaseObject):
     """
     Contains a list of chat members
     
-    Params:
-        total_count (:class:`int`)
-            Approximate total count of chat members found
-        
-        members (:obj:`list[ChatMember]`)
-            A list of chat members
-        
+    :param total_count: Approximate total count of chat members found
+    :type total_count: :class:`int`
+    
+    :param members: A list of chat members
+    :type members: :class:`list[ChatMember]`
+    
     """
 
     ID: str = Field("chatMembers", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class SetChatClientData(BaseObject):
     """
     Changes application-specific data associated with a chat
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        client_data (:class:`str`)
-            New value of client_data
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param client_data: New value of client_data
+    :type client_data: :class:`str`
+    
     """
 
     ID: str = Field("setChatClientData", alias="@type")

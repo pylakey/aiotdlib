@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class RemoveContacts(BaseObject):
     """
     Removes users from the contact list
     
-    Params:
-        user_ids (:obj:`list[int]`)
-            Identifiers of users to be deleted
-        
+    :param user_ids: Identifiers of users to be deleted
+    :type user_ids: :class:`list[int]`
+    
     """
 
     ID: str = Field("removeContacts", alias="@type")

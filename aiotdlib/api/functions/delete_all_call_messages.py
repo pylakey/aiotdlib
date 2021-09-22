@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class DeleteAllCallMessages(BaseObject):
     """
     Deletes all call messages
     
-    Params:
-        revoke (:class:`bool`)
-            Pass true to delete the messages for all users
-        
+    :param revoke: Pass true to delete the messages for all users
+    :type revoke: :class:`bool`
+    
     """
 
     ID: str = Field("deleteAllCallMessages", alias="@type")

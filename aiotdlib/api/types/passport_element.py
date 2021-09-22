@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .address import Address
@@ -27,10 +29,9 @@ class PassportElementAddress(PassportElement):
     """
     A Telegram Passport element containing the user's address
     
-    Params:
-        address (:class:`Address`)
-            Address
-        
+    :param address: Address
+    :type address: :class:`Address`
+    
     """
 
     ID: str = Field("passportElementAddress", alias="@type")
@@ -45,10 +46,9 @@ class PassportElementBankStatement(PassportElement):
     """
     A Telegram Passport element containing the user's bank statement
     
-    Params:
-        bank_statement (:class:`PersonalDocument`)
-            Bank statement
-        
+    :param bank_statement: Bank statement
+    :type bank_statement: :class:`PersonalDocument`
+    
     """
 
     ID: str = Field("passportElementBankStatement", alias="@type")
@@ -63,10 +63,9 @@ class PassportElementDriverLicense(PassportElement):
     """
     A Telegram Passport element containing the user's driver license
     
-    Params:
-        driver_license (:class:`IdentityDocument`)
-            Driver license
-        
+    :param driver_license: Driver license
+    :type driver_license: :class:`IdentityDocument`
+    
     """
 
     ID: str = Field("passportElementDriverLicense", alias="@type")
@@ -81,10 +80,9 @@ class PassportElementEmailAddress(PassportElement):
     """
     A Telegram Passport element containing the user's email address
     
-    Params:
-        email_address (:class:`str`)
-            Email address
-        
+    :param email_address: Email address
+    :type email_address: :class:`str`
+    
     """
 
     ID: str = Field("passportElementEmailAddress", alias="@type")
@@ -99,10 +97,9 @@ class PassportElementIdentityCard(PassportElement):
     """
     A Telegram Passport element containing the user's identity card
     
-    Params:
-        identity_card (:class:`IdentityDocument`)
-            Identity card
-        
+    :param identity_card: Identity card
+    :type identity_card: :class:`IdentityDocument`
+    
     """
 
     ID: str = Field("passportElementIdentityCard", alias="@type")
@@ -117,10 +114,9 @@ class PassportElementInternalPassport(PassportElement):
     """
     A Telegram Passport element containing the user's internal passport
     
-    Params:
-        internal_passport (:class:`IdentityDocument`)
-            Internal passport
-        
+    :param internal_passport: Internal passport
+    :type internal_passport: :class:`IdentityDocument`
+    
     """
 
     ID: str = Field("passportElementInternalPassport", alias="@type")
@@ -135,10 +131,9 @@ class PassportElementPassport(PassportElement):
     """
     A Telegram Passport element containing the user's passport
     
-    Params:
-        passport (:class:`IdentityDocument`)
-            Passport
-        
+    :param passport: Passport
+    :type passport: :class:`IdentityDocument`
+    
     """
 
     ID: str = Field("passportElementPassport", alias="@type")
@@ -153,10 +148,9 @@ class PassportElementPassportRegistration(PassportElement):
     """
     A Telegram Passport element containing the user's passport registration pages
     
-    Params:
-        passport_registration (:class:`PersonalDocument`)
-            Passport registration pages
-        
+    :param passport_registration: Passport registration pages
+    :type passport_registration: :class:`PersonalDocument`
+    
     """
 
     ID: str = Field("passportElementPassportRegistration", alias="@type")
@@ -171,10 +165,9 @@ class PassportElementPersonalDetails(PassportElement):
     """
     A Telegram Passport element containing the user's personal details
     
-    Params:
-        personal_details (:class:`PersonalDetails`)
-            Personal details of the user
-        
+    :param personal_details: Personal details of the user
+    :type personal_details: :class:`PersonalDetails`
+    
     """
 
     ID: str = Field("passportElementPersonalDetails", alias="@type")
@@ -189,10 +182,9 @@ class PassportElementPhoneNumber(PassportElement):
     """
     A Telegram Passport element containing the user's phone number
     
-    Params:
-        phone_number (:class:`str`)
-            Phone number
-        
+    :param phone_number: Phone number
+    :type phone_number: :class:`str`
+    
     """
 
     ID: str = Field("passportElementPhoneNumber", alias="@type")
@@ -207,10 +199,9 @@ class PassportElementRentalAgreement(PassportElement):
     """
     A Telegram Passport element containing the user's rental agreement
     
-    Params:
-        rental_agreement (:class:`PersonalDocument`)
-            Rental agreement
-        
+    :param rental_agreement: Rental agreement
+    :type rental_agreement: :class:`PersonalDocument`
+    
     """
 
     ID: str = Field("passportElementRentalAgreement", alias="@type")
@@ -225,10 +216,9 @@ class PassportElementTemporaryRegistration(PassportElement):
     """
     A Telegram Passport element containing the user's temporary registration
     
-    Params:
-        temporary_registration (:class:`PersonalDocument`)
-            Temporary registration
-        
+    :param temporary_registration: Temporary registration
+    :type temporary_registration: :class:`PersonalDocument`
+    
     """
 
     ID: str = Field("passportElementTemporaryRegistration", alias="@type")
@@ -243,10 +233,9 @@ class PassportElementUtilityBill(PassportElement):
     """
     A Telegram Passport element containing the user's utility bill
     
-    Params:
-        utility_bill (:class:`PersonalDocument`)
-            Utility bill
-        
+    :param utility_bill: Utility bill
+    :type utility_bill: :class:`PersonalDocument`
+    
     """
 
     ID: str = Field("passportElementUtilityBill", alias="@type")

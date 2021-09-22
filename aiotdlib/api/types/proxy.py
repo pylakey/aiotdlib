@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .proxy_type import ProxyType
@@ -15,25 +17,24 @@ class Proxy(BaseObject):
     """
     Contains information about a proxy server
     
-    Params:
-        id (:class:`int`)
-            Unique identifier of the proxy
-        
-        server (:class:`str`)
-            Proxy server IP address
-        
-        port (:class:`int`)
-            Proxy server port
-        
-        last_used_date (:class:`int`)
-            Point in time (Unix timestamp) when the proxy was last used; 0 if never
-        
-        is_enabled (:class:`bool`)
-            True, if the proxy is enabled now
-        
-        type_ (:class:`ProxyType`)
-            Type of the proxy
-        
+    :param id: Unique identifier of the proxy
+    :type id: :class:`int`
+    
+    :param server: Proxy server IP address
+    :type server: :class:`str`
+    
+    :param port: Proxy server port
+    :type port: :class:`int`
+    
+    :param last_used_date: Point in time (Unix timestamp) when the proxy was last used; 0 if never
+    :type last_used_date: :class:`int`
+    
+    :param is_enabled: True, if the proxy is enabled now
+    :type is_enabled: :class:`bool`
+    
+    :param type_: Type of the proxy
+    :type type_: :class:`ProxyType`
+    
     """
 
     ID: str = Field("proxy", alias="@type")

@@ -26,13 +26,12 @@ class PollTypeQuiz(PollType):
     """
     A poll in quiz mode, which has exactly one correct answer option and can be answered only once
     
-    Params:
-        correct_option_id (:class:`int`)
-            0-based identifier of the correct answer option; -1 for a yet unanswered poll
-        
-        explanation (:class:`FormattedText`)
-            Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; 0-200 characters with at most 2 line feeds; empty for a yet unanswered poll
-        
+    :param correct_option_id: 0-based identifier of the correct answer option; -1 for a yet unanswered poll
+    :type correct_option_id: :class:`int`
+    
+    :param explanation: Text that is shown when the user chooses an incorrect answer or taps on the lamp icon; 0-200 characters with at most 2 line feeds; empty for a yet unanswered poll, defaults to None
+    :type explanation: :class:`FormattedText`, optional
+    
     """
 
     ID: str = Field("pollTypeQuiz", alias="@type")
@@ -48,10 +47,9 @@ class PollTypeRegular(PollType):
     """
     A regular poll
     
-    Params:
-        allow_multiple_answers (:class:`bool`)
-            True, if multiple answer options can be chosen simultaneously
-        
+    :param allow_multiple_answers: True, if multiple answer options can be chosen simultaneously
+    :type allow_multiple_answers: :class:`bool`
+    
     """
 
     ID: str = Field("pollTypeRegular", alias="@type")

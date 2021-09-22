@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -49,13 +51,12 @@ class KeyboardButtonTypeRequestPoll(KeyboardButtonType):
     """
     A button that allows the user to create and send a poll when pressed; available only in private chats
     
-    Params:
-        force_regular (:class:`bool`)
-            If true, only regular polls must be allowed to create
-        
-        force_quiz (:class:`bool`)
-            If true, only polls in quiz mode must be allowed to create
-        
+    :param force_regular: If true, only regular polls must be allowed to create
+    :type force_regular: :class:`bool`
+    
+    :param force_quiz: If true, only polls in quiz mode must be allowed to create
+    :type force_quiz: :class:`bool`
+    
     """
 
     ID: str = Field("keyboardButtonTypeRequestPoll", alias="@type")

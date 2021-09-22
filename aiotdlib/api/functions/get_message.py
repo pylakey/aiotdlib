@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class GetMessage(BaseObject):
     """
     Returns information about a message
     
-    Params:
-        chat_id (:class:`int`)
-            Identifier of the chat the message belongs to
-        
-        message_id (:class:`int`)
-            Identifier of the message to get
-        
+    :param chat_id: Identifier of the chat the message belongs to
+    :type chat_id: :class:`int`
+    
+    :param message_id: Identifier of the message to get
+    :type message_id: :class:`int`
+    
     """
 
     ID: str = Field("getMessage", alias="@type")

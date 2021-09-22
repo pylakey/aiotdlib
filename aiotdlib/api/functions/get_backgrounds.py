@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetBackgrounds(BaseObject):
     """
     Returns backgrounds installed by the user
     
-    Params:
-        for_dark_theme (:class:`bool`)
-            True, if the backgrounds must be ordered for dark theme
-        
+    :param for_dark_theme: True, if the backgrounds must be ordered for dark theme
+    :type for_dark_theme: :class:`bool`
+    
     """
 
     ID: str = Field("getBackgrounds", alias="@type")

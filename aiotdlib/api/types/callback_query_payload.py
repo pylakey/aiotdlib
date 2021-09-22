@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,10 +25,9 @@ class CallbackQueryPayloadData(CallbackQueryPayload):
     """
     The payload for a general callback button
     
-    Params:
-        data (:class:`str`)
-            Data that was attached to the callback button
-        
+    :param data: Data that was attached to the callback button
+    :type data: :class:`str`
+    
     """
 
     ID: str = Field("callbackQueryPayloadData", alias="@type")
@@ -41,13 +42,12 @@ class CallbackQueryPayloadDataWithPassword(CallbackQueryPayload):
     """
     The payload for a callback button requiring password
     
-    Params:
-        password (:class:`str`)
-            The password for the current user
-        
-        data (:class:`str`)
-            Data that was attached to the callback button
-        
+    :param password: The password for the current user
+    :type password: :class:`str`
+    
+    :param data: Data that was attached to the callback button
+    :type data: :class:`str`
+    
     """
 
     ID: str = Field("callbackQueryPayloadDataWithPassword", alias="@type")
@@ -63,10 +63,9 @@ class CallbackQueryPayloadGame(CallbackQueryPayload):
     """
     The payload for a game callback button
     
-    Params:
-        game_short_name (:class:`str`)
-            A short name of the game that was attached to the callback button
-        
+    :param game_short_name: A short name of the game that was attached to the callback button
+    :type game_short_name: :class:`str`
+    
     """
 
     ID: str = Field("callbackQueryPayloadGame", alias="@type")

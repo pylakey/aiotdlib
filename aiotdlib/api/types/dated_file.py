@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .file import File
@@ -15,13 +17,12 @@ class DatedFile(BaseObject):
     """
     File with the date it was uploaded
     
-    Params:
-        file (:class:`File`)
-            The file
-        
-        date (:class:`int`)
-            Point in time (Unix timestamp) when the file was uploaded
-        
+    :param file: The file
+    :type file: :class:`File`
+    
+    :param date: Point in time (Unix timestamp) when the file was uploaded
+    :type date: :class:`int`
+    
     """
 
     ID: str = Field("datedFile", alias="@type")

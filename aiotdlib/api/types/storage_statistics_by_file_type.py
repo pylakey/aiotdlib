@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .file_type import FileType
@@ -15,16 +17,15 @@ class StorageStatisticsByFileType(BaseObject):
     """
     Contains the storage usage statistics for a specific file type
     
-    Params:
-        file_type (:class:`FileType`)
-            File type
-        
-        size (:class:`int`)
-            Total size of the files, in bytes
-        
-        count (:class:`int`)
-            Total number of files
-        
+    :param file_type: File type
+    :type file_type: :class:`FileType`
+    
+    :param size: Total size of the files, in bytes
+    :type size: :class:`int`
+    
+    :param count: Total number of files
+    :type count: :class:`int`
+    
     """
 
     ID: str = Field("storageStatisticsByFileType", alias="@type")

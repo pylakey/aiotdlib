@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class GetMessageLocally(BaseObject):
     """
     Returns information about a message, if it is available locally without sending network request. This is an offline request
     
-    Params:
-        chat_id (:class:`int`)
-            Identifier of the chat the message belongs to
-        
-        message_id (:class:`int`)
-            Identifier of the message to get
-        
+    :param chat_id: Identifier of the chat the message belongs to
+    :type chat_id: :class:`int`
+    
+    :param message_id: Identifier of the message to get
+    :type message_id: :class:`int`
+    
     """
 
     ID: str = Field("getMessageLocally", alias="@type")

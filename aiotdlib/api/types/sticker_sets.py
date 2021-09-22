@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .sticker_set_info import StickerSetInfo
@@ -15,13 +17,12 @@ class StickerSets(BaseObject):
     """
     Represents a list of sticker sets
     
-    Params:
-        total_count (:class:`int`)
-            Approximate total number of sticker sets found
-        
-        sets (:obj:`list[StickerSetInfo]`)
-            List of sticker sets
-        
+    :param total_count: Approximate total number of sticker sets found
+    :type total_count: :class:`int`
+    
+    :param sets: List of sticker sets
+    :type sets: :class:`list[StickerSetInfo]`
+    
     """
 
     ID: str = Field("stickerSets", alias="@type")

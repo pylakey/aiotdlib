@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -36,10 +38,9 @@ class InlineKeyboardButtonTypeCallback(InlineKeyboardButtonType):
     """
     A button that sends a callback query to a bot
     
-    Params:
-        data (:class:`str`)
-            Data to be sent to the bot via a callback query
-        
+    :param data: Data to be sent to the bot via a callback query
+    :type data: :class:`str`
+    
     """
 
     ID: str = Field("inlineKeyboardButtonTypeCallback", alias="@type")
@@ -67,10 +68,9 @@ class InlineKeyboardButtonTypeCallbackWithPassword(InlineKeyboardButtonType):
     """
     A button that asks for password of the current user and then sends a callback query to a bot
     
-    Params:
-        data (:class:`str`)
-            Data to be sent to the bot via a callback query
-        
+    :param data: Data to be sent to the bot via a callback query
+    :type data: :class:`str`
+    
     """
 
     ID: str = Field("inlineKeyboardButtonTypeCallbackWithPassword", alias="@type")
@@ -85,16 +85,15 @@ class InlineKeyboardButtonTypeLoginUrl(InlineKeyboardButtonType):
     """
     A button that opens a specified URL and automatically authorize the current user if allowed to do so
     
-    Params:
-        url (:class:`str`)
-            An HTTP URL to open
-        
-        id (:class:`int`)
-            Unique button identifier
-        
-        forward_text (:class:`str`)
-            If non-empty, new text of the button in forwarded messages
-        
+    :param url: An HTTP URL to open
+    :type url: :class:`str`
+    
+    :param id: Unique button identifier
+    :type id: :class:`int`
+    
+    :param forward_text: If non-empty, new text of the button in forwarded messages
+    :type forward_text: :class:`str`
+    
     """
 
     ID: str = Field("inlineKeyboardButtonTypeLoginUrl", alias="@type")
@@ -111,13 +110,12 @@ class InlineKeyboardButtonTypeSwitchInline(InlineKeyboardButtonType):
     """
     A button that forces an inline query to the bot to be inserted in the input field
     
-    Params:
-        query (:class:`str`)
-            Inline query to be sent to the bot
-        
-        in_current_chat (:class:`bool`)
-            True, if the inline query should be sent from the current chat
-        
+    :param query: Inline query to be sent to the bot
+    :type query: :class:`str`
+    
+    :param in_current_chat: True, if the inline query should be sent from the current chat
+    :type in_current_chat: :class:`bool`
+    
     """
 
     ID: str = Field("inlineKeyboardButtonTypeSwitchInline", alias="@type")
@@ -133,10 +131,9 @@ class InlineKeyboardButtonTypeUrl(InlineKeyboardButtonType):
     """
     A button that opens a specified URL
     
-    Params:
-        url (:class:`str`)
-            HTTP or tg:// URL to open
-        
+    :param url: HTTP or tg:// URL to open
+    :type url: :class:`str`
+    
     """
 
     ID: str = Field("inlineKeyboardButtonTypeUrl", alias="@type")

@@ -16,10 +16,9 @@ class SetBio(BaseObject):
     """
     Changes the bio of the current user
     
-    Params:
-        bio (:class:`str`)
-            The new value of the user bio; 0-70 characters without line feeds
-        
+    :param bio: The new value of the user bio; 0-70 characters without line feeds, defaults to None
+    :type bio: :class:`str`, optional
+    
     """
 
     ID: str = Field("setBio", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .rich_text import RichText
@@ -15,13 +17,12 @@ class PageBlockCaption(BaseObject):
     """
     Contains a caption of an instant view web page block, consisting of a text and a trailing credit
     
-    Params:
-        text (:class:`RichText`)
-            Content of the caption
-        
-        credit (:class:`RichText`)
-            Block credit (like HTML tag <cite>)
-        
+    :param text: Content of the caption
+    :type text: :class:`RichText`
+    
+    :param credit: Block credit (like HTML tag <cite>)
+    :type credit: :class:`RichText`
+    
     """
 
     ID: str = Field("pageBlockCaption", alias="@type")

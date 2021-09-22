@@ -18,25 +18,24 @@ class Background(BaseObject):
     """
     Describes a chat background
     
-    Params:
-        id (:class:`int`)
-            Unique background identifier
-        
-        is_default (:class:`bool`)
-            True, if this is one of default backgrounds
-        
-        is_dark (:class:`bool`)
-            True, if the background is dark and is recommended to be used with dark theme
-        
-        name (:class:`str`)
-            Unique background name
-        
-        document (:class:`Document`)
-            Document with the background; may be null. Null only for filled backgrounds
-        
-        type_ (:class:`BackgroundType`)
-            Type of the background
-        
+    :param id: Unique background identifier
+    :type id: :class:`int`
+    
+    :param is_default: True, if this is one of default backgrounds
+    :type is_default: :class:`bool`
+    
+    :param is_dark: True, if the background is dark and is recommended to be used with dark theme
+    :type is_dark: :class:`bool`
+    
+    :param name: Unique background name
+    :type name: :class:`str`
+    
+    :param document: Document with the background; may be null. Null only for filled backgrounds, defaults to None
+    :type document: :class:`Document`, optional
+    
+    :param type_: Type of the background
+    :type type_: :class:`BackgroundType`
+    
     """
 
     ID: str = Field("background", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .sticker import Sticker
@@ -15,10 +17,9 @@ class Stickers(BaseObject):
     """
     Represents a list of stickers
     
-    Params:
-        stickers (:obj:`list[Sticker]`)
-            List of stickers
-        
+    :param stickers: List of stickers
+    :type stickers: :class:`list[Sticker]`
+    
     """
 
     ID: str = Field("stickers", alias="@type")

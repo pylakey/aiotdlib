@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,19 +16,18 @@ class GetLanguagePackString(BaseObject):
     """
     Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously
     
-    Params:
-        language_pack_database_path (:class:`str`)
-            Path to the language pack database in which strings are stored
-        
-        localization_target (:class:`str`)
-            Localization target to which the language pack belongs
-        
-        language_pack_id (:class:`str`)
-            Language pack identifier
-        
-        key (:class:`str`)
-            Language pack key of the string to be returned
-        
+    :param language_pack_database_path: Path to the language pack database in which strings are stored
+    :type language_pack_database_path: :class:`str`
+    
+    :param localization_target: Localization target to which the language pack belongs
+    :type localization_target: :class:`str`
+    
+    :param language_pack_id: Language pack identifier
+    :type language_pack_id: :class:`str`
+    
+    :param key: Language pack key of the string to be returned
+    :type key: :class:`str`
+    
     """
 
     ID: str = Field("getLanguagePackString", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -127,10 +129,9 @@ class TextEntityTypeMediaTimestamp(TextEntityType):
     """
     A media timestamp
     
-    Params:
-        media_timestamp (:class:`int`)
-            Timestamp from which a video/audio/video note/voice note playing should start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
-        
+    :param media_timestamp: Timestamp from which a video/audio/video note/voice note playing should start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
+    :type media_timestamp: :class:`int`
+    
     """
 
     ID: str = Field("textEntityTypeMediaTimestamp", alias="@type")
@@ -158,10 +159,9 @@ class TextEntityTypeMentionName(TextEntityType):
     """
     A text shows instead of a raw mention of the user (e.g., when the user has no username)
     
-    Params:
-        user_id (:class:`int`)
-            Identifier of the mentioned user
-        
+    :param user_id: Identifier of the mentioned user
+    :type user_id: :class:`int`
+    
     """
 
     ID: str = Field("textEntityTypeMentionName", alias="@type")
@@ -202,10 +202,9 @@ class TextEntityTypePreCode(TextEntityType):
     """
     Text that must be formatted as if inside pre, and code HTML tags
     
-    Params:
-        language (:class:`str`)
-            Programming language of the code; as defined by the sender
-        
+    :param language: Programming language of the code; as defined by the sender
+    :type language: :class:`str`
+    
     """
 
     ID: str = Field("textEntityTypePreCode", alias="@type")
@@ -233,10 +232,9 @@ class TextEntityTypeTextUrl(TextEntityType):
     """
     A text description shown instead of a raw URL
     
-    Params:
-        url (:class:`str`)
-            HTTP or tg:// URL to be opened when the link is clicked
-        
+    :param url: HTTP or tg:// URL to be opened when the link is clicked
+    :type url: :class:`str`
+    
     """
 
     ID: str = Field("textEntityTypeTextUrl", alias="@type")

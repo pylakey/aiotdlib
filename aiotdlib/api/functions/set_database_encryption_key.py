@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class SetDatabaseEncryptionKey(BaseObject):
     """
     Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain
     
-    Params:
-        new_encryption_key (:class:`str`)
-            New encryption key
-        
+    :param new_encryption_key: New encryption key
+    :type new_encryption_key: :class:`str`
+    
     """
 
     ID: str = Field("setDatabaseEncryptionKey", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .inline_query_result import InlineQueryResult
@@ -15,22 +17,21 @@ class InlineQueryResults(BaseObject):
     """
     Represents the results of the inline query. Use sendInlineQueryResultMessage to send the result of the query
     
-    Params:
-        inline_query_id (:class:`int`)
-            Unique identifier of the inline query
-        
-        next_offset (:class:`str`)
-            The offset for the next request. If empty, there are no more results
-        
-        results (:obj:`list[InlineQueryResult]`)
-            Results of the query
-        
-        switch_pm_text (:class:`str`)
-            If non-empty, this text should be shown on the button, which opens a private chat with the bot and sends the bot a start message with the switch_pm_parameter
-        
-        switch_pm_parameter (:class:`str`)
-            Parameter for the bot start message
-        
+    :param inline_query_id: Unique identifier of the inline query
+    :type inline_query_id: :class:`int`
+    
+    :param next_offset: The offset for the next request. If empty, there are no more results
+    :type next_offset: :class:`str`
+    
+    :param results: Results of the query
+    :type results: :class:`list[InlineQueryResult]`
+    
+    :param switch_pm_text: If non-empty, this text should be shown on the button, which opens a private chat with the bot and sends the bot a start message with the switch_pm_parameter
+    :type switch_pm_text: :class:`str`
+    
+    :param switch_pm_parameter: Parameter for the bot start message
+    :type switch_pm_parameter: :class:`str`
+    
     """
 
     ID: str = Field("inlineQueryResults", alias="@type")

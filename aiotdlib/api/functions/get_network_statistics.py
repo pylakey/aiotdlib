@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetNetworkStatistics(BaseObject):
     """
     Returns network data usage statistics. Can be called before authorization
     
-    Params:
-        only_current (:class:`bool`)
-            If true, returns only data for the current library launch
-        
+    :param only_current: If true, returns only data for the current library launch
+    :type only_current: :class:`bool`
+    
     """
 
     ID: str = Field("getNetworkStatistics", alias="@type")

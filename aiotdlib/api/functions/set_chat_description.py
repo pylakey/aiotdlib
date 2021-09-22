@@ -16,13 +16,12 @@ class SetChatDescription(BaseObject):
     """
     Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
     
-    Params:
-        chat_id (:class:`int`)
-            Identifier of the chat
-        
-        param_description (:class:`str`)
-            New chat description; 0-255 characters
-        
+    :param chat_id: Identifier of the chat
+    :type chat_id: :class:`int`
+    
+    :param param_description: New chat description; 0-255 characters, defaults to None
+    :type param_description: :class:`str`, optional
+    
     """
 
     ID: str = Field("setChatDescription", alias="@type")

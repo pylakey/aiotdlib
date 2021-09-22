@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class DeleteChatMessagesFromUser(BaseObject):
     """
     Deletes all messages sent by the specified user to a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        user_id (:class:`int`)
-            User identifier
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param user_id: User identifier
+    :type user_id: :class:`int`
+    
     """
 
     ID: str = Field("deleteChatMessagesFromUser", alias="@type")

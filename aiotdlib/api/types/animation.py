@@ -19,34 +19,33 @@ class Animation(BaseObject):
     """
     Describes an animation file. The animation must be encoded in GIF or MPEG4 format
     
-    Params:
-        duration (:class:`int`)
-            Duration of the animation, in seconds; as defined by the sender
-        
-        width (:class:`int`)
-            Width of the animation
-        
-        height (:class:`int`)
-            Height of the animation
-        
-        file_name (:class:`str`)
-            Original name of the file; as defined by the sender
-        
-        mime_type (:class:`str`)
-            MIME type of the file, usually "image/gif" or "video/mp4"
-        
-        has_stickers (:class:`bool`)
-            True, if stickers were added to the animation. The list of corresponding sticker set can be received using getAttachedStickerSets
-        
-        minithumbnail (:class:`Minithumbnail`)
-            Animation minithumbnail; may be null
-        
-        thumbnail (:class:`Thumbnail`)
-            Animation thumbnail in JPEG or MPEG4 format; may be null
-        
-        animation (:class:`File`)
-            File containing the animation
-        
+    :param duration: Duration of the animation, in seconds; as defined by the sender
+    :type duration: :class:`int`
+    
+    :param width: Width of the animation
+    :type width: :class:`int`
+    
+    :param height: Height of the animation
+    :type height: :class:`int`
+    
+    :param file_name: Original name of the file; as defined by the sender
+    :type file_name: :class:`str`
+    
+    :param mime_type: MIME type of the file, usually "image/gif" or "video/mp4"
+    :type mime_type: :class:`str`
+    
+    :param has_stickers: True, if stickers were added to the animation. The list of corresponding sticker set can be received using getAttachedStickerSets
+    :type has_stickers: :class:`bool`
+    
+    :param minithumbnail: Animation minithumbnail; may be null, defaults to None
+    :type minithumbnail: :class:`Minithumbnail`, optional
+    
+    :param thumbnail: Animation thumbnail in JPEG or MPEG4 format; may be null, defaults to None
+    :type thumbnail: :class:`Thumbnail`, optional
+    
+    :param animation: File containing the animation
+    :type animation: :class:`File`
+    
     """
 
     ID: str = Field("animation", alias="@type")

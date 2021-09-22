@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import NotificationSettingsScope
+from ..base_object import BaseObject
 
 
 class GetChatNotificationSettingsExceptions(BaseObject):
     """
     Returns list of chats with non-default notification settings
     
-    Params:
-        scope (:class:`NotificationSettingsScope`)
-            If specified, only chats from the specified scope will be returned
-        
-        compare_sound (:class:`bool`)
-            If true, also chats with non-default sound will be returned
-        
+    :param scope: If specified, only chats from the specified scope will be returned
+    :type scope: :class:`NotificationSettingsScope`
+    
+    :param compare_sound: If true, also chats with non-default sound will be returned
+    :type compare_sound: :class:`bool`
+    
     """
 
     ID: str = Field("getChatNotificationSettingsExceptions", alias="@type")

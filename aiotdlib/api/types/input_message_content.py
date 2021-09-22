@@ -34,28 +34,27 @@ class InputMessageAnimation(InputMessageContent):
     """
     An animation message (GIF-style).
     
-    Params:
-        animation (:class:`InputFile`)
-            Animation file to be sent
-        
-        thumbnail (:class:`InputThumbnail`)
-            Animation thumbnail, if available
-        
-        added_sticker_file_ids (:obj:`list[int]`)
-            File identifiers of the stickers added to the animation, if applicable
-        
-        duration (:class:`int`)
-            Duration of the animation, in seconds
-        
-        width (:class:`int`)
-            Width of the animation; may be replaced by the server
-        
-        height (:class:`int`)
-            Height of the animation; may be replaced by the server
-        
-        caption (:class:`FormattedText`)
-            Animation caption; 0-GetOption("message_caption_length_max") characters
-        
+    :param animation: Animation file to be sent
+    :type animation: :class:`InputFile`
+    
+    :param thumbnail: Animation thumbnail, if available
+    :type thumbnail: :class:`InputThumbnail`
+    
+    :param added_sticker_file_ids: File identifiers of the stickers added to the animation, if applicable
+    :type added_sticker_file_ids: :class:`list[int]`
+    
+    :param duration: Duration of the animation, in seconds
+    :type duration: :class:`int`
+    
+    :param width: Width of the animation; may be replaced by the server
+    :type width: :class:`int`
+    
+    :param height: Height of the animation; may be replaced by the server
+    :type height: :class:`int`
+    
+    :param caption: Animation caption; 0-GetOption("message_caption_length_max") characters
+    :type caption: :class:`FormattedText`
+    
     """
 
     ID: str = Field("inputMessageAnimation", alias="@type")
@@ -76,25 +75,24 @@ class InputMessageAudio(InputMessageContent):
     """
     An audio message
     
-    Params:
-        audio (:class:`InputFile`)
-            Audio file to be sent
-        
-        album_cover_thumbnail (:class:`InputThumbnail`)
-            Thumbnail of the cover for the album, if available
-        
-        duration (:class:`int`)
-            Duration of the audio, in seconds; may be replaced by the server
-        
-        title (:class:`str`)
-            Title of the audio; 0-64 characters; may be replaced by the server
-        
-        performer (:class:`str`)
-            Performer of the audio; 0-64 characters, may be replaced by the server
-        
-        caption (:class:`FormattedText`)
-            Audio caption; 0-GetOption("message_caption_length_max") characters
-        
+    :param audio: Audio file to be sent
+    :type audio: :class:`InputFile`
+    
+    :param album_cover_thumbnail: Thumbnail of the cover for the album, if available
+    :type album_cover_thumbnail: :class:`InputThumbnail`
+    
+    :param duration: Duration of the audio, in seconds; may be replaced by the server
+    :type duration: :class:`int`
+    
+    :param title: Title of the audio; 0-64 characters; may be replaced by the server, defaults to None
+    :type title: :class:`str`, optional
+    
+    :param performer: Performer of the audio; 0-64 characters, may be replaced by the server, defaults to None
+    :type performer: :class:`str`, optional
+    
+    :param caption: Audio caption; 0-GetOption("message_caption_length_max") characters
+    :type caption: :class:`FormattedText`
+    
     """
 
     ID: str = Field("inputMessageAudio", alias="@type")
@@ -114,10 +112,9 @@ class InputMessageContact(InputMessageContent):
     """
     A message containing a user contact
     
-    Params:
-        contact (:class:`Contact`)
-            Contact to send
-        
+    :param contact: Contact to send
+    :type contact: :class:`Contact`
+    
     """
 
     ID: str = Field("inputMessageContact", alias="@type")
@@ -132,13 +129,12 @@ class InputMessageDice(InputMessageContent):
     """
     A dice message
     
-    Params:
-        emoji (:class:`str`)
-            Emoji on which the dice throw animation is based
-        
-        clear_draft (:class:`bool`)
-            True, if a chat message draft should be deleted
-        
+    :param emoji: Emoji on which the dice throw animation is based
+    :type emoji: :class:`str`
+    
+    :param clear_draft: True, if a chat message draft should be deleted
+    :type clear_draft: :class:`bool`
+    
     """
 
     ID: str = Field("inputMessageDice", alias="@type")
@@ -154,19 +150,18 @@ class InputMessageDocument(InputMessageContent):
     """
     A document message (general file)
     
-    Params:
-        document (:class:`InputFile`)
-            Document to be sent
-        
-        thumbnail (:class:`InputThumbnail`)
-            Document thumbnail, if available
-        
-        disable_content_type_detection (:class:`bool`)
-            If true, automatic file type detection will be disabled and the document will be always sent as file. Always true for files sent to secret chats
-        
-        caption (:class:`FormattedText`)
-            Document caption; 0-GetOption("message_caption_length_max") characters
-        
+    :param document: Document to be sent
+    :type document: :class:`InputFile`
+    
+    :param thumbnail: Document thumbnail, if available
+    :type thumbnail: :class:`InputThumbnail`
+    
+    :param disable_content_type_detection: If true, automatic file type detection will be disabled and the document will be always sent as file. Always true for files sent to secret chats
+    :type disable_content_type_detection: :class:`bool`
+    
+    :param caption: Document caption; 0-GetOption("message_caption_length_max") characters
+    :type caption: :class:`FormattedText`
+    
     """
 
     ID: str = Field("inputMessageDocument", alias="@type")
@@ -184,19 +179,18 @@ class InputMessageForwarded(InputMessageContent):
     """
     A forwarded message
     
-    Params:
-        from_chat_id (:class:`int`)
-            Identifier for the chat this forwarded message came from
-        
-        message_id (:class:`int`)
-            Identifier of the message to forward
-        
-        in_game_share (:class:`bool`)
-            True, if a game message should be shared within a launched game; applies only to game messages
-        
-        copy_options (:class:`MessageCopyOptions`)
-            Options to be used to copy content of the message without a link to the original message
-        
+    :param from_chat_id: Identifier for the chat this forwarded message came from
+    :type from_chat_id: :class:`int`
+    
+    :param message_id: Identifier of the message to forward
+    :type message_id: :class:`int`
+    
+    :param in_game_share: True, if a game message should be shared within a launched game; applies only to game messages
+    :type in_game_share: :class:`bool`
+    
+    :param copy_options: Options to be used to copy content of the message without a link to the original message
+    :type copy_options: :class:`MessageCopyOptions`
+    
     """
 
     ID: str = Field("inputMessageForwarded", alias="@type")
@@ -214,13 +208,12 @@ class InputMessageGame(InputMessageContent):
     """
     A message with a game; not supported for channels or secret chats
     
-    Params:
-        bot_user_id (:class:`int`)
-            User identifier of the bot that owns the game
-        
-        game_short_name (:class:`str`)
-            Short name of the game
-        
+    :param bot_user_id: User identifier of the bot that owns the game
+    :type bot_user_id: :class:`int`
+    
+    :param game_short_name: Short name of the game
+    :type game_short_name: :class:`str`
+    
     """
 
     ID: str = Field("inputMessageGame", alias="@type")
@@ -236,40 +229,39 @@ class InputMessageInvoice(InputMessageContent):
     """
     A message with an invoice; can be used only by bots
     
-    Params:
-        invoice (:class:`Invoice`)
-            Invoice
-        
-        title (:class:`str`)
-            Product title; 1-32 characters
-        
-        param_description (:class:`str`)
-            Product description; 0-255 characters
-        
-        photo_url (:class:`str`)
-            Product photo URL; optional
-        
-        photo_size (:class:`int`)
-            Product photo size
-        
-        photo_width (:class:`int`)
-            Product photo width
-        
-        photo_height (:class:`int`)
-            Product photo height
-        
-        payload (:class:`str`)
-            The invoice payload
-        
-        provider_token (:class:`str`)
-            Payment provider token
-        
-        provider_data (:class:`str`)
-            JSON-encoded data about the invoice, which will be shared with the payment provider
-        
-        start_parameter (:class:`str`)
-            Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice message
-        
+    :param invoice: Invoice
+    :type invoice: :class:`Invoice`
+    
+    :param title: Product title; 1-32 characters
+    :type title: :class:`str`
+    
+    :param param_description: Product description; 0-255 characters, defaults to None
+    :type param_description: :class:`str`, optional
+    
+    :param photo_url: Product photo URL; optional
+    :type photo_url: :class:`str`
+    
+    :param photo_size: Product photo size
+    :type photo_size: :class:`int`
+    
+    :param photo_width: Product photo width
+    :type photo_width: :class:`int`
+    
+    :param photo_height: Product photo height
+    :type photo_height: :class:`int`
+    
+    :param payload: The invoice payload
+    :type payload: :class:`str`
+    
+    :param provider_token: Payment provider token
+    :type provider_token: :class:`str`
+    
+    :param provider_data: JSON-encoded data about the invoice, which will be shared with the payment provider
+    :type provider_data: :class:`str`
+    
+    :param start_parameter: Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice message
+    :type start_parameter: :class:`str`
+    
     """
 
     ID: str = Field("inputMessageInvoice", alias="@type")
@@ -294,19 +286,18 @@ class InputMessageLocation(InputMessageContent):
     """
     A message with a location
     
-    Params:
-        location (:class:`Location`)
-            Location to be sent
-        
-        live_period (:class:`int`)
-            Period for which the location can be updated, in seconds; should be between 60 and 86400 for a live location and 0 otherwise
-        
-        heading (:class:`int`)
-            For live locations, a direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
-        
-        proximity_alert_radius (:class:`int`)
-            For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled. Can't be enabled in channels and Saved Messages
-        
+    :param location: Location to be sent
+    :type location: :class:`Location`
+    
+    :param live_period: Period for which the location can be updated, in seconds; should be between 60 and 86400 for a live location and 0 otherwise
+    :type live_period: :class:`int`
+    
+    :param heading: For live locations, a direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+    :type heading: :class:`int`
+    
+    :param proximity_alert_radius: For live locations, a maximum distance to another chat member for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled. Can't be enabled in channels and Saved Messages
+    :type proximity_alert_radius: :class:`int`
+    
     """
 
     ID: str = Field("inputMessageLocation", alias="@type")
@@ -324,28 +315,27 @@ class InputMessagePhoto(InputMessageContent):
     """
     A photo message
     
-    Params:
-        photo (:class:`InputFile`)
-            Photo to send
-        
-        thumbnail (:class:`InputThumbnail`)
-            Photo thumbnail to be sent, this is sent to the other party in secret chats only
-        
-        added_sticker_file_ids (:obj:`list[int]`)
-            File identifiers of the stickers added to the photo, if applicable
-        
-        width (:class:`int`)
-            Photo width
-        
-        height (:class:`int`)
-            Photo height
-        
-        caption (:class:`FormattedText`)
-            Photo caption; 0-GetOption("message_caption_length_max") characters
-        
-        ttl (:class:`int`)
-            Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
-        
+    :param photo: Photo to send
+    :type photo: :class:`InputFile`
+    
+    :param thumbnail: Photo thumbnail to be sent, this is sent to the other party in secret chats only
+    :type thumbnail: :class:`InputThumbnail`
+    
+    :param added_sticker_file_ids: File identifiers of the stickers added to the photo, if applicable
+    :type added_sticker_file_ids: :class:`list[int]`
+    
+    :param width: Photo width
+    :type width: :class:`int`
+    
+    :param height: Photo height
+    :type height: :class:`int`
+    
+    :param caption: Photo caption; 0-GetOption("message_caption_length_max") characters
+    :type caption: :class:`FormattedText`
+    
+    :param ttl: Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
+    :type ttl: :class:`int`
+    
     """
 
     ID: str = Field("inputMessagePhoto", alias="@type")
@@ -366,28 +356,27 @@ class InputMessagePoll(InputMessageContent):
     """
     A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot
     
-    Params:
-        question (:class:`str`)
-            Poll question; 1-255 characters (up to 300 characters for bots)
-        
-        options (:obj:`list[str]`)
-            List of poll answer options, 2-10 strings 1-100 characters each
-        
-        is_anonymous (:class:`bool`)
-            True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels
-        
-        type_ (:class:`PollType`)
-            Type of the poll
-        
-        open_period (:class:`int`)
-            Amount of time the poll will be active after creation, in seconds; for bots only
-        
-        close_date (:class:`int`)
-            Point in time (Unix timestamp) when the poll will be automatically closed; for bots only
-        
-        is_closed (:class:`bool`)
-            True, if the poll needs to be sent already closed; for bots only
-        
+    :param question: Poll question; 1-255 characters (up to 300 characters for bots)
+    :type question: :class:`str`
+    
+    :param options: List of poll answer options, 2-10 strings 1-100 characters each
+    :type options: :class:`list[str]`
+    
+    :param is_anonymous: True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels
+    :type is_anonymous: :class:`bool`
+    
+    :param type_: Type of the poll
+    :type type_: :class:`PollType`
+    
+    :param open_period: Amount of time the poll will be active after creation, in seconds; for bots only
+    :type open_period: :class:`int`
+    
+    :param close_date: Point in time (Unix timestamp) when the poll will be automatically closed; for bots only
+    :type close_date: :class:`int`
+    
+    :param is_closed: True, if the poll needs to be sent already closed; for bots only
+    :type is_closed: :class:`bool`
+    
     """
 
     ID: str = Field("inputMessagePoll", alias="@type")
@@ -408,22 +397,21 @@ class InputMessageSticker(InputMessageContent):
     """
     A sticker message
     
-    Params:
-        sticker (:class:`InputFile`)
-            Sticker to be sent
-        
-        thumbnail (:class:`InputThumbnail`)
-            Sticker thumbnail, if available
-        
-        width (:class:`int`)
-            Sticker width
-        
-        height (:class:`int`)
-            Sticker height
-        
-        emoji (:class:`str`)
-            Emoji used to choose the sticker
-        
+    :param sticker: Sticker to be sent
+    :type sticker: :class:`InputFile`
+    
+    :param thumbnail: Sticker thumbnail, if available
+    :type thumbnail: :class:`InputThumbnail`
+    
+    :param width: Sticker width
+    :type width: :class:`int`
+    
+    :param height: Sticker height
+    :type height: :class:`int`
+    
+    :param emoji: Emoji used to choose the sticker
+    :type emoji: :class:`str`
+    
     """
 
     ID: str = Field("inputMessageSticker", alias="@type")
@@ -442,16 +430,15 @@ class InputMessageText(InputMessageContent):
     """
     A text message
     
-    Params:
-        text (:class:`FormattedText`)
-            Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
-        
-        disable_web_page_preview (:class:`bool`)
-            True, if rich web page previews for URLs in the message text should be disabled
-        
-        clear_draft (:class:`bool`)
-            True, if a chat message draft should be deleted
-        
+    :param text: Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+    :type text: :class:`FormattedText`
+    
+    :param disable_web_page_preview: True, if rich web page previews for URLs in the message text should be disabled
+    :type disable_web_page_preview: :class:`bool`
+    
+    :param clear_draft: True, if a chat message draft should be deleted
+    :type clear_draft: :class:`bool`
+    
     """
 
     ID: str = Field("inputMessageText", alias="@type")
@@ -468,10 +455,9 @@ class InputMessageVenue(InputMessageContent):
     """
     A message with information about a venue
     
-    Params:
-        venue (:class:`Venue`)
-            Venue to send
-        
+    :param venue: Venue to send
+    :type venue: :class:`Venue`
+    
     """
 
     ID: str = Field("inputMessageVenue", alias="@type")
@@ -486,34 +472,33 @@ class InputMessageVideo(InputMessageContent):
     """
     A video message
     
-    Params:
-        video (:class:`InputFile`)
-            Video to be sent
-        
-        thumbnail (:class:`InputThumbnail`)
-            Video thumbnail, if available
-        
-        added_sticker_file_ids (:obj:`list[int]`)
-            File identifiers of the stickers added to the video, if applicable
-        
-        duration (:class:`int`)
-            Duration of the video, in seconds
-        
-        width (:class:`int`)
-            Video width
-        
-        height (:class:`int`)
-            Video height
-        
-        supports_streaming (:class:`bool`)
-            True, if the video should be tried to be streamed
-        
-        caption (:class:`FormattedText`)
-            Video caption; 0-GetOption("message_caption_length_max") characters
-        
-        ttl (:class:`int`)
-            Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
-        
+    :param video: Video to be sent
+    :type video: :class:`InputFile`
+    
+    :param thumbnail: Video thumbnail, if available
+    :type thumbnail: :class:`InputThumbnail`
+    
+    :param added_sticker_file_ids: File identifiers of the stickers added to the video, if applicable
+    :type added_sticker_file_ids: :class:`list[int]`
+    
+    :param duration: Duration of the video, in seconds
+    :type duration: :class:`int`
+    
+    :param width: Video width
+    :type width: :class:`int`
+    
+    :param height: Video height
+    :type height: :class:`int`
+    
+    :param supports_streaming: True, if the video should be tried to be streamed
+    :type supports_streaming: :class:`bool`
+    
+    :param caption: Video caption; 0-GetOption("message_caption_length_max") characters
+    :type caption: :class:`FormattedText`
+    
+    :param ttl: Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
+    :type ttl: :class:`int`
+    
     """
 
     ID: str = Field("inputMessageVideo", alias="@type")
@@ -536,19 +521,18 @@ class InputMessageVideoNote(InputMessageContent):
     """
     A video note message
     
-    Params:
-        video_note (:class:`InputFile`)
-            Video note to be sent
-        
-        thumbnail (:class:`InputThumbnail`)
-            Video thumbnail, if available
-        
-        duration (:class:`int`)
-            Duration of the video, in seconds
-        
-        length (:class:`int`)
-            Video width and height; must be positive and not greater than 640
-        
+    :param video_note: Video note to be sent
+    :type video_note: :class:`InputFile`
+    
+    :param thumbnail: Video thumbnail, if available
+    :type thumbnail: :class:`InputThumbnail`
+    
+    :param duration: Duration of the video, in seconds
+    :type duration: :class:`int`
+    
+    :param length: Video width and height; must be positive and not greater than 640
+    :type length: :class:`int`
+    
     """
 
     ID: str = Field("inputMessageVideoNote", alias="@type")
@@ -566,19 +550,18 @@ class InputMessageVoiceNote(InputMessageContent):
     """
     A voice note message
     
-    Params:
-        voice_note (:class:`InputFile`)
-            Voice note to be sent
-        
-        duration (:class:`int`)
-            Duration of the voice note, in seconds
-        
-        waveform (:class:`str`)
-            Waveform representation of the voice note, in 5-bit format
-        
-        caption (:class:`FormattedText`)
-            Voice note caption; 0-GetOption("message_caption_length_max") characters
-        
+    :param voice_note: Voice note to be sent
+    :type voice_note: :class:`InputFile`
+    
+    :param duration: Duration of the voice note, in seconds
+    :type duration: :class:`int`
+    
+    :param waveform: Waveform representation of the voice note, in 5-bit format
+    :type waveform: :class:`str`
+    
+    :param caption: Voice note caption; 0-GetOption("message_caption_length_max") characters
+    :type caption: :class:`FormattedText`
+    
     """
 
     ID: str = Field("inputMessageVoiceNote", alias="@type")

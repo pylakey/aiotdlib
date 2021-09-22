@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class SearchStickerSet(BaseObject):
     """
     Searches for a sticker set by its name
     
-    Params:
-        name (:class:`str`)
-            Name of the sticker set
-        
+    :param name: Name of the sticker set
+    :type name: :class:`str`
+    
     """
 
     ID: str = Field("searchStickerSet", alias="@type")

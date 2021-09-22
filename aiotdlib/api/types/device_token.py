@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,13 +25,12 @@ class DeviceTokenApplePush(DeviceToken):
     """
     A token for Apple Push Notification service
     
-    Params:
-        device_token (:class:`str`)
-            Device token; may be empty to de-register a device
-        
-        is_app_sandbox (:class:`bool`)
-            True, if App Sandbox is enabled
-        
+    :param device_token: Device token; may be empty to de-register a device
+    :type device_token: :class:`str`
+    
+    :param is_app_sandbox: True, if App Sandbox is enabled
+    :type is_app_sandbox: :class:`bool`
+    
     """
 
     ID: str = Field("deviceTokenApplePush", alias="@type")
@@ -45,16 +46,15 @@ class DeviceTokenApplePushVoIP(DeviceToken):
     """
     A token for Apple Push Notification service VoIP notifications
     
-    Params:
-        device_token (:class:`str`)
-            Device token; may be empty to de-register a device
-        
-        is_app_sandbox (:class:`bool`)
-            True, if App Sandbox is enabled
-        
-        encrypt (:class:`bool`)
-            True, if push notifications should be additionally encrypted
-        
+    :param device_token: Device token; may be empty to de-register a device
+    :type device_token: :class:`str`
+    
+    :param is_app_sandbox: True, if App Sandbox is enabled
+    :type is_app_sandbox: :class:`bool`
+    
+    :param encrypt: True, if push notifications should be additionally encrypted
+    :type encrypt: :class:`bool`
+    
     """
 
     ID: str = Field("deviceTokenApplePushVoIP", alias="@type")
@@ -71,10 +71,9 @@ class DeviceTokenBlackBerryPush(DeviceToken):
     """
     A token for BlackBerry Push Service
     
-    Params:
-        token (:class:`str`)
-            Token; may be empty to de-register a device
-        
+    :param token: Token; may be empty to de-register a device
+    :type token: :class:`str`
+    
     """
 
     ID: str = Field("deviceTokenBlackBerryPush", alias="@type")
@@ -89,13 +88,12 @@ class DeviceTokenFirebaseCloudMessaging(DeviceToken):
     """
     A token for Firebase Cloud Messaging
     
-    Params:
-        token (:class:`str`)
-            Device registration token; may be empty to de-register a device
-        
-        encrypt (:class:`bool`)
-            True, if push notifications should be additionally encrypted
-        
+    :param token: Device registration token; may be empty to de-register a device
+    :type token: :class:`str`
+    
+    :param encrypt: True, if push notifications should be additionally encrypted
+    :type encrypt: :class:`bool`
+    
     """
 
     ID: str = Field("deviceTokenFirebaseCloudMessaging", alias="@type")
@@ -111,10 +109,9 @@ class DeviceTokenMicrosoftPush(DeviceToken):
     """
     A token for Microsoft Push Notification Service
     
-    Params:
-        channel_uri (:class:`str`)
-            Push notification channel URI; may be empty to de-register a device
-        
+    :param channel_uri: Push notification channel URI; may be empty to de-register a device
+    :type channel_uri: :class:`str`
+    
     """
 
     ID: str = Field("deviceTokenMicrosoftPush", alias="@type")
@@ -129,10 +126,9 @@ class DeviceTokenMicrosoftPushVoIP(DeviceToken):
     """
     A token for Microsoft Push Notification Service VoIP channel
     
-    Params:
-        channel_uri (:class:`str`)
-            Push notification channel URI; may be empty to de-register a device
-        
+    :param channel_uri: Push notification channel URI; may be empty to de-register a device
+    :type channel_uri: :class:`str`
+    
     """
 
     ID: str = Field("deviceTokenMicrosoftPushVoIP", alias="@type")
@@ -147,10 +143,9 @@ class DeviceTokenSimplePush(DeviceToken):
     """
     A token for Simple Push API for Firefox OS
     
-    Params:
-        endpoint (:class:`str`)
-            Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
-        
+    :param endpoint: Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
+    :type endpoint: :class:`str`
+    
     """
 
     ID: str = Field("deviceTokenSimplePush", alias="@type")
@@ -165,10 +160,9 @@ class DeviceTokenTizenPush(DeviceToken):
     """
     A token for Tizen Push Service
     
-    Params:
-        reg_id (:class:`str`)
-            Push service registration identifier; may be empty to de-register a device
-        
+    :param reg_id: Push service registration identifier; may be empty to de-register a device
+    :type reg_id: :class:`str`
+    
     """
 
     ID: str = Field("deviceTokenTizenPush", alias="@type")
@@ -183,10 +177,9 @@ class DeviceTokenUbuntuPush(DeviceToken):
     """
     A token for Ubuntu Push Client service
     
-    Params:
-        token (:class:`str`)
-            Token; may be empty to de-register a device
-        
+    :param token: Token; may be empty to de-register a device
+    :type token: :class:`str`
+    
     """
 
     ID: str = Field("deviceTokenUbuntuPush", alias="@type")
@@ -201,16 +194,15 @@ class DeviceTokenWebPush(DeviceToken):
     """
     A token for web Push API
     
-    Params:
-        endpoint (:class:`str`)
-            Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
-        
-        p256dh_base64url (:class:`str`)
-            Base64url-encoded P-256 elliptic curve Diffie-Hellman public key
-        
-        auth_base64url (:class:`str`)
-            Base64url-encoded authentication secret
-        
+    :param endpoint: Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
+    :type endpoint: :class:`str`
+    
+    :param p256dh_base64url: Base64url-encoded P-256 elliptic curve Diffie-Hellman public key
+    :type p256dh_base64url: :class:`str`
+    
+    :param auth_base64url: Base64url-encoded authentication secret
+    :type auth_base64url: :class:`str`
+    
     """
 
     ID: str = Field("deviceTokenWebPush", alias="@type")
@@ -227,10 +219,9 @@ class DeviceTokenWindowsPush(DeviceToken):
     """
     A token for Windows Push Notification Services
     
-    Params:
-        access_token (:class:`str`)
-            The access token that will be used to send notifications; may be empty to de-register a device
-        
+    :param access_token: The access token that will be used to send notifications; may be empty to de-register a device
+    :type access_token: :class:`str`
+    
     """
 
     ID: str = Field("deviceTokenWindowsPush", alias="@type")

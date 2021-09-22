@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import ChatPermissions
+from ..base_object import BaseObject
 
 
 class SetChatPermissions(BaseObject):
     """
     Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier
-        
-        permissions (:class:`ChatPermissions`)
-            New non-administrator members permissions in the chat
-        
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param permissions: New non-administrator members permissions in the chat
+    :type permissions: :class:`ChatPermissions`
+    
     """
 
     ID: str = Field("setChatPermissions", alias="@type")

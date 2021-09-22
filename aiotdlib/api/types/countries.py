@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .country_info import CountryInfo
@@ -15,10 +17,9 @@ class Countries(BaseObject):
     """
     Contains information about countries
     
-    Params:
-        countries (:obj:`list[CountryInfo]`)
-            The list of countries
-        
+    :param countries: The list of countries
+    :type countries: :class:`list[CountryInfo]`
+    
     """
 
     ID: str = Field("countries", alias="@type")

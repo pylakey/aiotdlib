@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .formatted_text import FormattedText
@@ -15,13 +17,12 @@ class DeepLinkInfo(BaseObject):
     """
     Contains information about a tg: deep link
     
-    Params:
-        text (:class:`FormattedText`)
-            Text to be shown to the user
-        
-        need_update_application (:class:`bool`)
-            True, if user should be asked to update the application
-        
+    :param text: Text to be shown to the user
+    :type text: :class:`FormattedText`
+    
+    :param need_update_application: True, if user should be asked to update the application
+    :type need_update_application: :class:`bool`
+    
     """
 
     ID: str = Field("deepLinkInfo", alias="@type")

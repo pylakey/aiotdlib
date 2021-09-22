@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .text_entity_type import TextEntityType
@@ -15,16 +17,15 @@ class TextEntity(BaseObject):
     """
     Represents a part of the text that needs to be formatted in some unusual way
     
-    Params:
-        offset (:class:`int`)
-            Offset of the entity, in UTF-16 code units
-        
-        length (:class:`int`)
-            Length of the entity, in UTF-16 code units
-        
-        type_ (:class:`TextEntityType`)
-            Type of the entity
-        
+    :param offset: Offset of the entity, in UTF-16 code units
+    :type offset: :class:`int`
+    
+    :param length: Length of the entity, in UTF-16 code units
+    :type length: :class:`int`
+    
+    :param type_: Type of the entity
+    :type type_: :class:`TextEntityType`
+    
     """
 
     ID: str = Field("textEntity", alias="@type")

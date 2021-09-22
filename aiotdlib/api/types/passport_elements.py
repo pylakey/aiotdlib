@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .passport_element import PassportElement
@@ -15,10 +17,9 @@ class PassportElements(BaseObject):
     """
     Contains information about saved Telegram Passport elements
     
-    Params:
-        elements (:obj:`list[PassportElement]`)
-            Telegram Passport elements
-        
+    :param elements: Telegram Passport elements
+    :type elements: :class:`list[PassportElement]`
+    
     """
 
     ID: str = Field("passportElements", alias="@type")

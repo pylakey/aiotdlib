@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetRecentlyVisitedTMeUrls(BaseObject):
     """
     Returns t.me URLs recently visited by a newly registered user
     
-    Params:
-        referrer (:class:`str`)
-            Google Play referrer to identify the user
-        
+    :param referrer: Google Play referrer to identify the user
+    :type referrer: :class:`str`
+    
     """
 
     ID: str = Field("getRecentlyVisitedTMeUrls", alias="@type")

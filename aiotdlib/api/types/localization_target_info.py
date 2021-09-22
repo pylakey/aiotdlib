@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .language_pack_info import LanguagePackInfo
@@ -15,10 +17,9 @@ class LocalizationTargetInfo(BaseObject):
     """
     Contains information about the current localization target
     
-    Params:
-        language_packs (:obj:`list[LanguagePackInfo]`)
-            List of available language packs for this application
-        
+    :param language_packs: List of available language packs for this application
+    :type language_packs: :class:`list[LanguagePackInfo]`
+    
     """
 
     ID: str = Field("localizationTargetInfo", alias="@type")

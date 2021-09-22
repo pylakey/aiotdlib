@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class Hashtags(BaseObject):
     """
     Contains a list of hashtags
     
-    Params:
-        hashtags (:obj:`list[str]`)
-            A list of hashtags
-        
+    :param hashtags: A list of hashtags
+    :type hashtags: :class:`list[str]`
+    
     """
 
     ID: str = Field("hashtags", alias="@type")

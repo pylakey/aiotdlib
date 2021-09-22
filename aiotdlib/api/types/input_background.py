@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .input_file import InputFile
@@ -24,10 +26,9 @@ class InputBackgroundLocal(InputBackground):
     """
     A background from a local file
     
-    Params:
-        background (:class:`InputFile`)
-            Background file to use. Only inputFileLocal and inputFileGenerated are supported. The file must be in JPEG format for wallpapers and in PNG format for patterns
-        
+    :param background: Background file to use. Only inputFileLocal and inputFileGenerated are supported. The file must be in JPEG format for wallpapers and in PNG format for patterns
+    :type background: :class:`InputFile`
+    
     """
 
     ID: str = Field("inputBackgroundLocal", alias="@type")
@@ -42,10 +43,9 @@ class InputBackgroundRemote(InputBackground):
     """
     A background from the server
     
-    Params:
-        background_id (:class:`int`)
-            The background identifier
-        
+    :param background_id: The background identifier
+    :type background_id: :class:`int`
+    
     """
 
     ID: str = Field("inputBackgroundRemote", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,16 +16,15 @@ class GetGameHighScores(BaseObject):
     """
     Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only
     
-    Params:
-        chat_id (:class:`int`)
-            The chat that contains the message with the game
-        
-        message_id (:class:`int`)
-            Identifier of the message
-        
-        user_id (:class:`int`)
-            User identifier
-        
+    :param chat_id: The chat that contains the message with the game
+    :type chat_id: :class:`int`
+    
+    :param message_id: Identifier of the message
+    :type message_id: :class:`int`
+    
+    :param user_id: User identifier
+    :type user_id: :class:`int`
+    
     """
 
     ID: str = Field("getGameHighScores", alias="@type")

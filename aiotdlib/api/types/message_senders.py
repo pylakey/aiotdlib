@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .message_sender import MessageSender
@@ -15,13 +17,12 @@ class MessageSenders(BaseObject):
     """
     Represents a list of message senders
     
-    Params:
-        total_count (:class:`int`)
-            Approximate total count of messages senders found
-        
-        senders (:obj:`list[MessageSender]`)
-            List of message senders
-        
+    :param total_count: Approximate total count of messages senders found
+    :type total_count: :class:`int`
+    
+    :param senders: List of message senders
+    :type senders: :class:`list[MessageSender]`
+    
     """
 
     ID: str = Field("messageSenders", alias="@type")

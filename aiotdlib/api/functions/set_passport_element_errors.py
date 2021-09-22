@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import InputPassportElementError
+from ..base_object import BaseObject
 
 
 class SetPassportElementErrors(BaseObject):
     """
     Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
     
-    Params:
-        user_id (:class:`int`)
-            User identifier
-        
-        errors (:obj:`list[InputPassportElementError]`)
-            The errors
-        
+    :param user_id: User identifier
+    :type user_id: :class:`int`
+    
+    :param errors: The errors
+    :type errors: :class:`list[InputPassportElementError]`
+    
     """
 
     ID: str = Field("setPassportElementErrors", alias="@type")

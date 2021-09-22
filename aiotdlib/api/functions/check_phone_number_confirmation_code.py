@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class CheckPhoneNumberConfirmationCode(BaseObject):
     """
     Checks phone number confirmation code
     
-    Params:
-        code (:class:`str`)
-            The phone number confirmation code
-        
+    :param code: The phone number confirmation code
+    :type code: :class:`str`
+    
     """
 
     ID: str = Field("checkPhoneNumberConfirmationCode", alias="@type")

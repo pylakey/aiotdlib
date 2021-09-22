@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,22 +16,21 @@ class SetInlineGameScore(BaseObject):
     """
     Updates the game score of the specified user in a game; for bots only
     
-    Params:
-        inline_message_id (:class:`str`)
-            Inline message identifier
-        
-        edit_message (:class:`bool`)
-            True, if the message should be edited
-        
-        user_id (:class:`int`)
-            User identifier
-        
-        score (:class:`int`)
-            The new score
-        
-        force (:class:`bool`)
-            Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
-        
+    :param inline_message_id: Inline message identifier
+    :type inline_message_id: :class:`str`
+    
+    :param edit_message: True, if the message should be edited
+    :type edit_message: :class:`bool`
+    
+    :param user_id: User identifier
+    :type user_id: :class:`int`
+    
+    :param score: The new score
+    :type score: :class:`int`
+    
+    :param force: Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
+    :type force: :class:`bool`
+    
     """
 
     ID: str = Field("setInlineGameScore", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .language_pack_string_value import LanguagePackStringValue
@@ -15,13 +17,12 @@ class LanguagePackString(BaseObject):
     """
     Represents one language pack string
     
-    Params:
-        key (:class:`str`)
-            String key
-        
-        value (:class:`LanguagePackStringValue`)
-            String value
-        
+    :param key: String key
+    :type key: :class:`str`
+    
+    :param value: String value
+    :type value: :class:`LanguagePackStringValue`
+    
     """
 
     ID: str = Field("languagePackString", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,10 +25,9 @@ class AuthenticationCodeTypeCall(AuthenticationCodeType):
     """
     An authentication code is delivered via a phone call to the specified phone number
     
-    Params:
-        length (:class:`int`)
-            Length of the code
-        
+    :param length: Length of the code
+    :type length: :class:`int`
+    
     """
 
     ID: str = Field("authenticationCodeTypeCall", alias="@type")
@@ -41,10 +42,9 @@ class AuthenticationCodeTypeFlashCall(AuthenticationCodeType):
     """
     An authentication code is delivered by an immediately canceled call to the specified phone number. The number from which the call was made is the code
     
-    Params:
-        pattern (:class:`str`)
-            Pattern of the phone number from which the call will be made
-        
+    :param pattern: Pattern of the phone number from which the call will be made
+    :type pattern: :class:`str`
+    
     """
 
     ID: str = Field("authenticationCodeTypeFlashCall", alias="@type")
@@ -59,10 +59,9 @@ class AuthenticationCodeTypeSms(AuthenticationCodeType):
     """
     An authentication code is delivered via an SMS message to the specified phone number
     
-    Params:
-        length (:class:`int`)
-            Length of the code
-        
+    :param length: Length of the code
+    :type length: :class:`int`
+    
     """
 
     ID: str = Field("authenticationCodeTypeSms", alias="@type")
@@ -77,10 +76,9 @@ class AuthenticationCodeTypeTelegramMessage(AuthenticationCodeType):
     """
     An authentication code is delivered via a private Telegram message, which can be viewed from another active session
     
-    Params:
-        length (:class:`int`)
-            Length of the code
-        
+    :param length: Length of the code
+    :type length: :class:`int`
+    
     """
 
     ID: str = Field("authenticationCodeTypeTelegramMessage", alias="@type")

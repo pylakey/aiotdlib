@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,10 +25,9 @@ class BackgroundFillFreeformGradient(BackgroundFill):
     """
     Describes a freeform gradient fill of a background
     
-    Params:
-        colors (:obj:`list[int]`)
-            A list of 3 or 4 colors of the freeform gradients in the RGB24 format
-        
+    :param colors: A list of 3 or 4 colors of the freeform gradients in the RGB24 format
+    :type colors: :class:`list[int]`
+    
     """
 
     ID: str = Field("backgroundFillFreeformGradient", alias="@type")
@@ -41,16 +42,15 @@ class BackgroundFillGradient(BackgroundFill):
     """
     Describes a gradient fill of a background
     
-    Params:
-        top_color (:class:`int`)
-            A top color of the background in the RGB24 format
-        
-        bottom_color (:class:`int`)
-            A bottom color of the background in the RGB24 format
-        
-        rotation_angle (:class:`int`)
-            Clockwise rotation angle of the gradient, in degrees; 0-359. Should be always divisible by 45
-        
+    :param top_color: A top color of the background in the RGB24 format
+    :type top_color: :class:`int`
+    
+    :param bottom_color: A bottom color of the background in the RGB24 format
+    :type bottom_color: :class:`int`
+    
+    :param rotation_angle: Clockwise rotation angle of the gradient, in degrees; 0-359. Should be always divisible by 45
+    :type rotation_angle: :class:`int`
+    
     """
 
     ID: str = Field("backgroundFillGradient", alias="@type")
@@ -67,10 +67,9 @@ class BackgroundFillSolid(BackgroundFill):
     """
     Describes a solid fill of a background
     
-    Params:
-        color (:class:`int`)
-            A color of the background in the RGB24 format
-        
+    :param color: A color of the background in the RGB24 format
+    :type color: :class:`int`
+    
     """
 
     ID: str = Field("backgroundFillSolid", alias="@type")

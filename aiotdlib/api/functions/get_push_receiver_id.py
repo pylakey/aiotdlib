@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetPushReceiverId(BaseObject):
     """
     Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
     
-    Params:
-        payload (:class:`str`)
-            JSON-encoded push notification payload
-        
+    :param payload: JSON-encoded push notification payload
+    :type payload: :class:`str`
+    
     """
 
     ID: str = Field("getPushReceiverId", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_list import ChatList
@@ -15,10 +17,9 @@ class ChatLists(BaseObject):
     """
     Contains a list of chat lists
     
-    Params:
-        chat_lists (:obj:`list[ChatList]`)
-            List of chat lists
-        
+    :param chat_lists: List of chat lists
+    :type chat_lists: :class:`list[ChatList]`
+    
     """
 
     ID: str = Field("chatLists", alias="@type")

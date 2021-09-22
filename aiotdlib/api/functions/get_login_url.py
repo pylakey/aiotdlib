@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,19 +16,18 @@ class GetLoginUrl(BaseObject):
     """
     Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button
     
-    Params:
-        chat_id (:class:`int`)
-            Chat identifier of the message with the button
-        
-        message_id (:class:`int`)
-            Message identifier of the message with the button
-        
-        button_id (:class:`int`)
-            Button identifier
-        
-        allow_write_access (:class:`bool`)
-            True, if the user allowed the bot to send them messages
-        
+    :param chat_id: Chat identifier of the message with the button
+    :type chat_id: :class:`int`
+    
+    :param message_id: Message identifier of the message with the button
+    :type message_id: :class:`int`
+    
+    :param button_id: Button identifier
+    :type button_id: :class:`int`
+    
+    :param allow_write_access: True, if the user allowed the bot to send them messages
+    :type allow_write_access: :class:`bool`
+    
     """
 
     ID: str = Field("getLoginUrl", alias="@type")

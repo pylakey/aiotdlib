@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
 from ..types import BotCommandScope
+from ..base_object import BaseObject
 
 
 class DeleteCommands(BaseObject):
     """
     Deletes commands supported by the bot for the given user scope and language; for bots only
     
-    Params:
-        scope (:class:`BotCommandScope`)
-            The scope to which the commands are relevant
-        
-        language_code (:class:`str`)
-            A two-letter ISO 639-1 country code or an empty string
-        
+    :param scope: The scope to which the commands are relevant
+    :type scope: :class:`BotCommandScope`
+    
+    :param language_code: A two-letter ISO 639-1 country code or an empty string
+    :type language_code: :class:`str`
+    
     """
 
     ID: str = Field("deleteCommands", alias="@type")

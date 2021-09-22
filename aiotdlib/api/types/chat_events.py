@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_event import ChatEvent
@@ -15,10 +17,9 @@ class ChatEvents(BaseObject):
     """
     Contains a list of chat events
     
-    Params:
-        events (:obj:`list[ChatEvent]`)
-            List of events
-        
+    :param events: List of events
+    :type events: :class:`list[ChatEvent]`
+    
     """
 
     ID: str = Field("chatEvents", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class CheckPhoneNumberVerificationCode(BaseObject):
     """
     Checks the phone number verification code for Telegram Passport
     
-    Params:
-        code (:class:`str`)
-            Verification code
-        
+    :param code: Verification code
+    :type code: :class:`str`
+    
     """
 
     ID: str = Field("checkPhoneNumberVerificationCode", alias="@type")

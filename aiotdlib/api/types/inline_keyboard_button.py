@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .inline_keyboard_button_type import InlineKeyboardButtonType
@@ -15,13 +17,12 @@ class InlineKeyboardButton(BaseObject):
     """
     Represents a single button in an inline keyboard
     
-    Params:
-        text (:class:`str`)
-            Text of the button
-        
-        type_ (:class:`InlineKeyboardButtonType`)
-            Type of the button
-        
+    :param text: Text of the button
+    :type text: :class:`str`
+    
+    :param type_: Type of the button
+    :type type_: :class:`InlineKeyboardButtonType`
+    
     """
 
     ID: str = Field("inlineKeyboardButton", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .passport_element import PassportElement
@@ -16,13 +18,12 @@ class PassportElementsWithErrors(BaseObject):
     """
     Contains information about a Telegram Passport elements and corresponding errors
     
-    Params:
-        elements (:obj:`list[PassportElement]`)
-            Telegram Passport elements
-        
-        errors (:obj:`list[PassportElementError]`)
-            Errors in the elements that are already available
-        
+    :param elements: Telegram Passport elements
+    :type elements: :class:`list[PassportElement]`
+    
+    :param errors: Errors in the elements that are already available
+    :type errors: :class:`list[PassportElementError]`
+    
     """
 
     ID: str = Field("passportElementsWithErrors", alias="@type")

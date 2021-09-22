@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .formatted_text import FormattedText
@@ -38,10 +40,9 @@ class InternalLinkTypeAuthenticationCode(InternalLinkType):
     """
     The link contains an authentication code. Call checkAuthenticationCode with the code if the current authorization state is authorizationStateWaitCode
     
-    Params:
-        code (:class:`str`)
-            The authentication code
-        
+    :param code: The authentication code
+    :type code: :class:`str`
+    
     """
 
     ID: str = Field("internalLinkTypeAuthenticationCode", alias="@type")
@@ -56,10 +57,9 @@ class InternalLinkTypeBackground(InternalLinkType):
     """
     The link is a link to a background. Call searchBackground with the given background name to process the link
     
-    Params:
-        background_name (:class:`str`)
-            Name of the background
-        
+    :param background_name: Name of the background
+    :type background_name: :class:`str`
+    
     """
 
     ID: str = Field("internalLinkTypeBackground", alias="@type")
@@ -74,13 +74,12 @@ class InternalLinkTypeBotStart(InternalLinkType):
     """
     The link is a link to a chat with a Telegram bot. Call searchPublicChat with the given bot username, check that the user is a bot, show START button in the chat with the bot, and then call sendBotStartMessage with the given start parameter after the button is pressed
     
-    Params:
-        bot_username (:class:`str`)
-            Username of the bot
-        
-        start_parameter (:class:`str`)
-            The parameter to be passed to sendBotStartMessage
-        
+    :param bot_username: Username of the bot
+    :type bot_username: :class:`str`
+    
+    :param start_parameter: The parameter to be passed to sendBotStartMessage
+    :type start_parameter: :class:`str`
+    
     """
 
     ID: str = Field("internalLinkTypeBotStart", alias="@type")
@@ -96,13 +95,12 @@ class InternalLinkTypeBotStartInGroup(InternalLinkType):
     """
     The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a group to add the bot to, and then call sendBotStartMessage with the given start parameter and the chosen group chat. Bots can be added to a public group only by administrators of the group
     
-    Params:
-        bot_username (:class:`str`)
-            Username of the bot
-        
-        start_parameter (:class:`str`)
-            The parameter to be passed to sendBotStartMessage
-        
+    :param bot_username: Username of the bot
+    :type bot_username: :class:`str`
+    
+    :param start_parameter: The parameter to be passed to sendBotStartMessage
+    :type start_parameter: :class:`str`
+    
     """
 
     ID: str = Field("internalLinkTypeBotStartInGroup", alias="@type")
@@ -131,10 +129,9 @@ class InternalLinkTypeChatInvite(InternalLinkType):
     """
     The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link
     
-    Params:
-        invite_link (:class:`str`)
-            Internal representation of the invite link
-        
+    :param invite_link: Internal representation of the invite link
+    :type invite_link: :class:`str`
+    
     """
 
     ID: str = Field("internalLinkTypeChatInvite", alias="@type")
@@ -162,13 +159,12 @@ class InternalLinkTypeGame(InternalLinkType):
     """
     The link is a link to a game. Call searchPublicChat with the given bot username, check that the user is a bot, ask the current user to select a chat to send the game, and then call sendMessage with inputMessageGame
     
-    Params:
-        bot_username (:class:`str`)
-            Username of the bot that owns the game
-        
-        game_short_name (:class:`str`)
-            Short name of the game
-        
+    :param bot_username: Username of the bot that owns the game
+    :type bot_username: :class:`str`
+    
+    :param game_short_name: Short name of the game
+    :type game_short_name: :class:`str`
+    
     """
 
     ID: str = Field("internalLinkTypeGame", alias="@type")
@@ -184,10 +180,9 @@ class InternalLinkTypeLanguagePack(InternalLinkType):
     """
     The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link
     
-    Params:
-        language_pack_id (:class:`str`)
-            Language pack identifier
-        
+    :param language_pack_id: Language pack identifier
+    :type language_pack_id: :class:`str`
+    
     """
 
     ID: str = Field("internalLinkTypeLanguagePack", alias="@type")
@@ -202,10 +197,9 @@ class InternalLinkTypeMessage(InternalLinkType):
     """
     The link is a link to a Telegram message. Call getMessageLinkInfo with the given URL to process the link
     
-    Params:
-        url (:class:`str`)
-            URL to be passed to getMessageLinkInfo
-        
+    :param url: URL to be passed to getMessageLinkInfo
+    :type url: :class:`str`
+    
     """
 
     ID: str = Field("internalLinkTypeMessage", alias="@type")
@@ -220,13 +214,12 @@ class InternalLinkTypeMessageDraft(InternalLinkType):
     """
     The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat should be open and the text should be added to the input field
     
-    Params:
-        text (:class:`FormattedText`)
-            Message draft text
-        
-        contains_link (:class:`bool`)
-            True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link should be selected
-        
+    :param text: Message draft text
+    :type text: :class:`FormattedText`
+    
+    :param contains_link: True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link should be selected
+    :type contains_link: :class:`bool`
+    
     """
 
     ID: str = Field("internalLinkTypeMessageDraft", alias="@type")
@@ -242,22 +235,21 @@ class InternalLinkTypePassportDataRequest(InternalLinkType):
     """
     The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the app, otherwise ignore it
     
-    Params:
-        bot_user_id (:class:`int`)
-            User identifier of the service's bot
-        
-        scope (:class:`str`)
-            Telegram Passport element types requested by the service
-        
-        public_key (:class:`str`)
-            Service's public key
-        
-        nonce (:class:`str`)
-            Unique request identifier provided by the service
-        
-        callback_url (:class:`str`)
-            An HTTP URL to open once the request is finished or canceled with the parameter tg_passport=success or tg_passport=cancel respectively. If empty, then the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel needs to be opened instead
-        
+    :param bot_user_id: User identifier of the service's bot
+    :type bot_user_id: :class:`int`
+    
+    :param scope: Telegram Passport element types requested by the service
+    :type scope: :class:`str`
+    
+    :param public_key: Service's public key
+    :type public_key: :class:`str`
+    
+    :param nonce: Unique request identifier provided by the service
+    :type nonce: :class:`str`
+    
+    :param callback_url: An HTTP URL to open once the request is finished or canceled with the parameter tg_passport=success or tg_passport=cancel respectively. If empty, then the link tgbot{bot_user_id}://passport/success or tgbot{bot_user_id}://passport/cancel needs to be opened instead
+    :type callback_url: :class:`str`
+    
     """
 
     ID: str = Field("internalLinkTypePassportDataRequest", alias="@type")
@@ -276,13 +268,12 @@ class InternalLinkTypePhoneNumberConfirmation(InternalLinkType):
     """
     The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link
     
-    Params:
-        hash_ (:class:`str`)
-            Hash value from the link
-        
-        phone_number (:class:`str`)
-            Phone number value from the link
-        
+    :param hash_: Hash value from the link
+    :type hash_: :class:`str`
+    
+    :param phone_number: Phone number value from the link
+    :type phone_number: :class:`str`
+    
     """
 
     ID: str = Field("internalLinkTypePhoneNumberConfirmation", alias="@type")
@@ -298,16 +289,15 @@ class InternalLinkTypeProxy(InternalLinkType):
     """
     The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
     
-    Params:
-        server (:class:`str`)
-            Proxy server IP address
-        
-        port (:class:`int`)
-            Proxy server port
-        
-        type_ (:class:`ProxyType`)
-            Type of the proxy
-        
+    :param server: Proxy server IP address
+    :type server: :class:`str`
+    
+    :param port: Proxy server port
+    :type port: :class:`int`
+    
+    :param type_: Type of the proxy
+    :type type_: :class:`ProxyType`
+    
     """
 
     ID: str = Field("internalLinkTypeProxy", alias="@type")
@@ -324,10 +314,9 @@ class InternalLinkTypePublicChat(InternalLinkType):
     """
     The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link
     
-    Params:
-        chat_username (:class:`str`)
-            Username of the chat
-        
+    :param chat_username: Username of the chat
+    :type chat_username: :class:`str`
+    
     """
 
     ID: str = Field("internalLinkTypePublicChat", alias="@type")
@@ -368,10 +357,9 @@ class InternalLinkTypeStickerSet(InternalLinkType):
     """
     The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
     
-    Params:
-        sticker_set_name (:class:`str`)
-            Name of the sticker set
-        
+    :param sticker_set_name: Name of the sticker set
+    :type sticker_set_name: :class:`str`
+    
     """
 
     ID: str = Field("internalLinkTypeStickerSet", alias="@type")
@@ -386,10 +374,9 @@ class InternalLinkTypeTheme(InternalLinkType):
     """
     The link is a link to a theme. TDLib has no theme support yet
     
-    Params:
-        theme_name (:class:`str`)
-            Name of the theme
-        
+    :param theme_name: Name of the theme
+    :type theme_name: :class:`str`
+    
     """
 
     ID: str = Field("internalLinkTypeTheme", alias="@type")
@@ -417,10 +404,9 @@ class InternalLinkTypeUnknownDeepLink(InternalLinkType):
     """
     The link is an unknown tg: link. Call getDeepLinkInfo to process the link
     
-    Params:
-        link (:class:`str`)
-            Link to be passed to getDeepLinkInfo
-        
+    :param link: Link to be passed to getDeepLinkInfo
+    :type link: :class:`str`
+    
     """
 
     ID: str = Field("internalLinkTypeUnknownDeepLink", alias="@type")
@@ -435,16 +421,15 @@ class InternalLinkTypeVoiceChat(InternalLinkType):
     """
     The link is a link to a voice chat. Call searchPublicChat with the given chat username, and then joinGoupCall with the given invite hash to process the link
     
-    Params:
-        chat_username (:class:`str`)
-            Username of the chat with the voice chat
-        
-        invite_hash (:class:`str`)
-            If non-empty, invite hash to be used to join the voice chat without being muted by administrators
-        
-        is_live_stream (:class:`bool`)
-            True, if the voice chat is expected to be a live stream in a channel or a broadcast group
-        
+    :param chat_username: Username of the chat with the voice chat
+    :type chat_username: :class:`str`
+    
+    :param invite_hash: If non-empty, invite hash to be used to join the voice chat without being muted by administrators
+    :type invite_hash: :class:`str`
+    
+    :param is_live_stream: True, if the voice chat is expected to be a live stream in a channel or a broadcast group
+    :type is_live_stream: :class:`bool`
+    
     """
 
     ID: str = Field("internalLinkTypeVoiceChat", alias="@type")

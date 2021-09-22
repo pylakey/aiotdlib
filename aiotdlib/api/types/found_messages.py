@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .message import Message
@@ -15,16 +17,15 @@ class FoundMessages(BaseObject):
     """
     Contains a list of messages found by a search
     
-    Params:
-        total_count (:class:`int`)
-            Approximate total count of messages found; -1 if unknown
-        
-        messages (:obj:`list[Message]`)
-            List of messages
-        
-        next_offset (:class:`str`)
-            The offset for the next request. If empty, there are no more results
-        
+    :param total_count: Approximate total count of messages found; -1 if unknown
+    :type total_count: :class:`int`
+    
+    :param messages: List of messages
+    :type messages: :class:`list[Message]`
+    
+    :param next_offset: The offset for the next request. If empty, there are no more results
+    :type next_offset: :class:`str`
+    
     """
 
     ID: str = Field("foundMessages", alias="@type")

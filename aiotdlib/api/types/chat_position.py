@@ -18,19 +18,18 @@ class ChatPosition(BaseObject):
     """
     Describes a position of a chat in a chat list
     
-    Params:
-        list (:class:`ChatList`)
-            The chat list
-        
-        order (:class:`int`)
-            A parameter used to determine order of the chat in the chat list. Chats must be sorted by the pair (order, chat.id) in descending order
-        
-        is_pinned (:class:`bool`)
-            True, if the chat is pinned in the chat list
-        
-        source (:class:`ChatSource`)
-            Source of the chat in the chat list; may be null
-        
+    :param list: The chat list
+    :type list: :class:`ChatList`
+    
+    :param order: A parameter used to determine order of the chat in the chat list. Chats must be sorted by the pair (order, chat.id) in descending order
+    :type order: :class:`int`
+    
+    :param is_pinned: True, if the chat is pinned in the chat list
+    :type is_pinned: :class:`bool`
+    
+    :param source: Source of the chat in the chat list; may be null, defaults to None
+    :type source: :class:`ChatSource`, optional
+    
     """
 
     ID: str = Field("chatPosition", alias="@type")

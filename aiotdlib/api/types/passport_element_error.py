@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .passport_element_error_source import PassportElementErrorSource
@@ -16,16 +18,15 @@ class PassportElementError(BaseObject):
     """
     Contains the description of an error in a Telegram Passport element
     
-    Params:
-        type_ (:class:`PassportElementType`)
-            Type of the Telegram Passport element which has the error
-        
-        message (:class:`str`)
-            Error message
-        
-        source (:class:`PassportElementErrorSource`)
-            Error source
-        
+    :param type_: Type of the Telegram Passport element which has the error
+    :type type_: :class:`PassportElementType`
+    
+    :param message: Error message
+    :type message: :class:`str`
+    
+    :param source: Error source
+    :type source: :class:`PassportElementErrorSource`
+    
     """
 
     ID: str = Field("passportElementError", alias="@type")

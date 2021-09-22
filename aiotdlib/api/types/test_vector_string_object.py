@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .test_string import TestString
@@ -15,10 +17,9 @@ class TestVectorStringObject(BaseObject):
     """
     A simple object containing a vector of objects that hold a string; for testing only
     
-    Params:
-        value (:obj:`list[TestString]`)
-            Vector of objects
-        
+    :param value: Vector of objects
+    :type value: :class:`list[TestString]`
+    
     """
 
     ID: str = Field("testVectorStringObject", alias="@type")

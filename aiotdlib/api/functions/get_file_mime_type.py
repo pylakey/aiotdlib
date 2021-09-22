@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetFileMimeType(BaseObject):
     """
     Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously
     
-    Params:
-        file_name (:class:`str`)
-            The name of the file or path to the file
-        
+    :param file_name: The name of the file or path to the file
+    :type file_name: :class:`str`
+    
     """
 
     ID: str = Field("getFileMimeType", alias="@type")

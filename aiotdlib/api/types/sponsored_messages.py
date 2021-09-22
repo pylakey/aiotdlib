@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .sponsored_message import SponsoredMessage
@@ -15,10 +17,9 @@ class SponsoredMessages(BaseObject):
     """
     Contains a list of sponsored messages
     
-    Params:
-        messages (:obj:`list[SponsoredMessage]`)
-            List of sponsored messages
-        
+    :param messages: List of sponsored messages
+    :type messages: :class:`list[SponsoredMessage]`
+    
     """
 
     ID: str = Field("sponsoredMessages", alias="@type")

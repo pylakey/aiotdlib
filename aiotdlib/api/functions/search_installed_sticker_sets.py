@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,16 +16,15 @@ class SearchInstalledStickerSets(BaseObject):
     """
     Searches for installed sticker sets by looking for specified query in their title and name
     
-    Params:
-        is_masks (:class:`bool`)
-            Pass true to return mask sticker sets; pass false to return ordinary sticker sets
-        
-        query (:class:`str`)
-            Query to search for
-        
-        limit (:class:`int`)
-            The maximum number of sticker sets to return
-        
+    :param is_masks: Pass true to return mask sticker sets; pass false to return ordinary sticker sets
+    :type is_masks: :class:`bool`
+    
+    :param query: Query to search for
+    :type query: :class:`str`
+    
+    :param limit: The maximum number of sticker sets to return
+    :type limit: :class:`int`
+    
     """
 
     ID: str = Field("searchInstalledStickerSets", alias="@type")

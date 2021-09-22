@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class GetSupergroupFullInfo(BaseObject):
     """
     Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
     
-    Params:
-        supergroup_id (:class:`int`)
-            Supergroup or channel identifier
-        
+    :param supergroup_id: Supergroup or channel identifier
+    :type supergroup_id: :class:`int`
+    
     """
 
     ID: str = Field("getSupergroupFullInfo", alias="@type")

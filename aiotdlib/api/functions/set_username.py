@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class SetUsername(BaseObject):
     """
     Changes the username of the current user
     
-    Params:
-        username (:class:`str`)
-            The new value of the username. Use an empty string to remove the username
-        
+    :param username: The new value of the username. Use an empty string to remove the username
+    :type username: :class:`str`
+    
     """
 
     ID: str = Field("setUsername", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -23,16 +25,15 @@ class MessageForwardOriginChannel(MessageForwardOrigin):
     """
     The message was originally a post in a channel
     
-    Params:
-        chat_id (:class:`int`)
-            Identifier of the chat from which the message was originally forwarded
-        
-        message_id (:class:`int`)
-            Message identifier of the original message
-        
-        author_signature (:class:`str`)
-            Original post author signature
-        
+    :param chat_id: Identifier of the chat from which the message was originally forwarded
+    :type chat_id: :class:`int`
+    
+    :param message_id: Message identifier of the original message
+    :type message_id: :class:`int`
+    
+    :param author_signature: Original post author signature
+    :type author_signature: :class:`str`
+    
     """
 
     ID: str = Field("messageForwardOriginChannel", alias="@type")
@@ -49,13 +50,12 @@ class MessageForwardOriginChat(MessageForwardOrigin):
     """
     The message was originally sent by an anonymous chat administrator on behalf of the chat
     
-    Params:
-        sender_chat_id (:class:`int`)
-            Identifier of the chat that originally sent the message
-        
-        author_signature (:class:`str`)
-            Original message author signature
-        
+    :param sender_chat_id: Identifier of the chat that originally sent the message
+    :type sender_chat_id: :class:`int`
+    
+    :param author_signature: Original message author signature
+    :type author_signature: :class:`str`
+    
     """
 
     ID: str = Field("messageForwardOriginChat", alias="@type")
@@ -71,10 +71,9 @@ class MessageForwardOriginHiddenUser(MessageForwardOrigin):
     """
     The message was originally sent by a user, which is hidden by their privacy settings
     
-    Params:
-        sender_name (:class:`str`)
-            Name of the sender
-        
+    :param sender_name: Name of the sender
+    :type sender_name: :class:`str`
+    
     """
 
     ID: str = Field("messageForwardOriginHiddenUser", alias="@type")
@@ -89,10 +88,9 @@ class MessageForwardOriginMessageImport(MessageForwardOrigin):
     """
     The message was imported from an exported message history
     
-    Params:
-        sender_name (:class:`str`)
-            Name of the sender
-        
+    :param sender_name: Name of the sender
+    :type sender_name: :class:`str`
+    
     """
 
     ID: str = Field("messageForwardOriginMessageImport", alias="@type")
@@ -107,10 +105,9 @@ class MessageForwardOriginUser(MessageForwardOrigin):
     """
     The message was originally sent by a known user
     
-    Params:
-        sender_user_id (:class:`int`)
-            Identifier of the user that originally sent the message
-        
+    :param sender_user_id: Identifier of the user that originally sent the message
+    :type sender_user_id: :class:`int`
+    
     """
 
     ID: str = Field("messageForwardOriginUser", alias="@type")

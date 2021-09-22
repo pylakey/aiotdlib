@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class RecoveryEmailAddress(BaseObject):
     """
     Contains information about the current recovery email address
     
-    Params:
-        recovery_email_address (:class:`str`)
-            Recovery email address
-        
+    :param recovery_email_address: Recovery email address
+    :type recovery_email_address: :class:`str`
+    
     """
 
     ID: str = Field("recoveryEmailAddress", alias="@type")

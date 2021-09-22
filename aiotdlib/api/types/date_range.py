@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class DateRange(BaseObject):
     """
     Represents a date range
     
-    Params:
-        start_date (:class:`int`)
-            Point in time (Unix timestamp) at which the date range begins
-        
-        end_date (:class:`int`)
-            Point in time (Unix timestamp) at which the date range ends
-        
+    :param start_date: Point in time (Unix timestamp) at which the date range begins
+    :type start_date: :class:`int`
+    
+    :param end_date: Point in time (Unix timestamp) at which the date range ends
+    :type end_date: :class:`int`
+    
     """
 
     ID: str = Field("dateRange", alias="@type")

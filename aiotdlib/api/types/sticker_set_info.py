@@ -19,46 +19,45 @@ class StickerSetInfo(BaseObject):
     """
     Represents short information about a sticker set
     
-    Params:
-        id (:class:`int`)
-            Identifier of the sticker set
-        
-        title (:class:`str`)
-            Title of the sticker set
-        
-        name (:class:`str`)
-            Name of the sticker set
-        
-        thumbnail (:class:`Thumbnail`)
-            Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null
-        
-        thumbnail_outline (:obj:`list[ClosedVectorPath]`)
-            Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
-        
-        is_installed (:class:`bool`)
-            True, if the sticker set has been installed by the current user
-        
-        is_archived (:class:`bool`)
-            True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
-        
-        is_official (:class:`bool`)
-            True, if the sticker set is official
-        
-        is_animated (:class:`bool`)
-            True, is the stickers in the set are animated
-        
-        is_masks (:class:`bool`)
-            True, if the stickers in the set are masks
-        
-        is_viewed (:class:`bool`)
-            True for already viewed trending sticker sets
-        
-        size (:class:`int`)
-            Total number of stickers in the set
-        
-        covers (:obj:`list[Sticker]`)
-            Contains up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full set should be requested
-        
+    :param id: Identifier of the sticker set
+    :type id: :class:`int`
+    
+    :param title: Title of the sticker set
+    :type title: :class:`str`
+    
+    :param name: Name of the sticker set
+    :type name: :class:`str`
+    
+    :param thumbnail: Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null, defaults to None
+    :type thumbnail: :class:`Thumbnail`, optional
+    
+    :param thumbnail_outline: Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
+    :type thumbnail_outline: :class:`list[ClosedVectorPath]`
+    
+    :param is_installed: True, if the sticker set has been installed by the current user
+    :type is_installed: :class:`bool`
+    
+    :param is_archived: True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
+    :type is_archived: :class:`bool`
+    
+    :param is_official: True, if the sticker set is official
+    :type is_official: :class:`bool`
+    
+    :param is_animated: True, is the stickers in the set are animated
+    :type is_animated: :class:`bool`
+    
+    :param is_masks: True, if the stickers in the set are masks
+    :type is_masks: :class:`bool`
+    
+    :param is_viewed: True for already viewed trending sticker sets
+    :type is_viewed: :class:`bool`
+    
+    :param size: Total number of stickers in the set
+    :type size: :class:`int`
+    
+    :param covers: Contains up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full set should be requested
+    :type covers: :class:`list[Sticker]`
+    
     """
 
     ID: str = Field("stickerSetInfo", alias="@type")

@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,16 +16,15 @@ class ChangeStickerSet(BaseObject):
     """
     Installs/uninstalls or activates/archives a sticker set
     
-    Params:
-        set_id (:class:`int`)
-            Identifier of the sticker set
-        
-        is_installed (:class:`bool`)
-            The new value of is_installed
-        
-        is_archived (:class:`bool`)
-            The new value of is_archived. A sticker set can't be installed and archived simultaneously
-        
+    :param set_id: Identifier of the sticker set
+    :type set_id: :class:`int`
+    
+    :param is_installed: The new value of is_installed
+    :type is_installed: :class:`bool`
+    
+    :param is_archived: The new value of is_archived. A sticker set can't be installed and archived simultaneously
+    :type is_archived: :class:`bool`
+    
     """
 
     ID: str = Field("changeStickerSet", alias="@type")

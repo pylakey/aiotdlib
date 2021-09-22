@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,10 +16,9 @@ class Emojis(BaseObject):
     """
     Represents a list of emoji
     
-    Params:
-        emojis (:obj:`list[str]`)
-            List of emojis
-        
+    :param emojis: List of emojis
+    :type emojis: :class:`list[str]`
+    
     """
 
     ID: str = Field("emojis", alias="@type")

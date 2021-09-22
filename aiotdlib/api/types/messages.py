@@ -17,13 +17,12 @@ class Messages(BaseObject):
     """
     Contains a list of messages
     
-    Params:
-        total_count (:class:`int`)
-            Approximate total count of messages found
-        
-        messages (:obj:`list[Message]`)
-            List of messages; messages may be null
-        
+    :param total_count: Approximate total count of messages found
+    :type total_count: :class:`int`
+    
+    :param messages: List of messages; messages may be null, defaults to None
+    :type messages: :class:`list[Message]`, optional
+    
     """
 
     ID: str = Field("messages", alias="@type")

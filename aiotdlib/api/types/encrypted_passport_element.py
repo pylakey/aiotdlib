@@ -18,34 +18,33 @@ class EncryptedPassportElement(BaseObject):
     """
     Contains information about an encrypted Telegram Passport element; for bots only
     
-    Params:
-        type_ (:class:`PassportElementType`)
-            Type of Telegram Passport element
-        
-        data (:class:`str`)
-            Encrypted JSON-encoded data about the user
-        
-        front_side (:class:`DatedFile`)
-            The front side of an identity document
-        
-        reverse_side (:class:`DatedFile`)
-            The reverse side of an identity document; may be null
-        
-        selfie (:class:`DatedFile`)
-            Selfie with the document; may be null
-        
-        translation (:obj:`list[DatedFile]`)
-            List of files containing a certified English translation of the document
-        
-        files (:obj:`list[DatedFile]`)
-            List of attached files
-        
-        value (:class:`str`)
-            Unencrypted data, phone number or email address
-        
-        hash_ (:class:`str`)
-            Hash of the entire element
-        
+    :param type_: Type of Telegram Passport element
+    :type type_: :class:`PassportElementType`
+    
+    :param data: Encrypted JSON-encoded data about the user
+    :type data: :class:`str`
+    
+    :param front_side: The front side of an identity document
+    :type front_side: :class:`DatedFile`
+    
+    :param reverse_side: The reverse side of an identity document; may be null, defaults to None
+    :type reverse_side: :class:`DatedFile`, optional
+    
+    :param selfie: Selfie with the document; may be null, defaults to None
+    :type selfie: :class:`DatedFile`, optional
+    
+    :param translation: List of files containing a certified English translation of the document
+    :type translation: :class:`list[DatedFile]`
+    
+    :param files: List of attached files
+    :type files: :class:`list[DatedFile]`
+    
+    :param value: Unencrypted data, phone number or email address
+    :type value: :class:`str`
+    
+    :param hash_: Hash of the entire element
+    :type hash_: :class:`str`
+    
     """
 
     ID: str = Field("encryptedPassportElement", alias="@type")

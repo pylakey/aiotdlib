@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .chat_filter import ChatFilter
@@ -15,13 +17,12 @@ class RecommendedChatFilter(BaseObject):
     """
     Describes a recommended chat filter
     
-    Params:
-        filter_ (:class:`ChatFilter`)
-            The chat filter
-        
-        param_description (:class:`str`)
-            Chat filter description
-        
+    :param filter_: The chat filter
+    :type filter_: :class:`ChatFilter`
+    
+    :param param_description: Chat filter description
+    :type param_description: :class:`str`
+    
     """
 
     ID: str = Field("recommendedChatFilter", alias="@type")

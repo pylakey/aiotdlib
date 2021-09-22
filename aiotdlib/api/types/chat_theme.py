@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from .theme_settings import ThemeSettings
@@ -15,16 +17,15 @@ class ChatTheme(BaseObject):
     """
     Describes a chat theme
     
-    Params:
-        name (:class:`str`)
-            Theme name
-        
-        light_settings (:class:`ThemeSettings`)
-            Theme settings for a light chat theme
-        
-        dark_settings (:class:`ThemeSettings`)
-            Theme settings for a dark chat theme
-        
+    :param name: Theme name
+    :type name: :class:`str`
+    
+    :param light_settings: Theme settings for a light chat theme
+    :type light_settings: :class:`ThemeSettings`
+    
+    :param dark_settings: Theme settings for a dark chat theme
+    :type dark_settings: :class:`ThemeSettings`
+    
     """
 
     ID: str = Field("chatTheme", alias="@type")

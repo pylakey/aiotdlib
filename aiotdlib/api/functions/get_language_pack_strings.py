@@ -5,6 +5,8 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -14,13 +16,12 @@ class GetLanguagePackStrings(BaseObject):
     """
     Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
     
-    Params:
-        language_pack_id (:class:`str`)
-            Language pack identifier of the strings to be returned
-        
-        keys (:obj:`list[str]`)
-            Language pack keys of the strings to be returned; leave empty to request all available strings
-        
+    :param language_pack_id: Language pack identifier of the strings to be returned
+    :type language_pack_id: :class:`str`
+    
+    :param keys: Language pack keys of the strings to be returned; leave empty to request all available strings
+    :type keys: :class:`list[str]`
+    
     """
 
     ID: str = Field("getLanguagePackStrings", alias="@type")
