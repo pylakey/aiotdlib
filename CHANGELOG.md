@@ -1,5 +1,15 @@
 # aiotdlib CHANGELOG
 
+### 0.11.1 - Environment variables
+
+#### Added
+
+* `Client` parameters now could be set via environment variables with AIOTDLIB_* prefix. For example: AIOTDLIB_API_ID=123456
+
+* [Docker Secrets](https://docs.docker.com/engine/swarm/secrets/) supported too.
+
+> Constructor parameters has higher priority than env variables and docker secrets. You can read more about this behaviour in [Pydantic docs](https://pydantic-docs.helpmanual.io/usage/settings/#field-value-priority)
+
 ### 0.11.0 - TDLib 1.7.8
 
 #### Updated

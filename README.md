@@ -31,11 +31,41 @@
 pip install aiotdlib
 ```
 
+or if you use [Poetry](https://python-poetry.org)
+
+```shell
+poetry add aiotdlib
+```
+
 ### Docker
 
 You can use [this Docker image](https://hub.docker.com/r/pylakey/aiotdlib) as a base for your own image.
 
-## Example
+Any parameter of Client class could be set via environment variables.
+
+#### Example
+
+main.py
+
+```python
+from aiotdlib import Client
+
+client = Client()
+client.run()
+```
+
+and run it like this:
+
+```shell
+export AIOTDLIB_API_ID=123456
+export AIOTDLIB_API_HASH=<my_api_hash>
+export AIOTDLIB_BOT_TOKEN=<my_bot_token>
+python main.py
+```
+
+## Examples
+
+### Base example
 
 ```python
 import asyncio
@@ -43,8 +73,8 @@ import logging
 
 from aiotdlib import Client
 
-API_ID = 5172829
-API_HASH = "7ae1bef25a2194cf31d6321fd228cac2"
+API_ID = 123456
+API_HASH = ""
 PHONE_NUMBER = ""
 
 
@@ -74,8 +104,8 @@ import logging
 from aiotdlib import Client
 from aiotdlib.api import API, BaseObject, UpdateNewMessage
 
-API_ID = 5172829
-API_HASH = "7ae1bef25a2194cf31d6321fd228cac2"
+API_ID = 123456
+API_HASH = ""
 PHONE_NUMBER = ""
 
 
@@ -124,8 +154,8 @@ import logging
 from aiotdlib import Client
 from aiotdlib.api import UpdateNewMessage
 
-API_ID = 5172829
-API_HASH = "7ae1bef25a2194cf31d6321fd228cac2"
+API_ID = 123456
+API_HASH = ""
 BOT_TOKEN = ""
 
 bot = Client(api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
@@ -169,8 +199,8 @@ import logging
 
 from aiotdlib import Client, ClientProxySettings, ClientProxyType
 
-API_ID = 5172829
-API_HASH = "7ae1bef25a2194cf31d6321fd228cac2"
+API_ID = 123456
+API_HASH = ""
 PHONE_NUMBER = ""
 
 
@@ -204,11 +234,16 @@ if __name__ == '__main__':
 import asyncio
 import logging
 
-from aiotdlib import Client, HandlerCallable
-from aiotdlib.api import API, BaseObject, UpdateNewMessage
+from aiotdlib import Client,
+
+HandlerCallable
+from aiotdlib.api import API,
+
+BaseObject,
+UpdateNewMessage
 
 API_ID = 12345
-API_HASH = "00112233445566778899aabbccddeeff"
+API_HASH = ""
 PHONE_NUMBER = ""
 
 
