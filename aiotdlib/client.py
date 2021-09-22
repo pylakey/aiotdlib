@@ -23,6 +23,7 @@ from typing import (
 import pydantic.errors
 from pydantic import (
     BaseModel,
+    root_validator,
     validator,
 )
 
@@ -120,7 +121,7 @@ class ClientProxySettings(BaseModel):
     """
     Universal proxy settings object for all proxy types
 
-    Params:
+    Attributes:
         host (:class:`str`)
             Proxy server IP address
 
@@ -161,141 +162,161 @@ class ClientProxySettings(BaseModel):
         return secret
 
 
-class Client:
-    logger: logging.Logger = None
-    loop: asyncio.AbstractEventLoop = None
+class ClientParseMode(str, enum.Enum):
+    HTML = 'html'
+    MARKDOWN = 'markdown'
 
-    def __init__(
-            self,
-            api_id: int,
-            api_hash: str,
-            database_encryption_key: Union[str, bytes] = 'aiotdlib',
-            phone_number: str = None,
-            bot_token: str = None,
-            use_test_dc: bool = False,
-            system_language_code: str = 'en',
-            device_model: str = 'aiotdlib',
-            system_version: str = "",
-            application_version: str = __version__,
-            files_directory: str = None,
-            first_name: str = None,
-            last_name: str = None,
-            library_path: str = None,
-            tdlib_verbosity: TDLibLogVerbosity = TDLibLogVerbosity.ERROR,
-            debug: bool = False,
-            parse_mode: str = 'html',
-            proxy_settings: ClientProxySettings = None
-    ):
-        """
-            Params:
-                api_id (:class:`int`)
-                    Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
 
-                api_hash (:class:`str`)
-                    Application identifier hash for Telegram API access,
-                    which can be obtained at https://my.telegram.org
+class ClientSettings(pydantic.BaseSettings):
+    """
+    Attributes:
+        api_id (:class:`int`)
+            Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
 
-                database_encryption_key (:class:`str`)
-                    Encryption key of local session database. Default: aiotdlib
+        api_hash (:class:`str`)
+            Application identifier hash for Telegram API access,
+            which can be obtained at https://my.telegram.org
 
-                phone_number (:class:`str`)
-                    The phone number of the user, in international format.
-                    Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
+        database_encryption_key (:class:`str`)
+            Encryption key of local session database. Default: aiotdlib
 
-                bot_token (:class:`str`)
-                    The bot token.
-                    Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
+        phone_number (:class:`str`)
+            The phone number of the user, in international format.
+            Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
 
-                use_test_dc (:class:`bool`)
-                    If set to true, the Telegram test environment will be used instead of the production environment
+        bot_token (:class:`str`)
+            The bot token.
+            Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
 
-                system_language_code (:class:`str`)
-                    IETF language tag of the user's operating system language; must be non-empty
+        use_test_dc (:class:`bool`)
+            If set to true, the Telegram test environment will be used instead of the production environment
 
-                device_model (:class:`str`)
-                    Model of the device the application is being run on; must be non-empty
+        system_language_code (:class:`str`)
+            IETF language tag of the user's operating system language; must be non-empty
 
-                system_version (:class:`str`)
-                    Version of the operating system the application is being run on.
-                    If empty, the version is automatically detected by TDLib
+        device_model (:class:`str`)
+            Model of the device the application is being run on; must be non-empty
 
-                application_version (:class:`str`)
-                    Application version; must be non-empty
+        system_version (:class:`str`)
+            Version of the operating system the application is being run on.
+            If empty, the version is automatically detected by TDLib
 
-                files_directory (:class:`str`)
-                    The path to the directory for storing files. Default: .aiotdlib/
+        application_version (:class:`str`)
+            Application version; must be non-empty
 
-                first_name (:class:`str`)
-                    First name of new account if account with passed phone_number does not exist
+        files_directory (:class:`str`)
+            The path to the directory for storing files. Default: .aiotdlib/
 
-                last_name (:class:`str`)
-                    Last name of new account if account with passed phone_number does not exist
+        first_name (:class:`str`)
+            First name of new account if account with passed phone_number does not exist
 
-                library_path (:class:`str`)
-                    Path to TDLib binary. By default binary included in package is used
+        last_name (:class:`str`)
+            Last name of new account if account with passed phone_number does not exist
 
-                tdlib_verbosity (:class:`str`)
-                    Verbosity level of TDLib itself.
-                    Default: 2 (WARNING) for more info look at (:class:`TDLibLogVerbosity`)
+        library_path (:class:`str`)
+            Path to TDLib binary. By default binary included in package is used
 
-                debug (:class:`bool`)
-                    When set to true all request and responses would be logged in console with DEBUG level
+        tdlib_verbosity (:class:`str`)
+            Verbosity level of TDLib itself.
+            Default: 2 (WARNING) for more info look at (:class:`TDLibLogVerbosity`)
 
-                parse_mode (:class:`str`)
-                    Default parse mode for high-level methods like send_message. Default: html
+        debug (:class:`bool`)
+            When set to true all request and responses would be logged in console with DEBUG level
 
-                proxy_settings (:class:`ClientProxySettings`)
-                    Settings for proxying telegram connection
+        parse_mode (:class:`str`)
+            Default parse mode for high-level methods like send_message. Default: html
 
-        """
-        self.logger = logging.getLogger(__name__)
-        self.logger.setLevel(logging.DEBUG if debug else logging.INFO)
+        proxy_settings (:class:`ClientProxySettings`)
+            Settings for proxying telegram connection
 
-        if not bool(bot_token) and not bool(phone_number):
+    """
+    api_id: int
+    api_hash: pydantic.SecretStr
+    database_encryption_key: Union[str, bytes] = 'aiotdlib'
+    phone_number: str = None
+    bot_token: pydantic.SecretStr = None
+    use_test_dc: bool = False
+    system_language_code: str = 'en'
+    device_model: str = 'aiotdlib'
+    system_version: str = ""
+    application_version: str = __version__
+    files_directory: Path = Path(sys.argv[0]).parent
+    first_name: str = None
+    last_name: str = None
+    password: pydantic.SecretStr = None
+    library_path: str = None
+    tdlib_verbosity: TDLibLogVerbosity = TDLibLogVerbosity.ERROR
+    debug: bool = False
+    parse_mode: ClientParseMode = ClientParseMode.HTML
+    proxy_settings: ClientProxySettings = None
+    use_file_database: bool = True
+    use_chat_info_database: bool = True
+    use_message_database: bool = True
+    use_secret_chats: bool = True
+    enable_storage_optimizer: bool = True
+    ignore_file_names: bool = True
+
+    @root_validator(pre=True)
+    def check_phone_and_bot_token(cls, values):
+        if not bool(values.get('phone_number')) and not bool(values.get('bot_token')):
             raise ValueError('Either phone_number or bot_token should be specified')
 
-        self.api_id = api_id
-        self.api_hash = api_hash
-        self.database_encryption_key = database_encryption_key
-        self.phone_number = phone_number
-        self.bot_token = bot_token
-        self.use_test_dc = use_test_dc
-        self.device_model = device_model
-        self.application_version = application_version
-        self.system_version = system_version
-        self.system_language_code = system_language_code
-        self.first_name = first_name
-        self.last_name = last_name
-        self.parse_mode = 'markdown' if (bool(parse_mode) and parse_mode.lower() == 'markdown') else 'html'
-        self.proxy_settings = proxy_settings
+        return values
+
+    @validator('parse_mode', pre=True)
+    def validator_parse_mode(cls, value):
+        if isinstance(value, str):
+            return value.lower()
+
+        return value
+
+    @validator('database_encryption_key', pre=True)
+    def validator_database_encryption_key(cls, value):
+        if not bool(value):
+            return value
+
+        return str_to_base64(value)
+
+    @validator('files_directory', always=True)
+    def validator_files_directory(cls, value, values):
+        if not bool(value):
+            value = Path(sys.argv[0]).parent
 
         md5_hash = hashlib.md5()
-        md5_hash.update((self.phone_number or self.bot_token).encode('utf-8'))
+        md5_hash.update((values.get('phone_number') or values.get('bot_token')).encode('utf-8'))
         directory_name = md5_hash.hexdigest()
 
-        self.debug = debug
+        return value / '.aiotdlib' / directory_name
 
-        if bool(files_directory):
-            self.files_directory = str(os.path.join(files_directory, '.aiotdlib', directory_name))
-        else:
-            self.files_directory = str(os.path.join(Path(sys.argv[0]).parent, '.aiotdlib', directory_name))
+    class Config:
+        env_prefix = 'aiotdlib_'
+        secrets_dir = '/run/secrets'
+        use_enum_values = True
+        allow_population_by_field_name = True
 
-        self.__tdjson = TDJson(library_path=library_path, verbosity=tdlib_verbosity)
-        self.__current_authorization_state = None
-        self.__is_authorized = False
-        self.__running = False
-        self.__pending_requests: dict[str, PendingRequest] = {}
-        # "{chat_id}_{message_id}" will be used as key
-        self.__pending_messages: dict[str, Message] = {}
 
-        # For handlers registration
-        self.__updates_handlers: dict[str, set[Handler]] = {}
-        self.__middlewares: list[MiddlewareCallable] = []
-        self.__middlewares_handlers: list[MiddlewareCallable] = []
+class Client:
+    loop: asyncio.AbstractEventLoop = None
+    __current_authorization_state = None
+    __is_authorized = False
+    __running = False
+    __pending_requests: dict[str, PendingRequest] = {}
+    __pending_messages: dict[str, Message] = {}
+    __updates_handlers: dict[str, set[Handler]] = {}
+    __middlewares: list[MiddlewareCallable] = []
+    __middlewares_handlers: list[MiddlewareCallable] = []
 
+    def __init__(self, **kwargs):
+        self.settings = ClientSettings(**kwargs)
+        self.logger = logging.getLogger(self.__class__.__name__)
+        self.logger.setLevel(logging.DEBUG if self.settings.debug else logging.INFO)
+        self.__tdjson = TDJson(library_path=self.settings.library_path, verbosity=self.settings.tdlib_verbosity)
         self.api = API(self)
         self.cache = ClientCache(self)
-        self.first_time_auth = False
+
+    @property
+    def is_bot(self) -> bool:
+        return bool(self.settings.bot_token)
 
     # Magic methods
     async def __aenter__(self) -> 'Client':
@@ -348,10 +369,8 @@ class Client:
                     pending_request.set_update(update)
 
         if isinstance(update, UpdateMessageSendSucceeded):
-            pending_message = self.__pending_messages.pop(
-                f"{update.message.chat_id}_{update.old_message_id}",
-                None
-            )
+            pending_message_key = f"{update.message.chat_id}_{update.old_message_id}"
+            pending_message = self.__pending_messages.pop(pending_message_key, None)
 
             if bool(pending_message):
                 request_id = pending_message.EXTRA.get('request_id')
@@ -397,21 +416,21 @@ class Client:
     async def __set_tdlib_parameters(self) -> RequestResult:
         return await self.api.set_tdlib_parameters(
             parameters=TdlibParameters(
-                use_test_dc=self.use_test_dc,
-                database_directory=str(f"{self.files_directory}/database"),
-                files_directory=str(f"{self.files_directory}/files"),
-                use_file_database=True,
-                use_chat_info_database=True,
-                use_message_database=True,
-                use_secret_chats=True,
-                api_id=self.api_id,
-                api_hash=self.api_hash,
-                system_language_code=self.system_language_code,
-                device_model=self.device_model,
-                system_version=self.system_version,
-                application_version=self.application_version,
-                enable_storage_optimizer=True,
-                ignore_file_names=True
+                use_test_dc=self.settings.use_test_dc,
+                database_directory=f"{self.settings.files_directory}/database",
+                files_directory=f"{self.settings.files_directory}/files",
+                use_file_database=self.settings.use_file_database,
+                use_chat_info_database=self.settings.use_chat_info_database,
+                use_message_database=self.settings.use_message_database,
+                use_secret_chats=self.settings.use_secret_chats,
+                api_id=self.settings.api_id,
+                api_hash=self.settings.api_hash.get_secret_value(),
+                system_language_code=self.settings.system_language_code,
+                device_model=self.settings.device_model,
+                system_version=self.settings.system_version,
+                application_version=self.settings.application_version,
+                enable_storage_optimizer=self.settings.enable_storage_optimizer,
+                ignore_file_names=self.settings.ignore_file_names
             ),
             request_id="updateAuthorizationState"
         )
@@ -419,7 +438,7 @@ class Client:
     async def __check_database_encryption_key(self) -> RequestResult:
         self.logger.info('Sending encryption key')
         result = await self.api.check_database_encryption_key(
-            encryption_key=str_to_base64(self.database_encryption_key),
+            encryption_key=self.settings.database_encryption_key,
             request_id="updateAuthorizationState"
         )
 
@@ -428,19 +447,15 @@ class Client:
         return result
 
     async def __set_authentication_phone_number_or_check_bot_token(self) -> RequestResult:
-        self.first_time_auth = True
-
-        if self.phone_number:
-            return await self.__set_authentication_phone_number()
-        elif self.bot_token:
+        if self.is_bot:
             return await self.__check_authentication_bot_token()
-        else:
-            raise RuntimeError('Unknown mode: both bot_token and phone_number are None')
+
+        return await self.__set_authentication_phone_number()
 
     async def __set_authentication_phone_number(self) -> RequestResult:
         self.logger.info('Sending phone number')
         return await self.api.set_authentication_phone_number(
-            phone_number=self.phone_number,
+            phone_number=self.settings.phone_number,
             settings=PhoneNumberAuthenticationSettings(
                 is_current_phone_number=True,
                 allow_flash_call=False,
@@ -452,7 +467,7 @@ class Client:
     async def __check_authentication_bot_token(self) -> RequestResult:
         self.logger.info('Sending bot token')
         return await self.api.check_authentication_bot_token(
-            self.bot_token,
+            self.settings.bot_token.get_secret_value(),
             request_id="updateAuthorizationState"
         )
 
@@ -465,7 +480,7 @@ class Client:
         return code
 
     async def __auth_get_password(self) -> str:
-        password = ""
+        password = self.settings.password.get_secret_value()
 
         if not bool(password):
             password = await ainput('Enter 2FA password:', secured=True)
@@ -473,7 +488,7 @@ class Client:
         return password
 
     async def __auth_get_first_name(self) -> str:
-        first_name = self.first_name or ""
+        first_name = self.settings.first_name or ""
 
         while not bool(first_name) or len(first_name) > 64:
             first_name = await ainput('Enter first name:')
@@ -481,7 +496,7 @@ class Client:
         return first_name
 
     async def __auth_get_last_name(self) -> str:
-        last_name = self.last_name or ""
+        last_name = self.settings.last_name or ""
 
         if not bool(last_name):
             last_name = await ainput('Enter last name:')
@@ -489,8 +504,6 @@ class Client:
         return last_name
 
     async def __check_authentication_code(self) -> RequestResult:
-        self.first_time_auth = True
-
         code = await self.__auth_get_code()
         self.logger.info(f'Sending code {code}')
 
@@ -500,8 +513,6 @@ class Client:
         )
 
     async def __register_user(self) -> RequestResult:
-        self.first_time_auth = True
-
         first_name = await self.__auth_get_first_name()
         last_name = await self.__auth_get_last_name()
         self.logger.info(f'Registering new user in telegram as {first_name} {last_name or ""}'.strip())
@@ -513,8 +524,6 @@ class Client:
         )
 
     async def __check_authentication_password(self) -> RequestResult:
-        self.first_time_auth = True
-
         password = await self.__auth_get_password()
         self.logger.info('Sending password')
 
@@ -526,7 +535,7 @@ class Client:
     async def __auth_completed(self):
         self.__pending_requests.pop('updateAuthorizationState', None)
 
-        if not bool(self.bot_token):
+        if not self.is_bot:
             # Preload main list chats
             await self.get_main_list_chats()
 
@@ -545,7 +554,7 @@ class Client:
         self.logger.info('Auth session is closed')
 
     async def __setup_proxy(self):
-        if not bool(self.proxy_settings):
+        if not bool(self.settings.proxy_settings):
             # If proxy is not set disabling all configured proxy
             await self.api.disable_proxy()
             return
@@ -559,7 +568,7 @@ class Client:
             ProxyTypeHttp: 'http',
         }
 
-        if self.debug:
+        if self.settings.debug:
             proxies_list_string = "\n".join(
                 f"{'* ' if p.is_enabled else ''}[{proxy_type_by_class.get(p.type_.__class__)}] {p.server}:{p.port}"
                 for p in result.proxies
@@ -572,40 +581,40 @@ class Client:
 
         for p in result.proxies:
             if (
-                    p.server == self.proxy_settings.host and
-                    p.port == self.proxy_settings.port and
-                    proxy_type_by_class.get(p.type_.__class__) == self.proxy_settings.type
+                    p.server == self.settings.proxy_settings.host and
+                    p.port == self.settings.proxy_settings.port and
+                    proxy_type_by_class.get(p.type_.__class__) == self.settings.proxy_settings.type
             ):
                 if not p.is_enabled:
                     await self.api.enable_proxy(p.id)
 
                 return
 
-        if self.proxy_settings.type == ClientProxyType.HTTP:
+        if self.settings.proxy_settings.type == ClientProxyType.HTTP:
             proxy_type = ProxyTypeHttp.construct(
-                username=self.proxy_settings.username,
-                password=self.proxy_settings.password,
-                http_only=self.proxy_settings.http_only
+                username=self.settings.proxy_settings.username,
+                password=self.settings.proxy_settings.password,
+                http_only=self.settings.proxy_settings.http_only
             )
-        elif self.proxy_settings.type == ClientProxyType.MTPROTO:
-            proxy_type = ProxyTypeMtproto.construct(secret=self.proxy_settings.secret)
-        elif self.proxy_settings.type == ClientProxyType.SOCKS5:
+        elif self.settings.proxy_settings.type == ClientProxyType.MTPROTO:
+            proxy_type = ProxyTypeMtproto.construct(secret=self.settings.proxy_settings.secret)
+        elif self.settings.proxy_settings.type == ClientProxyType.SOCKS5:
             proxy_type = ProxyTypeSocks5.construct(
-                username=self.proxy_settings.username,
-                password=self.proxy_settings.password,
+                username=self.settings.proxy_settings.username,
+                password=self.settings.proxy_settings.password,
             )
         else:
-            raise ValueError(f'Unknown proxy type {self.proxy_settings.type}')
+            raise ValueError(f'Unknown proxy type {self.settings.proxy_settings.type}')
 
         self.logger.info(
-            f"Configuring PROXY of type {self.proxy_settings.type.value}. "
-            f"Server: {self.proxy_settings.host}:{self.proxy_settings.port}"
+            f"Configuring PROXY of type {self.settings.proxy_settings.type.value}. "
+            f"Server: {self.settings.proxy_settings.host}:{self.settings.proxy_settings.port}"
         )
 
         await self.api.add_proxy(
             enable=True,
-            server=self.proxy_settings.host,
-            port=self.proxy_settings.port,
+            server=self.settings.proxy_settings.host,
+            port=self.settings.proxy_settings.port,
             type_=proxy_type,
         )
 
@@ -683,7 +692,7 @@ class Client:
         if not self.__running:
             raise RuntimeError('Client not started')
 
-        if self.debug:
+        if self.settings.debug:
             self.logger.debug(f">>>>> {query.ID} {query.json(by_alias=True)}")
 
         await self.loop.run_in_executor(None, self.__tdjson.send, query.dict(by_alias=True))
@@ -709,7 +718,7 @@ class Client:
             await self.send(query)
             await pending_request.wait(raise_exc=True, timeout=request_timeout)
         finally:
-            if self.debug and bool(pending_request.update):
+            if self.settings.debug and bool(pending_request.update):
                 self.logger.debug(f"<<<<< {pending_request.update.ID} {pending_request.update.json(by_alias=True)}")
 
         return pending_request.update
@@ -745,10 +754,10 @@ class Client:
             return None
 
     async def authorize(self):
-        if bool(self.phone_number):
-            self.logger.info('Authorization process has been started with phone')
-        else:
+        if self.is_bot:
             self.logger.info('Authorization process has been started with bot token')
+        else:
+            self.logger.info('Authorization process has been started with phone')
 
         auth_actions = {
             None: self.__auth_start,
@@ -791,7 +800,7 @@ class Client:
 
     async def start(self) -> 'Client':
         self.logger.info('Starting client')
-        self.logger.info(f'Session workdir: {self.files_directory}')
+        self.logger.info(f'Session workdir: {self.settings.files_directory}')
 
         # Preparing middlewares handlers
         self.__middlewares_handlers = list(reversed(self.__middlewares))
@@ -833,9 +842,9 @@ class Client:
         (Check the list of available options on https://core.telegram.org/tdlib/options.)
         Can be called before authorization
 
-        Params:
-            name (:class:`str`)
-                The name of the option
+        :param name:
+        :param name(:class:`str`): The name of the option
+
         """
         return await self.cache.get_option_value(name)
 
@@ -919,7 +928,7 @@ class Client:
 
         # ParseTextEntities can be called synchronously
         if parse_mode is None:
-            parse_mode = self.parse_mode
+            parse_mode = self.settings.parse_mode
         else:
             parse_mode = parse_mode.lower()
 
@@ -928,7 +937,7 @@ class Client:
                 text=text,
                 parse_mode=(
                     TextParseModeHTML()
-                    if parse_mode == 'html' else
+                    if parse_mode == ClientParseMode.HTML else
                     TextParseModeMarkdown(version=2)
                 )
             )
@@ -949,7 +958,7 @@ class Client:
         """
         Sends a text message. Returns the sent message
 
-        Params:
+        Args:
             chat_id (:class:`int`)
                 Target chat
 
@@ -1014,7 +1023,7 @@ class Client:
         """
         Sends a text message. Returns the sent message
 
-        Params:
+        Args:
             chat_id (:class:`int`)
                 Target chat
 
@@ -1075,7 +1084,7 @@ class Client:
         Edits the text of a message (or a text of a game message).
         Returns the edited message after the edit is completed on the server side
 
-        Params:
+        Args:
             chat_id (:class:`int`)
                 The chat the message belongs to
 
@@ -1133,7 +1142,7 @@ class Client:
         """
         Sends a photo with caption to chat. Returns the sent message
 
-        Params:
+        Args:
             chat_id (:class:`int`)
                 Target chat
 
@@ -1240,7 +1249,7 @@ class Client:
         """
         Sends a video with caption to chat. Returns the sent message
 
-        Params:
+        Args:
             chat_id (:class:`int`)
                 Target chat
 
@@ -1353,7 +1362,7 @@ class Client:
         """
         Sends an animation with caption to chat. Returns the sent message
 
-        Params:
+        Args:
             chat_id (:class:`int`)
                 Target chat
 
@@ -1455,7 +1464,7 @@ class Client:
         """
         Sends a document with caption to chat. Returns the sent message
 
-        Params:
+        Args:
             chat_id (:class:`int`)
                 Target chat
 
@@ -1548,7 +1557,7 @@ class Client:
         """
         Sends an audio with caption to chat. Returns the sent message
 
-        Params:
+        Args:
             chat_id (:class:`int`)
                 Target chat
 
@@ -1645,7 +1654,7 @@ class Client:
         """
         Sends a voice note with caption to chat. Returns the sent message
 
-        Params:
+        Args:
             chat_id (:class:`int`)
                 Target chat
 
@@ -1721,7 +1730,7 @@ class Client:
         """
         Sends a video note with caption to chat. Returns the sent message
 
-        Params:
+        Args:
             chat_id (:class:`int`)
                 Target chat
 
@@ -1810,7 +1819,7 @@ class Client:
         Returns the forwarded messages in the same order as the message identifiers passed in message_ids.
         If a message can't be forwarded, null will be returned instead of the message
 
-        Params:
+        Args:
             from_chat_id (:class:`int`)
                 Identifier of the chat from which to forward messages
 
@@ -1873,7 +1882,7 @@ class Client:
         The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id).
         Number of messages are limited by limit parameter
 
-        Params:
+        Args:
             chat_id (:class:`int`)
                 Chat identifier
 

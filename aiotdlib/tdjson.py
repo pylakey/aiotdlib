@@ -5,7 +5,6 @@ import typing
 from ctypes import *
 from ctypes.util import find_library
 from enum import IntEnum
-from pathlib import Path
 
 import pkg_resources
 import ujson
@@ -18,6 +17,11 @@ ARCH_ALIASES = {
     "arm64v8": "arm64",
 }
 
+SYSTEM_LIB_EXTENSION = {
+    'darwin': 'dylib',
+    'linux': 'so',
+}
+
 
 def _get_tdjson_lib_path() -> str:
     tdjson_path = find_library('tdjson')
@@ -28,22 +32,13 @@ def _get_tdjson_lib_path() -> str:
     uname = platform.uname()
     system_name = uname.system.lower()
     machine_name = uname.machine.lower()
+    machine_name = ARCH_ALIASES.get(machine_name, machine_name)
+    extension = SYSTEM_LIB_EXTENSION.get(system_name)
 
-    if system_name == 'darwin':
-        extension = f"dylib"
-    elif system_name == 'linux':
-        extension = f"so"
+    if not bool(extension):
+        raise RuntimeError('Prebuilt TDLib binary is not included for this system')
 
-        if machine_name in ARCH_ALIASES.keys():
-            machine_name = ARCH_ALIASES[machine_name]
-    else:
-        raise RuntimeError('Prebuilt TDLib binary is not include for this system')
-
-    binary_path = Path(__file__).parent / f'tdlib/libtdjson_{system_name}_{machine_name}.{extension}'
-
-    if not pkg_resources.resource_exists('aiotdlib', binary_path):
-        # Binary for arm64 machines will be always provided for both Darwin and Linux
-        binary_path = Path(__file__).parent / f"tdlib/libtdjson_{system_name}_arm64.{extension}"
+    binary_path = f'tdlib/libtdjson_{system_name}_{machine_name}.{extension}'
 
     return pkg_resources.resource_filename('aiotdlib', binary_path)
 
