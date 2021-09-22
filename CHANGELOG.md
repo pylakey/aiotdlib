@@ -1,5 +1,11 @@
 # aiotdlib CHANGELOG
 
+### 0.11.2
+
+#### Updated
+
+* Bring back some lost TD functions (Fix for #4)
+
 ### 0.11.1 - Environment variables
 
 #### Added
