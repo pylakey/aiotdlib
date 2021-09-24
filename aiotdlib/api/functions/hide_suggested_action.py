@@ -5,12 +5,10 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
-from ..types import SuggestedAction
 from ..base_object import BaseObject
+from ..types import SuggestedAction
 
 
 class HideSuggestedAction(BaseObject):

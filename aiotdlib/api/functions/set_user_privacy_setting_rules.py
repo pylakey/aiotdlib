@@ -5,13 +5,11 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
+from ..base_object import BaseObject
 from ..types import UserPrivacySetting
 from ..types import UserPrivacySettingRules
-from ..base_object import BaseObject
 
 
 class SetUserPrivacySettingRules(BaseObject):

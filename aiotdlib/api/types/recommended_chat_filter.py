@@ -5,8 +5,6 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
 from .chat_filter import ChatFilter

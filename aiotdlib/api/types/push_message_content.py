@@ -126,23 +126,6 @@ class PushMessageContentChatChangePhoto(PushMessageContent):
         return PushMessageContentChatChangePhoto.construct(**q)
 
 
-class PushMessageContentChatChangeTheme(PushMessageContent):
-    """
-    A chat theme was edited
-    
-    :param theme_name: If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset to the default one
-    :type theme_name: :class:`str`
-    
-    """
-
-    ID: str = Field("pushMessageContentChatChangeTheme", alias="@type")
-    theme_name: str
-
-    @staticmethod
-    def read(q: dict) -> PushMessageContentChatChangeTheme:
-        return PushMessageContentChatChangeTheme.construct(**q)
-
-
 class PushMessageContentChatChangeTitle(PushMessageContent):
     """
     A chat title was edited
@@ -196,6 +179,23 @@ class PushMessageContentChatJoinByLink(PushMessageContent):
     @staticmethod
     def read(q: dict) -> PushMessageContentChatJoinByLink:
         return PushMessageContentChatJoinByLink.construct(**q)
+
+
+class PushMessageContentChatSetTheme(PushMessageContent):
+    """
+    A chat theme was edited
+    
+    :param theme_name: If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset to the default one
+    :type theme_name: :class:`str`
+    
+    """
+
+    ID: str = Field("pushMessageContentChatSetTheme", alias="@type")
+    theme_name: str
+
+    @staticmethod
+    def read(q: dict) -> PushMessageContentChatSetTheme:
+        return PushMessageContentChatSetTheme.construct(**q)
 
 
 class PushMessageContentContact(PushMessageContent):

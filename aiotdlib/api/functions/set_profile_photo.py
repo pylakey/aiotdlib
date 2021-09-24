@@ -5,12 +5,10 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
-from ..types import InputChatPhoto
 from ..base_object import BaseObject
+from ..types import InputChatPhoto
 
 
 class SetProfilePhoto(BaseObject):

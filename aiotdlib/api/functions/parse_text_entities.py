@@ -5,12 +5,10 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
-from ..types import TextParseMode
 from ..base_object import BaseObject
+from ..types import TextParseMode
 
 
 class ParseTextEntities(BaseObject):

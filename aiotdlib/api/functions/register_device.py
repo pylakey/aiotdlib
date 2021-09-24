@@ -5,12 +5,10 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
-from ..types import DeviceToken
 from ..base_object import BaseObject
+from ..types import DeviceToken
 
 
 class RegisterDevice(BaseObject):

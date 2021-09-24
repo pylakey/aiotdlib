@@ -5,12 +5,10 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
-from ..types import PublicChatType
 from ..base_object import BaseObject
+from ..types import PublicChatType
 
 
 class GetCreatedPublicChats(BaseObject):

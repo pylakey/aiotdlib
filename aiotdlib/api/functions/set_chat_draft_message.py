@@ -9,8 +9,8 @@ import typing
 
 from pydantic import Field
 
-from ..types import DraftMessage
 from ..base_object import BaseObject
+from ..types import DraftMessage
 
 
 class SetChatDraftMessage(BaseObject):

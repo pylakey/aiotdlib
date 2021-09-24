@@ -4,8 +4,6 @@
 #                                                                                 #
 # =============================================================================== #
 
-from enum import Enum
-
 from .api import API
 from .base_object import BaseObject
 from .errors import *
@@ -718,10 +716,10 @@ BaseObject._all = {
     'pushMessageContentBasicGroupChatCreate': PushMessageContentBasicGroupChatCreate,
     'pushMessageContentChatAddMembers': PushMessageContentChatAddMembers,
     'pushMessageContentChatChangePhoto': PushMessageContentChatChangePhoto,
-    'pushMessageContentChatChangeTheme': PushMessageContentChatChangeTheme,
     'pushMessageContentChatChangeTitle': PushMessageContentChatChangeTitle,
     'pushMessageContentChatDeleteMember': PushMessageContentChatDeleteMember,
     'pushMessageContentChatJoinByLink': PushMessageContentChatJoinByLink,
+    'pushMessageContentChatSetTheme': PushMessageContentChatSetTheme,
     'pushMessageContentContact': PushMessageContentContact,
     'pushMessageContentContactRegistered': PushMessageContentContactRegistered,
     'pushMessageContentDocument': PushMessageContentDocument,
@@ -2023,10 +2021,10 @@ __all__ = [
     'PushMessageContentBasicGroupChatCreate',
     'PushMessageContentChatAddMembers',
     'PushMessageContentChatChangePhoto',
-    'PushMessageContentChatChangeTheme',
     'PushMessageContentChatChangeTitle',
     'PushMessageContentChatDeleteMember',
     'PushMessageContentChatJoinByLink',
+    'PushMessageContentChatSetTheme',
     'PushMessageContentContact',
     'PushMessageContentContactRegistered',
     'PushMessageContentDocument',

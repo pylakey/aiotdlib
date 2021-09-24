@@ -5,12 +5,10 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
-from ..types import PassportElementType
 from ..base_object import BaseObject
+from ..types import PassportElementType
 
 
 class GetPassportElement(BaseObject):

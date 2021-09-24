@@ -5,13 +5,11 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
+from ..base_object import BaseObject
 from ..types import MessageSender
 from ..types import SearchMessagesFilter
-from ..base_object import BaseObject
 
 
 class SearchChatMessages(BaseObject):

@@ -5,12 +5,10 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
-from ..types import TdlibParameters
 from ..base_object import BaseObject
+from ..types import TdlibParameters
 
 
 class SetTdlibParameters(BaseObject):

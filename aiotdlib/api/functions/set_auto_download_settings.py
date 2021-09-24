@@ -5,13 +5,11 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
+from ..base_object import BaseObject
 from ..types import AutoDownloadSettings
 from ..types import NetworkType
-from ..base_object import BaseObject
 
 
 class SetAutoDownloadSettings(BaseObject):

@@ -5,12 +5,10 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
-from ..types import AccountTtl
 from ..base_object import BaseObject
+from ..types import AccountTtl
 
 
 class SetAccountTtl(BaseObject):

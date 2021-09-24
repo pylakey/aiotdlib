@@ -5,12 +5,10 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
-from ..types import OptionValue
 from ..base_object import BaseObject
+from ..types import OptionValue
 
 
 class SetOption(BaseObject):

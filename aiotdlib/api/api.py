@@ -6,9 +6,9 @@
 
 import typing
 
+from .base_object import BaseObject
 from .functions import *
 from .types import *
-from .base_object import BaseObject
 
 if typing.TYPE_CHECKING:
     from aiotdlib.client import Client
@@ -1007,10 +1007,10 @@ class API:
         PUSH_MESSAGE_CONTENT_BASIC_GROUP_CHAT_CREATE = 'pushMessageContentBasicGroupChatCreate'
         PUSH_MESSAGE_CONTENT_CHAT_ADD_MEMBERS = 'pushMessageContentChatAddMembers'
         PUSH_MESSAGE_CONTENT_CHAT_CHANGE_PHOTO = 'pushMessageContentChatChangePhoto'
-        PUSH_MESSAGE_CONTENT_CHAT_CHANGE_THEME = 'pushMessageContentChatChangeTheme'
         PUSH_MESSAGE_CONTENT_CHAT_CHANGE_TITLE = 'pushMessageContentChatChangeTitle'
         PUSH_MESSAGE_CONTENT_CHAT_DELETE_MEMBER = 'pushMessageContentChatDeleteMember'
         PUSH_MESSAGE_CONTENT_CHAT_JOIN_BY_LINK = 'pushMessageContentChatJoinByLink'
+        PUSH_MESSAGE_CONTENT_CHAT_SET_THEME = 'pushMessageContentChatSetTheme'
         PUSH_MESSAGE_CONTENT_CONTACT = 'pushMessageContentContact'
         PUSH_MESSAGE_CONTENT_CONTACT_REGISTERED = 'pushMessageContentContactRegistered'
         PUSH_MESSAGE_CONTENT_DOCUMENT = 'pushMessageContentDocument'
@@ -14643,7 +14643,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for adding new members to the chat and transferring chat ownership; instead, use addChatMember or transferChatOwnership
+        Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if you need to pass some additional parameters
         
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
@@ -17179,7 +17179,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Toggles whether new participants of a group call can be unmuted only by administrators of the group call. Requires groupCall.can_change_mute_new_participants group call flag
+        Toggles whether new participants of a group call can be unmuted only by administrators of the group call. Requires groupCall.can_toggle_mute_new_participants group call flag
         
         :param group_call_id: Group call identifier
         :type group_call_id: :class:`int`

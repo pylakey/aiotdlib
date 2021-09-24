@@ -5,8 +5,6 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
 from .group_call_recent_speaker import GroupCallRecentSpeaker
@@ -62,8 +60,8 @@ class GroupCall(BaseObject):
     :param mute_new_participants: True, if only group call administrators can unmute new participants
     :type mute_new_participants: :class:`bool`
     
-    :param can_change_mute_new_participants: True, if the current user can enable or disable mute_new_participants setting
-    :type can_change_mute_new_participants: :class:`bool`
+    :param can_toggle_mute_new_participants: True, if the current user can enable or disable mute_new_participants setting
+    :type can_toggle_mute_new_participants: :class:`bool`
     
     :param record_duration: Duration of the ongoing group call recording, in seconds; 0 if none. An updateGroupCall update is not triggered when value of this field changes, but the same recording goes on
     :type record_duration: :class:`int`
@@ -92,7 +90,7 @@ class GroupCall(BaseObject):
     is_my_video_paused: bool
     can_enable_video: bool
     mute_new_participants: bool
-    can_change_mute_new_participants: bool
+    can_toggle_mute_new_participants: bool
     record_duration: int
     is_video_recorded: bool
     duration: int

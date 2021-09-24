@@ -9,8 +9,8 @@ import typing
 
 from pydantic import Field
 
-from ..types import ChatLocation
 from ..base_object import BaseObject
+from ..types import ChatLocation
 
 
 class CreateNewSupergroupChat(BaseObject):

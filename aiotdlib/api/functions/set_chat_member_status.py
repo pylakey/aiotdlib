@@ -5,18 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
+from ..base_object import BaseObject
 from ..types import ChatMemberStatus
 from ..types import MessageSender
-from ..base_object import BaseObject
 
 
 class SetChatMemberStatus(BaseObject):
     """
-    Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for adding new members to the chat and transferring chat ownership; instead, use addChatMember or transferChatOwnership
+    Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if you need to pass some additional parameters
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`

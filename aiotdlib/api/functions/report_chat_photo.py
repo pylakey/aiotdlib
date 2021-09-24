@@ -9,8 +9,8 @@ import typing
 
 from pydantic import Field
 
-from ..types import ChatReportReason
 from ..base_object import BaseObject
+from ..types import ChatReportReason
 
 
 class ReportChatPhoto(BaseObject):
