@@ -8,6 +8,7 @@ builder:
     ENV DEBCONF_NONINTERACTIVE_SEEN true
 
     RUN apt-get update && apt-get -y install \
+        git \
         make \
         zlib1g-dev \
         libssl-dev \
