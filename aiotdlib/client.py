@@ -800,7 +800,7 @@ class Client:
 
     async def start(self) -> 'Client':
         self.logger.info('Starting client')
-        self.logger.info(f'Session workdir: {self.settings.files_directory}')
+        self.logger.info(f'Session workdir: {self.settings.files_directory.absolute()}')
 
         # Preparing middlewares handlers
         self.__middlewares_handlers = list(reversed(self.__middlewares))
