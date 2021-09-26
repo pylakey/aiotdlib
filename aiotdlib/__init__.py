@@ -1,1 +1,87 @@
-__version__ = "0.12.0"
+__version__ = "0.12.1"
+
+from .client import (
+    Client,
+    ClientProxySettings,
+    ClientProxyType,
+)
+from .filters import (
+    AllFilter,
+    AnimationFilter,
+    AudioFilter,
+    BaseFilter,
+    BaseObjectFilter,
+    BotCommandFilter,
+    ContactFilter,
+    DiceFilter,
+    DocumentFilter,
+    FilterCallable,
+    Filters,
+    GameFilter,
+    InvertedFilter,
+    InvoiceFilter,
+    LocationFilter,
+    MergedFilter,
+    MessageFilter,
+    PhotoFilter,
+    PollFilter,
+    RegexFilter,
+    StickerFilter,
+    TextFilter,
+    UnsupportedFilter,
+    VenueFilter,
+    VideoFilter,
+    VideoNoteFilter,
+    VoiceNoteFilter,
+    XORFilter,
+)
+from .handlers import (
+    Handler,
+    HandlerCallable,
+)
+from .middlewares import MiddlewareCallable
+from .tdjson import (
+    TDJson,
+    TDLibLogVerbosity,
+)
+from .utils import PendingRequest
+
+__all__ = [
+    AllFilter,
+    AnimationFilter,
+    AudioFilter,
+    BaseFilter,
+    BaseObjectFilter,
+    BotCommandFilter,
+    Client,
+    ClientProxySettings,
+    ClientProxyType,
+    ContactFilter,
+    DiceFilter,
+    DocumentFilter,
+    FilterCallable,
+    Filters,
+    GameFilter,
+    Handler,
+    HandlerCallable,
+    InvertedFilter,
+    InvoiceFilter,
+    LocationFilter,
+    MergedFilter,
+    MessageFilter,
+    MiddlewareCallable,
+    PendingRequest,
+    PhotoFilter,
+    PollFilter,
+    RegexFilter,
+    StickerFilter,
+    TDJson,
+    TDLibLogVerbosity,
+    TextFilter,
+    UnsupportedFilter,
+    VenueFilter,
+    VideoFilter,
+    VideoNoteFilter,
+    VoiceNoteFilter,
+    XORFilter,
+]

@@ -1,5 +1,11 @@
 # aiotdlib CHANGELOG
 
+### 0.12.1
+
+#### Updated
+
+* Fixed default export
+
 ### 0.12.0
 
 * TDLib binaries upgraded to
