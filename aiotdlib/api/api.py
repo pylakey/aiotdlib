@@ -2469,7 +2469,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> CanTransferOwnershipResult:
+    ) -> CanTransferOwnershipResult:
         """
         Checks whether the current session can be used to transfer a chat ownership to another user
         
@@ -5716,7 +5716,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> Messages:
+    ) -> Messages:
         """
         Returns all active live locations that should be updated by the application. The list is persistent across application restarts only if the message database is used
         
@@ -5877,7 +5877,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> AuthorizationState:
+    ) -> AuthorizationState:
         """
         Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
         
@@ -5893,7 +5893,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> AutoDownloadSettingsPresets:
+    ) -> AutoDownloadSettingsPresets:
         """
         Returns auto-download settings presets for the current user
         
@@ -7188,7 +7188,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> DatabaseStatistics:
+    ) -> DatabaseStatistics:
         """
         Returns database statistics
         
@@ -8175,7 +8175,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> LogVerbosityLevel:
+    ) -> LogVerbosityLevel:
         """
         Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
         
@@ -9572,7 +9572,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> RecommendedChatFilters:
+    ) -> RecommendedChatFilters:
         """
         Returns recommended chat filters for the current user
         
@@ -9975,7 +9975,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> StorageStatisticsFast:
+    ) -> StorageStatisticsFast:
         """
         Quickly returns approximate storage usage statistics. Can be called before authorization
         
@@ -10203,7 +10203,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> TemporaryPasswordState:
+    ) -> TemporaryPasswordState:
         """
         Returns information about the current temporary password
         
@@ -12316,7 +12316,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> Ok:
+    ) -> Ok:
         """
         Requests to send a password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
         
@@ -12332,7 +12332,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> EmailAddressAuthenticationCodeInfo:
+    ) -> EmailAddressAuthenticationCodeInfo:
         """
         Requests to send a 2-step verification password recovery code to an email address that was previously set up
         
@@ -12393,7 +12393,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> AuthenticationCodeInfo:
+    ) -> AuthenticationCodeInfo:
         """
         Re-sends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
         
@@ -12409,7 +12409,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> EmailAddressAuthenticationCodeInfo:
+    ) -> EmailAddressAuthenticationCodeInfo:
         """
         Re-sends the code to verify an email address to be added to a user's Telegram Passport
         
@@ -12464,7 +12464,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> AuthenticationCodeInfo:
+    ) -> AuthenticationCodeInfo:
         """
         Resends phone number confirmation code
         
@@ -12480,7 +12480,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> AuthenticationCodeInfo:
+    ) -> AuthenticationCodeInfo:
         """
         Re-sends the code to verify a phone number to be added to a user's Telegram Passport
         
@@ -12496,7 +12496,7 @@ class API:
             *,
             request_id: str = None,
             request_timeout: int = None
-            ) -> PasswordState:
+    ) -> PasswordState:
         """
         Resends the 2-step verification recovery email address verification code
         
