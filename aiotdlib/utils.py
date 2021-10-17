@@ -2,6 +2,7 @@ import asyncio
 import base64
 import getpass
 import logging
+import re
 import sys
 from functools import partial
 from typing import (
@@ -51,6 +52,16 @@ def str_to_base64(text: Union[str, bytes]) -> str:
         result = result.encode()
 
     return base64.b64encode(result).decode()
+
+
+def strip_phone_number_symbols(phone_number: str) -> str:
+    if not isinstance(phone_number, str):
+        try:
+            phone_number = str(phone_number)
+        except ValueError:
+            raise ValueError(f'Phone number should be an instance of str, not a {phone_number.__class__.__name__}')
+
+    return re.sub(r'(?<!^)|[^\d]+', '', phone_number)
 
 
 class PendingRequest:

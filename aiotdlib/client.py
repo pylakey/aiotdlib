@@ -95,6 +95,7 @@ from .utils import (
     PendingRequest,
     ainput,
     str_to_base64,
+    strip_phone_number_symbols,
 )
 
 RequestResult = TypeVar('RequestResult', bound=BaseObject)
@@ -267,6 +268,13 @@ class ClientSettings(pydantic.BaseSettings):
     def validator_parse_mode(cls, value):
         if isinstance(value, str):
             return value.lower()
+
+        return value
+
+    @validator('phone_number')
+    def validator_phone_number(cls, value):
+        if bool(value):
+            return strip_phone_number_symbols(value)
 
         return value
 
@@ -480,10 +488,12 @@ class Client:
         return code
 
     async def __auth_get_password(self) -> str:
-        password = self.settings.password.get_secret_value()
+        password = self.settings.password
 
         if not bool(password):
             password = await ainput('Enter 2FA password:', secured=True)
+        else:
+            password = password.get_secret_value()
 
         return password
 
