@@ -21,7 +21,7 @@ class GetChatInviteLinkMembers(BaseObject):
     :param invite_link: Invite link for which to return chat members
     :type invite_link: :class:`str`
     
-    :param offset_member: A chat member from which to return next chat members; use null to get results from the beginning
+    :param offset_member: A chat member from which to return next chat members; pass null to get results from the beginning
     :type offset_member: :class:`ChatInviteLinkMember`
     
     :param limit: The maximum number of chat members to return

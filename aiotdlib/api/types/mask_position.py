@@ -13,9 +13,9 @@ from ..base_object import BaseObject
 
 class MaskPosition(BaseObject):
     """
-    Position on a photo where a mask should be placed
+    Position on a photo where a mask is placed
     
-    :param point: Part of the face, relative to which the mask should be placed
+    :param point: Part of the face, relative to which the mask is placed
     :type point: :class:`MaskPoint`
     
     :param x_shift: Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. (For example, -1.0 will place the mask just to the left of the default mask position)

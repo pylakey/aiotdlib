@@ -21,7 +21,7 @@ class ValidateOrderInfo(BaseObject):
     :param message_id: Message identifier
     :type message_id: :class:`int`
     
-    :param order_info: The order information, provided by the user
+    :param order_info: The order information, provided by the user; pass null if empty
     :type order_info: :class:`OrderInfo`
     
     :param allow_save: True, if the order information can be saved

@@ -36,7 +36,7 @@ class Supergroup(BaseObject):
     :param has_location: True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
     :type has_location: :class:`bool`
     
-    :param sign_messages: True, if messages sent to the channel should contain information about the sender. This field is only applicable to channels
+    :param sign_messages: True, if messages sent to the channel need to contain information about the sender. This field is only applicable to channels
     :type sign_messages: :class:`bool`
     
     :param is_slow_mode_enabled: True, if the slow mode is enabled in the supergroup

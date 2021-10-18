@@ -18,7 +18,7 @@ class GetRemoteFile(BaseObject):
     :param remote_file_id: Remote identifier of the file to get
     :type remote_file_id: :class:`str`
     
-    :param file_type: File type, if known
+    :param file_type: File type; pass null if unknown
     :type file_type: :class:`FileType`
     
     """

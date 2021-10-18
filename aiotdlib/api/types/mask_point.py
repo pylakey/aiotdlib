@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class MaskPoint(BaseObject):
     """
-    Part of the face, relative to which a mask should be placed
+    Part of the face, relative to which a mask is placed
     
     """
 
@@ -21,7 +21,7 @@ class MaskPoint(BaseObject):
 
 class MaskPointChin(MaskPoint):
     """
-    A mask should be placed relatively to the chin
+    The mask is placed relatively to the chin
     
     """
 
@@ -34,7 +34,7 @@ class MaskPointChin(MaskPoint):
 
 class MaskPointEyes(MaskPoint):
     """
-    A mask should be placed relatively to the eyes
+    The mask is placed relatively to the eyes
     
     """
 
@@ -47,7 +47,7 @@ class MaskPointEyes(MaskPoint):
 
 class MaskPointForehead(MaskPoint):
     """
-    A mask should be placed relatively to the forehead
+    The mask is placed relatively to the forehead
     
     """
 
@@ -60,7 +60,7 @@ class MaskPointForehead(MaskPoint):
 
 class MaskPointMouth(MaskPoint):
     """
-    A mask should be placed relatively to the mouth
+    The mask is placed relatively to the mouth
     
     """
 

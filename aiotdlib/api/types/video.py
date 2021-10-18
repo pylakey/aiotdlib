@@ -37,7 +37,7 @@ class Video(BaseObject):
     :param has_stickers: True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets
     :type has_stickers: :class:`bool`
     
-    :param supports_streaming: True, if the video should be tried to be streamed
+    :param supports_streaming: True, if the video is supposed to be streamed
     :type supports_streaming: :class:`bool`
     
     :param minithumbnail: Video minithumbnail; may be null, defaults to None

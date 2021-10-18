@@ -15,7 +15,7 @@ class GetChatNotificationSettingsExceptions(BaseObject):
     """
     Returns list of chats with non-default notification settings
     
-    :param scope: If specified, only chats from the specified scope will be returned
+    :param scope: If specified, only chats from the scope will be returned; pass null to return chats from all scopes
     :type scope: :class:`NotificationSettingsScope`
     
     :param compare_sound: If true, also chats with non-default sound will be returned

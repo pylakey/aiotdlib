@@ -27,7 +27,7 @@ class GetChatEventLog(BaseObject):
     :param limit: The maximum number of events to return; up to 100
     :type limit: :class:`int`
     
-    :param filters: The types of events to return. By default, all types will be returned
+    :param filters: The types of events to return; pass null to get chat events of all types
     :type filters: :class:`ChatEventLogFilters`
     
     :param user_ids: User identifiers by which to filter events. By default, events relating to all users will be returned

@@ -18,7 +18,7 @@ class DeepLinkInfo(BaseObject):
     :param text: Text to be shown to the user
     :type text: :class:`FormattedText`
     
-    :param need_update_application: True, if user should be asked to update the application
+    :param need_update_application: True, if the user must be asked to update the application
     :type need_update_application: :class:`bool`
     
     """

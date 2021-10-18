@@ -21,7 +21,7 @@ class PageBlockHorizontalAlignment(BaseObject):
 
 class PageBlockHorizontalAlignmentCenter(PageBlockHorizontalAlignment):
     """
-    The content should be center-aligned
+    The content must be center-aligned
     
     """
 
@@ -34,7 +34,7 @@ class PageBlockHorizontalAlignmentCenter(PageBlockHorizontalAlignment):
 
 class PageBlockHorizontalAlignmentLeft(PageBlockHorizontalAlignment):
     """
-    The content should be left-aligned
+    The content must be left-aligned
     
     """
 
@@ -47,7 +47,7 @@ class PageBlockHorizontalAlignmentLeft(PageBlockHorizontalAlignment):
 
 class PageBlockHorizontalAlignmentRight(PageBlockHorizontalAlignment):
     """
-    The content should be right-aligned
+    The content must be right-aligned
     
     """
 

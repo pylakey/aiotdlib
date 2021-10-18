@@ -210,12 +210,12 @@ class InternalLinkTypeMessage(InternalLinkType):
 
 class InternalLinkTypeMessageDraft(InternalLinkType):
     """
-    The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat should be open and the text should be added to the input field
+    The link contains a message draft text. A share screen needs to be shown to the user, then the chosen chat must be opened and the text is added to the input field
     
     :param text: Message draft text
     :type text: :class:`FormattedText`
     
-    :param contains_link: True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link should be selected
+    :param contains_link: True, if the first line of the text contains a link. If true, the input field needs to be focused and the text after the link must be selected
     :type contains_link: :class:`bool`
     
     """

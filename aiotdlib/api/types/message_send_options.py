@@ -21,7 +21,7 @@ class MessageSendOptions(BaseObject):
     :param from_background: Pass true if the message is sent from the background
     :type from_background: :class:`bool`
     
-    :param scheduling_state: Message scheduling state. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled
+    :param scheduling_state: Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled
     :type scheduling_state: :class:`MessageSchedulingState`
     
     """

@@ -14,7 +14,7 @@ class AccountTtl(BaseObject):
     """
     Contains information about the period of inactivity after which the current user's account will automatically be deleted
     
-    :param days: Number of days of inactivity before the account will be flagged for deletion; should range from 30-366 days
+    :param days: Number of days of inactivity before the account will be flagged for deletion; 30-366 days
     :type days: :class:`int`
     
     """

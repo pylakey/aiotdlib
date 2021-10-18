@@ -13,15 +13,15 @@ from ..base_object import BaseObject
 
 class MessageCopyOptions(BaseObject):
     """
-    Options to be used when a message content is copied without a link to the original message. Service messages and messageInvoice can't be copied
+    Options to be used when a message content is copied without reference to the original sender. Service messages and messageInvoice can't be copied
     
-    :param send_copy: True, if content of the message needs to be copied without a link to the original message. Always true if the message is forwarded to a secret chat
+    :param send_copy: True, if content of the message needs to be copied without reference to the original sender. Always true if the message is forwarded to a secret chat or is local
     :type send_copy: :class:`bool`
     
     :param replace_caption: True, if media caption of the message copy needs to be replaced. Ignored if send_copy is false
     :type replace_caption: :class:`bool`
     
-    :param new_caption: New message caption. Ignored if replace_caption is false
+    :param new_caption: New message caption; pass null to copy message without caption. Ignored if replace_caption is false
     :type new_caption: :class:`FormattedText`
     
     """

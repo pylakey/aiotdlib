@@ -17,7 +17,7 @@ class SetChatTheme(BaseObject):
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
     
-    :param theme_name: Name of the new chat theme; may be empty to return the default theme
+    :param theme_name: Name of the new chat theme; pass an empty string to return the default theme
     :type theme_name: :class:`str`
     
     """

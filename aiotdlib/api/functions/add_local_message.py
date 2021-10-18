@@ -19,7 +19,7 @@ class AddLocalMessage(BaseObject):
     :param chat_id: Target chat
     :type chat_id: :class:`int`
     
-    :param sender: The sender sender of the message
+    :param sender: The sender of the message
     :type sender: :class:`MessageSender`
     
     :param reply_to_message_id: Identifier of the message to reply to or 0

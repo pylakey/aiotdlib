@@ -22,7 +22,7 @@ class SearchMessages(BaseObject):
     :param query: Query to search for
     :type query: :class:`str`
     
-    :param offset_date: The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the last message
+    :param offset_date: The date of the message starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last message
     :type offset_date: :class:`int`
     
     :param offset_chat_id: The chat identifier of the last found message, or 0 for the first request
@@ -34,7 +34,7 @@ class SearchMessages(BaseObject):
     :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     :type limit: :class:`int`
     
-    :param filter_: Filter for message content in the search results; searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
+    :param filter_: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
     :type filter_: :class:`SearchMessagesFilter`
     
     :param min_date: If not 0, the minimum date of the messages to return

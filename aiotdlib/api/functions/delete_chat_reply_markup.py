@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class DeleteChatReplyMarkup(BaseObject):
     """
-    Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a ForceReply reply markup has been used. UpdateChatReplyMarkup will be sent if the reply markup will be changed
+    Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a ForceReply reply markup has been used. UpdateChatReplyMarkup will be sent if the reply markup is changed
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`

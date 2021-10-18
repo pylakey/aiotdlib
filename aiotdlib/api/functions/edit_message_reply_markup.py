@@ -21,7 +21,7 @@ class EditMessageReplyMarkup(BaseObject):
     :param message_id: Identifier of the message
     :type message_id: :class:`int`
     
-    :param reply_markup: The new message reply markup
+    :param reply_markup: The new message reply markup; pass null if none
     :type reply_markup: :class:`ReplyMarkup`
     
     """

@@ -54,7 +54,7 @@ class NetworkStatisticsEntryFile(NetworkStatisticsEntry):
     """
     Contains information about the total amount of data that was used to send and receive files
     
-    :param file_type: Type of the file the data is part of
+    :param file_type: Type of the file the data is part of; pass null if the data isn't related to files
     :type file_type: :class:`FileType`
     
     :param network_type: Type of the network the data was sent through. Call setNetworkType to maintain the actual network type

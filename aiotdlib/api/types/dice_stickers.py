@@ -13,7 +13,7 @@ from ..base_object import BaseObject
 
 class DiceStickers(BaseObject):
     """
-    Contains animated stickers which should be used for dice animation rendering
+    Contains animated stickers which must be used for dice animation rendering
     
     """
 

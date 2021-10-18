@@ -37,7 +37,7 @@ class Audio(BaseObject):
     :param album_cover_minithumbnail: The minithumbnail of the album cover; may be null, defaults to None
     :type album_cover_minithumbnail: :class:`Minithumbnail`, optional
     
-    :param album_cover_thumbnail: The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail should be extracted from the downloaded file; may be null, defaults to None
+    :param album_cover_thumbnail: The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is supposed to be extracted from the downloaded file; may be null, defaults to None
     :type album_cover_thumbnail: :class:`Thumbnail`, optional
     
     :param audio: File containing the audio

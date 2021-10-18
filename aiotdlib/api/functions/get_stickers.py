@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class GetStickers(BaseObject):
     """
-    Returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is not empty, favorite and recently used stickers may also be returned
+    Returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is non-empty, favorite and recently used stickers may also be returned
     
     :param emoji: String representation of emoji. If empty, returns all known installed stickers
     :type emoji: :class:`str`

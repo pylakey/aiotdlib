@@ -55,7 +55,7 @@ class StickerSetInfo(BaseObject):
     :param size: Total number of stickers in the set
     :type size: :class:`int`
     
-    :param covers: Contains up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full set should be requested
+    :param covers: Contains up to the first 5 stickers from the set, depending on the context. If the application needs more stickers the full sticker set needs to be requested
     :type covers: :class:`list[Sticker]`
     
     """

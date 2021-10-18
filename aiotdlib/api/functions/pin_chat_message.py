@@ -20,7 +20,7 @@ class PinChatMessage(BaseObject):
     :param message_id: Identifier of the new pinned message
     :type message_id: :class:`int`
     
-    :param disable_notification: True, if there should be no notification about the pinned message. Notifications are always disabled in channels and private chats
+    :param disable_notification: True, if there must be no notification about the pinned message. Notifications are always disabled in channels and private chats
     :type disable_notification: :class:`bool`
     
     :param only_for_self: True, if the message needs to be pinned for one side only; private chats only

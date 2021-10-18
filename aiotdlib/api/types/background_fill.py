@@ -46,7 +46,7 @@ class BackgroundFillGradient(BackgroundFill):
     :param bottom_color: A bottom color of the background in the RGB24 format
     :type bottom_color: :class:`int`
     
-    :param rotation_angle: Clockwise rotation angle of the gradient, in degrees; 0-359. Should be always divisible by 45
+    :param rotation_angle: Clockwise rotation angle of the gradient, in degrees; 0-359. Must be always divisible by 45
     :type rotation_angle: :class:`int`
     
     """

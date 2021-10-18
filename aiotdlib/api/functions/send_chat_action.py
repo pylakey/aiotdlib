@@ -21,7 +21,7 @@ class SendChatAction(BaseObject):
     :param message_thread_id: If not 0, a message thread identifier in which the action was performed
     :type message_thread_id: :class:`int`
     
-    :param action: The action description
+    :param action: The action description; pass null to cancel the currently active action
     :type action: :class:`ChatAction`
     
     """

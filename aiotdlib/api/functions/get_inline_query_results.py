@@ -21,7 +21,7 @@ class GetInlineQueryResults(BaseObject):
     :param chat_id: Identifier of the chat where the query was sent
     :type chat_id: :class:`int`
     
-    :param user_location: Location of the user, only if needed
+    :param user_location: Location of the user; pass null if unknown or the bot doesn't need user's location
     :type user_location: :class:`Location`
     
     :param query: Text of the query

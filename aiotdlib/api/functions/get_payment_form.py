@@ -13,7 +13,7 @@ from ..types import PaymentFormTheme
 
 class GetPaymentForm(BaseObject):
     """
-    Returns an invoice payment form. This method should be called when the user presses inlineKeyboardButtonBuy
+    Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
     
     :param chat_id: Chat identifier of the Invoice message
     :type chat_id: :class:`int`
@@ -21,7 +21,7 @@ class GetPaymentForm(BaseObject):
     :param message_id: Message identifier
     :type message_id: :class:`int`
     
-    :param theme: Preferred payment form theme
+    :param theme: Preferred payment form theme; pass null to use the default theme
     :type theme: :class:`PaymentFormTheme`
     
     """

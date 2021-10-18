@@ -17,7 +17,7 @@ class CreateTemporaryPassword(BaseObject):
     :param password: Persistent user password
     :type password: :class:`str`
     
-    :param valid_for: Time during which the temporary password will be valid, in seconds; should be between 60 and 86400
+    :param valid_for: Time during which the temporary password will be valid, in seconds; must be between 60 and 86400
     :type valid_for: :class:`int`
     
     """

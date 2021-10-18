@@ -18,7 +18,7 @@ class FinishFileGeneration(BaseObject):
     :param generation_id: The identifier of the generation process
     :type generation_id: :class:`int`
     
-    :param error: If set, means that file generation has failed and should be terminated
+    :param error: If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
     :type error: :class:`Error`
     
     """

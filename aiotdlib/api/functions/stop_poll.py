@@ -21,7 +21,7 @@ class StopPoll(BaseObject):
     :param message_id: Identifier of the message containing the poll
     :type message_id: :class:`int`
     
-    :param reply_markup: The new message reply markup; for bots only
+    :param reply_markup: The new message reply markup; pass null if none; for bots only
     :type reply_markup: :class:`ReplyMarkup`
     
     """

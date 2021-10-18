@@ -38,7 +38,7 @@ class Sticker(BaseObject):
     :param is_mask: True, if the sticker is a mask
     :type is_mask: :class:`bool`
     
-    :param mask_position: Position where the mask should be placed; may be null, defaults to None
+    :param mask_position: Position where the mask is placed; may be null, defaults to None
     :type mask_position: :class:`MaskPosition`, optional
     
     :param outline: Sticker's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner

@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class TextParseMode(BaseObject):
     """
-    Describes the way the text should be parsed for TextEntities
+    Describes the way the text needs to be parsed for TextEntities
     
     """
 

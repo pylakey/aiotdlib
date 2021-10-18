@@ -17,7 +17,7 @@ class LanguagePackInfo(BaseObject):
     :param id: Unique language pack identifier
     :type id: :class:`str`
     
-    :param base_language_pack_id: Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it should be fetched from base language pack. Unsupported in custom language packs
+    :param base_language_pack_id: Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it must be fetched from base language pack. Unsupported in custom language packs
     :type base_language_pack_id: :class:`str`
     
     :param name: Language name

@@ -24,10 +24,10 @@ class ForwardMessages(BaseObject):
     :param message_ids: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
     :type message_ids: :class:`list[int]`
     
-    :param options: Options to be used to send the messages
+    :param options: Options to be used to send the messages; pass null to use default options
     :type options: :class:`MessageSendOptions`
     
-    :param send_copy: If true, content of the messages will be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
+    :param send_copy: If true, content of the messages will be copied without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
     :type send_copy: :class:`bool`
     
     :param remove_caption: If true, media caption of message copies will be removed. Ignored if send_copy is false

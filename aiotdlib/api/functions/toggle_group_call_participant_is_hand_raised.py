@@ -21,7 +21,7 @@ class ToggleGroupCallParticipantIsHandRaised(BaseObject):
     :param participant_id: Participant identifier
     :type participant_id: :class:`MessageSender`
     
-    :param is_hand_raised: Pass true if the user's hand should be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
+    :param is_hand_raised: Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
     :type is_hand_raised: :class:`bool`
     
     """

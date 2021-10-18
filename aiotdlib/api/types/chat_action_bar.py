@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class ChatActionBar(BaseObject):
     """
-    Describes actions which should be possible to do through a chat action bar
+    Describes actions which must be possible to do through a chat action bar
     
     """
 

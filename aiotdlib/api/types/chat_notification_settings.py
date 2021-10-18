@@ -29,7 +29,7 @@ class ChatNotificationSettings(BaseObject):
     :param use_default_show_preview: If true, show_preview is ignored and the value for the relevant type of chat is used instead
     :type use_default_show_preview: :class:`bool`
     
-    :param show_preview: True, if message content should be displayed in notifications
+    :param show_preview: True, if message content must be displayed in notifications
     :type show_preview: :class:`bool`
     
     :param use_default_disable_pinned_message_notifications: If true, disable_pinned_message_notifications is ignored and the value for the relevant type of chat is used instead

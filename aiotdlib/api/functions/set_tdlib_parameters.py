@@ -15,7 +15,7 @@ class SetTdlibParameters(BaseObject):
     """
     Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
     
-    :param parameters: Parameters
+    :param parameters: Parameters for TDLib initialization
     :type parameters: :class:`TdlibParameters`
     
     """

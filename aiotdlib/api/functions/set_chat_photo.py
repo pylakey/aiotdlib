@@ -18,7 +18,7 @@ class SetChatPhoto(BaseObject):
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
     
-    :param photo: New chat photo. Pass null to delete the chat photo
+    :param photo: New chat photo; pass null to delete the chat photo
     :type photo: :class:`InputChatPhoto`
     
     """

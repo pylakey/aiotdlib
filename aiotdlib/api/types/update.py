@@ -94,7 +94,7 @@ class UpdateActiveNotifications(Update):
 
 class UpdateAnimatedEmojiMessageClicked(Update):
     """
-    Some animated emoji message was clicked and a big animated sticker should be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
+    Some animated emoji message was clicked and a big animated sticker must be played if the message is visible on the screen. chatActionWatchingAnimations with the text of the message needs to be sent if the sticker is played
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
@@ -254,7 +254,7 @@ class UpdateChatDefaultDisableNotification(Update):
 
 class UpdateChatDraftMessage(Update):
     """
-    A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update shouldn't be applied
+    A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
@@ -820,10 +820,10 @@ class UpdateFileGenerationStart(Update):
     :param original_path: The path to a file from which a new file is generated; may be empty
     :type original_path: :class:`str`
     
-    :param destination_path: The path to a file that should be created and where the new file should be generated
+    :param destination_path: The path to a file that must be created and where the new file is generated
     :type destination_path: :class:`str`
     
-    :param conversion: String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which should be downloaded by the application
+    :param conversion: String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which must be downloaded by the application
     :type conversion: :class:`str`
     
     """
@@ -1547,7 +1547,7 @@ class UpdateNotificationGroup(Update):
     :param notification_settings_chat_id: Chat identifier, which notification settings must be applied to the added notifications
     :type notification_settings_chat_id: :class:`int`
     
-    :param is_silent: True, if the notifications should be shown without sound
+    :param is_silent: True, if the notifications must be shown without sound
     :type is_silent: :class:`bool`
     
     :param total_count: Total number of unread notifications in the group, can be bigger than number of active notifications
@@ -1740,7 +1740,7 @@ class UpdateServiceNotification(Update):
     """
     Service notification from the server. Upon receiving this the application must show a popup with the content of the notification
     
-    :param type_: Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" should be shown under notification; if user presses the second, all local data should be destroyed using Destroy method
+    :param type_: Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" must be shown under notification; if user presses the second, all local data must be destroyed using Destroy method
     :type type_: :class:`str`
     
     :param content: Notification content
@@ -1835,7 +1835,7 @@ class UpdateSupergroupFullInfo(Update):
 
 class UpdateTermsOfService(Update):
     """
-    New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method should be called with the reason "Decline ToS update"
+    New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method must be called with the reason "Decline ToS update"
     
     :param terms_of_service_id: Identifier of the terms of service
     :type terms_of_service_id: :class:`str`

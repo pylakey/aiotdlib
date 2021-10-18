@@ -24,7 +24,7 @@ class SendInlineQueryResultMessage(BaseObject):
     :param reply_to_message_id: Identifier of a message to reply to or 0
     :type reply_to_message_id: :class:`int`
     
-    :param options: Options to be used to send the message
+    :param options: Options to be used to send the message; pass null to use default options
     :type options: :class:`MessageSendOptions`
     
     :param query_id: Identifier of the inline query

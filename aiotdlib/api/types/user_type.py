@@ -35,7 +35,7 @@ class UserTypeBot(UserType):
     :param inline_query_placeholder: Placeholder for inline queries (displayed on the application input field)
     :type inline_query_placeholder: :class:`str`
     
-    :param need_location: True, if the location of the user should be sent with every inline query to this bot
+    :param need_location: True, if the location of the user is expected to be sent with every inline query to this bot
     :type need_location: :class:`bool`
     
     """

@@ -21,7 +21,7 @@ class EditMessageSchedulingState(BaseObject):
     :param message_id: Identifier of the message
     :type message_id: :class:`int`
     
-    :param scheduling_state: The new message scheduling state. Pass null to send the message immediately
+    :param scheduling_state: The new message scheduling state; pass null to send the message immediately
     :type scheduling_state: :class:`MessageSchedulingState`
     
     """

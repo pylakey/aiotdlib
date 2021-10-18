@@ -50,7 +50,7 @@ class DeviceTokenApplePushVoIP(DeviceToken):
     :param is_app_sandbox: True, if App Sandbox is enabled
     :type is_app_sandbox: :class:`bool`
     
-    :param encrypt: True, if push notifications should be additionally encrypted
+    :param encrypt: True, if push notifications must be additionally encrypted
     :type encrypt: :class:`bool`
     
     """
@@ -89,7 +89,7 @@ class DeviceTokenFirebaseCloudMessaging(DeviceToken):
     :param token: Device registration token; may be empty to de-register a device
     :type token: :class:`str`
     
-    :param encrypt: True, if push notifications should be additionally encrypted
+    :param encrypt: True, if push notifications must be additionally encrypted
     :type encrypt: :class:`bool`
     
     """

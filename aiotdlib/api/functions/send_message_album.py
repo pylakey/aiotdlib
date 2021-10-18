@@ -25,7 +25,7 @@ class SendMessageAlbum(BaseObject):
     :param reply_to_message_id: Identifier of a message to reply to or 0
     :type reply_to_message_id: :class:`int`
     
-    :param options: Options to be used to send the messages
+    :param options: Options to be used to send the messages; pass null to use default options
     :type options: :class:`MessageSendOptions`
     
     :param input_message_contents: Contents of messages to be sent. At most 10 messages can be added to an album

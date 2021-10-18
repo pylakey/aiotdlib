@@ -17,7 +17,7 @@ class GetFileDownloadedPrefixSize(BaseObject):
     :param file_id: Identifier of the file
     :type file_id: :class:`int`
     
-    :param offset: Offset from which downloaded prefix size should be calculated
+    :param offset: Offset from which downloaded prefix size needs to be calculated
     :type offset: :class:`int`
     
     """

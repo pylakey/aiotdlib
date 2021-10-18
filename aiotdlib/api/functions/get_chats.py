@@ -13,9 +13,9 @@ from ..types import ChatList
 
 class GetChats(BaseObject):
     """
-    Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats instead to maintain chat lists
+    Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
     
-    :param chat_list: The chat list in which to return chats
+    :param chat_list: The chat list in which to return chats; pass null to get chats from the main chat list
     :type chat_list: :class:`ChatList`
     
     :param limit: The maximum number of chats to be returned

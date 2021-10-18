@@ -21,7 +21,7 @@ class SendPhoneNumberConfirmationCode(BaseObject):
     :param phone_number: Phone number value from the link
     :type phone_number: :class:`str`
     
-    :param settings: Settings for the authentication of the user's phone number
+    :param settings: Settings for the authentication of the user's phone number; pass null to use default settings
     :type settings: :class:`PhoneNumberAuthenticationSettings`
     
     """

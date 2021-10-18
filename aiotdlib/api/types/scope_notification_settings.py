@@ -20,7 +20,7 @@ class ScopeNotificationSettings(BaseObject):
     :param sound: The name of an audio file to be used for notification sounds; only applies to iOS applications
     :type sound: :class:`str`
     
-    :param show_preview: True, if message content should be displayed in notifications
+    :param show_preview: True, if message content must be displayed in notifications
     :type show_preview: :class:`bool`
     
     :param disable_pinned_message_notifications: True, if notifications for incoming pinned messages will be created as for an ordinary unread message

@@ -18,7 +18,7 @@ class ChangePhoneNumber(BaseObject):
     :param phone_number: The new phone number of the user in international format
     :type phone_number: :class:`str`
     
-    :param settings: Settings for the authentication of the user's phone number
+    :param settings: Settings for the authentication of the user's phone number; pass null to use default settings
     :type settings: :class:`PhoneNumberAuthenticationSettings`
     
     """

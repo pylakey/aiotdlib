@@ -26,7 +26,7 @@ class CreateNewSupergroupChat(BaseObject):
     :param param_description: Chat description; 0-255 characters, defaults to None
     :type param_description: :class:`str`, optional
     
-    :param location: Chat location if a location-based supergroup is being created
+    :param location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
     :type location: :class:`ChatLocation`
     
     :param for_import: True, if the supergroup is created for importing messages using importMessage

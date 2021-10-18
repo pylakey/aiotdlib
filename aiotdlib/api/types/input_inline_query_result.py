@@ -55,7 +55,7 @@ class InputInlineQueryResultAnimation(InputInlineQueryResult):
     :param video_height: Height of the video
     :type video_height: :class:`int`
     
-    :param reply_markup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+    :param reply_markup: The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
     :type reply_markup: :class:`ReplyMarkup`
     
     :param input_message_content: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
@@ -109,7 +109,7 @@ class InputInlineQueryResultArticle(InputInlineQueryResult):
     :param thumbnail_height: Thumbnail height, if known
     :type thumbnail_height: :class:`int`
     
-    :param reply_markup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+    :param reply_markup: The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
     :type reply_markup: :class:`ReplyMarkup`
     
     :param input_message_content: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
@@ -153,7 +153,7 @@ class InputInlineQueryResultAudio(InputInlineQueryResult):
     :param audio_duration: Audio file duration, in seconds
     :type audio_duration: :class:`int`
     
-    :param reply_markup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+    :param reply_markup: The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
     :type reply_markup: :class:`ReplyMarkup`
     
     :param input_message_content: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageAudio, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
@@ -194,7 +194,7 @@ class InputInlineQueryResultContact(InputInlineQueryResult):
     :param thumbnail_height: Thumbnail height, if known
     :type thumbnail_height: :class:`int`
     
-    :param reply_markup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+    :param reply_markup: The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
     :type reply_markup: :class:`ReplyMarkup`
     
     :param input_message_content: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
@@ -244,7 +244,7 @@ class InputInlineQueryResultDocument(InputInlineQueryResult):
     :param thumbnail_height: Height of the thumbnail
     :type thumbnail_height: :class:`int`
     
-    :param reply_markup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+    :param reply_markup: The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
     :type reply_markup: :class:`ReplyMarkup`
     
     :param input_message_content: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageDocument, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
@@ -279,7 +279,7 @@ class InputInlineQueryResultGame(InputInlineQueryResult):
     :param game_short_name: Short name of the game
     :type game_short_name: :class:`str`
     
-    :param reply_markup: Message reply markup. Must be of type replyMarkupInlineKeyboard or null
+    :param reply_markup: The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
     :type reply_markup: :class:`ReplyMarkup`
     
     """
@@ -319,7 +319,7 @@ class InputInlineQueryResultLocation(InputInlineQueryResult):
     :param thumbnail_height: Thumbnail height, if known
     :type thumbnail_height: :class:`int`
     
-    :param reply_markup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+    :param reply_markup: The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
     :type reply_markup: :class:`ReplyMarkup`
     
     :param input_message_content: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
@@ -368,7 +368,7 @@ class InputInlineQueryResultPhoto(InputInlineQueryResult):
     :param photo_height: Height of the photo
     :type photo_height: :class:`int`
     
-    :param reply_markup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+    :param reply_markup: The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
     :type reply_markup: :class:`ReplyMarkup`
     
     :param input_message_content: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessagePhoto, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
@@ -411,7 +411,7 @@ class InputInlineQueryResultSticker(InputInlineQueryResult):
     :param sticker_height: Height of the sticker
     :type sticker_height: :class:`int`
     
-    :param reply_markup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+    :param reply_markup: The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
     :type reply_markup: :class:`ReplyMarkup`
     
     :param input_message_content: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageSticker, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
@@ -452,7 +452,7 @@ class InputInlineQueryResultVenue(InputInlineQueryResult):
     :param thumbnail_height: Thumbnail height, if known
     :type thumbnail_height: :class:`int`
     
-    :param reply_markup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+    :param reply_markup: The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
     :type reply_markup: :class:`ReplyMarkup`
     
     :param input_message_content: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
@@ -505,7 +505,7 @@ class InputInlineQueryResultVideo(InputInlineQueryResult):
     :param video_duration: Video duration, in seconds
     :type video_duration: :class:`int`
     
-    :param reply_markup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+    :param reply_markup: The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
     :type reply_markup: :class:`ReplyMarkup`
     
     :param input_message_content: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVideo, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
@@ -547,7 +547,7 @@ class InputInlineQueryResultVoiceNote(InputInlineQueryResult):
     :param voice_note_duration: Duration of the voice note, in seconds
     :type voice_note_duration: :class:`int`
     
-    :param reply_markup: The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+    :param reply_markup: The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null
     :type reply_markup: :class:`ReplyMarkup`
     
     :param input_message_content: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageVoiceNote, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact

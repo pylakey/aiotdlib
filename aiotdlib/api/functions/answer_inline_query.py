@@ -30,7 +30,7 @@ class AnswerInlineQuery(BaseObject):
     :param next_offset: Offset for the next inline query; pass an empty string if there are no more results
     :type next_offset: :class:`str`
     
-    :param switch_pm_text: If non-empty, this text should be shown on the button that opens a private chat with the bot and sends a start message to the bot with the parameter switch_pm_parameter
+    :param switch_pm_text: If non-empty, this text must be shown on the button that opens a private chat with the bot and sends a start message to the bot with the parameter switch_pm_parameter
     :type switch_pm_text: :class:`str`
     
     :param switch_pm_parameter: The parameter for the bot start message

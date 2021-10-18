@@ -1480,7 +1480,6 @@ __all__ = [
     'GetChatScheduledMessages',
     'GetChatSponsoredMessages',
     'GetChatStatistics',
-    'GetChatStatisticsUrl',
     'GetChats',
     'GetCommands',
     'GetConnectedWebsites',

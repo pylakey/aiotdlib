@@ -18,7 +18,7 @@ class SetOption(BaseObject):
     :param name: The name of the option
     :type name: :class:`str`
     
-    :param value: The new value of the option
+    :param value: The new value of the option; pass null to reset option value to a default value
     :type value: :class:`OptionValue`
     
     """

@@ -24,7 +24,7 @@ class InlineQueryResults(BaseObject):
     :param results: Results of the query
     :type results: :class:`list[InlineQueryResult]`
     
-    :param switch_pm_text: If non-empty, this text should be shown on the button, which opens a private chat with the bot and sends the bot a start message with the switch_pm_parameter
+    :param switch_pm_text: If non-empty, this text must be shown on the button, which opens a private chat with the bot and sends the bot a start message with the switch_pm_parameter
     :type switch_pm_text: :class:`str`
     
     :param switch_pm_parameter: Parameter for the bot start message

@@ -18,7 +18,7 @@ class GetSupergroupMembers(BaseObject):
     :param supergroup_id: Identifier of the supergroup or channel
     :type supergroup_id: :class:`int`
     
-    :param filter_: The type of users to return. By default, supergroupMembersFilterRecent
+    :param filter_: The type of users to return; pass null to use supergroupMembersFilterRecent
     :type filter_: :class:`SupergroupMembersFilter`
     
     :param offset: Number of users to skip

@@ -19,16 +19,16 @@ class PageBlockTableCell(BaseObject):
     """
     Represents a cell of a table
     
-    :param text: Cell text; may be null. If the text is null, then the cell should be invisible, defaults to None
+    :param text: Cell text; may be null. If the text is null, then the cell must be invisible, defaults to None
     :type text: :class:`RichText`, optional
     
     :param is_header: True, if it is a header cell
     :type is_header: :class:`bool`
     
-    :param colspan: The number of columns the cell should span
+    :param colspan: The number of columns the cell spans
     :type colspan: :class:`int`
     
-    :param rowspan: The number of rows the cell should span
+    :param rowspan: The number of rows the cell spans
     :type rowspan: :class:`int`
     
     :param align: Horizontal cell content alignment

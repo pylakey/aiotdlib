@@ -88,7 +88,7 @@ class Chat(BaseObject):
     :param theme_name: If non-empty, name of a theme, set for the chat
     :type theme_name: :class:`str`
     
-    :param action_bar: Describes actions which should be possible to do through a chat action bar; may be null, defaults to None
+    :param action_bar: Describes actions which must be possible to do through a chat action bar; may be null, defaults to None
     :type action_bar: :class:`ChatActionBar`, optional
     
     :param voice_chat: Contains information about voice chat of the chat

@@ -18,7 +18,7 @@ class EditInlineMessageReplyMarkup(BaseObject):
     :param inline_message_id: Inline message identifier
     :type inline_message_id: :class:`str`
     
-    :param reply_markup: The new message reply markup
+    :param reply_markup: The new message reply markup; pass null if none
     :type reply_markup: :class:`ReplyMarkup`
     
     """

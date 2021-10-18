@@ -26,7 +26,7 @@ class MessageLinkInfo(BaseObject):
     :param message: If found, the linked message; may be null, defaults to None
     :type message: :class:`Message`, optional
     
-    :param media_timestamp: Timestamp from which the video/audio/video note/voice note playing should start, in seconds; 0 if not specified. The media can be in the message content or in its web page preview
+    :param media_timestamp: Timestamp from which the video/audio/video note/voice note playing must start, in seconds; 0 if not specified. The media can be in the message content or in its web page preview
     :type media_timestamp: :class:`int`
     
     :param for_album: True, if the whole media album to which the message belongs is linked

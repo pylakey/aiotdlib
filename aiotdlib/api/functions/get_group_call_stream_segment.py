@@ -27,7 +27,7 @@ class GetGroupCallStreamSegment(BaseObject):
     :param channel_id: Identifier of an audio/video channel to get as received from tgcalls
     :type channel_id: :class:`int`
     
-    :param video_quality: Video quality as received from tgcalls
+    :param video_quality: Video quality as received from tgcalls; pass null to get the worst available quality
     :type video_quality: :class:`GroupCallVideoQuality`
     
     """

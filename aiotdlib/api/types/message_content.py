@@ -517,7 +517,7 @@ class MessageInvoice(MessageContent):
     :param is_test: True, if the invoice is a test invoice
     :type is_test: :class:`bool`
     
-    :param need_shipping_address: True, if the shipping address should be specified
+    :param need_shipping_address: True, if the shipping address must be specified
     :type need_shipping_address: :class:`bool`
     
     :param receipt_message_id: The identifier of the message with the receipt, after the product has been purchased

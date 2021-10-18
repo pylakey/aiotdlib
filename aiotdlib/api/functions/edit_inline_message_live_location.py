@@ -5,8 +5,6 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -21,11 +19,11 @@ class EditInlineMessageLiveLocation(BaseObject):
     :param inline_message_id: Inline message identifier
     :type inline_message_id: :class:`str`
     
-    :param reply_markup: The new message reply markup
+    :param reply_markup: The new message reply markup; pass null if none
     :type reply_markup: :class:`ReplyMarkup`
     
-    :param location: New location content of the message; may be null. Pass null to stop sharing the live location, defaults to None
-    :type location: :class:`Location`, optional
+    :param location: New location content of the message; pass null to stop sharing the live location
+    :type location: :class:`Location`
     
     :param heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     :type heading: :class:`int`
@@ -38,7 +36,7 @@ class EditInlineMessageLiveLocation(BaseObject):
     ID: str = Field("editInlineMessageLiveLocation", alias="@type")
     inline_message_id: str
     reply_markup: ReplyMarkup
-    location: typing.Optional[Location] = None
+    location: Location
     heading: int
     proximity_alert_radius: int
 

@@ -5,8 +5,6 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
 from ..base_object import BaseObject
@@ -24,11 +22,11 @@ class EditMessageLiveLocation(BaseObject):
     :param message_id: Identifier of the message
     :type message_id: :class:`int`
     
-    :param reply_markup: The new message reply markup; for bots only
+    :param reply_markup: The new message reply markup; pass null if none; for bots only
     :type reply_markup: :class:`ReplyMarkup`
     
-    :param location: New location content of the message; may be null. Pass null to stop sharing the live location, defaults to None
-    :type location: :class:`Location`, optional
+    :param location: New location content of the message; pass null to stop sharing the live location
+    :type location: :class:`Location`
     
     :param heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
     :type heading: :class:`int`
@@ -42,7 +40,7 @@ class EditMessageLiveLocation(BaseObject):
     chat_id: int
     message_id: int
     reply_markup: ReplyMarkup
-    location: typing.Optional[Location] = None
+    location: Location
     heading: int
     proximity_alert_radius: int
 

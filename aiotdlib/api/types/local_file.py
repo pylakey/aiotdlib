@@ -35,7 +35,7 @@ class LocalFile(BaseObject):
     :param downloaded_prefix_size: If is_downloading_completed is false, then only some prefix of the file starting from download_offset is ready to be read. downloaded_prefix_size is the size of that prefix in bytes
     :type downloaded_prefix_size: :class:`int`
     
-    :param downloaded_size: Total downloaded file size, in bytes. Should be used only for calculating download progress. The actual file size may be bigger, and some parts of it may contain garbage
+    :param downloaded_size: Total downloaded file size, in bytes. Can be used only for calculating download progress. The actual file size may be bigger, and some parts of it may contain garbage
     :type downloaded_size: :class:`int`
     
     """

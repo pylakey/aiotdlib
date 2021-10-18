@@ -37,7 +37,7 @@ class InputMessageAnimation(InputMessageContent):
     :param animation: Animation file to be sent
     :type animation: :class:`InputFile`
     
-    :param thumbnail: Animation thumbnail, if available
+    :param thumbnail: Animation thumbnail; pass null to skip thumbnail uploading
     :type thumbnail: :class:`InputThumbnail`
     
     :param added_sticker_file_ids: File identifiers of the stickers added to the animation, if applicable
@@ -52,7 +52,7 @@ class InputMessageAnimation(InputMessageContent):
     :param height: Height of the animation; may be replaced by the server
     :type height: :class:`int`
     
-    :param caption: Animation caption; 0-GetOption("message_caption_length_max") characters
+    :param caption: Animation caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     :type caption: :class:`FormattedText`
     
     """
@@ -78,7 +78,7 @@ class InputMessageAudio(InputMessageContent):
     :param audio: Audio file to be sent
     :type audio: :class:`InputFile`
     
-    :param album_cover_thumbnail: Thumbnail of the cover for the album, if available
+    :param album_cover_thumbnail: Thumbnail of the cover for the album; pass null to skip thumbnail uploading
     :type album_cover_thumbnail: :class:`InputThumbnail`
     
     :param duration: Duration of the audio, in seconds; may be replaced by the server
@@ -90,7 +90,7 @@ class InputMessageAudio(InputMessageContent):
     :param performer: Performer of the audio; 0-64 characters, may be replaced by the server, defaults to None
     :type performer: :class:`str`, optional
     
-    :param caption: Audio caption; 0-GetOption("message_caption_length_max") characters
+    :param caption: Audio caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     :type caption: :class:`FormattedText`
     
     """
@@ -132,7 +132,7 @@ class InputMessageDice(InputMessageContent):
     :param emoji: Emoji on which the dice throw animation is based
     :type emoji: :class:`str`
     
-    :param clear_draft: True, if a chat message draft should be deleted
+    :param clear_draft: True, if the chat message draft must be deleted
     :type clear_draft: :class:`bool`
     
     """
@@ -153,13 +153,13 @@ class InputMessageDocument(InputMessageContent):
     :param document: Document to be sent
     :type document: :class:`InputFile`
     
-    :param thumbnail: Document thumbnail, if available
+    :param thumbnail: Document thumbnail; pass null to skip thumbnail uploading
     :type thumbnail: :class:`InputThumbnail`
     
     :param disable_content_type_detection: If true, automatic file type detection will be disabled and the document will be always sent as file. Always true for files sent to secret chats
     :type disable_content_type_detection: :class:`bool`
     
-    :param caption: Document caption; 0-GetOption("message_caption_length_max") characters
+    :param caption: Document caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     :type caption: :class:`FormattedText`
     
     """
@@ -185,10 +185,10 @@ class InputMessageForwarded(InputMessageContent):
     :param message_id: Identifier of the message to forward
     :type message_id: :class:`int`
     
-    :param in_game_share: True, if a game message should be shared within a launched game; applies only to game messages
+    :param in_game_share: True, if a game message is being shared from a launched game; applies only to game messages
     :type in_game_share: :class:`bool`
     
-    :param copy_options: Options to be used to copy content of the message without a link to the original message
+    :param copy_options: Options to be used to copy content of the message without reference to the original sender; pass null to try to forward the message as usual
     :type copy_options: :class:`MessageCopyOptions`
     
     """
@@ -289,7 +289,7 @@ class InputMessageLocation(InputMessageContent):
     :param location: Location to be sent
     :type location: :class:`Location`
     
-    :param live_period: Period for which the location can be updated, in seconds; should be between 60 and 86400 for a live location and 0 otherwise
+    :param live_period: Period for which the location can be updated, in seconds; must be between 60 and 86400 for a live location and 0 otherwise
     :type live_period: :class:`int`
     
     :param heading: For live locations, a direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
@@ -318,7 +318,7 @@ class InputMessagePhoto(InputMessageContent):
     :param photo: Photo to send
     :type photo: :class:`InputFile`
     
-    :param thumbnail: Photo thumbnail to be sent, this is sent to the other party in secret chats only
+    :param thumbnail: Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats
     :type thumbnail: :class:`InputThumbnail`
     
     :param added_sticker_file_ids: File identifiers of the stickers added to the photo, if applicable
@@ -330,7 +330,7 @@ class InputMessagePhoto(InputMessageContent):
     :param height: Photo height
     :type height: :class:`int`
     
-    :param caption: Photo caption; 0-GetOption("message_caption_length_max") characters
+    :param caption: Photo caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     :type caption: :class:`FormattedText`
     
     :param ttl: Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
@@ -400,7 +400,7 @@ class InputMessageSticker(InputMessageContent):
     :param sticker: Sticker to be sent
     :type sticker: :class:`InputFile`
     
-    :param thumbnail: Sticker thumbnail, if available
+    :param thumbnail: Sticker thumbnail; pass null to skip thumbnail uploading
     :type thumbnail: :class:`InputThumbnail`
     
     :param width: Sticker width
@@ -433,10 +433,10 @@ class InputMessageText(InputMessageContent):
     :param text: Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
     :type text: :class:`FormattedText`
     
-    :param disable_web_page_preview: True, if rich web page previews for URLs in the message text should be disabled
+    :param disable_web_page_preview: True, if rich web page previews for URLs in the message text must be disabled
     :type disable_web_page_preview: :class:`bool`
     
-    :param clear_draft: True, if a chat message draft should be deleted
+    :param clear_draft: True, if a chat message draft must be deleted
     :type clear_draft: :class:`bool`
     
     """
@@ -475,7 +475,7 @@ class InputMessageVideo(InputMessageContent):
     :param video: Video to be sent
     :type video: :class:`InputFile`
     
-    :param thumbnail: Video thumbnail, if available
+    :param thumbnail: Video thumbnail; pass null to skip thumbnail uploading
     :type thumbnail: :class:`InputThumbnail`
     
     :param added_sticker_file_ids: File identifiers of the stickers added to the video, if applicable
@@ -490,10 +490,10 @@ class InputMessageVideo(InputMessageContent):
     :param height: Video height
     :type height: :class:`int`
     
-    :param supports_streaming: True, if the video should be tried to be streamed
+    :param supports_streaming: True, if the video is supposed to be streamed
     :type supports_streaming: :class:`bool`
     
-    :param caption: Video caption; 0-GetOption("message_caption_length_max") characters
+    :param caption: Video caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     :type caption: :class:`FormattedText`
     
     :param ttl: Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
@@ -524,7 +524,7 @@ class InputMessageVideoNote(InputMessageContent):
     :param video_note: Video note to be sent
     :type video_note: :class:`InputFile`
     
-    :param thumbnail: Video thumbnail, if available
+    :param thumbnail: Video thumbnail; pass null to skip thumbnail uploading
     :type thumbnail: :class:`InputThumbnail`
     
     :param duration: Duration of the video, in seconds
@@ -559,7 +559,7 @@ class InputMessageVoiceNote(InputMessageContent):
     :param waveform: Waveform representation of the voice note, in 5-bit format
     :type waveform: :class:`str`
     
-    :param caption: Voice note caption; 0-GetOption("message_caption_length_max") characters
+    :param caption: Voice note caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max") characters
     :type caption: :class:`FormattedText`
     
     """

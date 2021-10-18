@@ -15,7 +15,7 @@ class GetCommands(BaseObject):
     """
     Returns the list of commands supported by the bot for the given user scope and language; for bots only
     
-    :param scope: The scope to which the commands are relevant
+    :param scope: The scope to which the commands are relevant; pass null to get commands in the default bot command scope
     :type scope: :class:`BotCommandScope`
     
     :param language_code: A two-letter ISO 639-1 country code or an empty string

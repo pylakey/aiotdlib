@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class Session(BaseObject):
     """
-    Contains information about one session in a Telegram application used by the current user. Sessions should be shown to the user in the returned order
+    Contains information about one session in a Telegram application used by the current user. Sessions must be shown to the user in the returned order
     
     :param id: Session identifier
     :type id: :class:`int`

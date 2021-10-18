@@ -5,8 +5,11 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
+from .internal_link_type import InternalLinkType
 from .message_content import MessageContent
 from ..base_object import BaseObject
 
@@ -21,8 +24,8 @@ class SponsoredMessage(BaseObject):
     :param sponsor_chat_id: Chat identifier
     :type sponsor_chat_id: :class:`int`
     
-    :param start_parameter: Parameter for the bot start message if the sponsored chat is a chat with a bot
-    :type start_parameter: :class:`str`
+    :param link: An internal link to be opened when the sponsored message is clicked; may be null. If null, the sponsor chat needs to be opened instead, defaults to None
+    :type link: :class:`InternalLinkType`, optional
     
     :param content: Content of the message
     :type content: :class:`MessageContent`
@@ -32,7 +35,7 @@ class SponsoredMessage(BaseObject):
     ID: str = Field("sponsoredMessage", alias="@type")
     id: int
     sponsor_chat_id: int
-    start_parameter: str
+    link: typing.Optional[InternalLinkType] = None
     content: MessageContent
 
     @staticmethod

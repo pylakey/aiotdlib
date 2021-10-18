@@ -21,7 +21,7 @@ class IdentityDocument(BaseObject):
     :param number: Document number; 1-24 characters
     :type number: :class:`str`
     
-    :param expiry_date: Document expiry date; may be null, defaults to None
+    :param expiry_date: Document expiry date; may be null if not applicable, defaults to None
     :type expiry_date: :class:`Date`, optional
     
     :param front_side: Front side of the document

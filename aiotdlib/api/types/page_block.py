@@ -59,7 +59,7 @@ class PageBlockAnimation(PageBlock):
     :param caption: Animation caption
     :type caption: :class:`PageBlockCaption`
     
-    :param need_autoplay: True, if the animation should be played automatically
+    :param need_autoplay: True, if the animation must be played automatically
     :type need_autoplay: :class:`bool`
     
     """
@@ -147,7 +147,7 @@ class PageBlockChatLink(PageBlock):
     :param photo: Chat photo; may be null, defaults to None
     :type photo: :class:`ChatPhotoInfo`, optional
     
-    :param username: Chat username, by which all other information about the chat should be resolved
+    :param username: Chat username, by which all other information about the chat can be resolved
     :type username: :class:`str`
     
     """
@@ -260,10 +260,10 @@ class PageBlockEmbedded(PageBlock):
     :param caption: Block caption
     :type caption: :class:`PageBlockCaption`
     
-    :param is_full_width: True, if the block should be full width
+    :param is_full_width: True, if the block must be full width
     :type is_full_width: :class:`bool`
     
-    :param allow_scrolling: True, if scrolling should be allowed
+    :param allow_scrolling: True, if scrolling needs to be allowed
     :type allow_scrolling: :class:`bool`
     
     """
@@ -470,7 +470,7 @@ class PageBlockPreformatted(PageBlock):
     :param text: Paragraph text
     :type text: :class:`RichText`
     
-    :param language: Programming language for which the text should be formatted
+    :param language: Programming language for which the text needs to be formatted
     :type language: :class:`str`
     
     """
@@ -637,10 +637,10 @@ class PageBlockVideo(PageBlock):
     :param caption: Video caption
     :type caption: :class:`PageBlockCaption`
     
-    :param need_autoplay: True, if the video should be played automatically
+    :param need_autoplay: True, if the video must be played automatically
     :type need_autoplay: :class:`bool`
     
-    :param is_looped: True, if the video should be looped
+    :param is_looped: True, if the video must be looped
     :type is_looped: :class:`bool`
     
     """

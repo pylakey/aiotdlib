@@ -24,7 +24,7 @@ class EditProxy(BaseObject):
     :param port: Proxy server port
     :type port: :class:`int`
     
-    :param enable: True, if the proxy should be enabled
+    :param enable: True, if the proxy needs to be enabled
     :type enable: :class:`bool`
     
     :param type_: Proxy type

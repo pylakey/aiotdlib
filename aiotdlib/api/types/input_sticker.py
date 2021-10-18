@@ -5,8 +5,6 @@
 # =============================================================================== #
 from __future__ import annotations
 
-import typing
-
 from pydantic import Field
 
 from .input_file import InputFile
@@ -54,15 +52,15 @@ class InputStickerStatic(InputSticker):
     :param emojis: Emojis corresponding to the sticker
     :type emojis: :class:`str`
     
-    :param mask_position: For masks, position where the mask should be placed; may be null, defaults to None
-    :type mask_position: :class:`MaskPosition`, optional
+    :param mask_position: For masks, position where the mask is placed; pass null if unspecified
+    :type mask_position: :class:`MaskPosition`
     
     """
 
     ID: str = Field("inputStickerStatic", alias="@type")
     sticker: InputFile
     emojis: str
-    mask_position: typing.Optional[MaskPosition] = None
+    mask_position: MaskPosition
 
     @staticmethod
     def read(q: dict) -> InputStickerStatic:

@@ -19,16 +19,16 @@ class InputIdentityDocument(BaseObject):
     :param number: Document number; 1-24 characters
     :type number: :class:`str`
     
-    :param expiry_date: Document expiry date, if available
+    :param expiry_date: Document expiry date; pass null if not applicable
     :type expiry_date: :class:`Date`
     
     :param front_side: Front side of the document
     :type front_side: :class:`InputFile`
     
-    :param reverse_side: Reverse side of the document; only for driver license and identity card
+    :param reverse_side: Reverse side of the document; only for driver license and identity card; pass null otherwise
     :type reverse_side: :class:`InputFile`
     
-    :param selfie: Selfie with the document, if available
+    :param selfie: Selfie with the document; pass null if unavailable
     :type selfie: :class:`InputFile`
     
     :param translation: List of files containing a certified English translation of the document

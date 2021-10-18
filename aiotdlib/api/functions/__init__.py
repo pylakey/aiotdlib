@@ -153,7 +153,6 @@ from .get_chat_pinned_message import GetChatPinnedMessage
 from .get_chat_scheduled_messages import GetChatScheduledMessages
 from .get_chat_sponsored_messages import GetChatSponsoredMessages
 from .get_chat_statistics import GetChatStatistics
-from .get_chat_statistics_url import GetChatStatisticsUrl
 from .get_chats import GetChats
 from .get_commands import GetCommands
 from .get_connected_websites import GetConnectedWebsites
@@ -608,7 +607,6 @@ __all__ = [
     "GetChatScheduledMessages",
     "GetChatSponsoredMessages",
     "GetChatStatistics",
-    "GetChatStatisticsUrl",
     "GetChats",
     "GetCommands",
     "GetConnectedWebsites",

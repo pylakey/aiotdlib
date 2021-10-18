@@ -23,7 +23,7 @@ class CountryInfo(BaseObject):
     :param english_name: English name of the country
     :type english_name: :class:`str`
     
-    :param is_hidden: True, if the country should be hidden from the list of all countries
+    :param is_hidden: True, if the country must be hidden from the list of all countries
     :type is_hidden: :class:`bool`
     
     :param calling_codes: List of country calling codes

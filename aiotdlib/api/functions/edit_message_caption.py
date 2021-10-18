@@ -22,10 +22,10 @@ class EditMessageCaption(BaseObject):
     :param message_id: Identifier of the message
     :type message_id: :class:`int`
     
-    :param reply_markup: The new message reply markup; for bots only
+    :param reply_markup: The new message reply markup; pass null if none; for bots only
     :type reply_markup: :class:`ReplyMarkup`
     
-    :param caption: New message content caption; 0-GetOption("message_caption_length_max") characters
+    :param caption: New message content caption; 0-GetOption("message_caption_length_max") characters; pass null to remove caption
     :type caption: :class:`FormattedText`
     
     """

@@ -466,7 +466,6 @@ class API:
         GET_CHAT_SCHEDULED_MESSAGES = 'getChatScheduledMessages'
         GET_CHAT_SPONSORED_MESSAGES = 'getChatSponsoredMessages'
         GET_CHAT_STATISTICS = 'getChatStatistics'
-        GET_CHAT_STATISTICS_URL = 'getChatStatisticsUrl'
         GET_CHATS = 'getChats'
         GET_COMMANDS = 'getCommands'
         GET_CONNECTED_WEBSITES = 'getConnectedWebsites'
@@ -1589,7 +1588,7 @@ class API:
         :param user_id: Identifier of the user
         :type user_id: :class:`int`
         
-        :param forward_limit: The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels
+        :param forward_limit: The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
         :type forward_limit: :class:`int`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -1817,7 +1816,7 @@ class API:
         :param chat_id: Target chat
         :type chat_id: :class:`int`
         
-        :param sender: The sender sender of the message
+        :param sender: The sender of the message
         :type sender: :class:`MessageSender`
         
         :param reply_to_message_id: Identifier of the message to reply to or 0
@@ -1946,7 +1945,7 @@ class API:
         :param port: Proxy server port
         :type port: :class:`int`
         
-        :param enable: True, if the proxy should be enabled
+        :param enable: True, if the proxy needs to be enabled
         :type enable: :class:`bool`
         
         :param type_: Proxy type
@@ -2147,7 +2146,7 @@ class API:
         :param text: Text of the answer
         :type text: :class:`str`
         
-        :param show_alert: If true, an alert should be shown to the user instead of a toast notification
+        :param show_alert: If true, an alert must be shown to the user instead of a toast notification
         :type show_alert: :class:`bool`
         
         :param url: URL to be opened
@@ -2251,7 +2250,7 @@ class API:
         :param next_offset: Offset for the next inline query; pass an empty string if there are no more results
         :type next_offset: :class:`str`
         
-        :param switch_pm_text: If non-empty, this text should be shown on the button that opens a private chat with the bot and sends a start message to the bot with the parameter switch_pm_parameter
+        :param switch_pm_text: If non-empty, this text must be shown on the button that opens a private chat with the bot and sends a start message to the bot with the parameter switch_pm_parameter
         :type switch_pm_text: :class:`str`
         
         :param switch_pm_parameter: The parameter for the bot start message
@@ -2613,7 +2612,7 @@ class API:
         :param phone_number: The new phone number of the user in international format
         :type phone_number: :class:`str`
         
-        :param settings: Settings for the authentication of the user's phone number
+        :param settings: Settings for the authentication of the user's phone number; pass null to use default settings
         :type settings: :class:`PhoneNumberAuthenticationSettings`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -2897,7 +2896,7 @@ class API:
         """
         Checks whether a username can be set for a chat
         
-        :param chat_id: Chat identifier; should be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
+        :param chat_id: Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
         :type chat_id: :class:`int`
         
         :param username: Username to be checked
@@ -3789,7 +3788,7 @@ class API:
         :param param_description: Chat description; 0-255 characters, defaults to None
         :type param_description: :class:`str`, optional
         
-        :param location: Chat location if a location-based supergroup is being created
+        :param location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
         :type location: :class:`ChatLocation`
         
         :param for_import: True, if the supergroup is created for importing messages using importMessage
@@ -3946,7 +3945,7 @@ class API:
         :param password: Persistent user password
         :type password: :class:`str`
         
-        :param valid_for: Time during which the temporary password will be valid, in seconds; should be between 60 and 86400
+        :param valid_for: Time during which the temporary password will be valid, in seconds; must be between 60 and 86400
         :type valid_for: :class:`int`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -4205,7 +4204,7 @@ class API:
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
         
-        :param remove_from_chat_list: Pass true if the chat should be removed from the chat list
+        :param remove_from_chat_list: Pass true if the chat needs to be removed from the chat list
         :type remove_from_chat_list: :class:`bool`
         
         :param revoke: Pass true to try to delete chat history for all users
@@ -4282,7 +4281,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a ForceReply reply markup has been used. UpdateChatReplyMarkup will be sent if the reply markup will be changed
+        Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a ForceReply reply markup has been used. UpdateChatReplyMarkup will be sent if the reply markup is changed
         
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
@@ -4323,7 +4322,7 @@ class API:
         """
         Deletes commands supported by the bot for the given user scope and language; for bots only
         
-        :param scope: The scope to which the commands are relevant
+        :param scope: The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
         :type scope: :class:`BotCommandScope`
         
         :param language_code: A two-letter ISO 639-1 country code or an empty string
@@ -4767,10 +4766,10 @@ class API:
         :param priority: Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first
         :type priority: :class:`int`
         
-        :param offset: The starting position from which the file should be downloaded
+        :param offset: The starting position from which the file needs to be downloaded
         :type offset: :class:`int`
         
-        :param limit: Number of bytes which should be downloaded starting from the "offset" position before the download will be automatically canceled; use 0 to download without a limit
+        :param limit: Number of bytes which need to be downloaded starting from the "offset" position before the download will be automatically canceled; use 0 to download without a limit
         :type limit: :class:`int`
         
         :param synchronous: If false, this request returns file state just after the download has been started. If true, this request returns file state only after the download has succeeded, has failed, has been canceled or a new downloadFile request with different offset/limit parameters was sent
@@ -4938,10 +4937,10 @@ class API:
         :param inline_message_id: Inline message identifier
         :type inline_message_id: :class:`str`
         
-        :param reply_markup: The new message reply markup
+        :param reply_markup: The new message reply markup; pass null if none
         :type reply_markup: :class:`ReplyMarkup`
         
-        :param caption: New message content caption; 0-GetOption("message_caption_length_max") characters
+        :param caption: New message content caption; pass null to remove caption; 0-GetOption("message_caption_length_max") characters
         :type caption: :class:`FormattedText`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -4970,7 +4969,7 @@ class API:
             self,
             inline_message_id: str,
             reply_markup: ReplyMarkup,
-            location: typing.Optional[Location],
+            location: Location,
             heading: int,
             proximity_alert_radius: int,
             *,
@@ -4984,11 +4983,11 @@ class API:
         :param inline_message_id: Inline message identifier
         :type inline_message_id: :class:`str`
         
-        :param reply_markup: The new message reply markup
+        :param reply_markup: The new message reply markup; pass null if none
         :type reply_markup: :class:`ReplyMarkup`
         
-        :param location: New location content of the message; may be null. Pass null to stop sharing the live location, defaults to None
-        :type location: :class:`Location`, optional
+        :param location: New location content of the message; pass null to stop sharing the live location
+        :type location: :class:`Location`
         
         :param heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
         :type heading: :class:`int`
@@ -5036,7 +5035,7 @@ class API:
         :param inline_message_id: Inline message identifier
         :type inline_message_id: :class:`str`
         
-        :param reply_markup: The new message reply markup; for bots only
+        :param reply_markup: The new message reply markup; pass null if none; for bots only
         :type reply_markup: :class:`ReplyMarkup`
         
         :param input_message_content: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
@@ -5079,7 +5078,7 @@ class API:
         :param inline_message_id: Inline message identifier
         :type inline_message_id: :class:`str`
         
-        :param reply_markup: The new message reply markup
+        :param reply_markup: The new message reply markup; pass null if none
         :type reply_markup: :class:`ReplyMarkup`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -5119,10 +5118,10 @@ class API:
         :param inline_message_id: Inline message identifier
         :type inline_message_id: :class:`str`
         
-        :param reply_markup: The new message reply markup
+        :param reply_markup: The new message reply markup; pass null if none
         :type reply_markup: :class:`ReplyMarkup`
         
-        :param input_message_content: New text content of the message. Should be of type inputMessageText
+        :param input_message_content: New text content of the message. Must be of type inputMessageText
         :type input_message_content: :class:`InputMessageContent`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -5167,10 +5166,10 @@ class API:
         :param message_id: Identifier of the message
         :type message_id: :class:`int`
         
-        :param reply_markup: The new message reply markup; for bots only
+        :param reply_markup: The new message reply markup; pass null if none; for bots only
         :type reply_markup: :class:`ReplyMarkup`
         
-        :param caption: New message content caption; 0-GetOption("message_caption_length_max") characters
+        :param caption: New message content caption; 0-GetOption("message_caption_length_max") characters; pass null to remove caption
         :type caption: :class:`FormattedText`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -5201,7 +5200,7 @@ class API:
             chat_id: int,
             message_id: int,
             reply_markup: ReplyMarkup,
-            location: typing.Optional[Location],
+            location: Location,
             heading: int,
             proximity_alert_radius: int,
             *,
@@ -5218,11 +5217,11 @@ class API:
         :param message_id: Identifier of the message
         :type message_id: :class:`int`
         
-        :param reply_markup: The new message reply markup; for bots only
+        :param reply_markup: The new message reply markup; pass null if none; for bots only
         :type reply_markup: :class:`ReplyMarkup`
         
-        :param location: New location content of the message; may be null. Pass null to stop sharing the live location, defaults to None
-        :type location: :class:`Location`, optional
+        :param location: New location content of the message; pass null to stop sharing the live location
+        :type location: :class:`Location`
         
         :param heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
         :type heading: :class:`int`
@@ -5275,7 +5274,7 @@ class API:
         :param message_id: Identifier of the message
         :type message_id: :class:`int`
         
-        :param reply_markup: The new message reply markup; for bots only
+        :param reply_markup: The new message reply markup; pass null if none; for bots only
         :type reply_markup: :class:`ReplyMarkup`
         
         :param input_message_content: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
@@ -5323,7 +5322,7 @@ class API:
         :param message_id: Identifier of the message
         :type message_id: :class:`int`
         
-        :param reply_markup: The new message reply markup
+        :param reply_markup: The new message reply markup; pass null if none
         :type reply_markup: :class:`ReplyMarkup`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -5367,7 +5366,7 @@ class API:
         :param message_id: Identifier of the message
         :type message_id: :class:`int`
         
-        :param scheduling_state: The new message scheduling state. Pass null to send the message immediately
+        :param scheduling_state: The new message scheduling state; pass null to send the message immediately
         :type scheduling_state: :class:`MessageSchedulingState`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -5412,10 +5411,10 @@ class API:
         :param message_id: Identifier of the message
         :type message_id: :class:`int`
         
-        :param reply_markup: The new message reply markup; for bots only
+        :param reply_markup: The new message reply markup; pass null if none; for bots only
         :type reply_markup: :class:`ReplyMarkup`
         
-        :param input_message_content: New text content of the message. Should be of type inputMessageText
+        :param input_message_content: New text content of the message. Must be of type inputMessageText
         :type input_message_content: :class:`InputMessageContent`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -5465,7 +5464,7 @@ class API:
         :param port: Proxy server port
         :type port: :class:`int`
         
-        :param enable: True, if the proxy should be enabled
+        :param enable: True, if the proxy needs to be enabled
         :type enable: :class:`bool`
         
         :param type_: Proxy type
@@ -5612,7 +5611,7 @@ class API:
         :param generation_id: The identifier of the generation process
         :type generation_id: :class:`int`
         
-        :param error: If set, means that file generation has failed and should be terminated
+        :param error: If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
         :type error: :class:`Error`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -5662,10 +5661,10 @@ class API:
         :param message_ids: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
         :type message_ids: :class:`list[int]`
         
-        :param options: Options to be used to send the messages
+        :param options: Options to be used to send the messages; pass null to use default options
         :type options: :class:`MessageSendOptions`
         
-        :param send_copy: If true, content of the messages will be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
+        :param send_copy: If true, content of the messages will be copied without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
         :type send_copy: :class:`bool`
         
         :param remove_caption: If true, media caption of message copies will be removed. Ignored if send_copy is false
@@ -5718,7 +5717,7 @@ class API:
             request_timeout: int = None
     ) -> Messages:
         """
-        Returns all active live locations that should be updated by the application. The list is persistent across application restarts only if the message database is used
+        Returns all active live locations that need to be updated by the application. The list is persistent across application restarts only if the message database is used
         
         """
         return await self.client.request(
@@ -6302,7 +6301,7 @@ class API:
         :param limit: The maximum number of events to return; up to 100
         :type limit: :class:`int`
         
-        :param filters: The types of events to return. By default, all types will be returned
+        :param filters: The types of events to return; pass null to get chat events of all types
         :type filters: :class:`ChatEventLogFilters`
         
         :param user_ids: User identifiers by which to filter events. By default, events relating to all users will be returned
@@ -6548,7 +6547,7 @@ class API:
         :param invite_link: Invite link for which to return chat members
         :type invite_link: :class:`str`
         
-        :param offset_member: A chat member from which to return next chat members; use null to get results from the beginning
+        :param offset_member: A chat member from which to return next chat members; pass null to get results from the beginning
         :type offset_member: :class:`ChatInviteLinkMember`
         
         :param limit: The maximum number of chat members to return
@@ -6804,7 +6803,7 @@ class API:
         """
         Returns list of chats with non-default notification settings
         
-        :param scope: If specified, only chats from the specified scope will be returned
+        :param scope: If specified, only chats from the scope will be returned; pass null to return chats from all scopes
         :type scope: :class:`NotificationSettingsScope`
         
         :param compare_sound: If true, also chats with non-default sound will be returned
@@ -6972,50 +6971,6 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_chat_statistics_url(
-            self,
-            chat_id: int,
-            parameters: str,
-            is_dark: bool,
-            *,
-            request_id: str = None,
-            request_timeout: int = None,
-            skip_validation: bool = False
-    ) -> HttpUrl:
-        """
-        Returns an HTTP URL with the chat statistics. Currently this method of getting the statistics are disabled and can be deleted in the future
-        
-        :param chat_id: Chat identifier
-        :type chat_id: :class:`int`
-        
-        :param parameters: Parameters for the request
-        :type parameters: :class:`str`
-        
-        :param is_dark: Pass true if a URL with the dark theme must be returned
-        :type is_dark: :class:`bool`
-        
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
-        
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.HttpUrl`
-        """
-        _constructor = GetChatStatisticsUrl.construct if skip_validation else GetChatStatisticsUrl
-
-        return await self.client.request(
-            _constructor(
-                chat_id=chat_id,
-                parameters=parameters,
-                is_dark=is_dark,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
     async def get_chats(
             self,
             chat_list: ChatList,
@@ -7026,9 +6981,9 @@ class API:
             skip_validation: bool = False
     ) -> Chats:
         """
-        Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats instead to maintain chat lists
+        Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
         
-        :param chat_list: The chat list in which to return chats
+        :param chat_list: The chat list in which to return chats; pass null to get chats from the main chat list
         :type chat_list: :class:`ChatList`
         
         :param limit: The maximum number of chats to be returned
@@ -7067,7 +7022,7 @@ class API:
         """
         Returns the list of commands supported by the bot for the given user scope and language; for bots only
         
-        :param scope: The scope to which the commands are relevant
+        :param scope: The scope to which the commands are relevant; pass null to get commands in the default bot command scope
         :type scope: :class:`BotCommandScope`
         
         :param language_code: A two-letter ISO 639-1 country code or an empty string
@@ -7400,7 +7355,7 @@ class API:
         :param file_id: Identifier of the file
         :type file_id: :class:`int`
         
-        :param offset: Offset from which downloaded prefix size should be calculated
+        :param offset: Offset from which downloaded prefix size needs to be calculated
         :type offset: :class:`int`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -7585,7 +7540,7 @@ class API:
         :param group_call_id: Group call identifier
         :type group_call_id: :class:`int`
         
-        :param can_self_unmute: Pass true if the invite_link should contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
+        :param can_self_unmute: Pass true if the invite link needs to contain an invite hash, passing which to joinGroupCall would allow the invited user to unmute themselves. Requires groupCall.can_be_managed group call flag
         :type can_self_unmute: :class:`bool`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -7636,7 +7591,7 @@ class API:
         :param channel_id: Identifier of an audio/video channel to get as received from tgcalls
         :type channel_id: :class:`int`
         
-        :param video_quality: Video quality as received from tgcalls
+        :param video_quality: Video quality as received from tgcalls; pass null to get the worst available quality
         :type video_quality: :class:`GroupCallVideoQuality`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -7789,7 +7744,7 @@ class API:
         :param chat_id: Identifier of the chat where the query was sent
         :type chat_id: :class:`int`
         
-        :param user_location: Location of the user, only if needed
+        :param user_location: Location of the user; pass null if unknown or the bot doesn't need user's location
         :type user_location: :class:`Location`
         
         :param query: Text of the query
@@ -8555,7 +8510,7 @@ class API:
         :param message_id: Identifier of the message
         :type message_id: :class:`int`
         
-        :param media_timestamp: If not 0, timestamp from which the video/audio/video note/voice note playing should start, in seconds. The media can be in the message content or in its web page preview
+        :param media_timestamp: If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
         :type media_timestamp: :class:`int`
         
         :param for_album: Pass true to create a link for the whole media album
@@ -9142,7 +9097,7 @@ class API:
             skip_validation: bool = False
     ) -> PaymentForm:
         """
-        Returns an invoice payment form. This method should be called when the user presses inlineKeyboardButtonBuy
+        Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
         
         :param chat_id: Chat identifier of the Invoice message
         :type chat_id: :class:`int`
@@ -9150,7 +9105,7 @@ class API:
         :param message_id: Message identifier
         :type message_id: :class:`int`
         
-        :param theme: Preferred payment form theme
+        :param theme: Preferred payment form theme; pass null to use the default theme
         :type theme: :class:`PaymentFormTheme`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -9350,7 +9305,7 @@ class API:
             skip_validation: bool = False
     ) -> Text:
         """
-        Returns an IETF language tag of the language preferred in the country, which should be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
+        Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
         
         :param country_code: A two-letter ISO 3166-1 alpha-2 country code
         :type country_code: :class:`str`
@@ -9632,7 +9587,7 @@ class API:
         :param remote_file_id: Remote identifier of the file to get
         :type remote_file_id: :class:`str`
         
-        :param file_type: File type, if known
+        :param file_type: File type; pass null if unknown
         :type file_type: :class:`FileType`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -9907,7 +9862,7 @@ class API:
             skip_validation: bool = False
     ) -> Stickers:
         """
-        Returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is not empty, favorite and recently used stickers may also be returned
+        Returns stickers from the installed sticker sets that correspond to a given emoji. If the emoji is non-empty, favorite and recently used stickers may also be returned
         
         :param emoji: String representation of emoji. If empty, returns all known installed stickers
         :type emoji: :class:`str`
@@ -9947,7 +9902,7 @@ class API:
         """
         Returns storage usage statistics. Can be called before authorization
         
-        :param chat_limit: The maximum number of chats with the largest storage usage for which separate statistics should be returned. All other chats will be grouped in entries with chat_id == 0. If the chat info database is not used, the chat_limit is ignored and is always set to 0
+        :param chat_limit: The maximum number of chats with the largest storage usage for which separate statistics need to be returned. All other chats will be grouped in entries with chat_id == 0. If the chat info database is not used, the chat_limit is ignored and is always set to 0
         :type chat_limit: :class:`int`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -10155,7 +10110,7 @@ class API:
         :param supergroup_id: Identifier of the supergroup or channel
         :type supergroup_id: :class:`int`
         
-        :param filter_: The type of users to return. By default, supergroupMembersFilterRecent
+        :param filter_: The type of users to return; pass null to use supergroupMembersFilterRecent
         :type filter_: :class:`SupergroupMembersFilter`
         
         :param offset: Number of users to skip
@@ -10818,7 +10773,7 @@ class API:
         :param group_call_id: Group call identifier
         :type group_call_id: :class:`int`
         
-        :param participant_id: Identifier of a group call participant, which will be used to join the call; voice chats only
+        :param participant_id: Identifier of a group call participant, which will be used to join the call; pass null to join as self; voice chats only
         :type participant_id: :class:`MessageSender`
         
         :param audio_source_id: Caller audio channel synchronization source identifier; received from tgcalls
@@ -10942,7 +10897,7 @@ class API:
         """
         Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats has been loaded
         
-        :param chat_list: The chat list in which to load chats
+        :param chat_list: The chat list in which to load chats; pass null to load chats from the main chat list
         :type chat_list: :class:`ChatList`
         
         :param limit: The maximum number of chats to be loaded. For optimal performance, the number of loaded chats is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
@@ -11123,13 +11078,13 @@ class API:
         :param immunity_delay: The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value
         :type immunity_delay: :class:`int`
         
-        :param file_types: If not empty, only files with the given type(s) are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
+        :param file_types: If non-empty, only files with the given types are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
         :type file_types: :class:`list[FileType]`
         
-        :param chat_ids: If not empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
+        :param chat_ids: If non-empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
         :type chat_ids: :class:`list[int]`
         
-        :param exclude_chat_ids: If not empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
+        :param exclude_chat_ids: If non-empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
         :type exclude_chat_ids: :class:`list[int]`
         
         :param return_deleted_file_statistics: Pass true if statistics about the files that were deleted must be returned instead of the whole storage usage statistics. Affects only returned statistics
@@ -11259,7 +11214,7 @@ class API:
         :param message_id: Identifier of the new pinned message
         :type message_id: :class:`int`
         
-        :param disable_notification: True, if there should be no notification about the pinned message. Notifications are always disabled in channels and private chats
+        :param disable_notification: True, if there must be no notification about the pinned message. Notifications are always disabled in channels and private chats
         :type disable_notification: :class:`bool`
         
         :param only_for_self: True, if the message needs to be pinned for one side only; private chats only
@@ -12769,7 +12724,7 @@ class API:
         :param limit: The maximum number of users to be returned
         :type limit: :class:`int`
         
-        :param filter_: The type of users to return. By default, chatMembersFilterMembers
+        :param filter_: The type of users to search for; pass null to search among all chat members
         :type filter_: :class:`ChatMembersFilter`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -12811,7 +12766,7 @@ class API:
             skip_validation: bool = False
     ) -> Messages:
         """
-        Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages should be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages mmust be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         
         :param chat_id: Identifier of the chat in which to search messages
         :type chat_id: :class:`int`
@@ -12819,7 +12774,7 @@ class API:
         :param query: Query to search for
         :type query: :class:`str`
         
-        :param sender: If not null, only messages sent by the specified sender will be returned. Not supported in secret chats
+        :param sender: Sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
         :type sender: :class:`MessageSender`
         
         :param from_message_id: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
@@ -12831,7 +12786,7 @@ class API:
         :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         :type limit: :class:`int`
         
-        :param filter_: Filter for message content in the search results
+        :param filter_: Additional filter for messages to search; pass null to search for all messages
         :type filter_: :class:`SearchMessagesFilter`
         
         :param message_thread_id: If not 0, only messages in the specified thread will be returned; supergroups only
@@ -12951,7 +12906,7 @@ class API:
             skip_validation: bool = False
     ) -> ChatsNearby:
         """
-        Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request should be sent again every 25 seconds with adjusted location to not miss new chats
+        Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats
         
         :param location: Current user location
         :type location: :class:`Location`
@@ -13206,7 +13161,7 @@ class API:
         :param query: Query to search for
         :type query: :class:`str`
         
-        :param offset_date: The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the last message
+        :param offset_date: The date of the message starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last message
         :type offset_date: :class:`int`
         
         :param offset_chat_id: The chat identifier of the last found message, or 0 for the first request
@@ -13218,7 +13173,7 @@ class API:
         :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         :type limit: :class:`int`
         
-        :param filter_: Filter for message content in the search results; searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
+        :param filter_: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
         :type filter_: :class:`SearchMessagesFilter`
         
         :param min_date: If not 0, the minimum date of the messages to return
@@ -13298,7 +13253,7 @@ class API:
             skip_validation: bool = False
     ) -> Chats:
         """
-        Searches public chats by looking for specified query in their username and title. Currently only private chats, supergroups and channels can be public. Returns a meaningful number of results. Returns nothing if the length of the searched username prefix is less than 5. Excludes private chats with contacts and chats from the chat list from the results
+        Searches public chats by looking for specified query in their username and title. Currently only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
         
         :param query: Query to search for
         :type query: :class:`str`
@@ -13341,7 +13296,7 @@ class API:
         :param chat_id: Identifier of the chat in which to search. Specify 0 to search in all secret chats
         :type chat_id: :class:`int`
         
-        :param query: Query to search for. If empty, searchChatMessages should be used instead
+        :param query: Query to search for. If empty, searchChatMessages must be used instead
         :type query: :class:`str`
         
         :param offset: Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
@@ -13350,7 +13305,7 @@ class API:
         :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         :type limit: :class:`int`
         
-        :param filter_: A filter for message content in the search results
+        :param filter_: Additional filter for messages to search; pass null to search for all messages
         :type filter_: :class:`SearchMessagesFilter`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -13674,7 +13629,7 @@ class API:
         :param message_thread_id: If not 0, a message thread identifier in which the action was performed
         :type message_thread_id: :class:`int`
         
-        :param action: The action description
+        :param action: The action description; pass null to cancel the currently active action
         :type action: :class:`ChatAction`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -13832,7 +13787,7 @@ class API:
         :param reply_to_message_id: Identifier of a message to reply to or 0
         :type reply_to_message_id: :class:`int`
         
-        :param options: Options to be used to send the message
+        :param options: Options to be used to send the message; pass null to use default options
         :type options: :class:`MessageSendOptions`
         
         :param query_id: Identifier of the inline query
@@ -13895,10 +13850,10 @@ class API:
         :param reply_to_message_id: Identifier of the message to reply to or 0
         :type reply_to_message_id: :class:`int`
         
-        :param options: Options to be used to send the message
+        :param options: Options to be used to send the message; pass null to use default options
         :type options: :class:`MessageSendOptions`
         
-        :param reply_markup: Markup for replying to the message; for bots only
+        :param reply_markup: Markup for replying to the message; pass null if none; for bots only
         :type reply_markup: :class:`ReplyMarkup`
         
         :param input_message_content: The content of the message to be sent
@@ -13953,7 +13908,7 @@ class API:
         :param reply_to_message_id: Identifier of a message to reply to or 0
         :type reply_to_message_id: :class:`int`
         
-        :param options: Options to be used to send the messages
+        :param options: Options to be used to send the messages; pass null to use default options
         :type options: :class:`MessageSendOptions`
         
         :param input_message_contents: Contents of messages to be sent. At most 10 messages can be added to an album
@@ -14105,7 +14060,7 @@ class API:
         :param phone_number: Phone number value from the link
         :type phone_number: :class:`str`
         
-        :param settings: Settings for the authentication of the user's phone number
+        :param settings: Settings for the authentication of the user's phone number; pass null to use default settings
         :type settings: :class:`PhoneNumberAuthenticationSettings`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -14145,7 +14100,7 @@ class API:
         :param phone_number: The phone number of the user, in international format
         :type phone_number: :class:`str`
         
-        :param settings: Settings for the authentication of the user's phone number
+        :param settings: Settings for the authentication of the user's phone number; pass null to use default settings
         :type settings: :class:`PhoneNumberAuthenticationSettings`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -14252,7 +14207,7 @@ class API:
         :param phone_number: The phone number of the user, in international format
         :type phone_number: :class:`str`
         
-        :param settings: Settings for the authentication of the user's phone number
+        :param settings: Settings for the authentication of the user's phone number; pass null to use default settings
         :type settings: :class:`PhoneNumberAuthenticationSettings`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -14328,10 +14283,10 @@ class API:
         """
         Changes the background selected by the user; adds background to the list of installed backgrounds
         
-        :param background: The input background to use. Pass null to create a new filled backgrounds. Pass null to remove the current background
+        :param background: The input background to use; pass null to create a new filled backgrounds or to remove the current background
         :type background: :class:`InputBackground`
         
-        :param type_: Background type. Pass null to use default type of the remote background. Pass null to remove the current background
+        :param type_: Background type; pass null to use the default type of the remote background or to remove the current background
         :type type_: :class:`BackgroundType`
         
         :param for_dark_theme: True, if the background is chosen for dark theme
@@ -14553,7 +14508,7 @@ class API:
             self,
             chat_id: int,
             message_thread_id: int,
-            draft_message: typing.Optional[DraftMessage],
+            draft_message: DraftMessage,
             *,
             request_id: str = None,
             request_timeout: int = None,
@@ -14568,8 +14523,8 @@ class API:
         :param message_thread_id: If not 0, a message thread identifier in which the draft was changed
         :type message_thread_id: :class:`int`
         
-        :param draft_message: New draft message; may be null, defaults to None
-        :type draft_message: :class:`DraftMessage`, optional
+        :param draft_message: New draft message; pass null to remove the draft
+        :type draft_message: :class:`DraftMessage`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
@@ -14808,7 +14763,7 @@ class API:
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
         
-        :param photo: New chat photo. Pass null to delete the chat photo
+        :param photo: New chat photo; pass null to delete the chat photo
         :type photo: :class:`InputChatPhoto`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -14886,7 +14841,7 @@ class API:
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
         
-        :param theme_name: Name of the new chat theme; may be empty to return the default theme
+        :param theme_name: Name of the new chat theme; pass an empty string to return the default theme
         :type theme_name: :class:`str`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -14962,7 +14917,7 @@ class API:
         """
         Sets the list of commands supported by the bot for the given user scope and language; for bots only
         
-        :param scope: The scope to which the commands are relevant
+        :param scope: The scope to which the commands are relevant; pass null to change commands in the default bot command scope
         :type scope: :class:`BotCommandScope`
         
         :param language_code: A two-letter ISO 639-1 country code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
@@ -15171,7 +15126,7 @@ class API:
         :param message_id: Identifier of the message
         :type message_id: :class:`int`
         
-        :param edit_message: True, if the message should be edited
+        :param edit_message: True, if the message needs to be edited
         :type edit_message: :class:`bool`
         
         :param user_id: User identifier
@@ -15263,7 +15218,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with default volume level
+        Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with the default volume level
         
         :param group_call_id: Group call identifier
         :type group_call_id: :class:`int`
@@ -15353,7 +15308,7 @@ class API:
         :param inline_message_id: Inline message identifier
         :type inline_message_id: :class:`str`
         
-        :param edit_message: True, if the message should be edited
+        :param edit_message: True, if the message needs to be edited
         :type edit_message: :class:`bool`
         
         :param user_id: User identifier
@@ -15578,9 +15533,9 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks, so it should be called whenever the network is changed, even if the network type remains the same. Network type is used to check whether the library can use the network at all and also for collecting detailed network data usage statistics
+        Sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks, so it must be called whenever the network is changed, even if the network type remains the same. Network type is used to check whether the library can use the network at all and also for collecting detailed network data usage statistics
         
-        :param type_: The new network type. By default, networkTypeOther
+        :param type_: The new network type; pass null to set network type to networkTypeOther
         :type type_: :class:`NetworkType`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -15618,7 +15573,7 @@ class API:
         :param name: The name of the option
         :type name: :class:`str`
         
-        :param value: The new value of the option
+        :param value: The new value of the option; pass null to reset option value to a default value
         :type value: :class:`OptionValue`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -15744,7 +15699,7 @@ class API:
         :param new_hint: New password hint; may be empty
         :type new_hint: :class:`str`
         
-        :param set_recovery_email_address: Pass true if the recovery email address should be changed
+        :param set_recovery_email_address: Pass true if the recovery email address must be changed
         :type set_recovery_email_address: :class:`bool`
         
         :param new_recovery_email_address: New recovery email address; may be empty
@@ -16027,7 +15982,7 @@ class API:
         :param name: Sticker set name
         :type name: :class:`str`
         
-        :param thumbnail: Thumbnail to set in PNG or TGS format. Animated thumbnail must be set for animated sticker sets and only for them. Pass a zero InputFileId to delete the thumbnail
+        :param thumbnail: Thumbnail to set in PNG or TGS format; pass null to remove the sticker set thumbnail. Animated thumbnail must be set for animated sticker sets and only for them
         :type thumbnail: :class:`InputFile`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -16141,7 +16096,7 @@ class API:
         """
         Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
         
-        :param parameters: Parameters
+        :param parameters: Parameters for TDLib initialization
         :type parameters: :class:`TdlibParameters`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -16456,7 +16411,7 @@ class API:
         :param message_id: Identifier of the message containing the poll
         :type message_id: :class:`int`
         
-        :param reply_markup: The new message reply markup; for bots only
+        :param reply_markup: The new message reply markup; pass null if none; for bots only
         :type reply_markup: :class:`ReplyMarkup`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -16490,7 +16445,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method shouldn't be called explicitly for the current used/base language packs. Can be called before authorization
+        Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called explicitly for the current used/base language packs. Can be called before authorization
         
         :param language_pack_id: Language pack identifier
         :type language_pack_id: :class:`str`
@@ -17227,7 +17182,7 @@ class API:
         :param participant_id: Participant identifier
         :type participant_id: :class:`MessageSender`
         
-        :param is_hand_raised: Pass true if the user's hand should be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
+        :param is_hand_raised: Pass true if the user's hand needs to be raised. Only self hand can be raised. Requires groupCall.can_be_managed group call flag to lower other's hand
         :type is_hand_raised: :class:`bool`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -17653,7 +17608,7 @@ class API:
         :param file: File to upload
         :type file: :class:`InputFile`
         
-        :param file_type: File type
+        :param file_type: File type; pass null if unknown
         :type file_type: :class:`FileType`
         
         :param priority: Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first
@@ -17740,7 +17695,7 @@ class API:
         :param message_id: Message identifier
         :type message_id: :class:`int`
         
-        :param order_info: The order information, provided by the user
+        :param order_info: The order information, provided by the user; pass null if empty
         :type order_info: :class:`OrderInfo`
         
         :param allow_save: True, if the order information can be saved
@@ -17792,7 +17747,7 @@ class API:
         :param message_ids: The identifiers of the messages being viewed
         :type message_ids: :class:`list[int]`
         
-        :param force_read: True, if messages in closed chats should be marked as read by the request
+        :param force_read: True, if messages in closed chats must be marked as read by the request
         :type force_read: :class:`bool`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None

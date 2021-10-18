@@ -111,7 +111,7 @@ class InlineKeyboardButtonTypeSwitchInline(InlineKeyboardButtonType):
     :param query: Inline query to be sent to the bot
     :type query: :class:`str`
     
-    :param in_current_chat: True, if the inline query should be sent from the current chat
+    :param in_current_chat: True, if the inline query must be sent from the current chat
     :type in_current_chat: :class:`bool`
     
     """

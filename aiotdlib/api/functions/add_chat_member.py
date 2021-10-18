@@ -20,7 +20,7 @@ class AddChatMember(BaseObject):
     :param user_id: Identifier of the user
     :type user_id: :class:`int`
     
-    :param forward_limit: The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels
+    :param forward_limit: The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
     :type forward_limit: :class:`int`
     
     """

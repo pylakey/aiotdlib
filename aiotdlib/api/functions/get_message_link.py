@@ -20,7 +20,7 @@ class GetMessageLink(BaseObject):
     :param message_id: Identifier of the message
     :type message_id: :class:`int`
     
-    :param media_timestamp: If not 0, timestamp from which the video/audio/video note/voice note playing should start, in seconds. The media can be in the message content or in its web page preview
+    :param media_timestamp: If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
     :type media_timestamp: :class:`int`
     
     :param for_album: Pass true to create a link for the whole media album

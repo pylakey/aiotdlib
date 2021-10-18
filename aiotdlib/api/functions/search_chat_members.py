@@ -24,7 +24,7 @@ class SearchChatMembers(BaseObject):
     :param limit: The maximum number of users to be returned
     :type limit: :class:`int`
     
-    :param filter_: The type of users to return. By default, chatMembersFilterMembers
+    :param filter_: The type of users to search for; pass null to search among all chat members
     :type filter_: :class:`ChatMembersFilter`
     
     """

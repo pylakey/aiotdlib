@@ -44,7 +44,7 @@ class RichTextAnchorLink(RichText):
     :param text: The link text
     :type text: :class:`RichText`
     
-    :param anchor_name: The anchor name. If the name is empty, the link should bring back to top
+    :param anchor_name: The anchor name. If the name is empty, the link must bring back to top
     :type anchor_name: :class:`str`
     
     :param url: An HTTP URL, opening the anchor
@@ -124,10 +124,10 @@ class RichTextIcon(RichText):
     :param document: The image represented as a document. The image can be in GIF, JPEG or PNG format
     :type document: :class:`Document`
     
-    :param width: Width of a bounding box in which the image should be shown; 0 if unknown
+    :param width: Width of a bounding box in which the image must be shown; 0 if unknown
     :type width: :class:`int`
     
-    :param height: Height of a bounding box in which the image should be shown; 0 if unknown
+    :param height: Height of a bounding box in which the image must be shown; 0 if unknown
     :type height: :class:`int`
     
     """

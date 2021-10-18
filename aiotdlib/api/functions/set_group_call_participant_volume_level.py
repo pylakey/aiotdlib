@@ -13,7 +13,7 @@ from ..types import MessageSender
 
 class SetGroupCallParticipantVolumeLevel(BaseObject):
     """
-    Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with default volume level
+    Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with the default volume level
     
     :param group_call_id: Group call identifier
     :type group_call_id: :class:`int`

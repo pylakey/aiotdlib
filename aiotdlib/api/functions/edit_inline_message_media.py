@@ -19,7 +19,7 @@ class EditInlineMessageMedia(BaseObject):
     :param inline_message_id: Inline message identifier
     :type inline_message_id: :class:`str`
     
-    :param reply_markup: The new message reply markup; for bots only
+    :param reply_markup: The new message reply markup; pass null if none; for bots only
     :type reply_markup: :class:`ReplyMarkup`
     
     :param input_message_content: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo

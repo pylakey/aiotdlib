@@ -19,10 +19,10 @@ class EditInlineMessageCaption(BaseObject):
     :param inline_message_id: Inline message identifier
     :type inline_message_id: :class:`str`
     
-    :param reply_markup: The new message reply markup
+    :param reply_markup: The new message reply markup; pass null if none
     :type reply_markup: :class:`ReplyMarkup`
     
-    :param caption: New message content caption; 0-GetOption("message_caption_length_max") characters
+    :param caption: New message content caption; pass null to remove caption; 0-GetOption("message_caption_length_max") characters
     :type caption: :class:`FormattedText`
     
     """

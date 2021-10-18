@@ -19,7 +19,7 @@ class UploadFile(BaseObject):
     :param file: File to upload
     :type file: :class:`InputFile`
     
-    :param file_type: File type
+    :param file_type: File type; pass null if unknown
     :type file_type: :class:`FileType`
     
     :param priority: Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first

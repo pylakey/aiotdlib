@@ -30,10 +30,10 @@ class CallStateDiscarded(CallState):
     :param reason: The reason, why the call has ended
     :type reason: :class:`CallDiscardReason`
     
-    :param need_rating: True, if the call rating should be sent to the server
+    :param need_rating: True, if the call rating must be sent to the server
     :type need_rating: :class:`bool`
     
-    :param need_debug_information: True, if the call debug information should be sent to the server
+    :param need_debug_information: True, if the call debug information must be sent to the server
     :type need_debug_information: :class:`bool`
     
     """

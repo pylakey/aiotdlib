@@ -21,7 +21,7 @@ class PageBlockVerticalAlignment(BaseObject):
 
 class PageBlockVerticalAlignmentBottom(PageBlockVerticalAlignment):
     """
-    The content should be bottom-aligned
+    The content must be bottom-aligned
     
     """
 
@@ -34,7 +34,7 @@ class PageBlockVerticalAlignmentBottom(PageBlockVerticalAlignment):
 
 class PageBlockVerticalAlignmentMiddle(PageBlockVerticalAlignment):
     """
-    The content should be middle-aligned
+    The content must be middle-aligned
     
     """
 
@@ -47,7 +47,7 @@ class PageBlockVerticalAlignmentMiddle(PageBlockVerticalAlignment):
 
 class PageBlockVerticalAlignmentTop(PageBlockVerticalAlignment):
     """
-    The content should be top-aligned
+    The content must be top-aligned
     
     """
 

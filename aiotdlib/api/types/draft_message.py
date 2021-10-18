@@ -21,7 +21,7 @@ class DraftMessage(BaseObject):
     :param date: Point in time (Unix timestamp) when the draft was created
     :type date: :class:`int`
     
-    :param input_message_text: Content of the message draft; this should always be of type inputMessageText
+    :param input_message_text: Content of the message draft; must be of the type inputMessageText
     :type input_message_text: :class:`InputMessageContent`
     
     """

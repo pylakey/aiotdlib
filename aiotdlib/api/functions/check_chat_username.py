@@ -14,7 +14,7 @@ class CheckChatUsername(BaseObject):
     """
     Checks whether a username can be set for a chat
     
-    :param chat_id: Chat identifier; should be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
+    :param chat_id: Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
     :type chat_id: :class:`int`
     
     :param username: Username to be checked

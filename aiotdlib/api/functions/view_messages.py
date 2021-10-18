@@ -23,7 +23,7 @@ class ViewMessages(BaseObject):
     :param message_ids: The identifiers of the messages being viewed
     :type message_ids: :class:`list[int]`
     
-    :param force_read: True, if messages in closed chats should be marked as read by the request
+    :param force_read: True, if messages in closed chats must be marked as read by the request
     :type force_read: :class:`bool`
     
     """

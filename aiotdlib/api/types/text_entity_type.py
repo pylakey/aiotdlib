@@ -60,7 +60,7 @@ class TextEntityTypeBotCommand(TextEntityType):
 
 class TextEntityTypeCashtag(TextEntityType):
     """
-    A cashtag text, beginning with "$" and consisting of capital english letters (e.g., "$USD")
+    A cashtag text, beginning with "$" and consisting of capital English letters (e.g., "$USD")
     
     """
 
@@ -127,7 +127,7 @@ class TextEntityTypeMediaTimestamp(TextEntityType):
     """
     A media timestamp
     
-    :param media_timestamp: Timestamp from which a video/audio/video note/voice note playing should start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
+    :param media_timestamp: Timestamp from which a video/audio/video note/voice note playing must start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
     :type media_timestamp: :class:`int`
     
     """

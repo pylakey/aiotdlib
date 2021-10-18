@@ -26,10 +26,10 @@ class SendMessage(BaseObject):
     :param reply_to_message_id: Identifier of the message to reply to or 0
     :type reply_to_message_id: :class:`int`
     
-    :param options: Options to be used to send the message
+    :param options: Options to be used to send the message; pass null to use default options
     :type options: :class:`MessageSendOptions`
     
-    :param reply_markup: Markup for replying to the message; for bots only
+    :param reply_markup: Markup for replying to the message; pass null if none; for bots only
     :type reply_markup: :class:`ReplyMarkup`
     
     :param input_message_content: The content of the message to be sent
