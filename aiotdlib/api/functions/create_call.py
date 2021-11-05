@@ -18,7 +18,7 @@ class CreateCall(BaseObject):
     :param user_id: Identifier of the user to be called
     :type user_id: :class:`int`
     
-    :param protocol: Description of the call protocols supported by the application
+    :param protocol: The call protocols supported by the application
     :type protocol: :class:`CallProtocol`
     
     :param is_video: True, if a video call needs to be created

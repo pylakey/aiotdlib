@@ -23,7 +23,7 @@ class MessageInteractionInfo(BaseObject):
     :param forward_count: Number of times the message was forwarded
     :type forward_count: :class:`int`
     
-    :param reply_info: Contains information about direct or indirect replies to the message; may be null. Currently, available only in channels with a discussion supergroup and discussion supergroups for messages, which are not replies itself, defaults to None
+    :param reply_info: Information about direct or indirect replies to the message; may be null. Currently, available only in channels with a discussion supergroup and discussion supergroups for messages, which are not replies itself, defaults to None
     :type reply_info: :class:`MessageReplyInfo`, optional
     
     """

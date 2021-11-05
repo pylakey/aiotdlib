@@ -18,7 +18,7 @@ class PassportAuthorizationForm(BaseObject):
     :param id: Unique identifier of the authorization form
     :type id: :class:`int`
     
-    :param required_elements: Information about the Telegram Passport elements that must be provided to complete the form
+    :param required_elements: Telegram Passport elements that must be provided to complete the form
     :type required_elements: :class:`list[PassportRequiredElement]`
     
     :param privacy_policy_url: URL for the privacy policy of the service; may be empty

@@ -8,24 +8,25 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
+from ..types import MessageSender
 
 
-class SetChatSlowModeDelay(BaseObject):
+class SetVideoChatDefaultParticipant(BaseObject):
     """
-    Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights
+    Changes default participant identifier, which can be used to join video chats in a chat
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
     
-    :param slow_mode_delay: New slow mode delay for the chat, in seconds; must be one of 0, 10, 30, 60, 300, 900, 3600
-    :type slow_mode_delay: :class:`int`
+    :param default_participant_id: Default group call participant identifier to join the video chats
+    :type default_participant_id: :class:`MessageSender`
     
     """
 
-    ID: str = Field("setChatSlowModeDelay", alias="@type")
+    ID: str = Field("setVideoChatDefaultParticipant", alias="@type")
     chat_id: int
-    slow_mode_delay: int
+    default_participant_id: MessageSender
 
     @staticmethod
-    def read(q: dict) -> SetChatSlowModeDelay:
-        return SetChatSlowModeDelay.construct(**q)
+    def read(q: dict) -> SetVideoChatDefaultParticipant:
+        return SetVideoChatDefaultParticipant.construct(**q)

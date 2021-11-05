@@ -25,7 +25,7 @@ class MessageThreadInfo(BaseObject):
     :param message_thread_id: Message thread identifier, unique within the chat
     :type message_thread_id: :class:`int`
     
-    :param reply_info: Contains information about the message thread
+    :param reply_info: Information about the message thread
     :type reply_info: :class:`MessageReplyInfo`
     
     :param unread_message_count: Approximate number of unread messages in the message thread

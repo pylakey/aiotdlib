@@ -14,7 +14,7 @@ from ..base_object import BaseObject
 
 class ChatMember(BaseObject):
     """
-    Information about a user or a chat as a member of another chat
+    Describes a user or a chat as a member of another chat
     
     :param member_id: Identifier of the chat member. Currently, other chats can be only Left or Banned. Only supergroups and channels can have other chats as Left or Banned members and these chats must be supergroups or channels
     :type member_id: :class:`MessageSender`

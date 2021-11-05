@@ -20,7 +20,7 @@ class GetArchivedStickerSets(BaseObject):
     :param offset_sticker_set_id: Identifier of the sticker set from which to return the result
     :type offset_sticker_set_id: :class:`int`
     
-    :param limit: The maximum number of sticker sets to return
+    :param limit: The maximum number of sticker sets to return; up to 100
     :type limit: :class:`int`
     
     """

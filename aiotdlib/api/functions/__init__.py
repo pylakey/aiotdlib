@@ -25,6 +25,7 @@ from .answer_custom_query import AnswerCustomQuery
 from .answer_inline_query import AnswerInlineQuery
 from .answer_pre_checkout_query import AnswerPreCheckoutQuery
 from .answer_shipping_query import AnswerShippingQuery
+from .approve_chat_join_request import ApproveChatJoinRequest
 from .ban_chat_member import BanChatMember
 from .block_message_sender_from_replies import BlockMessageSenderFromReplies
 from .can_transfer_ownership import CanTransferOwnership
@@ -71,13 +72,15 @@ from .create_private_chat import CreatePrivateChat
 from .create_secret_chat import CreateSecretChat
 from .create_supergroup_chat import CreateSupergroupChat
 from .create_temporary_password import CreateTemporaryPassword
-from .create_voice_chat import CreateVoiceChat
+from .create_video_chat import CreateVideoChat
+from .decline_chat_join_request import DeclineChatJoinRequest
 from .delete_account import DeleteAccount
 from .delete_all_call_messages import DeleteAllCallMessages
 from .delete_all_revoked_chat_invite_links import DeleteAllRevokedChatInviteLinks
 from .delete_chat import DeleteChat
 from .delete_chat_filter import DeleteChatFilter
 from .delete_chat_history import DeleteChatHistory
+from .delete_chat_messages_by_date import DeleteChatMessagesByDate
 from .delete_chat_messages_from_user import DeleteChatMessagesFromUser
 from .delete_chat_reply_markup import DeleteChatReplyMarkup
 from .delete_commands import DeleteCommands
@@ -120,6 +123,7 @@ from .get_account_ttl import GetAccountTtl
 from .get_active_live_location_messages import GetActiveLiveLocationMessages
 from .get_active_sessions import GetActiveSessions
 from .get_all_passport_elements import GetAllPassportElements
+from .get_animated_emoji import GetAnimatedEmoji
 from .get_application_config import GetApplicationConfig
 from .get_application_download_link import GetApplicationDownloadLink
 from .get_archived_sticker_sets import GetArchivedStickerSets
@@ -144,13 +148,16 @@ from .get_chat_invite_link import GetChatInviteLink
 from .get_chat_invite_link_counts import GetChatInviteLinkCounts
 from .get_chat_invite_link_members import GetChatInviteLinkMembers
 from .get_chat_invite_links import GetChatInviteLinks
+from .get_chat_join_requests import GetChatJoinRequests
 from .get_chat_lists_to_add_chat import GetChatListsToAddChat
 from .get_chat_member import GetChatMember
 from .get_chat_message_by_date import GetChatMessageByDate
+from .get_chat_message_calendar import GetChatMessageCalendar
 from .get_chat_message_count import GetChatMessageCount
 from .get_chat_notification_settings_exceptions import GetChatNotificationSettingsExceptions
 from .get_chat_pinned_message import GetChatPinnedMessage
 from .get_chat_scheduled_messages import GetChatScheduledMessages
+from .get_chat_sparse_message_positions import GetChatSparseMessagePositions
 from .get_chat_sponsored_messages import GetChatSponsoredMessages
 from .get_chat_statistics import GetChatStatistics
 from .get_chats import GetChats
@@ -258,7 +265,7 @@ from .get_user import GetUser
 from .get_user_full_info import GetUserFullInfo
 from .get_user_privacy_setting_rules import GetUserPrivacySettingRules
 from .get_user_profile_photos import GetUserProfilePhotos
-from .get_voice_chat_available_participants import GetVoiceChatAvailableParticipants
+from .get_video_chat_available_participants import GetVideoChatAvailableParticipants
 from .get_web_page_instant_view import GetWebPageInstantView
 from .get_web_page_preview import GetWebPagePreview
 from .hide_suggested_action import HideSuggestedAction
@@ -409,7 +416,7 @@ from .set_supergroup_username import SetSupergroupUsername
 from .set_tdlib_parameters import SetTdlibParameters
 from .set_user_privacy_setting_rules import SetUserPrivacySettingRules
 from .set_username import SetUsername
-from .set_voice_chat_default_participant import SetVoiceChatDefaultParticipant
+from .set_video_chat_default_participant import SetVideoChatDefaultParticipant
 from .share_phone_number import SharePhoneNumber
 from .start_group_call_recording import StartGroupCallRecording
 from .start_group_call_screen_sharing import StartGroupCallScreenSharing
@@ -479,6 +486,7 @@ __all__ = [
     "AnswerInlineQuery",
     "AnswerPreCheckoutQuery",
     "AnswerShippingQuery",
+    "ApproveChatJoinRequest",
     "BanChatMember",
     "BlockMessageSenderFromReplies",
     "CanTransferOwnership",
@@ -525,13 +533,15 @@ __all__ = [
     "CreateSecretChat",
     "CreateSupergroupChat",
     "CreateTemporaryPassword",
-    "CreateVoiceChat",
+    "CreateVideoChat",
+    "DeclineChatJoinRequest",
     "DeleteAccount",
     "DeleteAllCallMessages",
     "DeleteAllRevokedChatInviteLinks",
     "DeleteChat",
     "DeleteChatFilter",
     "DeleteChatHistory",
+    "DeleteChatMessagesByDate",
     "DeleteChatMessagesFromUser",
     "DeleteChatReplyMarkup",
     "DeleteCommands",
@@ -574,6 +584,7 @@ __all__ = [
     "GetActiveLiveLocationMessages",
     "GetActiveSessions",
     "GetAllPassportElements",
+    "GetAnimatedEmoji",
     "GetApplicationConfig",
     "GetApplicationDownloadLink",
     "GetArchivedStickerSets",
@@ -598,13 +609,16 @@ __all__ = [
     "GetChatInviteLinkCounts",
     "GetChatInviteLinkMembers",
     "GetChatInviteLinks",
+    "GetChatJoinRequests",
     "GetChatListsToAddChat",
     "GetChatMember",
     "GetChatMessageByDate",
+    "GetChatMessageCalendar",
     "GetChatMessageCount",
     "GetChatNotificationSettingsExceptions",
     "GetChatPinnedMessage",
     "GetChatScheduledMessages",
+    "GetChatSparseMessagePositions",
     "GetChatSponsoredMessages",
     "GetChatStatistics",
     "GetChats",
@@ -712,7 +726,7 @@ __all__ = [
     "GetUserFullInfo",
     "GetUserPrivacySettingRules",
     "GetUserProfilePhotos",
-    "GetVoiceChatAvailableParticipants",
+    "GetVideoChatAvailableParticipants",
     "GetWebPageInstantView",
     "GetWebPagePreview",
     "HideSuggestedAction",
@@ -863,7 +877,7 @@ __all__ = [
     "SetTdlibParameters",
     "SetUserPrivacySettingRules",
     "SetUsername",
-    "SetVoiceChatDefaultParticipant",
+    "SetVideoChatDefaultParticipant",
     "SharePhoneNumber",
     "StartGroupCallRecording",
     "StartGroupCallScreenSharing",

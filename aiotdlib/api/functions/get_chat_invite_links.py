@@ -29,7 +29,7 @@ class GetChatInviteLinks(BaseObject):
     :param offset_invite_link: Invite link starting after which to return invite links; use empty string to get results from the beginning
     :type offset_invite_link: :class:`str`
     
-    :param limit: The maximum number of invite links to return
+    :param limit: The maximum number of invite links to return; up to 100
     :type limit: :class:`int`
     
     """

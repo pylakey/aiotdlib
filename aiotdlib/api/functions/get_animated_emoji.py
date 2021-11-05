@@ -8,25 +8,20 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import CallProtocol
 
 
-class AcceptCall(BaseObject):
+class GetAnimatedEmoji(BaseObject):
     """
-    Accepts an incoming call
+    Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
     
-    :param call_id: Call identifier
-    :type call_id: :class:`int`
-    
-    :param protocol: The call protocols supported by the application
-    :type protocol: :class:`CallProtocol`
+    :param emoji: The emoji
+    :type emoji: :class:`str`
     
     """
 
-    ID: str = Field("acceptCall", alias="@type")
-    call_id: int
-    protocol: CallProtocol
+    ID: str = Field("getAnimatedEmoji", alias="@type")
+    emoji: str
 
     @staticmethod
-    def read(q: dict) -> AcceptCall:
-        return AcceptCall.construct(**q)
+    def read(q: dict) -> GetAnimatedEmoji:
+        return GetAnimatedEmoji.construct(**q)

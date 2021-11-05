@@ -181,6 +181,19 @@ class PushMessageContentChatJoinByLink(PushMessageContent):
         return PushMessageContentChatJoinByLink.construct(**q)
 
 
+class PushMessageContentChatJoinByRequest(PushMessageContent):
+    """
+    A new member was accepted to the chat by an administrator
+    
+    """
+
+    ID: str = Field("pushMessageContentChatJoinByRequest", alias="@type")
+
+    @staticmethod
+    def read(q: dict) -> PushMessageContentChatJoinByRequest:
+        return PushMessageContentChatJoinByRequest.construct(**q)
+
+
 class PushMessageContentChatSetTheme(PushMessageContent):
     """
     A chat theme was edited

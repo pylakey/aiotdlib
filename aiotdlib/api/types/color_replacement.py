@@ -8,25 +8,24 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import CallProtocol
 
 
-class AcceptCall(BaseObject):
+class ColorReplacement(BaseObject):
     """
-    Accepts an incoming call
+    Describes a color replacement for animated emoji
     
-    :param call_id: Call identifier
-    :type call_id: :class:`int`
+    :param old_color: Original animated emoji color in the RGB24 format
+    :type old_color: :class:`int`
     
-    :param protocol: The call protocols supported by the application
-    :type protocol: :class:`CallProtocol`
+    :param new_color: Replacement animated emoji color in the RGB24 format
+    :type new_color: :class:`int`
     
     """
 
-    ID: str = Field("acceptCall", alias="@type")
-    call_id: int
-    protocol: CallProtocol
+    ID: str = Field("colorReplacement", alias="@type")
+    old_color: int
+    new_color: int
 
     @staticmethod
-    def read(q: dict) -> AcceptCall:
-        return AcceptCall.construct(**q)
+    def read(q: dict) -> ColorReplacement:
+        return ColorReplacement.construct(**q)

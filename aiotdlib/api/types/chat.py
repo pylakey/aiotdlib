@@ -10,6 +10,7 @@ import typing
 from pydantic import Field
 
 from .chat_action_bar import ChatActionBar
+from .chat_join_requests_info import ChatJoinRequestsInfo
 from .chat_notification_settings import ChatNotificationSettings
 from .chat_permissions import ChatPermissions
 from .chat_photo_info import ChatPhotoInfo
@@ -17,7 +18,7 @@ from .chat_position import ChatPosition
 from .chat_type import ChatType
 from .draft_message import DraftMessage
 from .message import Message
-from .voice_chat import VoiceChat
+from .video_chat import VideoChat
 from ..base_object import BaseObject
 
 
@@ -88,11 +89,14 @@ class Chat(BaseObject):
     :param theme_name: If non-empty, name of a theme, set for the chat
     :type theme_name: :class:`str`
     
-    :param action_bar: Describes actions which must be possible to do through a chat action bar; may be null, defaults to None
+    :param action_bar: Information about actions which must be possible to do through the chat action bar; may be null, defaults to None
     :type action_bar: :class:`ChatActionBar`, optional
     
-    :param voice_chat: Contains information about voice chat of the chat
-    :type voice_chat: :class:`VoiceChat`
+    :param video_chat: Information about video chat of the chat
+    :type video_chat: :class:`VideoChat`
+    
+    :param pending_join_requests: Information about pending join requests; may be null, defaults to None
+    :type pending_join_requests: :class:`ChatJoinRequestsInfo`, optional
     
     :param reply_markup_message_id: Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
     :type reply_markup_message_id: :class:`int`
@@ -100,7 +104,7 @@ class Chat(BaseObject):
     :param draft_message: A draft of a message in the chat; may be null, defaults to None
     :type draft_message: :class:`DraftMessage`, optional
     
-    :param client_data: Contains application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
+    :param client_data: Application-specific data associated with the chat. (For example, the chat scroll position or local chat notification settings can be stored here.) Persistent if the message database is used
     :type client_data: :class:`str`
     
     """
@@ -128,7 +132,8 @@ class Chat(BaseObject):
     message_ttl_setting: int
     theme_name: str
     action_bar: typing.Optional[ChatActionBar] = None
-    voice_chat: VoiceChat
+    video_chat: VideoChat
+    pending_join_requests: typing.Optional[ChatJoinRequestsInfo] = None
     reply_markup_message_id: int
     draft_message: typing.Optional[DraftMessage] = None
     client_data: str

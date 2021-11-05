@@ -32,10 +32,10 @@ class Message(BaseObject):
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
     
-    :param sending_state: Information about the sending state of the message; may be null, defaults to None
+    :param sending_state: The sending state of the message; may be null, defaults to None
     :type sending_state: :class:`MessageSendingState`, optional
     
-    :param scheduling_state: Information about the scheduling state of the message; may be null, defaults to None
+    :param scheduling_state: The scheduling state of the message; may be null, defaults to None
     :type scheduling_state: :class:`MessageSchedulingState`, optional
     
     :param is_outgoing: True, if the message is outgoing

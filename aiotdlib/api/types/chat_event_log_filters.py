@@ -47,8 +47,8 @@ class ChatEventLogFilters(BaseObject):
     :param invite_link_changes: True, if changes to invite links need to be returned
     :type invite_link_changes: :class:`bool`
     
-    :param voice_chat_changes: True, if voice chat actions need to be returned
-    :type voice_chat_changes: :class:`bool`
+    :param video_chat_changes: True, if video chat actions need to be returned
+    :type video_chat_changes: :class:`bool`
     
     """
 
@@ -64,7 +64,7 @@ class ChatEventLogFilters(BaseObject):
     info_changes: bool
     setting_changes: bool
     invite_link_changes: bool
-    voice_chat_changes: bool
+    video_chat_changes: bool
 
     @staticmethod
     def read(q: dict) -> ChatEventLogFilters:

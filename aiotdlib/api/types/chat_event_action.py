@@ -231,6 +231,27 @@ class ChatEventMemberJoinedByInviteLink(ChatEventAction):
         return ChatEventMemberJoinedByInviteLink.construct(**q)
 
 
+class ChatEventMemberJoinedByRequest(ChatEventAction):
+    """
+    A new member was accepted to the chat by an administrator
+    
+    :param approver_user_id: User identifier of the chat administrator, approved user join request
+    :type approver_user_id: :class:`int`
+    
+    :param invite_link: Invite link used to join the chat; may be null, defaults to None
+    :type invite_link: :class:`ChatInviteLink`, optional
+    
+    """
+
+    ID: str = Field("chatEventMemberJoinedByRequest", alias="@type")
+    approver_user_id: int
+    invite_link: typing.Optional[ChatInviteLink] = None
+
+    @staticmethod
+    def read(q: dict) -> ChatEventMemberJoinedByRequest:
+        return ChatEventMemberJoinedByRequest.construct(**q)
+
+
 class ChatEventMemberLeft(ChatEventAction):
     """
     A member left the chat
@@ -467,10 +488,10 @@ class ChatEventSlowModeDelayChanged(ChatEventAction):
     """
     The slow_mode_delay setting of a supergroup was changed
     
-    :param old_slow_mode_delay: Previous value of slow_mode_delay
+    :param old_slow_mode_delay: Previous value of slow_mode_delay, in seconds
     :type old_slow_mode_delay: :class:`int`
     
-    :param new_slow_mode_delay: New value of slow_mode_delay
+    :param new_slow_mode_delay: New value of slow_mode_delay, in seconds
     :type new_slow_mode_delay: :class:`int`
     
     """
@@ -547,60 +568,60 @@ class ChatEventUsernameChanged(ChatEventAction):
         return ChatEventUsernameChanged.construct(**q)
 
 
-class ChatEventVoiceChatCreated(ChatEventAction):
+class ChatEventVideoChatCreated(ChatEventAction):
     """
-    A voice chat was created
+    A video chat was created
     
-    :param group_call_id: Identifier of the voice chat. The voice chat can be received through the method getGroupCall
+    :param group_call_id: Identifier of the video chat. The video chat can be received through the method getGroupCall
     :type group_call_id: :class:`int`
     
     """
 
-    ID: str = Field("chatEventVoiceChatCreated", alias="@type")
+    ID: str = Field("chatEventVideoChatCreated", alias="@type")
     group_call_id: int
 
     @staticmethod
-    def read(q: dict) -> ChatEventVoiceChatCreated:
-        return ChatEventVoiceChatCreated.construct(**q)
+    def read(q: dict) -> ChatEventVideoChatCreated:
+        return ChatEventVideoChatCreated.construct(**q)
 
 
-class ChatEventVoiceChatDiscarded(ChatEventAction):
+class ChatEventVideoChatDiscarded(ChatEventAction):
     """
-    A voice chat was discarded
+    A video chat was discarded
     
-    :param group_call_id: Identifier of the voice chat. The voice chat can be received through the method getGroupCall
+    :param group_call_id: Identifier of the video chat. The video chat can be received through the method getGroupCall
     :type group_call_id: :class:`int`
     
     """
 
-    ID: str = Field("chatEventVoiceChatDiscarded", alias="@type")
+    ID: str = Field("chatEventVideoChatDiscarded", alias="@type")
     group_call_id: int
 
     @staticmethod
-    def read(q: dict) -> ChatEventVoiceChatDiscarded:
-        return ChatEventVoiceChatDiscarded.construct(**q)
+    def read(q: dict) -> ChatEventVideoChatDiscarded:
+        return ChatEventVideoChatDiscarded.construct(**q)
 
 
-class ChatEventVoiceChatMuteNewParticipantsToggled(ChatEventAction):
+class ChatEventVideoChatMuteNewParticipantsToggled(ChatEventAction):
     """
-    The mute_new_participants setting of a voice chat was toggled
+    The mute_new_participants setting of a video chat was toggled
     
     :param mute_new_participants: New value of the mute_new_participants setting
     :type mute_new_participants: :class:`bool`
     
     """
 
-    ID: str = Field("chatEventVoiceChatMuteNewParticipantsToggled", alias="@type")
+    ID: str = Field("chatEventVideoChatMuteNewParticipantsToggled", alias="@type")
     mute_new_participants: bool
 
     @staticmethod
-    def read(q: dict) -> ChatEventVoiceChatMuteNewParticipantsToggled:
-        return ChatEventVoiceChatMuteNewParticipantsToggled.construct(**q)
+    def read(q: dict) -> ChatEventVideoChatMuteNewParticipantsToggled:
+        return ChatEventVideoChatMuteNewParticipantsToggled.construct(**q)
 
 
-class ChatEventVoiceChatParticipantIsMutedToggled(ChatEventAction):
+class ChatEventVideoChatParticipantIsMutedToggled(ChatEventAction):
     """
-    A voice chat participant was muted or unmuted
+    A video chat participant was muted or unmuted
     
     :param participant_id: Identifier of the affected group call participant
     :type participant_id: :class:`MessageSender`
@@ -610,18 +631,18 @@ class ChatEventVoiceChatParticipantIsMutedToggled(ChatEventAction):
     
     """
 
-    ID: str = Field("chatEventVoiceChatParticipantIsMutedToggled", alias="@type")
+    ID: str = Field("chatEventVideoChatParticipantIsMutedToggled", alias="@type")
     participant_id: MessageSender
     is_muted: bool
 
     @staticmethod
-    def read(q: dict) -> ChatEventVoiceChatParticipantIsMutedToggled:
-        return ChatEventVoiceChatParticipantIsMutedToggled.construct(**q)
+    def read(q: dict) -> ChatEventVideoChatParticipantIsMutedToggled:
+        return ChatEventVideoChatParticipantIsMutedToggled.construct(**q)
 
 
-class ChatEventVoiceChatParticipantVolumeLevelChanged(ChatEventAction):
+class ChatEventVideoChatParticipantVolumeLevelChanged(ChatEventAction):
     """
-    A voice chat participant volume level was changed
+    A video chat participant volume level was changed
     
     :param participant_id: Identifier of the affected group call participant
     :type participant_id: :class:`MessageSender`
@@ -631,10 +652,10 @@ class ChatEventVoiceChatParticipantVolumeLevelChanged(ChatEventAction):
     
     """
 
-    ID: str = Field("chatEventVoiceChatParticipantVolumeLevelChanged", alias="@type")
+    ID: str = Field("chatEventVideoChatParticipantVolumeLevelChanged", alias="@type")
     participant_id: MessageSender
     volume_level: int
 
     @staticmethod
-    def read(q: dict) -> ChatEventVoiceChatParticipantVolumeLevelChanged:
-        return ChatEventVoiceChatParticipantVolumeLevelChanged.construct(**q)
+    def read(q: dict) -> ChatEventVideoChatParticipantVolumeLevelChanged:
+        return ChatEventVideoChatParticipantVolumeLevelChanged.construct(**q)

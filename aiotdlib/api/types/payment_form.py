@@ -35,13 +35,13 @@ class PaymentForm(BaseObject):
     :param payments_provider_user_id: User identifier of the payment provider bot
     :type payments_provider_user_id: :class:`int`
     
-    :param payments_provider: Contains information about the payment provider, if available, to support it natively without the need for opening the URL; may be null, defaults to None
+    :param payments_provider: Information about the payment provider, if available, to support it natively without the need for opening the URL; may be null, defaults to None
     :type payments_provider: :class:`PaymentsProviderStripe`, optional
     
     :param saved_order_info: Saved server-side order information; may be null, defaults to None
     :type saved_order_info: :class:`OrderInfo`, optional
     
-    :param saved_credentials: Contains information about saved card credentials; may be null, defaults to None
+    :param saved_credentials: Information about saved card credentials; may be null, defaults to None
     :type saved_credentials: :class:`SavedCredentials`, optional
     
     :param can_save_credentials: True, if the user can choose to save credentials

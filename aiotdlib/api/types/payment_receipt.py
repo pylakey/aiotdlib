@@ -38,7 +38,7 @@ class PaymentReceipt(BaseObject):
     :param payments_provider_user_id: User identifier of the payment provider bot
     :type payments_provider_user_id: :class:`int`
     
-    :param invoice: Contains information about the invoice
+    :param invoice: Information about the invoice
     :type invoice: :class:`Invoice`
     
     :param order_info: Order information; may be null, defaults to None

@@ -21,6 +21,8 @@ from .chat_action import ChatAction
 from .chat_action_bar import ChatActionBar
 from .chat_filter_info import ChatFilterInfo
 from .chat_invite_link import ChatInviteLink
+from .chat_join_request import ChatJoinRequest
+from .chat_join_requests_info import ChatJoinRequestsInfo
 from .chat_list import ChatList
 from .chat_member import ChatMember
 from .chat_nearby import ChatNearby
@@ -62,7 +64,7 @@ from .user_full_info import UserFullInfo
 from .user_privacy_setting import UserPrivacySetting
 from .user_privacy_setting_rules import UserPrivacySettingRules
 from .user_status import UserStatus
-from .voice_chat import VoiceChat
+from .video_chat import VideoChat
 from ..base_object import BaseObject
 
 
@@ -482,6 +484,27 @@ class UpdateChatOnlineMemberCount(Update):
         return UpdateChatOnlineMemberCount.construct(**q)
 
 
+class UpdateChatPendingJoinRequests(Update):
+    """
+    The chat pending join requests were changed
+    
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param pending_join_requests: The new data about pending join requests; may be null, defaults to None
+    :type pending_join_requests: :class:`ChatJoinRequestsInfo`, optional
+    
+    """
+
+    ID: str = Field("updateChatPendingJoinRequests", alias="@type")
+    chat_id: int
+    pending_join_requests: typing.Optional[ChatJoinRequestsInfo] = None
+
+    @staticmethod
+    def read(q: dict) -> UpdateChatPendingJoinRequests:
+        return UpdateChatPendingJoinRequests.construct(**q)
+
+
 class UpdateChatPermissions(Update):
     """
     Chat permissions was changed
@@ -692,25 +715,25 @@ class UpdateChatUnreadMentionCount(Update):
         return UpdateChatUnreadMentionCount.construct(**q)
 
 
-class UpdateChatVoiceChat(Update):
+class UpdateChatVideoChat(Update):
     """
-    A chat voice chat state has changed
+    A chat video chat state has changed
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
     
-    :param voice_chat: New value of voice_chat
-    :type voice_chat: :class:`VoiceChat`
+    :param video_chat: New value of video_chat
+    :type video_chat: :class:`VideoChat`
     
     """
 
-    ID: str = Field("updateChatVoiceChat", alias="@type")
+    ID: str = Field("updateChatVideoChat", alias="@type")
     chat_id: int
-    voice_chat: VoiceChat
+    video_chat: VideoChat
 
     @staticmethod
-    def read(q: dict) -> UpdateChatVoiceChat:
-        return UpdateChatVoiceChat.construct(**q)
+    def read(q: dict) -> UpdateChatVideoChat:
+        return UpdateChatVideoChat.construct(**q)
 
 
 class UpdateConnectionState(Update):
@@ -1157,7 +1180,7 @@ class UpdateMessageSendFailed(Update):
     """
     A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
     
-    :param message: Contains information about the message which failed to send
+    :param message: The failed to send message
     :type message: :class:`Message`
     
     :param old_message_id: The previous temporary message identifier
@@ -1186,7 +1209,7 @@ class UpdateMessageSendSucceeded(Update):
     """
     A message has been successfully sent
     
-    :param message: Information about the sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
+    :param message: The sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
     :type message: :class:`Message`
     
     :param old_message_id: The previous temporary message identifier
@@ -1276,6 +1299,31 @@ class UpdateNewChat(Update):
     @staticmethod
     def read(q: dict) -> UpdateNewChat:
         return UpdateNewChat.construct(**q)
+
+
+class UpdateNewChatJoinRequest(Update):
+    """
+    A user sent a join request to a chat; for bots only
+    
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param request: Join request
+    :type request: :class:`ChatJoinRequest`
+    
+    :param invite_link: The invite link, which was used to send join request; may be null, defaults to None
+    :type invite_link: :class:`ChatInviteLink`, optional
+    
+    """
+
+    ID: str = Field("updateNewChatJoinRequest", alias="@type")
+    chat_id: int
+    request: ChatJoinRequest
+    invite_link: typing.Optional[ChatInviteLink] = None
+
+    @staticmethod
+    def read(q: dict) -> UpdateNewChatJoinRequest:
+        return UpdateNewChatJoinRequest.construct(**q)
 
 
 class UpdateNewChosenInlineResult(Update):
@@ -1399,7 +1447,7 @@ class UpdateNewInlineQuery(Update):
     :param user_location: User location; may be null, defaults to None
     :type user_location: :class:`Location`, optional
     
-    :param chat_type: Contains information about the type of the chat, from which the query originated; may be null if unknown, defaults to None
+    :param chat_type: The type of the chat, from which the query originated; may be null if unknown, defaults to None
     :type chat_type: :class:`ChatType`, optional
     
     :param query: Text of the query

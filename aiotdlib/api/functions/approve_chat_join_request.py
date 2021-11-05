@@ -8,25 +8,24 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import MessageSender
 
 
-class SetVoiceChatDefaultParticipant(BaseObject):
+class ApproveChatJoinRequest(BaseObject):
     """
-    Changes default participant identifier, which can be used to join voice chats in a chat
+    Approves pending join request in a chat
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
     
-    :param default_participant_id: Default group call participant identifier to join the voice chats
-    :type default_participant_id: :class:`MessageSender`
+    :param user_id: Identifier of the user, which request will be approved
+    :type user_id: :class:`int`
     
     """
 
-    ID: str = Field("setVoiceChatDefaultParticipant", alias="@type")
+    ID: str = Field("approveChatJoinRequest", alias="@type")
     chat_id: int
-    default_participant_id: MessageSender
+    user_id: int
 
     @staticmethod
-    def read(q: dict) -> SetVoiceChatDefaultParticipant:
-        return SetVoiceChatDefaultParticipant.construct(**q)
+    def read(q: dict) -> ApproveChatJoinRequest:
+        return ApproveChatJoinRequest.construct(**q)

@@ -8,25 +8,24 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import CallProtocol
 
 
-class AcceptCall(BaseObject):
+class ChatJoinRequestsInfo(BaseObject):
     """
-    Accepts an incoming call
+    Contains information about pending chat join requests
     
-    :param call_id: Call identifier
-    :type call_id: :class:`int`
+    :param total_count: Total number of pending join requests
+    :type total_count: :class:`int`
     
-    :param protocol: The call protocols supported by the application
-    :type protocol: :class:`CallProtocol`
+    :param user_ids: Identifiers of users sent the newest pending join requests
+    :type user_ids: :class:`list[int]`
     
     """
 
-    ID: str = Field("acceptCall", alias="@type")
-    call_id: int
-    protocol: CallProtocol
+    ID: str = Field("chatJoinRequestsInfo", alias="@type")
+    total_count: int
+    user_ids: list[int]
 
     @staticmethod
-    def read(q: dict) -> AcceptCall:
-        return AcceptCall.construct(**q)
+    def read(q: dict) -> ChatJoinRequestsInfo:
+        return ChatJoinRequestsInfo.construct(**q)

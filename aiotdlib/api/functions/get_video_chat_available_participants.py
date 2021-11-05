@@ -8,25 +8,20 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import CallProtocol
 
 
-class AcceptCall(BaseObject):
+class GetVideoChatAvailableParticipants(BaseObject):
     """
-    Accepts an incoming call
+    Returns list of participant identifiers, which can be used to join video chats in a chat
     
-    :param call_id: Call identifier
-    :type call_id: :class:`int`
-    
-    :param protocol: The call protocols supported by the application
-    :type protocol: :class:`CallProtocol`
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
     
     """
 
-    ID: str = Field("acceptCall", alias="@type")
-    call_id: int
-    protocol: CallProtocol
+    ID: str = Field("getVideoChatAvailableParticipants", alias="@type")
+    chat_id: int
 
     @staticmethod
-    def read(q: dict) -> AcceptCall:
-        return AcceptCall.construct(**q)
+    def read(q: dict) -> GetVideoChatAvailableParticipants:
+        return GetVideoChatAvailableParticipants.construct(**q)

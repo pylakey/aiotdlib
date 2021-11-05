@@ -9,6 +9,7 @@ import typing
 
 from pydantic import Field
 
+from .animated_emoji import AnimatedEmoji
 from .animation import Animation
 from .audio import Audio
 from .call_discard_reason import CallDiscardReason
@@ -42,6 +43,27 @@ class MessageContent(BaseObject):
     """
 
     ID: str = Field("messageContent", alias="@type")
+
+
+class MessageAnimatedEmoji(MessageContent):
+    """
+    A message with an animated emoji
+    
+    :param animated_emoji: The animated emoji
+    :type animated_emoji: :class:`AnimatedEmoji`
+    
+    :param emoji: The corresponding emoji
+    :type emoji: :class:`str`
+    
+    """
+
+    ID: str = Field("messageAnimatedEmoji", alias="@type")
+    animated_emoji: AnimatedEmoji
+    emoji: str
+
+    @staticmethod
+    def read(q: dict) -> MessageAnimatedEmoji:
+        return MessageAnimatedEmoji.construct(**q)
 
 
 class MessageAnimation(MessageContent):
@@ -228,6 +250,19 @@ class MessageChatJoinByLink(MessageContent):
     @staticmethod
     def read(q: dict) -> MessageChatJoinByLink:
         return MessageChatJoinByLink.construct(**q)
+
+
+class MessageChatJoinByRequest(MessageContent):
+    """
+    A new member was accepted to the chat by an administrator
+    
+    """
+
+    ID: str = Field("messageChatJoinByRequest", alias="@type")
+
+    @staticmethod
+    def read(q: dict) -> MessageChatJoinByRequest:
+        return MessageChatJoinByRequest.construct(**q)
 
 
 class MessageChatSetTheme(MessageContent):
@@ -471,11 +506,11 @@ class MessageGameScore(MessageContent):
         return MessageGameScore.construct(**q)
 
 
-class MessageInviteVoiceChatParticipants(MessageContent):
+class MessageInviteVideoChatParticipants(MessageContent):
     """
-    A message with information about an invite to a voice chat
+    A message with information about an invite to a video chat
     
-    :param group_call_id: Identifier of the voice chat. The voice chat can be received through the method getGroupCall
+    :param group_call_id: Identifier of the video chat. The video chat can be received through the method getGroupCall
     :type group_call_id: :class:`int`
     
     :param user_ids: Invited user identifiers
@@ -483,13 +518,13 @@ class MessageInviteVoiceChatParticipants(MessageContent):
     
     """
 
-    ID: str = Field("messageInviteVoiceChatParticipants", alias="@type")
+    ID: str = Field("messageInviteVideoChatParticipants", alias="@type")
     group_call_id: int
     user_ids: list[int]
 
     @staticmethod
-    def read(q: dict) -> MessageInviteVoiceChatParticipants:
-        return MessageInviteVoiceChatParticipants.construct(**q)
+    def read(q: dict) -> MessageInviteVideoChatParticipants:
+        return MessageInviteVideoChatParticipants.construct(**q)
 
 
 class MessageInvoice(MessageContent):
@@ -889,6 +924,61 @@ class MessageVideo(MessageContent):
         return MessageVideo.construct(**q)
 
 
+class MessageVideoChatEnded(MessageContent):
+    """
+    A message with information about an ended video chat
+    
+    :param duration: Call duration, in seconds
+    :type duration: :class:`int`
+    
+    """
+
+    ID: str = Field("messageVideoChatEnded", alias="@type")
+    duration: int
+
+    @staticmethod
+    def read(q: dict) -> MessageVideoChatEnded:
+        return MessageVideoChatEnded.construct(**q)
+
+
+class MessageVideoChatScheduled(MessageContent):
+    """
+    A new video chat was scheduled
+    
+    :param group_call_id: Identifier of the video chat. The video chat can be received through the method getGroupCall
+    :type group_call_id: :class:`int`
+    
+    :param start_date: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator
+    :type start_date: :class:`int`
+    
+    """
+
+    ID: str = Field("messageVideoChatScheduled", alias="@type")
+    group_call_id: int
+    start_date: int
+
+    @staticmethod
+    def read(q: dict) -> MessageVideoChatScheduled:
+        return MessageVideoChatScheduled.construct(**q)
+
+
+class MessageVideoChatStarted(MessageContent):
+    """
+    A newly created video chat
+    
+    :param group_call_id: Identifier of the video chat. The video chat can be received through the method getGroupCall
+    :type group_call_id: :class:`int`
+    
+    """
+
+    ID: str = Field("messageVideoChatStarted", alias="@type")
+    group_call_id: int
+
+    @staticmethod
+    def read(q: dict) -> MessageVideoChatStarted:
+        return MessageVideoChatStarted.construct(**q)
+
+
 class MessageVideoNote(MessageContent):
     """
     A video note message
@@ -912,61 +1002,6 @@ class MessageVideoNote(MessageContent):
     @staticmethod
     def read(q: dict) -> MessageVideoNote:
         return MessageVideoNote.construct(**q)
-
-
-class MessageVoiceChatEnded(MessageContent):
-    """
-    A message with information about an ended voice chat
-    
-    :param duration: Call duration, in seconds
-    :type duration: :class:`int`
-    
-    """
-
-    ID: str = Field("messageVoiceChatEnded", alias="@type")
-    duration: int
-
-    @staticmethod
-    def read(q: dict) -> MessageVoiceChatEnded:
-        return MessageVoiceChatEnded.construct(**q)
-
-
-class MessageVoiceChatScheduled(MessageContent):
-    """
-    A new voice chat was scheduled
-    
-    :param group_call_id: Identifier of the voice chat. The voice chat can be received through the method getGroupCall
-    :type group_call_id: :class:`int`
-    
-    :param start_date: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator
-    :type start_date: :class:`int`
-    
-    """
-
-    ID: str = Field("messageVoiceChatScheduled", alias="@type")
-    group_call_id: int
-    start_date: int
-
-    @staticmethod
-    def read(q: dict) -> MessageVoiceChatScheduled:
-        return MessageVoiceChatScheduled.construct(**q)
-
-
-class MessageVoiceChatStarted(MessageContent):
-    """
-    A newly created voice chat
-    
-    :param group_call_id: Identifier of the voice chat. The voice chat can be received through the method getGroupCall
-    :type group_call_id: :class:`int`
-    
-    """
-
-    ID: str = Field("messageVoiceChatStarted", alias="@type")
-    group_call_id: int
-
-    @staticmethod
-    def read(q: dict) -> MessageVoiceChatStarted:
-        return MessageVoiceChatStarted.construct(**q)
 
 
 class MessageVoiceNote(MessageContent):

@@ -18,7 +18,7 @@ class JoinGroupCall(BaseObject):
     :param group_call_id: Group call identifier
     :type group_call_id: :class:`int`
     
-    :param participant_id: Identifier of a group call participant, which will be used to join the call; pass null to join as self; voice chats only
+    :param participant_id: Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
     :type participant_id: :class:`MessageSender`
     
     :param audio_source_id: Caller audio channel synchronization source identifier; received from tgcalls

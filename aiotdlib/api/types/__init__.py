@@ -7,6 +7,7 @@
 from .account_ttl import AccountTtl
 from .address import Address
 from .animated_chat_photo import AnimatedChatPhoto
+from .animated_emoji import AnimatedEmoji
 from .animation import Animation
 from .animations import Animations
 from .audio import Audio
@@ -160,6 +161,7 @@ from .chat_event_action import (
     ChatEventMemberInvited,
     ChatEventMemberJoined,
     ChatEventMemberJoinedByInviteLink,
+    ChatEventMemberJoinedByRequest,
     ChatEventMemberLeft,
     ChatEventMemberPromoted,
     ChatEventMemberRestricted,
@@ -176,11 +178,11 @@ from .chat_event_action import (
     ChatEventStickerSetChanged,
     ChatEventTitleChanged,
     ChatEventUsernameChanged,
-    ChatEventVoiceChatCreated,
-    ChatEventVoiceChatDiscarded,
-    ChatEventVoiceChatMuteNewParticipantsToggled,
-    ChatEventVoiceChatParticipantIsMutedToggled,
-    ChatEventVoiceChatParticipantVolumeLevelChanged,
+    ChatEventVideoChatCreated,
+    ChatEventVideoChatDiscarded,
+    ChatEventVideoChatMuteNewParticipantsToggled,
+    ChatEventVideoChatParticipantIsMutedToggled,
+    ChatEventVideoChatParticipantVolumeLevelChanged,
 )
 from .chat_event_log_filters import ChatEventLogFilters
 from .chat_events import ChatEvents
@@ -193,6 +195,9 @@ from .chat_invite_link_info import ChatInviteLinkInfo
 from .chat_invite_link_member import ChatInviteLinkMember
 from .chat_invite_link_members import ChatInviteLinkMembers
 from .chat_invite_links import ChatInviteLinks
+from .chat_join_request import ChatJoinRequest
+from .chat_join_requests import ChatJoinRequests
+from .chat_join_requests_info import ChatJoinRequestsInfo
 from .chat_list import (
     ChatList,
     ChatListArchive,
@@ -279,6 +284,7 @@ from .check_sticker_set_name_result import (
     CheckStickerSetNameResultOk,
 )
 from .closed_vector_path import ClosedVectorPath
+from .color_replacement import ColorReplacement
 from .connected_website import ConnectedWebsite
 from .connected_websites import ConnectedWebsites
 from .connection_state import (
@@ -515,7 +521,8 @@ from .internal_link_type import (
     InternalLinkTypeTheme,
     InternalLinkTypeThemeSettings,
     InternalLinkTypeUnknownDeepLink,
-    InternalLinkTypeVoiceChat,
+    InternalLinkTypeUnsupportedProxy,
+    InternalLinkTypeVideoChat,
 )
 from .invoice import Invoice
 from .json_value import (
@@ -571,7 +578,10 @@ from .mask_point import (
 )
 from .mask_position import MaskPosition
 from .message import Message
+from .message_calendar import MessageCalendar
+from .message_calendar_day import MessageCalendarDay
 from .message_content import (
+    MessageAnimatedEmoji,
     MessageAnimation,
     MessageAudio,
     MessageBasicGroupChatCreate,
@@ -582,6 +592,7 @@ from .message_content import (
     MessageChatDeleteMember,
     MessageChatDeletePhoto,
     MessageChatJoinByLink,
+    MessageChatJoinByRequest,
     MessageChatSetTheme,
     MessageChatSetTtl,
     MessageChatUpgradeFrom,
@@ -596,7 +607,7 @@ from .message_content import (
     MessageExpiredVideo,
     MessageGame,
     MessageGameScore,
-    MessageInviteVoiceChatParticipants,
+    MessageInviteVideoChatParticipants,
     MessageInvoice,
     MessageLocation,
     MessagePassportDataReceived,
@@ -614,10 +625,10 @@ from .message_content import (
     MessageUnsupported,
     MessageVenue,
     MessageVideo,
+    MessageVideoChatEnded,
+    MessageVideoChatScheduled,
+    MessageVideoChatStarted,
     MessageVideoNote,
-    MessageVoiceChatEnded,
-    MessageVoiceChatScheduled,
-    MessageVoiceChatStarted,
     MessageVoiceNote,
     MessageWebsiteConnected,
 )
@@ -640,6 +651,8 @@ from .message_forward_origin import (
 from .message_interaction_info import MessageInteractionInfo
 from .message_link import MessageLink
 from .message_link_info import MessageLinkInfo
+from .message_position import MessagePosition
+from .message_positions import MessagePositions
 from .message_reply_info import MessageReplyInfo
 from .message_scheduling_state import (
     MessageSchedulingState,
@@ -849,6 +862,7 @@ from .push_message_content import (
     PushMessageContentChatChangeTitle,
     PushMessageContentChatDeleteMember,
     PushMessageContentChatJoinByLink,
+    PushMessageContentChatJoinByRequest,
     PushMessageContentChatSetTheme,
     PushMessageContentContact,
     PushMessageContentContactRegistered,
@@ -1070,6 +1084,7 @@ from .update import (
     UpdateChatMessageTtlSetting,
     UpdateChatNotificationSettings,
     UpdateChatOnlineMemberCount,
+    UpdateChatPendingJoinRequests,
     UpdateChatPermissions,
     UpdateChatPhoto,
     UpdateChatPosition,
@@ -1080,7 +1095,7 @@ from .update import (
     UpdateChatThemes,
     UpdateChatTitle,
     UpdateChatUnreadMentionCount,
-    UpdateChatVoiceChat,
+    UpdateChatVideoChat,
     UpdateConnectionState,
     UpdateDeleteMessages,
     UpdateDiceEmojis,
@@ -1106,6 +1121,7 @@ from .update import (
     UpdateNewCallSignalingData,
     UpdateNewCallbackQuery,
     UpdateNewChat,
+    UpdateNewChatJoinRequest,
     UpdateNewChosenInlineResult,
     UpdateNewCustomEvent,
     UpdateNewCustomQuery,
@@ -1191,8 +1207,8 @@ from .vector_path_command import (
 )
 from .venue import Venue
 from .video import Video
+from .video_chat import VideoChat
 from .video_note import VideoNote
-from .voice_chat import VoiceChat
 from .voice_note import VoiceNote
 from .web_page import WebPage
 from .web_page_instant_view import WebPageInstantView
@@ -1201,6 +1217,7 @@ __all__ = [
     "AccountTtl",
     "Address",
     "AnimatedChatPhoto",
+    "AnimatedEmoji",
     "Animation",
     "Animations",
     "Audio",
@@ -1327,6 +1344,7 @@ __all__ = [
     "ChatEventMemberInvited",
     "ChatEventMemberJoined",
     "ChatEventMemberJoinedByInviteLink",
+    "ChatEventMemberJoinedByRequest",
     "ChatEventMemberLeft",
     "ChatEventMemberPromoted",
     "ChatEventMemberRestricted",
@@ -1343,11 +1361,11 @@ __all__ = [
     "ChatEventStickerSetChanged",
     "ChatEventTitleChanged",
     "ChatEventUsernameChanged",
-    "ChatEventVoiceChatCreated",
-    "ChatEventVoiceChatDiscarded",
-    "ChatEventVoiceChatMuteNewParticipantsToggled",
-    "ChatEventVoiceChatParticipantIsMutedToggled",
-    "ChatEventVoiceChatParticipantVolumeLevelChanged",
+    "ChatEventVideoChatCreated",
+    "ChatEventVideoChatDiscarded",
+    "ChatEventVideoChatMuteNewParticipantsToggled",
+    "ChatEventVideoChatParticipantIsMutedToggled",
+    "ChatEventVideoChatParticipantVolumeLevelChanged",
     "ChatEventLogFilters",
     "ChatEvents",
     "ChatFilter",
@@ -1359,6 +1377,9 @@ __all__ = [
     "ChatInviteLinkMember",
     "ChatInviteLinkMembers",
     "ChatInviteLinks",
+    "ChatJoinRequest",
+    "ChatJoinRequests",
+    "ChatJoinRequestsInfo",
     "ChatList",
     "ChatListArchive",
     "ChatListFilter",
@@ -1427,6 +1448,7 @@ __all__ = [
     "CheckStickerSetNameResultNameOccupied",
     "CheckStickerSetNameResultOk",
     "ClosedVectorPath",
+    "ColorReplacement",
     "ConnectedWebsite",
     "ConnectedWebsites",
     "ConnectionState",
@@ -1630,7 +1652,8 @@ __all__ = [
     "InternalLinkTypeTheme",
     "InternalLinkTypeThemeSettings",
     "InternalLinkTypeUnknownDeepLink",
-    "InternalLinkTypeVoiceChat",
+    "InternalLinkTypeUnsupportedProxy",
+    "InternalLinkTypeVideoChat",
     "Invoice",
     "JsonValue",
     "JsonValueArray",
@@ -1673,7 +1696,10 @@ __all__ = [
     "MaskPointMouth",
     "MaskPosition",
     "Message",
+    "MessageCalendar",
+    "MessageCalendarDay",
     "MessageContent",
+    "MessageAnimatedEmoji",
     "MessageAnimation",
     "MessageAudio",
     "MessageBasicGroupChatCreate",
@@ -1684,6 +1710,7 @@ __all__ = [
     "MessageChatDeleteMember",
     "MessageChatDeletePhoto",
     "MessageChatJoinByLink",
+    "MessageChatJoinByRequest",
     "MessageChatSetTheme",
     "MessageChatSetTtl",
     "MessageChatUpgradeFrom",
@@ -1697,7 +1724,7 @@ __all__ = [
     "MessageExpiredVideo",
     "MessageGame",
     "MessageGameScore",
-    "MessageInviteVoiceChatParticipants",
+    "MessageInviteVideoChatParticipants",
     "MessageInvoice",
     "MessageLocation",
     "MessagePassportDataReceived",
@@ -1715,10 +1742,10 @@ __all__ = [
     "MessageUnsupported",
     "MessageVenue",
     "MessageVideo",
+    "MessageVideoChatEnded",
+    "MessageVideoChatScheduled",
+    "MessageVideoChatStarted",
     "MessageVideoNote",
-    "MessageVoiceChatEnded",
-    "MessageVoiceChatScheduled",
-    "MessageVoiceChatStarted",
     "MessageVoiceNote",
     "MessageWebsiteConnected",
     "MessageCopyOptions",
@@ -1736,6 +1763,8 @@ __all__ = [
     "MessageInteractionInfo",
     "MessageLink",
     "MessageLinkInfo",
+    "MessagePosition",
+    "MessagePositions",
     "MessageReplyInfo",
     "MessageSchedulingState",
     "MessageSchedulingStateSendAtDate",
@@ -1908,6 +1937,7 @@ __all__ = [
     "PushMessageContentChatChangeTitle",
     "PushMessageContentChatDeleteMember",
     "PushMessageContentChatJoinByLink",
+    "PushMessageContentChatJoinByRequest",
     "PushMessageContentChatSetTheme",
     "PushMessageContentContact",
     "PushMessageContentContactRegistered",
@@ -2101,6 +2131,7 @@ __all__ = [
     "UpdateChatMessageTtlSetting",
     "UpdateChatNotificationSettings",
     "UpdateChatOnlineMemberCount",
+    "UpdateChatPendingJoinRequests",
     "UpdateChatPermissions",
     "UpdateChatPhoto",
     "UpdateChatPosition",
@@ -2111,7 +2142,7 @@ __all__ = [
     "UpdateChatThemes",
     "UpdateChatTitle",
     "UpdateChatUnreadMentionCount",
-    "UpdateChatVoiceChat",
+    "UpdateChatVideoChat",
     "UpdateConnectionState",
     "UpdateDeleteMessages",
     "UpdateDiceEmojis",
@@ -2137,6 +2168,7 @@ __all__ = [
     "UpdateNewCallSignalingData",
     "UpdateNewCallbackQuery",
     "UpdateNewChat",
+    "UpdateNewChatJoinRequest",
     "UpdateNewChosenInlineResult",
     "UpdateNewCustomEvent",
     "UpdateNewCustomQuery",
@@ -2211,8 +2243,8 @@ __all__ = [
     "VectorPathCommandLine",
     "Venue",
     "Video",
+    "VideoChat",
     "VideoNote",
-    "VoiceChat",
     "VoiceNote",
     "WebPage",
     "WebPageInstantView",

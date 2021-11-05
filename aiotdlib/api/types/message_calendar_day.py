@@ -7,21 +7,26 @@ from __future__ import annotations
 
 from pydantic import Field
 
+from .message import Message
 from ..base_object import BaseObject
 
 
-class GetVoiceChatAvailableParticipants(BaseObject):
+class MessageCalendarDay(BaseObject):
     """
-    Returns list of participant identifiers, which can be used to join voice chats in a chat
+    Contains information about found messages sent in a specific day
     
-    :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
+    :param total_count: Total number of found messages sent in the day
+    :type total_count: :class:`int`
+    
+    :param message: First message sent in the day
+    :type message: :class:`Message`
     
     """
 
-    ID: str = Field("getVoiceChatAvailableParticipants", alias="@type")
-    chat_id: int
+    ID: str = Field("messageCalendarDay", alias="@type")
+    total_count: int
+    message: Message
 
     @staticmethod
-    def read(q: dict) -> GetVoiceChatAvailableParticipants:
-        return GetVoiceChatAvailableParticipants.construct(**q)
+    def read(q: dict) -> MessageCalendarDay:
+        return MessageCalendarDay.construct(**q)

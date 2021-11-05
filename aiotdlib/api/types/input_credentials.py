@@ -57,7 +57,7 @@ class InputCredentialsNew(InputCredentials):
     """
     Applies if a user enters new credentials on a payment provider website
     
-    :param data: Contains JSON-encoded data with a credential identifier from the payment provider
+    :param data: JSON-encoded data with the credential identifier from the payment provider
     :type data: :class:`str`
     
     :param allow_save: True, if the credential identifier can be saved on the server side

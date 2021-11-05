@@ -20,10 +20,10 @@ class AuthenticationCodeInfo(BaseObject):
     :param phone_number: A phone number that is being authenticated
     :type phone_number: :class:`str`
     
-    :param type_: Describes the way the code was sent to the user
+    :param type_: The way the code was sent to the user
     :type type_: :class:`AuthenticationCodeType`
     
-    :param next_type: Describes the way the next code will be sent to the user; may be null, defaults to None
+    :param next_type: The way the next code will be sent to the user; may be null, defaults to None
     :type next_type: :class:`AuthenticationCodeType`, optional
     
     :param timeout: Timeout before the code can be re-sent, in seconds

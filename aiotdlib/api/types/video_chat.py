@@ -13,26 +13,26 @@ from .message_sender import MessageSender
 from ..base_object import BaseObject
 
 
-class VoiceChat(BaseObject):
+class VideoChat(BaseObject):
     """
-    Describes a voice chat
+    Describes a video chat
     
-    :param group_call_id: Group call identifier of an active voice chat; 0 if none. Full informationa about the voice chat can be received through the method getGroupCall
+    :param group_call_id: Group call identifier of an active video chat; 0 if none. Full information about the video chat can be received through the method getGroupCall
     :type group_call_id: :class:`int`
     
-    :param has_participants: True, if the voice chat has participants
+    :param has_participants: True, if the video chat has participants
     :type has_participants: :class:`bool`
     
-    :param default_participant_id: Default group call participant identifier to join the voice chat; may be null, defaults to None
+    :param default_participant_id: Default group call participant identifier to join the video chat; may be null, defaults to None
     :type default_participant_id: :class:`MessageSender`, optional
     
     """
 
-    ID: str = Field("voiceChat", alias="@type")
+    ID: str = Field("videoChat", alias="@type")
     group_call_id: int
     has_participants: bool
     default_participant_id: typing.Optional[MessageSender] = None
 
     @staticmethod
-    def read(q: dict) -> VoiceChat:
-        return VoiceChat.construct(**q)
+    def read(q: dict) -> VideoChat:
+        return VideoChat.construct(**q)

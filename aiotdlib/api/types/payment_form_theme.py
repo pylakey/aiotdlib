@@ -26,7 +26,7 @@ class PaymentFormTheme(BaseObject):
     :param link_color: A color of links in the RGB24 format
     :type link_color: :class:`int`
     
-    :param button_color: A color of thebuttons in the RGB24 format
+    :param button_color: A color of the buttons in the RGB24 format
     :type button_color: :class:`int`
     
     :param button_text_color: A color of text on the buttons in the RGB24 format

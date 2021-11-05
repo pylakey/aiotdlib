@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class GetGroupCallInviteLink(BaseObject):
     """
-    Returns invite link to a voice chat in a public chat
+    Returns invite link to a video chat in a public chat
     
     :param group_call_id: Group call identifier
     :type group_call_id: :class:`int`

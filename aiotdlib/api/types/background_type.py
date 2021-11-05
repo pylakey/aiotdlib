@@ -24,7 +24,7 @@ class BackgroundTypeFill(BackgroundType):
     """
     A filled background
     
-    :param fill: Description of the background fill
+    :param fill: The background fill
     :type fill: :class:`BackgroundFill`
     
     """
@@ -41,7 +41,7 @@ class BackgroundTypePattern(BackgroundType):
     """
     A PNG or TGV (gzipped subset of SVG with MIME type "application/x-tgwallpattern") pattern to be combined with the background fill chosen by the user
     
-    :param fill: Description of the background fill
+    :param fill: Fill of the background
     :type fill: :class:`BackgroundFill`
     
     :param intensity: Intensity of the pattern when it is shown above the filled background; 0-100.

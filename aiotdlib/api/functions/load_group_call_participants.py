@@ -17,7 +17,7 @@ class LoadGroupCallParticipants(BaseObject):
     :param group_call_id: Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
     :type group_call_id: :class:`int`
     
-    :param limit: The maximum number of participants to load
+    :param limit: The maximum number of participants to load; up to 100
     :type limit: :class:`int`
     
     """

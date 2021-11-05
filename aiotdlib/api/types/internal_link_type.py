@@ -415,26 +415,39 @@ class InternalLinkTypeUnknownDeepLink(InternalLinkType):
         return InternalLinkTypeUnknownDeepLink.construct(**q)
 
 
-class InternalLinkTypeVoiceChat(InternalLinkType):
+class InternalLinkTypeUnsupportedProxy(InternalLinkType):
     """
-    The link is a link to a voice chat. Call searchPublicChat with the given chat username, and then joinGoupCall with the given invite hash to process the link
+    The link is a link to an unsupported proxy. An alert can be shown to the user
     
-    :param chat_username: Username of the chat with the voice chat
+    """
+
+    ID: str = Field("internalLinkTypeUnsupportedProxy", alias="@type")
+
+    @staticmethod
+    def read(q: dict) -> InternalLinkTypeUnsupportedProxy:
+        return InternalLinkTypeUnsupportedProxy.construct(**q)
+
+
+class InternalLinkTypeVideoChat(InternalLinkType):
+    """
+    The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGoupCall with the given invite hash to process the link
+    
+    :param chat_username: Username of the chat with the video chat
     :type chat_username: :class:`str`
     
-    :param invite_hash: If non-empty, invite hash to be used to join the voice chat without being muted by administrators
+    :param invite_hash: If non-empty, invite hash to be used to join the video chat without being muted by administrators
     :type invite_hash: :class:`str`
     
-    :param is_live_stream: True, if the voice chat is expected to be a live stream in a channel or a broadcast group
+    :param is_live_stream: True, if the video chat is expected to be a live stream in a channel or a broadcast group
     :type is_live_stream: :class:`bool`
     
     """
 
-    ID: str = Field("internalLinkTypeVoiceChat", alias="@type")
+    ID: str = Field("internalLinkTypeVideoChat", alias="@type")
     chat_username: str
     invite_hash: str
     is_live_stream: bool
 
     @staticmethod
-    def read(q: dict) -> InternalLinkTypeVoiceChat:
-        return InternalLinkTypeVoiceChat.construct(**q)
+    def read(q: dict) -> InternalLinkTypeVideoChat:
+        return InternalLinkTypeVideoChat.construct(**q)

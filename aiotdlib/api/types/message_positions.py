@@ -7,26 +7,26 @@ from __future__ import annotations
 
 from pydantic import Field
 
+from .message_position import MessagePosition
 from ..base_object import BaseObject
-from ..types import CallProtocol
 
 
-class AcceptCall(BaseObject):
+class MessagePositions(BaseObject):
     """
-    Accepts an incoming call
+    Contains a list of message positions
     
-    :param call_id: Call identifier
-    :type call_id: :class:`int`
+    :param total_count: Total count of messages found
+    :type total_count: :class:`int`
     
-    :param protocol: The call protocols supported by the application
-    :type protocol: :class:`CallProtocol`
+    :param positions: List of message positions
+    :type positions: :class:`list[MessagePosition]`
     
     """
 
-    ID: str = Field("acceptCall", alias="@type")
-    call_id: int
-    protocol: CallProtocol
+    ID: str = Field("messagePositions", alias="@type")
+    total_count: int
+    positions: list[MessagePosition]
 
     @staticmethod
-    def read(q: dict) -> AcceptCall:
-        return AcceptCall.construct(**q)
+    def read(q: dict) -> MessagePositions:
+        return MessagePositions.construct(**q)

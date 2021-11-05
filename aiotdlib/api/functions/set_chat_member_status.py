@@ -14,7 +14,7 @@ from ..types import MessageSender
 
 class SetChatMemberStatus(BaseObject):
     """
-    Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if you need to pass some additional parameters
+    Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`

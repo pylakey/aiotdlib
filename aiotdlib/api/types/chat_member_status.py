@@ -24,7 +24,7 @@ class ChatMemberStatus(BaseObject):
 
 class ChatMemberStatusAdministrator(ChatMemberStatus):
     """
-    The user is a member of the chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, ban unprivileged members, and manage voice chats. In supergroups and channels, there are more detailed options for administrator privileges
+    The user is a member of the chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, ban unprivileged members, and manage video chats. In supergroups and channels, there are more detailed options for administrator privileges
     
     :param custom_title: A custom title of the administrator; 0-16 characters without emojis; applicable to supergroups only, defaults to None
     :type custom_title: :class:`str`, optional
@@ -59,8 +59,8 @@ class ChatMemberStatusAdministrator(ChatMemberStatus):
     :param can_promote_members: True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them
     :type can_promote_members: :class:`bool`
     
-    :param can_manage_voice_chats: True, if the administrator can manage voice chats
-    :type can_manage_voice_chats: :class:`bool`
+    :param can_manage_video_chats: True, if the administrator can manage video chats
+    :type can_manage_video_chats: :class:`bool`
     
     :param is_anonymous: True, if the administrator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
     :type is_anonymous: :class:`bool`
@@ -79,7 +79,7 @@ class ChatMemberStatusAdministrator(ChatMemberStatus):
     can_restrict_members: bool
     can_pin_messages: bool
     can_promote_members: bool
-    can_manage_voice_chats: bool
+    can_manage_video_chats: bool
     is_anonymous: bool
 
     @staticmethod
@@ -89,7 +89,7 @@ class ChatMemberStatusAdministrator(ChatMemberStatus):
 
 class ChatMemberStatusBanned(ChatMemberStatus):
     """
-    The user or the chat was banned (and hence is not a member of the chat). Implies the user can't return to the chat, view messages, or be used as a participant identifier to join a voice chat of the chat
+    The user or the chat was banned (and hence is not a member of the chat). Implies the user can't return to the chat, view messages, or be used as a participant identifier to join a video chat of the chat
     
     :param banned_until_date: Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Always 0 in basic groups
     :type banned_until_date: :class:`int`
