@@ -1,5 +1,13 @@
 # aiotdlib CHANGELOG
 
+### 0.13.1 - Bugfix
+
+#### Updated
+
+* Fixed [#6](https://github.com/pylakey/aiotdlib/issues/6) 
+
+> This bug was related to [this](https://github.com/tdlib/td/commit/c69293e1ccc6c36f3134475a1bdb821db6d07ce0) TDLib's commit
+
 ### 0.13.0 - TDLib 1.7.9
 
 #### Updated
