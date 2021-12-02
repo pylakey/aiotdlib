@@ -40,7 +40,7 @@ from .api import (
     UpdateChatReplyMarkup,
     UpdateChatTitle,
     UpdateChatUnreadMentionCount,
-    UpdateChatVoiceChat,
+    UpdateChatVideoChat,
     UpdateNewChat,
     UpdateOption,
     UpdateSecretChat,
@@ -218,8 +218,8 @@ class ClientCache:
             API.Types.UPDATE_CHAT_MESSAGE_TTL_SETTING
         )
         client.add_event_handler(
-            self.__on_update_chat_voice_chat,
-            API.Types.UPDATE_CHAT_VOICE_CHAT
+            self.__on_update_chat_video_chat,
+            API.Types.UPDATE_CHAT_VIDEO_CHAT
         )
 
     async def get_option_value(self, name: str) -> typing.Union[str, int, bool, None]:
@@ -447,5 +447,5 @@ class ClientCache:
     async def __on_update_chat_has_scheduled_messages(self, _: Client, update: UpdateChatHasScheduledMessages):
         self.chats[update.chat_id].has_scheduled_messages = update.has_scheduled_messages
 
-    async def __on_update_chat_voice_chat(self, _: Client, update: UpdateChatVoiceChat):
-        self.chats[update.chat_id].voice_chat = update.voice_chat
+    async def __on_update_chat_video_chat(self, _: Client, update: UpdateChatVideoChat):
+        self.chats[update.chat_id].video_chat = update.video_chat
