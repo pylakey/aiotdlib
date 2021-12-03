@@ -291,7 +291,17 @@ class ClientSettings(pydantic.BaseSettings):
             value = Path(sys.argv[0]).parent
 
         md5_hash = hashlib.md5()
-        md5_hash.update((values.get('phone_number') or values.get('bot_token')).encode('utf-8'))
+        phone_number = values.get('phone_number')
+        bot_token = values.get('bot_token')
+
+        if bool(phone_number):
+            session_name = str(phone_number)
+        elif bool(bot_token):
+            session_name = str(bot_token)
+        else:
+            raise ValueError
+
+        md5_hash.update(session_name.encode('utf-8'))
         directory_name = md5_hash.hexdigest()
 
         return value / '.aiotdlib' / directory_name
@@ -301,6 +311,9 @@ class ClientSettings(pydantic.BaseSettings):
         secrets_dir = '/run/secrets'
         use_enum_values = True
         allow_population_by_field_name = True
+
+
+Undefined = object()
 
 
 class Client:
@@ -314,8 +327,121 @@ class Client:
     __middlewares: list[MiddlewareCallable] = []
     __middlewares_handlers: list[MiddlewareCallable] = []
 
-    def __init__(self, **kwargs):
-        self.settings = ClientSettings(**kwargs)
+    def __init__(
+            self,
+            api_id: int = Undefined,
+            api_hash: pydantic.SecretStr = Undefined,
+            database_encryption_key: Union[str, bytes] = Undefined,
+            phone_number: str = Undefined,
+            bot_token: pydantic.SecretStr = Undefined,
+            use_test_dc: bool = Undefined,
+            system_language_code: str = Undefined,
+            device_model: str = Undefined,
+            system_version: str = Undefined,
+            application_version: str = Undefined,
+            files_directory: Path = Undefined,
+            first_name: str = Undefined,
+            last_name: str = Undefined,
+            password: pydantic.SecretStr = Undefined,
+            library_path: str = Undefined,
+            tdlib_verbosity: TDLibLogVerbosity = Undefined,
+            debug: bool = Undefined,
+            parse_mode: ClientParseMode = Undefined,
+            proxy_settings: ClientProxySettings = Undefined,
+            use_file_database: bool = Undefined,
+            use_chat_info_database: bool = Undefined,
+            use_message_database: bool = Undefined,
+            use_secret_chats: bool = Undefined,
+            enable_storage_optimizer: bool = Undefined,
+            ignore_file_names: bool = Undefined,
+            **kwargs
+    ):
+        """
+        :param api_id Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
+        :type :class:`int`
+
+        :param api_hash Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
+        :type :class:`str`
+
+        :param database_encryption_key Encryption key of local session database. Default: aiotdlib
+        :type :class:`str`
+
+        :param phone_number The phone number of the user, in international format.
+        :type :class:`str` Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
+
+        :param bot_token The bot token. Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
+        :type :class:`str`
+
+        :param use_test_dc If set to true, the Telegram test environment will be used instead of the production environment
+        :type :class:`bool`
+
+        :param system_language_code IETF language tag of the user's operating system language; must be non-empty
+        :type :class:`str`
+
+        :param device_model Model of the device the application is being run on; must be non-empty
+        :type :class:`str`
+
+        :param system_version Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
+        :type :class:`str`
+
+        :param application_version Application version; must be non-empty
+        :type :class:`str`
+
+        :param files_directory The path to the directory for storing files. Default: .aiotdlib/
+        :type :class:`str`
+
+        :param first_name First name of new account if account with passed phone_number does not exist
+        :type :class:`str`
+
+        :param last_name Last name of new account if account with passed phone_number does not exist
+        :type :class:`str`
+
+        :param library_path Path to TDLib binary. By default, binary included in package is used
+        :type :class:`str`
+
+        :param tdlib_verbosity Verbosity level of TDLib itself. Default: 2 (WARNING) for more info look at (:class:`TDLibLogVerbosity`)
+        :type :class:`str`
+
+        :param debug When set to true all request and responses would be logged in console with DEBUG level
+        :type :class:`bool`
+
+        :param parse_mode Default parse mode for high-level methods like send_message. Default: html
+        :type :class:`str`
+
+        :param proxy_settings Settings for proxying telegram connection
+        :type :class:`ClientProxySettings`
+
+        """
+        settings = {
+            'api_id': api_id,
+            'api_hash': api_hash,
+            'database_encryption_key': database_encryption_key,
+            'phone_number': phone_number,
+            'bot_token': bot_token,
+            'use_test_dc': use_test_dc,
+            'system_language_code': system_language_code,
+            'device_model': device_model,
+            'system_version': system_version,
+            'application_version': application_version,
+            'files_directory': files_directory,
+            'first_name': first_name,
+            'last_name': last_name,
+            'password': password,
+            'library_path': library_path,
+            'tdlib_verbosity': tdlib_verbosity,
+            'debug': debug,
+            'parse_mode': parse_mode,
+            'proxy_settings': proxy_settings,
+            'use_file_database': use_file_database,
+            'use_chat_info_database': use_chat_info_database,
+            'use_message_database': use_message_database,
+            'use_secret_chats': use_secret_chats,
+            'enable_storage_optimizer': enable_storage_optimizer,
+            'ignore_file_names': ignore_file_names,
+            **kwargs
+        }
+        settings = {k: v for k, v in settings.items() if v is not Undefined}
+        self.settings = ClientSettings(**settings)
         self.logger = logging.getLogger(self.__class__.__name__)
         self.logger.setLevel(logging.DEBUG if self.settings.debug else logging.INFO)
         self.__tdjson = TDJson(library_path=self.settings.library_path, verbosity=self.settings.tdlib_verbosity)

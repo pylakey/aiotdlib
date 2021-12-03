@@ -1,5 +1,13 @@
 # aiotdlib CHANGELOG
 
+### 0.13.2 - Bugfix
+
+#### Updated
+
+* Fixed small bug with settings validation 
+
+* Slightly reformatted Client constructor for better usability
+
 ### 0.13.1 - Bugfix
 
 #### Updated
