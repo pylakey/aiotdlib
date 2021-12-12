@@ -22,8 +22,8 @@ class SearchChatMessages(BaseObject):
     :param query: Query to search for
     :type query: :class:`str`
     
-    :param sender: Sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
-    :type sender: :class:`MessageSender`
+    :param sender_id: Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
+    :type sender_id: :class:`MessageSender`
     
     :param from_message_id: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
     :type from_message_id: :class:`int`
@@ -45,7 +45,7 @@ class SearchChatMessages(BaseObject):
     ID: str = Field("searchChatMessages", alias="@type")
     chat_id: int
     query: str
-    sender: MessageSender
+    sender_id: MessageSender
     from_message_id: int
     offset: int
     limit: int

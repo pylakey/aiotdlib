@@ -38,7 +38,7 @@ class AuthenticationCodeTypeCall(AuthenticationCodeType):
 
 class AuthenticationCodeTypeFlashCall(AuthenticationCodeType):
     """
-    An authentication code is delivered by an immediately canceled call to the specified phone number. The number from which the call was made is the code
+    An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number from which the call was made is the code that must be entered automatically
     
     :param pattern: Pattern of the phone number from which the call will be made
     :type pattern: :class:`str`
@@ -51,6 +51,27 @@ class AuthenticationCodeTypeFlashCall(AuthenticationCodeType):
     @staticmethod
     def read(q: dict) -> AuthenticationCodeTypeFlashCall:
         return AuthenticationCodeTypeFlashCall.construct(**q)
+
+
+class AuthenticationCodeTypeMissedCall(AuthenticationCodeType):
+    """
+    An authentication code is delivered by an immediately canceled call to the specified phone number. The phone number from which the call was made is the code that is supposed to be entered manually by the user
+    
+    :param phone_number_prefix: Prefix of the phone number from which the call will be made
+    :type phone_number_prefix: :class:`str`
+    
+    :param length: Number of digits in the code, excluding the prefix
+    :type length: :class:`int`
+    
+    """
+
+    ID: str = Field("authenticationCodeTypeMissedCall", alias="@type")
+    phone_number_prefix: str
+    length: int
+
+    @staticmethod
+    def read(q: dict) -> AuthenticationCodeTypeMissedCall:
+        return AuthenticationCodeTypeMissedCall.construct(**q)
 
 
 class AuthenticationCodeTypeSms(AuthenticationCodeType):

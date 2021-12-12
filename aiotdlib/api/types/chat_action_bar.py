@@ -34,7 +34,7 @@ class ChatActionBarAddContact(ChatActionBar):
 
 class ChatActionBarInviteMembers(ChatActionBar):
     """
-    The chat is a recently created group chat, to which new members can be invited
+    The chat is a recently created group chat to which new members can be invited
     
     """
 
@@ -43,6 +43,31 @@ class ChatActionBarInviteMembers(ChatActionBar):
     @staticmethod
     def read(q: dict) -> ChatActionBarInviteMembers:
         return ChatActionBarInviteMembers.construct(**q)
+
+
+class ChatActionBarJoinRequest(ChatActionBar):
+    """
+    The chat is a private chat with an administrator of a chat to which the user sent join request
+    
+    :param title: Title of the chat to which the join request was sent
+    :type title: :class:`str`
+    
+    :param is_channel: True, if the join request was sent to a channel chat
+    :type is_channel: :class:`bool`
+    
+    :param request_date: Point in time (Unix timestamp) when the join request was sent
+    :type request_date: :class:`int`
+    
+    """
+
+    ID: str = Field("chatActionBarJoinRequest", alias="@type")
+    title: str
+    is_channel: bool
+    request_date: int
+
+    @staticmethod
+    def read(q: dict) -> ChatActionBarJoinRequest:
+        return ChatActionBarJoinRequest.construct(**q)
 
 
 class ChatActionBarReportAddBlock(ChatActionBar):

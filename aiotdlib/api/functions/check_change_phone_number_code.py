@@ -14,7 +14,7 @@ class CheckChangePhoneNumberCode(BaseObject):
     """
     Checks the authentication code sent to confirm a new phone number of the user
     
-    :param code: Verification code received by SMS, phone call or flash call
+    :param code: Authentication code to check
     :type code: :class:`str`
     
     """

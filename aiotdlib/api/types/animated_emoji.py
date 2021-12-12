@@ -9,7 +9,6 @@ import typing
 
 from pydantic import Field
 
-from .color_replacement import ColorReplacement
 from .file import File
 from .sticker import Sticker
 from ..base_object import BaseObject
@@ -22,8 +21,8 @@ class AnimatedEmoji(BaseObject):
     :param sticker: Animated sticker for the emoji
     :type sticker: :class:`Sticker`
     
-    :param color_replacements: List of colors to be replaced while the sticker is rendered
-    :type color_replacements: :class:`list[ColorReplacement]`
+    :param fitzpatrick_type: Emoji modifier fitzpatrick type; 0-6; 0 if none
+    :type fitzpatrick_type: :class:`int`
     
     :param sound: File containing the sound to be played when the animated emoji is clicked if any; may be null. The sound is encoded with the Opus codec, and stored inside an OGG container, defaults to None
     :type sound: :class:`File`, optional
@@ -32,7 +31,7 @@ class AnimatedEmoji(BaseObject):
 
     ID: str = Field("animatedEmoji", alias="@type")
     sticker: Sticker
-    color_replacements: list[ColorReplacement]
+    fitzpatrick_type: int
     sound: typing.Optional[File] = None
 
     @staticmethod

@@ -14,7 +14,7 @@ class CheckPhoneNumberConfirmationCode(BaseObject):
     """
     Checks phone number confirmation code
     
-    :param code: The phone number confirmation code
+    :param code: Confirmation code to check
     :type code: :class:`str`
     
     """

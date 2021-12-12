@@ -45,19 +45,6 @@ class SearchMessagesFilterAudio(SearchMessagesFilter):
         return SearchMessagesFilterAudio.construct(**q)
 
 
-class SearchMessagesFilterCall(SearchMessagesFilter):
-    """
-    Returns only call messages
-    
-    """
-
-    ID: str = Field("searchMessagesFilterCall", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> SearchMessagesFilterCall:
-        return SearchMessagesFilterCall.construct(**q)
-
-
 class SearchMessagesFilterChatPhoto(SearchMessagesFilter):
     """
     Returns only messages containing chat photos
@@ -121,19 +108,6 @@ class SearchMessagesFilterMention(SearchMessagesFilter):
     @staticmethod
     def read(q: dict) -> SearchMessagesFilterMention:
         return SearchMessagesFilterMention.construct(**q)
-
-
-class SearchMessagesFilterMissedCall(SearchMessagesFilter):
-    """
-    Returns only incoming call messages with missed/declined discard reasons
-    
-    """
-
-    ID: str = Field("searchMessagesFilterMissedCall", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> SearchMessagesFilterMissedCall:
-        return SearchMessagesFilterMissedCall.construct(**q)
 
 
 class SearchMessagesFilterPhoto(SearchMessagesFilter):

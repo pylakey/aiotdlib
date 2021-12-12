@@ -63,8 +63,8 @@ class NotificationTypeNewPushMessage(NotificationType):
     :param message_id: The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages, or as reply_to_message_id
     :type message_id: :class:`int`
     
-    :param sender: The sender of the message. Corresponding user or chat may be inaccessible
-    :type sender: :class:`MessageSender`
+    :param sender_id: Identifier of the sender of the message. Corresponding user or chat may be inaccessible
+    :type sender_id: :class:`MessageSender`
     
     :param sender_name: Name of the sender
     :type sender_name: :class:`str`
@@ -79,7 +79,7 @@ class NotificationTypeNewPushMessage(NotificationType):
 
     ID: str = Field("notificationTypeNewPushMessage", alias="@type")
     message_id: int
-    sender: MessageSender
+    sender_id: MessageSender
     sender_name: str
     is_outgoing: bool
     content: PushMessageContent

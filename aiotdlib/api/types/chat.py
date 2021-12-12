@@ -18,6 +18,7 @@ from .chat_position import ChatPosition
 from .chat_type import ChatType
 from .draft_message import DraftMessage
 from .message import Message
+from .message_sender import MessageSender
 from .video_chat import VideoChat
 from ..base_object import BaseObject
 
@@ -46,6 +47,12 @@ class Chat(BaseObject):
     
     :param positions: Positions of the chat in chat lists
     :type positions: :class:`list[ChatPosition]`
+    
+    :param default_message_sender_id: Default identifier of a user or chat that is chosen to send messages in the chat; may be null if the user can't change message sender, defaults to None
+    :type default_message_sender_id: :class:`MessageSender`, optional
+    
+    :param has_protected_content: True, if chat content can't be saved locally, forwarded, or copied
+    :type has_protected_content: :class:`bool`
     
     :param is_marked_as_unread: True, if the chat is marked as unread
     :type is_marked_as_unread: :class:`bool`
@@ -117,6 +124,8 @@ class Chat(BaseObject):
     permissions: ChatPermissions
     last_message: typing.Optional[Message] = None
     positions: list[ChatPosition]
+    default_message_sender_id: typing.Optional[MessageSender] = None
+    has_protected_content: bool
     is_marked_as_unread: bool
     is_blocked: bool
     has_scheduled_messages: bool

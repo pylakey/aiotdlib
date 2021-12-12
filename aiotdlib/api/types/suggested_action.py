@@ -86,3 +86,20 @@ class SuggestedActionSeeTicksHint(SuggestedAction):
     @staticmethod
     def read(q: dict) -> SuggestedActionSeeTicksHint:
         return SuggestedActionSeeTicksHint.construct(**q)
+
+
+class SuggestedActionSetPassword(SuggestedAction):
+    """
+    Suggests the user to set a 2-step verification password to be able to log in again
+    
+    :param authorization_delay: The number of days to pass between consecutive authorizations if the user declines to set password
+    :type authorization_delay: :class:`int`
+    
+    """
+
+    ID: str = Field("suggestedActionSetPassword", alias="@type")
+    authorization_delay: int
+
+    @staticmethod
+    def read(q: dict) -> SuggestedActionSetPassword:
+        return SuggestedActionSetPassword.construct(**q)

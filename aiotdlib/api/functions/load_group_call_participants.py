@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class LoadGroupCallParticipants(BaseObject):
     """
-    Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants has already been loaded
+    Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
     
     :param group_call_id: Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
     :type group_call_id: :class:`int`

@@ -17,7 +17,7 @@ class GetRepliedMessage(BaseObject):
     :param chat_id: Identifier of the chat the message belongs to
     :type chat_id: :class:`int`
     
-    :param message_id: Identifier of the message reply to which to get
+    :param message_id: Identifier of the reply message
     :type message_id: :class:`int`
     
     """

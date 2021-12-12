@@ -40,7 +40,7 @@ class Poll(BaseObject):
     :param open_period: Amount of time the poll will be active after creation, in seconds
     :type open_period: :class:`int`
     
-    :param close_date: Point in time (Unix timestamp) when the poll will be automatically closed
+    :param close_date: Point in time (Unix timestamp) when the poll will automatically be closed
     :type close_date: :class:`int`
     
     :param is_closed: True, if the poll is closed

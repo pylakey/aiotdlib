@@ -49,6 +49,23 @@ class ChatEventDescriptionChanged(ChatEventAction):
         return ChatEventDescriptionChanged.construct(**q)
 
 
+class ChatEventHasProtectedContentToggled(ChatEventAction):
+    """
+    The has_protected_content setting of a channel was toggled
+    
+    :param has_protected_content: New value of has_protected_content
+    :type has_protected_content: :class:`bool`
+    
+    """
+
+    ID: str = Field("chatEventHasProtectedContentToggled", alias="@type")
+    has_protected_content: bool
+
+    @staticmethod
+    def read(q: dict) -> ChatEventHasProtectedContentToggled:
+        return ChatEventHasProtectedContentToggled.construct(**q)
+
+
 class ChatEventInviteLinkDeleted(ChatEventAction):
     """
     A revoked chat invite link was deleted

@@ -26,8 +26,8 @@ class Message(BaseObject):
     :param id: Message identifier; unique for the chat to which the message belongs
     :type id: :class:`int`
     
-    :param sender: The sender of the message
-    :type sender: :class:`MessageSender`
+    :param sender_id: Identifier of the sender of the message
+    :type sender_id: :class:`MessageSender`
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
@@ -49,6 +49,9 @@ class Message(BaseObject):
     
     :param can_be_forwarded: True, if the message can be forwarded
     :type can_be_forwarded: :class:`bool`
+    
+    :param can_be_saved: True, if content of the message can be saved locally or copied
+    :type can_be_saved: :class:`bool`
     
     :param can_be_deleted_only_for_self: True, if the message can be deleted only for the current user while other users will continue to see it
     :type can_be_deleted_only_for_self: :class:`bool`
@@ -126,7 +129,7 @@ class Message(BaseObject):
 
     ID: str = Field("message", alias="@type")
     id: int
-    sender: MessageSender
+    sender_id: MessageSender
     chat_id: int
     sending_state: typing.Optional[MessageSendingState] = None
     scheduling_state: typing.Optional[MessageSchedulingState] = None
@@ -134,6 +137,7 @@ class Message(BaseObject):
     is_pinned: bool
     can_be_edited: bool
     can_be_forwarded: bool
+    can_be_saved: bool
     can_be_deleted_only_for_self: bool
     can_be_deleted_for_all_users: bool
     can_get_statistics: bool

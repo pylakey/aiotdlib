@@ -15,7 +15,7 @@ class ChatInviteLinkCounts(BaseObject):
     """
     Contains a list of chat invite link counts
     
-    :param invite_link_counts: List of invite linkcounts
+    :param invite_link_counts: List of invite link counts
     :type invite_link_counts: :class:`list[ChatInviteLinkCount]`
     
     """

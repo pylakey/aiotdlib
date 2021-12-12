@@ -13,7 +13,7 @@ from ..types import ChatList
 
 class LoadChats(BaseObject):
     """
-    Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats has been loaded
+    Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
     
     :param chat_list: The chat list in which to load chats; pass null to load chats from the main chat list
     :type chat_list: :class:`ChatList`

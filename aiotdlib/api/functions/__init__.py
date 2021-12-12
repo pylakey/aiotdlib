@@ -25,7 +25,6 @@ from .answer_custom_query import AnswerCustomQuery
 from .answer_inline_query import AnswerInlineQuery
 from .answer_pre_checkout_query import AnswerPreCheckoutQuery
 from .answer_shipping_query import AnswerShippingQuery
-from .approve_chat_join_request import ApproveChatJoinRequest
 from .ban_chat_member import BanChatMember
 from .block_message_sender_from_replies import BlockMessageSenderFromReplies
 from .can_transfer_ownership import CanTransferOwnership
@@ -73,7 +72,6 @@ from .create_secret_chat import CreateSecretChat
 from .create_supergroup_chat import CreateSupergroupChat
 from .create_temporary_password import CreateTemporaryPassword
 from .create_video_chat import CreateVideoChat
-from .decline_chat_join_request import DeclineChatJoinRequest
 from .delete_account import DeleteAccount
 from .delete_all_call_messages import DeleteAllCallMessages
 from .delete_all_revoked_chat_invite_links import DeleteAllRevokedChatInviteLinks
@@ -81,7 +79,7 @@ from .delete_chat import DeleteChat
 from .delete_chat_filter import DeleteChatFilter
 from .delete_chat_history import DeleteChatHistory
 from .delete_chat_messages_by_date import DeleteChatMessagesByDate
-from .delete_chat_messages_from_user import DeleteChatMessagesFromUser
+from .delete_chat_messages_by_sender import DeleteChatMessagesBySender
 from .delete_chat_reply_markup import DeleteChatReplyMarkup
 from .delete_commands import DeleteCommands
 from .delete_file import DeleteFile
@@ -140,6 +138,7 @@ from .get_callback_query_answer import GetCallbackQueryAnswer
 from .get_callback_query_message import GetCallbackQueryMessage
 from .get_chat import GetChat
 from .get_chat_administrators import GetChatAdministrators
+from .get_chat_available_message_senders import GetChatAvailableMessageSenders
 from .get_chat_event_log import GetChatEventLog
 from .get_chat_filter import GetChatFilter
 from .get_chat_filter_default_icon_name import GetChatFilterDefaultIconName
@@ -287,6 +286,8 @@ from .parse_markdown import ParseMarkdown
 from .parse_text_entities import ParseTextEntities
 from .pin_chat_message import PinChatMessage
 from .ping_proxy import PingProxy
+from .process_chat_join_request import ProcessChatJoinRequest
+from .process_chat_join_requests import ProcessChatJoinRequests
 from .process_push_notification import ProcessPushNotification
 from .read_all_chat_mentions import ReadAllChatMentions
 from .read_file_part import ReadFilePart
@@ -372,6 +373,7 @@ from .set_background import SetBackground
 from .set_bio import SetBio
 from .set_bot_updates_status import SetBotUpdatesStatus
 from .set_chat_client_data import SetChatClientData
+from .set_chat_default_message_sender import SetChatDefaultMessageSender
 from .set_chat_description import SetChatDescription
 from .set_chat_discussion_group import SetChatDiscussionGroup
 from .set_chat_draft_message import SetChatDraftMessage
@@ -393,6 +395,7 @@ from .set_game_score import SetGameScore
 from .set_group_call_participant_is_speaking import SetGroupCallParticipantIsSpeaking
 from .set_group_call_participant_volume_level import SetGroupCallParticipantVolumeLevel
 from .set_group_call_title import SetGroupCallTitle
+from .set_inactive_session_ttl import SetInactiveSessionTtl
 from .set_inline_game_score import SetInlineGameScore
 from .set_location import SetLocation
 from .set_log_stream import SetLogStream
@@ -439,6 +442,7 @@ from .test_return_error import TestReturnError
 from .test_square_int import TestSquareInt
 from .test_use_update import TestUseUpdate
 from .toggle_chat_default_disable_notification import ToggleChatDefaultDisableNotification
+from .toggle_chat_has_protected_content import ToggleChatHasProtectedContent
 from .toggle_chat_is_marked_as_unread import ToggleChatIsMarkedAsUnread
 from .toggle_chat_is_pinned import ToggleChatIsPinned
 from .toggle_group_call_enabled_start_notification import ToggleGroupCallEnabledStartNotification
@@ -449,6 +453,8 @@ from .toggle_group_call_participant_is_hand_raised import ToggleGroupCallPartici
 from .toggle_group_call_participant_is_muted import ToggleGroupCallParticipantIsMuted
 from .toggle_group_call_screen_sharing_is_paused import ToggleGroupCallScreenSharingIsPaused
 from .toggle_message_sender_is_blocked import ToggleMessageSenderIsBlocked
+from .toggle_session_can_accept_calls import ToggleSessionCanAcceptCalls
+from .toggle_session_can_accept_secret_chats import ToggleSessionCanAcceptSecretChats
 from .toggle_supergroup_is_all_history_available import ToggleSupergroupIsAllHistoryAvailable
 from .toggle_supergroup_is_broadcast_group import ToggleSupergroupIsBroadcastGroup
 from .toggle_supergroup_sign_messages import ToggleSupergroupSignMessages
@@ -486,7 +492,6 @@ __all__ = [
     "AnswerInlineQuery",
     "AnswerPreCheckoutQuery",
     "AnswerShippingQuery",
-    "ApproveChatJoinRequest",
     "BanChatMember",
     "BlockMessageSenderFromReplies",
     "CanTransferOwnership",
@@ -534,7 +539,6 @@ __all__ = [
     "CreateSupergroupChat",
     "CreateTemporaryPassword",
     "CreateVideoChat",
-    "DeclineChatJoinRequest",
     "DeleteAccount",
     "DeleteAllCallMessages",
     "DeleteAllRevokedChatInviteLinks",
@@ -542,7 +546,7 @@ __all__ = [
     "DeleteChatFilter",
     "DeleteChatHistory",
     "DeleteChatMessagesByDate",
-    "DeleteChatMessagesFromUser",
+    "DeleteChatMessagesBySender",
     "DeleteChatReplyMarkup",
     "DeleteCommands",
     "DeleteFile",
@@ -601,6 +605,7 @@ __all__ = [
     "GetCallbackQueryMessage",
     "GetChat",
     "GetChatAdministrators",
+    "GetChatAvailableMessageSenders",
     "GetChatEventLog",
     "GetChatFilter",
     "GetChatFilterDefaultIconName",
@@ -748,6 +753,8 @@ __all__ = [
     "ParseTextEntities",
     "PinChatMessage",
     "PingProxy",
+    "ProcessChatJoinRequest",
+    "ProcessChatJoinRequests",
     "ProcessPushNotification",
     "ReadAllChatMentions",
     "ReadFilePart",
@@ -833,6 +840,7 @@ __all__ = [
     "SetBio",
     "SetBotUpdatesStatus",
     "SetChatClientData",
+    "SetChatDefaultMessageSender",
     "SetChatDescription",
     "SetChatDiscussionGroup",
     "SetChatDraftMessage",
@@ -854,6 +862,7 @@ __all__ = [
     "SetGroupCallParticipantIsSpeaking",
     "SetGroupCallParticipantVolumeLevel",
     "SetGroupCallTitle",
+    "SetInactiveSessionTtl",
     "SetInlineGameScore",
     "SetLocation",
     "SetLogStream",
@@ -900,6 +909,7 @@ __all__ = [
     "TestSquareInt",
     "TestUseUpdate",
     "ToggleChatDefaultDisableNotification",
+    "ToggleChatHasProtectedContent",
     "ToggleChatIsMarkedAsUnread",
     "ToggleChatIsPinned",
     "ToggleGroupCallEnabledStartNotification",
@@ -910,6 +920,8 @@ __all__ = [
     "ToggleGroupCallParticipantIsMuted",
     "ToggleGroupCallScreenSharingIsPaused",
     "ToggleMessageSenderIsBlocked",
+    "ToggleSessionCanAcceptCalls",
+    "ToggleSessionCanAcceptSecretChats",
     "ToggleSupergroupIsAllHistoryAvailable",
     "ToggleSupergroupIsBroadcastGroup",
     "ToggleSupergroupSignMessages",

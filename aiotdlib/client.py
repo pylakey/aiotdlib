@@ -591,9 +591,11 @@ class Client:
         return await self.api.set_authentication_phone_number(
             phone_number=self.settings.phone_number,
             settings=PhoneNumberAuthenticationSettings(
-                is_current_phone_number=True,
                 allow_flash_call=False,
-                allow_sms_retriever_api=False
+                allow_missed_call=False,
+                is_current_phone_number=True,
+                allow_sms_retriever_api=False,
+                authentication_tokens=[]
             ),
             request_id="updateAuthorizationState"
         )
@@ -1867,44 +1869,44 @@ class Client:
         Sends a video note with caption to chat. Returns the sent message
 
         Args:
-            chat_id (:class:`int`)
-                Target chat
+        chat_id (:class:`int`)
+            Target chat
 
-            video_note (:class:`str`)
-                Video note to be sent. This parameter could be ether path to local file or remote file_id
+        video_note (:class:`str`)
+            Video note to be sent. This parameter could be ether path to local file or remote file_id
 
-            duration (:class:`int`)
-                Duration of the video, in seconds
+        duration (:class:`int`)
+            Duration of the video, in seconds
 
-            length (:class:`int`)
-                Video width and height; must be positive and not greater than 640
+        length (:class:`int`)
+            Video width and height; must be positive and not greater than 640
 
-            thumbnail (:class:`str`)
-                Video note thumbnail, if available
-                Sending thumbnails by file_id is currently not supported
+        thumbnail (:class:`str`)
+            Video note thumbnail, if available
+            Sending thumbnails by file_id is currently not supported
 
-            thumbnail_width (:class:`int`)
-                Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
+        thumbnail_width (:class:`int`)
+            Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
 
-            thumbnail_height (:class:`int`)
-                Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
+        thumbnail_height (:class:`int`)
+            Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
 
-            reply_to_message_id (:class:`int`)
-                Identifier of the message to reply to or 0
+        reply_to_message_id (:class:`int`)
+            Identifier of the message to reply to or 0
 
-            reply_markup (:class:`ReplyMarkup`)
-                Markup for replying to the message; for bots only
+        reply_markup (:class:`ReplyMarkup`)
+            Markup for replying to the message; for bots only
 
-            disable_notification (:class:`bool`)
-                Pass true to disable notification for the message
+        disable_notification (:class:`bool`)
+            Pass true to disable notification for the message
 
-            send_when_online: (:class:`bool`)
-                When True, the message will be sent when the peer will be online.
-                Applicable to private chats only and when the exact online status of the peer is known
+        send_when_online: (:class:`bool`)
+            When True, the message will be sent when the peer will be online.
+            Applicable to private chats only and when the exact online status of the peer is known
 
-            send_date: (:class:`int`)
-                Date the message will be sent. The date must be within 367 days in the future.
-                If send_date passed send_when_online will be ignored
+        send_date: (:class:`int`)
+            Date the message will be sent. The date must be within 367 days in the future.
+            If send_date passed send_when_online will be ignored
 
         """
 
@@ -1947,6 +1949,8 @@ class Client:
             remove_caption: bool = False,
             disable_notification: bool = False,
             send_when_online: bool = False,
+            only_preview: bool = False,
+            from_background: bool = False,
             send_date: int = None,
             request_timeout: int = None,
     ) -> Messages:
@@ -1955,34 +1959,41 @@ class Client:
         Returns the forwarded messages in the same order as the message identifiers passed in message_ids.
         If a message can't be forwarded, null will be returned instead of the message
 
-        Args:
-            from_chat_id (:class:`int`)
-                Identifier of the chat from which to forward messages
+        :param chat_id: Identifier of the chat to which to forward messages
+        :type chat_id: :class:`int`
 
-            chat_id (:class:`int`)
-                Identifier of the chat to which to forward messages
+        :param from_chat_id: Identifier of the chat from which to forward messages
+        :type from_chat_id: :class:`int`
 
-            message_ids (:obj:`list[int]`)
-                Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order.
-                At most 100 messages can be forwarded simultaneously
+        :param message_ids: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
+        :type message_ids: :class:`list[int]`
 
-            send_copy (:class:`bool`)
-                True, if content of the messages needs to be copied without links to the original messages.
-                Always true if the messages are forwarded to a secret chat
+        :param send_copy: If true, content of the messages will be copied without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
+        :type send_copy: :class:`bool`
 
-            remove_caption (:class:`bool`)
-                True, if media caption of message copies needs to be removed. Ignored if send_copy is false
+        :param remove_caption: If true, media caption of message copies will be removed. Ignored if send_copy is false
+        :type remove_caption: :class:`bool`
 
-            disable_notification (:class:`bool`)
-                Pass true to disable notification for the message
+        :param only_preview: If true, messages will not be forwarded and instead fake messages will be returned
+        :type only_preview: :class:`bool`
 
-            send_when_online: (:class:`bool`)
-                When True, the message will be sent when the peer will be online.
-                Applicable to private chats only and when the exact online status of the peer is known
+        :param disable_notification: Pass true to disable notification for the message
+        :type disable_notification: :class:`bool`
 
-            send_date: (:class:`int`)
-                Date the message will be sent. The date must be within 367 days in the future.
-                If send_date passed send_when_online will be ignored
+        :param from_background: Pass true if the message is sent from the background
+        :type from_background: :class:`bool`
+
+        :param send_date: Date the message will be sent. The date must be within 367 days in the future
+        :type send_date: :class:`int`
+
+        :param send_when_online: When True, the message will be sent when the peer will be online. Applicable to private chats only and when the exact online status of the peer is known
+        :type send_when_online: :class:`bool`
+
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Messages`
         """
         if bool(send_date):
             scheduling_state = MessageSchedulingStateSendAtDate(send_date=send_date)
@@ -1997,11 +2008,12 @@ class Client:
             message_ids=message_ids,
             options=MessageSendOptions.construct(
                 disable_notification=disable_notification,
-                from_background=False,
+                from_background=from_background,
                 scheduling_state=scheduling_state
             ),
             send_copy=send_copy,
             remove_caption=remove_caption,
+            only_preview=only_preview,
             request_timeout=request_timeout,
             skip_validation=True
         )
@@ -2018,20 +2030,17 @@ class Client:
         The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id).
         Number of messages are limited by limit parameter
 
-        Args:
-            chat_id (:class:`int`)
-                Chat identifier
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
 
-            from_message_id (:class:`int`)
-                Identifier of the message starting from which history must be fetched;
-                use 0 to get results from the last message
+        :param from_message_id: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+        :type from_message_id: :class:`int`
 
-            limit (:class:`int`)
-                The maximum number of messages to be returned; must be positive
-                If chat contains less than limit messages all of them would be returned
+        :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`int`
 
-            only_local (:class:`bool`)
-                If true, returns only messages that are available locally without sending network requests
+        :param only_local: If true, returns only messages that are available locally without sending network requests
+        :type only_local: :class:`bool`
 
         """
 

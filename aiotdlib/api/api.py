@@ -51,12 +51,12 @@ class API:
         ANSWER_INLINE_QUERY = 'answerInlineQuery'
         ANSWER_PRE_CHECKOUT_QUERY = 'answerPreCheckoutQuery'
         ANSWER_SHIPPING_QUERY = 'answerShippingQuery'
-        APPROVE_CHAT_JOIN_REQUEST = 'approveChatJoinRequest'
         AUDIO = 'audio'
         AUTHENTICATION_CODE_INFO = 'authenticationCodeInfo'
         AUTHENTICATION_CODE_TYPE = 'authenticationCodeType'
         AUTHENTICATION_CODE_TYPE_CALL = 'authenticationCodeTypeCall'
         AUTHENTICATION_CODE_TYPE_FLASH_CALL = 'authenticationCodeTypeFlashCall'
+        AUTHENTICATION_CODE_TYPE_MISSED_CALL = 'authenticationCodeTypeMissedCall'
         AUTHENTICATION_CODE_TYPE_SMS = 'authenticationCodeTypeSms'
         AUTHENTICATION_CODE_TYPE_TELEGRAM_MESSAGE = 'authenticationCodeTypeTelegramMessage'
         AUTHORIZATION_STATE = 'authorizationState'
@@ -166,6 +166,7 @@ class API:
         CHAT_ACTION_BAR = 'chatActionBar'
         CHAT_ACTION_BAR_ADD_CONTACT = 'chatActionBarAddContact'
         CHAT_ACTION_BAR_INVITE_MEMBERS = 'chatActionBarInviteMembers'
+        CHAT_ACTION_BAR_JOIN_REQUEST = 'chatActionBarJoinRequest'
         CHAT_ACTION_BAR_REPORT_ADD_BLOCK = 'chatActionBarReportAddBlock'
         CHAT_ACTION_BAR_REPORT_SPAM = 'chatActionBarReportSpam'
         CHAT_ACTION_BAR_REPORT_UNRELATED_LOCATION = 'chatActionBarReportUnrelatedLocation'
@@ -175,6 +176,7 @@ class API:
         CHAT_EVENT = 'chatEvent'
         CHAT_EVENT_ACTION = 'chatEventAction'
         CHAT_EVENT_DESCRIPTION_CHANGED = 'chatEventDescriptionChanged'
+        CHAT_EVENT_HAS_PROTECTED_CONTENT_TOGGLED = 'chatEventHasProtectedContentToggled'
         CHAT_EVENT_INVITE_LINK_DELETED = 'chatEventInviteLinkDeleted'
         CHAT_EVENT_INVITE_LINK_EDITED = 'chatEventInviteLinkEdited'
         CHAT_EVENT_INVITE_LINK_REVOKED = 'chatEventInviteLinkRevoked'
@@ -313,7 +315,6 @@ class API:
         CLOSE_CHAT = 'closeChat'
         CLOSE_SECRET_CHAT = 'closeSecretChat'
         CLOSED_VECTOR_PATH = 'closedVectorPath'
-        COLOR_REPLACEMENT = 'colorReplacement'
         CONFIRM_QR_CODE_AUTHENTICATION = 'confirmQrCodeAuthentication'
         CONNECTED_WEBSITE = 'connectedWebsite'
         CONNECTED_WEBSITES = 'connectedWebsites'
@@ -345,7 +346,6 @@ class API:
         DATE = 'date'
         DATE_RANGE = 'dateRange'
         DATED_FILE = 'datedFile'
-        DECLINE_CHAT_JOIN_REQUEST = 'declineChatJoinRequest'
         DEEP_LINK_INFO = 'deepLinkInfo'
         DELETE_ACCOUNT = 'deleteAccount'
         DELETE_ALL_CALL_MESSAGES = 'deleteAllCallMessages'
@@ -354,7 +354,7 @@ class API:
         DELETE_CHAT_FILTER = 'deleteChatFilter'
         DELETE_CHAT_HISTORY = 'deleteChatHistory'
         DELETE_CHAT_MESSAGES_BY_DATE = 'deleteChatMessagesByDate'
-        DELETE_CHAT_MESSAGES_FROM_USER = 'deleteChatMessagesFromUser'
+        DELETE_CHAT_MESSAGES_BY_SENDER = 'deleteChatMessagesBySender'
         DELETE_CHAT_REPLY_MARKUP = 'deleteChatReplyMarkup'
         DELETE_COMMANDS = 'deleteCommands'
         DELETE_FILE = 'deleteFile'
@@ -459,6 +459,7 @@ class API:
         GET_CALLBACK_QUERY_MESSAGE = 'getCallbackQueryMessage'
         GET_CHAT = 'getChat'
         GET_CHAT_ADMINISTRATORS = 'getChatAdministrators'
+        GET_CHAT_AVAILABLE_MESSAGE_SENDERS = 'getChatAvailableMessageSenders'
         GET_CHAT_EVENT_LOG = 'getChatEventLog'
         GET_CHAT_FILTER = 'getChatFilter'
         GET_CHAT_FILTER_DEFAULT_ICON_NAME = 'getChatFilterDefaultIconName'
@@ -613,6 +614,7 @@ class API:
         INLINE_KEYBOARD_BUTTON_TYPE_LOGIN_URL = 'inlineKeyboardButtonTypeLoginUrl'
         INLINE_KEYBOARD_BUTTON_TYPE_SWITCH_INLINE = 'inlineKeyboardButtonTypeSwitchInline'
         INLINE_KEYBOARD_BUTTON_TYPE_URL = 'inlineKeyboardButtonTypeUrl'
+        INLINE_KEYBOARD_BUTTON_TYPE_USER = 'inlineKeyboardButtonTypeUser'
         INLINE_QUERY_RESULT = 'inlineQueryResult'
         INLINE_QUERY_RESULT_ANIMATION = 'inlineQueryResultAnimation'
         INLINE_QUERY_RESULT_ARTICLE = 'inlineQueryResultArticle'
@@ -1009,6 +1011,8 @@ class API:
         POLL_TYPE = 'pollType'
         POLL_TYPE_QUIZ = 'pollTypeQuiz'
         POLL_TYPE_REGULAR = 'pollTypeRegular'
+        PROCESS_CHAT_JOIN_REQUEST = 'processChatJoinRequest'
+        PROCESS_CHAT_JOIN_REQUESTS = 'processChatJoinRequests'
         PROCESS_PUSH_NOTIFICATION = 'processPushNotification'
         PROFILE_PHOTO = 'profilePhoto'
         PROXIES = 'proxies'
@@ -1141,13 +1145,11 @@ class API:
         SEARCH_MESSAGES_FILTER = 'searchMessagesFilter'
         SEARCH_MESSAGES_FILTER_ANIMATION = 'searchMessagesFilterAnimation'
         SEARCH_MESSAGES_FILTER_AUDIO = 'searchMessagesFilterAudio'
-        SEARCH_MESSAGES_FILTER_CALL = 'searchMessagesFilterCall'
         SEARCH_MESSAGES_FILTER_CHAT_PHOTO = 'searchMessagesFilterChatPhoto'
         SEARCH_MESSAGES_FILTER_DOCUMENT = 'searchMessagesFilterDocument'
         SEARCH_MESSAGES_FILTER_EMPTY = 'searchMessagesFilterEmpty'
         SEARCH_MESSAGES_FILTER_FAILED_TO_SEND = 'searchMessagesFilterFailedToSend'
         SEARCH_MESSAGES_FILTER_MENTION = 'searchMessagesFilterMention'
-        SEARCH_MESSAGES_FILTER_MISSED_CALL = 'searchMessagesFilterMissedCall'
         SEARCH_MESSAGES_FILTER_PHOTO = 'searchMessagesFilterPhoto'
         SEARCH_MESSAGES_FILTER_PHOTO_AND_VIDEO = 'searchMessagesFilterPhotoAndVideo'
         SEARCH_MESSAGES_FILTER_PINNED = 'searchMessagesFilterPinned'
@@ -1194,6 +1196,7 @@ class API:
         SET_BIO = 'setBio'
         SET_BOT_UPDATES_STATUS = 'setBotUpdatesStatus'
         SET_CHAT_CLIENT_DATA = 'setChatClientData'
+        SET_CHAT_DEFAULT_MESSAGE_SENDER = 'setChatDefaultMessageSender'
         SET_CHAT_DESCRIPTION = 'setChatDescription'
         SET_CHAT_DISCUSSION_GROUP = 'setChatDiscussionGroup'
         SET_CHAT_DRAFT_MESSAGE = 'setChatDraftMessage'
@@ -1215,6 +1218,7 @@ class API:
         SET_GROUP_CALL_PARTICIPANT_IS_SPEAKING = 'setGroupCallParticipantIsSpeaking'
         SET_GROUP_CALL_PARTICIPANT_VOLUME_LEVEL = 'setGroupCallParticipantVolumeLevel'
         SET_GROUP_CALL_TITLE = 'setGroupCallTitle'
+        SET_INACTIVE_SESSION_TTL = 'setInactiveSessionTtl'
         SET_INLINE_GAME_SCORE = 'setInlineGameScore'
         SET_LOCATION = 'setLocation'
         SET_LOG_STREAM = 'setLogStream'
@@ -1267,6 +1271,7 @@ class API:
         SUGGESTED_ACTION_CONVERT_TO_BROADCAST_GROUP = 'suggestedActionConvertToBroadcastGroup'
         SUGGESTED_ACTION_ENABLE_ARCHIVE_AND_MUTE_NEW_CHATS = 'suggestedActionEnableArchiveAndMuteNewChats'
         SUGGESTED_ACTION_SEE_TICKS_HINT = 'suggestedActionSeeTicksHint'
+        SUGGESTED_ACTION_SET_PASSWORD = 'suggestedActionSetPassword'
         SUPERGROUP = 'supergroup'
         SUPERGROUP_FULL_INFO = 'supergroupFullInfo'
         SUPERGROUP_MEMBERS_FILTER = 'supergroupMembersFilter'
@@ -1346,6 +1351,7 @@ class API:
         THUMBNAIL_FORMAT_TGS = 'thumbnailFormatTgs'
         THUMBNAIL_FORMAT_WEBP = 'thumbnailFormatWebp'
         TOGGLE_CHAT_DEFAULT_DISABLE_NOTIFICATION = 'toggleChatDefaultDisableNotification'
+        TOGGLE_CHAT_HAS_PROTECTED_CONTENT = 'toggleChatHasProtectedContent'
         TOGGLE_CHAT_IS_MARKED_AS_UNREAD = 'toggleChatIsMarkedAsUnread'
         TOGGLE_CHAT_IS_PINNED = 'toggleChatIsPinned'
         TOGGLE_GROUP_CALL_ENABLED_START_NOTIFICATION = 'toggleGroupCallEnabledStartNotification'
@@ -1356,6 +1362,8 @@ class API:
         TOGGLE_GROUP_CALL_PARTICIPANT_IS_MUTED = 'toggleGroupCallParticipantIsMuted'
         TOGGLE_GROUP_CALL_SCREEN_SHARING_IS_PAUSED = 'toggleGroupCallScreenSharingIsPaused'
         TOGGLE_MESSAGE_SENDER_IS_BLOCKED = 'toggleMessageSenderIsBlocked'
+        TOGGLE_SESSION_CAN_ACCEPT_CALLS = 'toggleSessionCanAcceptCalls'
+        TOGGLE_SESSION_CAN_ACCEPT_SECRET_CHATS = 'toggleSessionCanAcceptSecretChats'
         TOGGLE_SUPERGROUP_IS_ALL_HISTORY_AVAILABLE = 'toggleSupergroupIsAllHistoryAvailable'
         TOGGLE_SUPERGROUP_IS_BROADCAST_GROUP = 'toggleSupergroupIsBroadcastGroup'
         TOGGLE_SUPERGROUP_SIGN_MESSAGES = 'toggleSupergroupSignMessages'
@@ -1378,10 +1386,13 @@ class API:
         UPDATE_BASIC_GROUP = 'updateBasicGroup'
         UPDATE_BASIC_GROUP_FULL_INFO = 'updateBasicGroupFullInfo'
         UPDATE_CALL = 'updateCall'
+        UPDATE_CHAT_ACTION = 'updateChatAction'
         UPDATE_CHAT_ACTION_BAR = 'updateChatActionBar'
         UPDATE_CHAT_DEFAULT_DISABLE_NOTIFICATION = 'updateChatDefaultDisableNotification'
+        UPDATE_CHAT_DEFAULT_MESSAGE_SENDER_ID = 'updateChatDefaultMessageSenderId'
         UPDATE_CHAT_DRAFT_MESSAGE = 'updateChatDraftMessage'
         UPDATE_CHAT_FILTERS = 'updateChatFilters'
+        UPDATE_CHAT_HAS_PROTECTED_CONTENT = 'updateChatHasProtectedContent'
         UPDATE_CHAT_HAS_SCHEDULED_MESSAGES = 'updateChatHasScheduledMessages'
         UPDATE_CHAT_IS_BLOCKED = 'updateChatIsBlocked'
         UPDATE_CHAT_IS_MARKED_AS_UNREAD = 'updateChatIsMarkedAsUnread'
@@ -1456,7 +1467,6 @@ class API:
         UPDATE_UNREAD_CHAT_COUNT = 'updateUnreadChatCount'
         UPDATE_UNREAD_MESSAGE_COUNT = 'updateUnreadMessageCount'
         UPDATE_USER = 'updateUser'
-        UPDATE_USER_CHAT_ACTION = 'updateUserChatAction'
         UPDATE_USER_FULL_INFO = 'updateUserFullInfo'
         UPDATE_USER_PRIVACY_SETTING_RULES = 'updateUserPrivacySettingRules'
         UPDATE_USER_STATUS = 'updateUserStatus'
@@ -1824,7 +1834,7 @@ class API:
     async def add_local_message(
             self,
             chat_id: int,
-            sender: MessageSender,
+            sender_id: MessageSender,
             reply_to_message_id: int,
             disable_notification: bool,
             input_message_content: InputMessageContent,
@@ -1839,8 +1849,8 @@ class API:
         :param chat_id: Target chat
         :type chat_id: :class:`int`
         
-        :param sender: The sender of the message
-        :type sender: :class:`MessageSender`
+        :param sender_id: Identifier of the sender of the message
+        :type sender_id: :class:`MessageSender`
         
         :param reply_to_message_id: Identifier of the message to reply to or 0
         :type reply_to_message_id: :class:`int`
@@ -1866,7 +1876,7 @@ class API:
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
-                sender=sender,
+                sender_id=sender_id,
                 reply_to_message_id=reply_to_message_id,
                 disable_notification=disable_notification,
                 input_message_content=input_message_content,
@@ -2388,45 +2398,6 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def approve_chat_join_request(
-            self,
-            chat_id: int,
-            user_id: int,
-            *,
-            request_id: str = None,
-            request_timeout: int = None,
-            skip_validation: bool = False
-    ) -> Ok:
-        """
-        Approves pending join request in a chat
-        
-        :param chat_id: Chat identifier
-        :type chat_id: :class:`int`
-        
-        :param user_id: Identifier of the user, which request will be approved
-        :type user_id: :class:`int`
-        
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
-        
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Ok`
-        """
-        _constructor = ApproveChatJoinRequest.construct if skip_validation else ApproveChatJoinRequest
-
-        return await self.client.request(
-            _constructor(
-                chat_id=chat_id,
-                user_id=user_id,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
     async def ban_chat_member(
             self,
             chat_id: int,
@@ -2447,7 +2418,7 @@ class API:
         :param member_id: Member identifier
         :type member_id: :class:`MessageSender`
         
-        :param banned_until_date: Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups
+        :param banned_until_date: Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever. Ignored in basic groups and if a chat is banned
         :type banned_until_date: :class:`int`
         
         :param revoke_messages: Pass true to delete all messages in the chat for the user that is being removed. Always true for supergroups and channels
@@ -2787,7 +2758,7 @@ class API:
         """
         Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
         
-        :param code: The verification code received via SMS, Telegram message, phone call, or flash call
+        :param code: Authentication code to check
         :type code: :class:`str`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -2889,7 +2860,7 @@ class API:
         """
         Checks the authentication code sent to confirm a new phone number of the user
         
-        :param code: Verification code received by SMS, phone call or flash call
+        :param code: Authentication code to check
         :type code: :class:`str`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -3064,7 +3035,7 @@ class API:
         """
         Checks the email address verification code for Telegram Passport
         
-        :param code: Verification code
+        :param code: Verification code to check
         :type code: :class:`str`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -3132,7 +3103,7 @@ class API:
         """
         Checks phone number confirmation code
         
-        :param code: The phone number confirmation code
+        :param code: Confirmation code to check
         :type code: :class:`str`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -3166,7 +3137,7 @@ class API:
         """
         Checks the phone number verification code for Telegram Passport
         
-        :param code: Verification code
+        :param code: Verification code to check
         :type code: :class:`str`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -3200,7 +3171,7 @@ class API:
         """
         Checks the 2-step verification recovery email address verification code
         
-        :param code: Verification code
+        :param code: Verification code to check
         :type code: :class:`str`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -4085,45 +4056,6 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def decline_chat_join_request(
-            self,
-            chat_id: int,
-            user_id: int,
-            *,
-            request_id: str = None,
-            request_timeout: int = None,
-            skip_validation: bool = False
-    ) -> Ok:
-        """
-        Declines pending join request in a chat
-        
-        :param chat_id: Chat identifier
-        :type chat_id: :class:`int`
-        
-        :param user_id: Identifier of the user, which request will be declined
-        :type user_id: :class:`int`
-        
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
-        
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Ok`
-        """
-        _constructor = DeclineChatJoinRequest.construct if skip_validation else DeclineChatJoinRequest
-
-        return await self.client.request(
-            _constructor(
-                chat_id=chat_id,
-                user_id=user_id,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
     async def delete_account(
             self,
             reason: str,
@@ -4392,23 +4324,23 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def delete_chat_messages_from_user(
+    async def delete_chat_messages_by_sender(
             self,
             chat_id: int,
-            user_id: int,
+            sender_id: MessageSender,
             *,
             request_id: str = None,
             request_timeout: int = None,
             skip_validation: bool = False
     ) -> Ok:
         """
-        Deletes all messages sent by the specified user to a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
+        Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
         
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
         
-        :param user_id: User identifier
-        :type user_id: :class:`int`
+        :param sender_id: Identifier of the sender of messages to delete
+        :type sender_id: :class:`MessageSender`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
@@ -4420,12 +4352,12 @@ class API:
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
-        _constructor = DeleteChatMessagesFromUser.construct if skip_validation else DeleteChatMessagesFromUser
+        _constructor = DeleteChatMessagesBySender.construct if skip_validation else DeleteChatMessagesBySender
 
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
-                user_id=user_id,
+                sender_id=sender_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -4929,7 +4861,7 @@ class API:
         :param offset: The starting position from which the file needs to be downloaded
         :type offset: :class:`int`
         
-        :param limit: Number of bytes which need to be downloaded starting from the "offset" position before the download will be automatically canceled; use 0 to download without a limit
+        :param limit: Number of bytes which need to be downloaded starting from the "offset" position before the download will automatically be canceled; use 0 to download without a limit
         :type limit: :class:`int`
         
         :param synchronous: If false, this request returns file state just after the download has been started. If true, this request returns file state only after the download has succeeded, has failed, has been canceled or a new downloadFile request with different offset/limit parameters was sent
@@ -6477,6 +6409,40 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_chat_available_message_senders(
+            self,
+            chat_id: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> MessageSenders:
+        """
+        Returns list of message sender identifiers, which can be used to send messages in a chat
+        
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.MessageSenders`
+        """
+        _constructor = GetChatAvailableMessageSenders.construct if skip_validation else GetChatAvailableMessageSenders
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_chat_event_log(
             self,
             chat_id: int,
@@ -7021,7 +6987,7 @@ class API:
         :param chat_id: Identifier of the chat in which to return information about messages
         :type chat_id: :class:`int`
         
-        :param filter_: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+        :param filter_: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
         :type filter_: :class:`SearchMessagesFilter`
         
         :param from_message_id: The message identifier from which to return information about messages; use 0 to get results from the last message
@@ -7217,7 +7183,7 @@ class API:
         :param chat_id: Identifier of the chat in which to return information about message positions
         :type chat_id: :class:`int`
         
-        :param filter_: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+        :param filter_: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
         :type filter_: :class:`SearchMessagesFilter`
         
         :param from_message_id: The message identifier from which to return information about message positions
@@ -9977,7 +9943,7 @@ class API:
         :param chat_id: Identifier of the chat the message belongs to
         :type chat_id: :class:`int`
         
-        :param message_id: Identifier of the message reply to which to get
+        :param message_id: Identifier of the reply message
         :type message_id: :class:`int`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -11246,7 +11212,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats has been loaded
+        Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
         
         :param chat_list: The chat list in which to load chats; pass null to load chats from the main chat list
         :type chat_list: :class:`ChatList`
@@ -11285,7 +11251,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants has already been loaded
+        Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
         
         :param group_call_id: Group call identifier. The group call must be previously received through getGroupCall and must be joined or being joined
         :type group_call_id: :class:`int`
@@ -11623,6 +11589,94 @@ class API:
         return await self.client.request(
             _constructor(
                 proxy_id=proxy_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def process_chat_join_request(
+            self,
+            chat_id: int,
+            user_id: int,
+            approve: bool,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Handles a pending join request in a chat
+        
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param user_id: Identifier of the user that sent the request
+        :type user_id: :class:`int`
+        
+        :param approve: True, if the request is approved. Otherwise the request is declived
+        :type approve: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = ProcessChatJoinRequest.construct if skip_validation else ProcessChatJoinRequest
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                user_id=user_id,
+                approve=approve,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def process_chat_join_requests(
+            self,
+            chat_id: int,
+            invite_link: str,
+            approve: bool,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Handles all pending join requests for a given link in a chat
+        
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param invite_link: Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+        :type invite_link: :class:`str`
+        
+        :param approve: True, if the requests are approved. Otherwise the requests are declived
+        :type approve: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = ProcessChatJoinRequests.construct if skip_validation else ProcessChatJoinRequests
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                invite_link=invite_link,
+                approve=approve,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -12576,7 +12630,6 @@ class API:
     async def report_supergroup_spam(
             self,
             supergroup_id: int,
-            user_id: int,
             message_ids: list[int],
             *,
             request_id: str = None,
@@ -12584,15 +12637,12 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Reports some messages from a user in a supergroup as spam; requires administrator rights in the supergroup
+        Reports some messages from a message sender in a supergroup as spam; requires administrator rights in the supergroup
         
         :param supergroup_id: Supergroup identifier
         :type supergroup_id: :class:`int`
         
-        :param user_id: User identifier
-        :type user_id: :class:`int`
-        
-        :param message_ids: Identifiers of messages sent in the supergroup by the user. This list must be non-empty
+        :param message_ids: Identifiers of messages sent in the supergroup. All messages must be sent by the same sender. This list must be non-empty
         :type message_ids: :class:`list[int]`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -12610,7 +12660,6 @@ class API:
         return await self.client.request(
             _constructor(
                 supergroup_id=supergroup_id,
-                user_id=user_id,
                 message_ids=message_ids,
             ),
             request_id=request_id,
@@ -13027,7 +13076,7 @@ class API:
         :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         :type limit: :class:`int`
         
-        :param only_missed: If true, returns only messages with missed calls
+        :param only_missed: If true, returns only messages with missed/declined calls
         :type only_missed: :class:`bool`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -13105,7 +13154,7 @@ class API:
             self,
             chat_id: int,
             query: str,
-            sender: MessageSender,
+            sender_id: MessageSender,
             from_message_id: int,
             offset: int,
             limit: int,
@@ -13125,8 +13174,8 @@ class API:
         :param query: Query to search for
         :type query: :class:`str`
         
-        :param sender: Sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
-        :type sender: :class:`MessageSender`
+        :param sender_id: Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats
+        :type sender_id: :class:`MessageSender`
         
         :param from_message_id: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
         :type from_message_id: :class:`int`
@@ -13159,7 +13208,7 @@ class API:
             _constructor(
                 chat_id=chat_id,
                 query=query,
-                sender=sender,
+                sender_id=sender_id,
                 from_message_id=from_message_id,
                 offset=offset,
                 limit=limit,
@@ -13524,7 +13573,7 @@ class API:
         :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         :type limit: :class:`int`
         
-        :param filter_: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
+        :param filter_: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
         :type filter_: :class:`SearchMessagesFilter`
         
         :param min_date: If not 0, the minimum date of the messages to return
@@ -14777,6 +14826,45 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def set_chat_default_message_sender(
+            self,
+            chat_id: int,
+            default_message_sender_id: MessageSender,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes default message sender that is chosen in a chat
+        
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param default_message_sender_id: New default message sender in the chat
+        :type default_message_sender_id: :class:`MessageSender`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = SetChatDefaultMessageSender.construct if skip_validation else SetChatDefaultMessageSender
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                default_message_sender_id=default_message_sender_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def set_chat_description(
             self,
             chat_id: int,
@@ -15636,6 +15724,40 @@ class API:
             _constructor(
                 group_call_id=group_call_id,
                 title=title,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_inactive_session_ttl(
+            self,
+            inactive_session_ttl_days: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes the period of inactivity after which sessions will automatically be terminated
+        
+        :param inactive_session_ttl_days: New number of days of inactivity before sessions will be automatically terminated; 1-366 days
+        :type inactive_session_ttl_days: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = SetInactiveSessionTtl.construct if skip_validation else SetInactiveSessionTtl
+
+        return await self.client.request(
+            _constructor(
+                inactive_session_ttl_days=inactive_session_ttl_days,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -17275,6 +17397,45 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def toggle_chat_has_protected_content(
+            self,
+            chat_id: int,
+            has_protected_content: bool,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
+        
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param has_protected_content: True, if chat content can't be saved locally, forwarded, or copied
+        :type has_protected_content: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = ToggleChatHasProtectedContent.construct if skip_validation else ToggleChatHasProtectedContent
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                has_protected_content=has_protected_content,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def toggle_chat_is_marked_as_unread(
             self,
             chat_id: int,
@@ -17643,7 +17804,7 @@ class API:
 
     async def toggle_message_sender_is_blocked(
             self,
-            sender: MessageSender,
+            sender_id: MessageSender,
             is_blocked: bool,
             *,
             request_id: str = None,
@@ -17653,8 +17814,8 @@ class API:
         """
         Changes the block state of a message sender. Currently, only users and supergroup chats can be blocked
         
-        :param sender: Message Sender
-        :type sender: :class:`MessageSender`
+        :param sender_id: Identifier of a message sender to block/unblock
+        :type sender_id: :class:`MessageSender`
         
         :param is_blocked: New value of is_blocked
         :type is_blocked: :class:`bool`
@@ -17673,8 +17834,86 @@ class API:
 
         return await self.client.request(
             _constructor(
-                sender=sender,
+                sender_id=sender_id,
                 is_blocked=is_blocked,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def toggle_session_can_accept_calls(
+            self,
+            session_id: int,
+            can_accept_calls: bool,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Toggles whether a session can accept incoming calls
+        
+        :param session_id: Session identifier
+        :type session_id: :class:`int`
+        
+        :param can_accept_calls: True, if incoming calls can be accepted by the session
+        :type can_accept_calls: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = ToggleSessionCanAcceptCalls.construct if skip_validation else ToggleSessionCanAcceptCalls
+
+        return await self.client.request(
+            _constructor(
+                session_id=session_id,
+                can_accept_calls=can_accept_calls,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def toggle_session_can_accept_secret_chats(
+            self,
+            session_id: int,
+            can_accept_secret_chats: bool,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Toggles whether a session can accept incoming secret chats
+        
+        :param session_id: Session identifier
+        :type session_id: :class:`int`
+        
+        :param can_accept_secret_chats: True, if incoming secret chats can be accepted by the session
+        :type can_accept_secret_chats: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = ToggleSessionCanAcceptSecretChats.construct if skip_validation else ToggleSessionCanAcceptSecretChats
+
+        return await self.client.request(
+            _constructor(
+                session_id=session_id,
+                can_accept_secret_chats=can_accept_secret_chats,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -17763,7 +18002,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Toggles sender signatures messages sent in a channel; requires can_change_info administrator right
+        Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
         
         :param supergroup_id: Identifier of the channel
         :type supergroup_id: :class:`int`

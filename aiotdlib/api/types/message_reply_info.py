@@ -18,8 +18,8 @@ class MessageReplyInfo(BaseObject):
     :param reply_count: Number of times the message was directly or indirectly replied
     :type reply_count: :class:`int`
     
-    :param recent_repliers: Recent repliers to the message; available in channels with a discussion supergroup
-    :type recent_repliers: :class:`list[MessageSender]`
+    :param recent_replier_ids: Identifiers of recent repliers to the message; available in channels with a discussion supergroup
+    :type recent_replier_ids: :class:`list[MessageSender]`
     
     :param last_read_inbox_message_id: Identifier of the last read incoming reply to the message
     :type last_read_inbox_message_id: :class:`int`
@@ -34,7 +34,7 @@ class MessageReplyInfo(BaseObject):
 
     ID: str = Field("messageReplyInfo", alias="@type")
     reply_count: int
-    recent_repliers: list[MessageSender]
+    recent_replier_ids: list[MessageSender]
     last_read_inbox_message_id: int
     last_read_outbox_message_id: int
     last_message_id: int

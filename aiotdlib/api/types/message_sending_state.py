@@ -32,6 +32,9 @@ class MessageSendingStateFailed(MessageSendingState):
     :param can_retry: True, if the message can be re-sent
     :type can_retry: :class:`bool`
     
+    :param need_another_sender: True, if the message can be re-sent only on behalf of a different sender
+    :type need_another_sender: :class:`bool`
+    
     :param retry_after: Time left before the message can be re-sent, in seconds. No update is sent when this field changes
     :type retry_after: :class:`float`
     
@@ -41,6 +44,7 @@ class MessageSendingStateFailed(MessageSendingState):
     error_code: int
     error_message: str
     can_retry: bool
+    need_another_sender: bool
     retry_after: float
 
     @staticmethod

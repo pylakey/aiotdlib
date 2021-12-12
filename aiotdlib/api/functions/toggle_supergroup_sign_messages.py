@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class ToggleSupergroupSignMessages(BaseObject):
     """
-    Toggles sender signatures messages sent in a channel; requires can_change_info administrator right
+    Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
     
     :param supergroup_id: Identifier of the channel
     :type supergroup_id: :class:`int`

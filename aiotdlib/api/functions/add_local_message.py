@@ -19,8 +19,8 @@ class AddLocalMessage(BaseObject):
     :param chat_id: Target chat
     :type chat_id: :class:`int`
     
-    :param sender: The sender of the message
-    :type sender: :class:`MessageSender`
+    :param sender_id: Identifier of the sender of the message
+    :type sender_id: :class:`MessageSender`
     
     :param reply_to_message_id: Identifier of the message to reply to or 0
     :type reply_to_message_id: :class:`int`
@@ -35,7 +35,7 @@ class AddLocalMessage(BaseObject):
 
     ID: str = Field("addLocalMessage", alias="@type")
     chat_id: int
-    sender: MessageSender
+    sender_id: MessageSender
     reply_to_message_id: int
     disable_notification: bool
     input_message_content: InputMessageContent

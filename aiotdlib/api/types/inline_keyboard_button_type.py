@@ -140,3 +140,20 @@ class InlineKeyboardButtonTypeUrl(InlineKeyboardButtonType):
     @staticmethod
     def read(q: dict) -> InlineKeyboardButtonTypeUrl:
         return InlineKeyboardButtonTypeUrl.construct(**q)
+
+
+class InlineKeyboardButtonTypeUser(InlineKeyboardButtonType):
+    """
+    A button to open a chat with a user
+    
+    :param user_id: User identifier
+    :type user_id: :class:`int`
+    
+    """
+
+    ID: str = Field("inlineKeyboardButtonTypeUser", alias="@type")
+    user_id: int
+
+    @staticmethod
+    def read(q: dict) -> InlineKeyboardButtonTypeUser:
+        return InlineKeyboardButtonTypeUser.construct(**q)

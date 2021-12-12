@@ -14,7 +14,7 @@ class CheckPhoneNumberVerificationCode(BaseObject):
     """
     Checks the phone number verification code for Telegram Passport
     
-    :param code: Verification code
+    :param code: Verification code to check
     :type code: :class:`str`
     
     """

@@ -14,7 +14,7 @@ class CheckRecoveryEmailAddressCode(BaseObject):
     """
     Checks the 2-step verification recovery email address verification code
     
-    :param code: Verification code
+    :param code: Verification code to check
     :type code: :class:`str`
     
     """

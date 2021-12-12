@@ -15,8 +15,8 @@ class ToggleMessageSenderIsBlocked(BaseObject):
     """
     Changes the block state of a message sender. Currently, only users and supergroup chats can be blocked
     
-    :param sender: Message Sender
-    :type sender: :class:`MessageSender`
+    :param sender_id: Identifier of a message sender to block/unblock
+    :type sender_id: :class:`MessageSender`
     
     :param is_blocked: New value of is_blocked
     :type is_blocked: :class:`bool`
@@ -24,7 +24,7 @@ class ToggleMessageSenderIsBlocked(BaseObject):
     """
 
     ID: str = Field("toggleMessageSenderIsBlocked", alias="@type")
-    sender: MessageSender
+    sender_id: MessageSender
     is_blocked: bool
 
     @staticmethod

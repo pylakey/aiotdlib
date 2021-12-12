@@ -371,7 +371,7 @@ class InputMessagePoll(InputMessageContent):
     :param open_period: Amount of time the poll will be active after creation, in seconds; for bots only
     :type open_period: :class:`int`
     
-    :param close_date: Point in time (Unix timestamp) when the poll will be automatically closed; for bots only
+    :param close_date: Point in time (Unix timestamp) when the poll will automatically be closed; for bots only
     :type close_date: :class:`int`
     
     :param is_closed: True, if the poll needs to be sent already closed; for bots only

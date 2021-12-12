@@ -18,10 +18,14 @@ class Sessions(BaseObject):
     :param sessions: List of sessions
     :type sessions: :class:`list[Session]`
     
+    :param inactive_session_ttl_days: Number of days of inactivity before sessions will automatically be terminated; 1-366 days
+    :type inactive_session_ttl_days: :class:`int`
+    
     """
 
     ID: str = Field("sessions", alias="@type")
     sessions: list[Session]
+    inactive_session_ttl_days: int
 
     @staticmethod
     def read(q: dict) -> Sessions:

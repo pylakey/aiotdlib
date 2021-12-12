@@ -780,11 +780,11 @@ class MessageProximityAlertTriggered(MessageContent):
     """
     A user in the chat came within proximity alert range
     
-    :param traveler: The user or chat, which triggered the proximity alert
-    :type traveler: :class:`MessageSender`
+    :param traveler_id: The identifier of a user or chat that triggered the proximity alert
+    :type traveler_id: :class:`MessageSender`
     
-    :param watcher: The user or chat, which subscribed for the proximity alert
-    :type watcher: :class:`MessageSender`
+    :param watcher_id: The identifier of a user or chat that subscribed for the proximity alert
+    :type watcher_id: :class:`MessageSender`
     
     :param distance: The distance between the users
     :type distance: :class:`int`
@@ -792,8 +792,8 @@ class MessageProximityAlertTriggered(MessageContent):
     """
 
     ID: str = Field("messageProximityAlertTriggered", alias="@type")
-    traveler: MessageSender
-    watcher: MessageSender
+    traveler_id: MessageSender
+    watcher_id: MessageSender
     distance: int
 
     @staticmethod

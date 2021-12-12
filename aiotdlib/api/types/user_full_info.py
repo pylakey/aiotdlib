@@ -33,6 +33,9 @@ class UserFullInfo(BaseObject):
     :param has_private_calls: True, if the user can't be called due to their privacy settings
     :type has_private_calls: :class:`bool`
     
+    :param has_private_forwards: True, if the user can't be linked in forwarded messages due to their privacy settings
+    :type has_private_forwards: :class:`bool`
+    
     :param need_phone_number_privacy_exception: True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
     :type need_phone_number_privacy_exception: :class:`bool`
     
@@ -59,6 +62,7 @@ class UserFullInfo(BaseObject):
     can_be_called: bool
     supports_video_calls: bool
     has_private_calls: bool
+    has_private_forwards: bool
     need_phone_number_privacy_exception: bool
     bio: str
     share_text: str

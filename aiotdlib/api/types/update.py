@@ -42,6 +42,7 @@ from .location import Location
 from .message import Message
 from .message_content import MessageContent
 from .message_interaction_info import MessageInteractionInfo
+from .message_sender import MessageSender
 from .notification import Notification
 from .notification_group import NotificationGroup
 from .notification_group_type import NotificationGroupType
@@ -176,7 +177,7 @@ class UpdateBasicGroup(Update):
 
 class UpdateBasicGroupFullInfo(Update):
     """
-    Some data from basicGroupFullInfo has been changed
+    Some data in basicGroupFullInfo has been changed
     
     :param basic_group_id: Identifier of a basic group
     :type basic_group_id: :class:`int`
@@ -210,6 +211,35 @@ class UpdateCall(Update):
     @staticmethod
     def read(q: dict) -> UpdateCall:
         return UpdateCall.construct(**q)
+
+
+class UpdateChatAction(Update):
+    """
+    A message sender activity in the chat has changed
+    
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_thread_id: If not 0, a message thread identifier in which the action was performed
+    :type message_thread_id: :class:`int`
+    
+    :param sender_id: Identifier of a message sender performing the action
+    :type sender_id: :class:`MessageSender`
+    
+    :param action: The action
+    :type action: :class:`ChatAction`
+    
+    """
+
+    ID: str = Field("updateChatAction", alias="@type")
+    chat_id: int
+    message_thread_id: int
+    sender_id: MessageSender
+    action: ChatAction
+
+    @staticmethod
+    def read(q: dict) -> UpdateChatAction:
+        return UpdateChatAction.construct(**q)
 
 
 class UpdateChatActionBar(Update):
@@ -254,6 +284,27 @@ class UpdateChatDefaultDisableNotification(Update):
         return UpdateChatDefaultDisableNotification.construct(**q)
 
 
+class UpdateChatDefaultMessageSenderId(Update):
+    """
+    The default message sender that is chosen to send messages in a chat has changed
+    
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param default_message_sender_id: New value of default_message_sender_id; may be null if the user can't change message sender, defaults to None
+    :type default_message_sender_id: :class:`MessageSender`, optional
+    
+    """
+
+    ID: str = Field("updateChatDefaultMessageSenderId", alias="@type")
+    chat_id: int
+    default_message_sender_id: typing.Optional[MessageSender] = None
+
+    @staticmethod
+    def read(q: dict) -> UpdateChatDefaultMessageSenderId:
+        return UpdateChatDefaultMessageSenderId.construct(**q)
+
+
 class UpdateChatDraftMessage(Update):
     """
     A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
@@ -294,6 +345,27 @@ class UpdateChatFilters(Update):
     @staticmethod
     def read(q: dict) -> UpdateChatFilters:
         return UpdateChatFilters.construct(**q)
+
+
+class UpdateChatHasProtectedContent(Update):
+    """
+    A chat content was allowed or restricted for saving
+    
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param has_protected_content: New value of has_protected_content
+    :type has_protected_content: :class:`bool`
+    
+    """
+
+    ID: str = Field("updateChatHasProtectedContent", alias="@type")
+    chat_id: int
+    has_protected_content: bool
+
+    @staticmethod
+    def read(q: dict) -> UpdateChatHasProtectedContent:
+        return UpdateChatHasProtectedContent.construct(**q)
 
 
 class UpdateChatHasScheduledMessages(Update):
@@ -570,7 +642,7 @@ class UpdateChatPosition(Update):
 
 class UpdateChatReadInbox(Update):
     """
-    Incoming messages were read or number of unread messages has been changed
+    Incoming messages were read or the number of unread messages has been changed
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
@@ -1786,7 +1858,7 @@ class UpdateSelectedBackground(Update):
 
 class UpdateServiceNotification(Update):
     """
-    Service notification from the server. Upon receiving this the application must show a popup with the content of the notification
+    A service notification from the server was received. Upon receiving this the application must show a popup with the content of the notification
     
     :param type_: Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" must be shown under notification; if user presses the second, all local data must be destroyed using Destroy method
     :type type_: :class:`str`
@@ -1862,7 +1934,7 @@ class UpdateSupergroup(Update):
 
 class UpdateSupergroupFullInfo(Update):
     """
-    Some data from supergroupFullInfo has been changed
+    Some data in supergroupFullInfo has been changed
     
     :param supergroup_id: Identifier of the supergroup or channel
     :type supergroup_id: :class:`int`
@@ -1998,38 +2070,9 @@ class UpdateUser(Update):
         return UpdateUser.construct(**q)
 
 
-class UpdateUserChatAction(Update):
-    """
-    User activity in the chat has changed
-    
-    :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
-    :param message_thread_id: If not 0, a message thread identifier in which the action was performed
-    :type message_thread_id: :class:`int`
-    
-    :param user_id: Identifier of a user performing an action
-    :type user_id: :class:`int`
-    
-    :param action: The action description
-    :type action: :class:`ChatAction`
-    
-    """
-
-    ID: str = Field("updateUserChatAction", alias="@type")
-    chat_id: int
-    message_thread_id: int
-    user_id: int
-    action: ChatAction
-
-    @staticmethod
-    def read(q: dict) -> UpdateUserChatAction:
-        return UpdateUserChatAction.construct(**q)
-
-
 class UpdateUserFullInfo(Update):
     """
-    Some data from userFullInfo has been changed
+    Some data in userFullInfo has been changed
     
     :param user_id: User identifier
     :type user_id: :class:`int`
