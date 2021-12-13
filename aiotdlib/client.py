@@ -27,6 +27,13 @@ from pydantic import (
     validator,
 )
 
+from api import (
+    BadRequest,
+    OptionValueBoolean,
+    OptionValueEmpty,
+    OptionValueInteger,
+    OptionValueString,
+)
 from . import __version__
 from .api import (
     API,
@@ -168,6 +175,138 @@ class ClientParseMode(str, enum.Enum):
     MARKDOWN = 'markdown'
 
 
+class ClientOptions(pydantic.BaseModel):
+    always_parse_markdown: Optional[bool]
+    """
+    If true, text entities will be automatically parsed in all inputMessageText objects
+    """
+
+    archive_and_mute_new_chats_from_unknown_users: Optional[bool]
+    """
+    If true, new chats from non-contacts will be automatically archived and muted. 
+    The option can be set only if the option “can_archive_and_mute_new_chats_from_unknown_users” is true. 
+    getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
+    """
+
+    disable_contact_registered_notifications: Optional[bool]
+    """
+    If true, notifications about the user's contacts who have joined Telegram will be disabled. 
+    User will still receive the corresponding message in the private chat. 
+    getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
+    """
+
+    disable_persistent_network_statistics: Optional[bool] = True
+    """
+    If true, persistent network statistics will be disabled, which significantly reduces disk usage
+    """
+
+    disable_sent_scheduled_message_notifications: Optional[bool] = True
+    """
+    If true, notifications about outgoing scheduled messages that were sent will be disabled
+    """
+
+    disable_time_adjustment_protection: Optional[bool] = True
+    """
+    If true, protection from external time adjustment will be disabled, which significantly reduces disk usage
+    """
+
+    disable_top_chats: Optional[bool]
+    """
+    If true, support for top chats and statistics collection is disabled
+    """
+
+    ignore_background_updates: Optional[bool]
+    """
+    If true, allows to skip all updates received while the TDLib instance was not running. 
+    The option does nothing if the database or secret chats are used
+    """
+
+    ignore_default_disable_notification: Optional[bool]
+    """
+    If true, the disable_notification value specified in the request will be always used instead of the default value
+    """
+
+    ignore_inline_thumbnails: Optional[bool] = True
+    """
+    If true, prevents file thumbnails sent by the server along with messages from being saved on the disk
+    """
+
+    ignore_platform_restrictions: Optional[bool] = True
+    """
+    If true, chat and message reictions specific to the currently used operating system will be ignored
+    """
+
+    ignore_sensitive_content_restrictions: Optional[bool] = True
+    """
+    If true, sensitive content will be shown on all user devices. 
+    getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
+    """
+
+    is_location_visible: Optional[bool] = False
+    """
+    If true, other users will be allowed to see the current user's location
+    """
+
+    language_pack_database_path: Optional[str]
+    """
+    Path to a database for storing language pack strs, so that this database can be shared between different accounts. 
+    By default, language pack Optional[str]s are stored only in memory. 
+    Changes of value of this option will be applied only after TDLib restart, 
+    so it should be set before call to setTdlibParameters.
+    """
+
+    language_pack_id: Optional[str]
+    """
+    Identifier of the currently used language pack from the current localization target
+    """
+
+    localization_target: Optional[str]
+    """
+    Name for the current localization target (currently supported: “android”, “android_x”, “ios”, “macos” and “tdesktop”)
+    """
+
+    message_unload_delay: Optional[int]
+    """
+    The maximum time messages are stored in memory before they are unloaded, 60-86400; in seconds. 
+    Defaults to 60 for users and 1800 for bots
+    """
+
+    notification_group_count_max: Optional[int]
+    """
+    Maximum number of notification groups to be shown simultaneously, 0-25
+    """
+
+    notification_group_size_max: Optional[int]
+    """
+    Maximum number of simultaneously shown notifications in a group, 1-25. Defaults to 10
+    """
+
+    online: Optional[bool]
+    """
+    Online status of the current user
+    """
+
+    prefer_ipv6: Optional[bool]
+    """
+    If true, IPv6 addresses will be preferred over IPv4 addresses
+    """
+
+    use_pfs: Optional[bool]
+    """
+    If true, Perfect Forward Secrecy will be enabled for interaction with the Telegram servers for cloud chats
+    """
+
+    use_quick_ack: Optional[bool]
+    """
+    If true, quick acknowledgement will be enabled for outgoing messages
+    """
+
+    use_storage_optimizer: Optional[bool] = True
+    """
+    If true, the background storage optimizer will be enabled
+    """
+
+
 class ClientSettings(pydantic.BaseSettings):
     """
     Attributes:
@@ -256,6 +395,8 @@ class ClientSettings(pydantic.BaseSettings):
     use_secret_chats: bool = True
     enable_storage_optimizer: bool = True
     ignore_file_names: bool = True
+    ignore_background_updates: bool = False
+    options: ClientOptions = ClientOptions()
 
     @root_validator(pre=True)
     def check_phone_and_bot_token(cls, values):
@@ -354,6 +495,7 @@ class Client:
             use_secret_chats: bool = Undefined,
             enable_storage_optimizer: bool = Undefined,
             ignore_file_names: bool = Undefined,
+            options: ClientOptions = Undefined,
             **kwargs
     ):
         """
@@ -438,6 +580,7 @@ class Client:
             'use_secret_chats': use_secret_chats,
             'enable_storage_optimizer': enable_storage_optimizer,
             'ignore_file_names': ignore_file_names,
+            'options': options,
             **kwargs
         }
         settings = {k: v for k, v in settings.items() if v is not Undefined}
@@ -548,6 +691,11 @@ class Client:
         return await self.api.get_authorization_state(request_id="updateAuthorizationState")
 
     async def __set_tdlib_parameters(self) -> RequestResult:
+        try:
+            await self.__setup_options()
+        except BadRequest as e:
+            exit(1)
+
         return await self.api.set_tdlib_parameters(
             parameters=TdlibParameters(
                 use_test_dc=self.settings.use_test_dc,
@@ -755,6 +903,23 @@ class Client:
             port=self.settings.proxy_settings.port,
             type_=proxy_type,
         )
+
+    async def __setup_options(self):
+        for k, v in self.settings.options.dict(exclude_none=True).items():
+            if isinstance(v, bool):
+                option_value = OptionValueBoolean(value=v)
+            elif isinstance(v, str):
+                option_value = OptionValueString(value=v)
+            elif isinstance(v, int):
+                option_value = OptionValueInteger(value=v)
+            elif v is None:
+                option_value = OptionValueEmpty()
+            else:
+                self.logger.warning(f"Option {k} has unsupported value of type {v.__class__.__name__}: {v}")
+                continue
+
+            self.logger.info(f'Setting up option {k} = {v}')
+            await self.api.set_option(k, option_value, skip_validation=True)
 
     def add_event_handler(
             self,
@@ -2074,3 +2239,6 @@ class Client:
                     break
 
             request_limit = min(100, limit - yielded_messages_count)
+
+    async def get_my_id(self) -> int:
+        return await self.get_option_value('my_id')

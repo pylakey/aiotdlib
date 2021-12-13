@@ -226,7 +226,7 @@ class ClientCache:
         value = self.options.get(name)
 
         if not bool(value):
-            option_value = await self.client.api.get_option()
+            option_value = await self.client.api.get_option(name)
 
             if isinstance(option_value, OptionValueEmpty):
                 value = None

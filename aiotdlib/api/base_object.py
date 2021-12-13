@@ -21,9 +21,11 @@ logger = logging.getLogger('BaseObject')
 
 class BaseObject(BaseModel):
     class Config(BaseConfig):
+        arbitrary_types_allowed = True
         anystr_strip_whitespace = True
         underscore_attrs_are_private = True
         use_enum_values = True
+        allow_population_by_field_name = True
         json_loads = ujson.loads
         json_dumps = ujson.dumps
 
