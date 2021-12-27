@@ -13,7 +13,7 @@ from ..types import InputSticker
 
 class UploadStickerFile(BaseObject):
     """
-    Uploads a PNG image with a sticker; returns the uploaded file
+    Uploads a file with a sticker; returns the uploaded file
     
     :param user_id: Sticker file owner; ignored for regular users
     :type user_id: :class:`int`

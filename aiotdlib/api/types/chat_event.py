@@ -8,6 +8,7 @@ from __future__ import annotations
 from pydantic import Field
 
 from .chat_event_action import ChatEventAction
+from .message_sender import MessageSender
 from ..base_object import BaseObject
 
 
@@ -21,10 +22,10 @@ class ChatEvent(BaseObject):
     :param date: Point in time (Unix timestamp) when the event happened
     :type date: :class:`int`
     
-    :param user_id: Identifier of the user who performed the action that triggered the event
-    :type user_id: :class:`int`
+    :param member_id: Identifier of the user or chat who performed the action
+    :type member_id: :class:`MessageSender`
     
-    :param action: Action performed by the user
+    :param action: The action
     :type action: :class:`ChatEventAction`
     
     """
@@ -32,7 +33,7 @@ class ChatEvent(BaseObject):
     ID: str = Field("chatEvent", alias="@type")
     id: int
     date: int
-    user_id: int
+    member_id: MessageSender
     action: ChatEventAction
 
     @staticmethod

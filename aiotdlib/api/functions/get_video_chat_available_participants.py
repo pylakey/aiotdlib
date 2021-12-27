@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class GetVideoChatAvailableParticipants(BaseObject):
     """
-    Returns list of participant identifiers, which can be used to join video chats in a chat
+    Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`

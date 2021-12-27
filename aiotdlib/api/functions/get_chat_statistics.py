@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class GetChatStatistics(BaseObject):
     """
-    Returns detailed statistics about a chat. Currently this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
+    Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`

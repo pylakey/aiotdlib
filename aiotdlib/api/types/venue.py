@@ -24,7 +24,7 @@ class Venue(BaseObject):
     :param address: Venue address; as defined by the sender
     :type address: :class:`str`
     
-    :param provider: Provider of the venue database; as defined by the sender. Currently only "foursquare" and "gplaces" (Google Places) need to be supported
+    :param provider: Provider of the venue database; as defined by the sender. Currently, only "foursquare" and "gplaces" (Google Places) need to be supported
     :type provider: :class:`str`
     
     :param id: Identifier of the venue in the provider database; as defined by the sender

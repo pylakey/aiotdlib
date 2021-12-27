@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class ChatInviteLinkMember(BaseObject):
     """
-    Describes a chat member joined a chat by an invite link
+    Describes a chat member joined a chat via an invite link
     
     :param user_id: User identifier
     :type user_id: :class:`int`

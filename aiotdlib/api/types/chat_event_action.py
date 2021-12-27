@@ -233,7 +233,7 @@ class ChatEventMemberJoined(ChatEventAction):
 
 class ChatEventMemberJoinedByInviteLink(ChatEventAction):
     """
-    A new member joined the chat by an invite link
+    A new member joined the chat via an invite link
     
     :param invite_link: Invite link used to join the chat
     :type invite_link: :class:`ChatInviteLink`
@@ -387,25 +387,25 @@ class ChatEventMessagePinned(ChatEventAction):
         return ChatEventMessagePinned.construct(**q)
 
 
-class ChatEventMessageTtlSettingChanged(ChatEventAction):
+class ChatEventMessageTtlChanged(ChatEventAction):
     """
-    The message TTL setting was changed
+    The message TTL was changed
     
-    :param old_message_ttl_setting: Previous value of message_ttl_setting
-    :type old_message_ttl_setting: :class:`int`
+    :param old_message_ttl: Previous value of message_ttl
+    :type old_message_ttl: :class:`int`
     
-    :param new_message_ttl_setting: New value of message_ttl_setting
-    :type new_message_ttl_setting: :class:`int`
+    :param new_message_ttl: New value of message_ttl
+    :type new_message_ttl: :class:`int`
     
     """
 
-    ID: str = Field("chatEventMessageTtlSettingChanged", alias="@type")
-    old_message_ttl_setting: int
-    new_message_ttl_setting: int
+    ID: str = Field("chatEventMessageTtlChanged", alias="@type")
+    old_message_ttl: int
+    new_message_ttl: int
 
     @staticmethod
-    def read(q: dict) -> ChatEventMessageTtlSettingChanged:
-        return ChatEventMessageTtlSettingChanged.construct(**q)
+    def read(q: dict) -> ChatEventMessageTtlChanged:
+        return ChatEventMessageTtlChanged.construct(**q)
 
 
 class ChatEventMessageUnpinned(ChatEventAction):
@@ -602,21 +602,21 @@ class ChatEventVideoChatCreated(ChatEventAction):
         return ChatEventVideoChatCreated.construct(**q)
 
 
-class ChatEventVideoChatDiscarded(ChatEventAction):
+class ChatEventVideoChatEnded(ChatEventAction):
     """
-    A video chat was discarded
+    A video chat was ended
     
     :param group_call_id: Identifier of the video chat. The video chat can be received through the method getGroupCall
     :type group_call_id: :class:`int`
     
     """
 
-    ID: str = Field("chatEventVideoChatDiscarded", alias="@type")
+    ID: str = Field("chatEventVideoChatEnded", alias="@type")
     group_call_id: int
 
     @staticmethod
-    def read(q: dict) -> ChatEventVideoChatDiscarded:
-        return ChatEventVideoChatDiscarded.construct(**q)
+    def read(q: dict) -> ChatEventVideoChatEnded:
+        return ChatEventVideoChatEnded.construct(**q)
 
 
 class ChatEventVideoChatMuteNewParticipantsToggled(ChatEventAction):

@@ -5,6 +5,15 @@ import typing
 
 from sortedcontainers import SortedSet
 
+from api import (
+    UpdateChatActionBar,
+    UpdateChatHasProtectedContent,
+    UpdateChatMessageSender,
+    UpdateChatMessageTtl,
+    UpdateChatOnlineMemberCount,
+    UpdateChatPendingJoinRequests,
+    UpdateChatTheme,
+)
 from .api import (
     API,
     AioTDLibError,
@@ -30,7 +39,6 @@ from .api import (
     UpdateChatIsBlocked,
     UpdateChatIsMarkedAsUnread,
     UpdateChatLastMessage,
-    UpdateChatMessageTtlSetting,
     UpdateChatNotificationSettings,
     UpdateChatPermissions,
     UpdateChatPhoto,
@@ -117,110 +125,59 @@ class ClientCache:
     def __init__(self, client: 'Client'):
         self.logger = logging.getLogger(__name__)
         self.client = client
-        client.add_event_handler(
-            self.__on_update_option,
-            API.Types.UPDATE_OPTION
-        )
-        client.add_event_handler(
-            self.__on_update_user,
-            API.Types.UPDATE_USER
-        )
-        client.add_event_handler(
-            self.__on_update_user_full_info,
-            API.Types.UPDATE_USER_FULL_INFO
-        )
-        client.add_event_handler(
-            self.__on_update_basic_group,
-            API.Types.UPDATE_BASIC_GROUP
-        )
-        client.add_event_handler(
-            self.__on_update_basic_group_full_info,
-            API.Types.UPDATE_BASIC_GROUP_FULL_INFO
-        )
-        client.add_event_handler(
-            self.__on_update_supergroup,
-            API.Types.UPDATE_SUPERGROUP
-        )
-        client.add_event_handler(
-            self.__on_update_supergroup_full_info,
-            API.Types.UPDATE_SUPERGROUP_FULL_INFO
-        )
-        client.add_event_handler(
-            self.__on_update_secret_chat,
-            API.Types.UPDATE_SECRET_CHAT
-        )
-        client.add_event_handler(
-            self.__on_update_new_chat,
-            API.Types.UPDATE_NEW_CHAT
-        )
-        client.add_event_handler(
-            self.__on_update_chat_position,
-            API.Types.UPDATE_CHAT_POSITION
-        )
-        client.add_event_handler(
-            self.__on_update_chat_last_message,
-            API.Types.UPDATE_CHAT_LAST_MESSAGE
-        )
-        client.add_event_handler(
-            self.__on_update_chat_draft_message,
-            API.Types.UPDATE_CHAT_DRAFT_MESSAGE
-        )
-        client.add_event_handler(
-            self.__on_update_chat_title,
-            API.Types.UPDATE_CHAT_TITLE
-        )
-        client.add_event_handler(
-            self.__on_update_chat_photo,
-            API.Types.UPDATE_CHAT_PHOTO
-        )
-        client.add_event_handler(
-            self.__on_update_chat_permissions,
-            API.Types.UPDATE_CHAT_PERMISSIONS
-        )
-        client.add_event_handler(
-            self.__on_update_chat_read_inbox,
-            API.Types.UPDATE_CHAT_READ_INBOX
-        )
-        client.add_event_handler(
-            self.__on_update_chat_read_outbox,
-            API.Types.UPDATE_CHAT_READ_OUTBOX
-        )
-        client.add_event_handler(
-            self.__on_update_chat_reply_markup,
-            API.Types.UPDATE_CHAT_REPLY_MARKUP
-        )
-        client.add_event_handler(
-            self.__on_update_chat_notification_settings,
-            API.Types.UPDATE_CHAT_NOTIFICATION_SETTINGS
-        )
-        client.add_event_handler(
-            self.__on_update_chat_unread_mention_count,
-            API.Types.UPDATE_CHAT_UNREAD_MENTION_COUNT
-        )
+
+        client.add_event_handler(self.__on_update_option, API.Types.UPDATE_OPTION)
+        client.add_event_handler(self.__on_update_user, API.Types.UPDATE_USER)
+        client.add_event_handler(self.__on_update_user_full_info, API.Types.UPDATE_USER_FULL_INFO)
+        client.add_event_handler(self.__on_update_basic_group, API.Types.UPDATE_BASIC_GROUP)
+        client.add_event_handler(self.__on_update_basic_group_full_info, API.Types.UPDATE_BASIC_GROUP_FULL_INFO)
+        client.add_event_handler(self.__on_update_supergroup, API.Types.UPDATE_SUPERGROUP)
+        client.add_event_handler(self.__on_update_supergroup_full_info, API.Types.UPDATE_SUPERGROUP_FULL_INFO)
+        client.add_event_handler(self.__on_update_secret_chat, API.Types.UPDATE_SECRET_CHAT)
+        client.add_event_handler(self.__on_update_new_chat, API.Types.UPDATE_NEW_CHAT)
+
+        # Chat updates
+        # Updates changing positions
+        client.add_event_handler(self.__on_update_chat_position, API.Types.UPDATE_CHAT_POSITION)
+        client.add_event_handler(self.__on_update_chat_last_message, API.Types.UPDATE_CHAT_LAST_MESSAGE)
+        client.add_event_handler(self.__on_update_chat_draft_message, API.Types.UPDATE_CHAT_DRAFT_MESSAGE)
+
+        # Updates changing info only
+        client.add_event_handler(self.__on_update_chat_action_bar, API.Types.UPDATE_CHAT_ACTION_BAR)
         client.add_event_handler(
             self.__on_update_chat_default_disable_notification,
             API.Types.UPDATE_CHAT_DEFAULT_DISABLE_NOTIFICATION
         )
         client.add_event_handler(
-            self.__on_update_chat_is_blocked,
-            API.Types.UPDATE_CHAT_IS_BLOCKED
-        )
-        client.add_event_handler(
-            self.__on_update_chat_is_marked_as_unread,
-            API.Types.UPDATE_CHAT_IS_MARKED_AS_UNREAD
+            self.__on_update_chat_has_protected_content,
+            API.Types.UPDATE_CHAT_HAS_PROTECTED_CONTENT
         )
         client.add_event_handler(
             self.__on_update_chat_has_scheduled_messages,
             API.Types.UPDATE_CHAT_HAS_SCHEDULED_MESSAGES
         )
+        client.add_event_handler(self.__on_update_chat_is_blocked, API.Types.UPDATE_CHAT_IS_BLOCKED)
+        client.add_event_handler(self.__on_update_chat_is_marked_as_unread, API.Types.UPDATE_CHAT_IS_MARKED_AS_UNREAD)
+        client.add_event_handler(self.__on_update_chat_message_sender, API.Types.UPDATE_CHAT_MESSAGE_SENDER)
+        client.add_event_handler(self.__on_update_chat_message_ttl, API.Types.UPDATE_CHAT_MESSAGE_TTL)
         client.add_event_handler(
-            self.__on_update_chat_message_ttl_setting,
-            API.Types.UPDATE_CHAT_MESSAGE_TTL_SETTING
+            self.__on_update_chat_notification_settings,
+            API.Types.UPDATE_CHAT_NOTIFICATION_SETTINGS
         )
+        client.add_event_handler(self.__on_update_chat_online_member_count, API.Types.UPDATE_CHAT_ONLINE_MEMBER_COUNT)
         client.add_event_handler(
-            self.__on_update_chat_video_chat,
-            API.Types.UPDATE_CHAT_VIDEO_CHAT
+            self.__on_update_chat_pending_join_requests,
+            API.Types.UPDATE_CHAT_PENDING_JOIN_REQUESTS
         )
+        client.add_event_handler(self.__on_update_chat_permissions, API.Types.UPDATE_CHAT_PERMISSIONS)
+        client.add_event_handler(self.__on_update_chat_photo, API.Types.UPDATE_CHAT_PHOTO)
+        client.add_event_handler(self.__on_update_chat_read_inbox, API.Types.UPDATE_CHAT_READ_INBOX)
+        client.add_event_handler(self.__on_update_chat_read_outbox, API.Types.UPDATE_CHAT_READ_OUTBOX)
+        client.add_event_handler(self.__on_update_chat_reply_markup, API.Types.UPDATE_CHAT_REPLY_MARKUP)
+        client.add_event_handler(self.__on_update_chat_theme, API.Types.UPDATE_CHAT_THEME)
+        client.add_event_handler(self.__on_update_chat_title, API.Types.UPDATE_CHAT_TITLE)
+        client.add_event_handler(self.__on_update_chat_unread_mention_count, API.Types.UPDATE_CHAT_UNREAD_MENTION_COUNT)
+        client.add_event_handler(self.__on_update_chat_video_chat, API.Types.UPDATE_CHAT_VIDEO_CHAT)
 
     async def get_option_value(self, name: str) -> typing.Union[str, int, bool, None]:
         value = self.options.get(name)
@@ -391,61 +348,103 @@ class ClientCache:
             new_positions = [update.position] + [p for p in chat.positions if not isinstance(p, ChatListMain)]
             self.__set_chat_positions(chat, new_positions)
 
+        # TODO: Update chat positions in other lists
+
     async def __on_update_chat_last_message(self, _: Client, update: UpdateChatLastMessage):
         chat = self.chats.get(update.chat_id)
         chat.last_message = update.last_message
         self.__set_chat_positions(chat, update.positions)
 
     async def __on_update_chat_draft_message(self, _: Client, update: UpdateChatDraftMessage):
-        chat = self.chats.get(update.chat_id)
-        if not hasattr(update, 'draft_message'):
-            print(update)
+        chat = self.chats[update.chat_id]
         chat.draft_message = update.draft_message
         self.__set_chat_positions(chat, update.positions)
 
-    async def __on_update_chat_title(self, _: Client, update: UpdateChatTitle):
-        self.chats[update.chat_id].title = update.title
-
-    async def __on_update_chat_photo(self, _: Client, update: UpdateChatPhoto):
-        self.chats[update.chat_id].photo = update.photo
-
-    async def __on_update_chat_permissions(self, _: Client, update: UpdateChatPermissions):
-        self.chats[update.chat_id].permissions = update.permissions
-
-    async def __on_update_chat_read_inbox(self, _: Client, update: UpdateChatReadInbox):
-        self.chats[update.chat_id].unread_count = update.unread_count
-        self.chats[update.chat_id].last_read_inbox_message_id = update.last_read_inbox_message_id
-
-    async def __on_update_chat_read_outbox(self, _: Client, update: UpdateChatReadOutbox):
-        self.chats[update.chat_id].last_read_outbox_message_id = update.last_read_outbox_message_id
-
-    async def __on_update_chat_reply_markup(self, _: Client, update: UpdateChatReplyMarkup):
-        self.chats[update.chat_id].reply_markup_message_id = update.reply_markup_message_id
-
-    async def __on_update_chat_message_ttl_setting(self, _: Client, update: UpdateChatMessageTtlSetting):
-        self.chats[update.chat_id].message_ttl_setting = update.message_ttl_setting
-
-    async def __on_update_chat_notification_settings(self, _: Client, update: UpdateChatNotificationSettings):
-        self.chats[update.chat_id].notification_settings = update.notification_settings
-
-    async def __on_update_chat_unread_mention_count(self, _: Client, update: UpdateChatUnreadMentionCount):
-        self.chats[update.chat_id].unread_mention_count = update.unread_mention_count
+    async def __on_update_chat_action_bar(self, _: Client, update: UpdateChatActionBar):
+        chat = self.chats[update.chat_id]
+        chat.action_bar = update.action_bar
 
     async def __on_update_chat_default_disable_notification(
             self,
             _: Client,
             update: UpdateChatDefaultDisableNotification
     ):
-        self.chats[update.chat_id].default_disable_notification = update.default_disable_notification
+        chat = self.chats[update.chat_id]
+        chat.default_disable_notification = update.default_disable_notification
 
-    async def __on_update_chat_is_blocked(self, _: Client, update: UpdateChatIsBlocked):
-        self.chats[update.chat_id].is_blocked = update.is_blocked
-
-    async def __on_update_chat_is_marked_as_unread(self, _: Client, update: UpdateChatIsMarkedAsUnread):
-        self.chats[update.chat_id].is_marked_as_unread = update.is_marked_as_unread
+    async def __on_update_chat_has_protected_content(self, _: Client, update: UpdateChatHasProtectedContent):
+        chat = self.chats[update.chat_id]
+        chat.has_protected_content = update.has_protected_content
 
     async def __on_update_chat_has_scheduled_messages(self, _: Client, update: UpdateChatHasScheduledMessages):
-        self.chats[update.chat_id].has_scheduled_messages = update.has_scheduled_messages
+        chat = self.chats[update.chat_id]
+        chat.has_scheduled_messages = update.has_scheduled_messages
+
+    async def __on_update_chat_is_blocked(self, _: Client, update: UpdateChatIsBlocked):
+        chat = self.chats[update.chat_id]
+        chat.is_blocked = update.is_blocked
+
+    async def __on_update_chat_is_marked_as_unread(self, _: Client, update: UpdateChatIsMarkedAsUnread):
+        chat = self.chats[update.chat_id]
+        chat.is_marked_as_unread = update.is_marked_as_unread
+
+    async def __on_update_chat_message_sender(self, _: Client, update: UpdateChatMessageSender):
+        chat = self.chats[update.chat_id]
+        chat.message_sender_id = update.message_sender_id
+
+    async def __on_update_chat_message_ttl(self, _: Client, update: UpdateChatMessageTtl):
+        chat = self.chats[update.chat_id]
+        chat.message_ttl = update.message_ttl
+
+    async def __on_update_chat_notification_settings(self, _: Client, update: UpdateChatNotificationSettings):
+        chat = self.chats[update.chat_id]
+        chat.notification_settings = update.notification_settings
+
+    async def __on_update_chat_online_member_count(self, _: Client, update: UpdateChatOnlineMemberCount):
+        chat = self.chats[update.chat_id]
+        chat.online_member_count = update.online_member_count
+
+    async def __on_update_chat_pending_join_requests(self, _: Client, update: UpdateChatPendingJoinRequests):
+        chat = self.chats[update.chat_id]
+        chat.pending_join_requests = update.pending_join_requests
+
+    async def __on_update_chat_permissions(self, _: Client, update: UpdateChatPermissions):
+        chat = self.chats[update.chat_id]
+        chat.permissions = update.permissions
+
+    async def __on_update_chat_photo(self, _: Client, update: UpdateChatPhoto):
+        chat = self.chats[update.chat_id]
+        chat.photo = update.photo
+
+    async def __on_update_chat_read_inbox(self, _: Client, update: UpdateChatReadInbox):
+        chat = self.chats[update.chat_id]
+        chat.last_read_inbox_message_id = update.last_read_inbox_message_id
+        chat.unread_count = update.unread_count
+
+    async def __on_update_chat_read_outbox(self, _: Client, update: UpdateChatReadOutbox):
+        chat = self.chats[update.chat_id]
+        chat.last_read_outbox_message_id = update.last_read_outbox_message_id
+
+    async def __on_update_chat_reply_markup(self, _: Client, update: UpdateChatReplyMarkup):
+        chat = self.chats[update.chat_id]
+        chat.reply_markup_message_id = update.reply_markup_message_id
+
+    async def __on_update_chat_theme(self, _: Client, update: UpdateChatTheme):
+        chat = self.chats[update.chat_id]
+        chat.theme_name = update.theme_name
+
+    async def __on_update_chat_title(self, _: Client, update: UpdateChatTitle):
+        chat = self.chats[update.chat_id]
+        chat.title = update.title
+
+    async def __on_update_chat_unread_mention_count(self, _: Client, update: UpdateChatUnreadMentionCount):
+        chat = self.chats[update.chat_id]
+        chat.unread_mention_count = update.unread_mention_count
+
+    async def __on_update_chat_message_ttl_setting(self, _: Client, update: UpdateChatMessageTtl):
+        chat = self.chats[update.chat_id]
+        chat.message_ttl = update.message_ttl
 
     async def __on_update_chat_video_chat(self, _: Client, update: UpdateChatVideoChat):
-        self.chats[update.chat_id].video_chat = update.video_chat
+        chat = self.chats[update.chat_id]
+        chat.video_chat = update.video_chat

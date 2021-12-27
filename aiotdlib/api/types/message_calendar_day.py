@@ -13,12 +13,12 @@ from ..base_object import BaseObject
 
 class MessageCalendarDay(BaseObject):
     """
-    Contains information about found messages sent in a specific day
+    Contains information about found messages sent on a specific day
     
-    :param total_count: Total number of found messages sent in the day
+    :param total_count: Total number of found messages sent on the day
     :type total_count: :class:`int`
     
-    :param message: First message sent in the day
+    :param message: First message sent on the day
     :type message: :class:`Message`
     
     """

@@ -93,7 +93,6 @@ from .delete_saved_order_info import DeleteSavedOrderInfo
 from .destroy import Destroy
 from .disable_proxy import DisableProxy
 from .discard_call import DiscardCall
-from .discard_group_call import DiscardGroupCall
 from .disconnect_all_websites import DisconnectAllWebsites
 from .disconnect_website import DisconnectWebsite
 from .download_file import DownloadFile
@@ -113,6 +112,7 @@ from .edit_message_scheduling_state import EditMessageSchedulingState
 from .edit_message_text import EditMessageText
 from .edit_proxy import EditProxy
 from .enable_proxy import EnableProxy
+from .end_group_call import EndGroupCall
 from .end_group_call_recording import EndGroupCallRecording
 from .end_group_call_screen_sharing import EndGroupCallScreenSharing
 from .finish_file_generation import FinishFileGeneration
@@ -157,7 +157,7 @@ from .get_chat_notification_settings_exceptions import GetChatNotificationSettin
 from .get_chat_pinned_message import GetChatPinnedMessage
 from .get_chat_scheduled_messages import GetChatScheduledMessages
 from .get_chat_sparse_message_positions import GetChatSparseMessagePositions
-from .get_chat_sponsored_messages import GetChatSponsoredMessages
+from .get_chat_sponsored_message import GetChatSponsoredMessage
 from .get_chat_statistics import GetChatStatistics
 from .get_chats import GetChats
 from .get_commands import GetCommands
@@ -373,13 +373,13 @@ from .set_background import SetBackground
 from .set_bio import SetBio
 from .set_bot_updates_status import SetBotUpdatesStatus
 from .set_chat_client_data import SetChatClientData
-from .set_chat_default_message_sender import SetChatDefaultMessageSender
 from .set_chat_description import SetChatDescription
 from .set_chat_discussion_group import SetChatDiscussionGroup
 from .set_chat_draft_message import SetChatDraftMessage
 from .set_chat_location import SetChatLocation
 from .set_chat_member_status import SetChatMemberStatus
-from .set_chat_message_ttl_setting import SetChatMessageTtlSetting
+from .set_chat_message_sender import SetChatMessageSender
+from .set_chat_message_ttl import SetChatMessageTtl
 from .set_chat_notification_settings import SetChatNotificationSettings
 from .set_chat_permissions import SetChatPermissions
 from .set_chat_photo import SetChatPhoto
@@ -560,7 +560,6 @@ __all__ = [
     "Destroy",
     "DisableProxy",
     "DiscardCall",
-    "DiscardGroupCall",
     "DisconnectAllWebsites",
     "DisconnectWebsite",
     "DownloadFile",
@@ -580,6 +579,7 @@ __all__ = [
     "EditMessageText",
     "EditProxy",
     "EnableProxy",
+    "EndGroupCall",
     "EndGroupCallRecording",
     "EndGroupCallScreenSharing",
     "FinishFileGeneration",
@@ -624,7 +624,7 @@ __all__ = [
     "GetChatPinnedMessage",
     "GetChatScheduledMessages",
     "GetChatSparseMessagePositions",
-    "GetChatSponsoredMessages",
+    "GetChatSponsoredMessage",
     "GetChatStatistics",
     "GetChats",
     "GetCommands",
@@ -840,13 +840,13 @@ __all__ = [
     "SetBio",
     "SetBotUpdatesStatus",
     "SetChatClientData",
-    "SetChatDefaultMessageSender",
     "SetChatDescription",
     "SetChatDiscussionGroup",
     "SetChatDraftMessage",
     "SetChatLocation",
     "SetChatMemberStatus",
-    "SetChatMessageTtlSetting",
+    "SetChatMessageSender",
+    "SetChatMessageTtl",
     "SetChatNotificationSettings",
     "SetChatPermissions",
     "SetChatPhoto",

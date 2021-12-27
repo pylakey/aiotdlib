@@ -13,7 +13,7 @@ from ..types import MessageSender
 
 class SetVideoChatDefaultParticipant(BaseObject):
     """
-    Changes default participant identifier, which can be used to join video chats in a chat
+    Changes default participant identifier, on whose behalf a video chat in the chat will be joined
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`

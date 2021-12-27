@@ -13,7 +13,7 @@ from ..types import ChatInviteLinkMember
 
 class GetChatInviteLinkMembers(BaseObject):
     """
-    Returns chat members joined a chat by an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+    Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`

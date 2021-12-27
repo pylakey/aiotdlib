@@ -13,7 +13,7 @@ from ..base_object import BaseObject
 
 class MessageCalendar(BaseObject):
     """
-    Contains information about found messages, splitted by days according to the option "utc_time_offset"
+    Contains information about found messages, split by days according to the option "utc_time_offset"
     
     :param total_count: Total number of found messages
     :type total_count: :class:`int`

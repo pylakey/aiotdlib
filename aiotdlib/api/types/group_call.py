@@ -45,7 +45,7 @@ class GroupCall(BaseObject):
     :param loaded_all_participants: True, if all group call participants are loaded
     :type loaded_all_participants: :class:`bool`
     
-    :param recent_speakers: Recently speaking users in the group call
+    :param recent_speakers: At most 3 recently speaking users in the group call
     :type recent_speakers: :class:`list[GroupCallRecentSpeaker]`
     
     :param is_my_video_enabled: True, if the current user's video is enabled

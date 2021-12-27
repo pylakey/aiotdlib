@@ -13,7 +13,7 @@ from ..base_object import BaseObject
 
 class ChatJoinRequests(BaseObject):
     """
-    Contains a list of chat join requests
+    Contains a list of requests to join a chat
     
     :param total_count: Approximate total count of requests found
     :type total_count: :class:`int`

@@ -129,29 +129,26 @@ class ClientProxySettings(BaseModel):
     """
     Universal proxy settings object for all proxy types
 
-    Attributes:
-        host (:class:`str`)
-            Proxy server IP address
+    :param host: Proxy server IP address
+    :type host: str
 
-        port (:class:`int`)
-            Proxy server port
+    :param port: Proxy server port
+    :type port: int
 
-        type (:class:`ClientProxySettingsType`)
-            Proxy type
+    :param type: Proxy type
+    :type type: ClientProxySettingsType
 
-        username (:class:`str`)
-            Username for logging in; may be empty
+    :param username: Username for logging in; may be empty
+    :type username: str
 
-        password (:class:`str`)
-            Password for logging in; may be empty
+    :param password: Password for logging in; may be empty
+    :type password: str
 
-        http_only (:class:`bool`)
-            Pass true if the proxy supports only HTTP requests
-            and doesn't support transparent TCP connections via HTTP CONNECT method
+    :param http_only: Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
+    :type http_only: bool
 
-        secret (:class:`str`)
-            The proxy's secret in hexadecimal encoding
-
+    :param secret: The proxy's secret in hexadecimal encoding
+    :type secret: str
     """
 
     host: str
@@ -247,13 +244,13 @@ class ClientOptions(pydantic.BaseModel):
     If true, other users will be allowed to see the current user's location
     """
 
-    language_pack_database_path: Optional[str]
-    """
-    Path to a database for storing language pack strs, so that this database can be shared between different accounts. 
-    By default, language pack Optional[str]s are stored only in memory. 
-    Changes of value of this option will be applied only after TDLib restart, 
-    so it should be set before call to setTdlibParameters.
-    """
+    # language_pack_database_path: Optional[str]
+    # """
+    # Path to a database for storing language pack strs, so that this database can be shared between different accounts.
+    # By default, language pack Optional[str]s are stored only in memory.
+    # Changes of value of this option will be applied only after TDLib restart,
+    # so it should be set before call to setTdlibParameters.
+    # """
 
     language_pack_id: Optional[str]
     """
@@ -309,65 +306,59 @@ class ClientOptions(pydantic.BaseModel):
 
 class ClientSettings(pydantic.BaseSettings):
     """
-    Attributes:
-        api_id (:class:`int`)
-            Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
+    :param api_id: Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
+    :type api_id: int
 
-        api_hash (:class:`str`)
-            Application identifier hash for Telegram API access,
-            which can be obtained at https://my.telegram.org
+    :param api_hash: Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
+    :type api_hash: str
 
-        database_encryption_key (:class:`str`)
-            Encryption key of local session database. Default: aiotdlib
+    :param database_encryption_key: Encryption key of local session database. Default: aiotdlib
+    :type database_encryption_key: str
 
-        phone_number (:class:`str`)
-            The phone number of the user, in international format.
-            Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
+    :param phone_number: The phone number of the user, in international format. Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
+    :type phone_number: str
 
-        bot_token (:class:`str`)
-            The bot token.
-            Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
+    :param bot_token: The bot token. Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
+    :type bot_token: str
 
-        use_test_dc (:class:`bool`)
-            If set to true, the Telegram test environment will be used instead of the production environment
+    :param use_test_dc: If set to true, the Telegram test environment will be used instead of the production environment
+    :type use_test_dc: bool
 
-        system_language_code (:class:`str`)
-            IETF language tag of the user's operating system language; must be non-empty
+    :param system_language_code: IETF language tag of the user's operating system language; must be non-empty
+    :type system_language_code: str
 
-        device_model (:class:`str`)
-            Model of the device the application is being run on; must be non-empty
+    :param device_model: Model of the device the application is being run on; must be non-empty
+    :type device_model: str
 
-        system_version (:class:`str`)
-            Version of the operating system the application is being run on.
-            If empty, the version is automatically detected by TDLib
+    :param system_version: Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
+    :type system_version: str
 
-        application_version (:class:`str`)
-            Application version; must be non-empty
+    :param application_version: Application version; must be non-empty
+    :type application_version: str
 
-        files_directory (:class:`str`)
-            The path to the directory for storing files. Default: .aiotdlib/
+    :param files_directory: The path to the directory for storing files. Default: .aiotdlib/
+    :type files_directory: str
 
-        first_name (:class:`str`)
-            First name of new account if account with passed phone_number does not exist
+    :param first_name: First name of new account if account with passed phone_number does not exist
+    :type first_name: str
 
-        last_name (:class:`str`)
-            Last name of new account if account with passed phone_number does not exist
+    :param last_name: Last name of new account if account with passed phone_number does not exist
+    :type last_name: str
 
-        library_path (:class:`str`)
-            Path to TDLib binary. By default binary included in package is used
+    :param library_path: Path to TDLib binary. By default binary included in package is used
+    :type library_path: str
 
-        tdlib_verbosity (:class:`str`)
-            Verbosity level of TDLib itself.
-            Default: 2 (WARNING) for more info look at (:class:`TDLibLogVerbosity`)
+    :param tdlib_verbosity: Verbosity level of TDLib itself. Default: 2 (WARNING) for more info look at (TDLibLogVerbosity)
+    :type tdlib_verbosity: str
 
-        debug (:class:`bool`)
-            When set to true all request and responses would be logged in console with DEBUG level
+    :param debug: When set to true all request and responses would be logged in console with DEBUG level
+    :type debug: bool
 
-        parse_mode (:class:`str`)
-            Default parse mode for high-level methods like send_message. Default: html
+    :param parse_mode: Default parse mode for high-level methods like send_message. Default: html
+    :type parse_mode: str
 
-        proxy_settings (:class:`ClientProxySettings`)
-            Settings for proxying telegram connection
+    :param proxy_settings: Settings for proxying telegram connection
+    :type proxy_settings: aiotdlib.ClientProxySettings
 
     """
     api_id: int
@@ -495,63 +486,83 @@ class Client:
             use_secret_chats: bool = Undefined,
             enable_storage_optimizer: bool = Undefined,
             ignore_file_names: bool = Undefined,
-            options: ClientOptions = Undefined,
-            **kwargs
+            options: ClientOptions = Undefined
     ):
         """
-        :param api_id Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
-        :type :class:`int`
+        :param api_id: Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
+        :type api_id: int
 
-        :param api_hash Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
-        :type :class:`str`
+        :param api_hash: Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
+        :type api_hash: str
 
-        :param database_encryption_key Encryption key of local session database. Default: aiotdlib
-        :type :class:`str`
+        :param database_encryption_key: Encryption key of local session database. Default: aiotdlib
+        :type database_encryption_key: str
 
-        :param phone_number The phone number of the user, in international format.
-        :type :class:`str` Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
+        :param phone_number: The phone number of the user, in international format.
+        :type phone_number: str Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
 
-        :param bot_token The bot token. Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
-        :type :class:`str`
+        :param bot_token: The bot token. Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
+        :type bot_token: str
 
-        :param use_test_dc If set to true, the Telegram test environment will be used instead of the production environment
-        :type :class:`bool`
+        :param use_test_dc: If set to true, the Telegram test environment will be used instead of the production environment
+        :type use_test_dc: bool
 
-        :param system_language_code IETF language tag of the user's operating system language; must be non-empty
-        :type :class:`str`
+        :param system_language_code: IETF language tag of the user's operating system language; must be non-empty
+        :type system_language_code: str
 
-        :param device_model Model of the device the application is being run on; must be non-empty
-        :type :class:`str`
+        :param device_model: Model of the device the application is being run on; must be non-empty
+        :type device_model: str
 
-        :param system_version Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
-        :type :class:`str`
+        :param system_version: Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
+        :type system_version: str
 
-        :param application_version Application version; must be non-empty
-        :type :class:`str`
+        :param application_version: Application version; must be non-empty
+        :type application_version: str
 
-        :param files_directory The path to the directory for storing files. Default: .aiotdlib/
-        :type :class:`str`
+        :param files_directory: The path to the directory for storing files. Default: .aiotdlib/
+        :type files_directory: str
 
-        :param first_name First name of new account if account with passed phone_number does not exist
-        :type :class:`str`
+        :param first_name: First name of new account if account with passed phone_number does not exist
+        :type first_name: str
 
-        :param last_name Last name of new account if account with passed phone_number does not exist
-        :type :class:`str`
+        :param last_name: Last name of new account if account with passed phone_number does not exist
+        :type last_name: str
 
-        :param library_path Path to TDLib binary. By default, binary included in package is used
-        :type :class:`str`
+        :param library_path: Path to TDLib binary. By default, binary included in package is used
+        :type library_path: str
 
-        :param tdlib_verbosity Verbosity level of TDLib itself. Default: 2 (WARNING) for more info look at (:class:`TDLibLogVerbosity`)
-        :type :class:`str`
+        :param tdlib_verbosity: Verbosity level of TDLib itself. Default: 2 (WARNING) for more info look at (TDLibLogVerbosity)
+        :type tdlib_verbosity: str
 
-        :param debug When set to true all request and responses would be logged in console with DEBUG level
-        :type :class:`bool`
+        :param debug: When set to true all request and responses would be logged in console with DEBUG level
+        :type debug: bool
 
-        :param parse_mode Default parse mode for high-level methods like send_message. Default: html
-        :type :class:`str`
+        :param parse_mode: Default parse mode for high-level methods like send_message. Default: html
+        :type parse_mode: str
 
-        :param proxy_settings Settings for proxying telegram connection
-        :type :class:`ClientProxySettings`
+        :param proxy_settings: Settings for proxying telegram connection
+        :type proxy_settings: ClientProxySettings
+
+        :param use_file_database: If set to true, information about downloaded and uploaded files will be saved between application restarts
+        :type use_file_database: bool
+
+        :param use_chat_info_database: If set to true, the library will maintain a cache of users, basic groups, supergroups, channels and secret chats. Implies use_file_database
+        :type use_chat_info_database: bool
+
+        :param use_message_database: If set to true, the library will maintain a cache of chats and messages. Implies use_chat_info_database
+        :type use_message_database: bool
+
+        :param use_secret_chats: If set to true, support for secret chats will be enabled
+        :type use_secret_chats: bool
+
+        :param enable_storage_optimizer: If set to true, old files will automatically be deleted
+        :type enable_storage_optimizer: bool
+
+        :param ignore_file_names: If set to true, original file names will be ignored. Otherwise, downloaded files will be saved under names as close as possible to the original name
+        :type ignore_file_names: bool
+
+        :param options: Writable TDLib options (Check the list of available options on https://core.telegram.org/tdlib/options.)
+        :type options: ClientOptions
 
         """
         settings = {
@@ -581,7 +592,6 @@ class Client:
             'enable_storage_optimizer': enable_storage_optimizer,
             'ignore_file_names': ignore_file_names,
             'options': options,
-            **kwargs
         }
         settings = {k: v for k, v in settings.items() if v is not Undefined}
         self.settings = ClientSettings(**settings)
@@ -691,11 +701,6 @@ class Client:
         return await self.api.get_authorization_state(request_id="updateAuthorizationState")
 
     async def __set_tdlib_parameters(self) -> RequestResult:
-        try:
-            await self.__setup_options()
-        except BadRequest as e:
-            exit(1)
-
         return await self.api.set_tdlib_parameters(
             parameters=TdlibParameters(
                 use_test_dc=self.settings.use_test_dc,
@@ -723,6 +728,13 @@ class Client:
             encryption_key=self.settings.database_encryption_key,
             request_id="updateAuthorizationState"
         )
+
+        try:
+            await self.__setup_options()
+        except BadRequest:
+            self.logger.error('Unable to setup options!')
+            await self.__close()
+            return None
 
         await self.__setup_proxy()
 
@@ -1020,6 +1032,9 @@ class Client:
         try:
             await self.send(query)
             await pending_request.wait(raise_exc=True, timeout=request_timeout)
+        except asyncio.TimeoutError:
+            self.__pending_requests.pop(request_id, None)
+            raise
         finally:
             if self.settings.debug and bool(pending_request.update):
                 self.logger.debug(f"<<<<< {pending_request.update.ID} {pending_request.update.json(by_alias=True)}")
@@ -1145,8 +1160,8 @@ class Client:
         (Check the list of available options on https://core.telegram.org/tdlib/options.)
         Can be called before authorization
 
-        :param name:
-        :param name(:class:`str`): The name of the option
+        :param name: The name of the option
+        :type name: str
 
         """
         return await self.cache.get_option_value(name)
@@ -1155,6 +1170,10 @@ class Client:
         """
         Returns an ordered list of chats in a main chat list.
         Chats are sorted by the pair (chat.position.order, chat.id) in descending order
+
+        :param limit: Maximum amount of chats to be returned
+        :type limit: int
+
         """
         return await self.cache.get_main_list_chats(limit)
 
@@ -1262,26 +1281,26 @@ class Client:
         Sends a text message. Returns the sent message
 
         Args:
-            chat_id (:class:`int`)
+            chat_id (int)
                 Target chat
 
-            content (:class:`InputMessageContent`)
+            content (InputMessageContent)
                 The content of the message to be sent
 
-            reply_to_message_id (:class:`int`)
+            reply_to_message_id (int)
                 Identifier of the message to reply to or 0
 
-            reply_markup (:class:`ReplyMarkup`)
+            reply_markup (ReplyMarkup)
                 Markup for replying to the message; for bots only
 
-            disable_notification (:class:`bool`)
+            disable_notification (bool)
                 Pass true to disable notification for the message
 
-            send_when_online: (:class:`bool`)
+            send_when_online: (bool)
                 When True, the message will be sent when the peer will be online.
                 Applicable to private chats only and when the exact online status of the peer is known
 
-            send_date: (:class:`int`)
+            send_date: (int)
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
@@ -1327,32 +1346,32 @@ class Client:
         Sends a text message. Returns the sent message
 
         Args:
-            chat_id (:class:`int`)
+            chat_id (int)
                 Target chat
 
-            text (:class:`str`)
+            text (str)
                 The text
 
-            reply_to_message_id (:class:`int`)
+            reply_to_message_id (int)
                 Identifier of the message to reply to or 0
 
-            reply_markup (:class:`ReplyMarkup`)
+            reply_markup (ReplyMarkup)
                 Markup for replying to the message; for bots only
 
-            disable_notification (:class:`bool`)
+            disable_notification (bool)
                 Pass true to disable notification for the message
 
-            disable_web_page_preview (:class:`bool`)
+            disable_web_page_preview (bool)
                 True, if rich web page previews for URLs in the message text should be disabled
 
-            clear_draft (:class:`bool`)
+            clear_draft (bool)
                 True, if a chat message draft should be deleted
 
-            send_when_online: (:class:`bool`)
+            send_when_online: (bool)
                 When True, the message will be sent when the peer will be online.
                 Applicable to private chats only and when the exact online status of the peer is known
 
-            send_date: (:class:`int`)
+            send_date: (int)
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
@@ -1388,22 +1407,22 @@ class Client:
         Returns the edited message after the edit is completed on the server side
 
         Args:
-            chat_id (:class:`int`)
+            chat_id (int)
                 The chat the message belongs to
 
-            message_id (:class:`int`)
+            message_id (int)
                 Identifier of the message
 
-            text (:class:`str`)
+            text (str)
                 New text of the message
 
-            reply_markup (:class:`ReplyMarkup`)
+            reply_markup (ReplyMarkup)
                 The new message reply markup; for bots only
 
-            disable_web_page_preview (:class:`bool`)
+            disable_web_page_preview (bool)
                 True, if rich web page previews for URLs in the message text should be disabled
 
-            clear_draft (:class:`bool`)
+            clear_draft (bool)
                 True, if a chat message draft should be deleted
 
         """
@@ -1446,50 +1465,50 @@ class Client:
         Sends a photo with caption to chat. Returns the sent message
 
         Args:
-            chat_id (:class:`int`)
+            chat_id (int)
                 Target chat
 
-            photo (:class:`str`)
+            photo (str)
                 Photo to send. This parameter could be ether path to local file or remote file_id
 
-            caption (:class:`str`)
+            caption (str)
                 Photo caption
 
             added_sticker_file_ids (:obj:`list[int]`)
                 File identifiers of the stickers added to the photo, if applicable
 
-            photo_width (:class:`int`)
+            photo_width (int)
                 Photo width
 
-            photo_height (:class:`int`)
+            photo_height (int)
                 Photo height
 
-            ttl (:class:`int`)
+            ttl (int)
                 Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
 
-            thumbnail (:class:`str`)
+            thumbnail (str)
                 Thumbnail file to send. Sending thumbnails by file_id is currently not supported
 
-            thumbnail_width (:class:`int`)
+            thumbnail_width (int)
                 Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
 
-            thumbnail_height (:class:`int`)
+            thumbnail_height (int)
                 Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
 
-            reply_to_message_id (:class:`int`)
+            reply_to_message_id (int)
                 Identifier of the message to reply to or 0
 
-            reply_markup (:class:`ReplyMarkup`)
+            reply_markup (ReplyMarkup)
                 Markup for replying to the message; for bots only
 
-            disable_notification (:class:`bool`)
+            disable_notification (bool)
                 Pass true to disable notification for the message
 
-            send_when_online: (:class:`bool`)
+            send_when_online: (bool)
                 When True, the message will be sent when the peer will be online.
                 Applicable to private chats only and when the exact online status of the peer is known
 
-            send_date: (:class:`int`)
+            send_date: (int)
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
@@ -1553,56 +1572,56 @@ class Client:
         Sends a video with caption to chat. Returns the sent message
 
         Args:
-            chat_id (:class:`int`)
+            chat_id (int)
                 Target chat
 
-            video (:class:`str`)
+            video (str)
                 Video to send. This parameter could be ether path to local file or remote file_id
 
-            caption (:class:`str`)
+            caption (str)
                 Video caption
 
             added_sticker_file_ids (:obj:`list[int]`)
                 File identifiers of the stickers added to the photo, if applicable
 
-            duration (:class:`int`)
+            duration (int)
                 Duration of the video, in seconds
 
-            video_width (:class:`int`)
+            video_width (int)
                 Video width
 
-            video_height (:class:`int`)
+            video_height (int)
                 Video height
 
-            ttl (:class:`int`)
+            ttl (int)
                 Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
 
-            supports_streaming (:class:`bool`)
+            supports_streaming (bool)
                 True, if the video should be tried to be streamed
 
-            thumbnail (:class:`str`)
+            thumbnail (str)
                 Thumbnail file to send. Sending thumbnails by file_id is currently not supported
 
-            thumbnail_width (:class:`int`)
+            thumbnail_width (int)
                 Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
 
-            thumbnail_height (:class:`int`)
+            thumbnail_height (int)
                 Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
 
-            reply_to_message_id (:class:`int`)
+            reply_to_message_id (int)
                 Identifier of the message to reply to or 0
 
-            reply_markup (:class:`ReplyMarkup`)
+            reply_markup (ReplyMarkup)
                 Markup for replying to the message; for bots only
 
-            disable_notification (:class:`bool`)
+            disable_notification (bool)
                 Pass true to disable notification for the message
 
-            send_when_online: (:class:`bool`)
+            send_when_online: (bool)
                 When True, the message will be sent when the peer will be online.
                 Applicable to private chats only and when the exact online status of the peer is known
 
-            send_date: (:class:`int`)
+            send_date: (int)
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
@@ -1666,50 +1685,50 @@ class Client:
         Sends an animation with caption to chat. Returns the sent message
 
         Args:
-            chat_id (:class:`int`)
+            chat_id (int)
                 Target chat
 
-            animation (:class:`str`)
+            animation (str)
                 Animation to send. This parameter could be ether path to local file or remote file_id
 
-            caption (:class:`str`)
+            caption (str)
                 Animation caption
 
             added_sticker_file_ids (:obj:`list[int]`)
                 File identifiers of the stickers added to the photo, if applicable
 
-            duration (:class:`int`)
+            duration (int)
                 Duration of the animation, in seconds
 
-            animation_width (:class:`int`)
+            animation_width (int)
                 Animation width
 
-            animation_height (:class:`int`)
+            animation_height (int)
                 Animation height
 
-            thumbnail (:class:`str`)
+            thumbnail (str)
                 Thumbnail file to send. Sending thumbnails by file_id is currently not supported
 
-            thumbnail_width (:class:`int`)
+            thumbnail_width (int)
                 Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
 
-            thumbnail_height (:class:`int`)
+            thumbnail_height (int)
                 Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
 
-            reply_to_message_id (:class:`int`)
+            reply_to_message_id (int)
                 Identifier of the message to reply to or 0
 
-            reply_markup (:class:`ReplyMarkup`)
+            reply_markup (ReplyMarkup)
                 Markup for replying to the message; for bots only
 
-            disable_notification (:class:`bool`)
+            disable_notification (bool)
                 Pass true to disable notification for the message
 
-            send_when_online: (:class:`bool`)
+            send_when_online: (bool)
                 When True, the message will be sent when the peer will be online.
                 Applicable to private chats only and when the exact online status of the peer is known
 
-            send_date: (:class:`int`)
+            send_date: (int)
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
@@ -1768,42 +1787,42 @@ class Client:
         Sends a document with caption to chat. Returns the sent message
 
         Args:
-            chat_id (:class:`int`)
+            chat_id (int)
                 Target chat
 
-            document (:class:`str`)
+            document (str)
                 Document to be sent. This parameter could be ether path to local file or remote file_id
 
-            caption (:class:`str`)
+            caption (str)
                 Document caption
 
-            disable_content_type_detection (:class:`bool`)
+            disable_content_type_detection (bool)
                 If true, automatic file type detection will be disabled and the document will be always sent as file.
                 Always true for files sent to secret chats
 
-            thumbnail (:class:`str`)
+            thumbnail (str)
                 Thumbnail file to send. Sending thumbnails by file_id is currently not supported
 
-            thumbnail_width (:class:`int`)
+            thumbnail_width (int)
                 Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
 
-            thumbnail_height (:class:`int`)
+            thumbnail_height (int)
                 Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
 
-            reply_to_message_id (:class:`int`)
+            reply_to_message_id (int)
                 Identifier of the message to reply to or 0
 
-            reply_markup (:class:`ReplyMarkup`)
+            reply_markup (ReplyMarkup)
                 Markup for replying to the message; for bots only
 
-            disable_notification (:class:`bool`)
+            disable_notification (bool)
                 Pass true to disable notification for the message
 
-            send_when_online: (:class:`bool`)
+            send_when_online: (bool)
                 When True, the message will be sent when the peer will be online.
                 Applicable to private chats only and when the exact online status of the peer is known
 
-            send_date: (:class:`int`)
+            send_date: (int)
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
@@ -1861,48 +1880,48 @@ class Client:
         Sends an audio with caption to chat. Returns the sent message
 
         Args:
-            chat_id (:class:`int`)
+            chat_id (int)
                 Target chat
 
-            audio (:class:`str`)
+            audio (str)
                 Audio to be sent. This parameter could be ether path to local file or remote file_id
 
-            caption (:class:`str`)
+            caption (str)
                 Audio caption
 
-            duration (:class:`int`)
+            duration (int)
                 Duration of the audio, in seconds; may be replaced by the server
 
-            title (:class:`str`)
+            title (str)
                 Title of the audio; 0-64 characters; may be replaced by the server
 
-            performer (:class:`str`)
+            performer (str)
                 Performer of the audio; 0-64 characters, may be replaced by the server
 
-            thumbnail (:class:`str`)
+            thumbnail (str)
                 Thumbnail of the cover for the album, if available.
                 Sending thumbnails by file_id is currently not supported
 
-            thumbnail_width (:class:`int`)
+            thumbnail_width (int)
                 Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
 
-            thumbnail_height (:class:`int`)
+            thumbnail_height (int)
                 Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
 
-            reply_to_message_id (:class:`int`)
+            reply_to_message_id (int)
                 Identifier of the message to reply to or 0
 
-            reply_markup (:class:`ReplyMarkup`)
+            reply_markup (ReplyMarkup)
                 Markup for replying to the message; for bots only
 
-            disable_notification (:class:`bool`)
+            disable_notification (bool)
                 Pass true to disable notification for the message
 
-            send_when_online: (:class:`bool`)
+            send_when_online: (bool)
                 When True, the message will be sent when the peer will be online.
                 Applicable to private chats only and when the exact online status of the peer is known
 
-            send_date: (:class:`int`)
+            send_date: (int)
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
@@ -1958,35 +1977,35 @@ class Client:
         Sends a voice note with caption to chat. Returns the sent message
 
         Args:
-            chat_id (:class:`int`)
+            chat_id (int)
                 Target chat
 
-            voice_note (:class:`str`)
+            voice_note (str)
                 Voice note to be sent. This parameter could be ether path to local file or remote file_id
 
-            caption (:class:`str`)
+            caption (str)
                 Voice note caption
 
-            duration (:class:`int`)
+            duration (int)
                 Duration of the audio, in seconds; may be replaced by the server
 
-            waveform (:class:`str`)
+            waveform (str)
                 Waveform representation of the voice note, in 5-bit format
 
-            reply_to_message_id (:class:`int`)
+            reply_to_message_id (int)
                 Identifier of the message to reply to or 0
 
-            reply_markup (:class:`ReplyMarkup`)
+            reply_markup (ReplyMarkup)
                 Markup for replying to the message; for bots only
 
-            disable_notification (:class:`bool`)
+            disable_notification (bool)
                 Pass true to disable notification for the message
 
-            send_when_online: (:class:`bool`)
+            send_when_online: (bool)
                 When True, the message will be sent when the peer will be online.
                 Applicable to private chats only and when the exact online status of the peer is known
 
-            send_date: (:class:`int`)
+            send_date: (int)
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
@@ -2034,42 +2053,42 @@ class Client:
         Sends a video note with caption to chat. Returns the sent message
 
         Args:
-        chat_id (:class:`int`)
+        chat_id (int)
             Target chat
 
-        video_note (:class:`str`)
+        video_note (str)
             Video note to be sent. This parameter could be ether path to local file or remote file_id
 
-        duration (:class:`int`)
+        duration (int)
             Duration of the video, in seconds
 
-        length (:class:`int`)
+        length (int)
             Video width and height; must be positive and not greater than 640
 
-        thumbnail (:class:`str`)
+        thumbnail (str)
             Video note thumbnail, if available
             Sending thumbnails by file_id is currently not supported
 
-        thumbnail_width (:class:`int`)
+        thumbnail_width (int)
             Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
 
-        thumbnail_height (:class:`int`)
+        thumbnail_height (int)
             Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
 
-        reply_to_message_id (:class:`int`)
+        reply_to_message_id (int)
             Identifier of the message to reply to or 0
 
-        reply_markup (:class:`ReplyMarkup`)
+        reply_markup (ReplyMarkup)
             Markup for replying to the message; for bots only
 
-        disable_notification (:class:`bool`)
+        disable_notification (bool)
             Pass true to disable notification for the message
 
-        send_when_online: (:class:`bool`)
+        send_when_online: (bool)
             When True, the message will be sent when the peer will be online.
             Applicable to private chats only and when the exact online status of the peer is known
 
-        send_date: (:class:`int`)
+        send_date: (int)
             Date the message will be sent. The date must be within 367 days in the future.
             If send_date passed send_when_online will be ignored
 
@@ -2125,40 +2144,40 @@ class Client:
         If a message can't be forwarded, null will be returned instead of the message
 
         :param chat_id: Identifier of the chat to which to forward messages
-        :type chat_id: :class:`int`
+        :type chat_id: int
 
         :param from_chat_id: Identifier of the chat from which to forward messages
-        :type from_chat_id: :class:`int`
+        :type from_chat_id: int
 
         :param message_ids: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
-        :type message_ids: :class:`list[int]`
+        :type message_ids: list[int]
 
         :param send_copy: If true, content of the messages will be copied without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
-        :type send_copy: :class:`bool`
+        :type send_copy: bool
 
         :param remove_caption: If true, media caption of message copies will be removed. Ignored if send_copy is false
-        :type remove_caption: :class:`bool`
+        :type remove_caption: bool
 
         :param only_preview: If true, messages will not be forwarded and instead fake messages will be returned
-        :type only_preview: :class:`bool`
+        :type only_preview: bool
 
         :param disable_notification: Pass true to disable notification for the message
-        :type disable_notification: :class:`bool`
+        :type disable_notification: bool
 
         :param from_background: Pass true if the message is sent from the background
-        :type from_background: :class:`bool`
+        :type from_background: bool
 
         :param send_date: Date the message will be sent. The date must be within 367 days in the future
-        :type send_date: :class:`int`
+        :type send_date: int
 
         :param send_when_online: When True, the message will be sent when the peer will be online. Applicable to private chats only and when the exact online status of the peer is known
-        :type send_when_online: :class:`bool`
+        :type send_when_online: bool
 
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
+        :param request_timeout: amounts of seconds to wait of response, (asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout seconds, defaults to None
+        :type request_timeout: int
 
         :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Messages`
+        :rtype: aiotdlib.api.types.Messages
         """
         if bool(send_date):
             scheduling_state = MessageSchedulingStateSendAtDate(send_date=send_date)
@@ -2196,16 +2215,16 @@ class Client:
         Number of messages are limited by limit parameter
 
         :param chat_id: Chat identifier
-        :type chat_id: :class:`int`
+        :type chat_id: int
 
         :param from_message_id: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-        :type from_message_id: :class:`int`
+        :type from_message_id: int
 
         :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-        :type limit: :class:`int`
+        :type limit: int
 
         :param only_local: If true, returns only messages that are available locally without sending network requests
-        :type only_local: :class:`bool`
+        :type only_local: bool
 
         """
 

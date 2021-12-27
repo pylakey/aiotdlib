@@ -12,12 +12,12 @@ from ..base_object import BaseObject
 
 class ReportSupergroupSpam(BaseObject):
     """
-    Reports some messages from a message sender in a supergroup as spam; requires administrator rights in the supergroup
+    Reports messages in a supergroup as spam; requires administrator rights in the supergroup
     
     :param supergroup_id: Supergroup identifier
     :type supergroup_id: :class:`int`
     
-    :param message_ids: Identifiers of messages sent in the supergroup. All messages must be sent by the same sender. This list must be non-empty
+    :param message_ids: Identifiers of messages to report
     :type message_ids: :class:`list[int]`
     
     """

@@ -13,12 +13,12 @@ from ..base_object import BaseObject
 
 class ChatInviteLinkMembers(BaseObject):
     """
-    Contains a list of chat members joined a chat by an invite link
+    Contains a list of chat members joined a chat via an invite link
     
     :param total_count: Approximate total count of chat members found
     :type total_count: :class:`int`
     
-    :param members: List of chat members, joined a chat by an invite link
+    :param members: List of chat members, joined a chat via an invite link
     :type members: :class:`list[ChatInviteLinkMember]`
     
     """

@@ -8,25 +8,20 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import MessageSender
 
 
-class SetChatDefaultMessageSender(BaseObject):
+class GetChatSponsoredMessage(BaseObject):
     """
-    Changes default message sender that is chosen in a chat
+    Returns sponsored message to be shown in a chat; for channel chats only. Returns a 404 error if there is no sponsored message in the chat
     
-    :param chat_id: Chat identifier
+    :param chat_id: Identifier of the chat
     :type chat_id: :class:`int`
     
-    :param default_message_sender_id: New default message sender in the chat
-    :type default_message_sender_id: :class:`MessageSender`
-    
     """
 
-    ID: str = Field("setChatDefaultMessageSender", alias="@type")
+    ID: str = Field("getChatSponsoredMessage", alias="@type")
     chat_id: int
-    default_message_sender_id: MessageSender
 
     @staticmethod
-    def read(q: dict) -> SetChatDefaultMessageSender:
-        return SetChatDefaultMessageSender.construct(**q)
+    def read(q: dict) -> GetChatSponsoredMessage:
+        return GetChatSponsoredMessage.construct(**q)

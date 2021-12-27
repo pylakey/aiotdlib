@@ -10,9 +10,9 @@ from pydantic import Field
 from ..base_object import BaseObject
 
 
-class SetChatMessageTtlSetting(BaseObject):
+class SetChatMessageTtl(BaseObject):
     """
-    Changes the message TTL setting (sets a new self-destruct timer) in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL setting of a chat with the current user (Saved Messages) and the chat 777000 (Telegram) can't be changed
+    Changes the message TTL in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram)
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
@@ -22,10 +22,10 @@ class SetChatMessageTtlSetting(BaseObject):
     
     """
 
-    ID: str = Field("setChatMessageTtlSetting", alias="@type")
+    ID: str = Field("setChatMessageTtl", alias="@type")
     chat_id: int
     ttl: int
 
     @staticmethod
-    def read(q: dict) -> SetChatMessageTtlSetting:
-        return SetChatMessageTtlSetting.construct(**q)
+    def read(q: dict) -> SetChatMessageTtl:
+        return SetChatMessageTtl.construct(**q)

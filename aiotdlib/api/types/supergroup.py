@@ -27,7 +27,7 @@ class Supergroup(BaseObject):
     :param status: Status of the current user in the supergroup or channel; custom title will be always empty
     :type status: :class:`ChatMemberStatus`
     
-    :param member_count: Number of members in the supergroup or channel; 0 if unknown. Currently it is guaranteed to be known only if the supergroup or channel was received through searchPublicChats, searchChatsNearby, getInactiveSupergroupChats, getSuitableDiscussionChats, getGroupsInCommon, or getUserPrivacySettingRules
+    :param member_count: Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through searchPublicChats, searchChatsNearby, getInactiveSupergroupChats, getSuitableDiscussionChats, getGroupsInCommon, or getUserPrivacySettingRules
     :type member_count: :class:`int`
     
     :param has_linked_chat: True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
@@ -45,7 +45,7 @@ class Supergroup(BaseObject):
     :param is_channel: True, if the supergroup is a channel
     :type is_channel: :class:`bool`
     
-    :param is_broadcast_group: True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on number of members
+    :param is_broadcast_group: True, if the supergroup is a broadcast group, i.e. only administrators can send messages and there is no limit on the number of members
     :type is_broadcast_group: :class:`bool`
     
     :param is_verified: True, if the supergroup or channel is verified

@@ -26,7 +26,7 @@ class PhoneNumberAuthenticationSettings(BaseObject):
     :param allow_sms_retriever_api: For official applications only. True, if the application can use Android SMS Retriever API (requires Google Play Services >= 10.2) to automatically receive the authentication code from the SMS. See https://developers.google.com/identity/sms-retriever/ for more details
     :type allow_sms_retriever_api: :class:`bool`
     
-    :param authentication_tokens: List of authentication tokens, received in updateOption("authentication_token") in previously logged out sessions
+    :param authentication_tokens: List of up to 20 authentication tokens, recently received in updateOption("authentication_token") in previously logged out sessions
     :type authentication_tokens: :class:`list[str]`
     
     """

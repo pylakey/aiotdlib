@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class AddChatMembers(BaseObject):
     """
-    Adds multiple new members to a chat. Currently this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
+    Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`

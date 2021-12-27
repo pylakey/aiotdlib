@@ -70,7 +70,7 @@ class WebPage(BaseObject):
     :param audio: Preview of the content as an audio file, if available; may be null, defaults to None
     :type audio: :class:`Audio`, optional
     
-    :param document: Preview of the content as a document, if available (currently only available for small PDF files and ZIP archives); may be null, defaults to None
+    :param document: Preview of the content as a document, if available; may be null, defaults to None
     :type document: :class:`Document`, optional
     
     :param sticker: Preview of the content as a sticker for small WEBP files, if available; may be null, defaults to None
@@ -85,7 +85,7 @@ class WebPage(BaseObject):
     :param voice_note: Preview of the content as a voice note, if available; may be null, defaults to None
     :type voice_note: :class:`VoiceNote`, optional
     
-    :param instant_view_version: Version of instant view, available for the web page (currently can be 1 or 2), 0 if none
+    :param instant_view_version: Version of instant view, available for the web page (currently, can be 1 or 2), 0 if none
     :type instant_view_version: :class:`int`
     
     """

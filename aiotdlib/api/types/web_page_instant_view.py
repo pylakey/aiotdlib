@@ -22,7 +22,7 @@ class WebPageInstantView(BaseObject):
     :param view_count: Number of the instant view views; 0 if unknown
     :type view_count: :class:`int`
     
-    :param version: Version of the instant view, currently can be 1 or 2
+    :param version: Version of the instant view; currently, can be 1 or 2
     :type version: :class:`int`
     
     :param is_rtl: True, if the instant view must be shown from right to left

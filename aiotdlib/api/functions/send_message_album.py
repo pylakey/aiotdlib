@@ -14,7 +14,7 @@ from ..types import MessageSendOptions
 
 class SendMessageAlbum(BaseObject):
     """
-    Sends 2-10 messages grouped together into an album. Currently only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
+    Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
     
     :param chat_id: Target chat
     :type chat_id: :class:`int`

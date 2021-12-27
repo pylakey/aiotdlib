@@ -10,18 +10,18 @@ from pydantic import Field
 from ..base_object import BaseObject
 
 
-class GetChatSponsoredMessages(BaseObject):
+class EndGroupCall(BaseObject):
     """
-    Returns sponsored messages to be shown in a chat; for channel chats only
+    Ends a group call. Requires groupCall.can_be_managed
     
-    :param chat_id: Identifier of the chat
-    :type chat_id: :class:`int`
+    :param group_call_id: Group call identifier
+    :type group_call_id: :class:`int`
     
     """
 
-    ID: str = Field("getChatSponsoredMessages", alias="@type")
-    chat_id: int
+    ID: str = Field("endGroupCall", alias="@type")
+    group_call_id: int
 
     @staticmethod
-    def read(q: dict) -> GetChatSponsoredMessages:
-        return GetChatSponsoredMessages.construct(**q)
+    def read(q: dict) -> EndGroupCall:
+        return EndGroupCall.construct(**q)

@@ -241,7 +241,7 @@ class MessageChatDeletePhoto(MessageContent):
 
 class MessageChatJoinByLink(MessageContent):
     """
-    A new member joined the chat by invite link
+    A new member joined the chat via an invite link
     
     """
 
@@ -286,7 +286,7 @@ class MessageChatSetTtl(MessageContent):
     """
     The TTL (Time To Live) setting for messages in the chat has been changed
     
-    :param ttl: New message TTL setting
+    :param ttl: New message TTL
     :type ttl: :class:`int`
     
     """

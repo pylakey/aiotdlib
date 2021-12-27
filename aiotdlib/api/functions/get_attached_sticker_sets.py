@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class GetAttachedStickerSets(BaseObject):
     """
-    Returns a list of sticker sets attached to a file. Currently only photos and videos can have attached sticker sets
+    Returns a list of sticker sets attached to a file. Currently, only photos and videos can have attached sticker sets
     
     :param file_id: File identifier
     :type file_id: :class:`int`

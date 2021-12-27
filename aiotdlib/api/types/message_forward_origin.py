@@ -46,12 +46,12 @@ class MessageForwardOriginChannel(MessageForwardOrigin):
 
 class MessageForwardOriginChat(MessageForwardOrigin):
     """
-    The message was originally sent by an anonymous chat administrator on behalf of the chat
+    The message was originally sent on behalf of a chat
     
     :param sender_chat_id: Identifier of the chat that originally sent the message
     :type sender_chat_id: :class:`int`
     
-    :param author_signature: Original message author signature
+    :param author_signature: For messages originally sent by an anonymous chat administrator, original message author signature
     :type author_signature: :class:`str`
     
     """

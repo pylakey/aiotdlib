@@ -22,10 +22,10 @@ class CreateChatInviteLink(BaseObject):
     :param name: Invite link name; 0-32 characters, defaults to None
     :type name: :class:`str`, optional
     
-    :param expire_date: Point in time (Unix timestamp) when the link will expire; pass 0 if never
-    :type expire_date: :class:`int`
+    :param expiration_date: Point in time (Unix timestamp) when the link will expire; pass 0 if never
+    :type expiration_date: :class:`int`
     
-    :param member_limit: The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+    :param member_limit: The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
     :type member_limit: :class:`int`
     
     :param creates_join_request: True, if the link only creates join request. If true, member_limit must not be specified
@@ -36,7 +36,7 @@ class CreateChatInviteLink(BaseObject):
     ID: str = Field("createChatInviteLink", alias="@type")
     chat_id: int
     name: typing.Optional[str] = Field(None, max_length=32)
-    expire_date: int
+    expiration_date: int
     member_limit: int
     creates_join_request: bool
 

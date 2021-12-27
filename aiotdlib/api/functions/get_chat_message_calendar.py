@@ -13,7 +13,7 @@ from ..types import SearchMessagesFilter
 
 class GetChatMessageCalendar(BaseObject):
     """
-    Returns information about the next messages of the specified type in the chat splitted by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
+    Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
     
     :param chat_id: Identifier of the chat in which to return information about messages
     :type chat_id: :class:`int`

@@ -23,7 +23,7 @@ class DeviceTokenApplePush(DeviceToken):
     """
     A token for Apple Push Notification service
     
-    :param device_token: Device token; may be empty to de-register a device
+    :param device_token: Device token; may be empty to deregister a device
     :type device_token: :class:`str`
     
     :param is_app_sandbox: True, if App Sandbox is enabled
@@ -44,7 +44,7 @@ class DeviceTokenApplePushVoIP(DeviceToken):
     """
     A token for Apple Push Notification service VoIP notifications
     
-    :param device_token: Device token; may be empty to de-register a device
+    :param device_token: Device token; may be empty to deregister a device
     :type device_token: :class:`str`
     
     :param is_app_sandbox: True, if App Sandbox is enabled
@@ -69,7 +69,7 @@ class DeviceTokenBlackBerryPush(DeviceToken):
     """
     A token for BlackBerry Push Service
     
-    :param token: Token; may be empty to de-register a device
+    :param token: Token; may be empty to deregister a device
     :type token: :class:`str`
     
     """
@@ -86,7 +86,7 @@ class DeviceTokenFirebaseCloudMessaging(DeviceToken):
     """
     A token for Firebase Cloud Messaging
     
-    :param token: Device registration token; may be empty to de-register a device
+    :param token: Device registration token; may be empty to deregister a device
     :type token: :class:`str`
     
     :param encrypt: True, if push notifications must be additionally encrypted
@@ -107,7 +107,7 @@ class DeviceTokenMicrosoftPush(DeviceToken):
     """
     A token for Microsoft Push Notification Service
     
-    :param channel_uri: Push notification channel URI; may be empty to de-register a device
+    :param channel_uri: Push notification channel URI; may be empty to deregister a device
     :type channel_uri: :class:`str`
     
     """
@@ -124,7 +124,7 @@ class DeviceTokenMicrosoftPushVoIP(DeviceToken):
     """
     A token for Microsoft Push Notification Service VoIP channel
     
-    :param channel_uri: Push notification channel URI; may be empty to de-register a device
+    :param channel_uri: Push notification channel URI; may be empty to deregister a device
     :type channel_uri: :class:`str`
     
     """
@@ -141,7 +141,7 @@ class DeviceTokenSimplePush(DeviceToken):
     """
     A token for Simple Push API for Firefox OS
     
-    :param endpoint: Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
+    :param endpoint: Absolute URL exposed by the push service where the application server can send push messages; may be empty to deregister a device
     :type endpoint: :class:`str`
     
     """
@@ -158,7 +158,7 @@ class DeviceTokenTizenPush(DeviceToken):
     """
     A token for Tizen Push Service
     
-    :param reg_id: Push service registration identifier; may be empty to de-register a device
+    :param reg_id: Push service registration identifier; may be empty to deregister a device
     :type reg_id: :class:`str`
     
     """
@@ -175,7 +175,7 @@ class DeviceTokenUbuntuPush(DeviceToken):
     """
     A token for Ubuntu Push Client service
     
-    :param token: Token; may be empty to de-register a device
+    :param token: Token; may be empty to deregister a device
     :type token: :class:`str`
     
     """
@@ -192,7 +192,7 @@ class DeviceTokenWebPush(DeviceToken):
     """
     A token for web Push API
     
-    :param endpoint: Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
+    :param endpoint: Absolute URL exposed by the push service where the application server can send push messages; may be empty to deregister a device
     :type endpoint: :class:`str`
     
     :param p256dh_base64url: Base64url-encoded P-256 elliptic curve Diffie-Hellman public key
@@ -217,7 +217,7 @@ class DeviceTokenWindowsPush(DeviceToken):
     """
     A token for Windows Push Notification Services
     
-    :param access_token: The access token that will be used to send notifications; may be empty to de-register a device
+    :param access_token: The access token that will be used to send notifications; may be empty to deregister a device
     :type access_token: :class:`str`
     
     """

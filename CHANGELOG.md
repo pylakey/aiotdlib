@@ -1,14 +1,32 @@
 # aiotdlib CHANGELOG
 
+### 0.15.0 - TDLib 1.7.11
+
+> This update contains some breaking API changes!
+
+#### Added
+
+* Added ability pass TDLib options as `Client` constructor parameter
+
+* `Client.get_my_id` method to retrieve currently connected user ID
+
+#### Updated
+
+* TDLib binaries upgraded to latest [available version](https://github.com/pylakey/td/commit/218de37c3ada07b5acf793eb5638f5e476526eb2) (1.7.11 from now)
+
+* API types and functions regenerated
+
+* Improved chats info caching
+
 ### 0.14.0 - TDLib 1.7.10
+
+> This update contains some breaking API changes!
 
 #### Updated
 
 * TDLib binaries upgraded to latest [available version](https://github.com/pylakey/td/commit/6bd7e04875f0a323fc316d5be73358330134c9c8) (1.7.10 from now)
 
 * API types and functions regenerated
-
-> This update contains some breaking API changes!
 
 ### 0.13.2 - Bugfix
 

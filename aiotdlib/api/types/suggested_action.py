@@ -21,7 +21,7 @@ class SuggestedAction(BaseObject):
 
 class SuggestedActionCheckPassword(SuggestedAction):
     """
-    Suggests the user to check whether 2-step verification password is still remembered
+    Suggests the user to check whether they still remember their 2-step verification password
     
     """
 
@@ -75,19 +75,6 @@ class SuggestedActionEnableArchiveAndMuteNewChats(SuggestedAction):
         return SuggestedActionEnableArchiveAndMuteNewChats.construct(**q)
 
 
-class SuggestedActionSeeTicksHint(SuggestedAction):
-    """
-    Suggests the user to see a hint about meaning of one and two ticks on sent message
-    
-    """
-
-    ID: str = Field("suggestedActionSeeTicksHint", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> SuggestedActionSeeTicksHint:
-        return SuggestedActionSeeTicksHint.construct(**q)
-
-
 class SuggestedActionSetPassword(SuggestedAction):
     """
     Suggests the user to set a 2-step verification password to be able to log in again
@@ -103,3 +90,16 @@ class SuggestedActionSetPassword(SuggestedAction):
     @staticmethod
     def read(q: dict) -> SuggestedActionSetPassword:
         return SuggestedActionSetPassword.construct(**q)
+
+
+class SuggestedActionViewChecksHint(SuggestedAction):
+    """
+    Suggests the user to view a hint about the meaning of one and two check marks on sent messages
+    
+    """
+
+    ID: str = Field("suggestedActionViewChecksHint", alias="@type")
+
+    @staticmethod
+    def read(q: dict) -> SuggestedActionViewChecksHint:
+        return SuggestedActionViewChecksHint.construct(**q)

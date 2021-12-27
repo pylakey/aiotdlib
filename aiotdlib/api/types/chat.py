@@ -48,8 +48,8 @@ class Chat(BaseObject):
     :param positions: Positions of the chat in chat lists
     :type positions: :class:`list[ChatPosition]`
     
-    :param default_message_sender_id: Default identifier of a user or chat that is chosen to send messages in the chat; may be null if the user can't change message sender, defaults to None
-    :type default_message_sender_id: :class:`MessageSender`, optional
+    :param message_sender_id: Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender, defaults to None
+    :type message_sender_id: :class:`MessageSender`, optional
     
     :param has_protected_content: True, if chat content can't be saved locally, forwarded, or copied
     :type has_protected_content: :class:`bool`
@@ -90,8 +90,8 @@ class Chat(BaseObject):
     :param notification_settings: Notification settings for this chat
     :type notification_settings: :class:`ChatNotificationSettings`
     
-    :param message_ttl_setting: Current message Time To Live setting (self-destruct timer) for the chat; 0 if not defined. TTL is counted from the time message or its content is viewed in secret chats and from the send date in other chats
-    :type message_ttl_setting: :class:`int`
+    :param message_ttl: Current message Time To Live setting (self-destruct timer) for the chat; 0 if not defined. TTL is counted from the time message or its content is viewed in secret chats and from the send date in other chats
+    :type message_ttl: :class:`int`
     
     :param theme_name: If non-empty, name of a theme, set for the chat
     :type theme_name: :class:`str`
@@ -124,7 +124,7 @@ class Chat(BaseObject):
     permissions: ChatPermissions
     last_message: typing.Optional[Message] = None
     positions: list[ChatPosition]
-    default_message_sender_id: typing.Optional[MessageSender] = None
+    message_sender_id: typing.Optional[MessageSender] = None
     has_protected_content: bool
     is_marked_as_unread: bool
     is_blocked: bool
@@ -138,7 +138,7 @@ class Chat(BaseObject):
     last_read_outbox_message_id: int
     unread_mention_count: int
     notification_settings: ChatNotificationSettings
-    message_ttl_setting: int
+    message_ttl: int
     theme_name: str
     action_bar: typing.Optional[ChatActionBar] = None
     video_chat: VideoChat

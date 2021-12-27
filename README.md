@@ -4,15 +4,15 @@
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/aiotdlib.svg)](https://pypi.python.org/pypi/aiotdlib/)
 [![PyPI license](https://img.shields.io/pypi/l/aiotdlib.svg)](https://pypi.python.org/pypi/aiotdlib/)
 
-> This wrapper is actual for **[TDLib v1.7.10 (6bd7e04)](https://github.com/pylakey/td/commit/6bd7e04875f0a323fc316d5be73358330134c9c8)**
+> This wrapper is actual for **[TDLib v1.7.11 (218de37)](https://github.com/pylakey/td/commit/218de37c3ada07b5acf793eb5638f5e476526eb2)**
 >
 > This package includes prebuilt TDLib binaries for macOS and Debian Buster.
-> You can use your own binary by passing `library_path` argument to `Client` class constructor. Make sure it's built from [this commit](https://github.com/tdlib/td/commit/6bd7e04875f0a323fc316d5be73358330134c9c8). Compatibility with other versions of library is not guaranteed.
+> You can use your own binary by passing `library_path` argument to `Client` class constructor. Make sure it's built from [this commit](https://github.com/tdlib/td/commit/218de37c3ada07b5acf793eb5638f5e476526eb2). Compatibility with other versions of library is not guaranteed.
 
 ## Features
 
 * All types and functions are generated automatically
-  from [tl schema](https://github.com/tdlib/td/blob/6bd7e04875f0a323fc316d5be73358330134c9c8/td/generate/scheme/td_api.tl)
+  from [tl schema](https://github.com/tdlib/td/blob/218de37c3ada07b5acf793eb5638f5e476526eb2/td/generate/scheme/td_api.tl)
 * All types and functions come with validation and good IDE type hinting (thanks
   to [Pydantic](https://github.com/samuelcolvin/pydantic))
 * A set of high-level API methods which makes work with tdlib much simpler

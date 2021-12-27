@@ -12,12 +12,12 @@ from ..base_object import BaseObject
 
 class ChatJoinRequestsInfo(BaseObject):
     """
-    Contains information about pending chat join requests
+    Contains information about pending join requests for a chat
     
     :param total_count: Total number of pending join requests
     :type total_count: :class:`int`
     
-    :param user_ids: Identifiers of users sent the newest pending join requests
+    :param user_ids: Identifiers of at most 3 users sent the newest pending join requests
     :type user_ids: :class:`list[int]`
     
     """

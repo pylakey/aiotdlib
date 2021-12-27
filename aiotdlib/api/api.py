@@ -194,7 +194,7 @@ class API:
         CHAT_EVENT_MESSAGE_DELETED = 'chatEventMessageDeleted'
         CHAT_EVENT_MESSAGE_EDITED = 'chatEventMessageEdited'
         CHAT_EVENT_MESSAGE_PINNED = 'chatEventMessagePinned'
-        CHAT_EVENT_MESSAGE_TTL_SETTING_CHANGED = 'chatEventMessageTtlSettingChanged'
+        CHAT_EVENT_MESSAGE_TTL_CHANGED = 'chatEventMessageTtlChanged'
         CHAT_EVENT_MESSAGE_UNPINNED = 'chatEventMessageUnpinned'
         CHAT_EVENT_PERMISSIONS_CHANGED = 'chatEventPermissionsChanged'
         CHAT_EVENT_PHOTO_CHANGED = 'chatEventPhotoChanged'
@@ -205,7 +205,7 @@ class API:
         CHAT_EVENT_TITLE_CHANGED = 'chatEventTitleChanged'
         CHAT_EVENT_USERNAME_CHANGED = 'chatEventUsernameChanged'
         CHAT_EVENT_VIDEO_CHAT_CREATED = 'chatEventVideoChatCreated'
-        CHAT_EVENT_VIDEO_CHAT_DISCARDED = 'chatEventVideoChatDiscarded'
+        CHAT_EVENT_VIDEO_CHAT_ENDED = 'chatEventVideoChatEnded'
         CHAT_EVENT_VIDEO_CHAT_MUTE_NEW_PARTICIPANTS_TOGGLED = 'chatEventVideoChatMuteNewParticipantsToggled'
         CHAT_EVENT_VIDEO_CHAT_PARTICIPANT_IS_MUTED_TOGGLED = 'chatEventVideoChatParticipantIsMutedToggled'
         CHAT_EVENT_VIDEO_CHAT_PARTICIPANT_VOLUME_LEVEL_CHANGED = 'chatEventVideoChatParticipantVolumeLevelChanged'
@@ -383,7 +383,6 @@ class API:
         DICE_STICKERS_SLOT_MACHINE = 'diceStickersSlotMachine'
         DISABLE_PROXY = 'disableProxy'
         DISCARD_CALL = 'discardCall'
-        DISCARD_GROUP_CALL = 'discardGroupCall'
         DISCONNECT_ALL_WEBSITES = 'disconnectAllWebsites'
         DISCONNECT_WEBSITE = 'disconnectWebsite'
         DOCUMENT = 'document'
@@ -409,6 +408,7 @@ class API:
         ENABLE_PROXY = 'enableProxy'
         ENCRYPTED_CREDENTIALS = 'encryptedCredentials'
         ENCRYPTED_PASSPORT_ELEMENT = 'encryptedPassportElement'
+        END_GROUP_CALL = 'endGroupCall'
         END_GROUP_CALL_RECORDING = 'endGroupCallRecording'
         END_GROUP_CALL_SCREEN_SHARING = 'endGroupCallScreenSharing'
         ERROR = 'error'
@@ -478,7 +478,7 @@ class API:
         GET_CHAT_PINNED_MESSAGE = 'getChatPinnedMessage'
         GET_CHAT_SCHEDULED_MESSAGES = 'getChatScheduledMessages'
         GET_CHAT_SPARSE_MESSAGE_POSITIONS = 'getChatSparseMessagePositions'
-        GET_CHAT_SPONSORED_MESSAGES = 'getChatSponsoredMessages'
+        GET_CHAT_SPONSORED_MESSAGE = 'getChatSponsoredMessage'
         GET_CHAT_STATISTICS = 'getChatStatistics'
         GET_CHATS = 'getChats'
         GET_COMMANDS = 'getCommands'
@@ -1196,13 +1196,13 @@ class API:
         SET_BIO = 'setBio'
         SET_BOT_UPDATES_STATUS = 'setBotUpdatesStatus'
         SET_CHAT_CLIENT_DATA = 'setChatClientData'
-        SET_CHAT_DEFAULT_MESSAGE_SENDER = 'setChatDefaultMessageSender'
         SET_CHAT_DESCRIPTION = 'setChatDescription'
         SET_CHAT_DISCUSSION_GROUP = 'setChatDiscussionGroup'
         SET_CHAT_DRAFT_MESSAGE = 'setChatDraftMessage'
         SET_CHAT_LOCATION = 'setChatLocation'
         SET_CHAT_MEMBER_STATUS = 'setChatMemberStatus'
-        SET_CHAT_MESSAGE_TTL_SETTING = 'setChatMessageTtlSetting'
+        SET_CHAT_MESSAGE_SENDER = 'setChatMessageSender'
+        SET_CHAT_MESSAGE_TTL = 'setChatMessageTtl'
         SET_CHAT_NOTIFICATION_SETTINGS = 'setChatNotificationSettings'
         SET_CHAT_PERMISSIONS = 'setChatPermissions'
         SET_CHAT_PHOTO = 'setChatPhoto'
@@ -1246,7 +1246,6 @@ class API:
         SHARE_PHONE_NUMBER = 'sharePhoneNumber'
         SHIPPING_OPTION = 'shippingOption'
         SPONSORED_MESSAGE = 'sponsoredMessage'
-        SPONSORED_MESSAGES = 'sponsoredMessages'
         START_GROUP_CALL_RECORDING = 'startGroupCallRecording'
         START_GROUP_CALL_SCREEN_SHARING = 'startGroupCallScreenSharing'
         START_SCHEDULED_GROUP_CALL = 'startScheduledGroupCall'
@@ -1270,8 +1269,8 @@ class API:
         SUGGESTED_ACTION_CHECK_PHONE_NUMBER = 'suggestedActionCheckPhoneNumber'
         SUGGESTED_ACTION_CONVERT_TO_BROADCAST_GROUP = 'suggestedActionConvertToBroadcastGroup'
         SUGGESTED_ACTION_ENABLE_ARCHIVE_AND_MUTE_NEW_CHATS = 'suggestedActionEnableArchiveAndMuteNewChats'
-        SUGGESTED_ACTION_SEE_TICKS_HINT = 'suggestedActionSeeTicksHint'
         SUGGESTED_ACTION_SET_PASSWORD = 'suggestedActionSetPassword'
+        SUGGESTED_ACTION_VIEW_CHECKS_HINT = 'suggestedActionViewChecksHint'
         SUPERGROUP = 'supergroup'
         SUPERGROUP_FULL_INFO = 'supergroupFullInfo'
         SUPERGROUP_MEMBERS_FILTER = 'supergroupMembersFilter'
@@ -1389,7 +1388,6 @@ class API:
         UPDATE_CHAT_ACTION = 'updateChatAction'
         UPDATE_CHAT_ACTION_BAR = 'updateChatActionBar'
         UPDATE_CHAT_DEFAULT_DISABLE_NOTIFICATION = 'updateChatDefaultDisableNotification'
-        UPDATE_CHAT_DEFAULT_MESSAGE_SENDER_ID = 'updateChatDefaultMessageSenderId'
         UPDATE_CHAT_DRAFT_MESSAGE = 'updateChatDraftMessage'
         UPDATE_CHAT_FILTERS = 'updateChatFilters'
         UPDATE_CHAT_HAS_PROTECTED_CONTENT = 'updateChatHasProtectedContent'
@@ -1398,7 +1396,8 @@ class API:
         UPDATE_CHAT_IS_MARKED_AS_UNREAD = 'updateChatIsMarkedAsUnread'
         UPDATE_CHAT_LAST_MESSAGE = 'updateChatLastMessage'
         UPDATE_CHAT_MEMBER = 'updateChatMember'
-        UPDATE_CHAT_MESSAGE_TTL_SETTING = 'updateChatMessageTtlSetting'
+        UPDATE_CHAT_MESSAGE_SENDER = 'updateChatMessageSender'
+        UPDATE_CHAT_MESSAGE_TTL = 'updateChatMessageTtl'
         UPDATE_CHAT_NOTIFICATION_SETTINGS = 'updateChatNotificationSettings'
         UPDATE_CHAT_ONLINE_MEMBER_COUNT = 'updateChatOnlineMemberCount'
         UPDATE_CHAT_PENDING_JOIN_REQUESTS = 'updateChatPendingJoinRequests'
@@ -1656,7 +1655,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Adds multiple new members to a chat. Currently this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
+        Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
         
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
@@ -3625,7 +3624,7 @@ class API:
             self,
             chat_id: int,
             name: typing.Optional[str],
-            expire_date: int,
+            expiration_date: int,
             member_limit: int,
             creates_join_request: bool,
             *,
@@ -3642,10 +3641,10 @@ class API:
         :param name: Invite link name; 0-32 characters, defaults to None
         :type name: :class:`str`, optional
         
-        :param expire_date: Point in time (Unix timestamp) when the link will expire; pass 0 if never
-        :type expire_date: :class:`int`
+        :param expiration_date: Point in time (Unix timestamp) when the link will expire; pass 0 if never
+        :type expiration_date: :class:`int`
         
-        :param member_limit: The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+        :param member_limit: The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
         :type member_limit: :class:`int`
         
         :param creates_join_request: True, if the link only creates join request. If true, member_limit must not be specified
@@ -3667,7 +3666,7 @@ class API:
             _constructor(
                 chat_id=chat_id,
                 name=name,
-                expire_date=expire_date,
+                expiration_date=expiration_date,
                 member_limit=member_limit,
                 creates_join_request=creates_join_request,
             ),
@@ -4758,40 +4757,6 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def discard_group_call(
-            self,
-            group_call_id: int,
-            *,
-            request_id: str = None,
-            request_timeout: int = None,
-            skip_validation: bool = False
-    ) -> Ok:
-        """
-        Discards a group call. Requires groupCall.can_be_managed
-        
-        :param group_call_id: Group call identifier
-        :type group_call_id: :class:`int`
-        
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
-        
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Ok`
-        """
-        _constructor = DiscardGroupCall.construct if skip_validation else DiscardGroupCall
-
-        return await self.client.request(
-            _constructor(
-                group_call_id=group_call_id,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
     async def disconnect_all_websites(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Disconnects all websites from the current user's Telegram account
@@ -4935,7 +4900,7 @@ class API:
             chat_id: int,
             invite_link: str,
             name: typing.Optional[str],
-            expire_date: int,
+            expiration_date: int,
             member_limit: int,
             creates_join_request: bool,
             *,
@@ -4955,10 +4920,10 @@ class API:
         :param name: Invite link name; 0-32 characters, defaults to None
         :type name: :class:`str`, optional
         
-        :param expire_date: Point in time (Unix timestamp) when the link will expire; pass 0 if never
-        :type expire_date: :class:`int`
+        :param expiration_date: Point in time (Unix timestamp) when the link will expire; pass 0 if never
+        :type expiration_date: :class:`int`
         
-        :param member_limit: The maximum number of chat members that can join the chat by the link simultaneously; 0-99999; pass 0 if not limited
+        :param member_limit: The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
         :type member_limit: :class:`int`
         
         :param creates_join_request: True, if the link only creates join request. If true, member_limit must not be specified
@@ -4981,7 +4946,7 @@ class API:
                 chat_id=chat_id,
                 invite_link=invite_link,
                 name=name,
-                expire_date=expire_date,
+                expiration_date=expiration_date,
                 member_limit=member_limit,
                 creates_join_request=creates_join_request,
             ),
@@ -5630,6 +5595,40 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def end_group_call(
+            self,
+            group_call_id: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Ends a group call. Requires groupCall.can_be_managed
+        
+        :param group_call_id: Group call identifier
+        :type group_call_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = EndGroupCall.construct if skip_validation else EndGroupCall
+
+        return await self.client.request(
+            _constructor(
+                group_call_id=group_call_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def end_group_call_recording(
             self,
             group_call_id: int,
@@ -5982,7 +5981,7 @@ class API:
             skip_validation: bool = False
     ) -> StickerSets:
         """
-        Returns a list of sticker sets attached to a file. Currently only photos and videos can have attached sticker sets
+        Returns a list of sticker sets attached to a file. Currently, only photos and videos can have attached sticker sets
         
         :param file_id: File identifier
         :type file_id: :class:`int`
@@ -6709,7 +6708,7 @@ class API:
             skip_validation: bool = False
     ) -> ChatInviteLinkMembers:
         """
-        Returns chat members joined a chat by an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+        Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
         
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
@@ -6832,7 +6831,7 @@ class API:
         :param offset_request: A chat join request from which to return next requests; pass null to get results from the beginning
         :type offset_request: :class:`ChatJoinRequest`
         
-        :param limit: The maximum number of chat join requests to return
+        :param limit: The maximum number of requests to join the chat to return
         :type limit: :class:`int`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -6982,7 +6981,7 @@ class API:
             skip_validation: bool = False
     ) -> MessageCalendar:
         """
-        Returns information about the next messages of the specified type in the chat splitted by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
+        Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
         
         :param chat_id: Identifier of the chat in which to return information about messages
         :type chat_id: :class:`int`
@@ -7215,16 +7214,16 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_chat_sponsored_messages(
+    async def get_chat_sponsored_message(
             self,
             chat_id: int,
             *,
             request_id: str = None,
             request_timeout: int = None,
             skip_validation: bool = False
-    ) -> SponsoredMessages:
+    ) -> SponsoredMessage:
         """
-        Returns sponsored messages to be shown in a chat; for channel chats only
+        Returns sponsored message to be shown in a chat; for channel chats only. Returns a 404 error if there is no sponsored message in the chat
         
         :param chat_id: Identifier of the chat
         :type chat_id: :class:`int`
@@ -7237,9 +7236,9 @@ class API:
         :type skip_validation: :class:`bool`
         
         :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.SponsoredMessages`
+        :rtype: :class:`aiotdlib.api.types.SponsoredMessage`
         """
-        _constructor = GetChatSponsoredMessages.construct if skip_validation else GetChatSponsoredMessages
+        _constructor = GetChatSponsoredMessage.construct if skip_validation else GetChatSponsoredMessage
 
         return await self.client.request(
             _constructor(
@@ -7259,7 +7258,7 @@ class API:
             skip_validation: bool = False
     ) -> ChatStatistics:
         """
-        Returns detailed statistics about a chat. Currently this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
+        Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
         
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
@@ -10753,7 +10752,7 @@ class API:
             skip_validation: bool = False
     ) -> MessageSenders:
         """
-        Returns list of participant identifiers, which can be used to join video chats in a chat
+        Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
         
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
@@ -12541,7 +12540,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if this is a private chat with a bot, a private chat with a user sharing their location, a supergroup, or a channel, since other chats can't be checked by moderators
+        Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
         
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
@@ -12590,7 +12589,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Reports a chat photo to the Telegram moderators. A chat photo can be reported only if this is a private chat with a bot, a private chat with a user sharing their location, a supergroup, or a channel, since other chats can't be checked by moderators
+        Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
         
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
@@ -12637,12 +12636,12 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Reports some messages from a message sender in a supergroup as spam; requires administrator rights in the supergroup
+        Reports messages in a supergroup as spam; requires administrator rights in the supergroup
         
         :param supergroup_id: Supergroup identifier
         :type supergroup_id: :class:`int`
         
-        :param message_ids: Identifiers of messages sent in the supergroup. All messages must be sent by the same sender. This list must be non-empty
+        :param message_ids: Identifiers of messages to report
         :type message_ids: :class:`list[int]`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -13619,7 +13618,7 @@ class API:
             skip_validation: bool = False
     ) -> Chat:
         """
-        Searches a public chat by its username. Currently only private chats, supergroups and channels can be public. Returns the chat if found; otherwise an error is returned
+        Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise an error is returned
         
         :param username: Username to be resolved
         :type username: :class:`str`
@@ -13653,7 +13652,7 @@ class API:
             skip_validation: bool = False
     ) -> Chats:
         """
-        Searches public chats by looking for specified query in their username and title. Currently only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
+        Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
         
         :param query: Query to search for
         :type query: :class:`str`
@@ -14297,7 +14296,7 @@ class API:
             skip_validation: bool = False
     ) -> Messages:
         """
-        Sends 2-10 messages grouped together into an album. Currently only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
+        Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
         
         :param chat_id: Target chat
         :type chat_id: :class:`int`
@@ -14826,45 +14825,6 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def set_chat_default_message_sender(
-            self,
-            chat_id: int,
-            default_message_sender_id: MessageSender,
-            *,
-            request_id: str = None,
-            request_timeout: int = None,
-            skip_validation: bool = False
-    ) -> Ok:
-        """
-        Changes default message sender that is chosen in a chat
-        
-        :param chat_id: Chat identifier
-        :type chat_id: :class:`int`
-        
-        :param default_message_sender_id: New default message sender in the chat
-        :type default_message_sender_id: :class:`MessageSender`
-        
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
-        
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Ok`
-        """
-        _constructor = SetChatDefaultMessageSender.construct if skip_validation else SetChatDefaultMessageSender
-
-        return await self.client.request(
-            _constructor(
-                chat_id=chat_id,
-                default_message_sender_id=default_message_sender_id,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
     async def set_chat_description(
             self,
             chat_id: int,
@@ -15070,7 +15030,46 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def set_chat_message_ttl_setting(
+    async def set_chat_message_sender(
+            self,
+            chat_id: int,
+            message_sender_id: MessageSender,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Selects a message sender to send messages in a chat
+        
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param message_sender_id: New message sender for the chat
+        :type message_sender_id: :class:`MessageSender`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = SetChatMessageSender.construct if skip_validation else SetChatMessageSender
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                message_sender_id=message_sender_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_chat_message_ttl(
             self,
             chat_id: int,
             ttl: int,
@@ -15080,7 +15079,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Changes the message TTL setting (sets a new self-destruct timer) in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL setting of a chat with the current user (Saved Messages) and the chat 777000 (Telegram) can't be changed
+        Changes the message TTL in a chat. Requires can_delete_messages administrator right in basic groups, supergroups and channels Message TTL can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram)
         
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
@@ -15098,7 +15097,7 @@ class API:
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
-        _constructor = SetChatMessageTtlSetting.construct if skip_validation else SetChatMessageTtlSetting
+        _constructor = SetChatMessageTtl.construct if skip_validation else SetChatMessageTtl
 
         return await self.client.request(
             _constructor(
@@ -16675,7 +16674,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Changes default participant identifier, which can be used to join video chats in a chat
+        Changes default participant identifier, on whose behalf a video chat in the chat will be joined
         
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
@@ -18236,7 +18235,7 @@ class API:
             skip_validation: bool = False
     ) -> File:
         """
-        Uploads a PNG image with a sticker; returns the uploaded file
+        Uploads a file with a sticker; returns the uploaded file
         
         :param user_id: Sticker file owner; ignored for regular users
         :type user_id: :class:`int`

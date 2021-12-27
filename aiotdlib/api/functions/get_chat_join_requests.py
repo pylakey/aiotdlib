@@ -27,7 +27,7 @@ class GetChatJoinRequests(BaseObject):
     :param offset_request: A chat join request from which to return next requests; pass null to get results from the beginning
     :type offset_request: :class:`ChatJoinRequest`
     
-    :param limit: The maximum number of chat join requests to return
+    :param limit: The maximum number of requests to join the chat to return
     :type limit: :class:`int`
     
     """

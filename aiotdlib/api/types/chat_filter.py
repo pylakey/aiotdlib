@@ -17,7 +17,7 @@ class ChatFilter(BaseObject):
     :param title: The title of the filter; 1-12 characters without line feeds
     :type title: :class:`str`
     
-    :param icon_name: The icon name for short filter representation. If non-empty, must be one of "All", "Unread", "Unmuted", "Bots", "Channels", "Groups", "Private", "Custom", "Setup", "Cat", "Crown", "Favorite", "Flower", "Game", "Home", "Love", "Mask", "Party", "Sport", "Study", "Trade", "Travel", "Work". If empty, use getChatFilterDefaultIconName to get default icon name for the filter
+    :param icon_name: The chosen icon name for short filter representation. If non-empty, must be one of "All", "Unread", "Unmuted", "Bots", "Channels", "Groups", "Private", "Custom", "Setup", "Cat", "Crown", "Favorite", "Flower", "Game", "Home", "Love", "Mask", "Party", "Sport", "Study", "Trade", "Travel", "Work". If empty, use getChatFilterDefaultIconName to get default icon name for the filter
     :type icon_name: :class:`str`
     
     :param pinned_chat_ids: The chat identifiers of pinned chats in the filtered chat list

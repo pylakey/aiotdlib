@@ -7,22 +7,26 @@ from __future__ import annotations
 
 from pydantic import Field
 
-from .sponsored_message import SponsoredMessage
 from ..base_object import BaseObject
+from ..types import MessageSender
 
 
-class SponsoredMessages(BaseObject):
+class SetChatMessageSender(BaseObject):
     """
-    Contains a list of sponsored messages
+    Selects a message sender to send messages in a chat
     
-    :param messages: List of sponsored messages
-    :type messages: :class:`list[SponsoredMessage]`
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_sender_id: New message sender for the chat
+    :type message_sender_id: :class:`MessageSender`
     
     """
 
-    ID: str = Field("sponsoredMessages", alias="@type")
-    messages: list[SponsoredMessage]
+    ID: str = Field("setChatMessageSender", alias="@type")
+    chat_id: int
+    message_sender_id: MessageSender
 
     @staticmethod
-    def read(q: dict) -> SponsoredMessages:
-        return SponsoredMessages.construct(**q)
+    def read(q: dict) -> SetChatMessageSender:
+        return SetChatMessageSender.construct(**q)

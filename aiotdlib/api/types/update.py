@@ -284,27 +284,6 @@ class UpdateChatDefaultDisableNotification(Update):
         return UpdateChatDefaultDisableNotification.construct(**q)
 
 
-class UpdateChatDefaultMessageSenderId(Update):
-    """
-    The default message sender that is chosen to send messages in a chat has changed
-    
-    :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
-    :param default_message_sender_id: New value of default_message_sender_id; may be null if the user can't change message sender, defaults to None
-    :type default_message_sender_id: :class:`MessageSender`, optional
-    
-    """
-
-    ID: str = Field("updateChatDefaultMessageSenderId", alias="@type")
-    chat_id: int
-    default_message_sender_id: typing.Optional[MessageSender] = None
-
-    @staticmethod
-    def read(q: dict) -> UpdateChatDefaultMessageSenderId:
-        return UpdateChatDefaultMessageSenderId.construct(**q)
-
-
 class UpdateChatDraftMessage(Update):
     """
     A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update mustn't be applied
@@ -493,25 +472,46 @@ class UpdateChatMember(Update):
         return UpdateChatMember.construct(**q)
 
 
-class UpdateChatMessageTtlSetting(Update):
+class UpdateChatMessageSender(Update):
+    """
+    The message sender that is selected to send messages in a chat has changed
+    
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_sender_id: New value of message_sender_id; may be null if the user can't change message sender, defaults to None
+    :type message_sender_id: :class:`MessageSender`, optional
+    
+    """
+
+    ID: str = Field("updateChatMessageSender", alias="@type")
+    chat_id: int
+    message_sender_id: typing.Optional[MessageSender] = None
+
+    @staticmethod
+    def read(q: dict) -> UpdateChatMessageSender:
+        return UpdateChatMessageSender.construct(**q)
+
+
+class UpdateChatMessageTtl(Update):
     """
     The message Time To Live setting for a chat was changed
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
     
-    :param message_ttl_setting: New value of message_ttl_setting
-    :type message_ttl_setting: :class:`int`
+    :param message_ttl: New value of message_ttl
+    :type message_ttl: :class:`int`
     
     """
 
-    ID: str = Field("updateChatMessageTtlSetting", alias="@type")
+    ID: str = Field("updateChatMessageTtl", alias="@type")
     chat_id: int
-    message_ttl_setting: int
+    message_ttl: int
 
     @staticmethod
-    def read(q: dict) -> UpdateChatMessageTtlSetting:
-        return UpdateChatMessageTtlSetting.construct(**q)
+    def read(q: dict) -> UpdateChatMessageTtl:
+        return UpdateChatMessageTtl.construct(**q)
 
 
 class UpdateChatNotificationSettings(Update):

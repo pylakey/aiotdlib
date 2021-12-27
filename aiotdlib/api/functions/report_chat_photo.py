@@ -15,7 +15,7 @@ from ..types import ChatReportReason
 
 class ReportChatPhoto(BaseObject):
     """
-    Reports a chat photo to the Telegram moderators. A chat photo can be reported only if this is a private chat with a bot, a private chat with a user sharing their location, a supergroup, or a channel, since other chats can't be checked by moderators
+    Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
