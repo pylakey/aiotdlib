@@ -233,12 +233,6 @@ class ClientOptions(pydantic.BaseModel):
     If true, chat and message reictions specific to the currently used operating system will be ignored
     """
 
-    ignore_sensitive_content_restrictions: Optional[bool] = True
-    """
-    If true, sensitive content will be shown on all user devices. 
-    getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
-    """
-
     is_location_visible: Optional[bool] = False
     """
     If true, other users will be allowed to see the current user's location
@@ -729,13 +723,7 @@ class Client:
             request_id="updateAuthorizationState"
         )
 
-        try:
-            await self.__setup_options()
-        except BadRequest:
-            self.logger.error('Unable to setup options!')
-            await self.__close()
-            return None
-
+        await self.__setup_options()
         await self.__setup_proxy()
 
         return result
@@ -931,7 +919,11 @@ class Client:
                 continue
 
             self.logger.info(f'Setting up option {k} = {v}')
-            await self.api.set_option(k, option_value, skip_validation=True)
+
+            try:
+                await self.api.set_option(k, option_value, skip_validation=True)
+            except BadRequest as e:
+                self.logger.error(f'Unable to setup option {k} = {v}: {e}!')
 
     def add_event_handler(
             self,
