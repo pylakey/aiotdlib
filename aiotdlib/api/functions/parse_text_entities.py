@@ -13,7 +13,7 @@ from ..types import TextParseMode
 
 class ParseTextEntities(BaseObject):
     """
-    Parses Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. Can be called synchronously
+    Parses Bold, Italic, Underline, Strikethrough, Spoiler, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. Can be called synchronously
     
     :param text: The text to parse
     :type text: :class:`str`

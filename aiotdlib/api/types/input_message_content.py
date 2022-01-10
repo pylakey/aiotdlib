@@ -188,7 +188,7 @@ class InputMessageForwarded(InputMessageContent):
     :param in_game_share: True, if a game message is being shared from a launched game; applies only to game messages
     :type in_game_share: :class:`bool`
     
-    :param copy_options: Options to be used to copy content of the message without reference to the original sender; pass null to try to forward the message as usual
+    :param copy_options: Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual
     :type copy_options: :class:`MessageCopyOptions`
     
     """
@@ -430,7 +430,7 @@ class InputMessageText(InputMessageContent):
     """
     A text message
     
-    :param text: Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
+    :param text: Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
     :type text: :class:`FormattedText`
     
     :param disable_web_page_preview: True, if rich web page previews for URLs in the message text must be disabled
