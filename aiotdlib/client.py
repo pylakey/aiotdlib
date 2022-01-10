@@ -27,13 +27,6 @@ from pydantic import (
     validator,
 )
 
-from api import (
-    BadRequest,
-    OptionValueBoolean,
-    OptionValueEmpty,
-    OptionValueInteger,
-    OptionValueString,
-)
 from . import __version__
 from .api import (
     API,
@@ -84,6 +77,13 @@ from .api import (
     UpdateMessageSendSucceeded,
     User,
     UserFullInfo,
+)
+from .api import (
+    BadRequest,
+    OptionValueBoolean,
+    OptionValueEmpty,
+    OptionValueInteger,
+    OptionValueString,
 )
 from .client_cache import ClientCache
 from .filters import Filters
