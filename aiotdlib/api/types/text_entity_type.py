@@ -213,6 +213,19 @@ class TextEntityTypePreCode(TextEntityType):
         return TextEntityTypePreCode.construct(**q)
 
 
+class TextEntityTypeSpoiler(TextEntityType):
+    """
+    A spoiler text. Not supported in secret chats
+    
+    """
+
+    ID: str = Field("textEntityTypeSpoiler", alias="@type")
+
+    @staticmethod
+    def read(q: dict) -> TextEntityTypeSpoiler:
+        return TextEntityTypeSpoiler.construct(**q)
+
+
 class TextEntityTypeStrikethrough(TextEntityType):
     """
     A strikethrough text

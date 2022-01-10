@@ -107,7 +107,6 @@ from .utils import (
 
 RequestResult = TypeVar('RequestResult', bound=BaseObject)
 ExecuteResult = TypeVar('ExecuteResult', bound=BaseObject)
-
 ChatInfo = Union[
     User,
     UserFullInfo,
@@ -117,6 +116,7 @@ ChatInfo = Union[
     SupergroupFullInfo,
     SecretChat
 ]
+AuthActionsDict = dict[Optional[str], typing.Callable[[], typing.Coroutine[typing.Any, typing.Any, RequestResult]]]
 
 
 class ClientProxyType(str, enum.Enum):
@@ -1069,7 +1069,7 @@ class Client:
         else:
             self.logger.info('Authorization process has been started with phone')
 
-        auth_actions = {
+        auth_actions: AuthActionsDict = {
             None: self.__auth_start,
             API.Types.AUTHORIZATION_STATE_WAIT_TDLIB_PARAMETERS: self.__set_tdlib_parameters,
             API.Types.AUTHORIZATION_STATE_WAIT_ENCRYPTION_KEY: self.__check_database_encryption_key,
@@ -1267,34 +1267,36 @@ class Client:
             disable_notification: bool = False,
             send_when_online: bool = False,
             send_date: int = None,
-            request_timeout: int = None
+            request_timeout: int = None,
+            protect_content: bool = False,
     ):
         """
         Sends a text message. Returns the sent message
 
         Args:
-            chat_id (int)
-                Target chat
+        :param chat_id: Target chat
+        :type chat_id: :class:`int`
 
-            content (InputMessageContent)
-                The content of the message to be sent
+        :param content: The content of the message to be sent
+        :type content: :class:`InputMessageContent`
 
-            reply_to_message_id (int)
-                Identifier of the message to reply to or 0
+        :param reply_to_message_id: Identifier of the message to reply to or 0
+        :type reply_to_message_id: :class:`int`
 
-            reply_markup (ReplyMarkup)
-                Markup for replying to the message; for bots only
+        :param reply_markup: Markup for replying to the message; for bots only
+        :type reply_markup: :class:`ReplyMarkup`
 
-            disable_notification (bool)
-                Pass true to disable notification for the message
+        :param disable_notification: Pass true to disable notification for the message
+        :type disable_notification: :class:`bool`
 
-            send_when_online: (bool)
-                When True, the message will be sent when the peer will be online.
-                Applicable to private chats only and when the exact online status of the peer is known
+        :param send_when_online: When True, the message will be sent when the peer will be online. Applicable to private chats only and when the exact online status of the peer is known
+        :type send_when_online: :class:`bool`
 
-            send_date: (int)
-                Date the message will be sent. The date must be within 367 days in the future.
-                If send_date passed send_when_online will be ignored
+        :param send_date: Date the message will be sent. The date must be within 367 days in the future. If send_date passed send_when_online will be ignored
+        :type send_date: :class:`int`
+
+        :param protect_content: Pass true if the content of the message must be protected from forwarding and saving; for bots only
+        :type protect_content: :class:`bool`
 
         """
 
@@ -1312,6 +1314,7 @@ class Client:
             options=MessageSendOptions.construct(
                 disable_notification=disable_notification,
                 from_background=False,
+                protect_content=protect_content,
                 scheduling_state=scheduling_state
             ),
             reply_markup=reply_markup,
@@ -1332,7 +1335,8 @@ class Client:
             clear_draft: bool = True,
             send_when_online: bool = False,
             send_date: int = None,
-            request_timeout: int = None
+            request_timeout: int = None,
+            protect_content: bool = False,
     ) -> Message:
         """
         Sends a text message. Returns the sent message
@@ -1451,7 +1455,8 @@ class Client:
             disable_notification: bool = False,
             send_when_online: bool = False,
             send_date: int = None,
-            request_timeout: int = None
+            request_timeout: int = None,
+            protect_content: bool = False,
     ):
         """
         Sends a photo with caption to chat. Returns the sent message
@@ -1535,7 +1540,8 @@ class Client:
             disable_notification=disable_notification,
             send_when_online=send_when_online,
             send_date=send_date,
-            request_timeout=request_timeout
+            request_timeout=request_timeout,
+            protect_content=protect_content
         )
 
     async def send_video(
@@ -1558,7 +1564,8 @@ class Client:
             disable_notification: bool = False,
             send_when_online: bool = False,
             send_date: int = None,
-            request_timeout: int = None
+            request_timeout: int = None,
+            protect_content: bool = False,
     ):
         """
         Sends a video with caption to chat. Returns the sent message
@@ -1650,7 +1657,8 @@ class Client:
             disable_notification=disable_notification,
             send_when_online=send_when_online,
             send_date=send_date,
-            request_timeout=request_timeout
+            request_timeout=request_timeout,
+            protect_content=protect_content
         )
 
     async def send_animation(
@@ -1671,7 +1679,8 @@ class Client:
             disable_notification: bool = False,
             send_when_online: bool = False,
             send_date: int = None,
-            request_timeout: int = None
+            request_timeout: int = None,
+            protect_content: bool = False,
     ):
         """
         Sends an animation with caption to chat. Returns the sent message
@@ -1755,7 +1764,8 @@ class Client:
             disable_notification=disable_notification,
             send_when_online=send_when_online,
             send_date=send_date,
-            request_timeout=request_timeout
+            request_timeout=request_timeout,
+            protect_content=protect_content
         )
 
     async def send_document(
@@ -1773,7 +1783,8 @@ class Client:
             disable_notification: bool = False,
             send_when_online: bool = False,
             send_date: int = None,
-            request_timeout: int = None
+            request_timeout: int = None,
+            protect_content: bool = False,
     ):
         """
         Sends a document with caption to chat. Returns the sent message
@@ -1846,7 +1857,8 @@ class Client:
             disable_notification=disable_notification,
             send_when_online=send_when_online,
             send_date=send_date,
-            request_timeout=request_timeout
+            request_timeout=request_timeout,
+            protect_content=protect_content
         )
 
     async def send_audio(
@@ -1866,7 +1878,8 @@ class Client:
             disable_notification: bool = False,
             send_when_online: bool = False,
             send_date: int = None,
-            request_timeout: int = None
+            request_timeout: int = None,
+            protect_content: bool = False,
     ):
         """
         Sends an audio with caption to chat. Returns the sent message
@@ -1947,7 +1960,8 @@ class Client:
             disable_notification=disable_notification,
             send_when_online=send_when_online,
             send_date=send_date,
-            request_timeout=request_timeout
+            request_timeout=request_timeout,
+            protect_content=protect_content
         )
 
     async def send_voice_note(
@@ -1963,7 +1977,8 @@ class Client:
             disable_notification: bool = False,
             send_when_online: bool = False,
             send_date: int = None,
-            request_timeout: int = None
+            request_timeout: int = None,
+            protect_content: bool = False,
     ):
         """
         Sends a voice note with caption to chat. Returns the sent message
@@ -2021,7 +2036,8 @@ class Client:
             disable_notification=disable_notification,
             send_when_online=send_when_online,
             send_date=send_date,
-            request_timeout=request_timeout
+            request_timeout=request_timeout,
+            protect_content=protect_content
         )
 
     async def send_video_note(
@@ -2039,7 +2055,8 @@ class Client:
             disable_notification: bool = False,
             send_when_online: bool = False,
             send_date: int = None,
-            request_timeout: int = None
+            request_timeout: int = None,
+            protect_content: bool = False,
     ):
         """
         Sends a video note with caption to chat. Returns the sent message
@@ -2112,7 +2129,8 @@ class Client:
             disable_notification=disable_notification,
             send_when_online=send_when_online,
             send_date=send_date,
-            request_timeout=request_timeout
+            request_timeout=request_timeout,
+            protect_content=protect_content
         )
 
     async def forward_messages(
@@ -2129,6 +2147,7 @@ class Client:
             from_background: bool = False,
             send_date: int = None,
             request_timeout: int = None,
+            protect_content: bool = False,
     ) -> Messages:
         """
         Forwards previously sent messages.
@@ -2185,6 +2204,7 @@ class Client:
             options=MessageSendOptions.construct(
                 disable_notification=disable_notification,
                 from_background=from_background,
+                protect_content=protect_content,
                 scheduling_state=scheduling_state
             ),
             send_copy=send_copy,

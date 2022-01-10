@@ -466,7 +466,6 @@ from .upload_file import UploadFile
 from .upload_sticker_file import UploadStickerFile
 from .validate_order_info import ValidateOrderInfo
 from .view_messages import ViewMessages
-from .view_sponsored_message import ViewSponsoredMessage
 from .view_trending_sticker_sets import ViewTrendingStickerSets
 from .write_generated_file_part import WriteGeneratedFilePart
 
@@ -933,7 +932,6 @@ __all__ = [
     "UploadStickerFile",
     "ValidateOrderInfo",
     "ViewMessages",
-    "ViewSponsoredMessage",
     "ViewTrendingStickerSets",
     "WriteGeneratedFilePart",
 ]

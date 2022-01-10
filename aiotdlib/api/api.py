@@ -1333,6 +1333,7 @@ class API:
         TEXT_ENTITY_TYPE_PHONE_NUMBER = 'textEntityTypePhoneNumber'
         TEXT_ENTITY_TYPE_PRE = 'textEntityTypePre'
         TEXT_ENTITY_TYPE_PRE_CODE = 'textEntityTypePreCode'
+        TEXT_ENTITY_TYPE_SPOILER = 'textEntityTypeSpoiler'
         TEXT_ENTITY_TYPE_STRIKETHROUGH = 'textEntityTypeStrikethrough'
         TEXT_ENTITY_TYPE_TEXT_URL = 'textEntityTypeTextUrl'
         TEXT_ENTITY_TYPE_UNDERLINE = 'textEntityTypeUnderline'
@@ -1518,7 +1519,6 @@ class API:
         VIDEO_CHAT = 'videoChat'
         VIDEO_NOTE = 'videoNote'
         VIEW_MESSAGES = 'viewMessages'
-        VIEW_SPONSORED_MESSAGE = 'viewSponsoredMessage'
         VIEW_TRENDING_STICKER_SETS = 'viewTrendingStickerSets'
         VOICE_NOTE = 'voiceNote'
         WEB_PAGE = 'webPage'
@@ -4249,7 +4249,7 @@ class API:
         :param remove_from_chat_list: Pass true if the chat needs to be removed from the chat list
         :type remove_from_chat_list: :class:`bool`
         
-        :param revoke: Pass true to try to delete chat history for all users
+        :param revoke: Pass true to delete chat history for all users
         :type revoke: :class:`bool`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -4297,7 +4297,7 @@ class API:
         :param max_date: The maximum date of the messages to delete
         :type max_date: :class:`int`
         
-        :param revoke: Pass true to try to delete chat messages for all users; private chats only
+        :param revoke: Pass true to delete chat messages for all users; private chats only
         :type revoke: :class:`bool`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -4527,7 +4527,7 @@ class API:
         :param message_ids: Identifiers of the messages to be deleted
         :type message_ids: :class:`list[int]`
         
-        :param revoke: Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
+        :param revoke: Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
         :type revoke: :class:`bool`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -11448,7 +11448,7 @@ class API:
         """
         Parses Markdown entities in a human-friendly format, ignoring markup errors. Can be called synchronously
         
-        :param text: The text to parse. For example, "__italic__ ~~strikethrough~~ **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
+        :param text: The text to parse. For example, "__italic__ ~~strikethrough~~ ||spoiler|| **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
         :type text: :class:`FormattedText`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -11481,7 +11481,7 @@ class API:
             skip_validation: bool = False
     ) -> FormattedText:
         """
-        Parses Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. Can be called synchronously
+        Parses Bold, Italic, Underline, Strikethrough, Spoiler, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. Can be called synchronously
         
         :param text: The text to parse
         :type text: :class:`str`
@@ -18325,7 +18325,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Informs TDLib that messages are being viewed by the user. Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
+        Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button). Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
         
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
@@ -18357,45 +18357,6 @@ class API:
                 message_thread_id=message_thread_id,
                 message_ids=message_ids,
                 force_read=force_read,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
-    async def view_sponsored_message(
-            self,
-            chat_id: int,
-            sponsored_message_id: int,
-            *,
-            request_id: str = None,
-            request_timeout: int = None,
-            skip_validation: bool = False
-    ) -> Ok:
-        """
-        Informs TDLib that a sponsored message was viewed by the user
-        
-        :param chat_id: Identifier of the chat with the sponsored message
-        :type chat_id: :class:`int`
-        
-        :param sponsored_message_id: The identifier of the sponsored message being viewed
-        :type sponsored_message_id: :class:`int`
-        
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
-        
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Ok`
-        """
-        _constructor = ViewSponsoredMessage.construct if skip_validation else ViewSponsoredMessage
-
-        return await self.client.request(
-            _constructor(
-                chat_id=chat_id,
-                sponsored_message_id=sponsored_message_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,

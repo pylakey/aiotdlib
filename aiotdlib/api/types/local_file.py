@@ -17,7 +17,7 @@ class LocalFile(BaseObject):
     :param path: Local path to the locally available file part; may be empty
     :type path: :class:`str`
     
-    :param can_be_downloaded: True, if it is possible to try to download or generate the file
+    :param can_be_downloaded: True, if it is possible to download or generate the file
     :type can_be_downloaded: :class:`bool`
     
     :param can_be_deleted: True, if the file can be deleted

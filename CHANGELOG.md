@@ -1,6 +1,16 @@
 # aiotdlib CHANGELOG
 
+### 0.16.0 - TDLib 1.7.12
+
+#### Updated
+
+* TDLib binaries upgraded to latest [available version](https://github.com/pylakey/td/commit/fa8feefed70d64271945e9d5fd010b957d93c8cd) (1.7.12 from now)
+
+* API types and functions regenerated
+
 ### 0.15.1
+
+#### Updated
 
 * Fixed options setup (#8)
 

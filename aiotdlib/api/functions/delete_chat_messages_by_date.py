@@ -23,7 +23,7 @@ class DeleteChatMessagesByDate(BaseObject):
     :param max_date: The maximum date of the messages to delete
     :type max_date: :class:`int`
     
-    :param revoke: Pass true to try to delete chat messages for all users; private chats only
+    :param revoke: Pass true to delete chat messages for all users; private chats only
     :type revoke: :class:`bool`
     
     """
