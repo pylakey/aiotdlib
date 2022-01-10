@@ -1,5 +1,13 @@
 # aiotdlib CHANGELOG
 
+### 0.15.1
+
+* Fixed options setup (#8)
+
+* Removed ignore_sensitive_content_restrictions from available options as it is not editable by user
+
+* Fixed import typo (#9)
+
 ### 0.15.0 - TDLib 1.7.11
 
 > This update contains some breaking API changes!
