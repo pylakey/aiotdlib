@@ -4,7 +4,7 @@
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/aiotdlib.svg)](https://pypi.python.org/pypi/aiotdlib/)
 [![PyPI license](https://img.shields.io/pypi/l/aiotdlib.svg)](https://pypi.python.org/pypi/aiotdlib/)
 
-> This wrapper is actual for **[TDLib v1.7.11 (fa8feef)](https://github.com/pylakey/td/commit/fa8feefed70d64271945e9d5fd010b957d93c8cd)**
+> This wrapper is actual for **[TDLib v1.8.0 (fa8feef)](https://github.com/pylakey/td/commit/fa8feefed70d64271945e9d5fd010b957d93c8cd)**
 >
 > This package includes prebuilt TDLib binaries for macOS and Debian Buster.
 > You can use your own binary by passing `library_path` argument to `Client` class constructor. Make sure it's built from [this commit](https://github.com/tdlib/td/commit/fa8feefed70d64271945e9d5fd010b957d93c8cd). Compatibility with other versions of library is not guaranteed.

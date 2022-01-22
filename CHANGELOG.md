@@ -1,6 +1,8 @@
 # aiotdlib CHANGELOG
 
-### 0.16.0 - TDLib 1.7.12
+### 0.16.0 - TDLib 1.8.0
+
+> This update may contain some breaking API changes!
 
 #### Updated
 
