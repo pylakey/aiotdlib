@@ -698,8 +698,8 @@ class Client:
         return await self.api.set_tdlib_parameters(
             parameters=TdlibParameters(
                 use_test_dc=self.settings.use_test_dc,
-                database_directory=f"{self.settings.files_directory}/database",
-                files_directory=f"{self.settings.files_directory}/files",
+                database_directory=os.path.join(f"{self.settings.files_directory}","database"),
+                files_directory=os.path.join(f"{self.settings.files_directory}","files"),
                 use_file_database=self.settings.use_file_database,
                 use_chat_info_database=self.settings.use_chat_info_database,
                 use_message_database=self.settings.use_message_database,
