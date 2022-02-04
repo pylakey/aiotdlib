@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aiotdlib"
-version = "0.16.0"
+version = "0.17.0"
 description = "Python asyncio Telegram client based on TDLib"
 authors = ["pylakey <pylakey@protonmail.com>"]
 license = "MIT"
