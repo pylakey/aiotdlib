@@ -19,7 +19,7 @@ class SetCommands(BaseObject):
     :param scope: The scope to which the commands are relevant; pass null to change commands in the default bot command scope
     :type scope: :class:`BotCommandScope`
     
-    :param language_code: A two-letter ISO 639-1 country code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
+    :param language_code: A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
     :type language_code: :class:`str`
     
     :param commands: List of the bot's commands

@@ -204,6 +204,8 @@ from .get_map_thumbnail_file import GetMapThumbnailFile
 from .get_markdown_text import GetMarkdownText
 from .get_me import GetMe
 from .get_message import GetMessage
+from .get_message_added_reactions import GetMessageAddedReactions
+from .get_message_available_reactions import GetMessageAvailableReactions
 from .get_message_embedding_code import GetMessageEmbeddingCode
 from .get_message_file_type import GetMessageFileType
 from .get_message_import_confirmation_text import GetMessageImportConfirmationText
@@ -290,6 +292,7 @@ from .process_chat_join_request import ProcessChatJoinRequest
 from .process_chat_join_requests import ProcessChatJoinRequests
 from .process_push_notification import ProcessPushNotification
 from .read_all_chat_mentions import ReadAllChatMentions
+from .read_all_chat_reactions import ReadAllChatReactions
 from .read_file_part import ReadFilePart
 from .recover_authentication_password import RecoverAuthenticationPassword
 from .recover_password import RecoverPassword
@@ -372,6 +375,7 @@ from .set_auto_download_settings import SetAutoDownloadSettings
 from .set_background import SetBackground
 from .set_bio import SetBio
 from .set_bot_updates_status import SetBotUpdatesStatus
+from .set_chat_available_reactions import SetChatAvailableReactions
 from .set_chat_client_data import SetChatClientData
 from .set_chat_description import SetChatDescription
 from .set_chat_discussion_group import SetChatDiscussionGroup
@@ -401,6 +405,7 @@ from .set_location import SetLocation
 from .set_log_stream import SetLogStream
 from .set_log_tag_verbosity_level import SetLogTagVerbosityLevel
 from .set_log_verbosity_level import SetLogVerbosityLevel
+from .set_message_reaction import SetMessageReaction
 from .set_name import SetName
 from .set_network_type import SetNetworkType
 from .set_option import SetOption
@@ -459,6 +464,7 @@ from .toggle_supergroup_is_all_history_available import ToggleSupergroupIsAllHis
 from .toggle_supergroup_is_broadcast_group import ToggleSupergroupIsBroadcastGroup
 from .toggle_supergroup_sign_messages import ToggleSupergroupSignMessages
 from .transfer_chat_ownership import TransferChatOwnership
+from .translate_text import TranslateText
 from .unpin_all_chat_messages import UnpinAllChatMessages
 from .unpin_chat_message import UnpinChatMessage
 from .upgrade_basic_group_chat_to_supergroup_chat import UpgradeBasicGroupChatToSupergroupChat
@@ -670,6 +676,8 @@ __all__ = [
     "GetMarkdownText",
     "GetMe",
     "GetMessage",
+    "GetMessageAddedReactions",
+    "GetMessageAvailableReactions",
     "GetMessageEmbeddingCode",
     "GetMessageFileType",
     "GetMessageImportConfirmationText",
@@ -756,6 +764,7 @@ __all__ = [
     "ProcessChatJoinRequests",
     "ProcessPushNotification",
     "ReadAllChatMentions",
+    "ReadAllChatReactions",
     "ReadFilePart",
     "RecoverAuthenticationPassword",
     "RecoverPassword",
@@ -838,6 +847,7 @@ __all__ = [
     "SetBackground",
     "SetBio",
     "SetBotUpdatesStatus",
+    "SetChatAvailableReactions",
     "SetChatClientData",
     "SetChatDescription",
     "SetChatDiscussionGroup",
@@ -867,6 +877,7 @@ __all__ = [
     "SetLogStream",
     "SetLogTagVerbosityLevel",
     "SetLogVerbosityLevel",
+    "SetMessageReaction",
     "SetName",
     "SetNetworkType",
     "SetOption",
@@ -925,6 +936,7 @@ __all__ = [
     "ToggleSupergroupIsBroadcastGroup",
     "ToggleSupergroupSignMessages",
     "TransferChatOwnership",
+    "TranslateText",
     "UnpinAllChatMessages",
     "UnpinChatMessage",
     "UpgradeBasicGroupChatToSupergroupChat",

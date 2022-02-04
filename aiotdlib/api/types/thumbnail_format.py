@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class ThumbnailFormat(BaseObject):
     """
-    Describes format of the thumbnail
+    Describes format of a thumbnail
     
     """
 
@@ -73,7 +73,7 @@ class ThumbnailFormatPng(ThumbnailFormat):
 
 class ThumbnailFormatTgs(ThumbnailFormat):
     """
-    The thumbnail is in TGS format. It will be used only for animated sticker sets
+    The thumbnail is in TGS format. It will be used only for TGS sticker sets
     
     """
 
@@ -82,6 +82,19 @@ class ThumbnailFormatTgs(ThumbnailFormat):
     @staticmethod
     def read(q: dict) -> ThumbnailFormatTgs:
         return ThumbnailFormatTgs.construct(**q)
+
+
+class ThumbnailFormatWebm(ThumbnailFormat):
+    """
+    The thumbnail is in WEBM format. It will be used only for WEBM sticker sets
+    
+    """
+
+    ID: str = Field("thumbnailFormatWebm", alias="@type")
+
+    @staticmethod
+    def read(q: dict) -> ThumbnailFormatWebm:
+        return ThumbnailFormatWebm.construct(**q)
 
 
 class ThumbnailFormatWebp(ThumbnailFormat):

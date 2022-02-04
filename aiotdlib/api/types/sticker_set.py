@@ -12,6 +12,7 @@ from pydantic import Field
 from .closed_vector_path import ClosedVectorPath
 from .emojis import Emojis
 from .sticker import Sticker
+from .sticker_type import StickerType
 from .thumbnail import Thumbnail
 from ..base_object import BaseObject
 
@@ -29,7 +30,7 @@ class StickerSet(BaseObject):
     :param name: Name of the sticker set
     :type name: :class:`str`
     
-    :param thumbnail: Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed, defaults to None
+    :param thumbnail: Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed, defaults to None
     :type thumbnail: :class:`Thumbnail`, optional
     
     :param thumbnail_outline: Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
@@ -44,11 +45,8 @@ class StickerSet(BaseObject):
     :param is_official: True, if the sticker set is official
     :type is_official: :class:`bool`
     
-    :param is_animated: True, is the stickers in the set are animated
-    :type is_animated: :class:`bool`
-    
-    :param is_masks: True, if the stickers in the set are masks
-    :type is_masks: :class:`bool`
+    :param sticker_type: Type of the stickers in the set
+    :type sticker_type: :class:`StickerType`
     
     :param is_viewed: True for already viewed trending sticker sets
     :type is_viewed: :class:`bool`
@@ -70,8 +68,7 @@ class StickerSet(BaseObject):
     is_installed: bool
     is_archived: bool
     is_official: bool
-    is_animated: bool
-    is_masks: bool
+    sticker_type: StickerType
     is_viewed: bool
     stickers: list[Sticker]
     emojis: list[Emojis]

@@ -50,6 +50,7 @@ from .notification_settings_scope import NotificationSettingsScope
 from .option_value import OptionValue
 from .order_info import OrderInfo
 from .poll import Poll
+from .reaction import Reaction
 from .reply_markup import ReplyMarkup
 from .scope_notification_settings import ScopeNotificationSettings
 from .secret_chat import SecretChat
@@ -60,6 +61,7 @@ from .suggested_action import SuggestedAction
 from .supergroup import Supergroup
 from .supergroup_full_info import SupergroupFullInfo
 from .terms_of_service import TermsOfService
+from .unread_reaction import UnreadReaction
 from .user import User
 from .user_full_info import UserFullInfo
 from .user_privacy_setting import UserPrivacySetting
@@ -261,6 +263,27 @@ class UpdateChatActionBar(Update):
     @staticmethod
     def read(q: dict) -> UpdateChatActionBar:
         return UpdateChatActionBar.construct(**q)
+
+
+class UpdateChatAvailableReactions(Update):
+    """
+    The chat available reactions were changed
+    
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param available_reactions: The new list of reactions, available in the chat
+    :type available_reactions: :class:`list[str]`
+    
+    """
+
+    ID: str = Field("updateChatAvailableReactions", alias="@type")
+    chat_id: int
+    available_reactions: list[str]
+
+    @staticmethod
+    def read(q: dict) -> UpdateChatAvailableReactions:
+        return UpdateChatAvailableReactions.construct(**q)
 
 
 class UpdateChatDefaultDisableNotification(Update):
@@ -787,6 +810,27 @@ class UpdateChatUnreadMentionCount(Update):
         return UpdateChatUnreadMentionCount.construct(**q)
 
 
+class UpdateChatUnreadReactionCount(Update):
+    """
+    The chat unread_reaction_count has changed
+    
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param unread_reaction_count: The number of messages with unread reactions left in the chat
+    :type unread_reaction_count: :class:`int`
+    
+    """
+
+    ID: str = Field("updateChatUnreadReactionCount", alias="@type")
+    chat_id: int
+    unread_reaction_count: int
+
+    @staticmethod
+    def read(q: dict) -> UpdateChatUnreadReactionCount:
+        return UpdateChatUnreadReactionCount.construct(**q)
+
+
 class UpdateChatVideoChat(Update):
     """
     A chat video chat state has changed
@@ -1298,6 +1342,35 @@ class UpdateMessageSendSucceeded(Update):
         return UpdateMessageSendSucceeded.construct(**q)
 
 
+class UpdateMessageUnreadReactions(Update):
+    """
+    The list of unread reactions added to a message was changed
+    
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`int`
+    
+    :param message_id: Message identifier
+    :type message_id: :class:`int`
+    
+    :param unread_reactions: The new list of unread reactions
+    :type unread_reactions: :class:`list[UnreadReaction]`
+    
+    :param unread_reaction_count: The new number of messages with unread reactions left in the chat
+    :type unread_reaction_count: :class:`int`
+    
+    """
+
+    ID: str = Field("updateMessageUnreadReactions", alias="@type")
+    chat_id: int
+    message_id: int
+    unread_reactions: list[UnreadReaction]
+    unread_reaction_count: int
+
+    @staticmethod
+    def read(q: dict) -> UpdateMessageUnreadReactions:
+        return UpdateMessageUnreadReactions.construct(**q)
+
+
 class UpdateNewCallSignalingData(Update):
     """
     New call signaling data arrived
@@ -1757,6 +1830,23 @@ class UpdatePollAnswer(Update):
     @staticmethod
     def read(q: dict) -> UpdatePollAnswer:
         return UpdatePollAnswer.construct(**q)
+
+
+class UpdateReactions(Update):
+    """
+    The list of supported reactions has changed
+    
+    :param reactions: The new list of supported reactions
+    :type reactions: :class:`list[Reaction]`
+    
+    """
+
+    ID: str = Field("updateReactions", alias="@type")
+    reactions: list[Reaction]
+
+    @staticmethod
+    def read(q: dict) -> UpdateReactions:
+        return UpdateReactions.construct(**q)
 
 
 class UpdateRecentStickers(Update):

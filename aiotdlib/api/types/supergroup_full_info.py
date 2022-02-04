@@ -71,7 +71,7 @@ class SupergroupFullInfo(BaseObject):
     :param location: Location to which the supergroup is connected; may be null, defaults to None
     :type location: :class:`ChatLocation`, optional
     
-    :param invite_link: Primary invite link for this chat; may be null. For chat administrators with can_invite_users right only, defaults to None
+    :param invite_link: Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only, defaults to None
     :type invite_link: :class:`ChatInviteLink`, optional
     
     :param bot_commands: List of commands of bots in the group

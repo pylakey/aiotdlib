@@ -162,6 +162,19 @@ class SearchMessagesFilterUnreadMention(SearchMessagesFilter):
         return SearchMessagesFilterUnreadMention.construct(**q)
 
 
+class SearchMessagesFilterUnreadReaction(SearchMessagesFilter):
+    """
+    Returns only messages with unread reactions for the current user. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user
+    
+    """
+
+    ID: str = Field("searchMessagesFilterUnreadReaction", alias="@type")
+
+    @staticmethod
+    def read(q: dict) -> SearchMessagesFilterUnreadReaction:
+        return SearchMessagesFilterUnreadReaction.construct(**q)
+
+
 class SearchMessagesFilterUrl(SearchMessagesFilter):
     """
     Returns only messages containing URLs

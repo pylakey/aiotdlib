@@ -21,7 +21,7 @@ class SetStickerSetThumbnail(BaseObject):
     :param name: Sticker set name
     :type name: :class:`str`
     
-    :param thumbnail: Thumbnail to set in PNG or TGS format; pass null to remove the sticker set thumbnail. Animated thumbnail must be set for animated sticker sets and only for them
+    :param thumbnail: Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
     :type thumbnail: :class:`InputFile`
     
     """

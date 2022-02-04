@@ -24,10 +24,7 @@ class CreateNewStickerSet(BaseObject):
     :param name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
     :type name: :class:`str`
     
-    :param is_masks: True, if stickers are masks. Animated stickers can't be masks
-    :type is_masks: :class:`bool`
-    
-    :param stickers: List of stickers to be added to the set; must be non-empty. All stickers must be of the same type. For animated stickers, uploadStickerFile must be used before the sticker is shown
+    :param stickers: List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
     :type stickers: :class:`list[InputSticker]`
     
     :param source: Source of the sticker set; may be empty if unknown
@@ -39,7 +36,6 @@ class CreateNewStickerSet(BaseObject):
     user_id: int
     title: str = Field(..., min_length=1, max_length=64)
     name: str = Field(..., min_length=1, max_length=64)
-    is_masks: bool
     stickers: list[InputSticker]
     source: str
 

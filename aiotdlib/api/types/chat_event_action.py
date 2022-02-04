@@ -28,6 +28,27 @@ class ChatEventAction(BaseObject):
     ID: str = Field("chatEventAction", alias="@type")
 
 
+class ChatEventAvailableReactionsChanged(ChatEventAction):
+    """
+    The chat available reactions were changed
+    
+    :param old_available_reactions: Previous chat available reactions
+    :type old_available_reactions: :class:`list[str]`
+    
+    :param new_available_reactions: New chat available reactions
+    :type new_available_reactions: :class:`list[str]`
+    
+    """
+
+    ID: str = Field("chatEventAvailableReactionsChanged", alias="@type")
+    old_available_reactions: list[str]
+    new_available_reactions: list[str]
+
+    @staticmethod
+    def read(q: dict) -> ChatEventAvailableReactionsChanged:
+        return ChatEventAvailableReactionsChanged.construct(**q)
+
+
 class ChatEventDescriptionChanged(ChatEventAction):
     """
     The chat description was changed

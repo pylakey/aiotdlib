@@ -430,7 +430,7 @@ class InternalLinkTypeUnsupportedProxy(InternalLinkType):
 
 class InternalLinkTypeVideoChat(InternalLinkType):
     """
-    The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGoupCall with the given invite hash to process the link
+    The link is a link to a video chat. Call searchPublicChat with the given chat username, and then joinGroupCall with the given invite hash to process the link
     
     :param chat_username: Username of the chat with the video chat
     :type chat_username: :class:`str`

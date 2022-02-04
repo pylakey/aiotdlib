@@ -41,6 +41,8 @@ class API:
         ADD_RECENTLY_FOUND_CHAT = 'addRecentlyFoundChat'
         ADD_SAVED_ANIMATION = 'addSavedAnimation'
         ADD_STICKER_TO_SET = 'addStickerToSet'
+        ADDED_REACTION = 'addedReaction'
+        ADDED_REACTIONS = 'addedReactions'
         ADDRESS = 'address'
         ANIMATED_CHAT_PHOTO = 'animatedChatPhoto'
         ANIMATED_EMOJI = 'animatedEmoji'
@@ -73,6 +75,7 @@ class API:
         AUTHORIZATION_STATE_WAIT_TDLIB_PARAMETERS = 'authorizationStateWaitTdlibParameters'
         AUTO_DOWNLOAD_SETTINGS = 'autoDownloadSettings'
         AUTO_DOWNLOAD_SETTINGS_PRESETS = 'autoDownloadSettingsPresets'
+        AVAILABLE_REACTIONS = 'availableReactions'
         BACKGROUND = 'background'
         BACKGROUND_FILL = 'backgroundFill'
         BACKGROUND_FILL_FREEFORM_GRADIENT = 'backgroundFillFreeformGradient'
@@ -175,6 +178,7 @@ class API:
         CHAT_ADMINISTRATORS = 'chatAdministrators'
         CHAT_EVENT = 'chatEvent'
         CHAT_EVENT_ACTION = 'chatEventAction'
+        CHAT_EVENT_AVAILABLE_REACTIONS_CHANGED = 'chatEventAvailableReactionsChanged'
         CHAT_EVENT_DESCRIPTION_CHANGED = 'chatEventDescriptionChanged'
         CHAT_EVENT_HAS_PROTECTED_CONTENT_TOGGLED = 'chatEventHasProtectedContentToggled'
         CHAT_EVENT_INVITE_LINK_DELETED = 'chatEventInviteLinkDeleted'
@@ -525,6 +529,8 @@ class API:
         GET_MARKDOWN_TEXT = 'getMarkdownText'
         GET_ME = 'getMe'
         GET_MESSAGE = 'getMessage'
+        GET_MESSAGE_ADDED_REACTIONS = 'getMessageAddedReactions'
+        GET_MESSAGE_AVAILABLE_REACTIONS = 'getMessageAvailableReactions'
         GET_MESSAGE_EMBEDDING_CODE = 'getMessageEmbeddingCode'
         GET_MESSAGE_FILE_TYPE = 'getMessageFileType'
         GET_MESSAGE_IMPORT_CONFIRMATION_TEXT = 'getMessageImportConfirmationText'
@@ -705,8 +711,6 @@ class API:
         INPUT_PASSPORT_ELEMENT_ERROR_SOURCE_UNSPECIFIED = 'inputPassportElementErrorSourceUnspecified'
         INPUT_PERSONAL_DOCUMENT = 'inputPersonalDocument'
         INPUT_STICKER = 'inputSticker'
-        INPUT_STICKER_ANIMATED = 'inputStickerAnimated'
-        INPUT_STICKER_STATIC = 'inputStickerStatic'
         INPUT_THUMBNAIL = 'inputThumbnail'
         INTERNAL_LINK_TYPE = 'internalLinkType'
         INTERNAL_LINK_TYPE_ACTIVE_SESSIONS = 'internalLinkTypeActiveSessions'
@@ -852,6 +856,7 @@ class API:
         MESSAGE_LINK_INFO = 'messageLinkInfo'
         MESSAGE_POSITION = 'messagePosition'
         MESSAGE_POSITIONS = 'messagePositions'
+        MESSAGE_REACTION = 'messageReaction'
         MESSAGE_REPLY_INFO = 'messageReplyInfo'
         MESSAGE_SCHEDULING_STATE = 'messageSchedulingState'
         MESSAGE_SCHEDULING_STATE_SEND_AT_DATE = 'messageSchedulingStateSendAtDate'
@@ -1054,7 +1059,9 @@ class API:
         PUSH_MESSAGE_CONTENT_VIDEO_NOTE = 'pushMessageContentVideoNote'
         PUSH_MESSAGE_CONTENT_VOICE_NOTE = 'pushMessageContentVoiceNote'
         PUSH_RECEIVER_ID = 'pushReceiverId'
+        REACTION = 'reaction'
         READ_ALL_CHAT_MENTIONS = 'readAllChatMentions'
+        READ_ALL_CHAT_REACTIONS = 'readAllChatReactions'
         READ_FILE_PART = 'readFilePart'
         RECOMMENDED_CHAT_FILTER = 'recommendedChatFilter'
         RECOMMENDED_CHAT_FILTERS = 'recommendedChatFilters'
@@ -1154,6 +1161,7 @@ class API:
         SEARCH_MESSAGES_FILTER_PHOTO_AND_VIDEO = 'searchMessagesFilterPhotoAndVideo'
         SEARCH_MESSAGES_FILTER_PINNED = 'searchMessagesFilterPinned'
         SEARCH_MESSAGES_FILTER_UNREAD_MENTION = 'searchMessagesFilterUnreadMention'
+        SEARCH_MESSAGES_FILTER_UNREAD_REACTION = 'searchMessagesFilterUnreadReaction'
         SEARCH_MESSAGES_FILTER_URL = 'searchMessagesFilterUrl'
         SEARCH_MESSAGES_FILTER_VIDEO = 'searchMessagesFilterVideo'
         SEARCH_MESSAGES_FILTER_VIDEO_NOTE = 'searchMessagesFilterVideoNote'
@@ -1195,6 +1203,7 @@ class API:
         SET_BACKGROUND = 'setBackground'
         SET_BIO = 'setBio'
         SET_BOT_UPDATES_STATUS = 'setBotUpdatesStatus'
+        SET_CHAT_AVAILABLE_REACTIONS = 'setChatAvailableReactions'
         SET_CHAT_CLIENT_DATA = 'setChatClientData'
         SET_CHAT_DESCRIPTION = 'setChatDescription'
         SET_CHAT_DISCUSSION_GROUP = 'setChatDiscussionGroup'
@@ -1224,6 +1233,7 @@ class API:
         SET_LOG_STREAM = 'setLogStream'
         SET_LOG_TAG_VERBOSITY_LEVEL = 'setLogTagVerbosityLevel'
         SET_LOG_VERBOSITY_LEVEL = 'setLogVerbosityLevel'
+        SET_MESSAGE_REACTION = 'setMessageReaction'
         SET_NAME = 'setName'
         SET_NETWORK_TYPE = 'setNetworkType'
         SET_OPTION = 'setOption'
@@ -1258,6 +1268,11 @@ class API:
         STICKER_SET = 'stickerSet'
         STICKER_SET_INFO = 'stickerSetInfo'
         STICKER_SETS = 'stickerSets'
+        STICKER_TYPE = 'stickerType'
+        STICKER_TYPE_ANIMATED = 'stickerTypeAnimated'
+        STICKER_TYPE_MASK = 'stickerTypeMask'
+        STICKER_TYPE_STATIC = 'stickerTypeStatic'
+        STICKER_TYPE_VIDEO = 'stickerTypeVideo'
         STICKERS = 'stickers'
         STOP_POLL = 'stopPoll'
         STORAGE_STATISTICS = 'storageStatistics'
@@ -1349,6 +1364,7 @@ class API:
         THUMBNAIL_FORMAT_MPEG4 = 'thumbnailFormatMpeg4'
         THUMBNAIL_FORMAT_PNG = 'thumbnailFormatPng'
         THUMBNAIL_FORMAT_TGS = 'thumbnailFormatTgs'
+        THUMBNAIL_FORMAT_WEBM = 'thumbnailFormatWebm'
         THUMBNAIL_FORMAT_WEBP = 'thumbnailFormatWebp'
         TOGGLE_CHAT_DEFAULT_DISABLE_NOTIFICATION = 'toggleChatDefaultDisableNotification'
         TOGGLE_CHAT_HAS_PROTECTED_CONTENT = 'toggleChatHasProtectedContent'
@@ -1376,8 +1392,10 @@ class API:
         TOP_CHAT_CATEGORY_INLINE_BOTS = 'topChatCategoryInlineBots'
         TOP_CHAT_CATEGORY_USERS = 'topChatCategoryUsers'
         TRANSFER_CHAT_OWNERSHIP = 'transferChatOwnership'
+        TRANSLATE_TEXT = 'translateText'
         UNPIN_ALL_CHAT_MESSAGES = 'unpinAllChatMessages'
         UNPIN_CHAT_MESSAGE = 'unpinChatMessage'
+        UNREAD_REACTION = 'unreadReaction'
         UPDATE = 'update'
         UPDATE_ACTIVE_NOTIFICATIONS = 'updateActiveNotifications'
         UPDATE_ANIMATED_EMOJI_MESSAGE_CLICKED = 'updateAnimatedEmojiMessageClicked'
@@ -1388,6 +1406,7 @@ class API:
         UPDATE_CALL = 'updateCall'
         UPDATE_CHAT_ACTION = 'updateChatAction'
         UPDATE_CHAT_ACTION_BAR = 'updateChatActionBar'
+        UPDATE_CHAT_AVAILABLE_REACTIONS = 'updateChatAvailableReactions'
         UPDATE_CHAT_DEFAULT_DISABLE_NOTIFICATION = 'updateChatDefaultDisableNotification'
         UPDATE_CHAT_DRAFT_MESSAGE = 'updateChatDraftMessage'
         UPDATE_CHAT_FILTERS = 'updateChatFilters'
@@ -1412,6 +1431,7 @@ class API:
         UPDATE_CHAT_THEMES = 'updateChatThemes'
         UPDATE_CHAT_TITLE = 'updateChatTitle'
         UPDATE_CHAT_UNREAD_MENTION_COUNT = 'updateChatUnreadMentionCount'
+        UPDATE_CHAT_UNREAD_REACTION_COUNT = 'updateChatUnreadReactionCount'
         UPDATE_CHAT_VIDEO_CHAT = 'updateChatVideoChat'
         UPDATE_CONNECTION_STATE = 'updateConnectionState'
         UPDATE_DELETE_MESSAGES = 'updateDeleteMessages'
@@ -1435,6 +1455,7 @@ class API:
         UPDATE_MESSAGE_SEND_ACKNOWLEDGED = 'updateMessageSendAcknowledged'
         UPDATE_MESSAGE_SEND_FAILED = 'updateMessageSendFailed'
         UPDATE_MESSAGE_SEND_SUCCEEDED = 'updateMessageSendSucceeded'
+        UPDATE_MESSAGE_UNREAD_REACTIONS = 'updateMessageUnreadReactions'
         UPDATE_NEW_CALL_SIGNALING_DATA = 'updateNewCallSignalingData'
         UPDATE_NEW_CALLBACK_QUERY = 'updateNewCallbackQuery'
         UPDATE_NEW_CHAT = 'updateNewChat'
@@ -1452,6 +1473,7 @@ class API:
         UPDATE_OPTION = 'updateOption'
         UPDATE_POLL = 'updatePoll'
         UPDATE_POLL_ANSWER = 'updatePollAnswer'
+        UPDATE_REACTIONS = 'updateReactions'
         UPDATE_RECENT_STICKERS = 'updateRecentStickers'
         UPDATE_SAVED_ANIMATIONS = 'updateSavedAnimations'
         UPDATE_SCOPE_NOTIFICATION_SETTINGS = 'updateScopeNotificationSettings'
@@ -3752,7 +3774,6 @@ class API:
             user_id: int,
             title: str,
             name: str,
-            is_masks: bool,
             stickers: list[InputSticker],
             source: str,
             *,
@@ -3772,10 +3793,7 @@ class API:
         :param name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
         :type name: :class:`str`
         
-        :param is_masks: True, if stickers are masks. Animated stickers can't be masks
-        :type is_masks: :class:`bool`
-        
-        :param stickers: List of stickers to be added to the set; must be non-empty. All stickers must be of the same type. For animated stickers, uploadStickerFile must be used before the sticker is shown
+        :param stickers: List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
         :type stickers: :class:`list[InputSticker]`
         
         :param source: Source of the sticker set; may be empty if unknown
@@ -3798,7 +3816,6 @@ class API:
                 user_id=user_id,
                 title=title,
                 name=name,
-                is_masks=is_masks,
                 stickers=stickers,
                 source=source,
             ),
@@ -4416,7 +4433,7 @@ class API:
         :param scope: The scope to which the commands are relevant; pass null to delete commands in the default bot command scope
         :type scope: :class:`BotCommandScope`
         
-        :param language_code: A two-letter ISO 639-1 country code or an empty string
+        :param language_code: A two-letter ISO 639-1 language code or an empty string
         :type language_code: :class:`str`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -6986,7 +7003,7 @@ class API:
         :param chat_id: Identifier of the chat in which to return information about messages
         :type chat_id: :class:`int`
         
-        :param filter_: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+        :param filter_: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
         :type filter_: :class:`SearchMessagesFilter`
         
         :param from_message_id: The message identifier from which to return information about messages; use 0 to get results from the last message
@@ -7182,7 +7199,7 @@ class API:
         :param chat_id: Identifier of the chat in which to return information about message positions
         :type chat_id: :class:`int`
         
-        :param filter_: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+        :param filter_: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
         :type filter_: :class:`SearchMessagesFilter`
         
         :param from_message_id: The message identifier from which to return information about message positions
@@ -7341,7 +7358,7 @@ class API:
         :param scope: The scope to which the commands are relevant; pass null to get commands in the default bot command scope
         :type scope: :class:`BotCommandScope`
         
-        :param language_code: A two-letter ISO 639-1 country code or an empty string
+        :param language_code: A two-letter ISO 639-1 language code or an empty string
         :type language_code: :class:`str`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -8693,6 +8710,99 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_message_added_reactions(
+            self,
+            chat_id: int,
+            message_id: int,
+            reaction: str,
+            offset: str,
+            limit: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> AddedReactions:
+        """
+        Returns reactions added for a message, along with their sender
+        
+        :param chat_id: Identifier of the chat to which the message belongs
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param reaction: If non-empty, only added reactions with the specified text representation will be returned
+        :type reaction: :class:`str`
+        
+        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+        :type offset: :class:`str`
+        
+        :param limit: The maximum number of reactions to be returned; must be positive and can't be greater than 100
+        :type limit: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.AddedReactions`
+        """
+        _constructor = GetMessageAddedReactions.construct if skip_validation else GetMessageAddedReactions
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                message_id=message_id,
+                reaction=reaction,
+                offset=offset,
+                limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_message_available_reactions(
+            self,
+            chat_id: int,
+            message_id: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> AvailableReactions:
+        """
+        Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+        
+        :param chat_id: Identifier of the chat to which the message belongs
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.AvailableReactions`
+        """
+        _constructor = GetMessageAvailableReactions.construct if skip_validation else GetMessageAvailableReactions
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                message_id=message_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_message_embedding_code(
             self,
             chat_id: int,
@@ -8952,7 +9062,7 @@ class API:
         :param message_id: Message identifier
         :type message_id: :class:`int`
         
-        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
+        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
         :type offset: :class:`str`
         
         :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
@@ -9531,7 +9641,7 @@ class API:
         """
         Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
         
-        :param language_code: A two-letter ISO 639-1 country code for country information localization
+        :param language_code: A two-letter ISO 639-1 language code for country information localization
         :type language_code: :class:`str`
         
         :param phone_number_prefix: The phone number prefix
@@ -11612,7 +11722,7 @@ class API:
         :param user_id: Identifier of the user that sent the request
         :type user_id: :class:`int`
         
-        :param approve: True, if the request is approved. Otherwise the request is declived
+        :param approve: True, if the request is approved. Otherwise the request is declined
         :type approve: :class:`bool`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -11656,7 +11766,7 @@ class API:
         :param invite_link: Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
         :type invite_link: :class:`str`
         
-        :param approve: True, if the requests are approved. Otherwise the requests are declived
+        :param approve: True, if the requests are approved. Otherwise the requests are declined
         :type approve: :class:`bool`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -11740,6 +11850,40 @@ class API:
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
         _constructor = ReadAllChatMentions.construct if skip_validation else ReadAllChatMentions
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def read_all_chat_reactions(
+            self,
+            chat_id: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Marks all reactions in a chat as read
+        
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = ReadAllChatReactions.construct if skip_validation else ReadAllChatReactions
 
         return await self.client.request(
             _constructor(
@@ -13572,7 +13716,7 @@ class API:
         :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         :type limit: :class:`int`
         
-        :param filter_: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
+        :param filter_: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
         :type filter_: :class:`SearchMessagesFilter`
         
         :param min_date: If not 0, the minimum date of the messages to return
@@ -13698,7 +13842,7 @@ class API:
         :param query: Query to search for. If empty, searchChatMessages must be used instead
         :type query: :class:`str`
         
-        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
+        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
         :type offset: :class:`str`
         
         :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
@@ -14786,6 +14930,45 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def set_chat_available_reactions(
+            self,
+            chat_id: int,
+            available_reactions: list[str],
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+        
+        :param chat_id: Identifier of the chat
+        :type chat_id: :class:`int`
+        
+        :param available_reactions: New list of reactions, available in the chat. All reactions must be active and order of the reactions must be the same as in updateReactions
+        :type available_reactions: :class:`list[str]`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = SetChatAvailableReactions.construct if skip_validation else SetChatAvailableReactions
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                available_reactions=available_reactions,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def set_chat_client_data(
             self,
             chat_id: int,
@@ -15358,7 +15541,7 @@ class API:
         :param scope: The scope to which the commands are relevant; pass null to change commands in the default bot command scope
         :type scope: :class:`BotCommandScope`
         
-        :param language_code: A two-letter ISO 639-1 country code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
+        :param language_code: A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
         :type language_code: :class:`str`
         
         :param commands: List of the bot's commands
@@ -15957,6 +16140,55 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def set_message_reaction(
+            self,
+            chat_id: int,
+            message_id: int,
+            reaction: str,
+            is_big: bool,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes chosen reaction for a message
+        
+        :param chat_id: Identifier of the chat to which the message belongs
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param reaction: Text representation of the new chosen reaction. Can be an empty string or the currently chosen reaction to remove the reaction
+        :type reaction: :class:`str`
+        
+        :param is_big: True, if the reaction is added with a big animation
+        :type is_big: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = SetMessageReaction.construct if skip_validation else SetMessageReaction
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                message_id=message_id,
+                reaction=reaction,
+                is_big=is_big,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def set_name(
             self,
             first_name: str,
@@ -16454,7 +16686,7 @@ class API:
         :param name: Sticker set name
         :type name: :class:`str`
         
-        :param thumbnail: Thumbnail to set in PNG or TGS format; pass null to remove the sticker set thumbnail. Animated thumbnail must be set for animated sticker sets and only for them
+        :param thumbnail: Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set
         :type thumbnail: :class:`InputFile`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -17485,7 +17717,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/arhive chat list
+        Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list
         
         :param chat_list: Chat list in which to change the pinned state of the chat
         :type chat_list: :class:`ChatList`
@@ -18069,6 +18301,50 @@ class API:
                 chat_id=chat_id,
                 user_id=user_id,
                 password=password,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def translate_text(
+            self,
+            text: str,
+            from_language_code: str,
+            to_language_code: str,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Text:
+        """
+        Translates a text to the given language. Returns a 404 error if the translation can't be performed
+        
+        :param text: Text to translate
+        :type text: :class:`str`
+        
+        :param from_language_code: A two-letter ISO 639-1 language code of the language from which the message is translated. If empty, the language will be detected automatically
+        :type from_language_code: :class:`str`
+        
+        :param to_language_code: A two-letter ISO 639-1 language code of the language to which the message is translated
+        :type to_language_code: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Text`
+        """
+        _constructor = TranslateText.construct if skip_validation else TranslateText
+
+        return await self.client.request(
+            _constructor(
+                text=text,
+                from_language_code=from_language_code,
+                to_language_code=to_language_code,
             ),
             request_id=request_id,
             request_timeout=request_timeout,

@@ -18,7 +18,7 @@ class GetCommands(BaseObject):
     :param scope: The scope to which the commands are relevant; pass null to get commands in the default bot command scope
     :type scope: :class:`BotCommandScope`
     
-    :param language_code: A two-letter ISO 639-1 country code or an empty string
+    :param language_code: A two-letter ISO 639-1 language code or an empty string
     :type language_code: :class:`str`
     
     """

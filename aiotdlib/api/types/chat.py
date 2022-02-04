@@ -87,8 +87,14 @@ class Chat(BaseObject):
     :param unread_mention_count: Number of unread messages with a mention/reply in the chat
     :type unread_mention_count: :class:`int`
     
-    :param notification_settings: Notification settings for this chat
+    :param unread_reaction_count: Number of messages with unread reactions in the chat
+    :type unread_reaction_count: :class:`int`
+    
+    :param notification_settings: Notification settings for the chat
     :type notification_settings: :class:`ChatNotificationSettings`
+    
+    :param available_reactions: List of reactions, available in the chat
+    :type available_reactions: :class:`list[str]`
     
     :param message_ttl: Current message Time To Live setting (self-destruct timer) for the chat; 0 if not defined. TTL is counted from the time message or its content is viewed in secret chats and from the send date in other chats
     :type message_ttl: :class:`int`
@@ -137,7 +143,9 @@ class Chat(BaseObject):
     last_read_inbox_message_id: int
     last_read_outbox_message_id: int
     unread_mention_count: int
+    unread_reaction_count: int
     notification_settings: ChatNotificationSettings
+    available_reactions: list[str]
     message_ttl: int
     theme_name: str
     action_bar: typing.Optional[ChatActionBar] = None

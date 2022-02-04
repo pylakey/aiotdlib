@@ -394,7 +394,7 @@ class InputInlineQueryResultPhoto(InputInlineQueryResult):
 
 class InputInlineQueryResultSticker(InputInlineQueryResult):
     """
-    Represents a link to a WEBP or TGS sticker
+    Represents a link to a WEBP, TGS, or WEBM sticker
     
     :param id: Unique identifier of the query result
     :type id: :class:`str`
@@ -402,7 +402,7 @@ class InputInlineQueryResultSticker(InputInlineQueryResult):
     :param thumbnail_url: URL of the sticker thumbnail, if it exists
     :type thumbnail_url: :class:`str`
     
-    :param sticker_url: The URL of the WEBP or TGS sticker (sticker file size must not exceed 5MB)
+    :param sticker_url: The URL of the WEBP, TGS, or WEBM sticker (sticker file size must not exceed 5MB)
     :type sticker_url: :class:`str`
     
     :param sticker_width: Width of the sticker

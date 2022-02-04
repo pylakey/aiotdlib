@@ -10,26 +10,18 @@ from pydantic import Field
 from ..base_object import BaseObject
 
 
-class ProcessChatJoinRequest(BaseObject):
+class ReadAllChatReactions(BaseObject):
     """
-    Handles a pending join request in a chat
+    Marks all reactions in a chat as read
     
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
     
-    :param user_id: Identifier of the user that sent the request
-    :type user_id: :class:`int`
-    
-    :param approve: True, if the request is approved. Otherwise the request is declined
-    :type approve: :class:`bool`
-    
     """
 
-    ID: str = Field("processChatJoinRequest", alias="@type")
+    ID: str = Field("readAllChatReactions", alias="@type")
     chat_id: int
-    user_id: int
-    approve: bool
 
     @staticmethod
-    def read(q: dict) -> ProcessChatJoinRequest:
-        return ProcessChatJoinRequest.construct(**q)
+    def read(q: dict) -> ReadAllChatReactions:
+        return ReadAllChatReactions.construct(**q)

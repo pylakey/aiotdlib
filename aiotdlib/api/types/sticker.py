@@ -11,7 +11,7 @@ from pydantic import Field
 
 from .closed_vector_path import ClosedVectorPath
 from .file import File
-from .mask_position import MaskPosition
+from .sticker_type import StickerType
 from .thumbnail import Thumbnail
 from ..base_object import BaseObject
 
@@ -32,14 +32,8 @@ class Sticker(BaseObject):
     :param emoji: Emoji corresponding to the sticker
     :type emoji: :class:`str`
     
-    :param is_animated: True, if the sticker is an animated sticker in TGS format
-    :type is_animated: :class:`bool`
-    
-    :param is_mask: True, if the sticker is a mask
-    :type is_mask: :class:`bool`
-    
-    :param mask_position: Position where the mask is placed; may be null, defaults to None
-    :type mask_position: :class:`MaskPosition`, optional
+    :param type_: Sticker type
+    :type type_: :class:`StickerType`
     
     :param outline: Sticker's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
     :type outline: :class:`list[ClosedVectorPath]`
@@ -57,9 +51,7 @@ class Sticker(BaseObject):
     width: int
     height: int
     emoji: str
-    is_animated: bool
-    is_mask: bool
-    mask_position: typing.Optional[MaskPosition] = None
+    type_: StickerType = Field(..., alias='type')
     outline: list[ClosedVectorPath]
     thumbnail: typing.Optional[Thumbnail] = None
     sticker: File

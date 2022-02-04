@@ -18,7 +18,7 @@ class GetChatMessageCalendar(BaseObject):
     :param chat_id: Identifier of the chat in which to return information about messages
     :type chat_id: :class:`int`
     
-    :param filter_: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+    :param filter_: Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
     :type filter_: :class:`SearchMessagesFilter`
     
     :param from_message_id: The message identifier from which to return information about messages; use 0 to get results from the last message

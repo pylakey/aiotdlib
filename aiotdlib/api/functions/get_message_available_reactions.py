@@ -10,26 +10,22 @@ from pydantic import Field
 from ..base_object import BaseObject
 
 
-class ProcessChatJoinRequest(BaseObject):
+class GetMessageAvailableReactions(BaseObject):
     """
-    Handles a pending join request in a chat
+    Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
     
-    :param chat_id: Chat identifier
+    :param chat_id: Identifier of the chat to which the message belongs
     :type chat_id: :class:`int`
     
-    :param user_id: Identifier of the user that sent the request
-    :type user_id: :class:`int`
-    
-    :param approve: True, if the request is approved. Otherwise the request is declined
-    :type approve: :class:`bool`
+    :param message_id: Identifier of the message
+    :type message_id: :class:`int`
     
     """
 
-    ID: str = Field("processChatJoinRequest", alias="@type")
+    ID: str = Field("getMessageAvailableReactions", alias="@type")
     chat_id: int
-    user_id: int
-    approve: bool
+    message_id: int
 
     @staticmethod
-    def read(q: dict) -> ProcessChatJoinRequest:
-        return ProcessChatJoinRequest.construct(**q)
+    def read(q: dict) -> GetMessageAvailableReactions:
+        return GetMessageAvailableReactions.construct(**q)

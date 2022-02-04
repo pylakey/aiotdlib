@@ -10,30 +10,34 @@ from pydantic import Field
 from ..base_object import BaseObject
 
 
-class GetMessagePublicForwards(BaseObject):
+class GetMessageAddedReactions(BaseObject):
     """
-    Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
+    Returns reactions added for a message, along with their sender
     
-    :param chat_id: Chat identifier of the message
+    :param chat_id: Identifier of the chat to which the message belongs
     :type chat_id: :class:`int`
     
-    :param message_id: Message identifier
+    :param message_id: Identifier of the message
     :type message_id: :class:`int`
+    
+    :param reaction: If non-empty, only added reactions with the specified text representation will be returned
+    :type reaction: :class:`str`
     
     :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     :type offset: :class:`str`
     
-    :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+    :param limit: The maximum number of reactions to be returned; must be positive and can't be greater than 100
     :type limit: :class:`int`
     
     """
 
-    ID: str = Field("getMessagePublicForwards", alias="@type")
+    ID: str = Field("getMessageAddedReactions", alias="@type")
     chat_id: int
     message_id: int
+    reaction: str
     offset: str
     limit: int
 
     @staticmethod
-    def read(q: dict) -> GetMessagePublicForwards:
-        return GetMessagePublicForwards.construct(**q)
+    def read(q: dict) -> GetMessageAddedReactions:
+        return GetMessageAddedReactions.construct(**q)

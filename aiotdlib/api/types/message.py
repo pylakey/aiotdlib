@@ -16,6 +16,7 @@ from .message_scheduling_state import MessageSchedulingState
 from .message_sender import MessageSender
 from .message_sending_state import MessageSendingState
 from .reply_markup import ReplyMarkup
+from .unread_reaction import UnreadReaction
 from ..base_object import BaseObject
 
 
@@ -59,16 +60,19 @@ class Message(BaseObject):
     :param can_be_deleted_for_all_users: True, if the message can be deleted for all users
     :type can_be_deleted_for_all_users: :class:`bool`
     
-    :param can_get_statistics: True, if the message statistics are available
+    :param can_get_added_reactions: True, if the list of added reactions is available through getMessageAddedReactions
+    :type can_get_added_reactions: :class:`bool`
+    
+    :param can_get_statistics: True, if the message statistics are available through getMessageStatistics
     :type can_get_statistics: :class:`bool`
     
-    :param can_get_message_thread: True, if the message thread info is available
+    :param can_get_message_thread: True, if the message thread info is available through getMessageThread
     :type can_get_message_thread: :class:`bool`
     
     :param can_get_viewers: True, if chat members already viewed the message can be received through getMessageViewers
     :type can_get_viewers: :class:`bool`
     
-    :param can_get_media_timestamp_links: True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description
+    :param can_get_media_timestamp_links: True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description through getMessageLink
     :type can_get_media_timestamp_links: :class:`bool`
     
     :param has_timestamped_media: True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
@@ -91,6 +95,9 @@ class Message(BaseObject):
     
     :param interaction_info: Information about interactions with the message; may be null, defaults to None
     :type interaction_info: :class:`MessageInteractionInfo`, optional
+    
+    :param unread_reactions: Information about unread reactions added to the message
+    :type unread_reactions: :class:`list[UnreadReaction]`
     
     :param reply_in_chat_id: If non-zero, the identifier of the chat to which the replied message belongs; Currently, only messages in the Replies chat can have different reply_in_chat_id and chat_id
     :type reply_in_chat_id: :class:`int`
@@ -140,6 +147,7 @@ class Message(BaseObject):
     can_be_saved: bool
     can_be_deleted_only_for_self: bool
     can_be_deleted_for_all_users: bool
+    can_get_added_reactions: bool
     can_get_statistics: bool
     can_get_message_thread: bool
     can_get_viewers: bool
@@ -151,6 +159,7 @@ class Message(BaseObject):
     edit_date: int
     forward_info: typing.Optional[MessageForwardInfo] = None
     interaction_info: typing.Optional[MessageInteractionInfo] = None
+    unread_reactions: list[UnreadReaction]
     reply_in_chat_id: int
     reply_to_message_id: int
     message_thread_id: int

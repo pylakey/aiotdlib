@@ -5,6 +5,8 @@
 # =============================================================================== #
 
 from .account_ttl import AccountTtl
+from .added_reaction import AddedReaction
+from .added_reactions import AddedReactions
 from .address import Address
 from .animated_chat_photo import AnimatedChatPhoto
 from .animated_emoji import AnimatedEmoji
@@ -36,6 +38,7 @@ from .authorization_state import (
 )
 from .auto_download_settings import AutoDownloadSettings
 from .auto_download_settings_presets import AutoDownloadSettingsPresets
+from .available_reactions import AvailableReactions
 from .background import Background
 from .background_fill import (
     BackgroundFill,
@@ -152,6 +155,7 @@ from .chat_administrators import ChatAdministrators
 from .chat_event import ChatEvent
 from .chat_event_action import (
     ChatEventAction,
+    ChatEventAvailableReactionsChanged,
     ChatEventDescriptionChanged,
     ChatEventHasProtectedContentToggled,
     ChatEventInviteLinkDeleted,
@@ -494,11 +498,7 @@ from .input_passport_element_error_source import (
     InputPassportElementErrorSourceUnspecified,
 )
 from .input_personal_document import InputPersonalDocument
-from .input_sticker import (
-    InputSticker,
-    InputStickerAnimated,
-    InputStickerStatic,
-)
+from .input_sticker import InputSticker
 from .input_thumbnail import InputThumbnail
 from .internal_link_type import (
     InternalLinkType,
@@ -656,6 +656,7 @@ from .message_link import MessageLink
 from .message_link_info import MessageLinkInfo
 from .message_position import MessagePosition
 from .message_positions import MessagePositions
+from .message_reaction import MessageReaction
 from .message_reply_info import MessageReplyInfo
 from .message_scheduling_state import (
     MessageSchedulingState,
@@ -887,6 +888,7 @@ from .push_message_content import (
     PushMessageContentVoiceNote,
 )
 from .push_receiver_id import PushReceiverId
+from .reaction import Reaction
 from .recommended_chat_filter import RecommendedChatFilter
 from .recommended_chat_filters import RecommendedChatFilters
 from .recovery_email_address import RecoveryEmailAddress
@@ -939,6 +941,7 @@ from .search_messages_filter import (
     SearchMessagesFilterPhotoAndVideo,
     SearchMessagesFilterPinned,
     SearchMessagesFilterUnreadMention,
+    SearchMessagesFilterUnreadReaction,
     SearchMessagesFilterUrl,
     SearchMessagesFilterVideo,
     SearchMessagesFilterVideoNote,
@@ -968,6 +971,13 @@ from .sticker import Sticker
 from .sticker_set import StickerSet
 from .sticker_set_info import StickerSetInfo
 from .sticker_sets import StickerSets
+from .sticker_type import (
+    StickerType,
+    StickerTypeAnimated,
+    StickerTypeMask,
+    StickerTypeStatic,
+    StickerTypeVideo,
+)
 from .stickers import Stickers
 from .storage_statistics import StorageStatistics
 from .storage_statistics_by_chat import StorageStatisticsByChat
@@ -1053,6 +1063,7 @@ from .thumbnail_format import (
     ThumbnailFormatMpeg4,
     ThumbnailFormatPng,
     ThumbnailFormatTgs,
+    ThumbnailFormatWebm,
     ThumbnailFormatWebp,
 )
 from .top_chat_category import (
@@ -1065,6 +1076,7 @@ from .top_chat_category import (
     TopChatCategoryInlineBots,
     TopChatCategoryUsers,
 )
+from .unread_reaction import UnreadReaction
 from .update import (
     Update,
     UpdateActiveNotifications,
@@ -1076,6 +1088,7 @@ from .update import (
     UpdateCall,
     UpdateChatAction,
     UpdateChatActionBar,
+    UpdateChatAvailableReactions,
     UpdateChatDefaultDisableNotification,
     UpdateChatDraftMessage,
     UpdateChatFilters,
@@ -1100,6 +1113,7 @@ from .update import (
     UpdateChatThemes,
     UpdateChatTitle,
     UpdateChatUnreadMentionCount,
+    UpdateChatUnreadReactionCount,
     UpdateChatVideoChat,
     UpdateConnectionState,
     UpdateDeleteMessages,
@@ -1123,6 +1137,7 @@ from .update import (
     UpdateMessageSendAcknowledged,
     UpdateMessageSendFailed,
     UpdateMessageSendSucceeded,
+    UpdateMessageUnreadReactions,
     UpdateNewCallSignalingData,
     UpdateNewCallbackQuery,
     UpdateNewChat,
@@ -1140,6 +1155,7 @@ from .update import (
     UpdateOption,
     UpdatePoll,
     UpdatePollAnswer,
+    UpdateReactions,
     UpdateRecentStickers,
     UpdateSavedAnimations,
     UpdateScopeNotificationSettings,
@@ -1219,6 +1235,8 @@ from .web_page_instant_view import WebPageInstantView
 
 __all__ = [
     "AccountTtl",
+    "AddedReaction",
+    "AddedReactions",
     "Address",
     "AnimatedChatPhoto",
     "AnimatedEmoji",
@@ -1246,6 +1264,7 @@ __all__ = [
     "AuthorizationStateWaitTdlibParameters",
     "AutoDownloadSettings",
     "AutoDownloadSettingsPresets",
+    "AvailableReactions",
     "Background",
     "BackgroundFill",
     "BackgroundFillFreeformGradient",
@@ -1339,6 +1358,7 @@ __all__ = [
     "ChatAdministrators",
     "ChatEvent",
     "ChatEventAction",
+    "ChatEventAvailableReactionsChanged",
     "ChatEventDescriptionChanged",
     "ChatEventHasProtectedContentToggled",
     "ChatEventInviteLinkDeleted",
@@ -1633,8 +1653,6 @@ __all__ = [
     "InputPassportElementErrorSourceUnspecified",
     "InputPersonalDocument",
     "InputSticker",
-    "InputStickerAnimated",
-    "InputStickerStatic",
     "InputThumbnail",
     "InternalLinkType",
     "InternalLinkTypeActiveSessions",
@@ -1772,6 +1790,7 @@ __all__ = [
     "MessageLinkInfo",
     "MessagePosition",
     "MessagePositions",
+    "MessageReaction",
     "MessageReplyInfo",
     "MessageSchedulingState",
     "MessageSchedulingStateSendAtDate",
@@ -1965,6 +1984,7 @@ __all__ = [
     "PushMessageContentVideoNote",
     "PushMessageContentVoiceNote",
     "PushReceiverId",
+    "Reaction",
     "RecommendedChatFilter",
     "RecommendedChatFilters",
     "RecoveryEmailAddress",
@@ -2010,6 +2030,7 @@ __all__ = [
     "SearchMessagesFilterPhotoAndVideo",
     "SearchMessagesFilterPinned",
     "SearchMessagesFilterUnreadMention",
+    "SearchMessagesFilterUnreadReaction",
     "SearchMessagesFilterUrl",
     "SearchMessagesFilterVideo",
     "SearchMessagesFilterVideoNote",
@@ -2034,6 +2055,11 @@ __all__ = [
     "StickerSet",
     "StickerSetInfo",
     "StickerSets",
+    "StickerType",
+    "StickerTypeAnimated",
+    "StickerTypeMask",
+    "StickerTypeStatic",
+    "StickerTypeVideo",
     "Stickers",
     "StorageStatistics",
     "StorageStatisticsByChat",
@@ -2108,6 +2134,7 @@ __all__ = [
     "ThumbnailFormatMpeg4",
     "ThumbnailFormatPng",
     "ThumbnailFormatTgs",
+    "ThumbnailFormatWebm",
     "ThumbnailFormatWebp",
     "TopChatCategory",
     "TopChatCategoryBots",
@@ -2117,6 +2144,7 @@ __all__ = [
     "TopChatCategoryGroups",
     "TopChatCategoryInlineBots",
     "TopChatCategoryUsers",
+    "UnreadReaction",
     "Update",
     "UpdateActiveNotifications",
     "UpdateAnimatedEmojiMessageClicked",
@@ -2127,6 +2155,7 @@ __all__ = [
     "UpdateCall",
     "UpdateChatAction",
     "UpdateChatActionBar",
+    "UpdateChatAvailableReactions",
     "UpdateChatDefaultDisableNotification",
     "UpdateChatDraftMessage",
     "UpdateChatFilters",
@@ -2151,6 +2180,7 @@ __all__ = [
     "UpdateChatThemes",
     "UpdateChatTitle",
     "UpdateChatUnreadMentionCount",
+    "UpdateChatUnreadReactionCount",
     "UpdateChatVideoChat",
     "UpdateConnectionState",
     "UpdateDeleteMessages",
@@ -2174,6 +2204,7 @@ __all__ = [
     "UpdateMessageSendAcknowledged",
     "UpdateMessageSendFailed",
     "UpdateMessageSendSucceeded",
+    "UpdateMessageUnreadReactions",
     "UpdateNewCallSignalingData",
     "UpdateNewCallbackQuery",
     "UpdateNewChat",
@@ -2191,6 +2222,7 @@ __all__ = [
     "UpdateOption",
     "UpdatePoll",
     "UpdatePollAnswer",
+    "UpdateReactions",
     "UpdateRecentStickers",
     "UpdateSavedAnimations",
     "UpdateScopeNotificationSettings",
