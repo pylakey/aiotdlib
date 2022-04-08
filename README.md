@@ -234,13 +234,8 @@ if __name__ == '__main__':
 import asyncio
 import logging
 
-from aiotdlib import Client,
-
-HandlerCallable
-from aiotdlib.api import API,
-
-BaseObject,
-UpdateNewMessage
+from aiotdlib import Client, HandlerCallable
+from aiotdlib.api import API, BaseObject, UpdateNewMessage
 
 API_ID = 12345
 API_HASH = ""
