@@ -8,13 +8,13 @@ import os
 import sys
 import typing
 import uuid
-from collections import AsyncIterator
 from functools import (
     partial,
     update_wrapper,
 )
 from pathlib import Path
 from typing import (
+    AsyncGenerator,
     Optional,
     TypeVar,
     Union,
@@ -180,15 +180,15 @@ class ClientOptions(pydantic.BaseModel):
 
     archive_and_mute_new_chats_from_unknown_users: Optional[bool]
     """
-    If true, new chats from non-contacts will be automatically archived and muted. 
-    The option can be set only if the option “can_archive_and_mute_new_chats_from_unknown_users” is true. 
+    If true, new chats from non-contacts will be automatically archived and muted.
+    The option can be set only if the option “can_archive_and_mute_new_chats_from_unknown_users” is true.
     getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
     """
 
     disable_contact_registered_notifications: Optional[bool]
     """
-    If true, notifications about the user's contacts who have joined Telegram will be disabled. 
-    User will still receive the corresponding message in the private chat. 
+    If true, notifications about the user's contacts who have joined Telegram will be disabled.
+    User will still receive the corresponding message in the private chat.
     getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
     """
 
@@ -214,7 +214,7 @@ class ClientOptions(pydantic.BaseModel):
 
     ignore_background_updates: Optional[bool]
     """
-    If true, allows to skip all updates received while the TDLib instance was not running. 
+    If true, allows to skip all updates received while the TDLib instance was not running.
     The option does nothing if the database or secret chats are used
     """
 
@@ -258,7 +258,7 @@ class ClientOptions(pydantic.BaseModel):
 
     message_unload_delay: Optional[int]
     """
-    The maximum time messages are stored in memory before they are unloaded, 60-86400; in seconds. 
+    The maximum time messages are stored in memory before they are unloaded, 60-86400; in seconds.
     Defaults to 60 for users and 1800 for bots
     """
 
@@ -2220,7 +2220,7 @@ class Client:
             from_message_id: int = 0,
             limit: int = None,
             only_local: bool = False
-    ) -> AsyncIterator[Message]:
+    ) -> AsyncGenerator["api.Message", None]:
         """
         Iterates over messages in a chat.
         The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id).
