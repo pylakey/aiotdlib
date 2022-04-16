@@ -1,5 +1,19 @@
 # aiotdlib CHANGELOG
 
+### 0.18.0 - TDLib 1.8.3
+
+> This update may contain some breaking API changes!
+
+#### Updated
+
+* TDLib binaries upgraded to latest [available version](https://github.com/pylakey/td/commit/f295ef3a0d3545970bfd658c3443496be3d28397) (1.8.3 from now)
+
+* API types and functions regenerated
+
+* Prebuilt TDLib binary for linux arm64 is not more provided, but you can build them yourself and use with aiotdlib
+
+> Prebuilt binaries for other systems and platforms will not be provided as well in future aiotdlib releases
+
 ### 0.17.0 - TDLib 1.8.1
 
 > This update may contain some breaking API changes!
