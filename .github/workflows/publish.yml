@@ -4,6 +4,8 @@ on:
   release:
     types: [ published ]
 
+  workflow_dispatch:
+
 jobs:
   publish_pypi:
     runs-on: ubuntu-latest
