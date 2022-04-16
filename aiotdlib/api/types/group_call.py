@@ -30,6 +30,9 @@ class GroupCall(BaseObject):
     :param is_active: True, if the call is active
     :type is_active: :class:`bool`
     
+    :param is_rtmp_stream: True, if the chat is an RTMP stream instead of an ordinary video chat
+    :type is_rtmp_stream: :class:`bool`
+    
     :param is_joined: True, if the call is joined
     :type is_joined: :class:`bool`
     
@@ -41,6 +44,9 @@ class GroupCall(BaseObject):
     
     :param participant_count: Number of participants in the group call
     :type participant_count: :class:`int`
+    
+    :param has_hidden_listeners: True, if group call participants, which are muted, aren't returned in participant list
+    :type has_hidden_listeners: :class:`bool`
     
     :param loaded_all_participants: True, if all group call participants are loaded
     :type loaded_all_participants: :class:`bool`
@@ -80,10 +86,12 @@ class GroupCall(BaseObject):
     scheduled_start_date: int
     enabled_start_notification: bool
     is_active: bool
+    is_rtmp_stream: bool
     is_joined: bool
     need_rejoin: bool
     can_be_managed: bool
     participant_count: int
+    has_hidden_listeners: bool
     loaded_all_participants: bool
     recent_speakers: list[GroupCallRecentSpeaker]
     is_my_video_enabled: bool

@@ -9,7 +9,7 @@ import typing
 
 from pydantic import Field
 
-from .bot_command import BotCommand
+from .bot_info import BotInfo
 from .chat_photo import ChatPhoto
 from ..base_object import BaseObject
 
@@ -42,17 +42,11 @@ class UserFullInfo(BaseObject):
     :param bio: A short user bio
     :type bio: :class:`str`
     
-    :param share_text: For bots, the text that is shown on the bot's profile page and is sent together with the link when users share the bot
-    :type share_text: :class:`str`
-    
-    :param param_description: For bots, the text shown in the chat with the bot if the chat is empty
-    :type param_description: :class:`str`
-    
     :param group_in_common_count: Number of group chats where both the other user and the current user are a member; 0 for the current user
     :type group_in_common_count: :class:`int`
     
-    :param commands: For bots, list of the bot commands
-    :type commands: :class:`list[BotCommand]`
+    :param bot_info: For bots, information about the bot; may be null, defaults to None
+    :type bot_info: :class:`BotInfo`, optional
     
     """
 
@@ -65,10 +59,8 @@ class UserFullInfo(BaseObject):
     has_private_forwards: bool
     need_phone_number_privacy_exception: bool
     bio: str
-    share_text: str
-    param_description: str
     group_in_common_count: int
-    commands: list[BotCommand]
+    bot_info: typing.Optional[BotInfo] = None
 
     @staticmethod
     def read(q: dict) -> UserFullInfo:

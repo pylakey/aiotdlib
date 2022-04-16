@@ -17,7 +17,7 @@ class GetExternalLink(BaseObject):
     :param link: The HTTP link
     :type link: :class:`str`
     
-    :param allow_write_access: True, if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
+    :param allow_write_access: Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
     :type allow_write_access: :class:`bool`
     
     """

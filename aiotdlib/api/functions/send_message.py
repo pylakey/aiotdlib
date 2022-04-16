@@ -23,7 +23,7 @@ class SendMessage(BaseObject):
     :param message_thread_id: If not 0, a message thread identifier in which the message will be sent
     :type message_thread_id: :class:`int`
     
-    :param reply_to_message_id: Identifier of the message to reply to or 0
+    :param reply_to_message_id: Identifier of the replied message; 0 if none
     :type reply_to_message_id: :class:`int`
     
     :param options: Options to be used to send the message; pass null to use default options

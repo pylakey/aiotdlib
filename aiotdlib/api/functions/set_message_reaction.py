@@ -20,10 +20,10 @@ class SetMessageReaction(BaseObject):
     :param message_id: Identifier of the message
     :type message_id: :class:`int`
     
-    :param reaction: Text representation of the new chosen reaction. Can be an empty string or the currently chosen reaction to remove the reaction
+    :param reaction: Text representation of the new chosen reaction. Can be an empty string or the currently chosen non-big reaction to remove the reaction
     :type reaction: :class:`str`
     
-    :param is_big: True, if the reaction is added with a big animation
+    :param is_big: Pass true if the reaction is added with a big animation
     :type is_big: :class:`bool`
     
     """

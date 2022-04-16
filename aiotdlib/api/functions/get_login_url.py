@@ -23,7 +23,7 @@ class GetLoginUrl(BaseObject):
     :param button_id: Button identifier
     :type button_id: :class:`int`
     
-    :param allow_write_access: True, if the user allowed the bot to send them messages
+    :param allow_write_access: Pass true to allow the bot to send messages to the current user
     :type allow_write_access: :class:`bool`
     
     """

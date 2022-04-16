@@ -20,7 +20,7 @@ class CreateNewSupergroupChat(BaseObject):
     :param title: Title of the new chat; 1-128 characters
     :type title: :class:`str`
     
-    :param is_channel: True, if a channel chat needs to be created
+    :param is_channel: Pass true to create a channel chat
     :type is_channel: :class:`bool`
     
     :param param_description: Chat description; 0-255 characters, defaults to None
@@ -29,7 +29,7 @@ class CreateNewSupergroupChat(BaseObject):
     :param location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
     :type location: :class:`ChatLocation`
     
-    :param for_import: True, if the supergroup is created for importing messages using importMessage
+    :param for_import: Pass true to create a supergroup for importing messages using importMessage
     :type for_import: :class:`bool`
     
     """

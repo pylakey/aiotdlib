@@ -147,7 +147,7 @@ class PageBlockChatLink(PageBlock):
     :param photo: Chat photo; may be null, defaults to None
     :type photo: :class:`ChatPhotoInfo`, optional
     
-    :param username: Chat username, by which all other information about the chat can be resolved
+    :param username: Chat username by which all other information about the chat can be resolved
     :type username: :class:`str`
     
     """

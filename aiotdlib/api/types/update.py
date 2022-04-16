@@ -10,6 +10,7 @@ import typing
 from pydantic import Field
 
 from .address import Address
+from .attachment_menu_bot import AttachmentMenuBot
 from .authorization_state import AuthorizationState
 from .background import Background
 from .basic_group import BasicGroup
@@ -33,8 +34,10 @@ from .chat_position import ChatPosition
 from .chat_theme import ChatTheme
 from .chat_type import ChatType
 from .connection_state import ConnectionState
+from .downloaded_file_counts import DownloadedFileCounts
 from .draft_message import DraftMessage
 from .file import File
+from .file_download import FileDownload
 from .group_call import GroupCall
 from .group_call_participant import GroupCallParticipant
 from .language_pack_string import LanguagePackString
@@ -141,6 +144,23 @@ class UpdateAnimationSearchParameters(Update):
     @staticmethod
     def read(q: dict) -> UpdateAnimationSearchParameters:
         return UpdateAnimationSearchParameters.construct(**q)
+
+
+class UpdateAttachmentMenuBots(Update):
+    """
+    The list of bots added to attachment menu has changed
+    
+    :param bots: The new list of bots added to attachment menu. The bots must be shown in attachment menu only in private chats. The bots must not be shown on scheduled messages screen
+    :type bots: :class:`list[AttachmentMenuBot]`
+    
+    """
+
+    ID: str = Field("updateAttachmentMenuBots", alias="@type")
+    bots: list[AttachmentMenuBot]
+
+    @staticmethod
+    def read(q: dict) -> UpdateAttachmentMenuBots:
+        return UpdateAttachmentMenuBots.construct(**q)
 
 
 class UpdateAuthorizationState(Update):
@@ -560,7 +580,7 @@ class UpdateChatNotificationSettings(Update):
 
 class UpdateChatOnlineMemberCount(Update):
     """
-    The number of online group members has changed. This update with non-zero count is sent only for currently opened chats. There is no guarantee that it will be sent just after the count has changed
+    The number of online group members has changed. This update with non-zero number of online group members is sent only for currently opened chats. There is no guarantee that it will be sent just after the number of online users has changed
     
     :param chat_id: Identifier of the chat
     :type chat_id: :class:`int`
@@ -949,6 +969,81 @@ class UpdateFile(Update):
         return UpdateFile.construct(**q)
 
 
+class UpdateFileAddedToDownloads(Update):
+    """
+    A file was added to the file download list. This update is sent only after file download list is loaded for the first time
+    
+    :param file_download: The added file download
+    :type file_download: :class:`FileDownload`
+    
+    :param counts: New number of being downloaded and recently downloaded files found
+    :type counts: :class:`DownloadedFileCounts`
+    
+    """
+
+    ID: str = Field("updateFileAddedToDownloads", alias="@type")
+    file_download: FileDownload
+    counts: DownloadedFileCounts
+
+    @staticmethod
+    def read(q: dict) -> UpdateFileAddedToDownloads:
+        return UpdateFileAddedToDownloads.construct(**q)
+
+
+class UpdateFileDownload(Update):
+    """
+    A file download was changed. This update is sent only after file download list is loaded for the first time
+    
+    :param file_id: File identifier
+    :type file_id: :class:`int`
+    
+    :param complete_date: Point in time (Unix timestamp) when the file downloading was completed; 0 if the file downloading isn't completed
+    :type complete_date: :class:`int`
+    
+    :param is_paused: True, if downloading of the file is paused
+    :type is_paused: :class:`bool`
+    
+    :param counts: New number of being downloaded and recently downloaded files found
+    :type counts: :class:`DownloadedFileCounts`
+    
+    """
+
+    ID: str = Field("updateFileDownload", alias="@type")
+    file_id: int
+    complete_date: int
+    is_paused: bool
+    counts: DownloadedFileCounts
+
+    @staticmethod
+    def read(q: dict) -> UpdateFileDownload:
+        return UpdateFileDownload.construct(**q)
+
+
+class UpdateFileDownloads(Update):
+    """
+    The state of the file download list has changed
+    
+    :param total_size: Total size of files in the file download list, in bytes
+    :type total_size: :class:`int`
+    
+    :param total_count: Total number of files in the file download list
+    :type total_count: :class:`int`
+    
+    :param downloaded_size: Total downloaded size of files in the file download list, in bytes
+    :type downloaded_size: :class:`int`
+    
+    """
+
+    ID: str = Field("updateFileDownloads", alias="@type")
+    total_size: int
+    total_count: int
+    downloaded_size: int
+
+    @staticmethod
+    def read(q: dict) -> UpdateFileDownloads:
+        return UpdateFileDownloads.construct(**q)
+
+
 class UpdateFileGenerationStart(Update):
     """
     The file generation process needs to be started by the application
@@ -993,6 +1088,27 @@ class UpdateFileGenerationStop(Update):
     @staticmethod
     def read(q: dict) -> UpdateFileGenerationStop:
         return UpdateFileGenerationStop.construct(**q)
+
+
+class UpdateFileRemovedFromDownloads(Update):
+    """
+    A file was removed from the file download list. This update is sent only after file download list is loaded for the first time
+    
+    :param file_id: File identifier
+    :type file_id: :class:`int`
+    
+    :param counts: New number of being downloaded and recently downloaded files found
+    :type counts: :class:`DownloadedFileCounts`
+    
+    """
+
+    ID: str = Field("updateFileRemovedFromDownloads", alias="@type")
+    file_id: int
+    counts: DownloadedFileCounts
+
+    @staticmethod
+    def read(q: dict) -> UpdateFileRemovedFromDownloads:
+        return UpdateFileRemovedFromDownloads.construct(**q)
 
 
 class UpdateGroupCall(Update):
@@ -1405,7 +1521,7 @@ class UpdateNewCallbackQuery(Update):
     :param chat_id: Identifier of the chat where the query was sent
     :type chat_id: :class:`int`
     
-    :param message_id: Identifier of the message, from which the query originated
+    :param message_id: Identifier of the message from which the query originated
     :type message_id: :class:`int`
     
     :param chat_instance: Identifier that uniquely corresponds to the chat to which the message was sent
@@ -1556,7 +1672,7 @@ class UpdateNewInlineCallbackQuery(Update):
     :param sender_user_id: Identifier of the user who sent the query
     :type sender_user_id: :class:`int`
     
-    :param inline_message_id: Identifier of the inline message, from which the query originated
+    :param inline_message_id: Identifier of the inline message from which the query originated
     :type inline_message_id: :class:`str`
     
     :param chat_instance: An identifier uniquely corresponding to the chat a message was sent to
@@ -1592,7 +1708,7 @@ class UpdateNewInlineQuery(Update):
     :param user_location: User location; may be null, defaults to None
     :type user_location: :class:`Location`, optional
     
-    :param chat_type: The type of the chat, from which the query originated; may be null if unknown, defaults to None
+    :param chat_type: The type of the chat from which the query originated; may be null if unknown, defaults to None
     :type chat_type: :class:`ChatType`, optional
     
     :param query: Text of the query
@@ -1740,8 +1856,8 @@ class UpdateNotificationGroup(Update):
     :param notification_settings_chat_id: Chat identifier, which notification settings must be applied to the added notifications
     :type notification_settings_chat_id: :class:`int`
     
-    :param is_silent: True, if the notifications must be shown without sound
-    :type is_silent: :class:`bool`
+    :param notification_sound_id: Identifier of the notification sound to be played; 0 if sound is disabled
+    :type notification_sound_id: :class:`int`
     
     :param total_count: Total number of unread notifications in the group, can be bigger than number of active notifications
     :type total_count: :class:`int`
@@ -1759,7 +1875,7 @@ class UpdateNotificationGroup(Update):
     type_: NotificationGroupType = Field(..., alias='type')
     chat_id: int
     notification_settings_chat_id: int
-    is_silent: bool
+    notification_sound_id: int
     total_count: int
     added_notifications: list[Notification]
     removed_notification_ids: list[int]
@@ -1885,6 +2001,23 @@ class UpdateSavedAnimations(Update):
     @staticmethod
     def read(q: dict) -> UpdateSavedAnimations:
         return UpdateSavedAnimations.construct(**q)
+
+
+class UpdateSavedNotificationSounds(Update):
+    """
+    The list of saved notifications sounds was updated. This update may not be sent until information about a notification sound was requested for the first time
+    
+    :param notification_sound_ids: The new list of identifiers of saved notification sounds
+    :type notification_sound_ids: :class:`list[int]`
+    
+    """
+
+    ID: str = Field("updateSavedNotificationSounds", alias="@type")
+    notification_sound_ids: list[int]
+
+    @staticmethod
+    def read(q: dict) -> UpdateSavedNotificationSounds:
+        return UpdateSavedNotificationSounds.construct(**q)
 
 
 class UpdateScopeNotificationSettings(Update):
@@ -2238,3 +2371,20 @@ class UpdateUsersNearby(Update):
     @staticmethod
     def read(q: dict) -> UpdateUsersNearby:
         return UpdateUsersNearby.construct(**q)
+
+
+class UpdateWebAppMessageSent(Update):
+    """
+    A message was sent by an opened web app, so the web app needs to be closed
+    
+    :param web_app_launch_id: Identifier of web app launch
+    :type web_app_launch_id: :class:`int`
+    
+    """
+
+    ID: str = Field("updateWebAppMessageSent", alias="@type")
+    web_app_launch_id: int
+
+    @staticmethod
+    def read(q: dict) -> UpdateWebAppMessageSent:
+        return UpdateWebAppMessageSent.construct(**q)

@@ -38,6 +38,9 @@ class UserTypeBot(UserType):
     :param need_location: True, if the location of the user is expected to be sent with every inline query to this bot
     :type need_location: :class:`bool`
     
+    :param can_be_added_to_attachment_menu: True, if the bot can be added to attachment menu
+    :type can_be_added_to_attachment_menu: :class:`bool`
+    
     """
 
     ID: str = Field("userTypeBot", alias="@type")
@@ -46,6 +49,7 @@ class UserTypeBot(UserType):
     is_inline: bool
     inline_query_placeholder: str
     need_location: bool
+    can_be_added_to_attachment_menu: bool
 
     @staticmethod
     def read(q: dict) -> UserTypeBot:

@@ -15,7 +15,7 @@ class ChatMembers(BaseObject):
     """
     Contains a list of chat members
     
-    :param total_count: Approximate total count of chat members found
+    :param total_count: Approximate total number of chat members found
     :type total_count: :class:`int`
     
     :param members: A list of chat members

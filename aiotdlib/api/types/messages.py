@@ -17,7 +17,7 @@ class Messages(BaseObject):
     """
     Contains a list of messages
     
-    :param total_count: Approximate total count of messages found
+    :param total_count: Approximate total number of messages found
     :type total_count: :class:`int`
     
     :param messages: List of messages; messages may be null, defaults to None

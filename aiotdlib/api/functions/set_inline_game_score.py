@@ -17,7 +17,7 @@ class SetInlineGameScore(BaseObject):
     :param inline_message_id: Inline message identifier
     :type inline_message_id: :class:`str`
     
-    :param edit_message: True, if the message needs to be edited
+    :param edit_message: Pass true to edit the game message to include the current scoreboard
     :type edit_message: :class:`bool`
     
     :param user_id: User identifier

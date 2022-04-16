@@ -12,6 +12,8 @@ from .animated_chat_photo import AnimatedChatPhoto
 from .animated_emoji import AnimatedEmoji
 from .animation import Animation
 from .animations import Animations
+from .attachment_menu_bot import AttachmentMenuBot
+from .attachment_menu_bot_color import AttachmentMenuBotColor
 from .audio import Audio
 from .authentication_code_info import AuthenticationCodeInfo
 from .authentication_code_type import (
@@ -69,6 +71,8 @@ from .bot_command_scope import (
     BotCommandScopeDefault,
 )
 from .bot_commands import BotCommands
+from .bot_info import BotInfo
+from .bot_menu_button import BotMenuButton
 from .call import Call
 from .call_discard_reason import (
     CallDiscardReason,
@@ -151,6 +155,7 @@ from .chat_action_bar import (
     ChatActionBarSharePhoneNumber,
 )
 from .chat_administrator import ChatAdministrator
+from .chat_administrator_rights import ChatAdministratorRights
 from .chat_administrators import ChatAdministrators
 from .chat_event import ChatEvent
 from .chat_event_action import (
@@ -247,6 +252,8 @@ from .chat_report_reason import (
     ChatReportReasonCopyright,
     ChatReportReasonCustom,
     ChatReportReasonFake,
+    ChatReportReasonIllegalDrugs,
+    ChatReportReasonPersonalDetails,
     ChatReportReasonPornography,
     ChatReportReasonSpam,
     ChatReportReasonUnrelatedLocation,
@@ -331,6 +338,7 @@ from .dice_stickers import (
     DiceStickersSlotMachine,
 )
 from .document import Document
+from .downloaded_file_counts import DownloadedFileCounts
 from .draft_message import DraftMessage
 from .email_address_authentication_code_info import EmailAddressAuthenticationCodeInfo
 from .emojis import Emojis
@@ -338,6 +346,7 @@ from .encrypted_credentials import EncryptedCredentials
 from .encrypted_passport_element import EncryptedPassportElement
 from .error import Error
 from .file import File
+from .file_download import FileDownload
 from .file_part import FilePart
 from .file_type import (
     FileType,
@@ -345,6 +354,7 @@ from .file_type import (
     FileTypeAudio,
     FileTypeDocument,
     FileTypeNone,
+    FileTypeNotificationSound,
     FileTypePhoto,
     FileTypeProfilePhoto,
     FileTypeSecret,
@@ -359,6 +369,7 @@ from .file_type import (
     FileTypeWallpaper,
 )
 from .formatted_text import FormattedText
+from .found_file_downloads import FoundFileDownloads
 from .found_messages import FoundMessages
 from .game import Game
 from .game_high_score import GameHighScore
@@ -368,6 +379,8 @@ from .group_call_id import GroupCallId
 from .group_call_participant import GroupCallParticipant
 from .group_call_participant_video_info import GroupCallParticipantVideoInfo
 from .group_call_recent_speaker import GroupCallRecentSpeaker
+from .group_call_stream import GroupCallStream
+from .group_call_streams import GroupCallStreams
 from .group_call_video_quality import (
     GroupCallVideoQuality,
     GroupCallVideoQualityFull,
@@ -390,6 +403,7 @@ from .inline_keyboard_button_type import (
     InlineKeyboardButtonTypeSwitchInline,
     InlineKeyboardButtonTypeUrl,
     InlineKeyboardButtonTypeUser,
+    InlineKeyboardButtonTypeWebApp,
 )
 from .inline_query_result import (
     InlineQueryResult,
@@ -503,8 +517,10 @@ from .input_thumbnail import InputThumbnail
 from .internal_link_type import (
     InternalLinkType,
     InternalLinkTypeActiveSessions,
+    InternalLinkTypeAttachmentMenuBot,
     InternalLinkTypeAuthenticationCode,
     InternalLinkTypeBackground,
+    InternalLinkTypeBotAddToChannel,
     InternalLinkTypeBotStart,
     InternalLinkTypeBotStartInGroup,
     InternalLinkTypeChangePhoneNumber,
@@ -512,10 +528,12 @@ from .internal_link_type import (
     InternalLinkTypeFilterSettings,
     InternalLinkTypeGame,
     InternalLinkTypeLanguagePack,
+    InternalLinkTypeLanguageSettings,
     InternalLinkTypeMessage,
     InternalLinkTypeMessageDraft,
     InternalLinkTypePassportDataRequest,
     InternalLinkTypePhoneNumberConfirmation,
+    InternalLinkTypePrivacyAndSecuritySettings,
     InternalLinkTypeProxy,
     InternalLinkTypePublicChat,
     InternalLinkTypeQrCodeAuthentication,
@@ -525,6 +543,7 @@ from .internal_link_type import (
     InternalLinkTypeThemeSettings,
     InternalLinkTypeUnknownDeepLink,
     InternalLinkTypeUnsupportedProxy,
+    InternalLinkTypeUserPhoneNumber,
     InternalLinkTypeVideoChat,
 )
 from .invoice import Invoice
@@ -545,6 +564,7 @@ from .keyboard_button_type import (
     KeyboardButtonTypeRequestPhoneNumber,
     KeyboardButtonTypeRequestPoll,
     KeyboardButtonTypeText,
+    KeyboardButtonTypeWebApp,
 )
 from .labeled_price_part import LabeledPricePart
 from .language_pack_info import LanguagePackInfo
@@ -633,6 +653,8 @@ from .message_content import (
     MessageVideoChatStarted,
     MessageVideoNote,
     MessageVoiceNote,
+    MessageWebAppDataReceived,
+    MessageWebAppDataSent,
     MessageWebsiteConnected,
 )
 from .message_copy_options import MessageCopyOptions
@@ -708,6 +730,8 @@ from .notification_settings_scope import (
     NotificationSettingsScopeGroupChats,
     NotificationSettingsScopePrivateChats,
 )
+from .notification_sound import NotificationSound
+from .notification_sounds import NotificationSounds
 from .notification_type import (
     NotificationType,
     NotificationTypeNewCall,
@@ -824,7 +848,6 @@ from .passport_required_element import PassportRequiredElement
 from .passport_suitable_element import PassportSuitableElement
 from .password_state import PasswordState
 from .payment_form import PaymentForm
-from .payment_form_theme import PaymentFormTheme
 from .payment_receipt import PaymentReceipt
 from .payment_result import PaymentResult
 from .payments_provider_stripe import PaymentsProviderStripe
@@ -926,6 +949,7 @@ from .rich_text import (
     RichTextUrl,
     RichTexts,
 )
+from .rtmp_url import RtmpUrl
 from .saved_credentials import SavedCredentials
 from .scope_notification_settings import ScopeNotificationSettings
 from .search_messages_filter import (
@@ -956,6 +980,7 @@ from .secret_chat_state import (
     SecretChatStatePending,
     SecretChatStateReady,
 )
+from .sent_web_app_message import SentWebAppMessage
 from .session import Session
 from .sessions import Sessions
 from .shipping_option import ShippingOption
@@ -1054,6 +1079,7 @@ from .text_parse_mode import (
     TextParseModeHTML,
     TextParseModeMarkdown,
 )
+from .theme_parameters import ThemeParameters
 from .theme_settings import ThemeSettings
 from .thumbnail import Thumbnail
 from .thumbnail_format import (
@@ -1082,6 +1108,7 @@ from .update import (
     UpdateActiveNotifications,
     UpdateAnimatedEmojiMessageClicked,
     UpdateAnimationSearchParameters,
+    UpdateAttachmentMenuBots,
     UpdateAuthorizationState,
     UpdateBasicGroup,
     UpdateBasicGroupFullInfo,
@@ -1120,8 +1147,12 @@ from .update import (
     UpdateDiceEmojis,
     UpdateFavoriteStickers,
     UpdateFile,
+    UpdateFileAddedToDownloads,
+    UpdateFileDownload,
+    UpdateFileDownloads,
     UpdateFileGenerationStart,
     UpdateFileGenerationStop,
+    UpdateFileRemovedFromDownloads,
     UpdateGroupCall,
     UpdateGroupCallParticipant,
     UpdateHavePendingNotifications,
@@ -1158,6 +1189,7 @@ from .update import (
     UpdateReactions,
     UpdateRecentStickers,
     UpdateSavedAnimations,
+    UpdateSavedNotificationSounds,
     UpdateScopeNotificationSettings,
     UpdateSecretChat,
     UpdateSelectedBackground,
@@ -1175,6 +1207,7 @@ from .update import (
     UpdateUserPrivacySettingRules,
     UpdateUserStatus,
     UpdateUsersNearby,
+    UpdateWebAppMessageSent,
 )
 from .updates import Updates
 from .user import User
@@ -1230,6 +1263,7 @@ from .video import Video
 from .video_chat import VideoChat
 from .video_note import VideoNote
 from .voice_note import VoiceNote
+from .web_app_info import WebAppInfo
 from .web_page import WebPage
 from .web_page_instant_view import WebPageInstantView
 
@@ -1242,6 +1276,8 @@ __all__ = [
     "AnimatedEmoji",
     "Animation",
     "Animations",
+    "AttachmentMenuBot",
+    "AttachmentMenuBotColor",
     "Audio",
     "AuthenticationCodeInfo",
     "AuthenticationCodeType",
@@ -1289,6 +1325,8 @@ __all__ = [
     "BotCommandScopeChatMember",
     "BotCommandScopeDefault",
     "BotCommands",
+    "BotInfo",
+    "BotMenuButton",
     "Call",
     "CallDiscardReason",
     "CallDiscardReasonDeclined",
@@ -1355,6 +1393,7 @@ __all__ = [
     "ChatActionBarReportUnrelatedLocation",
     "ChatActionBarSharePhoneNumber",
     "ChatAdministrator",
+    "ChatAdministratorRights",
     "ChatAdministrators",
     "ChatEvent",
     "ChatEventAction",
@@ -1442,6 +1481,8 @@ __all__ = [
     "ChatReportReasonCopyright",
     "ChatReportReasonCustom",
     "ChatReportReasonFake",
+    "ChatReportReasonIllegalDrugs",
+    "ChatReportReasonPersonalDetails",
     "ChatReportReasonPornography",
     "ChatReportReasonSpam",
     "ChatReportReasonUnrelatedLocation",
@@ -1509,6 +1550,7 @@ __all__ = [
     "DiceStickersRegular",
     "DiceStickersSlotMachine",
     "Document",
+    "DownloadedFileCounts",
     "DraftMessage",
     "EmailAddressAuthenticationCodeInfo",
     "Emojis",
@@ -1516,12 +1558,14 @@ __all__ = [
     "EncryptedPassportElement",
     "Error",
     "File",
+    "FileDownload",
     "FilePart",
     "FileType",
     "FileTypeAnimation",
     "FileTypeAudio",
     "FileTypeDocument",
     "FileTypeNone",
+    "FileTypeNotificationSound",
     "FileTypePhoto",
     "FileTypeProfilePhoto",
     "FileTypeSecret",
@@ -1535,6 +1579,7 @@ __all__ = [
     "FileTypeVoiceNote",
     "FileTypeWallpaper",
     "FormattedText",
+    "FoundFileDownloads",
     "FoundMessages",
     "Game",
     "GameHighScore",
@@ -1544,6 +1589,8 @@ __all__ = [
     "GroupCallParticipant",
     "GroupCallParticipantVideoInfo",
     "GroupCallRecentSpeaker",
+    "GroupCallStream",
+    "GroupCallStreams",
     "GroupCallVideoQuality",
     "GroupCallVideoQualityFull",
     "GroupCallVideoQualityMedium",
@@ -1563,6 +1610,7 @@ __all__ = [
     "InlineKeyboardButtonTypeSwitchInline",
     "InlineKeyboardButtonTypeUrl",
     "InlineKeyboardButtonTypeUser",
+    "InlineKeyboardButtonTypeWebApp",
     "InlineQueryResult",
     "InlineQueryResultAnimation",
     "InlineQueryResultArticle",
@@ -1656,8 +1704,10 @@ __all__ = [
     "InputThumbnail",
     "InternalLinkType",
     "InternalLinkTypeActiveSessions",
+    "InternalLinkTypeAttachmentMenuBot",
     "InternalLinkTypeAuthenticationCode",
     "InternalLinkTypeBackground",
+    "InternalLinkTypeBotAddToChannel",
     "InternalLinkTypeBotStart",
     "InternalLinkTypeBotStartInGroup",
     "InternalLinkTypeChangePhoneNumber",
@@ -1665,10 +1715,12 @@ __all__ = [
     "InternalLinkTypeFilterSettings",
     "InternalLinkTypeGame",
     "InternalLinkTypeLanguagePack",
+    "InternalLinkTypeLanguageSettings",
     "InternalLinkTypeMessage",
     "InternalLinkTypeMessageDraft",
     "InternalLinkTypePassportDataRequest",
     "InternalLinkTypePhoneNumberConfirmation",
+    "InternalLinkTypePrivacyAndSecuritySettings",
     "InternalLinkTypeProxy",
     "InternalLinkTypePublicChat",
     "InternalLinkTypeQrCodeAuthentication",
@@ -1678,6 +1730,7 @@ __all__ = [
     "InternalLinkTypeThemeSettings",
     "InternalLinkTypeUnknownDeepLink",
     "InternalLinkTypeUnsupportedProxy",
+    "InternalLinkTypeUserPhoneNumber",
     "InternalLinkTypeVideoChat",
     "Invoice",
     "JsonValue",
@@ -1694,6 +1747,7 @@ __all__ = [
     "KeyboardButtonTypeRequestPhoneNumber",
     "KeyboardButtonTypeRequestPoll",
     "KeyboardButtonTypeText",
+    "KeyboardButtonTypeWebApp",
     "LabeledPricePart",
     "LanguagePackInfo",
     "LanguagePackString",
@@ -1772,6 +1826,8 @@ __all__ = [
     "MessageVideoChatStarted",
     "MessageVideoNote",
     "MessageVoiceNote",
+    "MessageWebAppDataReceived",
+    "MessageWebAppDataSent",
     "MessageWebsiteConnected",
     "MessageCopyOptions",
     "MessageFileType",
@@ -1828,6 +1884,8 @@ __all__ = [
     "NotificationSettingsScopeChannelChats",
     "NotificationSettingsScopeGroupChats",
     "NotificationSettingsScopePrivateChats",
+    "NotificationSound",
+    "NotificationSounds",
     "NotificationType",
     "NotificationTypeNewCall",
     "NotificationTypeNewMessage",
@@ -1928,7 +1986,6 @@ __all__ = [
     "PassportSuitableElement",
     "PasswordState",
     "PaymentForm",
-    "PaymentFormTheme",
     "PaymentReceipt",
     "PaymentResult",
     "PaymentsProviderStripe",
@@ -2016,6 +2073,7 @@ __all__ = [
     "RichTextUnderline",
     "RichTextUrl",
     "RichTexts",
+    "RtmpUrl",
     "SavedCredentials",
     "ScopeNotificationSettings",
     "SearchMessagesFilter",
@@ -2042,6 +2100,7 @@ __all__ = [
     "SecretChatStateClosed",
     "SecretChatStatePending",
     "SecretChatStateReady",
+    "SentWebAppMessage",
     "Session",
     "Sessions",
     "ShippingOption",
@@ -2126,6 +2185,7 @@ __all__ = [
     "TextParseMode",
     "TextParseModeHTML",
     "TextParseModeMarkdown",
+    "ThemeParameters",
     "ThemeSettings",
     "Thumbnail",
     "ThumbnailFormat",
@@ -2149,6 +2209,7 @@ __all__ = [
     "UpdateActiveNotifications",
     "UpdateAnimatedEmojiMessageClicked",
     "UpdateAnimationSearchParameters",
+    "UpdateAttachmentMenuBots",
     "UpdateAuthorizationState",
     "UpdateBasicGroup",
     "UpdateBasicGroupFullInfo",
@@ -2187,8 +2248,12 @@ __all__ = [
     "UpdateDiceEmojis",
     "UpdateFavoriteStickers",
     "UpdateFile",
+    "UpdateFileAddedToDownloads",
+    "UpdateFileDownload",
+    "UpdateFileDownloads",
     "UpdateFileGenerationStart",
     "UpdateFileGenerationStop",
+    "UpdateFileRemovedFromDownloads",
     "UpdateGroupCall",
     "UpdateGroupCallParticipant",
     "UpdateHavePendingNotifications",
@@ -2225,6 +2290,7 @@ __all__ = [
     "UpdateReactions",
     "UpdateRecentStickers",
     "UpdateSavedAnimations",
+    "UpdateSavedNotificationSounds",
     "UpdateScopeNotificationSettings",
     "UpdateSecretChat",
     "UpdateSelectedBackground",
@@ -2242,6 +2308,7 @@ __all__ = [
     "UpdateUserPrivacySettingRules",
     "UpdateUserStatus",
     "UpdateUsersNearby",
+    "UpdateWebAppMessageSent",
     "Updates",
     "User",
     "UserFullInfo",
@@ -2286,6 +2353,7 @@ __all__ = [
     "VideoChat",
     "VideoNote",
     "VoiceNote",
+    "WebAppInfo",
     "WebPage",
     "WebPageInstantView",
 ]

@@ -28,7 +28,7 @@ class SponsoredMessage(BaseObject):
     :param sponsor_chat_info: Information about the sponsor chat; may be null unless sponsor_chat_id == 0, defaults to None
     :type sponsor_chat_info: :class:`ChatInviteLinkInfo`, optional
     
-    :param link: An internal link to be opened when the sponsored message is clicked; may be null. If null, the sponsor chat needs to be opened instead, defaults to None
+    :param link: An internal link to be opened when the sponsored message is clicked; may be null if the sponsor chat needs to be opened instead, defaults to None
     :type link: :class:`InternalLinkType`, optional
     
     :param content: Content of the message. Currently, can be only of the type messageText

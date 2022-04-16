@@ -20,7 +20,7 @@ class ProcessChatJoinRequest(BaseObject):
     :param user_id: Identifier of the user that sent the request
     :type user_id: :class:`int`
     
-    :param approve: True, if the request is approved. Otherwise the request is declined
+    :param approve: Pass true to approve the request; pass false to decline it
     :type approve: :class:`bool`
     
     """

@@ -26,7 +26,7 @@ class LanguagePackInfo(BaseObject):
     :param native_name: Name of the language in that language
     :type native_name: :class:`str`
     
-    :param plural_code: A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info
+    :param plural_code: A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more information
     :type plural_code: :class:`str`
     
     :param is_official: True, if the language pack is official

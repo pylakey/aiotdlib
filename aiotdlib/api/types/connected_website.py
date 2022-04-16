@@ -38,7 +38,7 @@ class ConnectedWebsite(BaseObject):
     :param ip: IP address from which the user was logged in, in human-readable format
     :type ip: :class:`str`
     
-    :param location: Human-readable description of a country and a region, from which the user was logged in, based on the IP address
+    :param location: Human-readable description of a country and a region from which the user was logged in, based on the IP address
     :type location: :class:`str`
     
     """

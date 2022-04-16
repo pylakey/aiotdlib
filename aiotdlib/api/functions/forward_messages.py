@@ -27,13 +27,13 @@ class ForwardMessages(BaseObject):
     :param options: Options to be used to send the messages; pass null to use default options
     :type options: :class:`MessageSendOptions`
     
-    :param send_copy: If true, content of the messages will be copied without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
+    :param send_copy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
     :type send_copy: :class:`bool`
     
-    :param remove_caption: If true, media caption of message copies will be removed. Ignored if send_copy is false
+    :param remove_caption: Pass true to remove media captions of message copies. Ignored if send_copy is false
     :type remove_caption: :class:`bool`
     
-    :param only_preview: If true, messages will not be forwarded and instead fake messages will be returned
+    :param only_preview: Pass true to get fake messages instead of actually forwarding them
     :type only_preview: :class:`bool`
     
     """

@@ -21,7 +21,7 @@ class ToggleGroupCallParticipantIsMuted(BaseObject):
     :param participant_id: Participant identifier
     :type participant_id: :class:`MessageSender`
     
-    :param is_muted: Pass true if the user must be muted and false otherwise
+    :param is_muted: Pass true to mute the user; pass false to unmute the them
     :type is_muted: :class:`bool`
     
     """

@@ -21,7 +21,7 @@ class OptimizeStorage(BaseObject):
     :param ttl: Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit
     :type ttl: :class:`int`
     
-    :param count: Limit on the total count of files after deletion. Pass -1 to use the default limit
+    :param count: Limit on the total number of files after deletion. Pass -1 to use the default limit
     :type count: :class:`int`
     
     :param immunity_delay: The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value

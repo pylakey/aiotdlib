@@ -21,7 +21,7 @@ class CreateCall(BaseObject):
     :param protocol: The call protocols supported by the application
     :type protocol: :class:`CallProtocol`
     
-    :param is_video: True, if a video call needs to be created
+    :param is_video: Pass true to create a video call
     :type is_video: :class:`bool`
     
     """

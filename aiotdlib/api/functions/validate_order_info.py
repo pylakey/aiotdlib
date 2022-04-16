@@ -24,7 +24,7 @@ class ValidateOrderInfo(BaseObject):
     :param order_info: The order information, provided by the user; pass null if empty
     :type order_info: :class:`OrderInfo`
     
-    :param allow_save: True, if the order information can be saved
+    :param allow_save: Pass true to save the order information
     :type allow_save: :class:`bool`
     
     """

@@ -24,7 +24,7 @@ class TestProxy(BaseObject):
     :param type_: Proxy type
     :type type_: :class:`ProxyType`
     
-    :param dc_id: Identifier of a datacenter, with which to test connection
+    :param dc_id: Identifier of a datacenter with which to test connection
     :type dc_id: :class:`int`
     
     :param timeout: The maximum overall timeout for the request

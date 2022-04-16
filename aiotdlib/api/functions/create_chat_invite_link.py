@@ -28,7 +28,7 @@ class CreateChatInviteLink(BaseObject):
     :param member_limit: The maximum number of chat members that can join the chat via the link simultaneously; 0-99999; pass 0 if not limited
     :type member_limit: :class:`int`
     
-    :param creates_join_request: True, if the link only creates join request. If true, member_limit must not be specified
+    :param creates_join_request: Pass true if users joining the chat via the link need to be approved by chat administrators. In this case, member_limit must be 0
     :type creates_join_request: :class:`bool`
     
     """

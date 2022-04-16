@@ -20,7 +20,7 @@ class SetGroupCallParticipantIsSpeaking(BaseObject):
     :param audio_source: Group call participant's synchronization audio source identifier, or 0 for the current user
     :type audio_source: :class:`int`
     
-    :param is_speaking: True, if the user is speaking
+    :param is_speaking: Pass true if the user is speaking
     :type is_speaking: :class:`bool`
     
     """

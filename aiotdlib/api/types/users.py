@@ -14,7 +14,7 @@ class Users(BaseObject):
     """
     Represents a list of users
     
-    :param total_count: Approximate total count of users found
+    :param total_count: Approximate total number of users found
     :type total_count: :class:`int`
     
     :param user_ids: A list of user identifiers

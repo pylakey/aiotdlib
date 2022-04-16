@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class GetMessageLocally(BaseObject):
     """
-    Returns information about a message, if it is available locally without sending network request. This is an offline request
+    Returns information about a message, if it is available without sending network request. This is an offline request
     
     :param chat_id: Identifier of the chat the message belongs to
     :type chat_id: :class:`int`

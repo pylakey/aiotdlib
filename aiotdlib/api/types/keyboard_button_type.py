@@ -77,3 +77,20 @@ class KeyboardButtonTypeText(KeyboardButtonType):
     @staticmethod
     def read(q: dict) -> KeyboardButtonTypeText:
         return KeyboardButtonTypeText.construct(**q)
+
+
+class KeyboardButtonTypeWebApp(KeyboardButtonType):
+    """
+    A button that opens a web app by calling getWebAppUrl
+    
+    :param url: An HTTP URL to pass to getWebAppUrl
+    :type url: :class:`str`
+    
+    """
+
+    ID: str = Field("keyboardButtonTypeWebApp", alias="@type")
+    url: str
+
+    @staticmethod
+    def read(q: dict) -> KeyboardButtonTypeWebApp:
+        return KeyboardButtonTypeWebApp.construct(**q)

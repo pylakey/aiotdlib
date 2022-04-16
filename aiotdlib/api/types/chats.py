@@ -14,7 +14,7 @@ class Chats(BaseObject):
     """
     Represents a list of chats
     
-    :param total_count: Approximate total count of chats found
+    :param total_count: Approximate total number of chats found
     :type total_count: :class:`int`
     
     :param chat_ids: List of chat identifiers

@@ -22,7 +22,7 @@ class AddLocalMessage(BaseObject):
     :param sender_id: Identifier of the sender of the message
     :type sender_id: :class:`MessageSender`
     
-    :param reply_to_message_id: Identifier of the message to reply to or 0
+    :param reply_to_message_id: Identifier of the replied message; 0 if none
     :type reply_to_message_id: :class:`int`
     
     :param disable_notification: Pass true to disable notification for the message

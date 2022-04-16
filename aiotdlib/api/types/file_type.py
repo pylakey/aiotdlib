@@ -71,6 +71,19 @@ class FileTypeNone(FileType):
         return FileTypeNone.construct(**q)
 
 
+class FileTypeNotificationSound(FileType):
+    """
+    The file is a notification sound
+    
+    """
+
+    ID: str = Field("fileTypeNotificationSound", alias="@type")
+
+    @staticmethod
+    def read(q: dict) -> FileTypeNotificationSound:
+        return FileTypeNotificationSound.construct(**q)
+
+
 class FileTypePhoto(FileType):
     """
     The file is a photo

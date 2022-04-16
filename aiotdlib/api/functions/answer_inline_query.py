@@ -18,7 +18,7 @@ class AnswerInlineQuery(BaseObject):
     :param inline_query_id: Identifier of the inline query
     :type inline_query_id: :class:`int`
     
-    :param is_personal: True, if the result of the query can be cached for the specified user
+    :param is_personal: Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
     :type is_personal: :class:`bool`
     
     :param results: The results of the query

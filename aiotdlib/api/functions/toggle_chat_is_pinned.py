@@ -21,7 +21,7 @@ class ToggleChatIsPinned(BaseObject):
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
     
-    :param is_pinned: True, if the chat is pinned
+    :param is_pinned: Pass true to pin the chat; pass false to unpin it
     :type is_pinned: :class:`bool`
     
     """

@@ -17,7 +17,7 @@ class SearchEmojis(BaseObject):
     :param text: Text to search for
     :type text: :class:`str`
     
-    :param exact_match: True, if only emojis, which exactly match text needs to be returned
+    :param exact_match: Pass true if only emojis, which exactly match the text, needs to be returned
     :type exact_match: :class:`bool`
     
     :param input_language_codes: List of possible IETF language tags of the user's input language; may be empty if unknown

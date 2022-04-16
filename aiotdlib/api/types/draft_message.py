@@ -15,7 +15,7 @@ class DraftMessage(BaseObject):
     """
     Contains information about a message draft
     
-    :param reply_to_message_id: Identifier of the message to reply to; 0 if none
+    :param reply_to_message_id: Identifier of the replied message; 0 if none
     :type reply_to_message_id: :class:`int`
     
     :param date: Point in time (Unix timestamp) when the draft was created

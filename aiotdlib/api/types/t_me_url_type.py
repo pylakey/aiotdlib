@@ -24,7 +24,7 @@ class TMeUrlTypeChatInvite(TMeUrlType):
     """
     A chat invite link
     
-    :param info: Chat invite link info
+    :param info: Information about the chat invite link
     :type info: :class:`ChatInviteLinkInfo`
     
     """

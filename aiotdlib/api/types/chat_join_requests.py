@@ -15,7 +15,7 @@ class ChatJoinRequests(BaseObject):
     """
     Contains a list of requests to join a chat
     
-    :param total_count: Approximate total count of requests found
+    :param total_count: Approximate total number of requests found
     :type total_count: :class:`int`
     
     :param requests: List of the requests

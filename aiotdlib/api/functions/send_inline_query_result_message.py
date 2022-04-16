@@ -21,7 +21,7 @@ class SendInlineQueryResultMessage(BaseObject):
     :param message_thread_id: If not 0, a message thread identifier in which the message will be sent
     :type message_thread_id: :class:`int`
     
-    :param reply_to_message_id: Identifier of a message to reply to or 0
+    :param reply_to_message_id: Identifier of a replied message; 0 if none
     :type reply_to_message_id: :class:`int`
     
     :param options: Options to be used to send the message; pass null to use default options
@@ -33,7 +33,7 @@ class SendInlineQueryResultMessage(BaseObject):
     :param result_id: Identifier of the inline result
     :type result_id: :class:`str`
     
-    :param hide_via_bot: If true, there will be no mention of a bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username") and GetOption("venue_search_bot_username")
+    :param hide_via_bot: Pass true to hide the bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username"), and GetOption("venue_search_bot_username")
     :type hide_via_bot: :class:`bool`
     
     """

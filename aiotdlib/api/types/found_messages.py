@@ -15,7 +15,7 @@ class FoundMessages(BaseObject):
     """
     Contains a list of messages found by a search
     
-    :param total_count: Approximate total count of messages found; -1 if unknown
+    :param total_count: Approximate total number of messages found; -1 if unknown
     :type total_count: :class:`int`
     
     :param messages: List of messages

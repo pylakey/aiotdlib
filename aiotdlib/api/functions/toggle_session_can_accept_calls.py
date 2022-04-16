@@ -17,7 +17,7 @@ class ToggleSessionCanAcceptCalls(BaseObject):
     :param session_id: Session identifier
     :type session_id: :class:`int`
     
-    :param can_accept_calls: True, if incoming calls can be accepted by the session
+    :param can_accept_calls: Pass true to allow accepting incoming calls by the session; pass false otherwise
     :type can_accept_calls: :class:`bool`
     
     """

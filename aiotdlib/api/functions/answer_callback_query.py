@@ -20,7 +20,7 @@ class AnswerCallbackQuery(BaseObject):
     :param text: Text of the answer
     :type text: :class:`str`
     
-    :param show_alert: If true, an alert must be shown to the user instead of a toast notification
+    :param show_alert: Pass true to show an alert to the user instead of a toast notification
     :type show_alert: :class:`bool`
     
     :param url: URL to be opened

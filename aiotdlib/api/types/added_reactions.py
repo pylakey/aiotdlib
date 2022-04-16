@@ -15,7 +15,7 @@ class AddedReactions(BaseObject):
     """
     Represents a list of reactions added to a message
     
-    :param total_count: The total count of found reactions
+    :param total_count: The total number of found reactions
     :type total_count: :class:`int`
     
     :param reactions: The list of added reactions

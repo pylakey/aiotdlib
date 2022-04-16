@@ -23,7 +23,7 @@ class SetPassword(BaseObject):
     :param new_hint: New password hint; may be empty
     :type new_hint: :class:`str`
     
-    :param set_recovery_email_address: Pass true if the recovery email address must be changed
+    :param set_recovery_email_address: Pass true to change also the recovery email address
     :type set_recovery_email_address: :class:`bool`
     
     :param new_recovery_email_address: New recovery email address; may be empty

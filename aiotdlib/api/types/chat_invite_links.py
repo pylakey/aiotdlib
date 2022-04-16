@@ -15,7 +15,7 @@ class ChatInviteLinks(BaseObject):
     """
     Contains a list of chat invite links
     
-    :param total_count: Approximate total count of chat invite links found
+    :param total_count: Approximate total number of chat invite links found
     :type total_count: :class:`int`
     
     :param invite_links: List of invite links

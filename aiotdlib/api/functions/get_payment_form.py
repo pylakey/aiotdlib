@@ -8,7 +8,7 @@ from __future__ import annotations
 from pydantic import Field
 
 from ..base_object import BaseObject
-from ..types import PaymentFormTheme
+from ..types import ThemeParameters
 
 
 class GetPaymentForm(BaseObject):
@@ -22,14 +22,14 @@ class GetPaymentForm(BaseObject):
     :type message_id: :class:`int`
     
     :param theme: Preferred payment form theme; pass null to use the default theme
-    :type theme: :class:`PaymentFormTheme`
+    :type theme: :class:`ThemeParameters`
     
     """
 
     ID: str = Field("getPaymentForm", alias="@type")
     chat_id: int
     message_id: int
-    theme: PaymentFormTheme
+    theme: ThemeParameters
 
     @staticmethod
     def read(q: dict) -> GetPaymentForm:

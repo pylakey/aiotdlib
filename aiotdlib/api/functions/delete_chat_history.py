@@ -17,7 +17,7 @@ class DeleteChatHistory(BaseObject):
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
     
-    :param remove_from_chat_list: Pass true if the chat needs to be removed from the chat list
+    :param remove_from_chat_list: Pass true to remove the chat from all chat lists
     :type remove_from_chat_list: :class:`bool`
     
     :param revoke: Pass true to delete chat history for all users

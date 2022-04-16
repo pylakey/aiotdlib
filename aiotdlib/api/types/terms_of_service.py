@@ -18,7 +18,7 @@ class TermsOfService(BaseObject):
     :param text: Text of the terms of service
     :type text: :class:`FormattedText`
     
-    :param min_user_age: The minimum age of a user to be able to accept the terms; 0 if any
+    :param min_user_age: The minimum age of a user to be able to accept the terms; 0 if age isn't restricted
     :type min_user_age: :class:`int`
     
     :param show_popup: True, if a blocking popup with terms of service must be shown to the user

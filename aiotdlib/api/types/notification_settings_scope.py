@@ -21,7 +21,7 @@ class NotificationSettingsScope(BaseObject):
 
 class NotificationSettingsScopeChannelChats(NotificationSettingsScope):
     """
-    Notification settings applied to all channels when the corresponding chat setting has a default value
+    Notification settings applied to all channel chats when the corresponding chat setting has a default value
     
     """
 
@@ -34,7 +34,7 @@ class NotificationSettingsScopeChannelChats(NotificationSettingsScope):
 
 class NotificationSettingsScopeGroupChats(NotificationSettingsScope):
     """
-    Notification settings applied to all basic groups and supergroups when the corresponding chat setting has a default value
+    Notification settings applied to all basic group and supergroup chats when the corresponding chat setting has a default value
     
     """
 

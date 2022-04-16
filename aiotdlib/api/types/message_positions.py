@@ -15,7 +15,7 @@ class MessagePositions(BaseObject):
     """
     Contains a list of message positions
     
-    :param total_count: Total count of messages found
+    :param total_count: Total number of messages found
     :type total_count: :class:`int`
     
     :param positions: List of message positions

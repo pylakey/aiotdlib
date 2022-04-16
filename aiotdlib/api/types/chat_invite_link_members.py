@@ -15,7 +15,7 @@ class ChatInviteLinkMembers(BaseObject):
     """
     Contains a list of chat members joined a chat via an invite link
     
-    :param total_count: Approximate total count of chat members found
+    :param total_count: Approximate total number of chat members found
     :type total_count: :class:`int`
     
     :param members: List of chat members, joined a chat via an invite link

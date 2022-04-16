@@ -22,7 +22,7 @@ class SetBackground(BaseObject):
     :param type_: Background type; pass null to use the default type of the remote background or to remove the current background
     :type type_: :class:`BackgroundType`
     
-    :param for_dark_theme: True, if the background is chosen for dark theme
+    :param for_dark_theme: Pass true if the background is changed for a dark theme
     :type for_dark_theme: :class:`bool`
     
     """

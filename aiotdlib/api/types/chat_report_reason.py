@@ -71,6 +71,32 @@ class ChatReportReasonFake(ChatReportReason):
         return ChatReportReasonFake.construct(**q)
 
 
+class ChatReportReasonIllegalDrugs(ChatReportReason):
+    """
+    The chat has illegal drugs related content
+    
+    """
+
+    ID: str = Field("chatReportReasonIllegalDrugs", alias="@type")
+
+    @staticmethod
+    def read(q: dict) -> ChatReportReasonIllegalDrugs:
+        return ChatReportReasonIllegalDrugs.construct(**q)
+
+
+class ChatReportReasonPersonalDetails(ChatReportReason):
+    """
+    The chat contains messages with personal details
+    
+    """
+
+    ID: str = Field("chatReportReasonPersonalDetails", alias="@type")
+
+    @staticmethod
+    def read(q: dict) -> ChatReportReasonPersonalDetails:
+        return ChatReportReasonPersonalDetails.construct(**q)
+
+
 class ChatReportReasonPornography(ChatReportReason):
     """
     The chat contains pornographic messages

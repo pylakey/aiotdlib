@@ -17,13 +17,13 @@ class DiscardCall(BaseObject):
     :param call_id: Call identifier
     :type call_id: :class:`int`
     
-    :param is_disconnected: True, if the user was disconnected
+    :param is_disconnected: Pass true if the user was disconnected
     :type is_disconnected: :class:`bool`
     
     :param duration: The call duration, in seconds
     :type duration: :class:`int`
     
-    :param is_video: True, if the call was a video call
+    :param is_video: Pass true if the call was a video call
     :type is_video: :class:`bool`
     
     :param connection_id: Identifier of the connection used during the call

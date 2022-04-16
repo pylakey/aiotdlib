@@ -632,7 +632,7 @@ class MessagePassportDataReceived(MessageContent):
 
 class MessagePassportDataSent(MessageContent):
     """
-    Telegram Passport data has been sent
+    Telegram Passport data has been sent to a bot
     
     :param types: List of Telegram Passport element types sent
     :type types: :class:`list[PassportElementType]`
@@ -1027,6 +1027,44 @@ class MessageVoiceNote(MessageContent):
     @staticmethod
     def read(q: dict) -> MessageVoiceNote:
         return MessageVoiceNote.construct(**q)
+
+
+class MessageWebAppDataReceived(MessageContent):
+    """
+    Data from a web app has been received; for bots only
+    
+    :param button_text: Text of the keyboardButtonTypeWebApp button, which opened the web app
+    :type button_text: :class:`str`
+    
+    :param data: Received data
+    :type data: :class:`str`
+    
+    """
+
+    ID: str = Field("messageWebAppDataReceived", alias="@type")
+    button_text: str
+    data: str
+
+    @staticmethod
+    def read(q: dict) -> MessageWebAppDataReceived:
+        return MessageWebAppDataReceived.construct(**q)
+
+
+class MessageWebAppDataSent(MessageContent):
+    """
+    Data from a web app has been sent to a bot
+    
+    :param button_text: Text of the keyboardButtonTypeWebApp button, which opened the web app
+    :type button_text: :class:`str`
+    
+    """
+
+    ID: str = Field("messageWebAppDataSent", alias="@type")
+    button_text: str
+
+    @staticmethod
+    def read(q: dict) -> MessageWebAppDataSent:
+        return MessageWebAppDataSent.construct(**q)
 
 
 class MessageWebsiteConnected(MessageContent):

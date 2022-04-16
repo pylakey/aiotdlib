@@ -24,7 +24,7 @@ class MessageReaction(BaseObject):
     :param is_chosen: True, if the reaction is chosen by the current user
     :type is_chosen: :class:`bool`
     
-    :param recent_sender_ids: Identifiers of at most 3 recent message senders, added the reaction; available in private chats, basic groups and supergroups
+    :param recent_sender_ids: Identifiers of at most 3 recent message senders, added the reaction; available in private, basic group and supergroup chats
     :type recent_sender_ids: :class:`list[MessageSender]`
     
     """

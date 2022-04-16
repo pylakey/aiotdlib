@@ -30,7 +30,7 @@ class GetMapThumbnailFile(BaseObject):
     :param scale: Map scale; 1-3
     :type scale: :class:`int`
     
-    :param chat_id: Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
+    :param chat_id: Identifier of a chat in which the thumbnail will be shown. Use 0 if unknown
     :type chat_id: :class:`int`
     
     """

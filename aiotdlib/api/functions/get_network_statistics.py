@@ -14,7 +14,7 @@ class GetNetworkStatistics(BaseObject):
     """
     Returns network data usage statistics. Can be called before authorization
     
-    :param only_current: If true, returns only data for the current library launch
+    :param only_current: Pass true to get statistics only for the current library launch
     :type only_current: :class:`bool`
     
     """

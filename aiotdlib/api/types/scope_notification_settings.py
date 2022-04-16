@@ -17,8 +17,8 @@ class ScopeNotificationSettings(BaseObject):
     :param mute_for: Time left before notifications will be unmuted, in seconds
     :type mute_for: :class:`int`
     
-    :param sound: The name of an audio file to be used for notification sounds; only applies to iOS applications
-    :type sound: :class:`str`
+    :param sound_id: Identifier of the notification sound to be played; 0 if sound is disabled
+    :type sound_id: :class:`int`
     
     :param show_preview: True, if message content must be displayed in notifications
     :type show_preview: :class:`bool`
@@ -33,7 +33,7 @@ class ScopeNotificationSettings(BaseObject):
 
     ID: str = Field("scopeNotificationSettings", alias="@type")
     mute_for: int
-    sound: str
+    sound_id: int
     show_preview: bool
     disable_pinned_message_notifications: bool
     disable_mention_notifications: bool

@@ -17,7 +17,7 @@ class ToggleSessionCanAcceptSecretChats(BaseObject):
     :param session_id: Session identifier
     :type session_id: :class:`int`
     
-    :param can_accept_secret_chats: True, if incoming secret chats can be accepted by the session
+    :param can_accept_secret_chats: Pass true to allow accepring secret chats by the session; pass false otherwise
     :type can_accept_secret_chats: :class:`bool`
     
     """

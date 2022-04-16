@@ -66,7 +66,7 @@ class Message(BaseObject):
     :param can_get_statistics: True, if the message statistics are available through getMessageStatistics
     :type can_get_statistics: :class:`bool`
     
-    :param can_get_message_thread: True, if the message thread info is available through getMessageThread
+    :param can_get_message_thread: True, if information about the message thread is available through getMessageThread
     :type can_get_message_thread: :class:`bool`
     
     :param can_get_viewers: True, if chat members already viewed the message can be received through getMessageViewers

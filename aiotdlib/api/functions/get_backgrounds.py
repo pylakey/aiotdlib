@@ -14,7 +14,7 @@ class GetBackgrounds(BaseObject):
     """
     Returns backgrounds installed by the user
     
-    :param for_dark_theme: True, if the backgrounds must be ordered for dark theme
+    :param for_dark_theme: Pass true to order returned backgrounds for a dark theme
     :type for_dark_theme: :class:`bool`
     
     """

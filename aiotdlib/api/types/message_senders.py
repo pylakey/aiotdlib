@@ -15,7 +15,7 @@ class MessageSenders(BaseObject):
     """
     Represents a list of message senders
     
-    :param total_count: Approximate total count of messages senders found
+    :param total_count: Approximate total number of messages senders found
     :type total_count: :class:`int`
     
     :param senders: List of message senders

@@ -17,7 +17,7 @@ class GetWebPageInstantView(BaseObject):
     :param url: The web page URL
     :type url: :class:`str`
     
-    :param force_full: If true, the full instant view for the web page will be returned
+    :param force_full: Pass true to get full instant view for the web page
     :type force_full: :class:`bool`
     
     """

@@ -17,7 +17,7 @@ class ToggleChatHasProtectedContent(BaseObject):
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
     
-    :param has_protected_content: True, if chat content can't be saved locally, forwarded, or copied
+    :param has_protected_content: New value of has_protected_content
     :type has_protected_content: :class:`bool`
     
     """

@@ -17,7 +17,7 @@ class SetChatAvailableReactions(BaseObject):
     :param chat_id: Identifier of the chat
     :type chat_id: :class:`int`
     
-    :param available_reactions: New list of reactions, available in the chat. All reactions must be active and order of the reactions must be the same as in updateReactions
+    :param available_reactions: New list of reactions, available in the chat. All reactions must be active
     :type available_reactions: :class:`list[str]`
     
     """

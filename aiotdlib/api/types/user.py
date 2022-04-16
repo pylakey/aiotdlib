@@ -61,7 +61,7 @@ class User(BaseObject):
     :param is_fake: True, if many users reported this user as a fake account
     :type is_fake: :class:`bool`
     
-    :param have_access: If false, the user is inaccessible, and the only information known about the user is inside this class. It can't be passed to any method except GetUser
+    :param have_access: If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method except GetUser
     :type have_access: :class:`bool`
     
     :param type_: Type of the user

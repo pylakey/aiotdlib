@@ -20,11 +20,11 @@ class ChatNotificationSettings(BaseObject):
     :param mute_for: Time left before notifications will be unmuted, in seconds
     :type mute_for: :class:`int`
     
-    :param use_default_sound: If true, sound is ignored and the value for the relevant type of chat is used instead
+    :param use_default_sound: If true, the value for the relevant type of chat is used instead of sound_id
     :type use_default_sound: :class:`bool`
     
-    :param sound: The name of an audio file to be used for notification sounds; only applies to iOS applications
-    :type sound: :class:`str`
+    :param sound_id: Identifier of the notification sound to be played; 0 if sound is disabled
+    :type sound_id: :class:`int`
     
     :param use_default_show_preview: If true, show_preview is ignored and the value for the relevant type of chat is used instead
     :type use_default_show_preview: :class:`bool`
@@ -50,7 +50,7 @@ class ChatNotificationSettings(BaseObject):
     use_default_mute_for: bool
     mute_for: int
     use_default_sound: bool
-    sound: str
+    sound_id: int
     use_default_show_preview: bool
     show_preview: bool
     use_default_disable_pinned_message_notifications: bool

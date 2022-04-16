@@ -20,7 +20,7 @@ class ReportChat(BaseObject):
     :param chat_id: Chat identifier
     :type chat_id: :class:`int`
     
-    :param message_ids: Identifiers of reported messages, if any
+    :param message_ids: Identifiers of reported messages; may be empty to report the whole chat
     :type message_ids: :class:`list[int]`
     
     :param reason: The reason for reporting the chat

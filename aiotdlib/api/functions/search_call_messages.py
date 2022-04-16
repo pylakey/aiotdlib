@@ -20,7 +20,7 @@ class SearchCallMessages(BaseObject):
     :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     :type limit: :class:`int`
     
-    :param only_missed: If true, returns only messages with missed/declined calls
+    :param only_missed: Pass true to search only for messages with missed/declined calls
     :type only_missed: :class:`bool`
     
     """
