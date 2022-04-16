@@ -8,13 +8,13 @@ import os
 import sys
 import typing
 import uuid
-from collections import AsyncIterator
 from functools import (
     partial,
     update_wrapper,
 )
 from pathlib import Path
 from typing import (
+    AsyncIterator,
     Optional,
     TypeVar,
     Union,
@@ -434,7 +434,6 @@ class ClientSettings(pydantic.BaseSettings):
 
     class Config:
         env_prefix = 'aiotdlib_'
-        secrets_dir = '/run/secrets'
         use_enum_values = True
         allow_population_by_field_name = True
 
@@ -698,8 +697,8 @@ class Client:
         return await self.api.set_tdlib_parameters(
             parameters=TdlibParameters(
                 use_test_dc=self.settings.use_test_dc,
-                database_directory=os.path.join(f"{self.settings.files_directory}","database"),
-                files_directory=os.path.join(f"{self.settings.files_directory}","files"),
+                database_directory=os.path.join(f"{self.settings.files_directory}", "database"),
+                files_directory=os.path.join(f"{self.settings.files_directory}", "files"),
                 use_file_database=self.settings.use_file_database,
                 use_chat_info_database=self.settings.use_chat_info_database,
                 use_message_database=self.settings.use_message_database,
@@ -1384,7 +1383,8 @@ class Client:
             disable_notification=disable_notification,
             send_when_online=send_when_online,
             send_date=send_date,
-            request_timeout=request_timeout
+            request_timeout=request_timeout,
+            protect_content=protect_content
         )
 
     async def edit_text(
@@ -2186,6 +2186,9 @@ class Client:
 
         :param request_timeout: amounts of seconds to wait of response, (asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout seconds, defaults to None
         :type request_timeout: int
+
+        :param protect_content: Pass true if the content of the message must be protected from forwarding and saving; for bots only
+        :type protect_content: :class:`bool`
 
         :return: response from TDLib
         :rtype: aiotdlib.api.types.Messages

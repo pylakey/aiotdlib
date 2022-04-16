@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 import asyncio
-from collections.abc import Callable
 from typing import (
     Any,
+    Callable,
     Coroutine,
     Optional,
+    TYPE_CHECKING,
     TypeVar,
     Union,
 )
@@ -16,8 +17,11 @@ from .filters import (
     FilterCallable,
 )
 
+if TYPE_CHECKING:
+    from client import Client
+
 SomeUpdate = TypeVar('SomeUpdate', bound=BaseObject)
-HandlerCallable = Callable[['aiotdlib.Client', SomeUpdate], Coroutine[Any, Any, None]]
+HandlerCallable = Callable[['Client', SomeUpdate], Coroutine[Any, Any, None]]
 
 
 class Handler(object):
