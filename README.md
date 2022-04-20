@@ -4,10 +4,13 @@
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/aiotdlib.svg)](https://pypi.python.org/pypi/aiotdlib/)
 [![PyPI license](https://img.shields.io/pypi/l/aiotdlib.svg)](https://pypi.python.org/pypi/aiotdlib/)
 
-> This wrapper is actual for **[TDLib v1.8.3 (f295ef3)](https://github.com/pylakey/td/commit/f295ef3a0d3545970bfd658c3443496be3d28397)**
+> This wrapper is actual
+> for **[TDLib v1.8.3 (f295ef3)](https://github.com/pylakey/td/commit/f295ef3a0d3545970bfd658c3443496be3d28397)**
 >
 > This package includes prebuilt TDLib binaries for macOS (arm64) and Debian Bullseye (amd64).
-> You can use your own binary by passing `library_path` argument to `Client` class constructor. Make sure it's built from [this commit](https://github.com/tdlib/td/commit/f295ef3a0d3545970bfd658c3443496be3d28397). Compatibility with other versions of library is not guaranteed.
+> You can use your own binary by passing `library_path` argument to `Client` class constructor. Make sure it's built
+> from [this commit](https://github.com/tdlib/td/commit/f295ef3a0d3545970bfd658c3443496be3d28397). Compatibility with
+> other versions of library is not guaranteed.
 
 ## Features
 
@@ -35,32 +38,6 @@ or if you use [Poetry](https://python-poetry.org)
 
 ```shell
 poetry add aiotdlib
-```
-
-### Docker
-
-You can use [this Docker image](https://hub.docker.com/r/pylakey/aiotdlib) as a base for your own image.
-
-Any parameter of Client class could be set via environment variables.
-
-#### Example
-
-main.py
-
-```python
-from aiotdlib import Client
-
-client = Client()
-client.run()
-```
-
-and run it like this:
-
-```shell
-export AIOTDLIB_API_ID=123456
-export AIOTDLIB_API_HASH=<my_api_hash>
-export AIOTDLIB_BOT_TOKEN=<my_bot_token>
-python main.py
 ```
 
 ## Examples
@@ -93,6 +70,35 @@ async def main():
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
     asyncio.run(main())
+```
+
+Any parameter of Client class could be also set via environment variables.
+
+```python
+import asyncio
+import logging
+
+from aiotdlib import Client
+
+
+async def main():
+    async with Client() as client:
+        me = await client.api.get_me()
+        logging.info(f"Successfully logged in as {me.json()}")
+
+
+if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO)
+    asyncio.run(main())
+```
+
+and run it like this:
+
+```shell
+export AIOTDLIB_API_ID=123456
+export AIOTDLIB_API_HASH=<my_api_hash>
+export AIOTDLIB_BOT_TOKEN=<my_bot_token>
+python main.py
 ```
 
 ### Events handlers
