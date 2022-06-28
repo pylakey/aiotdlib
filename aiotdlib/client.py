@@ -44,6 +44,7 @@ from .api import (
     FormattedText,
     InputFileLocal,
     InputFileRemote,
+    InputFileId,
     InputMessageAnimation,
     InputMessageAudio,
     InputMessageContent,
@@ -1513,6 +1514,8 @@ class Client:
 
         if os.path.exists(photo):
             photo_input_file = InputFileLocal(path=photo)
+        elif isinstance(photo, int):
+            photo_input_file = InputFileId(id=photo)
         else:
             photo_input_file = InputFileRemote(id=photo)
 
@@ -1628,6 +1631,8 @@ class Client:
 
         if os.path.exists(video):
             video_input_file = InputFileLocal(path=video)
+        elif isinstance(video, int):
+            video_input_file = InputFileId(id=video)
         else:
             video_input_file = InputFileRemote(id=video)
 
@@ -1737,6 +1742,8 @@ class Client:
 
         if os.path.exists(animation):
             animation_input_file = InputFileLocal(path=animation)
+        elif isinstance(animation, int):
+            animation_input_file = InputFileId(id=animation)
         else:
             animation_input_file = InputFileRemote(id=animation)
 
@@ -1833,6 +1840,8 @@ class Client:
 
         if os.path.exists(document):
             document_input_file = InputFileLocal(path=document)
+        elif isinstance(document, int):
+            document_input_file = InputFileId(id=document)
         else:
             document_input_file = InputFileRemote(id=document)
 
@@ -1934,6 +1943,8 @@ class Client:
 
         if os.path.exists(audio):
             audio_input_file = InputFileLocal(path=audio)
+        elif isinstance(audio, int):
+            audio_input_file = InputFileId(id=audio)
         else:
             audio_input_file = InputFileRemote(id=audio)
 
@@ -2020,6 +2031,8 @@ class Client:
 
         if os.path.exists(voice_note):
             voice_note_input_file = InputFileLocal(path=voice_note)
+        elif isinstance(voice_note, int):
+            voice_note_input_file = InputFileId(id=voice_note)
         else:
             voice_note_input_file = InputFileRemote(id=voice_note)
 
@@ -2105,6 +2118,8 @@ class Client:
 
         if os.path.exists(video_note):
             video_note_input_file = InputFileLocal(path=video_note)
+        elif isinstance(video_note, int):
+            video_note_input_file = InputFileId(id=video_note)
         else:
             video_note_input_file = InputFileRemote(id=video_note)
 
