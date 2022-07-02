@@ -1776,7 +1776,7 @@ class Client:
             protect_content=protect_content
         )
 
-    async def send_sticker(
+   async def send_sticker(
             self,
             chat_id: int,
             sticker: str,
