@@ -46,6 +46,7 @@ from .api import (
     InputFileRemote,
     InputFileId,
     InputMessageAnimation,
+    InputMessageSticker,
     InputMessageAudio,
     InputMessageContent,
     InputMessageDocument,
@@ -1775,6 +1776,91 @@ class Client:
             protect_content=protect_content
         )
 
+   async def send_sticker(
+            self,
+            chat_id: int,
+            sticker: str,
+            *,
+            sticker_width: int = None,
+            sticker_height: int = None,
+            thumbnail: Union[str, InputThumbnail] = None,
+            thumbnail_width: int = None,
+            thumbnail_height: int = None,
+            emoji: str = None,
+            reply_to_message_id: int = None,
+            reply_markup: ReplyMarkup = None,
+            disable_notification: bool = False,
+            send_when_online: bool = False,
+            send_date: int = None,
+            request_timeout: int = None,
+            protect_content: bool = False,
+    ):
+        """
+        Sends an sticker to chat. Returns the sent message
+        Args:
+            chat_id (int)
+                Target chat
+            sticker(str)
+                Sticker to send. This parameter could be ether path to local file or remote file_id
+            sticker_width (int)
+                Sticker width
+            sticker_height (int)
+                Sticker height
+            emoji (str)
+                Emoji used to choose the sticker
+            thumbnail (str)
+                Thumbnail file to send. Sending thumbnails by file_id is currently not supported
+            thumbnail_width (int)
+                Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
+            thumbnail_height (int)
+                Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
+            reply_to_message_id (int)
+                Identifier of the message to reply to or 0
+            reply_markup (ReplyMarkup)
+                Markup for replying to the message; for bots only
+            disable_notification (bool)
+                Pass true to disable notification for the message
+            send_when_online: (bool)
+                When True, the message will be sent when the peer will be online.
+                Applicable to private chats only and when the exact online status of the peer is known
+            send_date: (int)
+                Date the message will be sent. The date must be within 367 days in the future.
+                If send_date passed send_when_online will be ignored
+        """
+
+        if os.path.exists(sticker):
+            sticker_input_file = InputFileLocal(path=sticker)
+        elif isinstance(sticker, int):
+            sticker_input_file = InputFileId(id=sticker)
+        else:
+            sticker_input_file = InputFileRemote(id=sticker)
+
+        if isinstance(thumbnail, str):
+            thumbnail = InputThumbnail.construct(
+                # Sending thumbnails by file_id is currently not supported
+                thumbnail=InputFileLocal(path=thumbnail),
+                width=thumbnail_width,
+                height=thumbnail_height,
+            )
+
+        return await self.__send_message(
+            chat_id=chat_id,
+            content=InputMessageSticker.construct(
+                sticker=sticker_input_file,
+                thumbnail=thumbnail,
+                width=sticker_width,
+                height=sticker_height,
+                emoji=emoji
+            ),
+            reply_to_message_id=reply_to_message_id,
+            reply_markup=reply_markup,
+            disable_notification=disable_notification,
+            send_when_online=send_when_online,
+            send_date=send_date,
+            request_timeout=request_timeout,
+            protect_content=protect_content
+        )
+    
     async def send_document(
             self,
             chat_id: int,
