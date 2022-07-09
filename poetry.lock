@@ -22,8 +22,8 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "pydantic"
-version = "1.9.0"
-description = "Data validation and settings management using python 3.6 type hinting"
+version = "1.9.1"
+description = "Data validation and settings management using python type hints"
 category = "main"
 optional = false
 python-versions = ">=3.6.1"
