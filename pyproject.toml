@@ -30,7 +30,7 @@ sortedcontainers = "^2.4.0"
 ujson = "^5.2.0"
 
 [tool.poetry.dev-dependencies]
-Jinja2 = "^3.0.3"
+Jinja2 = "^3.1.2"
 
 [tool.poetry.scripts]
 aiotdlib_generator = "aiotdlib_generator.__main__:main"

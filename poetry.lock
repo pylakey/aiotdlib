@@ -1,6 +1,6 @@
 [[package]]
 name = "jinja2"
-version = "3.1.1"
+version = "3.1.2"
 description = "A very fast and expressive template engine."
 category = "dev"
 optional = false
@@ -62,7 +62,7 @@ python-versions = ">=3.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "51e67f41dbbb0dae89b32734915fa6eaa82991665e27b4af90bd316362509de0"
+content-hash = "c1166526e3e7c3cdff6779d150611fa4c5c148b410b53b7aa5681ecc610ea403"
 
 [metadata.files]
 jinja2 = []
