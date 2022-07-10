@@ -10,7 +10,7 @@ def lower_first(s: str):
 
 
 def snake_case(s: str):
-    if not str:
+    if not s:
         return ""
 
     s = re.sub(r'(.)([A-Z][a-z]+)', r'\1_\2', s)
