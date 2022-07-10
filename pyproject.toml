@@ -31,6 +31,9 @@ ujson = "^5.4.0"
 
 [tool.poetry.dev-dependencies]
 Jinja2 = "^3.1.2"
+mypy = "^0.961"
+flake8 = "^4.0.1"
+black = "^22.6.0"
 
 [tool.poetry.scripts]
 aiotdlib_generator = "aiotdlib_generator.__main__:main"
