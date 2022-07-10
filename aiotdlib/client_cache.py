@@ -5,10 +5,6 @@ import typing
 
 from sortedcontainers import SortedSet
 
-from api import (
-    UpdateChatAvailableReactions,
-    UpdateChatUnreadReactionCount,
-)
 from .api import (
     API,
     AioTDLibError,
@@ -62,6 +58,10 @@ from .api import (
     UpdateChatMessageTtl,
     UpdateChatPendingJoinRequests,
     UpdateChatTheme,
+)
+from .api import (
+    UpdateChatAvailableReactions,
+    UpdateChatUnreadReactionCount,
 )
 
 if typing.TYPE_CHECKING:

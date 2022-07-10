@@ -1,5 +1,11 @@
 # aiotdlib CHANGELOG
 
+### 0.19.1 - Hotfix
+
+#### Fixed
+
+* Fixed #31
+
 ### 0.19.0 - TDLib 1.8.4
 
 #### Breaking
