@@ -25,9 +25,9 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-pydantic = "^1.9.0"
+pydantic = "^1.9.1"
 sortedcontainers = "^2.4.0"
-ujson = "^5.2.0"
+ujson = "^5.4.0"
 
 [tool.poetry.dev-dependencies]
 Jinja2 = "^3.1.2"
