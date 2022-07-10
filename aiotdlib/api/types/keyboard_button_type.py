@@ -81,7 +81,7 @@ class KeyboardButtonTypeText(KeyboardButtonType):
 
 class KeyboardButtonTypeWebApp(KeyboardButtonType):
     """
-    A button that opens a web app by calling getWebAppUrl
+    A button that opens a Web App by calling getWebAppUrl
     
     :param url: An HTTP URL to pass to getWebAppUrl
     :type url: :class:`str`

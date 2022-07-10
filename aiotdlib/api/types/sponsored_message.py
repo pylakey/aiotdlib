@@ -22,6 +22,9 @@ class SponsoredMessage(BaseObject):
     :param message_id: Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages
     :type message_id: :class:`int`
     
+    :param is_recommended: True, if the message needs to be labeled as "recommended" instead of "sponsored"
+    :type is_recommended: :class:`bool`
+    
     :param sponsor_chat_id: Sponsor chat identifier; 0 if the sponsor chat is accessible through an invite link
     :type sponsor_chat_id: :class:`int`
     
@@ -38,6 +41,7 @@ class SponsoredMessage(BaseObject):
 
     ID: str = Field("sponsoredMessage", alias="@type")
     message_id: int
+    is_recommended: bool
     sponsor_chat_id: int
     sponsor_chat_info: typing.Optional[ChatInviteLinkInfo] = None
     link: typing.Optional[InternalLinkType] = None

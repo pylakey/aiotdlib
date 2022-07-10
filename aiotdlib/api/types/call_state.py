@@ -36,12 +36,16 @@ class CallStateDiscarded(CallState):
     :param need_debug_information: True, if the call debug information must be sent to the server
     :type need_debug_information: :class:`bool`
     
+    :param need_log: True, if the call log must be sent to the server
+    :type need_log: :class:`bool`
+    
     """
 
     ID: str = Field("callStateDiscarded", alias="@type")
     reason: CallDiscardReason
     need_rating: bool
     need_debug_information: bool
+    need_log: bool
 
     @staticmethod
     def read(q: dict) -> CallStateDiscarded:

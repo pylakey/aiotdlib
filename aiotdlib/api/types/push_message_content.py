@@ -475,6 +475,23 @@ class PushMessageContentPoll(PushMessageContent):
         return PushMessageContentPoll.construct(**q)
 
 
+class PushMessageContentRecurringPayment(PushMessageContent):
+    """
+    A new recurrent payment was made by the current user
+    
+    :param amount: The paid amount
+    :type amount: :class:`str`
+    
+    """
+
+    ID: str = Field("pushMessageContentRecurringPayment", alias="@type")
+    amount: str
+
+    @staticmethod
+    def read(q: dict) -> PushMessageContentRecurringPayment:
+        return PushMessageContentRecurringPayment.construct(**q)
+
+
 class PushMessageContentScreenshotTaken(PushMessageContent):
     """
     A screenshot of a message in the chat has been taken

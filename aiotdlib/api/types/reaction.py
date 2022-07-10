@@ -26,6 +26,9 @@ class Reaction(BaseObject):
     :param is_active: True, if the reaction can be added to new messages and enabled in chats
     :type is_active: :class:`bool`
     
+    :param is_premium: True, if the reaction is available only for Premium users
+    :type is_premium: :class:`bool`
+    
     :param static_icon: Static icon for the reaction
     :type static_icon: :class:`Sticker`
     
@@ -53,6 +56,7 @@ class Reaction(BaseObject):
     reaction: str
     title: str
     is_active: bool
+    is_premium: bool
     static_icon: Sticker
     appear_animation: Sticker
     select_animation: Sticker

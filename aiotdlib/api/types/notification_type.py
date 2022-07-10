@@ -46,10 +46,14 @@ class NotificationTypeNewMessage(NotificationType):
     :param message: The message
     :type message: :class:`Message`
     
+    :param show_preview: True, if message content must be displayed in notifications
+    :type show_preview: :class:`bool`
+    
     """
 
     ID: str = Field("notificationTypeNewMessage", alias="@type")
     message: Message
+    show_preview: bool
 
     @staticmethod
     def read(q: dict) -> NotificationTypeNewMessage:

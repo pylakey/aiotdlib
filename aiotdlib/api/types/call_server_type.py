@@ -26,10 +26,14 @@ class CallServerTypeTelegramReflector(CallServerType):
     :param peer_tag: A peer tag to be used with the reflector
     :type peer_tag: :class:`str`
     
+    :param is_tcp: True, if the server uses TCP instead of UDP
+    :type is_tcp: :class:`bool`
+    
     """
 
     ID: str = Field("callServerTypeTelegramReflector", alias="@type")
     peer_tag: str
+    is_tcp: bool
 
     @staticmethod
     def read(q: dict) -> CallServerTypeTelegramReflector:

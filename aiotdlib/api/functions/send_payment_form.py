@@ -9,17 +9,15 @@ from pydantic import Field
 
 from ..base_object import BaseObject
 from ..types import InputCredentials
+from ..types import InputInvoice
 
 
 class SendPaymentForm(BaseObject):
     """
     Sends a filled-out payment form to the bot for final verification
     
-    :param chat_id: Chat identifier of the Invoice message
-    :type chat_id: :class:`int`
-    
-    :param message_id: Message identifier
-    :type message_id: :class:`int`
+    :param input_invoice: The invoice
+    :type input_invoice: :class:`InputInvoice`
     
     :param payment_form_id: Payment form identifier returned by getPaymentForm
     :type payment_form_id: :class:`int`
@@ -39,8 +37,7 @@ class SendPaymentForm(BaseObject):
     """
 
     ID: str = Field("sendPaymentForm", alias="@type")
-    chat_id: int
-    message_id: int
+    input_invoice: InputInvoice
     payment_form_id: int
     order_info_id: str
     shipping_option_id: str

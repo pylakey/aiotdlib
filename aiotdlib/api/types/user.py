@@ -49,6 +49,9 @@ class User(BaseObject):
     :param is_verified: True, if the user is verified
     :type is_verified: :class:`bool`
     
+    :param is_premium: True, if the user is a Telegram Premium user
+    :type is_premium: :class:`bool`
+    
     :param is_support: True, if the user is Telegram support account
     :type is_support: :class:`bool`
     
@@ -70,6 +73,9 @@ class User(BaseObject):
     :param language_code: IETF language tag of the user's language; only available to bots
     :type language_code: :class:`str`
     
+    :param added_to_attachment_menu: True, if the user added the current bot to attachment menu; only available to bots
+    :type added_to_attachment_menu: :class:`bool`
+    
     """
 
     ID: str = Field("user", alias="@type")
@@ -83,6 +89,7 @@ class User(BaseObject):
     is_contact: bool
     is_mutual_contact: bool
     is_verified: bool
+    is_premium: bool
     is_support: bool
     restriction_reason: str
     is_scam: bool
@@ -90,6 +97,7 @@ class User(BaseObject):
     have_access: bool
     type_: UserType = Field(..., alias='type')
     language_code: str
+    added_to_attachment_menu: bool
 
     @staticmethod
     def read(q: dict) -> User:

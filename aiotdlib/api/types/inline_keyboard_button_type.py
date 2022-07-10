@@ -161,7 +161,7 @@ class InlineKeyboardButtonTypeUser(InlineKeyboardButtonType):
 
 class InlineKeyboardButtonTypeWebApp(InlineKeyboardButtonType):
     """
-    A button that opens a web app by calling openWebApp
+    A button that opens a Web App by calling openWebApp
     
     :param url: An HTTP URL to pass to openWebApp
     :type url: :class:`str`

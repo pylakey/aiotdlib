@@ -27,6 +27,9 @@ class Invoice(BaseObject):
     :param suggested_tip_amounts: Suggested amounts of tip in the smallest units of the currency
     :type suggested_tip_amounts: :class:`list[int]`
     
+    :param recurring_payment_terms_of_service_url: An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept the terms of service before allowed to pay
+    :type recurring_payment_terms_of_service_url: :class:`str`
+    
     :param is_test: True, if the payment is a test payment
     :type is_test: :class:`bool`
     
@@ -58,6 +61,7 @@ class Invoice(BaseObject):
     price_parts: list[LabeledPricePart]
     max_tip_amount: int
     suggested_tip_amounts: list[int]
+    recurring_payment_terms_of_service_url: str
     is_test: bool
     need_name: bool
     need_phone_number: bool

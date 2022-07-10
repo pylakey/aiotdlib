@@ -535,7 +535,7 @@ class MessageInvoice(MessageContent):
     :type title: :class:`str`
     
     :param param_description: Product description
-    :type param_description: :class:`str`
+    :type param_description: :class:`FormattedText`
     
     :param photo: Product photo; may be null, defaults to None
     :type photo: :class:`Photo`, optional
@@ -562,7 +562,7 @@ class MessageInvoice(MessageContent):
 
     ID: str = Field("messageInvoice", alias="@type")
     title: str
-    param_description: str
+    param_description: FormattedText
     photo: typing.Optional[Photo] = None
     currency: str
     total_amount: int
@@ -654,7 +654,7 @@ class MessagePaymentSuccessful(MessageContent):
     :param invoice_chat_id: Identifier of the chat, containing the corresponding invoice message; 0 if unknown
     :type invoice_chat_id: :class:`int`
     
-    :param invoice_message_id: Identifier of the message with the corresponding invoice; can be an identifier of a deleted message
+    :param invoice_message_id: Identifier of the message with the corresponding invoice; can be 0 or an identifier of a deleted message
     :type invoice_message_id: :class:`int`
     
     :param currency: Currency for the price of the product
@@ -663,6 +663,15 @@ class MessagePaymentSuccessful(MessageContent):
     :param total_amount: Total price for the product, in the smallest units of the currency
     :type total_amount: :class:`int`
     
+    :param is_recurring: True, if this is a recurring payment
+    :type is_recurring: :class:`bool`
+    
+    :param is_first_recurring: True, if this is the first recurring payment
+    :type is_first_recurring: :class:`bool`
+    
+    :param invoice_name: Name of the invoice; may be empty if unknown
+    :type invoice_name: :class:`str`
+    
     """
 
     ID: str = Field("messagePaymentSuccessful", alias="@type")
@@ -670,6 +679,9 @@ class MessagePaymentSuccessful(MessageContent):
     invoice_message_id: int
     currency: str
     total_amount: int
+    is_recurring: bool
+    is_first_recurring: bool
+    invoice_name: str
 
     @staticmethod
     def read(q: dict) -> MessagePaymentSuccessful:
@@ -685,6 +697,12 @@ class MessagePaymentSuccessfulBot(MessageContent):
     
     :param total_amount: Total price for the product, in the smallest units of the currency
     :type total_amount: :class:`int`
+    
+    :param is_recurring: True, if this is a recurring payment
+    :type is_recurring: :class:`bool`
+    
+    :param is_first_recurring: True, if this is the first recurring payment
+    :type is_first_recurring: :class:`bool`
     
     :param invoice_payload: Invoice payload
     :type invoice_payload: :class:`str`
@@ -706,6 +724,8 @@ class MessagePaymentSuccessfulBot(MessageContent):
     ID: str = Field("messagePaymentSuccessfulBot", alias="@type")
     currency: str
     total_amount: int
+    is_recurring: bool
+    is_first_recurring: bool
     invoice_payload: str
     shipping_option_id: str
     order_info: typing.Optional[OrderInfo] = None
@@ -821,10 +841,14 @@ class MessageSticker(MessageContent):
     :param sticker: The sticker description
     :type sticker: :class:`Sticker`
     
+    :param is_premium: True, if premium animation of the sticker must be played
+    :type is_premium: :class:`bool`
+    
     """
 
     ID: str = Field("messageSticker", alias="@type")
     sticker: Sticker
+    is_premium: bool
 
     @staticmethod
     def read(q: dict) -> MessageSticker:
@@ -1031,9 +1055,9 @@ class MessageVoiceNote(MessageContent):
 
 class MessageWebAppDataReceived(MessageContent):
     """
-    Data from a web app has been received; for bots only
+    Data from a Web App has been received; for bots only
     
-    :param button_text: Text of the keyboardButtonTypeWebApp button, which opened the web app
+    :param button_text: Text of the keyboardButtonTypeWebApp button, which opened the Web App
     :type button_text: :class:`str`
     
     :param data: Received data
@@ -1052,9 +1076,9 @@ class MessageWebAppDataReceived(MessageContent):
 
 class MessageWebAppDataSent(MessageContent):
     """
-    Data from a web app has been sent to a bot
+    Data from a Web App has been sent to a bot
     
-    :param button_text: Text of the keyboardButtonTypeWebApp button, which opened the web app
+    :param button_text: Text of the keyboardButtonTypeWebApp button, which opened the Web App
     :type button_text: :class:`str`
     
     """

@@ -18,7 +18,7 @@ class SetStickerPositionInSet(BaseObject):
     :param sticker: Sticker
     :type sticker: :class:`InputFile`
     
-    :param position: New position of the sticker in the set, zero-based
+    :param position: New position of the sticker in the set, 0-based
     :type position: :class:`int`
     
     """

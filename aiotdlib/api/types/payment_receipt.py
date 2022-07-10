@@ -9,6 +9,7 @@ import typing
 
 from pydantic import Field
 
+from .formatted_text import FormattedText
 from .invoice import Invoice
 from .order_info import OrderInfo
 from .photo import Photo
@@ -24,7 +25,7 @@ class PaymentReceipt(BaseObject):
     :type title: :class:`str`
     
     :param param_description: Product description
-    :type param_description: :class:`str`
+    :type param_description: :class:`FormattedText`
     
     :param photo: Product photo; may be null, defaults to None
     :type photo: :class:`Photo`, optional
@@ -35,8 +36,8 @@ class PaymentReceipt(BaseObject):
     :param seller_bot_user_id: User identifier of the seller bot
     :type seller_bot_user_id: :class:`int`
     
-    :param payments_provider_user_id: User identifier of the payment provider bot
-    :type payments_provider_user_id: :class:`int`
+    :param payment_provider_user_id: User identifier of the payment provider bot
+    :type payment_provider_user_id: :class:`int`
     
     :param invoice: Information about the invoice
     :type invoice: :class:`Invoice`
@@ -57,11 +58,11 @@ class PaymentReceipt(BaseObject):
 
     ID: str = Field("paymentReceipt", alias="@type")
     title: str
-    param_description: str
+    param_description: FormattedText
     photo: typing.Optional[Photo] = None
     date: int
     seller_bot_user_id: int
-    payments_provider_user_id: int
+    payment_provider_user_id: int
     invoice: Invoice
     order_info: typing.Optional[OrderInfo] = None
     shipping_option: typing.Optional[ShippingOption] = None

@@ -31,8 +31,11 @@ class ChatPhoto(BaseObject):
     :param sizes: Available variants of the photo in JPEG format, in different size
     :type sizes: :class:`list[PhotoSize]`
     
-    :param animation: Animated variant of the photo in MPEG4 format; may be null, defaults to None
+    :param animation: A big (640x640) animated variant of the photo in MPEG4 format; may be null, defaults to None
     :type animation: :class:`AnimatedChatPhoto`, optional
+    
+    :param small_animation: A small (160x160) animated variant of the photo in MPEG4 format; may be null even the big animation is available, defaults to None
+    :type small_animation: :class:`AnimatedChatPhoto`, optional
     
     """
 
@@ -42,6 +45,7 @@ class ChatPhoto(BaseObject):
     minithumbnail: typing.Optional[Minithumbnail] = None
     sizes: list[PhotoSize]
     animation: typing.Optional[AnimatedChatPhoto] = None
+    small_animation: typing.Optional[AnimatedChatPhoto] = None
 
     @staticmethod
     def read(q: dict) -> ChatPhoto:

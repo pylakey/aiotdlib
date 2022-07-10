@@ -24,6 +24,12 @@ class VoiceNote(BaseObject):
     :param mime_type: MIME type of the file; as defined by the sender
     :type mime_type: :class:`str`
     
+    :param is_recognized: True, if speech recognition is completed; Premium users only
+    :type is_recognized: :class:`bool`
+    
+    :param recognized_text: Recognized text of the voice note; Premium users only. Call recognizeSpeech to get recognized text of the voice note
+    :type recognized_text: :class:`str`
+    
     :param voice: File containing the voice note
     :type voice: :class:`File`
     
@@ -33,6 +39,8 @@ class VoiceNote(BaseObject):
     duration: int
     waveform: str
     mime_type: str
+    is_recognized: bool
+    recognized_text: str
     voice: File
 
     @staticmethod

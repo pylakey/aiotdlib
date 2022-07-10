@@ -41,6 +41,9 @@ class Sticker(BaseObject):
     :param thumbnail: Sticker thumbnail in WEBP or JPEG format; may be null, defaults to None
     :type thumbnail: :class:`Thumbnail`, optional
     
+    :param premium_animation: Premium animation of the sticker; may be null. If present, only Premium users can send the sticker, defaults to None
+    :type premium_animation: :class:`File`, optional
+    
     :param sticker: File containing the sticker
     :type sticker: :class:`File`
     
@@ -54,6 +57,7 @@ class Sticker(BaseObject):
     type_: StickerType = Field(..., alias='type')
     outline: list[ClosedVectorPath]
     thumbnail: typing.Optional[Thumbnail] = None
+    premium_animation: typing.Optional[File] = None
     sticker: File
 
     @staticmethod

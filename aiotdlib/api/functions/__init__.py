@@ -28,8 +28,11 @@ from .answer_inline_query import AnswerInlineQuery
 from .answer_pre_checkout_query import AnswerPreCheckoutQuery
 from .answer_shipping_query import AnswerShippingQuery
 from .answer_web_app_query import AnswerWebAppQuery
+from .assign_app_store_transaction import AssignAppStoreTransaction
+from .assign_google_play_transaction import AssignGooglePlayTransaction
 from .ban_chat_member import BanChatMember
 from .block_message_sender_from_replies import BlockMessageSenderFromReplies
+from .can_purchase_premium import CanPurchasePremium
 from .can_transfer_ownership import CanTransferOwnership
 from .cancel_download_file import CancelDownloadFile
 from .cancel_password_reset import CancelPasswordReset
@@ -58,6 +61,7 @@ from .clear_imported_contacts import ClearImportedContacts
 from .clear_recent_stickers import ClearRecentStickers
 from .clear_recently_found_chats import ClearRecentlyFoundChats
 from .click_animated_emoji_message import ClickAnimatedEmojiMessage
+from .click_premium_subscription_button import ClickPremiumSubscriptionButton
 from .close import Close
 from .close_chat import CloseChat
 from .close_secret_chat import CloseSecretChat
@@ -67,6 +71,7 @@ from .create_basic_group_chat import CreateBasicGroupChat
 from .create_call import CreateCall
 from .create_chat_filter import CreateChatFilter
 from .create_chat_invite_link import CreateChatInviteLink
+from .create_invoice_link import CreateInvoiceLink
 from .create_new_basic_group_chat import CreateNewBasicGroupChat
 from .create_new_secret_chat import CreateNewSecretChat
 from .create_new_sticker_set import CreateNewStickerSet
@@ -124,6 +129,7 @@ from .forward_messages import ForwardMessages
 from .get_account_ttl import GetAccountTtl
 from .get_active_live_location_messages import GetActiveLiveLocationMessages
 from .get_active_sessions import GetActiveSessions
+from .get_all_animated_emojis import GetAllAnimatedEmojis
 from .get_all_passport_elements import GetAllPassportElements
 from .get_animated_emoji import GetAnimatedEmoji
 from .get_application_config import GetApplicationConfig
@@ -237,6 +243,10 @@ from .get_phone_number_info import GetPhoneNumberInfo
 from .get_phone_number_info_sync import GetPhoneNumberInfoSync
 from .get_poll_voters import GetPollVoters
 from .get_preferred_country_language import GetPreferredCountryLanguage
+from .get_premium_features import GetPremiumFeatures
+from .get_premium_limit import GetPremiumLimit
+from .get_premium_state import GetPremiumState
+from .get_premium_stickers import GetPremiumStickers
 from .get_proxies import GetProxies
 from .get_proxy_link import GetProxyLink
 from .get_push_receiver_id import GetPushReceiverId
@@ -304,9 +314,11 @@ from .ping_proxy import PingProxy
 from .process_chat_join_request import ProcessChatJoinRequest
 from .process_chat_join_requests import ProcessChatJoinRequests
 from .process_push_notification import ProcessPushNotification
+from .rate_speech_recognition import RateSpeechRecognition
 from .read_all_chat_mentions import ReadAllChatMentions
 from .read_all_chat_reactions import ReadAllChatReactions
 from .read_file_part import ReadFilePart
+from .recognize_speech import RecognizeSpeech
 from .recover_authentication_password import RecoverAuthenticationPassword
 from .recover_password import RecoverPassword
 from .register_device import RegisterDevice
@@ -375,6 +387,7 @@ from .search_stickers import SearchStickers
 from .search_user_by_phone_number import SearchUserByPhoneNumber
 from .send_bot_start_message import SendBotStartMessage
 from .send_call_debug_information import SendCallDebugInformation
+from .send_call_log import SendCallLog
 from .send_call_rating import SendCallRating
 from .send_call_signaling_data import SendCallSignalingData
 from .send_chat_action import SendChatAction
@@ -489,6 +502,8 @@ from .toggle_session_can_accept_calls import ToggleSessionCanAcceptCalls
 from .toggle_session_can_accept_secret_chats import ToggleSessionCanAcceptSecretChats
 from .toggle_supergroup_is_all_history_available import ToggleSupergroupIsAllHistoryAvailable
 from .toggle_supergroup_is_broadcast_group import ToggleSupergroupIsBroadcastGroup
+from .toggle_supergroup_join_by_request import ToggleSupergroupJoinByRequest
+from .toggle_supergroup_join_to_send_messages import ToggleSupergroupJoinToSendMessages
 from .toggle_supergroup_sign_messages import ToggleSupergroupSignMessages
 from .transfer_chat_ownership import TransferChatOwnership
 from .translate_text import TranslateText
@@ -499,6 +514,7 @@ from .upload_file import UploadFile
 from .upload_sticker_file import UploadStickerFile
 from .validate_order_info import ValidateOrderInfo
 from .view_messages import ViewMessages
+from .view_premium_feature import ViewPremiumFeature
 from .view_trending_sticker_sets import ViewTrendingStickerSets
 from .write_generated_file_part import WriteGeneratedFilePart
 
@@ -527,8 +543,11 @@ __all__ = [
     "AnswerPreCheckoutQuery",
     "AnswerShippingQuery",
     "AnswerWebAppQuery",
+    "AssignAppStoreTransaction",
+    "AssignGooglePlayTransaction",
     "BanChatMember",
     "BlockMessageSenderFromReplies",
+    "CanPurchasePremium",
     "CanTransferOwnership",
     "CancelDownloadFile",
     "CancelPasswordReset",
@@ -557,6 +576,7 @@ __all__ = [
     "ClearRecentStickers",
     "ClearRecentlyFoundChats",
     "ClickAnimatedEmojiMessage",
+    "ClickPremiumSubscriptionButton",
     "Close",
     "CloseChat",
     "CloseSecretChat",
@@ -566,6 +586,7 @@ __all__ = [
     "CreateCall",
     "CreateChatFilter",
     "CreateChatInviteLink",
+    "CreateInvoiceLink",
     "CreateNewBasicGroupChat",
     "CreateNewSecretChat",
     "CreateNewStickerSet",
@@ -623,6 +644,7 @@ __all__ = [
     "GetAccountTtl",
     "GetActiveLiveLocationMessages",
     "GetActiveSessions",
+    "GetAllAnimatedEmojis",
     "GetAllPassportElements",
     "GetAnimatedEmoji",
     "GetApplicationConfig",
@@ -736,6 +758,10 @@ __all__ = [
     "GetPhoneNumberInfoSync",
     "GetPollVoters",
     "GetPreferredCountryLanguage",
+    "GetPremiumFeatures",
+    "GetPremiumLimit",
+    "GetPremiumState",
+    "GetPremiumStickers",
     "GetProxies",
     "GetProxyLink",
     "GetPushReceiverId",
@@ -803,9 +829,11 @@ __all__ = [
     "ProcessChatJoinRequest",
     "ProcessChatJoinRequests",
     "ProcessPushNotification",
+    "RateSpeechRecognition",
     "ReadAllChatMentions",
     "ReadAllChatReactions",
     "ReadFilePart",
+    "RecognizeSpeech",
     "RecoverAuthenticationPassword",
     "RecoverPassword",
     "RegisterDevice",
@@ -874,6 +902,7 @@ __all__ = [
     "SearchUserByPhoneNumber",
     "SendBotStartMessage",
     "SendCallDebugInformation",
+    "SendCallLog",
     "SendCallRating",
     "SendCallSignalingData",
     "SendChatAction",
@@ -988,6 +1017,8 @@ __all__ = [
     "ToggleSessionCanAcceptSecretChats",
     "ToggleSupergroupIsAllHistoryAvailable",
     "ToggleSupergroupIsBroadcastGroup",
+    "ToggleSupergroupJoinByRequest",
+    "ToggleSupergroupJoinToSendMessages",
     "ToggleSupergroupSignMessages",
     "TransferChatOwnership",
     "TranslateText",
@@ -998,6 +1029,7 @@ __all__ = [
     "UploadStickerFile",
     "ValidateOrderInfo",
     "ViewMessages",
+    "ViewPremiumFeature",
     "ViewTrendingStickerSets",
     "WriteGeneratedFilePart",
 ]

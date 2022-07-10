@@ -40,6 +40,7 @@ from .authorization_state import (
 )
 from .auto_download_settings import AutoDownloadSettings
 from .auto_download_settings_presets import AutoDownloadSettingsPresets
+from .available_reaction import AvailableReaction
 from .available_reactions import AvailableReactions
 from .background import Background
 from .background_fill import (
@@ -347,6 +348,7 @@ from .encrypted_passport_element import EncryptedPassportElement
 from .error import Error
 from .file import File
 from .file_download import FileDownload
+from .file_downloaded_prefix_size import FileDownloadedPrefixSize
 from .file_part import FilePart
 from .file_type import (
     FileType,
@@ -462,6 +464,11 @@ from .input_inline_query_result import (
     InputInlineQueryResultVideo,
     InputInlineQueryResultVoiceNote,
 )
+from .input_invoice import (
+    InputInvoice,
+    InputInvoiceMessage,
+    InputInvoiceName,
+)
 from .input_message_content import (
     InputMessageAnimation,
     InputMessageAudio,
@@ -527,12 +534,14 @@ from .internal_link_type import (
     InternalLinkTypeChatInvite,
     InternalLinkTypeFilterSettings,
     InternalLinkTypeGame,
+    InternalLinkTypeInvoice,
     InternalLinkTypeLanguagePack,
     InternalLinkTypeLanguageSettings,
     InternalLinkTypeMessage,
     InternalLinkTypeMessageDraft,
     InternalLinkTypePassportDataRequest,
     InternalLinkTypePhoneNumberConfirmation,
+    InternalLinkTypePremiumFeatures,
     InternalLinkTypePrivacyAndSecuritySettings,
     InternalLinkTypeProxy,
     InternalLinkTypePublicChat,
@@ -848,9 +857,14 @@ from .passport_required_element import PassportRequiredElement
 from .passport_suitable_element import PassportSuitableElement
 from .password_state import PasswordState
 from .payment_form import PaymentForm
+from .payment_provider import (
+    PaymentProvider,
+    PaymentProviderOther,
+    PaymentProviderSmartGlocal,
+    PaymentProviderStripe,
+)
 from .payment_receipt import PaymentReceipt
 from .payment_result import PaymentResult
-from .payments_provider_stripe import PaymentsProviderStripe
 from .personal_details import PersonalDetails
 from .personal_document import PersonalDocument
 from .phone_number_authentication_settings import PhoneNumberAuthenticationSettings
@@ -865,6 +879,44 @@ from .poll_type import (
     PollTypeQuiz,
     PollTypeRegular,
 )
+from .premium_feature import (
+    PremiumFeature,
+    PremiumFeatureAdvancedChatManagement,
+    PremiumFeatureAnimatedProfilePhoto,
+    PremiumFeatureAppIcons,
+    PremiumFeatureDisabledAds,
+    PremiumFeatureImprovedDownloadSpeed,
+    PremiumFeatureIncreasedLimits,
+    PremiumFeatureIncreasedUploadFileSize,
+    PremiumFeatureProfileBadge,
+    PremiumFeatureUniqueReactions,
+    PremiumFeatureUniqueStickers,
+    PremiumFeatureVoiceRecognition,
+)
+from .premium_feature_promotion_animation import PremiumFeaturePromotionAnimation
+from .premium_features import PremiumFeatures
+from .premium_limit import PremiumLimit
+from .premium_limit_type import (
+    PremiumLimitType,
+    PremiumLimitTypeBioLength,
+    PremiumLimitTypeCaptionLength,
+    PremiumLimitTypeChatFilterChosenChatCount,
+    PremiumLimitTypeChatFilterCount,
+    PremiumLimitTypeCreatedPublicChatCount,
+    PremiumLimitTypeFavoriteStickerCount,
+    PremiumLimitTypePinnedArchivedChatCount,
+    PremiumLimitTypePinnedChatCount,
+    PremiumLimitTypeSavedAnimationCount,
+    PremiumLimitTypeSupergroupCount,
+)
+from .premium_source import (
+    PremiumSource,
+    PremiumSourceFeature,
+    PremiumSourceLimitExceeded,
+    PremiumSourceLink,
+    PremiumSourceSettings,
+)
+from .premium_state import PremiumState
 from .profile_photo import ProfilePhoto
 from .proxies import Proxies
 from .proxy import Proxy
@@ -903,6 +955,7 @@ from .push_message_content import (
     PushMessageContentMessageForwards,
     PushMessageContentPhoto,
     PushMessageContentPoll,
+    PushMessageContentRecurringPayment,
     PushMessageContentScreenshotTaken,
     PushMessageContentSticker,
     PushMessageContentText,
@@ -982,6 +1035,26 @@ from .secret_chat_state import (
 )
 from .sent_web_app_message import SentWebAppMessage
 from .session import Session
+from .session_type import (
+    SessionType,
+    SessionTypeAndroid,
+    SessionTypeApple,
+    SessionTypeBrave,
+    SessionTypeChrome,
+    SessionTypeEdge,
+    SessionTypeFirefox,
+    SessionTypeIpad,
+    SessionTypeIphone,
+    SessionTypeLinux,
+    SessionTypeMac,
+    SessionTypeOpera,
+    SessionTypeSafari,
+    SessionTypeUbuntu,
+    SessionTypeUnknown,
+    SessionTypeVivaldi,
+    SessionTypeWindows,
+    SessionTypeXbox,
+)
 from .sessions import Sessions
 from .shipping_option import ShippingOption
 from .sponsored_message import SponsoredMessage
@@ -1039,6 +1112,12 @@ from .t_me_url_type import (
     TMeUrlTypeUser,
 )
 from .t_me_urls import TMeUrls
+from .target_chat import (
+    TargetChat,
+    TargetChatChosen,
+    TargetChatCurrent,
+    TargetChatInternalLink,
+)
 from .tdlib_parameters import TdlibParameters
 from .temporary_password_state import TemporaryPasswordState
 from .terms_of_service import TermsOfService
@@ -1102,6 +1181,7 @@ from .top_chat_category import (
     TopChatCategoryInlineBots,
     TopChatCategoryUsers,
 )
+from .trending_sticker_sets import TrendingStickerSets
 from .unread_reaction import UnreadReaction
 from .update import (
     Update,
@@ -1300,6 +1380,7 @@ __all__ = [
     "AuthorizationStateWaitTdlibParameters",
     "AutoDownloadSettings",
     "AutoDownloadSettingsPresets",
+    "AvailableReaction",
     "AvailableReactions",
     "Background",
     "BackgroundFill",
@@ -1559,6 +1640,7 @@ __all__ = [
     "Error",
     "File",
     "FileDownload",
+    "FileDownloadedPrefixSize",
     "FilePart",
     "FileType",
     "FileTypeAnimation",
@@ -1656,6 +1738,9 @@ __all__ = [
     "InputInlineQueryResultVenue",
     "InputInlineQueryResultVideo",
     "InputInlineQueryResultVoiceNote",
+    "InputInvoice",
+    "InputInvoiceMessage",
+    "InputInvoiceName",
     "InputMessageContent",
     "InputMessageAnimation",
     "InputMessageAudio",
@@ -1714,12 +1799,14 @@ __all__ = [
     "InternalLinkTypeChatInvite",
     "InternalLinkTypeFilterSettings",
     "InternalLinkTypeGame",
+    "InternalLinkTypeInvoice",
     "InternalLinkTypeLanguagePack",
     "InternalLinkTypeLanguageSettings",
     "InternalLinkTypeMessage",
     "InternalLinkTypeMessageDraft",
     "InternalLinkTypePassportDataRequest",
     "InternalLinkTypePhoneNumberConfirmation",
+    "InternalLinkTypePremiumFeatures",
     "InternalLinkTypePrivacyAndSecuritySettings",
     "InternalLinkTypeProxy",
     "InternalLinkTypePublicChat",
@@ -1986,9 +2073,12 @@ __all__ = [
     "PassportSuitableElement",
     "PasswordState",
     "PaymentForm",
+    "PaymentProvider",
+    "PaymentProviderOther",
+    "PaymentProviderSmartGlocal",
+    "PaymentProviderStripe",
     "PaymentReceipt",
     "PaymentResult",
-    "PaymentsProviderStripe",
     "PersonalDetails",
     "PersonalDocument",
     "PhoneNumberAuthenticationSettings",
@@ -2001,6 +2091,38 @@ __all__ = [
     "PollType",
     "PollTypeQuiz",
     "PollTypeRegular",
+    "PremiumFeature",
+    "PremiumFeatureAdvancedChatManagement",
+    "PremiumFeatureAnimatedProfilePhoto",
+    "PremiumFeatureAppIcons",
+    "PremiumFeatureDisabledAds",
+    "PremiumFeatureImprovedDownloadSpeed",
+    "PremiumFeatureIncreasedLimits",
+    "PremiumFeatureIncreasedUploadFileSize",
+    "PremiumFeatureProfileBadge",
+    "PremiumFeatureUniqueReactions",
+    "PremiumFeatureUniqueStickers",
+    "PremiumFeatureVoiceRecognition",
+    "PremiumFeaturePromotionAnimation",
+    "PremiumFeatures",
+    "PremiumLimit",
+    "PremiumLimitType",
+    "PremiumLimitTypeBioLength",
+    "PremiumLimitTypeCaptionLength",
+    "PremiumLimitTypeChatFilterChosenChatCount",
+    "PremiumLimitTypeChatFilterCount",
+    "PremiumLimitTypeCreatedPublicChatCount",
+    "PremiumLimitTypeFavoriteStickerCount",
+    "PremiumLimitTypePinnedArchivedChatCount",
+    "PremiumLimitTypePinnedChatCount",
+    "PremiumLimitTypeSavedAnimationCount",
+    "PremiumLimitTypeSupergroupCount",
+    "PremiumSource",
+    "PremiumSourceFeature",
+    "PremiumSourceLimitExceeded",
+    "PremiumSourceLink",
+    "PremiumSourceSettings",
+    "PremiumState",
     "ProfilePhoto",
     "Proxies",
     "Proxy",
@@ -2034,6 +2156,7 @@ __all__ = [
     "PushMessageContentMessageForwards",
     "PushMessageContentPhoto",
     "PushMessageContentPoll",
+    "PushMessageContentRecurringPayment",
     "PushMessageContentScreenshotTaken",
     "PushMessageContentSticker",
     "PushMessageContentText",
@@ -2102,6 +2225,24 @@ __all__ = [
     "SecretChatStateReady",
     "SentWebAppMessage",
     "Session",
+    "SessionType",
+    "SessionTypeAndroid",
+    "SessionTypeApple",
+    "SessionTypeBrave",
+    "SessionTypeChrome",
+    "SessionTypeEdge",
+    "SessionTypeFirefox",
+    "SessionTypeIpad",
+    "SessionTypeIphone",
+    "SessionTypeLinux",
+    "SessionTypeMac",
+    "SessionTypeOpera",
+    "SessionTypeSafari",
+    "SessionTypeUbuntu",
+    "SessionTypeUnknown",
+    "SessionTypeVivaldi",
+    "SessionTypeWindows",
+    "SessionTypeXbox",
     "Sessions",
     "ShippingOption",
     "SponsoredMessage",
@@ -2149,6 +2290,10 @@ __all__ = [
     "TMeUrlTypeSupergroup",
     "TMeUrlTypeUser",
     "TMeUrls",
+    "TargetChat",
+    "TargetChatChosen",
+    "TargetChatCurrent",
+    "TargetChatInternalLink",
     "TdlibParameters",
     "TemporaryPasswordState",
     "TermsOfService",
@@ -2204,6 +2349,7 @@ __all__ = [
     "TopChatCategoryGroups",
     "TopChatCategoryInlineBots",
     "TopChatCategoryUsers",
+    "TrendingStickerSets",
     "UnreadReaction",
     "Update",
     "UpdateActiveNotifications",

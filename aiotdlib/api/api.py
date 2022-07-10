@@ -56,6 +56,8 @@ class API:
         ANSWER_PRE_CHECKOUT_QUERY = 'answerPreCheckoutQuery'
         ANSWER_SHIPPING_QUERY = 'answerShippingQuery'
         ANSWER_WEB_APP_QUERY = 'answerWebAppQuery'
+        ASSIGN_APP_STORE_TRANSACTION = 'assignAppStoreTransaction'
+        ASSIGN_GOOGLE_PLAY_TRANSACTION = 'assignGooglePlayTransaction'
         ATTACHMENT_MENU_BOT = 'attachmentMenuBot'
         ATTACHMENT_MENU_BOT_COLOR = 'attachmentMenuBotColor'
         AUDIO = 'audio'
@@ -80,6 +82,7 @@ class API:
         AUTHORIZATION_STATE_WAIT_TDLIB_PARAMETERS = 'authorizationStateWaitTdlibParameters'
         AUTO_DOWNLOAD_SETTINGS = 'autoDownloadSettings'
         AUTO_DOWNLOAD_SETTINGS_PRESETS = 'autoDownloadSettingsPresets'
+        AVAILABLE_REACTION = 'availableReaction'
         AVAILABLE_REACTIONS = 'availableReactions'
         BACKGROUND = 'background'
         BACKGROUND_FILL = 'backgroundFill'
@@ -144,6 +147,7 @@ class API:
         CALLBACK_QUERY_PAYLOAD_DATA = 'callbackQueryPayloadData'
         CALLBACK_QUERY_PAYLOAD_DATA_WITH_PASSWORD = 'callbackQueryPayloadDataWithPassword'
         CALLBACK_QUERY_PAYLOAD_GAME = 'callbackQueryPayloadGame'
+        CAN_PURCHASE_PREMIUM = 'canPurchasePremium'
         CAN_TRANSFER_OWNERSHIP = 'canTransferOwnership'
         CAN_TRANSFER_OWNERSHIP_RESULT = 'canTransferOwnershipResult'
         CAN_TRANSFER_OWNERSHIP_RESULT_OK = 'canTransferOwnershipResultOk'
@@ -325,6 +329,7 @@ class API:
         CLEAR_RECENT_STICKERS = 'clearRecentStickers'
         CLEAR_RECENTLY_FOUND_CHATS = 'clearRecentlyFoundChats'
         CLICK_ANIMATED_EMOJI_MESSAGE = 'clickAnimatedEmojiMessage'
+        CLICK_PREMIUM_SUBSCRIPTION_BUTTON = 'clickPremiumSubscriptionButton'
         CLOSE = 'close'
         CLOSE_CHAT = 'closeChat'
         CLOSE_SECRET_CHAT = 'closeSecretChat'
@@ -347,6 +352,7 @@ class API:
         CREATE_CALL = 'createCall'
         CREATE_CHAT_FILTER = 'createChatFilter'
         CREATE_CHAT_INVITE_LINK = 'createChatInviteLink'
+        CREATE_INVOICE_LINK = 'createInvoiceLink'
         CREATE_NEW_BASIC_GROUP_CHAT = 'createNewBasicGroupChat'
         CREATE_NEW_SECRET_CHAT = 'createNewSecretChat'
         CREATE_NEW_STICKER_SET = 'createNewStickerSet'
@@ -430,6 +436,7 @@ class API:
         ERROR = 'error'
         FILE = 'file'
         FILE_DOWNLOAD = 'fileDownload'
+        FILE_DOWNLOADED_PREFIX_SIZE = 'fileDownloadedPrefixSize'
         FILE_PART = 'filePart'
         FILE_TYPE = 'fileType'
         FILE_TYPE_ANIMATION = 'fileTypeAnimation'
@@ -460,6 +467,7 @@ class API:
         GET_ACCOUNT_TTL = 'getAccountTtl'
         GET_ACTIVE_LIVE_LOCATION_MESSAGES = 'getActiveLiveLocationMessages'
         GET_ACTIVE_SESSIONS = 'getActiveSessions'
+        GET_ALL_ANIMATED_EMOJIS = 'getAllAnimatedEmojis'
         GET_ALL_PASSPORT_ELEMENTS = 'getAllPassportElements'
         GET_ANIMATED_EMOJI = 'getAnimatedEmoji'
         GET_APPLICATION_CONFIG = 'getApplicationConfig'
@@ -573,6 +581,10 @@ class API:
         GET_PHONE_NUMBER_INFO_SYNC = 'getPhoneNumberInfoSync'
         GET_POLL_VOTERS = 'getPollVoters'
         GET_PREFERRED_COUNTRY_LANGUAGE = 'getPreferredCountryLanguage'
+        GET_PREMIUM_FEATURES = 'getPremiumFeatures'
+        GET_PREMIUM_LIMIT = 'getPremiumLimit'
+        GET_PREMIUM_STATE = 'getPremiumState'
+        GET_PREMIUM_STICKERS = 'getPremiumStickers'
         GET_PROXIES = 'getProxies'
         GET_PROXY_LINK = 'getProxyLink'
         GET_PUSH_RECEIVER_ID = 'getPushReceiverId'
@@ -692,6 +704,9 @@ class API:
         INPUT_INLINE_QUERY_RESULT_VENUE = 'inputInlineQueryResultVenue'
         INPUT_INLINE_QUERY_RESULT_VIDEO = 'inputInlineQueryResultVideo'
         INPUT_INLINE_QUERY_RESULT_VOICE_NOTE = 'inputInlineQueryResultVoiceNote'
+        INPUT_INVOICE = 'inputInvoice'
+        INPUT_INVOICE_MESSAGE = 'inputInvoiceMessage'
+        INPUT_INVOICE_NAME = 'inputInvoiceName'
         INPUT_MESSAGE_CONTENT = 'inputMessageContent'
         INPUT_MESSAGE_ANIMATION = 'inputMessageAnimation'
         INPUT_MESSAGE_AUDIO = 'inputMessageAudio'
@@ -750,12 +765,14 @@ class API:
         INTERNAL_LINK_TYPE_CHAT_INVITE = 'internalLinkTypeChatInvite'
         INTERNAL_LINK_TYPE_FILTER_SETTINGS = 'internalLinkTypeFilterSettings'
         INTERNAL_LINK_TYPE_GAME = 'internalLinkTypeGame'
+        INTERNAL_LINK_TYPE_INVOICE = 'internalLinkTypeInvoice'
         INTERNAL_LINK_TYPE_LANGUAGE_PACK = 'internalLinkTypeLanguagePack'
         INTERNAL_LINK_TYPE_LANGUAGE_SETTINGS = 'internalLinkTypeLanguageSettings'
         INTERNAL_LINK_TYPE_MESSAGE = 'internalLinkTypeMessage'
         INTERNAL_LINK_TYPE_MESSAGE_DRAFT = 'internalLinkTypeMessageDraft'
         INTERNAL_LINK_TYPE_PASSPORT_DATA_REQUEST = 'internalLinkTypePassportDataRequest'
         INTERNAL_LINK_TYPE_PHONE_NUMBER_CONFIRMATION = 'internalLinkTypePhoneNumberConfirmation'
+        INTERNAL_LINK_TYPE_PREMIUM_FEATURES = 'internalLinkTypePremiumFeatures'
         INTERNAL_LINK_TYPE_PRIVACY_AND_SECURITY_SETTINGS = 'internalLinkTypePrivacyAndSecuritySettings'
         INTERNAL_LINK_TYPE_PROXY = 'internalLinkTypeProxy'
         INTERNAL_LINK_TYPE_PUBLIC_CHAT = 'internalLinkTypePublicChat'
@@ -1035,9 +1052,12 @@ class API:
         PASSPORT_SUITABLE_ELEMENT = 'passportSuitableElement'
         PASSWORD_STATE = 'passwordState'
         PAYMENT_FORM = 'paymentForm'
+        PAYMENT_PROVIDER = 'paymentProvider'
+        PAYMENT_PROVIDER_OTHER = 'paymentProviderOther'
+        PAYMENT_PROVIDER_SMART_GLOCAL = 'paymentProviderSmartGlocal'
+        PAYMENT_PROVIDER_STRIPE = 'paymentProviderStripe'
         PAYMENT_RECEIPT = 'paymentReceipt'
         PAYMENT_RESULT = 'paymentResult'
-        PAYMENTS_PROVIDER_STRIPE = 'paymentsProviderStripe'
         PERSONAL_DETAILS = 'personalDetails'
         PERSONAL_DOCUMENT = 'personalDocument'
         PHONE_NUMBER_AUTHENTICATION_SETTINGS = 'phoneNumberAuthenticationSettings'
@@ -1052,6 +1072,38 @@ class API:
         POLL_TYPE = 'pollType'
         POLL_TYPE_QUIZ = 'pollTypeQuiz'
         POLL_TYPE_REGULAR = 'pollTypeRegular'
+        PREMIUM_FEATURE = 'premiumFeature'
+        PREMIUM_FEATURE_ADVANCED_CHAT_MANAGEMENT = 'premiumFeatureAdvancedChatManagement'
+        PREMIUM_FEATURE_ANIMATED_PROFILE_PHOTO = 'premiumFeatureAnimatedProfilePhoto'
+        PREMIUM_FEATURE_APP_ICONS = 'premiumFeatureAppIcons'
+        PREMIUM_FEATURE_DISABLED_ADS = 'premiumFeatureDisabledAds'
+        PREMIUM_FEATURE_IMPROVED_DOWNLOAD_SPEED = 'premiumFeatureImprovedDownloadSpeed'
+        PREMIUM_FEATURE_INCREASED_LIMITS = 'premiumFeatureIncreasedLimits'
+        PREMIUM_FEATURE_INCREASED_UPLOAD_FILE_SIZE = 'premiumFeatureIncreasedUploadFileSize'
+        PREMIUM_FEATURE_PROFILE_BADGE = 'premiumFeatureProfileBadge'
+        PREMIUM_FEATURE_UNIQUE_REACTIONS = 'premiumFeatureUniqueReactions'
+        PREMIUM_FEATURE_UNIQUE_STICKERS = 'premiumFeatureUniqueStickers'
+        PREMIUM_FEATURE_VOICE_RECOGNITION = 'premiumFeatureVoiceRecognition'
+        PREMIUM_FEATURE_PROMOTION_ANIMATION = 'premiumFeaturePromotionAnimation'
+        PREMIUM_FEATURES = 'premiumFeatures'
+        PREMIUM_LIMIT = 'premiumLimit'
+        PREMIUM_LIMIT_TYPE = 'premiumLimitType'
+        PREMIUM_LIMIT_TYPE_BIO_LENGTH = 'premiumLimitTypeBioLength'
+        PREMIUM_LIMIT_TYPE_CAPTION_LENGTH = 'premiumLimitTypeCaptionLength'
+        PREMIUM_LIMIT_TYPE_CHAT_FILTER_CHOSEN_CHAT_COUNT = 'premiumLimitTypeChatFilterChosenChatCount'
+        PREMIUM_LIMIT_TYPE_CHAT_FILTER_COUNT = 'premiumLimitTypeChatFilterCount'
+        PREMIUM_LIMIT_TYPE_CREATED_PUBLIC_CHAT_COUNT = 'premiumLimitTypeCreatedPublicChatCount'
+        PREMIUM_LIMIT_TYPE_FAVORITE_STICKER_COUNT = 'premiumLimitTypeFavoriteStickerCount'
+        PREMIUM_LIMIT_TYPE_PINNED_ARCHIVED_CHAT_COUNT = 'premiumLimitTypePinnedArchivedChatCount'
+        PREMIUM_LIMIT_TYPE_PINNED_CHAT_COUNT = 'premiumLimitTypePinnedChatCount'
+        PREMIUM_LIMIT_TYPE_SAVED_ANIMATION_COUNT = 'premiumLimitTypeSavedAnimationCount'
+        PREMIUM_LIMIT_TYPE_SUPERGROUP_COUNT = 'premiumLimitTypeSupergroupCount'
+        PREMIUM_SOURCE = 'premiumSource'
+        PREMIUM_SOURCE_FEATURE = 'premiumSourceFeature'
+        PREMIUM_SOURCE_LIMIT_EXCEEDED = 'premiumSourceLimitExceeded'
+        PREMIUM_SOURCE_LINK = 'premiumSourceLink'
+        PREMIUM_SOURCE_SETTINGS = 'premiumSourceSettings'
+        PREMIUM_STATE = 'premiumState'
         PROCESS_CHAT_JOIN_REQUEST = 'processChatJoinRequest'
         PROCESS_CHAT_JOIN_REQUESTS = 'processChatJoinRequests'
         PROCESS_PUSH_NOTIFICATION = 'processPushNotification'
@@ -1088,6 +1140,7 @@ class API:
         PUSH_MESSAGE_CONTENT_MESSAGE_FORWARDS = 'pushMessageContentMessageForwards'
         PUSH_MESSAGE_CONTENT_PHOTO = 'pushMessageContentPhoto'
         PUSH_MESSAGE_CONTENT_POLL = 'pushMessageContentPoll'
+        PUSH_MESSAGE_CONTENT_RECURRING_PAYMENT = 'pushMessageContentRecurringPayment'
         PUSH_MESSAGE_CONTENT_SCREENSHOT_TAKEN = 'pushMessageContentScreenshotTaken'
         PUSH_MESSAGE_CONTENT_STICKER = 'pushMessageContentSticker'
         PUSH_MESSAGE_CONTENT_TEXT = 'pushMessageContentText'
@@ -1095,10 +1148,12 @@ class API:
         PUSH_MESSAGE_CONTENT_VIDEO_NOTE = 'pushMessageContentVideoNote'
         PUSH_MESSAGE_CONTENT_VOICE_NOTE = 'pushMessageContentVoiceNote'
         PUSH_RECEIVER_ID = 'pushReceiverId'
+        RATE_SPEECH_RECOGNITION = 'rateSpeechRecognition'
         REACTION = 'reaction'
         READ_ALL_CHAT_MENTIONS = 'readAllChatMentions'
         READ_ALL_CHAT_REACTIONS = 'readAllChatReactions'
         READ_FILE_PART = 'readFilePart'
+        RECOGNIZE_SPEECH = 'recognizeSpeech'
         RECOMMENDED_CHAT_FILTER = 'recommendedChatFilter'
         RECOMMENDED_CHAT_FILTERS = 'recommendedChatFilters'
         RECOVER_AUTHENTICATION_PASSWORD = 'recoverAuthenticationPassword'
@@ -1225,6 +1280,7 @@ class API:
         SECRET_CHAT_STATE_READY = 'secretChatStateReady'
         SEND_BOT_START_MESSAGE = 'sendBotStartMessage'
         SEND_CALL_DEBUG_INFORMATION = 'sendCallDebugInformation'
+        SEND_CALL_LOG = 'sendCallLog'
         SEND_CALL_RATING = 'sendCallRating'
         SEND_CALL_SIGNALING_DATA = 'sendCallSignalingData'
         SEND_CHAT_ACTION = 'sendChatAction'
@@ -1241,6 +1297,24 @@ class API:
         SEND_WEB_APP_DATA = 'sendWebAppData'
         SENT_WEB_APP_MESSAGE = 'sentWebAppMessage'
         SESSION = 'session'
+        SESSION_TYPE = 'sessionType'
+        SESSION_TYPE_ANDROID = 'sessionTypeAndroid'
+        SESSION_TYPE_APPLE = 'sessionTypeApple'
+        SESSION_TYPE_BRAVE = 'sessionTypeBrave'
+        SESSION_TYPE_CHROME = 'sessionTypeChrome'
+        SESSION_TYPE_EDGE = 'sessionTypeEdge'
+        SESSION_TYPE_FIREFOX = 'sessionTypeFirefox'
+        SESSION_TYPE_IPAD = 'sessionTypeIpad'
+        SESSION_TYPE_IPHONE = 'sessionTypeIphone'
+        SESSION_TYPE_LINUX = 'sessionTypeLinux'
+        SESSION_TYPE_MAC = 'sessionTypeMac'
+        SESSION_TYPE_OPERA = 'sessionTypeOpera'
+        SESSION_TYPE_SAFARI = 'sessionTypeSafari'
+        SESSION_TYPE_UBUNTU = 'sessionTypeUbuntu'
+        SESSION_TYPE_UNKNOWN = 'sessionTypeUnknown'
+        SESSION_TYPE_VIVALDI = 'sessionTypeVivaldi'
+        SESSION_TYPE_WINDOWS = 'sessionTypeWindows'
+        SESSION_TYPE_XBOX = 'sessionTypeXbox'
         SESSIONS = 'sessions'
         SET_ACCOUNT_TTL = 'setAccountTtl'
         SET_ALARM = 'setAlarm'
@@ -1354,6 +1428,10 @@ class API:
         T_ME_URL_TYPE_SUPERGROUP = 'tMeUrlTypeSupergroup'
         T_ME_URL_TYPE_USER = 'tMeUrlTypeUser'
         T_ME_URLS = 'tMeUrls'
+        TARGET_CHAT = 'targetChat'
+        TARGET_CHAT_CHOSEN = 'targetChatChosen'
+        TARGET_CHAT_CURRENT = 'targetChatCurrent'
+        TARGET_CHAT_INTERNAL_LINK = 'targetChatInternalLink'
         TDLIB_PARAMETERS = 'tdlibParameters'
         TEMPORARY_PASSWORD_STATE = 'temporaryPasswordState'
         TERMINATE_ALL_OTHER_SESSIONS = 'terminateAllOtherSessions'
@@ -1435,6 +1513,8 @@ class API:
         TOGGLE_SESSION_CAN_ACCEPT_SECRET_CHATS = 'toggleSessionCanAcceptSecretChats'
         TOGGLE_SUPERGROUP_IS_ALL_HISTORY_AVAILABLE = 'toggleSupergroupIsAllHistoryAvailable'
         TOGGLE_SUPERGROUP_IS_BROADCAST_GROUP = 'toggleSupergroupIsBroadcastGroup'
+        TOGGLE_SUPERGROUP_JOIN_BY_REQUEST = 'toggleSupergroupJoinByRequest'
+        TOGGLE_SUPERGROUP_JOIN_TO_SEND_MESSAGES = 'toggleSupergroupJoinToSendMessages'
         TOGGLE_SUPERGROUP_SIGN_MESSAGES = 'toggleSupergroupSignMessages'
         TOP_CHAT_CATEGORY = 'topChatCategory'
         TOP_CHAT_CATEGORY_BOTS = 'topChatCategoryBots'
@@ -1446,6 +1526,7 @@ class API:
         TOP_CHAT_CATEGORY_USERS = 'topChatCategoryUsers'
         TRANSFER_CHAT_OWNERSHIP = 'transferChatOwnership'
         TRANSLATE_TEXT = 'translateText'
+        TRENDING_STICKER_SETS = 'trendingStickerSets'
         UNPIN_ALL_CHAT_MESSAGES = 'unpinAllChatMessages'
         UNPIN_CHAT_MESSAGE = 'unpinChatMessage'
         UNREAD_REACTION = 'unreadReaction'
@@ -1601,6 +1682,7 @@ class API:
         VIDEO_CHAT = 'videoChat'
         VIDEO_NOTE = 'videoNote'
         VIEW_MESSAGES = 'viewMessages'
+        VIEW_PREMIUM_FEATURE = 'viewPremiumFeature'
         VIEW_TRENDING_STICKER_SETS = 'viewTrendingStickerSets'
         VOICE_NOTE = 'voiceNote'
         WEB_APP_INFO = 'webAppInfo'
@@ -2254,7 +2336,7 @@ class API:
             skip_validation: bool = False
     ) -> NotificationSound:
         """
-        Adds a new notification sound to the list of saved notification sounds. The new notification sound is added to the top of the list. If it is already in the list, it is position isn't changed
+        Adds a new notification sound to the list of saved notification sounds. The new notification sound is added to the top of the list. If it is already in the list, its position isn't changed
         
         :param sound: Notification sound file to add
         :type sound: :class:`InputFile`
@@ -2573,9 +2655,9 @@ class API:
             skip_validation: bool = False
     ) -> SentWebAppMessage:
         """
-        Sets the result of interaction with a web app and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
+        Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
         
-        :param web_app_query_id: Identifier of the web app query
+        :param web_app_query_id: Identifier of the Web App query
         :type web_app_query_id: :class:`str`
         
         :param result: The result of the query
@@ -2597,6 +2679,79 @@ class API:
             _constructor(
                 web_app_query_id=web_app_query_id,
                 result=result,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def assign_app_store_transaction(
+            self,
+            receipt: str,
+            is_restore: bool,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Informs server about a Telegram Premium purchase through App Store. For official applications only
+        
+        :param receipt: App Store receipt
+        :type receipt: :class:`str`
+        
+        :param is_restore: Pass true if this is a restore of a Telegram Premium purchase
+        :type is_restore: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = AssignAppStoreTransaction.construct if skip_validation else AssignAppStoreTransaction
+
+        return await self.client.request(
+            _constructor(
+                receipt=receipt,
+                is_restore=is_restore,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def assign_google_play_transaction(
+            self,
+            purchase_token: str,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Informs server about a Telegram Premium purchase through Google Play. For official applications only
+        
+        :param purchase_token: Google Play purchase token
+        :type purchase_token: :class:`str`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = AssignGooglePlayTransaction.construct if skip_validation else AssignGooglePlayTransaction
+
+        return await self.client.request(
+            _constructor(
+                purchase_token=purchase_token,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -2696,6 +2851,17 @@ class API:
                 delete_all_messages=delete_all_messages,
                 report_spam=report_spam,
             ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def can_purchase_premium(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
+        """
+        Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
+        
+        """
+        return await self.client.request(
+            CanPurchasePremium(),
             request_id=request_id,
             request_timeout=request_timeout,
         )
@@ -3169,7 +3335,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached
+        Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
         
         :param type_: Type of the public chats, for which to check the limit
         :type type_: :class:`PublicChatType`
@@ -3595,6 +3761,17 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def click_premium_subscription_button(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
+        """
+        Informs TDLib that the user clicked Premium subscription button on the Premium features screen
+        
+        """
+        return await self.client.request(
+            ClickPremiumSubscriptionButton(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def close(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
@@ -3683,9 +3860,9 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Informs TDLib that a previously opened web app was closed
+        Informs TDLib that a previously opened Web App was closed
         
-        :param web_app_launch_id: Identifier of web app launch, received from openWebApp
+        :param web_app_launch_id: Identifier of Web App launch, received from openWebApp
         :type web_app_launch_id: :class:`int`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -3834,7 +4011,7 @@ class API:
             skip_validation: bool = False
     ) -> ChatFilterInfo:
         """
-        Creates new chat filter. Returns information about the created chat filter
+        Creates new chat filter. Returns information about the created chat filter. There can be up to GetOption("chat_filter_count_max") chat filters, but the limit can be increased with Telegram Premium
         
         :param filter_: Chat filter
         :type filter_: :class:`ChatFilter`
@@ -3908,6 +4085,40 @@ class API:
                 expiration_date=expiration_date,
                 member_limit=member_limit,
                 creates_join_request=creates_join_request,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def create_invoice_link(
+            self,
+            invoice: InputMessageContent,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> HttpUrl:
+        """
+        Creates a link for the given invoice; for bots only
+        
+        :param invoice: Information about the invoice of the type inputMessageInvoice
+        :type invoice: :class:`InputMessageContent`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.HttpUrl`
+        """
+        _constructor = CreateInvoiceLink.construct if skip_validation else CreateInvoiceLink
+
+        return await self.client.request(
+            _constructor(
+                invoice=invoice,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -6077,6 +6288,17 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_all_animated_emojis(self, *, request_id: str = None, request_timeout: int = None) -> Emojis:
+        """
+        Returns all emojis, which has a corresponding animated emoji
+        
+        """
+        return await self.client.request(
+            GetAllAnimatedEmojis(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_all_passport_elements(
             self,
             password: str,
@@ -7937,7 +8159,7 @@ class API:
             request_id: str = None,
             request_timeout: int = None,
             skip_validation: bool = False
-    ) -> Count:
+    ) -> FileDownloadedPrefixSize:
         """
         Returns file downloaded prefix size from a given offset, in bytes
         
@@ -7955,7 +8177,7 @@ class API:
         :type skip_validation: :class:`bool`
         
         :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Count`
+        :rtype: :class:`aiotdlib.api.types.FileDownloadedPrefixSize`
         """
         _constructor = GetFileDownloadedPrefixSize.construct if skip_validation else GetFileDownloadedPrefixSize
 
@@ -8298,7 +8520,7 @@ class API:
 
     async def get_inactive_supergroup_chats(self, *, request_id: str = None, request_timeout: int = None) -> Chats:
         """
-        Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error
+        Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error. Also, the limit can be increased with Telegram Premium
         
         """
         return await self.client.request(
@@ -9098,7 +9320,7 @@ class API:
             skip_validation: bool = False
     ) -> AvailableReactions:
         """
-        Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+        Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message. The method will return Premium reactions, even the current user has no Premium subscription
         
         :param chat_id: Identifier of the chat to which the message belongs
         :type chat_id: :class:`int`
@@ -9180,7 +9402,7 @@ class API:
             skip_validation: bool = False
     ) -> MessageFileType:
         """
-        Returns information about a file with messages exported from another app
+        Returns information about a file with messages exported from another application
         
         :param message_file_head: Beginning of the message file; up to 100 first lines
         :type message_file_head: :class:`str`
@@ -9838,8 +10060,7 @@ class API:
 
     async def get_payment_form(
             self,
-            chat_id: int,
-            message_id: int,
+            input_invoice: InputInvoice,
             theme: ThemeParameters,
             *,
             request_id: str = None,
@@ -9849,11 +10070,8 @@ class API:
         """
         Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
         
-        :param chat_id: Chat identifier of the Invoice message
-        :type chat_id: :class:`int`
-        
-        :param message_id: Message identifier
-        :type message_id: :class:`int`
+        :param input_invoice: The invoice
+        :type input_invoice: :class:`InputInvoice`
         
         :param theme: Preferred payment form theme; pass null to use the default theme
         :type theme: :class:`ThemeParameters`
@@ -9872,8 +10090,7 @@ class API:
 
         return await self.client.request(
             _constructor(
-                chat_id=chat_id,
-                message_id=message_id,
+                input_invoice=input_invoice,
                 theme=theme,
             ),
             request_id=request_id,
@@ -10076,6 +10293,96 @@ class API:
             _constructor(
                 country_code=country_code,
             ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_premium_features(
+            self,
+            source: PremiumSource,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> PremiumFeatures:
+        """
+        Returns information about features, available to Premium users
+        
+        :param source: Source of the request; pass null if the method is called from some non-standard source
+        :type source: :class:`PremiumSource`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PremiumFeatures`
+        """
+        _constructor = GetPremiumFeatures.construct if skip_validation else GetPremiumFeatures
+
+        return await self.client.request(
+            _constructor(
+                source=source,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_premium_limit(
+            self,
+            limit_type: PremiumLimitType,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> PremiumLimit:
+        """
+        Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
+        
+        :param limit_type: Type of the limit
+        :type limit_type: :class:`PremiumLimitType`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PremiumLimit`
+        """
+        _constructor = GetPremiumLimit.construct if skip_validation else GetPremiumLimit
+
+        return await self.client.request(
+            _constructor(
+                limit_type=limit_type,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_premium_state(self, *, request_id: str = None, request_timeout: int = None) -> PremiumState:
+        """
+        Returns state of Telegram Premium subscription and promotion videos for Premium features
+        
+        """
+        return await self.client.request(
+            GetPremiumState(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_premium_stickers(self, *, request_id: str = None, request_timeout: int = None) -> Stickers:
+        """
+        Returns examples of premium stickers for demonstration purposes
+        
+        """
+        return await self.client.request(
+            GetPremiumStickers(),
             request_id=request_id,
             request_timeout=request_timeout,
         )
@@ -11084,7 +11391,7 @@ class API:
             request_id: str = None,
             request_timeout: int = None,
             skip_validation: bool = False
-    ) -> StickerSets:
+    ) -> TrendingStickerSets:
         """
         Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
         
@@ -11102,7 +11409,7 @@ class API:
         :type skip_validation: :class:`bool`
         
         :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.StickerSets`
+        :rtype: :class:`aiotdlib.api.types.TrendingStickerSets`
         """
         _constructor = GetTrendingStickerSets.construct if skip_validation else GetTrendingStickerSets
 
@@ -11340,7 +11647,7 @@ class API:
             skip_validation: bool = False
     ) -> HttpUrl:
         """
-        Returns an HTTPS URL of a web app to open after keyboardButtonTypeWebApp button is pressed
+        Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
         
         :param bot_user_id: Identifier of the target bot
         :type bot_user_id: :class:`int`
@@ -11348,7 +11655,7 @@ class API:
         :param url: The URL from the keyboardButtonTypeWebApp button
         :type url: :class:`str`
         
-        :param theme: Preferred web app theme; pass null to use the default theme
+        :param theme: Preferred Web App theme; pass null to use the default theme
         :type theme: :class:`ThemeParameters`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -11606,7 +11913,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method
+        Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
         
         :param chat_id: Chat identifier
         :type chat_id: :class:`int`
@@ -11640,7 +11947,7 @@ class API:
             skip_validation: bool = False
     ) -> Chat:
         """
-        Uses an invite link to add the current user to the chat if possible
+        Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
         
         :param invite_link: Invite link to use
         :type invite_link: :class:`str`
@@ -11972,21 +12279,21 @@ class API:
             skip_validation: bool = False
     ) -> WebAppInfo:
         """
-        Informs TDLib that a web app is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+        Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
         
-        :param chat_id: Identifier of the chat in which the web app is opened. Web apps can be opened only in private chats for now
+        :param chat_id: Identifier of the chat in which the Web App is opened
         :type chat_id: :class:`int`
         
-        :param bot_user_id: Identifier of the bot, providing the web app
+        :param bot_user_id: Identifier of the bot, providing the Web App
         :type bot_user_id: :class:`int`
         
         :param url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
         :type url: :class:`str`
         
-        :param theme: Preferred web app theme; pass null to use the default theme
+        :param theme: Preferred Web App theme; pass null to use the default theme
         :type theme: :class:`ThemeParameters`
         
-        :param reply_to_message_id: Identifier of the replied message for the message sent by the web app; 0 if none
+        :param reply_to_message_id: Identifier of the replied message for the message sent by the Web App; 0 if none
         :type reply_to_message_id: :class:`int`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -12365,6 +12672,50 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def rate_speech_recognition(
+            self,
+            chat_id: int,
+            message_id: int,
+            is_good: bool,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Rates recognized speech in a voice note message
+        
+        :param chat_id: Identifier of the chat to which the message belongs
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param is_good: Pass true if the speech recognition is good
+        :type is_good: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = RateSpeechRecognition.construct if skip_validation else RateSpeechRecognition
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                message_id=message_id,
+                is_good=is_good,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def read_all_chat_mentions(
             self,
             chat_id: int,
@@ -12472,6 +12823,45 @@ class API:
                 file_id=file_id,
                 offset=offset,
                 count=count,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def recognize_speech(
+            self,
+            chat_id: int,
+            message_id: int,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Recognizes speech in a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if the voice note is too long to be recognized
+        
+        :param chat_id: Identifier of the chat to which the message belongs
+        :type chat_id: :class:`int`
+        
+        :param message_id: Identifier of the message
+        :type message_id: :class:`int`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = RecognizeSpeech.construct if skip_validation else RecognizeSpeech
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                message_id=message_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -13225,6 +13615,7 @@ class API:
     async def reorder_chat_filters(
             self,
             chat_filter_ids: list[int],
+            main_chat_list_position: int,
             *,
             request_id: str = None,
             request_timeout: int = None,
@@ -13235,6 +13626,9 @@ class API:
         
         :param chat_filter_ids: Identifiers of chat filters in the new correct order
         :type chat_filter_ids: :class:`list[int]`
+        
+        :param main_chat_list_position: Position of the main chat list among chat filters, 0-based. Can be non-zero only for Premium users
+        :type main_chat_list_position: :class:`int`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
@@ -13251,6 +13645,7 @@ class API:
         return await self.client.request(
             _constructor(
                 chat_filter_ids=chat_filter_ids,
+                main_chat_list_position=main_chat_list_position,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -14775,7 +15170,7 @@ class API:
             skip_validation: bool = False
     ) -> User:
         """
-        Searches a user by their phone number
+        Searches a user by their phone number. Returns a 404 error if the user can't be found
         
         :param phone_number: Phone number to search for
         :type phone_number: :class:`str`
@@ -14854,7 +15249,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Sends debug information for a call
+        Sends debug information for a call to Telegram servers
         
         :param call_id: Call identifier
         :type call_id: :class:`int`
@@ -14878,6 +15273,45 @@ class API:
             _constructor(
                 call_id=call_id,
                 debug_information=debug_information,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def send_call_log(
+            self,
+            call_id: int,
+            log_file: InputFile,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Sends log file for a call to Telegram servers
+        
+        :param call_id: Call identifier
+        :type call_id: :class:`int`
+        
+        :param log_file: Call log file. Only inputFileLocal and inputFileGenerated are supported
+        :type log_file: :class:`InputFile`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = SendCallLog.construct if skip_validation else SendCallLog
+
+        return await self.client.request(
+            _constructor(
+                call_id=call_id,
+                log_file=log_file,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -15345,8 +15779,7 @@ class API:
 
     async def send_payment_form(
             self,
-            chat_id: int,
-            message_id: int,
+            input_invoice: InputInvoice,
             payment_form_id: int,
             order_info_id: str,
             shipping_option_id: str,
@@ -15360,11 +15793,8 @@ class API:
         """
         Sends a filled-out payment form to the bot for final verification
         
-        :param chat_id: Chat identifier of the Invoice message
-        :type chat_id: :class:`int`
-        
-        :param message_id: Message identifier
-        :type message_id: :class:`int`
+        :param input_invoice: The invoice
+        :type input_invoice: :class:`InputInvoice`
         
         :param payment_form_id: Payment form identifier returned by getPaymentForm
         :type payment_form_id: :class:`int`
@@ -15395,8 +15825,7 @@ class API:
 
         return await self.client.request(
             _constructor(
-                chat_id=chat_id,
-                message_id=message_id,
+                input_invoice=input_invoice,
                 payment_form_id=payment_form_id,
                 order_info_id=order_info_id,
                 shipping_option_id=shipping_option_id,
@@ -15501,12 +15930,12 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Sends data received from a keyboardButtonTypeWebApp web app to a bot
+        Sends data received from a keyboardButtonTypeWebApp Web App to a bot
         
         :param bot_user_id: Identifier of the target bot
         :type bot_user_id: :class:`int`
         
-        :param button_text: Text of the keyboardButtonTypeWebApp button, which opened the web app
+        :param button_text: Text of the keyboardButtonTypeWebApp button, which opened the Web App
         :type button_text: :class:`str`
         
         :param data: Received data
@@ -15726,7 +16155,7 @@ class API:
 
     async def set_bio(
             self,
-            bio: typing.Optional[str],
+            bio: str,
             *,
             request_id: str = None,
             request_timeout: int = None,
@@ -15735,8 +16164,8 @@ class API:
         """
         Changes the bio of the current user
         
-        :param bio: The new value of the user bio; 0-70 characters without line feeds, defaults to None
-        :type bio: :class:`str`, optional
+        :param bio: The new value of the user bio; 0-GetOption("bio_length_max") characters without line feeds
+        :type bio: :class:`str`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
@@ -17617,7 +18046,7 @@ class API:
         :param sticker: Sticker
         :type sticker: :class:`InputFile`
         
-        :param position: New position of the sticker in the set, zero-based
+        :param position: New position of the sticker in the set, 0-based
         :type position: :class:`int`
         
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -18764,7 +19193,7 @@ class API:
             skip_validation: bool = False
     ) -> Ok:
         """
-        Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list
+        Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
         
         :param chat_list: Chat list in which to change the pinned state of the chat
         :type chat_list: :class:`ChatList`
@@ -19309,6 +19738,84 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def toggle_supergroup_join_by_request(
+            self,
+            supergroup_id: int,
+            join_by_request: bool,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
+        
+        :param supergroup_id: Identifier of the channel
+        :type supergroup_id: :class:`int`
+        
+        :param join_by_request: New value of join_by_request
+        :type join_by_request: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = ToggleSupergroupJoinByRequest.construct if skip_validation else ToggleSupergroupJoinByRequest
+
+        return await self.client.request(
+            _constructor(
+                supergroup_id=supergroup_id,
+                join_by_request=join_by_request,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def toggle_supergroup_join_to_send_messages(
+            self,
+            supergroup_id: int,
+            join_to_send_messages: bool,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
+        
+        :param supergroup_id: Identifier of the supergroup
+        :type supergroup_id: :class:`int`
+        
+        :param join_to_send_messages: New value of join_to_send_messages
+        :type join_to_send_messages: :class:`bool`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = ToggleSupergroupJoinToSendMessages.construct if skip_validation else ToggleSupergroupJoinToSendMessages
+
+        return await self.client.request(
+            _constructor(
+                supergroup_id=supergroup_id,
+                join_to_send_messages=join_to_send_messages,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def toggle_supergroup_sign_messages(
             self,
             supergroup_id: int,
@@ -19628,8 +20135,7 @@ class API:
 
     async def validate_order_info(
             self,
-            chat_id: int,
-            message_id: int,
+            input_invoice: InputInvoice,
             order_info: OrderInfo,
             allow_save: bool,
             *,
@@ -19640,11 +20146,8 @@ class API:
         """
         Validates the order information provided by a user and returns the available shipping options for a flexible invoice
         
-        :param chat_id: Chat identifier of the Invoice message
-        :type chat_id: :class:`int`
-        
-        :param message_id: Message identifier
-        :type message_id: :class:`int`
+        :param input_invoice: The invoice
+        :type input_invoice: :class:`InputInvoice`
         
         :param order_info: The order information, provided by the user; pass null if empty
         :type order_info: :class:`OrderInfo`
@@ -19666,8 +20169,7 @@ class API:
 
         return await self.client.request(
             _constructor(
-                chat_id=chat_id,
-                message_id=message_id,
+                input_invoice=input_invoice,
                 order_info=order_info,
                 allow_save=allow_save,
             ),
@@ -19719,6 +20221,40 @@ class API:
                 message_thread_id=message_thread_id,
                 message_ids=message_ids,
                 force_read=force_read,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def view_premium_feature(
+            self,
+            feature: PremiumFeature,
+            *,
+            request_id: str = None,
+            request_timeout: int = None,
+            skip_validation: bool = False
+    ) -> Ok:
+        """
+        Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen
+        
+        :param feature: The viewed premium feature
+        :type feature: :class:`PremiumFeature`
+        
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+        
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+        _constructor = ViewPremiumFeature.construct if skip_validation else ViewPremiumFeature
+
+        return await self.client.request(
+            _constructor(
+                feature=feature,
             ),
             request_id=request_id,
             request_timeout=request_timeout,

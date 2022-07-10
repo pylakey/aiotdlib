@@ -21,8 +21,8 @@ class Notification(BaseObject):
     :param date: Notification date
     :type date: :class:`int`
     
-    :param sound_id: Identifier of the notification sound to be played; 0 if sound is disabled
-    :type sound_id: :class:`int`
+    :param is_silent: True, if the notification was explicitly sent without sound
+    :type is_silent: :class:`bool`
     
     :param type_: Notification type
     :type type_: :class:`NotificationType`
@@ -32,7 +32,7 @@ class Notification(BaseObject):
     ID: str = Field("notification", alias="@type")
     id: int
     date: int
-    sound_id: int
+    is_silent: bool
     type_: NotificationType = Field(..., alias='type')
 
     @staticmethod

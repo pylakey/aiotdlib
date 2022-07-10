@@ -39,6 +39,12 @@ class Supergroup(BaseObject):
     :param sign_messages: True, if messages sent to the channel need to contain information about the sender. This field is only applicable to channels
     :type sign_messages: :class:`bool`
     
+    :param join_to_send_messages: True, if users need to join the supergroup before they can send messages. Always true for channels and non-discussion supergroups
+    :type join_to_send_messages: :class:`bool`
+    
+    :param join_by_request: True, if all users directly joining the supergroup need to be approved by supergroup administrators. Always false for channels and supergroups without username, location, or a linked chat
+    :type join_by_request: :class:`bool`
+    
     :param is_slow_mode_enabled: True, if the slow mode is enabled in the supergroup
     :type is_slow_mode_enabled: :class:`bool`
     
@@ -71,6 +77,8 @@ class Supergroup(BaseObject):
     has_linked_chat: bool
     has_location: bool
     sign_messages: bool
+    join_to_send_messages: bool
+    join_by_request: bool
     is_slow_mode_enabled: bool
     is_channel: bool
     is_broadcast_group: bool

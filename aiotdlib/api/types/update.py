@@ -59,11 +59,11 @@ from .scope_notification_settings import ScopeNotificationSettings
 from .secret_chat import SecretChat
 from .sticker import Sticker
 from .sticker_set import StickerSet
-from .sticker_sets import StickerSets
 from .suggested_action import SuggestedAction
 from .supergroup import Supergroup
 from .supergroup_full_info import SupergroupFullInfo
 from .terms_of_service import TermsOfService
+from .trending_sticker_sets import TrendingStickerSets
 from .unread_reaction import UnreadReaction
 from .user import User
 from .user_full_info import UserFullInfo
@@ -150,7 +150,7 @@ class UpdateAttachmentMenuBots(Update):
     """
     The list of bots added to attachment menu has changed
     
-    :param bots: The new list of bots added to attachment menu. The bots must be shown in attachment menu only in private chats. The bots must not be shown on scheduled messages screen
+    :param bots: The new list of bots added to attachment menu. The bots must not be shown on scheduled messages screen
     :type bots: :class:`list[AttachmentMenuBot]`
     
     """
@@ -359,10 +359,14 @@ class UpdateChatFilters(Update):
     :param chat_filters: The new list of chat filters
     :type chat_filters: :class:`list[ChatFilterInfo]`
     
+    :param main_chat_list_position: Position of the main chat list among chat filters, 0-based
+    :type main_chat_list_position: :class:`int`
+    
     """
 
     ID: str = Field("updateChatFilters", alias="@type")
     chat_filters: list[ChatFilterInfo]
+    main_chat_list_position: int
 
     @staticmethod
     def read(q: dict) -> UpdateChatFilters:
@@ -2202,12 +2206,12 @@ class UpdateTrendingStickerSets(Update):
     The list of trending sticker sets was updated or some of them were viewed
     
     :param sticker_sets: The prefix of the list of trending sticker sets with the newest trending sticker sets
-    :type sticker_sets: :class:`StickerSets`
+    :type sticker_sets: :class:`TrendingStickerSets`
     
     """
 
     ID: str = Field("updateTrendingStickerSets", alias="@type")
-    sticker_sets: StickerSets
+    sticker_sets: TrendingStickerSets
 
     @staticmethod
     def read(q: dict) -> UpdateTrendingStickerSets:
@@ -2375,9 +2379,9 @@ class UpdateUsersNearby(Update):
 
 class UpdateWebAppMessageSent(Update):
     """
-    A message was sent by an opened web app, so the web app needs to be closed
+    A message was sent by an opened Web App, so the Web App needs to be closed
     
-    :param web_app_launch_id: Identifier of web app launch
+    :param web_app_launch_id: Identifier of Web App launch
     :type web_app_launch_id: :class:`int`
     
     """

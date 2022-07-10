@@ -12,7 +12,7 @@ from ..base_object import BaseObject
 
 class SendCallDebugInformation(BaseObject):
     """
-    Sends debug information for a call
+    Sends debug information for a call to Telegram servers
     
     :param call_id: Call identifier
     :type call_id: :class:`int`

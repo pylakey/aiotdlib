@@ -14,10 +14,13 @@ from .formatted_text import FormattedText
 from .proxy_type import ProxyType
 from ..base_object import BaseObject
 
+if typing.TYPE_CHECKING:
+    from .target_chat import TargetChat
+
 
 class InternalLinkType(BaseObject):
     """
-    Describes an internal https://t.me or tg: link, which must be processed by the app in a special way
+    Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
     
     """
 
@@ -26,7 +29,7 @@ class InternalLinkType(BaseObject):
 
 class InternalLinkTypeActiveSessions(InternalLinkType):
     """
-    The link is a link to the active sessions section of the app. Use getActiveSessions to handle the link
+    The link is a link to the active sessions section of the application. Use getActiveSessions to handle the link
     
     """
 
@@ -39,10 +42,10 @@ class InternalLinkTypeActiveSessions(InternalLinkType):
 
 class InternalLinkTypeAttachmentMenuBot(InternalLinkType):
     """
-    The link is a link to an attachment menu bot to be opened in the specified chat. Process given chat_link to open corresponding chat. Then call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then user needs to confirm adding the bot to attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add it. If attachment menu bots can't be used in the current chat, show an error to the user. If the bot is added to attachment menu, then use openWebApp with the given URL
+    The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then user needs to confirm adding the bot to attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add it. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
     
-    :param chat_link: An internal link pointing to a chat; may be null if the current chat needs to be kept, defaults to None
-    :type chat_link: :class:`InternalLinkType`, optional
+    :param target_chat: Target chat to be opened
+    :type target_chat: :class:`TargetChat`
     
     :param bot_username: Username of the bot
     :type bot_username: :class:`str`
@@ -53,7 +56,7 @@ class InternalLinkTypeAttachmentMenuBot(InternalLinkType):
     """
 
     ID: str = Field("internalLinkTypeAttachmentMenuBot", alias="@type")
-    chat_link: typing.Optional[InternalLinkType] = None
+    target_chat: TargetChat
     bot_username: str
     url: str
 
@@ -127,11 +130,15 @@ class InternalLinkTypeBotStart(InternalLinkType):
     :param start_parameter: The parameter to be passed to sendBotStartMessage
     :type start_parameter: :class:`str`
     
+    :param autostart: True, if sendBotStartMessage must be called automatically without showing the START button
+    :type autostart: :class:`bool`
+    
     """
 
     ID: str = Field("internalLinkTypeBotStart", alias="@type")
     bot_username: str
     start_parameter: str
+    autostart: bool
 
     @staticmethod
     def read(q: dict) -> InternalLinkTypeBotStart:
@@ -227,6 +234,23 @@ class InternalLinkTypeGame(InternalLinkType):
         return InternalLinkTypeGame.construct(**q)
 
 
+class InternalLinkTypeInvoice(InternalLinkType):
+    """
+    The link is a link to an invoice. Call getPaymentForm with the given invoice name to process the link
+    
+    :param invoice_name: Name of the invoice
+    :type invoice_name: :class:`str`
+    
+    """
+
+    ID: str = Field("internalLinkTypeInvoice", alias="@type")
+    invoice_name: str
+
+    @staticmethod
+    def read(q: dict) -> InternalLinkTypeInvoice:
+        return InternalLinkTypeInvoice.construct(**q)
+
+
 class InternalLinkTypeLanguagePack(InternalLinkType):
     """
     The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link
@@ -297,7 +321,7 @@ class InternalLinkTypeMessageDraft(InternalLinkType):
 
 class InternalLinkTypePassportDataRequest(InternalLinkType):
     """
-    The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the app, otherwise ignore it
+    The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application, otherwise ignore it
     
     :param bot_user_id: User identifier of the service's bot
     :type bot_user_id: :class:`int`
@@ -347,6 +371,23 @@ class InternalLinkTypePhoneNumberConfirmation(InternalLinkType):
     @staticmethod
     def read(q: dict) -> InternalLinkTypePhoneNumberConfirmation:
         return InternalLinkTypePhoneNumberConfirmation.construct(**q)
+
+
+class InternalLinkTypePremiumFeatures(InternalLinkType):
+    """
+    The link is a link to the Premium features screen of the applcation from which the user can subscribe to Telegram Premium. Call getPremiumFeatures with the given referrer to process the link
+    
+    :param referrer: Referrer specified in the link
+    :type referrer: :class:`str`
+    
+    """
+
+    ID: str = Field("internalLinkTypePremiumFeatures", alias="@type")
+    referrer: str
+
+    @staticmethod
+    def read(q: dict) -> InternalLinkTypePremiumFeatures:
+        return InternalLinkTypePremiumFeatures.construct(**q)
 
 
 class InternalLinkTypePrivacyAndSecuritySettings(InternalLinkType):
@@ -419,7 +460,7 @@ class InternalLinkTypeQrCodeAuthentication(InternalLinkType):
 
 class InternalLinkTypeSettings(InternalLinkType):
     """
-    The link is a link to app settings
+    The link is a link to application settings
     
     """
 
