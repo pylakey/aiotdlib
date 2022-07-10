@@ -16,7 +16,6 @@ from pathlib import Path
 from typing import (
     AsyncIterator,
     Optional,
-    TypeVar,
     Union,
 )
 
@@ -42,15 +41,12 @@ from .api import (
     ChatTypeSupergroup,
     Error,
     FormattedText,
-    InputFileLocal,
-    InputFileRemote,
-    InputFileId,
     InputMessageAnimation,
-    InputMessageSticker,
     InputMessageAudio,
     InputMessageContent,
     InputMessageDocument,
     InputMessagePhoto,
+    InputMessageSticker,
     InputMessageText,
     InputMessageVideo,
     InputMessageVideoNote,
@@ -103,12 +99,14 @@ from .tdjson import (
 from .utils import (
     PendingRequest,
     ainput,
+    make_input_file,
+    make_thumbnail,
     str_to_base64,
     strip_phone_number_symbols,
 )
 
-RequestResult = TypeVar('RequestResult', bound=BaseObject)
-ExecuteResult = TypeVar('ExecuteResult', bound=BaseObject)
+RequestResult = typing.TypeVar('RequestResult', bound=BaseObject)
+ExecuteResult = typing.TypeVar('ExecuteResult', bound=BaseObject)
 ChatInfo = Union[
     User,
     UserFullInfo,
@@ -127,6 +125,7 @@ class ClientProxyType(str, enum.Enum):
     SOCKS5 = 'socks5'
 
 
+# noinspection PyUnresolvedReferences
 class ClientProxySettings(BaseModel):
     """
     Universal proxy settings object for all proxy types
@@ -146,7 +145,8 @@ class ClientProxySettings(BaseModel):
     :param password: Password for logging in; may be empty
     :type password: str
 
-    :param http_only: Pass true if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
+    :param http_only: Pass true if the proxy supports only HTTP requests and doesn't support
+    transparent TCP connections via HTTP CONNECT method
     :type http_only: bool
 
     :param secret: The proxy's secret in hexadecimal encoding
@@ -255,7 +255,7 @@ class ClientOptions(pydantic.BaseModel):
 
     localization_target: Optional[str]
     """
-    Name for the current localization target (currently supported: “android”, “android_x”, “ios”, “macos” and “tdesktop”)
+    Name for the current localization target (currently supported: “android”,“android_x”,“ios”,“macos” and “tdesktop”)
     """
 
     message_unload_delay: Optional[int]
@@ -300,21 +300,25 @@ class ClientOptions(pydantic.BaseModel):
     """
 
 
+# noinspection PyUnresolvedReferences
 class ClientSettings(pydantic.BaseSettings):
     """
     :param api_id: Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
     :type api_id: int
 
-    :param api_hash: Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
+    :param api_hash: Application identifier hash for Telegram API access,
+    which can be obtained at https://my.telegram.org
     :type api_hash: str
 
     :param database_encryption_key: Encryption key of local session database. Default: aiotdlib
     :type database_encryption_key: str
 
-    :param phone_number: The phone number of the user, in international format. Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
+    :param phone_number: The phone number of the user, in international format.
+    Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
     :type phone_number: str
 
-    :param bot_token: The bot token. Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
+    :param bot_token: The bot token. Either phone_number or bot_token MUST be passed.
+    ValueError would be raised otherwise
     :type bot_token: str
 
     :param use_test_dc: If set to true, the Telegram test environment will be used instead of the production environment
@@ -326,7 +330,8 @@ class ClientSettings(pydantic.BaseSettings):
     :param device_model: Model of the device the application is being run on; must be non-empty
     :type device_model: str
 
-    :param system_version: Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
+    :param system_version: Version of the operating system the application is being run on.
+    If empty, the version is automatically detected by TDLib
     :type system_version: str
 
     :param application_version: Application version; must be non-empty
@@ -344,7 +349,8 @@ class ClientSettings(pydantic.BaseSettings):
     :param library_path: Path to TDLib binary. By default binary included in package is used
     :type library_path: str
 
-    :param tdlib_verbosity: Verbosity level of TDLib itself. Default: 2 (WARNING) for more info look at (TDLibLogVerbosity)
+    :param tdlib_verbosity: Verbosity level of TDLib itself.
+    Default: 2 (WARNING) for more info look at (TDLibLogVerbosity)
     :type tdlib_verbosity: str
 
     :param debug: When set to true all request and responses would be logged in console with DEBUG level
@@ -692,155 +698,7 @@ class Client:
             self.logger.info('Gracefully closing TDLib connection')
             self.__tdjson.stop()
 
-    async def __auth_start(self) -> RequestResult:
-        return await self.api.get_authorization_state(request_id="updateAuthorizationState")
-
-    async def __set_tdlib_parameters(self) -> RequestResult:
-        return await self.api.set_tdlib_parameters(
-            parameters=TdlibParameters(
-                use_test_dc=self.settings.use_test_dc,
-                database_directory=os.path.join(f"{self.settings.files_directory}", "database"),
-                files_directory=os.path.join(f"{self.settings.files_directory}", "files"),
-                use_file_database=self.settings.use_file_database,
-                use_chat_info_database=self.settings.use_chat_info_database,
-                use_message_database=self.settings.use_message_database,
-                use_secret_chats=self.settings.use_secret_chats,
-                api_id=self.settings.api_id,
-                api_hash=self.settings.api_hash.get_secret_value(),
-                system_language_code=self.settings.system_language_code,
-                device_model=self.settings.device_model,
-                system_version=self.settings.system_version,
-                application_version=self.settings.application_version,
-                enable_storage_optimizer=self.settings.enable_storage_optimizer,
-                ignore_file_names=self.settings.ignore_file_names
-            ),
-            request_id="updateAuthorizationState"
-        )
-
-    async def __check_database_encryption_key(self) -> RequestResult:
-        self.logger.info('Sending encryption key')
-        result = await self.api.check_database_encryption_key(
-            encryption_key=self.settings.database_encryption_key,
-            request_id="updateAuthorizationState"
-        )
-
-        await self.__setup_options()
-        await self.__setup_proxy()
-
-        return result
-
-    async def __set_authentication_phone_number_or_check_bot_token(self) -> RequestResult:
-        if self.is_bot:
-            return await self.__check_authentication_bot_token()
-
-        return await self.__set_authentication_phone_number()
-
-    async def __set_authentication_phone_number(self) -> RequestResult:
-        self.logger.info('Sending phone number')
-        return await self.api.set_authentication_phone_number(
-            phone_number=self.settings.phone_number,
-            settings=PhoneNumberAuthenticationSettings(
-                allow_flash_call=False,
-                allow_missed_call=False,
-                is_current_phone_number=True,
-                allow_sms_retriever_api=False,
-                authentication_tokens=[]
-            ),
-            request_id="updateAuthorizationState"
-        )
-
-    async def __check_authentication_bot_token(self) -> RequestResult:
-        self.logger.info('Sending bot token')
-        return await self.api.check_authentication_bot_token(
-            self.settings.bot_token.get_secret_value(),
-            request_id="updateAuthorizationState"
-        )
-
-    async def __auth_get_code(self) -> str:
-        code = ""
-
-        while len(code) != 5 or not code.isdigit():
-            code = await ainput('Enter code:')
-
-        return code
-
-    async def __auth_get_password(self) -> str:
-        password = self.settings.password
-
-        if not bool(password):
-            password = await ainput('Enter 2FA password:', secured=True)
-        else:
-            password = password.get_secret_value()
-
-        return password
-
-    async def __auth_get_first_name(self) -> str:
-        first_name = self.settings.first_name or ""
-
-        while not bool(first_name) or len(first_name) > 64:
-            first_name = await ainput('Enter first name:')
-
-        return first_name
-
-    async def __auth_get_last_name(self) -> str:
-        last_name = self.settings.last_name or ""
-
-        if not bool(last_name):
-            last_name = await ainput('Enter last name:')
-
-        return last_name
-
-    async def __check_authentication_code(self) -> RequestResult:
-        code = await self.__auth_get_code()
-        self.logger.info(f'Sending code {code}')
-
-        return await self.api.check_authentication_code(
-            code=code,
-            request_id="updateAuthorizationState"
-        )
-
-    async def __register_user(self) -> RequestResult:
-        first_name = await self.__auth_get_first_name()
-        last_name = await self.__auth_get_last_name()
-        self.logger.info(f'Registering new user in telegram as {first_name} {last_name or ""}'.strip())
-
-        return await self.api.register_user(
-            first_name=first_name,
-            last_name=last_name,
-            request_id="updateAuthorizationState"
-        )
-
-    async def __check_authentication_password(self) -> RequestResult:
-        password = await self.__auth_get_password()
-        self.logger.info('Sending password')
-
-        return await self.api.check_authentication_password(
-            password=password,
-            request_id="updateAuthorizationState"
-        )
-
-    async def __auth_completed(self):
-        self.__pending_requests.pop('updateAuthorizationState', None)
-
-        if not self.is_bot:
-            # Preload main list chats
-            await self.get_main_list_chats()
-
-        self.__is_authorized = True
-        self.logger.info('Authorization is completed')
-
-    async def __auth_logging_out(self):
-        self.__is_authorized = False
-        self.logger.info('Auth session is logging out')
-
-    async def __auth_closing(self):
-        self.__is_authorized = False
-        self.logger.info('Auth session is closing')
-
-    async def __auth_closed(self):
-        self.logger.info('Auth session is closed')
-
-    async def __setup_proxy(self):
+    async def _setup_proxy(self):
         if not bool(self.settings.proxy_settings):
             # If proxy is not set disabling all configured proxy
             await self.api.disable_proxy()
@@ -905,7 +763,7 @@ class Client:
             type_=proxy_type,
         )
 
-    async def __setup_options(self):
+    async def _setup_options(self):
         for k, v in self.settings.options.dict(exclude_none=True).items():
             if isinstance(v, bool):
                 option_value = OptionValueBoolean(value=v)
@@ -926,75 +784,154 @@ class Client:
             except BadRequest as e:
                 self.logger.error(f'Unable to setup option {k} = {v}: {e}!')
 
-    def add_event_handler(
-            self,
-            handler: HandlerCallable,
-            update_type: str = API.Types.ANY,
-            *,
-            filters: FilterCallable = None
-    ):
-        """
-            Registering event handler
-            You can register many handlers for certain event type
-        """
-        if self.__updates_handlers.get(update_type) is None:
-            self.__updates_handlers[update_type] = set()
+    async def _auth_start(self) -> RequestResult:
+        return await self.api.get_authorization_state(request_id="updateAuthorizationState")
 
-        if handler not in self.__updates_handlers[update_type]:
-            self.__updates_handlers[update_type].add(
-                handler
-                if isinstance(handler, Handler)
-                else Handler(handler, filters=filters)
-            )
+    async def _set_tdlib_parameters(self) -> RequestResult:
+        return await self.api.set_tdlib_parameters(
+            parameters=TdlibParameters(
+                use_test_dc=self.settings.use_test_dc,
+                database_directory=os.path.join(f"{self.settings.files_directory}", "database"),
+                files_directory=os.path.join(f"{self.settings.files_directory}", "files"),
+                use_file_database=self.settings.use_file_database,
+                use_chat_info_database=self.settings.use_chat_info_database,
+                use_message_database=self.settings.use_message_database,
+                use_secret_chats=self.settings.use_secret_chats,
+                api_id=self.settings.api_id,
+                api_hash=self.settings.api_hash.get_secret_value(),
+                system_language_code=self.settings.system_language_code,
+                device_model=self.settings.device_model,
+                system_version=self.settings.system_version,
+                application_version=self.settings.application_version,
+                enable_storage_optimizer=self.settings.enable_storage_optimizer,
+                ignore_file_names=self.settings.ignore_file_names
+            ),
+            request_id="updateAuthorizationState"
+        )
 
-    def on_event(self, update_type: str = API.Types.ANY, *, filters: FilterCallable = None):
-        def decorator(function: HandlerCallable) -> HandlerCallable:
-            self.add_event_handler(function, update_type, filters=filters)
-            return function
+    async def _check_database_encryption_key(self) -> RequestResult:
+        self.logger.info('Sending encryption key')
+        result = await self.api.check_database_encryption_key(
+            encryption_key=self.settings.database_encryption_key,
+            request_id="updateAuthorizationState"
+        )
 
-        return decorator
+        await self._setup_options()
+        await self._setup_proxy()
 
-    def remove_event_handler(self, handler: Handler, update_type: str = API.Types.ANY):
-        if self.__updates_handlers.get(update_type) is None:
-            return
+        return result
 
-        self.__updates_handlers.get(update_type).remove(handler)
+    async def _set_authentication_phone_number_or_check_bot_token(self) -> RequestResult:
+        if self.is_bot:
+            return await self._check_authentication_bot_token()
 
-    def add_middleware(self, middleware: MiddlewareCallable):
-        """
-            Register middleware.
-            Note that middleware would be called for EVERY EVENT.
-            Do not use them for long-running tasks as it could be heavy performance hit
-            You can add as much middlewares as you want.
-            They would be called in order you've added them
-        """
+        return await self._set_authentication_phone_number()
 
-        self.__middlewares.append(middleware)
-        return middleware
+    async def _set_authentication_phone_number(self) -> RequestResult:
+        self.logger.info('Sending phone number')
+        return await self.api.set_authentication_phone_number(
+            phone_number=self.settings.phone_number,
+            settings=PhoneNumberAuthenticationSettings(
+                allow_flash_call=False,
+                allow_missed_call=False,
+                is_current_phone_number=True,
+                allow_sms_retriever_api=False,
+                authentication_tokens=[]
+            ),
+            request_id="updateAuthorizationState"
+        )
 
-    def text_message_handler(self, function: HandlerCallable = None):
-        """
-        Registers event handler with predefined filter Filters.text
-        which allows only UpdateNewMessage with MessageText content
+    async def _check_authentication_bot_token(self) -> RequestResult:
+        self.logger.info('Sending bot token')
+        return await self.api.check_authentication_bot_token(
+            self.settings.bot_token.get_secret_value(),
+            request_id="updateAuthorizationState"
+        )
 
-        Note: this method is universal and can be used directly or as decorator
-        """
-        if callable(function):
-            self.add_event_handler(function, API.Types.UPDATE_NEW_MESSAGE, filters=Filters.text)
+    async def _check_authentication_code(self) -> RequestResult:
+        code = await self._auth_get_code()
+        self.logger.info(f'Sending code {code}')
+
+        return await self.api.check_authentication_code(
+            code=code,
+            request_id="updateAuthorizationState"
+        )
+
+    async def _register_user(self) -> RequestResult:
+        first_name = await self._auth_get_first_name()
+        last_name = await self._auth_get_last_name()
+        self.logger.info(f'Registering new user in telegram as {first_name} {last_name or ""}'.strip())
+
+        return await self.api.register_user(
+            first_name=first_name,
+            last_name=last_name,
+            request_id="updateAuthorizationState"
+        )
+
+    async def _check_authentication_password(self) -> RequestResult:
+        password = await self._auth_get_password()
+        self.logger.info('Sending password')
+
+        return await self.api.check_authentication_password(
+            password=password,
+            request_id="updateAuthorizationState"
+        )
+
+    # noinspection PyMethodMayBeStatic
+    async def _auth_get_code(self) -> str:
+        code = ""
+
+        while len(code) != 5 or not code.isdigit():
+            code = await ainput('Enter code:')
+
+        return code
+
+    async def _auth_get_password(self) -> str:
+        password = self.settings.password
+
+        if not bool(password):
+            password = await ainput('Enter 2FA password:', secured=True)
         else:
-            return self.on_event(API.Types.UPDATE_NEW_MESSAGE, filters=Filters.text)
+            password = password.get_secret_value()
 
-    def bot_command_handler(self, function: HandlerCallable = None, *, command: str = None):
-        """
-        Registers event handler with predefined filter Filters.bot_command
-        which allows only UpdateNewMessage with MessageText content and text of message starts with "/"
+        return password
 
-        Note: this method is universal and can be used directly or as decorator
-        """
-        if callable(function):
-            self.add_event_handler(function, API.Types.UPDATE_NEW_MESSAGE, filters=Filters.bot_command(command))
-        else:
-            return self.on_event(API.Types.UPDATE_NEW_MESSAGE, filters=Filters.bot_command(command))
+    async def _auth_get_first_name(self) -> str:
+        first_name = self.settings.first_name or ""
+
+        while not bool(first_name) or len(first_name) > 64:
+            first_name = await ainput('Enter first name:')
+
+        return first_name
+
+    async def _auth_get_last_name(self) -> str:
+        last_name = self.settings.last_name or ""
+
+        if not bool(last_name):
+            last_name = await ainput('Enter last name:')
+
+        return last_name
+
+    async def _auth_completed(self):
+        self.__pending_requests.pop('updateAuthorizationState', None)
+
+        if not self.is_bot:
+            # Preload main list chats
+            await self.get_main_list_chats()
+
+        self.__is_authorized = True
+        self.logger.info('Authorization is completed')
+
+    async def _auth_logging_out(self):
+        self.__is_authorized = False
+        self.logger.info('Auth session is logging out')
+
+    async def _auth_closing(self):
+        self.__is_authorized = False
+        self.logger.info('Auth session is closing')
+
+    async def _auth_closed(self):
+        self.logger.info('Auth session is closed')
 
     async def send(self, query: BaseObject):
         if not self.__running:
@@ -1071,17 +1008,17 @@ class Client:
             self.logger.info('Authorization process has been started with phone')
 
         auth_actions: AuthActionsDict = {
-            None: self.__auth_start,
-            API.Types.AUTHORIZATION_STATE_WAIT_TDLIB_PARAMETERS: self.__set_tdlib_parameters,
-            API.Types.AUTHORIZATION_STATE_WAIT_ENCRYPTION_KEY: self.__check_database_encryption_key,
-            API.Types.AUTHORIZATION_STATE_WAIT_PHONE_NUMBER: self.__set_authentication_phone_number_or_check_bot_token,
-            API.Types.AUTHORIZATION_STATE_WAIT_CODE: self.__check_authentication_code,
-            API.Types.AUTHORIZATION_STATE_WAIT_REGISTRATION: self.__register_user,
-            API.Types.AUTHORIZATION_STATE_WAIT_PASSWORD: self.__check_authentication_password,
-            API.Types.AUTHORIZATION_STATE_READY: self.__auth_completed,
-            API.Types.AUTHORIZATION_STATE_LOGGING_OUT: self.__auth_logging_out,
-            API.Types.AUTHORIZATION_STATE_CLOSING: self.__auth_closing,
-            API.Types.AUTHORIZATION_STATE_CLOSED: self.__auth_closed,
+            None: self._auth_start,
+            API.Types.AUTHORIZATION_STATE_WAIT_TDLIB_PARAMETERS: self._set_tdlib_parameters,
+            API.Types.AUTHORIZATION_STATE_WAIT_ENCRYPTION_KEY: self._check_database_encryption_key,
+            API.Types.AUTHORIZATION_STATE_WAIT_PHONE_NUMBER: self._set_authentication_phone_number_or_check_bot_token,
+            API.Types.AUTHORIZATION_STATE_WAIT_CODE: self._check_authentication_code,
+            API.Types.AUTHORIZATION_STATE_WAIT_REGISTRATION: self._register_user,
+            API.Types.AUTHORIZATION_STATE_WAIT_PASSWORD: self._check_authentication_password,
+            API.Types.AUTHORIZATION_STATE_READY: self._auth_completed,
+            API.Types.AUTHORIZATION_STATE_LOGGING_OUT: self._auth_logging_out,
+            API.Types.AUTHORIZATION_STATE_CLOSING: self._auth_closing,
+            API.Types.AUTHORIZATION_STATE_CLOSED: self._auth_closed,
         }
 
         while not self.__is_authorized:
@@ -1296,6 +1233,9 @@ class Client:
         :param send_date: Date the message will be sent. The date must be within 367 days in the future. If send_date passed send_when_online will be ignored
         :type send_date: :class:`int`
 
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
         :param protect_content: Pass true if the content of the message must be protected from forwarding and saving; for bots only
         :type protect_content: :class:`bool`
 
@@ -1372,6 +1312,13 @@ class Client:
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
+            request_timeout: (int)
+                amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised
+                if request lasts more than `request_timeout` seconds, defaults to None
+
+            protect_content: (bool)
+                Pass true if the content of the message must be protected from forwarding and saving; for bots only
+
         """
         return await self.__send_message(
             chat_id=chat_id,
@@ -1422,6 +1369,10 @@ class Client:
 
             clear_draft (bool)
                 True, if a chat message draft should be deleted
+
+            request_timeout: (int)
+                amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised
+                if request lasts more than `request_timeout` seconds, defaults to None
 
         """
         formatted_text = await self.parse_text(text)
@@ -1511,29 +1462,20 @@ class Client:
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
+            request_timeout: (int)
+                amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised
+                if request lasts more than `request_timeout` seconds, defaults to None
+
+            protect_content: (bool)
+                Pass true if the content of the message must be protected from forwarding and saving; for bots only
+
         """
-
-        if os.path.exists(photo):
-            photo_input_file = InputFileLocal(path=photo)
-        elif isinstance(photo, int):
-            photo_input_file = InputFileId(id=photo)
-        else:
-            photo_input_file = InputFileRemote(id=photo)
-
-        if isinstance(thumbnail, str):
-            thumbnail = InputThumbnail.construct(
-                # Sending thumbnails by file_id is currently not supported
-                thumbnail=InputFileLocal(path=thumbnail),
-                width=thumbnail_width,
-                height=thumbnail_height,
-            )
-
         return await self.__send_message(
             chat_id=chat_id,
             content=InputMessagePhoto.construct(
                 caption=(await self.parse_text(caption)),
-                photo=photo_input_file,
-                thumbnail=thumbnail,
+                photo=make_input_file(photo),
+                thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
                 added_sticker_file_ids=added_sticker_file_ids,
                 width=photo_width,
                 height=photo_height,
@@ -1628,29 +1570,20 @@ class Client:
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
+            request_timeout: (int)
+                amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised
+                if request lasts more than `request_timeout` seconds, defaults to None
+
+            protect_content: (bool)
+                Pass true if the content of the message must be protected from forwarding and saving; for bots only
+
         """
-
-        if os.path.exists(video):
-            video_input_file = InputFileLocal(path=video)
-        elif isinstance(video, int):
-            video_input_file = InputFileId(id=video)
-        else:
-            video_input_file = InputFileRemote(id=video)
-
-        if isinstance(thumbnail, str):
-            thumbnail = InputThumbnail.construct(
-                # Sending thumbnails by file_id is currently not supported
-                thumbnail=InputFileLocal(path=thumbnail),
-                width=thumbnail_width,
-                height=thumbnail_height,
-            )
-
         return await self.__send_message(
             chat_id=chat_id,
             content=InputMessageVideo.construct(
                 caption=(await self.parse_text(caption)),
-                video=video_input_file,
-                thumbnail=thumbnail,
+                video=make_input_file(video),
+                thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
                 added_sticker_file_ids=added_sticker_file_ids,
                 duration=duration,
                 width=video_width,
@@ -1739,29 +1672,20 @@ class Client:
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
+            request_timeout: (int)
+                amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised
+                if request lasts more than `request_timeout` seconds, defaults to None
+
+            protect_content: (bool)
+                Pass true if the content of the message must be protected from forwarding and saving; for bots only
+
         """
-
-        if os.path.exists(animation):
-            animation_input_file = InputFileLocal(path=animation)
-        elif isinstance(animation, int):
-            animation_input_file = InputFileId(id=animation)
-        else:
-            animation_input_file = InputFileRemote(id=animation)
-
-        if isinstance(thumbnail, str):
-            thumbnail = InputThumbnail.construct(
-                # Sending thumbnails by file_id is currently not supported
-                thumbnail=InputFileLocal(path=thumbnail),
-                width=thumbnail_width,
-                height=thumbnail_height,
-            )
-
         return await self.__send_message(
             chat_id=chat_id,
             content=InputMessageAnimation.construct(
                 caption=(await self.parse_text(caption)),
-                animation=animation_input_file,
-                thumbnail=thumbnail,
+                animation=make_input_file(animation),
+                thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
                 added_sticker_file_ids=added_sticker_file_ids,
                 duration=duration,
                 width=animation_width,
@@ -1776,7 +1700,7 @@ class Client:
             protect_content=protect_content
         )
 
-   async def send_sticker(
+    async def send_sticker(
             self,
             chat_id: int,
             sticker: str,
@@ -1800,54 +1724,57 @@ class Client:
         Args:
             chat_id (int)
                 Target chat
+
             sticker(str)
                 Sticker to send. This parameter could be ether path to local file or remote file_id
+
             sticker_width (int)
                 Sticker width
+
             sticker_height (int)
                 Sticker height
+
             emoji (str)
                 Emoji used to choose the sticker
+
             thumbnail (str)
                 Thumbnail file to send. Sending thumbnails by file_id is currently not supported
+
             thumbnail_width (int)
                 Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
+
             thumbnail_height (int)
                 Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
+
             reply_to_message_id (int)
                 Identifier of the message to reply to or 0
+
             reply_markup (ReplyMarkup)
                 Markup for replying to the message; for bots only
+
             disable_notification (bool)
                 Pass true to disable notification for the message
+
             send_when_online: (bool)
                 When True, the message will be sent when the peer will be online.
                 Applicable to private chats only and when the exact online status of the peer is known
+
             send_date: (int)
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
+
+            request_timeout: (int)
+                amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised
+                if request lasts more than `request_timeout` seconds, defaults to None
+
+            protect_content: (bool)
+                Pass true if the content of the message must be protected from forwarding and saving; for bots only
         """
-
-        if os.path.exists(sticker):
-            sticker_input_file = InputFileLocal(path=sticker)
-        elif isinstance(sticker, int):
-            sticker_input_file = InputFileId(id=sticker)
-        else:
-            sticker_input_file = InputFileRemote(id=sticker)
-
-        if isinstance(thumbnail, str):
-            thumbnail = InputThumbnail.construct(
-                # Sending thumbnails by file_id is currently not supported
-                thumbnail=InputFileLocal(path=thumbnail),
-                width=thumbnail_width,
-                height=thumbnail_height,
-            )
-
         return await self.__send_message(
             chat_id=chat_id,
             content=InputMessageSticker.construct(
-                sticker=sticker_input_file,
-                thumbnail=thumbnail,
+                sticker=make_input_file(sticker),
+                thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
                 width=sticker_width,
                 height=sticker_height,
                 emoji=emoji
@@ -1860,7 +1787,7 @@ class Client:
             request_timeout=request_timeout,
             protect_content=protect_content
         )
-    
+
     async def send_document(
             self,
             chat_id: int,
@@ -1922,29 +1849,20 @@ class Client:
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
+            request_timeout: (int)
+                amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised
+                if request lasts more than `request_timeout` seconds, defaults to None
+
+            protect_content: (bool)
+                Pass true if the content of the message must be protected from forwarding and saving; for bots only
+
         """
-
-        if os.path.exists(document):
-            document_input_file = InputFileLocal(path=document)
-        elif isinstance(document, int):
-            document_input_file = InputFileId(id=document)
-        else:
-            document_input_file = InputFileRemote(id=document)
-
-        if isinstance(thumbnail, str):
-            thumbnail = InputThumbnail.construct(
-                # Sending thumbnails by file_id is currently not supported
-                thumbnail=InputFileLocal(path=thumbnail),
-                width=thumbnail_width,
-                height=thumbnail_height,
-            )
-
         return await self.__send_message(
             chat_id=chat_id,
             content=InputMessageDocument.construct(
-                document=document_input_file,
+                document=make_input_file(document),
                 caption=(await self.parse_text(caption)),
-                thumbnail=thumbnail,
+                thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
                 disable_content_type_detection=disable_content_type_detection,
             ),
             reply_to_message_id=reply_to_message_id,
@@ -2025,29 +1943,20 @@ class Client:
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
+            request_timeout: (int)
+                amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised
+                if request lasts more than `request_timeout` seconds, defaults to None
+
+            protect_content: (bool)
+                Pass true if the content of the message must be protected from forwarding and saving; for bots only
+
         """
-
-        if os.path.exists(audio):
-            audio_input_file = InputFileLocal(path=audio)
-        elif isinstance(audio, int):
-            audio_input_file = InputFileId(id=audio)
-        else:
-            audio_input_file = InputFileRemote(id=audio)
-
-        if isinstance(thumbnail, str):
-            thumbnail = InputThumbnail.construct(
-                # Sending thumbnails by file_id is currently not supported
-                thumbnail=InputFileLocal(path=thumbnail),
-                width=thumbnail_width,
-                height=thumbnail_height,
-            )
-
         return await self.__send_message(
             chat_id=chat_id,
             content=InputMessageAudio.construct(
-                audio=audio_input_file,
+                audio=make_input_file(audio),
                 caption=(await self.parse_text(caption)),
-                album_cover_thumbnail=thumbnail,
+                album_cover_thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
                 title=title,
                 duration=duration,
                 performer=performer
@@ -2113,19 +2022,18 @@ class Client:
                 Date the message will be sent. The date must be within 367 days in the future.
                 If send_date passed send_when_online will be ignored
 
+            request_timeout: (int)
+                amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised
+                if request lasts more than `request_timeout` seconds, defaults to None
+
+            protect_content: (bool)
+                Pass true if the content of the message must be protected from forwarding and saving; for bots only
+
         """
-
-        if os.path.exists(voice_note):
-            voice_note_input_file = InputFileLocal(path=voice_note)
-        elif isinstance(voice_note, int):
-            voice_note_input_file = InputFileId(id=voice_note)
-        else:
-            voice_note_input_file = InputFileRemote(id=voice_note)
-
         return await self.__send_message(
             chat_id=chat_id,
             content=InputMessageVoiceNote.construct(
-                voice_note=voice_note_input_file,
+                voice_note=make_input_file(voice_note),
                 caption=(await self.parse_text(caption)),
                 duration=duration,
                 waveform=waveform
@@ -2161,67 +2069,58 @@ class Client:
         Sends a video note with caption to chat. Returns the sent message
 
         Args:
-        chat_id (int)
-            Target chat
+            chat_id (int)
+                Target chat
 
-        video_note (str)
-            Video note to be sent. This parameter could be ether path to local file or remote file_id
+            video_note (str)
+                Video note to be sent. This parameter could be ether path to local file or remote file_id
 
-        duration (int)
-            Duration of the video, in seconds
+            duration (int)
+                Duration of the video, in seconds
 
-        length (int)
-            Video width and height; must be positive and not greater than 640
+            length (int)
+                Video width and height; must be positive and not greater than 640
 
-        thumbnail (str)
-            Video note thumbnail, if available
-            Sending thumbnails by file_id is currently not supported
+            thumbnail (str)
+                Video note thumbnail, if available
+                Sending thumbnails by file_id is currently not supported
 
-        thumbnail_width (int)
-            Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
+            thumbnail_width (int)
+                Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown
 
-        thumbnail_height (int)
-            Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
+            thumbnail_height (int)
+                Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown
 
-        reply_to_message_id (int)
-            Identifier of the message to reply to or 0
+            reply_to_message_id (int)
+                Identifier of the message to reply to or 0
 
-        reply_markup (ReplyMarkup)
-            Markup for replying to the message; for bots only
+            reply_markup (ReplyMarkup)
+                Markup for replying to the message; for bots only
 
-        disable_notification (bool)
-            Pass true to disable notification for the message
+            disable_notification (bool)
+                Pass true to disable notification for the message
 
-        send_when_online: (bool)
-            When True, the message will be sent when the peer will be online.
-            Applicable to private chats only and when the exact online status of the peer is known
+            send_when_online: (bool)
+                When True, the message will be sent when the peer will be online.
+                Applicable to private chats only and when the exact online status of the peer is known
 
-        send_date: (int)
-            Date the message will be sent. The date must be within 367 days in the future.
-            If send_date passed send_when_online will be ignored
+            send_date: (int)
+                Date the message will be sent. The date must be within 367 days in the future.
+                If send_date passed send_when_online will be ignored
+
+            request_timeout: (int)
+                amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised
+                if request lasts more than `request_timeout` seconds, defaults to None
+
+            protect_content: (bool)
+                Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
         """
-
-        if os.path.exists(video_note):
-            video_note_input_file = InputFileLocal(path=video_note)
-        elif isinstance(video_note, int):
-            video_note_input_file = InputFileId(id=video_note)
-        else:
-            video_note_input_file = InputFileRemote(id=video_note)
-
-        if isinstance(thumbnail, str):
-            thumbnail = InputThumbnail.construct(
-                # Sending thumbnails by file_id is currently not supported
-                thumbnail=InputFileLocal(path=thumbnail),
-                width=thumbnail_width,
-                height=thumbnail_height,
-            )
-
         return await self.__send_message(
             chat_id=chat_id,
             content=InputMessageVideoNote.construct(
-                video_note=video_note_input_file,
-                thumbnail=thumbnail,
+                video_note=make_input_file(video_note),
+                thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
                 length=length,
                 duration=duration,
             ),
@@ -2377,3 +2276,74 @@ class Client:
 
     async def get_my_id(self) -> int:
         return await self.get_option_value('my_id')
+
+    def add_event_handler(
+            self,
+            handler: HandlerCallable,
+            update_type: str = API.Types.ANY,
+            *,
+            filters: FilterCallable = None
+    ):
+        """
+            Registering event handler
+            You can register many handlers for certain event type
+        """
+        if self.__updates_handlers.get(update_type) is None:
+            self.__updates_handlers[update_type] = set()
+
+        if handler not in self.__updates_handlers[update_type]:
+            self.__updates_handlers[update_type].add(
+                handler
+                if isinstance(handler, Handler)
+                else Handler(handler, filters=filters)
+            )
+
+    # Decorators
+    def on_event(self, update_type: str = API.Types.ANY, *, filters: FilterCallable = None):
+        def decorator(function: HandlerCallable) -> HandlerCallable:
+            self.add_event_handler(function, update_type, filters=filters)
+            return function
+
+        return decorator
+
+    def remove_event_handler(self, handler: Handler, update_type: str = API.Types.ANY):
+        if self.__updates_handlers.get(update_type) is None:
+            return
+
+        self.__updates_handlers.get(update_type).remove(handler)
+
+    def add_middleware(self, middleware: MiddlewareCallable):
+        """
+            Register middleware.
+            Note that middleware would be called for EVERY EVENT.
+            Do not use them for long-running tasks as it could be heavy performance hit
+            You can add as much middlewares as you want.
+            They would be called in order you've added them
+        """
+
+        self.__middlewares.append(middleware)
+        return middleware
+
+    def text_message_handler(self, function: HandlerCallable = None):
+        """
+        Registers event handler with predefined filter Filters.text
+        which allows only UpdateNewMessage with MessageText content
+
+        Note: this method is universal and can be used directly or as decorator
+        """
+        if callable(function):
+            self.add_event_handler(function, API.Types.UPDATE_NEW_MESSAGE, filters=Filters.text)
+        else:
+            return self.on_event(API.Types.UPDATE_NEW_MESSAGE, filters=Filters.text)
+
+    def bot_command_handler(self, function: HandlerCallable = None, *, command: str = None):
+        """
+        Registers event handler with predefined filter Filters.bot_command
+        which allows only UpdateNewMessage with MessageText content and text of message starts with "/"
+
+        Note: this method is universal and can be used directly or as decorator
+        """
+        if callable(function):
+            self.add_event_handler(function, API.Types.UPDATE_NEW_MESSAGE, filters=Filters.bot_command(command))
+        else:
+            return self.on_event(API.Types.UPDATE_NEW_MESSAGE, filters=Filters.bot_command(command))

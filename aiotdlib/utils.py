@@ -2,6 +2,7 @@ import asyncio
 import base64
 import getpass
 import logging
+import os
 import re
 import sys
 from functools import partial
@@ -11,6 +12,12 @@ from typing import (
     Union,
 )
 
+from api import (
+    InputFileId,
+    InputFileLocal,
+    InputFileRemote,
+    InputThumbnail,
+)
 from .api import (
     BadRequest,
     BaseObject,
@@ -62,6 +69,27 @@ def strip_phone_number_symbols(phone_number: str) -> str:
             raise ValueError(f'Phone number should be an instance of str, not a {phone_number.__class__.__name__}')
 
     return re.sub(r'(?<!^)|[^\d]+', '', phone_number)
+
+
+def make_input_file(file: Union[str, int]) -> Union[InputFileId, InputFileLocal, InputFileRemote]:
+    if os.path.exists(file):
+        return InputFileLocal(path=file)
+    elif isinstance(file, int):
+        return InputFileId(id=file)
+
+    return InputFileRemote(id=file)
+
+
+def make_thumbnail(thumbnail: str, width: int = None, height: int = None) -> Optional[InputThumbnail]:
+    if isinstance(thumbnail, str):
+        return InputThumbnail.construct(
+            # Sending thumbnails by file_id is currently not supported
+            thumbnail=InputFileLocal(path=thumbnail),
+            width=width,
+            height=height,
+        )
+
+    return None
 
 
 class PendingRequest:
