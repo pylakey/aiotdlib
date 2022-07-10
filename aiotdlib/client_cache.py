@@ -5,6 +5,10 @@ import typing
 
 from sortedcontainers import SortedSet
 
+from api import (
+    UpdateChatAvailableReactions,
+    UpdateChatUnreadReactionCount,
+)
 from .api import (
     API,
     AioTDLibError,
@@ -56,7 +60,6 @@ from .api import (
     UpdateChatHasProtectedContent,
     UpdateChatMessageSender,
     UpdateChatMessageTtl,
-    UpdateChatOnlineMemberCount,
     UpdateChatPendingJoinRequests,
     UpdateChatTheme,
 )
@@ -164,7 +167,14 @@ class ClientCache:
             self.__on_update_chat_notification_settings,
             API.Types.UPDATE_CHAT_NOTIFICATION_SETTINGS
         )
-        client.add_event_handler(self.__on_update_chat_online_member_count, API.Types.UPDATE_CHAT_ONLINE_MEMBER_COUNT)
+        client.add_event_handler(
+            self.__on_update_chat_available_reactions,
+            API.Types.UPDATE_CHAT_AVAILABLE_REACTIONS
+        )
+        client.add_event_handler(
+            self.__on_update_chat_reactions_count,
+            API.Types.UPDATE_CHAT_UNREAD_REACTION_COUNT
+        )
         client.add_event_handler(
             self.__on_update_chat_pending_join_requests,
             API.Types.UPDATE_CHAT_PENDING_JOIN_REQUESTS
@@ -400,9 +410,13 @@ class ClientCache:
         chat = self.chats[update.chat_id]
         chat.notification_settings = update.notification_settings
 
-    async def __on_update_chat_online_member_count(self, _: Client, update: UpdateChatOnlineMemberCount):
+    async def __on_update_chat_available_reactions(self, _: Client, update: UpdateChatAvailableReactions):
         chat = self.chats[update.chat_id]
-        chat.online_member_count = update.online_member_count
+        chat.available_reactions = update.available_reactions
+
+    async def __on_update_chat_reactions_count(self, _: Client, update: UpdateChatUnreadReactionCount):
+        chat = self.chats[update.chat_id]
+        chat.unread_reaction_count = update.unread_reaction_count
 
     async def __on_update_chat_pending_join_requests(self, _: Client, update: UpdateChatPendingJoinRequests):
         chat = self.chats[update.chat_id]
