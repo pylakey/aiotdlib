@@ -1,15 +1,15 @@
 import re
 
 
-def upper_first(s: str):
+def upper_first(s: str) -> str:
     return s[:1].upper() + s[1:]
 
 
-def lower_first(s: str):
+def lower_first(s: str) -> str:
     return s[:1].lower() + s[1:]
 
 
-def snake_case(s: str):
+def snake_case(s: str) -> str:
     if not s:
         return ""
 
