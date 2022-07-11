@@ -10,6 +10,12 @@ def lower_first(s: str) -> str:
 
 
 def snake_case(s: str) -> str:
+    """
+    Convert camel case string to snake case.
+
+    :param s: Some camel case string
+    :return: Snake case string
+    """
     if not s:
         return ""
 
