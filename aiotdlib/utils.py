@@ -6,6 +6,7 @@ import os
 import re
 import sys
 from functools import partial
+from http import HTTPStatus
 from typing import (
     Optional,
     TYPE_CHECKING,
@@ -124,11 +125,11 @@ class PendingRequest:
 
     def raise_error(self):
         if isinstance(self.update, Error):
-            if self.update.code == 400:
+            if self.update.code == HTTPStatus.BAD_REQUEST:
                 raise BadRequest(self.update.message)
-            elif self.update.code == 401:
+            elif self.update.code == HTTPStatus.UNAUTHORIZED:
                 raise Unauthorized(self.update.message)
-            elif self.update.code == 404:
+            elif self.update.code == HTTPStatus.NOT_FOUND:
                 raise NotFound(self.update.message)
 
             raise AioTDLibError(self.update.code, self.update.message)
