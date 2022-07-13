@@ -27,6 +27,7 @@ from .api.errors import (
     NotFound,
     Unauthorized,
 )
+from .api.errors.error import http_code_to_error
 
 if TYPE_CHECKING:
     from .client import Client
@@ -123,13 +124,10 @@ class PendingRequest:
 
     def raise_error(self):
         if isinstance(self.update, Error):
-            if self.update.code == HTTPStatus.BAD_REQUEST:
-                raise BadRequest(self.update.message)
-            elif self.update.code == HTTPStatus.UNAUTHORIZED:
-                raise Unauthorized(self.update.message)
-            elif self.update.code == HTTPStatus.NOT_FOUND:
-                raise NotFound(self.update.message)
-
-            raise AioTDLibError(self.update.code, self.update.message)
+            http_error = http_code_to_error.get(self.update.code, AioTDLibError)
+            raise http_error(
+                code=self.update.code,
+                message=self.update.message
+            )
 
         raise RuntimeError(f'Unknown TDLib error')

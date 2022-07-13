@@ -28,3 +28,10 @@ class Unauthorized(AioTDLibError):
 class NotFound(AioTDLibError):
     def __init__(self, message: str):
         super(NotFound, self).__init__(HTTPStatus.NOT_FOUND, message)
+
+
+http_code_to_error = {
+    HTTPStatus.BAD_REQUEST: BadRequest,
+    HTTPStatus.UNAUTHORIZED: Unauthorized,
+    HTTPStatus.NOT_FOUND: NotFound
+}
