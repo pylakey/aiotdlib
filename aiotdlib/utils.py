@@ -6,7 +6,6 @@ import os
 import re
 import sys
 from functools import partial
-from http import HTTPStatus
 from typing import (
     Optional,
     TYPE_CHECKING,
@@ -14,7 +13,6 @@ from typing import (
 )
 
 from .api import (
-    BadRequest,
     BaseObject,
     Error,
     InputFileId,
@@ -22,11 +20,7 @@ from .api import (
     InputFileRemote,
     InputThumbnail,
 )
-from .api.errors import (
-    AioTDLibError,
-    NotFound,
-    Unauthorized,
-)
+from .api.errors import AioTDLibError
 from .api.errors.error import http_code_to_error
 
 if TYPE_CHECKING:
