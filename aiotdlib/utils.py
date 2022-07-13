@@ -12,16 +12,14 @@ from typing import (
     Union,
 )
 
-from api import (
-    InputFileId,
-    InputFileLocal,
-    InputFileRemote,
-    InputThumbnail,
-)
 from .api import (
     BadRequest,
     BaseObject,
     Error,
+    InputFileId,
+    InputFileLocal,
+    InputFileRemote,
+    InputThumbnail,
 )
 from .api.errors import (
     AioTDLibError,
