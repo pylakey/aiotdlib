@@ -40,7 +40,7 @@ class Generator:
         os.makedirs(functions_dir, exist_ok=True)
 
     def render_types_init_file(self, entities: Entities):
-        section_init_file_template = self.jinja_env.get_template('section_init_template.pyi')
+        section_init_file_template = self.jinja_env.get_template('section_init_template.py.jinja')
 
         with open(f"{self.destination}/types/__init__.py", "w", encoding="utf-8") as f:
             f.write(
@@ -51,7 +51,7 @@ class Generator:
             )
 
     def render_functions_init_file(self, entities: Entities):
-        section_init_file_template = self.jinja_env.get_template('section_init_template.pyi')
+        section_init_file_template = self.jinja_env.get_template('section_init_template.py.jinja')
 
         with open(f"{self.destination}/functions/__init__.py", "w", encoding="utf-8") as f:
             f.write(
@@ -62,13 +62,13 @@ class Generator:
             )
 
     def render_package_init_file(self, entities: Entities):
-        package_init_file_template = self.jinja_env.get_template('package_init_template.pyi')
+        package_init_file_template = self.jinja_env.get_template('package_init_template.py.jinja')
 
         with open(f"{self.destination}/__init__.py", "w", encoding="utf-8") as f:
             f.write(package_init_file_template.render(notice=self.notice, entities=entities))
 
     def render_entities_classes(self, entities: Entities):
-        class_template = self.jinja_env.get_template('class_template.pyi')
+        class_template = self.jinja_env.get_template('class_template.py.jinja')
 
         for entity in entities:
             section = "functions" if entity.is_function else "types"
@@ -77,7 +77,7 @@ class Generator:
                 f.write(class_template.render(notice=self.notice, entity=entity))
 
     def render_main_api_class(self, entities: Entities):
-        api_template = self.jinja_env.get_template('api_template.pyi')
+        api_template = self.jinja_env.get_template('api_template.py.jinja')
 
         with open(f"{self.destination}/api.py", "w", encoding="utf-8") as f:
             f.write(api_template.render(notice=self.notice, entities=entities))
