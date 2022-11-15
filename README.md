@@ -53,13 +53,16 @@ from aiotdlib import Client
 API_ID = 123456
 API_HASH = ""
 PHONE_NUMBER = ""
+BOT_TOKEN = ""
 
 
 async def main():
     client = Client(
         api_id=API_ID,
         api_hash=API_HASH,
+        bot_token=BOT_TOKEN,
         phone_number=PHONE_NUMBER
+      
     )
 
     async with client:
