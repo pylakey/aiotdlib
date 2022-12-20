@@ -1,6 +1,6 @@
 import re
+import sys
 import typing
-import urllib.request
 
 from .entities import (
     Constructor,
@@ -10,12 +10,10 @@ from .entities import (
 )
 from .utils import upper_first
 
-DEFAULT_TD_API_SCHEME_URL = "https://raw.githubusercontent.com/pylakey/td/master/td/generate/scheme/td_api.tl"
-
 
 class TDApiParser:
     @staticmethod
-    def parse() -> list[typing.Union[Constructor, Method]]:
+    def parse(tl_version: str) -> list[typing.Union[Constructor, Method]]:
         abstract_class_docs_regex = re.compile(r"^//@class (?P<name>[^@]*) @description (?P<description>.*)$")
         description_regex = re.compile(r"^//@description (?P<description>.*)$")
         parameter_description_regex = re.compile(r"^//@(?P<name>.*?) (?P<description>.*)$")
@@ -24,7 +22,12 @@ class TDApiParser:
         param_length_constraint = re.compile(r"(?P<min_length>\d+)-(?P<max_length>\d+) characters")
         nullability_constraint = re.compile(r".*may be null.*")
 
-        scheme = urllib.request.urlopen(DEFAULT_TD_API_SCHEME_URL).read().decode('utf-8')
+        try:
+            with open(f"tl_schemas/{tl_version}.tl",  encoding="utf-8") as file:
+                scheme = file.read()
+        except FileNotFoundError:
+            print(f"File tl_schemas/{tl_version}.tl not found!")
+            sys.exit(1)
 
         # Some cleaning for better parsing
         inline_parameter_regex = re.compile(r'(?!(@description|@class))(@\w+)')

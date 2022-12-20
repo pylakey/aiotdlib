@@ -15,8 +15,15 @@ def main():
         help="Output directory",
         default=f"{LIBRARY_ROOT_PATH}/aiotdlib/api"
     )
+    arg_parser.add_argument(
+        "-v",
+        dest="tdlib_version",
+        help="Telegram api version",
+        required=False,
+        default="1.8.4"
+    )
     args = arg_parser.parse_args()
-    Generator(args.destination).generate()
+    Generator(args.tdlib_version, args.destination).generate()
 
 
 if __name__ == '__main__':

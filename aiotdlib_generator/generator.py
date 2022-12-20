@@ -24,10 +24,12 @@ LIBRARY_ROOT_PATH = str(pathlib.Path(__file__).parent.parent)
 class Generator:
     def __init__(
             self,
+            tdlib_version: str,
             destination: str = f"{LIBRARY_ROOT_PATH}/aiotdlib/api",
             notice: str = "This file has been generated automatically!! Do not change this manually!",
     ):
         self.notice = notice
+        self.tdlib_version = tdlib_version
         self.destination = destination
         self.jinja_env = Environment(loader=FileSystemLoader(f'{pathlib.Path(__file__).parent}/templates'))
 
@@ -85,7 +87,7 @@ class Generator:
     def generate(self):
         self.__prepare_directories()
 
-        entities = TDApiParser.parse()
+        entities = TDApiParser.parse(tl_version=self.tdlib_version)
 
         self.render_entities_classes(entities)
         self.render_types_init_file(entities)
