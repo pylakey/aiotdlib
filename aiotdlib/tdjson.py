@@ -20,6 +20,7 @@ ARCH_ALIASES = {
 SYSTEM_LIB_EXTENSION = {
     'darwin': 'dylib',
     'linux': 'so',
+    'freebsd': 'so',
 }
 
 

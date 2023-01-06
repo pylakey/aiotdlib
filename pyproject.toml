@@ -18,7 +18,9 @@ include = [
 classifiers = [
     "Framework :: AsyncIO",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: POSIX :: BSD :: FreeBSD",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
 ]
