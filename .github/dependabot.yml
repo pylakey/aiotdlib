@@ -10,14 +10,3 @@ updates:
     labels:
       - "pip"
       - "dependencies"
-
-  - package-ecosystem: "github-actions"
-    assignees:
-      - pylakey
-    directory: "/"
-    target-branch: main
-    schedule:
-      interval: "daily"
-    labels:
-      - "github-actions"
-      - "dependencies"
