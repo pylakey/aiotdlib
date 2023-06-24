@@ -5,28 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import CallProtocol
+from ..types.base import *
+
+from ..types.all import (
+    CallProtocol,
+)
 
 
 class AcceptCall(BaseObject):
     """
     Accepts an incoming call
-    
+
     :param call_id: Call identifier
-    :type call_id: :class:`int`
-    
+    :type call_id: :class:`Int32`
     :param protocol: The call protocols supported by the application
     :type protocol: :class:`CallProtocol`
-    
     """
 
-    ID: str = Field("acceptCall", alias="@type")
-    call_id: int
+    ID: typing.Literal["acceptCall"] = "acceptCall"
+    call_id: Int32
     protocol: CallProtocol
-
-    @staticmethod
-    def read(q: dict) -> AcceptCall:
-        return AcceptCall.construct(**q)

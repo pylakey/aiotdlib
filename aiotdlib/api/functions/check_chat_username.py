@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class CheckChatUsername(BaseObject):
     """
     Checks whether a username can be set for a chat
-    
+
     :param chat_id: Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param username: Username to be checked
-    :type username: :class:`str`
-    
+    :type username: :class:`String`
     """
 
-    ID: str = Field("checkChatUsername", alias="@type")
-    chat_id: int
-    username: str
-
-    @staticmethod
-    def read(q: dict) -> CheckChatUsername:
-        return CheckChatUsername.construct(**q)
+    ID: typing.Literal["checkChatUsername"] = "checkChatUsername"
+    chat_id: Int53
+    username: String

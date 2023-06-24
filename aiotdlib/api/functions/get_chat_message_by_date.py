@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetChatMessageByDate(BaseObject):
     """
     Returns the last message sent in a chat no later than the specified date
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param date: Point in time (Unix timestamp) relative to which to search for messages
-    :type date: :class:`int`
-    
+    :type date: :class:`Int32`
     """
 
-    ID: str = Field("getChatMessageByDate", alias="@type")
-    chat_id: int
-    date: int
-
-    @staticmethod
-    def read(q: dict) -> GetChatMessageByDate:
-        return GetChatMessageByDate.construct(**q)
+    ID: typing.Literal["getChatMessageByDate"] = "getChatMessageByDate"
+    chat_id: Int53
+    date: Int32

@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import Contact
+from ..types.base import *
+
+from ..types.all import (
+    Contact,
+)
 
 
 class ImportContacts(BaseObject):
     """
     Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
-    
+
     :param contacts: The list of contacts to import or edit; contacts' vCard are ignored and are not imported
-    :type contacts: :class:`list[Contact]`
-    
+    :type contacts: :class:`Vector[Contact]`
     """
 
-    ID: str = Field("importContacts", alias="@type")
-    contacts: list[Contact]
-
-    @staticmethod
-    def read(q: dict) -> ImportContacts:
-        return ImportContacts.construct(**q)
+    ID: typing.Literal["importContacts"] = "importContacts"
+    contacts: Vector[Contact]

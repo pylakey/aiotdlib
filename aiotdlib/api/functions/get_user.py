@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetUser(BaseObject):
     """
     Returns information about a user by their identifier. This is an offline request if the current user is not a bot
-    
+
     :param user_id: User identifier
-    :type user_id: :class:`int`
-    
+    :type user_id: :class:`Int53`
     """
 
-    ID: str = Field("getUser", alias="@type")
-    user_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetUser:
-        return GetUser.construct(**q)
+    ID: typing.Literal["getUser"] = "getUser"
+    user_id: Int53

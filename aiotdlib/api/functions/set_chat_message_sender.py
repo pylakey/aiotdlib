@@ -5,28 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import MessageSender
+from ..types.base import *
+
+from ..types.all import (
+    MessageSender,
+)
 
 
 class SetChatMessageSender(BaseObject):
     """
     Selects a message sender to send messages in a chat
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param message_sender_id: New message sender for the chat
     :type message_sender_id: :class:`MessageSender`
-    
     """
 
-    ID: str = Field("setChatMessageSender", alias="@type")
-    chat_id: int
+    ID: typing.Literal["setChatMessageSender"] = "setChatMessageSender"
+    chat_id: Int53
     message_sender_id: MessageSender
-
-    @staticmethod
-    def read(q: dict) -> SetChatMessageSender:
-        return SetChatMessageSender.construct(**q)

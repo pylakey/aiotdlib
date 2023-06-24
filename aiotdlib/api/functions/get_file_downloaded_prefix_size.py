@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetFileDownloadedPrefixSize(BaseObject):
     """
     Returns file downloaded prefix size from a given offset, in bytes
-    
+
     :param file_id: Identifier of the file
-    :type file_id: :class:`int`
-    
+    :type file_id: :class:`Int32`
     :param offset: Offset from which downloaded prefix size needs to be calculated
-    :type offset: :class:`int`
-    
+    :type offset: :class:`Int53`
     """
 
-    ID: str = Field("getFileDownloadedPrefixSize", alias="@type")
-    file_id: int
-    offset: int
-
-    @staticmethod
-    def read(q: dict) -> GetFileDownloadedPrefixSize:
-        return GetFileDownloadedPrefixSize.construct(**q)
+    ID: typing.Literal["getFileDownloadedPrefixSize"] = "getFileDownloadedPrefixSize"
+    file_id: Int32
+    offset: Int53

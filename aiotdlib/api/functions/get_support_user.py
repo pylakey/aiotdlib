@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetSupportUser(BaseObject):
     """
     Returns a user that can be contacted to get support
-    
     """
 
-    ID: str = Field("getSupportUser", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetSupportUser:
-        return GetSupportUser.construct(**q)
+    ID: typing.Literal["getSupportUser"] = "getSupportUser"

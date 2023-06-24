@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class DisconnectWebsite(BaseObject):
     """
     Disconnects website from the current user's Telegram account
-    
+
     :param website_id: Website identifier
-    :type website_id: :class:`int`
-    
+    :type website_id: :class:`Int64`
     """
 
-    ID: str = Field("disconnectWebsite", alias="@type")
-    website_id: int
-
-    @staticmethod
-    def read(q: dict) -> DisconnectWebsite:
-        return DisconnectWebsite.construct(**q)
+    ID: typing.Literal["disconnectWebsite"] = "disconnectWebsite"
+    website_id: Int64

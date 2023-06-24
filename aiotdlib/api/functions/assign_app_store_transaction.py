@@ -5,27 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
+
+from ..types.all import (
+    StorePaymentPurpose,
+)
 
 
 class AssignAppStoreTransaction(BaseObject):
     """
-    Informs server about a Telegram Premium purchase through App Store. For official applications only
-    
+    Informs server about a purchase through App Store. For official applications only
+
     :param receipt: App Store receipt
-    :type receipt: :class:`str`
-    
-    :param is_restore: Pass true if this is a restore of a Telegram Premium purchase
-    :type is_restore: :class:`bool`
-    
+    :type receipt: :class:`Bytes`
+    :param purpose: Transaction purpose
+    :type purpose: :class:`StorePaymentPurpose`
     """
 
-    ID: str = Field("assignAppStoreTransaction", alias="@type")
-    receipt: str
-    is_restore: bool
-
-    @staticmethod
-    def read(q: dict) -> AssignAppStoreTransaction:
-        return AssignAppStoreTransaction.construct(**q)
+    ID: typing.Literal["assignAppStoreTransaction"] = "assignAppStoreTransaction"
+    receipt: Bytes
+    purpose: StorePaymentPurpose

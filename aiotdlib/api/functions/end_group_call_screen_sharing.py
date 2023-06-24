@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class EndGroupCallScreenSharing(BaseObject):
     """
     Ends screen sharing in a joined group call
-    
+
     :param group_call_id: Group call identifier
-    :type group_call_id: :class:`int`
-    
+    :type group_call_id: :class:`Int32`
     """
 
-    ID: str = Field("endGroupCallScreenSharing", alias="@type")
-    group_call_id: int
-
-    @staticmethod
-    def read(q: dict) -> EndGroupCallScreenSharing:
-        return EndGroupCallScreenSharing.construct(**q)
+    ID: typing.Literal["endGroupCallScreenSharing"] = "endGroupCallScreenSharing"
+    group_call_id: Int32

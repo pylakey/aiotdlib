@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetApplicationDownloadLink(BaseObject):
     """
     Returns the link for downloading official Telegram application to be used when the current user invites friends to Telegram
-    
     """
 
-    ID: str = Field("getApplicationDownloadLink", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetApplicationDownloadLink:
-        return GetApplicationDownloadLink.construct(**q)
+    ID: typing.Literal["getApplicationDownloadLink"] = "getApplicationDownloadLink"

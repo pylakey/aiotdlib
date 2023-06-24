@@ -5,19 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
+
+from ..types.all import (
+    StorePaymentPurpose,
+)
 
 
 class CanPurchasePremium(BaseObject):
     """
     Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
-    
+
+    :param purpose: Transaction purpose
+    :type purpose: :class:`StorePaymentPurpose`
     """
 
-    ID: str = Field("canPurchasePremium", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> CanPurchasePremium:
-        return CanPurchasePremium.construct(**q)
+    ID: typing.Literal["canPurchasePremium"] = "canPurchasePremium"
+    purpose: StorePaymentPurpose

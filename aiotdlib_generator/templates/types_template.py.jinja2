@@ -1,0 +1,57 @@
+{% import 'base_class_template.py.jinja2' as base_class -%}
+{{ '# ' + "=" * (notice.__len__() + 6) + " #" }}
+{{ '# ' + " " * (notice.__len__() + 6) + " #" }}
+#    {{ notice }}    #
+{{ '# ' + " " * (notice.__len__() + 6) + " #" }}
+{{ '# ' + "=" * (notice.__len__() + 6) + " #" }}
+from __future__ import annotations
+
+import typing
+
+from pydantic import Field
+
+from .base import *
+{% for entity in entities %}
+{%- if not entity.is_abstract %}
+{{ base_class.class(entity) }}
+{%- endif %}
+
+{%- for subclass in entity.subclasses %}
+{{ base_class.class(subclass) }}
+{%- endfor %}
+
+{#{% if entity.is_abstract -%}#}
+{#{{ entity.uf_name }} = typing.Annotated[#}
+{#    typing.Union[#}
+{#        {%- for subclass in entity.subclasses %}#}
+{#        {{ subclass.uf_name }},#}
+{#        {%- endfor %}#}
+{#    ],#}
+{#    Field(discriminator='ID', alias='@type')#}
+{#]#}
+{#{% endif -%}#}
+{% if entity.is_abstract -%}
+{{ entity.uf_name }} = typing.Union[
+    {%- for subclass in entity.subclasses %}
+    {{ subclass.uf_name }},
+    {%- endfor %}
+]
+{% endif -%}
+
+{%- for dep in entity.cross_deps %}
+{{ base_class.class(dep) }}
+{%- endfor %}
+{%- endfor %}
+{% for entity in entities -%}
+{%- if not entity.is_abstract and entity.dependencies %}
+{{ entity.uf_name }}.update_forward_refs()
+{%- endif %}
+{%- for subclass in entity.subclasses %}
+{%- if subclass.dependencies %}
+{{ subclass.uf_name }}.update_forward_refs()
+{%- endif %}
+{%- endfor %}
+{%- for dep in entity.cross_deps %}
+{{ dep.uf_name }}.update_forward_refs()
+{%- endfor %}
+{%- endfor %}

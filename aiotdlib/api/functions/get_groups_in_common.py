@@ -5,31 +5,26 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetGroupsInCommon(BaseObject):
     """
     Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
-    
+
     :param user_id: User identifier
-    :type user_id: :class:`int`
-    
+    :type user_id: :class:`Int53`
     :param offset_chat_id: Chat identifier starting from which to return chats; use 0 for the first request
-    :type offset_chat_id: :class:`int`
-    
+    :type offset_chat_id: :class:`Int53`
     :param limit: The maximum number of chats to be returned; up to 100
-    :type limit: :class:`int`
-    
+    :type limit: :class:`Int32`
     """
 
-    ID: str = Field("getGroupsInCommon", alias="@type")
-    user_id: int
-    offset_chat_id: int
-    limit: int
-
-    @staticmethod
-    def read(q: dict) -> GetGroupsInCommon:
-        return GetGroupsInCommon.construct(**q)
+    ID: typing.Literal["getGroupsInCommon"] = "getGroupsInCommon"
+    user_id: Int53
+    offset_chat_id: Int53
+    limit: Int32

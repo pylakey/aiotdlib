@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetFile(BaseObject):
     """
     Returns information about a file; this is an offline request
-    
+
     :param file_id: Identifier of the file to get
-    :type file_id: :class:`int`
-    
+    :type file_id: :class:`Int32`
     """
 
-    ID: str = Field("getFile", alias="@type")
-    file_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetFile:
-        return GetFile.construct(**q)
+    ID: typing.Literal["getFile"] = "getFile"
+    file_id: Int32

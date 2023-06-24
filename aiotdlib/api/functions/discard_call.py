@@ -5,39 +5,32 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class DiscardCall(BaseObject):
     """
     Discards a call
-    
+
     :param call_id: Call identifier
-    :type call_id: :class:`int`
-    
-    :param is_disconnected: Pass true if the user was disconnected
-    :type is_disconnected: :class:`bool`
-    
+    :type call_id: :class:`Int32`
     :param duration: The call duration, in seconds
-    :type duration: :class:`int`
-    
-    :param is_video: Pass true if the call was a video call
-    :type is_video: :class:`bool`
-    
+    :type duration: :class:`Int32`
     :param connection_id: Identifier of the connection used during the call
-    :type connection_id: :class:`int`
-    
+    :type connection_id: :class:`Int64`
+    :param is_disconnected: Pass true if the user was disconnected
+    :type is_disconnected: :class:`Bool`
+    :param is_video: Pass true if the call was a video call
+    :type is_video: :class:`Bool`
     """
 
-    ID: str = Field("discardCall", alias="@type")
-    call_id: int
-    is_disconnected: bool
-    duration: int
-    is_video: bool
-    connection_id: int
-
-    @staticmethod
-    def read(q: dict) -> DiscardCall:
-        return DiscardCall.construct(**q)
+    ID: typing.Literal["discardCall"] = "discardCall"
+    call_id: Int32
+    duration: Int32
+    connection_id: Int64
+    is_disconnected: Bool = False
+    is_video: Bool = False

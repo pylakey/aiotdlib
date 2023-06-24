@@ -14,25 +14,22 @@ from .utils import (
     upper_first,
 )
 
-vector_type_regex = re.compile(r"vector<(?P<type>.*)>")
-list_type_regex = re.compile(r".*list\[(?P<type>\w+)].*")
-core_types = {
-    'int': 'int', 'int32': 'int', 'int53': 'int', 'int64': 'int', 'long': 'int', 'double': 'float',
-    'Double': 'float',
-    'float': 'float',
-    'Int': 'int',
-    'string': 'str',
-    'str': 'str',
-    'Str': 'str',
-    'String': 'str',
-    'bool': 'bool',
-    'boolFalse': 'bool',
-    'boolTrue': 'bool',
-    'Bool': 'bool',
-    # Bytes in TDLib should be encoded as base64, so they should be stored as str
-    'bytes': 'str',
-    'Bytes': 'str',
-}
+vector_type_regex = re.compile(r"[Vv]ector<(?P<type>.*)>")
+list_type_regex = re.compile(r".*[Vv]ector\[(?P<type>\w+)].*")
+core_types = [
+    'int',
+    'int32',
+    'int53',
+    'int64',
+    'long',
+    'double',
+    'float',
+    'string',
+    'str',
+    'bool',
+    'bytes',
+    'vector'
+]
 
 
 class BaseType(BaseModel):
@@ -60,6 +57,7 @@ class BaseType(BaseModel):
 class Parameter(BaseModel):
     # Optional constraints
     nullable: bool = False
+    default_value: typing.Optional[str] = None
     min_length: typing.Optional[int] = None
     max_length: typing.Optional[int] = None
 
@@ -70,7 +68,7 @@ class Parameter(BaseModel):
 
     @validator('name')
     def check_name(cls, name):
-        if name in ['json', 'filter', 'type', 'hash']:
+        if name in ['json', 'filter', 'type', 'hash', 'class']:
             return f"{name}_"
 
         return name
@@ -89,13 +87,13 @@ class Parameter(BaseModel):
         if not tl_type:
             return ""
 
-        if tl_type in core_types:
-            return core_types[tl_type]
+        if tl_type.lower() in core_types:
+            return upper_first(tl_type)
 
         vector_type_match = vector_type_regex.match(tl_type)
 
         if vector_type_match:
-            return f"list[{cls.convert_tl_type(vector_type_match.group('type'))}]"
+            return f"Vector[{cls.convert_tl_type(vector_type_match.group('type'))}]"
 
         return upper_first(tl_type)
 
@@ -109,11 +107,11 @@ class Parameter(BaseModel):
 
     @property
     def is_vector_type(self) -> bool:
-        return "list" in self.type
+        return "vector" in self.type.lower()
 
     @property
     def is_core_type(self):
-        return self.type in core_types
+        return self.type.lower() in core_types
 
     @property
     def doc_type(self) -> str:
@@ -124,13 +122,13 @@ class Parameter(BaseModel):
 
     @property
     def import_type(self) -> typing.Optional[str]:
-        if self.type in core_types:
+        if self.type.lower() in core_types:
             return None
 
         if self.is_vector_type:
             inner_vector_type = list_type_regex.match(self.type).group('type')
 
-            if inner_vector_type in core_types:
+            if inner_vector_type.lower() in core_types:
                 return None
 
             return inner_vector_type
@@ -141,7 +139,7 @@ class Parameter(BaseModel):
     def optional_type(self):
         # Workaround for nullable vector types items https://github.com/tdlib/td/issues/1016#issuecomment-618959102
         if self.is_vector_type:
-            return re.sub(r"(.*list\[)(\w+)(].*)", r'\1typing.Optional[\2]\3', self.type)
+            return re.sub(r"(.*Vector\[)(\w+)(].*)", r'\1typing.Optional[\2]\3', self.type)
 
         return f"typing.Optional[{self.type}]"
 
@@ -173,7 +171,7 @@ class BaseEntity(BaseType):
 
     @property
     def is_function(self) -> bool:
-        return isinstance(self, Method)
+        return isinstance(self, Function)
 
     @property
     def is_constructor(self) -> bool:
@@ -243,7 +241,7 @@ class Constructor(ConstructorShort):
         return list(sorted(deps, key=lambda x: x.name))
 
 
-class Method(BaseEntity):
+class Function(BaseEntity):
     return_type: typing.Union[str, Constructor]
 
     @validator('return_type', pre=True)
@@ -252,8 +250,8 @@ class Method(BaseEntity):
             return ""
 
         if isinstance(return_type, str):
-            if return_type in core_types:
-                return core_types[return_type]
+            if return_type.lower() in core_types:
+                return upper_first(return_type)
             else:
                 raise ValueError
 

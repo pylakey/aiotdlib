@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class CreatePrivateChat(BaseObject):
     """
     Returns an existing chat corresponding to a given user
-    
+
     :param user_id: User identifier
-    :type user_id: :class:`int`
-    
+    :type user_id: :class:`Int53`
     :param force: Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
-    :type force: :class:`bool`
-    
+    :type force: :class:`Bool`
     """
 
-    ID: str = Field("createPrivateChat", alias="@type")
-    user_id: int
-    force: bool
-
-    @staticmethod
-    def read(q: dict) -> CreatePrivateChat:
-        return CreatePrivateChat.construct(**q)
+    ID: typing.Literal["createPrivateChat"] = "createPrivateChat"
+    user_id: Int53
+    force: Bool = False

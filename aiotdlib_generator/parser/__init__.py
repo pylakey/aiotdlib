@@ -1,5 +1,5 @@
 from .entities import (
     Constructor,
-    Method,
+    Function,
 )
 from .parser import TDApiParser

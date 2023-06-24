@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SetSupergroupUsername(BaseObject):
     """
-    Changes the username of a supergroup or channel, requires owner privileges in the supergroup or channel
-    
+    Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel
+
     :param supergroup_id: Identifier of the supergroup or channel
-    :type supergroup_id: :class:`int`
-    
-    :param username: New value of the username. Use an empty string to remove the username
-    :type username: :class:`str`
-    
+    :type supergroup_id: :class:`Int53`
+    :param username: New value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
+    :type username: :class:`String`
     """
 
-    ID: str = Field("setSupergroupUsername", alias="@type")
-    supergroup_id: int
-    username: str
-
-    @staticmethod
-    def read(q: dict) -> SetSupergroupUsername:
-        return SetSupergroupUsername.construct(**q)
+    ID: typing.Literal["setSupergroupUsername"] = "setSupergroupUsername"
+    supergroup_id: Int53
+    username: String

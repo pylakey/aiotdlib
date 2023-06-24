@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetMenuButton(BaseObject):
     """
     Returns menu button set by the bot for the given user; for bots only
-    
+
     :param user_id: Identifier of the user or 0 to get the default menu button
-    :type user_id: :class:`int`
-    
+    :type user_id: :class:`Int53`
     """
 
-    ID: str = Field("getMenuButton", alias="@type")
-    user_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetMenuButton:
-        return GetMenuButton.construct(**q)
+    ID: typing.Literal["getMenuButton"] = "getMenuButton"
+    user_id: Int53

@@ -9,34 +9,29 @@ import typing
 
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import ChatReportReason
+from ..types.base import *
+
+from ..types.all import (
+    ChatReportReason,
+)
 
 
 class ReportChatPhoto(BaseObject):
     """
     Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param file_id: Identifier of the photo to report. Only full photos from chatPhoto can be reported
-    :type file_id: :class:`int`
-    
+    :type file_id: :class:`Int32`
     :param reason: The reason for reporting the chat photo
     :type reason: :class:`ChatReportReason`
-    
-    :param text: Additional report details; 0-1024 characters, defaults to None
-    :type text: :class:`str`, optional
-    
+    :param text: Additional report details; 0-1024 characters
+    :type text: :class:`String`
     """
 
-    ID: str = Field("reportChatPhoto", alias="@type")
-    chat_id: int
-    file_id: int
+    ID: typing.Literal["reportChatPhoto"] = "reportChatPhoto"
+    chat_id: Int53
+    file_id: Int32
     reason: ChatReportReason
-    text: typing.Optional[str] = Field(None, max_length=1024)
-
-    @staticmethod
-    def read(q: dict) -> ReportChatPhoto:
-        return ReportChatPhoto.construct(**q)
+    text: String = Field("", max_length=1024)

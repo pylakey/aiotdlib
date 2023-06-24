@@ -9,6 +9,11 @@ from enum import IntEnum
 import pkg_resources
 import ujson
 
+from aiotdlib.utils import (
+    Query,
+    encode_query,
+)
+
 TDLIB_MAX_INT = 2 ** 63 - 1
 log_message_callback_type = CFUNCTYPE(None, c_int, c_char_p)
 ARCH_ALIASES = {
@@ -123,21 +128,21 @@ class TDJson:
         self.td_json_client = self.__td_create_client_id()
         self.execute({'@type': 'setLogVerbosityLevel', 'new_verbosity_level': verbosity})
 
-    def send(self, query: dict):
+    def send(self, query: Query):
         if not bool(self.td_json_client):
             raise RuntimeError('Instance is not initialized')
 
-        dumped_query = ujson.dumps(query, ensure_ascii=False).encode('utf-8')
-        self.logger.debug(f'[me >>>] Sending {dumped_query}')
-        self.__td_send(self.td_json_client, dumped_query)
+        query = encode_query(query)
+        self.logger.debug(f'[me >>>] Sending {query}')
+        self.__td_send(self.td_json_client, query)
 
-    def execute(self, query: dict) -> typing.Optional[dict]:
+    def execute(self, query: Query) -> typing.Optional[dict]:
         if not bool(self.td_json_client):
             raise RuntimeError('Instance is not initialized')
 
-        dumped_query = ujson.dumps(query, ensure_ascii=False).encode('utf-8')
-        self.logger.debug(f'Executing query {dumped_query} as client {self.td_json_client}')
-        result = self.__td_execute(dumped_query)
+        query = encode_query(query)
+        self.logger.debug(f'Executing query {query} as client {self.td_json_client}')
+        result = self.__td_execute(query)
 
         if result:
             result = ujson.loads(result)

@@ -5,32 +5,30 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import DraftMessage
+from ..types.base import *
+
+from ..types.all import (
+    DraftMessage,
+)
 
 
 class SetChatDraftMessage(BaseObject):
     """
     Changes the draft message in a chat
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param message_thread_id: If not 0, a message thread identifier in which the draft was changed
-    :type message_thread_id: :class:`int`
-    
-    :param draft_message: New draft message; pass null to remove the draft
-    :type draft_message: :class:`DraftMessage`
-    
+    :type message_thread_id: :class:`Int53`
+    :param draft_message: New draft message; pass null to remove the draft, defaults to None
+    :type draft_message: :class:`DraftMessage`, optional
     """
 
-    ID: str = Field("setChatDraftMessage", alias="@type")
-    chat_id: int
-    message_thread_id: int
-    draft_message: DraftMessage
-
-    @staticmethod
-    def read(q: dict) -> SetChatDraftMessage:
-        return SetChatDraftMessage.construct(**q)
+    ID: typing.Literal["setChatDraftMessage"] = "setChatDraftMessage"
+    chat_id: Int53
+    message_thread_id: Int53 = 0
+    draft_message: typing.Optional[DraftMessage] = None

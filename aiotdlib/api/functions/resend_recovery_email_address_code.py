@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ResendRecoveryEmailAddressCode(BaseObject):
     """
     Resends the 2-step verification recovery email address verification code
-    
     """
 
-    ID: str = Field("resendRecoveryEmailAddressCode", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> ResendRecoveryEmailAddressCode:
-        return ResendRecoveryEmailAddressCode.construct(**q)
+    ID: typing.Literal["resendRecoveryEmailAddressCode"] = "resendRecoveryEmailAddressCode"

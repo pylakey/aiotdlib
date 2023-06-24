@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ClickPremiumSubscriptionButton(BaseObject):
     """
     Informs TDLib that the user clicked Premium subscription button on the Premium features screen
-    
     """
 
-    ID: str = Field("clickPremiumSubscriptionButton", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> ClickPremiumSubscriptionButton:
-        return ClickPremiumSubscriptionButton.construct(**q)
+    ID: typing.Literal["clickPremiumSubscriptionButton"] = "clickPremiumSubscriptionButton"

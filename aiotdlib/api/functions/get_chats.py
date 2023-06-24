@@ -5,28 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import ChatList
+from ..types.base import *
+
+from ..types.all import (
+    ChatList,
+)
 
 
 class GetChats(BaseObject):
     """
     Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
-    
-    :param chat_list: The chat list in which to return chats; pass null to get chats from the main chat list
-    :type chat_list: :class:`ChatList`
-    
+
     :param limit: The maximum number of chats to be returned
-    :type limit: :class:`int`
-    
+    :type limit: :class:`Int32`
+    :param chat_list: The chat list in which to return chats; pass null to get chats from the main chat list, defaults to None
+    :type chat_list: :class:`ChatList`, optional
     """
 
-    ID: str = Field("getChats", alias="@type")
-    chat_list: ChatList
-    limit: int
-
-    @staticmethod
-    def read(q: dict) -> GetChats:
-        return GetChats.construct(**q)
+    ID: typing.Literal["getChats"] = "getChats"
+    limit: Int32
+    chat_list: typing.Optional[ChatList] = None

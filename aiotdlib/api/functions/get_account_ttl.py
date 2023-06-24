@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetAccountTtl(BaseObject):
     """
     Returns the period of inactivity after which the account of the current user will automatically be deleted
-    
     """
 
-    ID: str = Field("getAccountTtl", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetAccountTtl:
-        return GetAccountTtl.construct(**q)
+    ID: typing.Literal["getAccountTtl"] = "getAccountTtl"

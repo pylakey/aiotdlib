@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class CleanFileName(BaseObject):
     """
     Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. Can be called synchronously
-    
+
     :param file_name: File name or path to the file
-    :type file_name: :class:`str`
-    
+    :type file_name: :class:`String`
     """
 
-    ID: str = Field("cleanFileName", alias="@type")
-    file_name: str
-
-    @staticmethod
-    def read(q: dict) -> CleanFileName:
-        return CleanFileName.construct(**q)
+    ID: typing.Literal["cleanFileName"] = "cleanFileName"
+    file_name: String

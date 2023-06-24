@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class CheckRecoveryEmailAddressCode(BaseObject):
     """
     Checks the 2-step verification recovery email address verification code
-    
+
     :param code: Verification code to check
-    :type code: :class:`str`
-    
+    :type code: :class:`String`
     """
 
-    ID: str = Field("checkRecoveryEmailAddressCode", alias="@type")
-    code: str
-
-    @staticmethod
-    def read(q: dict) -> CheckRecoveryEmailAddressCode:
-        return CheckRecoveryEmailAddressCode.construct(**q)
+    ID: typing.Literal["checkRecoveryEmailAddressCode"] = "checkRecoveryEmailAddressCode"
+    code: String

@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class TerminateAllOtherSessions(BaseObject):
     """
     Terminates all other sessions of the current user
-    
     """
 
-    ID: str = Field("terminateAllOtherSessions", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> TerminateAllOtherSessions:
-        return TerminateAllOtherSessions.construct(**q)
+    ID: typing.Literal["terminateAllOtherSessions"] = "terminateAllOtherSessions"

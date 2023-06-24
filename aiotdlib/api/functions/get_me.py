@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetMe(BaseObject):
     """
     Returns the current user
-    
     """
 
-    ID: str = Field("getMe", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetMe:
-        return GetMe.construct(**q)
+    ID: typing.Literal["getMe"] = "getMe"

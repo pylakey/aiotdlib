@@ -5,28 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import InputFile
+from ..types.base import *
+
+from ..types.all import (
+    InputFile,
+)
 
 
 class SetStickerPositionInSet(BaseObject):
     """
     Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
-    
+
     :param sticker: Sticker
     :type sticker: :class:`InputFile`
-    
     :param position: New position of the sticker in the set, 0-based
-    :type position: :class:`int`
-    
+    :type position: :class:`Int32`
     """
 
-    ID: str = Field("setStickerPositionInSet", alias="@type")
+    ID: typing.Literal["setStickerPositionInSet"] = "setStickerPositionInSet"
     sticker: InputFile
-    position: int
-
-    @staticmethod
-    def read(q: dict) -> SetStickerPositionInSet:
-        return SetStickerPositionInSet.construct(**q)
+    position: Int32

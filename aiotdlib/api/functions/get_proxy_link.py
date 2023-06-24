@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetProxyLink(BaseObject):
     """
     Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
-    
+
     :param proxy_id: Proxy identifier
-    :type proxy_id: :class:`int`
-    
+    :type proxy_id: :class:`Int32`
     """
 
-    ID: str = Field("getProxyLink", alias="@type")
-    proxy_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetProxyLink:
-        return GetProxyLink.construct(**q)
+    ID: typing.Literal["getProxyLink"] = "getProxyLink"
+    proxy_id: Int32

@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetChatListsToAddChat(BaseObject):
     """
     Returns chat lists to which the chat can be added. This is an offline request
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     """
 
-    ID: str = Field("getChatListsToAddChat", alias="@type")
-    chat_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetChatListsToAddChat:
-        return GetChatListsToAddChat.construct(**q)
+    ID: typing.Literal["getChatListsToAddChat"] = "getChatListsToAddChat"
+    chat_id: Int53

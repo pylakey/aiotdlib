@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetNetworkStatistics(BaseObject):
     """
     Returns network data usage statistics. Can be called before authorization
-    
+
     :param only_current: Pass true to get statistics only for the current library launch
-    :type only_current: :class:`bool`
-    
+    :type only_current: :class:`Bool`
     """
 
-    ID: str = Field("getNetworkStatistics", alias="@type")
-    only_current: bool
-
-    @staticmethod
-    def read(q: dict) -> GetNetworkStatistics:
-        return GetNetworkStatistics.construct(**q)
+    ID: typing.Literal["getNetworkStatistics"] = "getNetworkStatistics"
+    only_current: Bool = False

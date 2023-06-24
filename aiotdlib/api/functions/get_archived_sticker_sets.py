@@ -5,31 +5,30 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
+
+from ..types.all import (
+    StickerType,
+)
 
 
 class GetArchivedStickerSets(BaseObject):
     """
     Returns a list of archived sticker sets
-    
-    :param is_masks: Pass true to return mask stickers sets; pass false to return ordinary sticker sets
-    :type is_masks: :class:`bool`
-    
+
+    :param sticker_type: Type of the sticker sets to return
+    :type sticker_type: :class:`StickerType`
     :param offset_sticker_set_id: Identifier of the sticker set from which to return the result
-    :type offset_sticker_set_id: :class:`int`
-    
+    :type offset_sticker_set_id: :class:`Int64`
     :param limit: The maximum number of sticker sets to return; up to 100
-    :type limit: :class:`int`
-    
+    :type limit: :class:`Int32`
     """
 
-    ID: str = Field("getArchivedStickerSets", alias="@type")
-    is_masks: bool
-    offset_sticker_set_id: int
-    limit: int
-
-    @staticmethod
-    def read(q: dict) -> GetArchivedStickerSets:
-        return GetArchivedStickerSets.construct(**q)
+    ID: typing.Literal["getArchivedStickerSets"] = "getArchivedStickerSets"
+    sticker_type: StickerType
+    offset_sticker_set_id: Int64
+    limit: Int32

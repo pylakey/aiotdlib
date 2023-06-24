@@ -5,35 +5,29 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class PinChatMessage(BaseObject):
     """
     Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
-    
+
     :param chat_id: Identifier of the chat
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param message_id: Identifier of the new pinned message
-    :type message_id: :class:`int`
-    
+    :type message_id: :class:`Int53`
     :param disable_notification: Pass true to disable notification about the pinned message. Notifications are always disabled in channels and private chats
-    :type disable_notification: :class:`bool`
-    
+    :type disable_notification: :class:`Bool`
     :param only_for_self: Pass true to pin the message only for self; private chats only
-    :type only_for_self: :class:`bool`
-    
+    :type only_for_self: :class:`Bool`
     """
 
-    ID: str = Field("pinChatMessage", alias="@type")
-    chat_id: int
-    message_id: int
-    disable_notification: bool
-    only_for_self: bool
-
-    @staticmethod
-    def read(q: dict) -> PinChatMessage:
-        return PinChatMessage.construct(**q)
+    ID: typing.Literal["pinChatMessage"] = "pinChatMessage"
+    chat_id: Int53
+    message_id: Int53
+    disable_notification: Bool = False
+    only_for_self: Bool = False

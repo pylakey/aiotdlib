@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class CheckAuthenticationPasswordRecoveryCode(BaseObject):
     """
-    Checks whether a password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
-    
+    Checks whether a 2-step verification password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
+
     :param recovery_code: Recovery code to check
-    :type recovery_code: :class:`str`
-    
+    :type recovery_code: :class:`String`
     """
 
-    ID: str = Field("checkAuthenticationPasswordRecoveryCode", alias="@type")
-    recovery_code: str
-
-    @staticmethod
-    def read(q: dict) -> CheckAuthenticationPasswordRecoveryCode:
-        return CheckAuthenticationPasswordRecoveryCode.construct(**q)
+    ID: typing.Literal["checkAuthenticationPasswordRecoveryCode"] = "checkAuthenticationPasswordRecoveryCode"
+    recovery_code: String

@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class RemoveSavedNotificationSound(BaseObject):
     """
     Removes a notification sound from the list of saved notification sounds
-    
+
     :param notification_sound_id: Identifier of the notification sound
-    :type notification_sound_id: :class:`int`
-    
+    :type notification_sound_id: :class:`Int64`
     """
 
-    ID: str = Field("removeSavedNotificationSound", alias="@type")
-    notification_sound_id: int
-
-    @staticmethod
-    def read(q: dict) -> RemoveSavedNotificationSound:
-        return RemoveSavedNotificationSound.construct(**q)
+    ID: typing.Literal["removeSavedNotificationSound"] = "removeSavedNotificationSound"
+    notification_sound_id: Int64

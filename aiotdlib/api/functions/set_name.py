@@ -9,25 +9,19 @@ import typing
 
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SetName(BaseObject):
     """
     Changes the first and last name of the current user
-    
+
     :param first_name: The new value of the first name for the current user; 1-64 characters
-    :type first_name: :class:`str`
-    
-    :param last_name: The new value of the optional last name for the current user; 0-64 characters, defaults to None
-    :type last_name: :class:`str`, optional
-    
+    :type first_name: :class:`String`
+    :param last_name: The new value of the optional last name for the current user; 0-64 characters
+    :type last_name: :class:`String`
     """
 
-    ID: str = Field("setName", alias="@type")
-    first_name: str = Field(..., min_length=1, max_length=64)
-    last_name: typing.Optional[str] = Field(None, max_length=64)
-
-    @staticmethod
-    def read(q: dict) -> SetName:
-        return SetName.construct(**q)
+    ID: typing.Literal["setName"] = "setName"
+    first_name: String = Field(..., min_length=1, max_length=64)
+    last_name: String = Field("", max_length=64)

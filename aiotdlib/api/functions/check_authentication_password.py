@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class CheckAuthenticationPassword(BaseObject):
     """
-    Checks the authentication password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
-    
-    :param password: The password to check
-    :type password: :class:`str`
-    
+    Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
+
+    :param password: The 2-step verification password to check
+    :type password: :class:`String`
     """
 
-    ID: str = Field("checkAuthenticationPassword", alias="@type")
-    password: str
-
-    @staticmethod
-    def read(q: dict) -> CheckAuthenticationPassword:
-        return CheckAuthenticationPassword.construct(**q)
+    ID: typing.Literal["checkAuthenticationPassword"] = "checkAuthenticationPassword"
+    password: String

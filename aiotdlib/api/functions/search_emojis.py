@@ -5,31 +5,26 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SearchEmojis(BaseObject):
     """
     Searches for emojis by keywords. Supported only if the file database is enabled
-    
+
     :param text: Text to search for
-    :type text: :class:`str`
-    
+    :type text: :class:`String`
     :param exact_match: Pass true if only emojis, which exactly match the text, needs to be returned
-    :type exact_match: :class:`bool`
-    
+    :type exact_match: :class:`Bool`
     :param input_language_codes: List of possible IETF language tags of the user's input language; may be empty if unknown
-    :type input_language_codes: :class:`list[str]`
-    
+    :type input_language_codes: :class:`Vector[String]`
     """
 
-    ID: str = Field("searchEmojis", alias="@type")
-    text: str
-    exact_match: bool
-    input_language_codes: list[str]
-
-    @staticmethod
-    def read(q: dict) -> SearchEmojis:
-        return SearchEmojis.construct(**q)
+    ID: typing.Literal["searchEmojis"] = "searchEmojis"
+    text: String
+    exact_match: Bool = False
+    input_language_codes: Vector[String] = []

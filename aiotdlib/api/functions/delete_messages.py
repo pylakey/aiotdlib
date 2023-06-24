@@ -5,31 +5,26 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class DeleteMessages(BaseObject):
     """
     Deletes messages
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param message_ids: Identifiers of the messages to be deleted
-    :type message_ids: :class:`list[int]`
-    
+    :type message_ids: :class:`Vector[Int53]`
     :param revoke: Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
-    :type revoke: :class:`bool`
-    
+    :type revoke: :class:`Bool`
     """
 
-    ID: str = Field("deleteMessages", alias="@type")
-    chat_id: int
-    message_ids: list[int]
-    revoke: bool
-
-    @staticmethod
-    def read(q: dict) -> DeleteMessages:
-        return DeleteMessages.construct(**q)
+    ID: typing.Literal["deleteMessages"] = "deleteMessages"
+    chat_id: Int53
+    message_ids: Vector[Int53]
+    revoke: Bool = False

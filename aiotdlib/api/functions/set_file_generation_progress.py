@@ -5,31 +5,26 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SetFileGenerationProgress(BaseObject):
     """
     Informs TDLib on a file generation progress
-    
+
     :param generation_id: The identifier of the generation process
-    :type generation_id: :class:`int`
-    
-    :param expected_size: Expected size of the generated file, in bytes; 0 if unknown
-    :type expected_size: :class:`int`
-    
+    :type generation_id: :class:`Int64`
     :param local_prefix_size: The number of bytes already generated
-    :type local_prefix_size: :class:`int`
-    
+    :type local_prefix_size: :class:`Int53`
+    :param expected_size: Expected size of the generated file, in bytes; 0 if unknown, defaults to None
+    :type expected_size: :class:`Int53`, optional
     """
 
-    ID: str = Field("setFileGenerationProgress", alias="@type")
-    generation_id: int
-    expected_size: int
-    local_prefix_size: int
-
-    @staticmethod
-    def read(q: dict) -> SetFileGenerationProgress:
-        return SetFileGenerationProgress.construct(**q)
+    ID: typing.Literal["setFileGenerationProgress"] = "setFileGenerationProgress"
+    generation_id: Int64
+    local_prefix_size: Int53
+    expected_size: typing.Optional[Int53] = 0

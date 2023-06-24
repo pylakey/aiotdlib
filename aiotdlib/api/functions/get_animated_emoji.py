@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetAnimatedEmoji(BaseObject):
     """
     Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
-    
+
     :param emoji: The emoji
-    :type emoji: :class:`str`
-    
+    :type emoji: :class:`String`
     """
 
-    ID: str = Field("getAnimatedEmoji", alias="@type")
-    emoji: str
-
-    @staticmethod
-    def read(q: dict) -> GetAnimatedEmoji:
-        return GetAnimatedEmoji.construct(**q)
+    ID: typing.Literal["getAnimatedEmoji"] = "getAnimatedEmoji"
+    emoji: String

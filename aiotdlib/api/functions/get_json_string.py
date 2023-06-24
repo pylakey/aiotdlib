@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import JsonValue
+from ..types.base import *
+
+from ..types.all import (
+    JsonValue,
+)
 
 
 class GetJsonString(BaseObject):
     """
     Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously
-    
+
     :param json_value: The JsonValue object
     :type json_value: :class:`JsonValue`
-    
     """
 
-    ID: str = Field("getJsonString", alias="@type")
+    ID: typing.Literal["getJsonString"] = "getJsonString"
     json_value: JsonValue
-
-    @staticmethod
-    def read(q: dict) -> GetJsonString:
-        return GetJsonString.construct(**q)

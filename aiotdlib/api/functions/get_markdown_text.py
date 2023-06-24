@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import FormattedText
+from ..types.base import *
+
+from ..types.all import (
+    FormattedText,
+)
 
 
 class GetMarkdownText(BaseObject):
     """
     Replaces text entities with Markdown formatting in a human-friendly format. Entities that can't be represented in Markdown unambiguously are kept as is. Can be called synchronously
-    
+
     :param text: The text
     :type text: :class:`FormattedText`
-    
     """
 
-    ID: str = Field("getMarkdownText", alias="@type")
+    ID: typing.Literal["getMarkdownText"] = "getMarkdownText"
     text: FormattedText
-
-    @staticmethod
-    def read(q: dict) -> GetMarkdownText:
-        return GetMarkdownText.construct(**q)

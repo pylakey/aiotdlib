@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetDatabaseStatistics(BaseObject):
     """
     Returns database statistics
-    
     """
 
-    ID: str = Field("getDatabaseStatistics", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetDatabaseStatistics:
-        return GetDatabaseStatistics.construct(**q)
+    ID: typing.Literal["getDatabaseStatistics"] = "getDatabaseStatistics"

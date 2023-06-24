@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetMessageFileType(BaseObject):
     """
     Returns information about a file with messages exported from another application
-    
+
     :param message_file_head: Beginning of the message file; up to 100 first lines
-    :type message_file_head: :class:`str`
-    
+    :type message_file_head: :class:`String`
     """
 
-    ID: str = Field("getMessageFileType", alias="@type")
-    message_file_head: str
-
-    @staticmethod
-    def read(q: dict) -> GetMessageFileType:
-        return GetMessageFileType.construct(**q)
+    ID: typing.Literal["getMessageFileType"] = "getMessageFileType"
+    message_file_head: String

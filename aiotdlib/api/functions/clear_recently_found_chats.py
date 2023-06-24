@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ClearRecentlyFoundChats(BaseObject):
     """
     Clears the list of recently found chats
-    
     """
 
-    ID: str = Field("clearRecentlyFoundChats", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> ClearRecentlyFoundChats:
-        return ClearRecentlyFoundChats.construct(**q)
+    ID: typing.Literal["clearRecentlyFoundChats"] = "clearRecentlyFoundChats"

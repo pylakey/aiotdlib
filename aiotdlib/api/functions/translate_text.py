@@ -5,31 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
+
+from ..types.all import (
+    FormattedText,
+)
 
 
 class TranslateText(BaseObject):
     """
-    Translates a text to the given language. Returns a 404 error if the translation can't be performed
-    
+    Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
+
     :param text: Text to translate
-    :type text: :class:`str`
-    
-    :param from_language_code: A two-letter ISO 639-1 language code of the language from which the message is translated. If empty, the language will be detected automatically
-    :type from_language_code: :class:`str`
-    
-    :param to_language_code: A two-letter ISO 639-1 language code of the language to which the message is translated
-    :type to_language_code: :class:`str`
-    
+    :type text: :class:`FormattedText`
+    :param to_language_code: Language code of the language to which the message is translated. Must be one of "af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-CN", "zh", "zh-Hans", "zh-TW", "zh-Hant", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "iw", "hi", "hmn", "hu", "is", "ig", "id", "in", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "ji", "yo", "zu"
+    :type to_language_code: :class:`String`
     """
 
-    ID: str = Field("translateText", alias="@type")
-    text: str
-    from_language_code: str
-    to_language_code: str
-
-    @staticmethod
-    def read(q: dict) -> TranslateText:
-        return TranslateText.construct(**q)
+    ID: typing.Literal["translateText"] = "translateText"
+    text: FormattedText
+    to_language_code: String

@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import Location
+from ..types.base import *
+
+from ..types.all import (
+    Location,
+)
 
 
 class SearchChatsNearby(BaseObject):
     """
     Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats
-    
+
     :param location: Current user location
     :type location: :class:`Location`
-    
     """
 
-    ID: str = Field("searchChatsNearby", alias="@type")
+    ID: typing.Literal["searchChatsNearby"] = "searchChatsNearby"
     location: Location
-
-    @staticmethod
-    def read(q: dict) -> SearchChatsNearby:
-        return SearchChatsNearby.construct(**q)

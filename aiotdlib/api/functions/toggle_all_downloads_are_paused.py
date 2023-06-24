@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ToggleAllDownloadsArePaused(BaseObject):
     """
     Changes pause state of all files in the file download list
-    
+
     :param are_paused: Pass true to pause all downloads; pass false to unpause them
-    :type are_paused: :class:`bool`
-    
+    :type are_paused: :class:`Bool`
     """
 
-    ID: str = Field("toggleAllDownloadsArePaused", alias="@type")
-    are_paused: bool
-
-    @staticmethod
-    def read(q: dict) -> ToggleAllDownloadsArePaused:
-        return ToggleAllDownloadsArePaused.construct(**q)
+    ID: typing.Literal["toggleAllDownloadsArePaused"] = "toggleAllDownloadsArePaused"
+    are_paused: Bool = False

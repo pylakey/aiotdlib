@@ -5,27 +5,30 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
+
+from ..types.all import (
+    StickerType,
+)
 
 
 class SearchStickers(BaseObject):
     """
-    Searches for stickers from public sticker sets that correspond to a given emoji
-    
-    :param emoji: String representation of emoji; must be non-empty
-    :type emoji: :class:`str`
-    
-    :param limit: The maximum number of stickers to be returned
-    :type limit: :class:`int`
-    
+    Searches for stickers from public sticker sets that correspond to any of the given emoji
+
+    :param sticker_type: Type of the stickers to return
+    :type sticker_type: :class:`StickerType`
+    :param emojis: Space-separated list of emoji to search for; must be non-empty
+    :type emojis: :class:`String`
+    :param limit: The maximum number of stickers to be returned; 0-100
+    :type limit: :class:`Int32`
     """
 
-    ID: str = Field("searchStickers", alias="@type")
-    emoji: str
-    limit: int
-
-    @staticmethod
-    def read(q: dict) -> SearchStickers:
-        return SearchStickers.construct(**q)
+    ID: typing.Literal["searchStickers"] = "searchStickers"
+    sticker_type: StickerType
+    emojis: String
+    limit: Int32

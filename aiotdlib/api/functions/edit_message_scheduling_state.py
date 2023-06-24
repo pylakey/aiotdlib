@@ -5,32 +5,30 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import MessageSchedulingState
+from ..types.base import *
+
+from ..types.all import (
+    MessageSchedulingState,
+)
 
 
 class EditMessageSchedulingState(BaseObject):
     """
     Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
-    
+
     :param chat_id: The chat the message belongs to
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param message_id: Identifier of the message
-    :type message_id: :class:`int`
-    
-    :param scheduling_state: The new message scheduling state; pass null to send the message immediately
-    :type scheduling_state: :class:`MessageSchedulingState`
-    
+    :type message_id: :class:`Int53`
+    :param scheduling_state: The new message scheduling state; pass null to send the message immediately, defaults to None
+    :type scheduling_state: :class:`MessageSchedulingState`, optional
     """
 
-    ID: str = Field("editMessageSchedulingState", alias="@type")
-    chat_id: int
-    message_id: int
-    scheduling_state: MessageSchedulingState
-
-    @staticmethod
-    def read(q: dict) -> EditMessageSchedulingState:
-        return EditMessageSchedulingState.construct(**q)
+    ID: typing.Literal["editMessageSchedulingState"] = "editMessageSchedulingState"
+    chat_id: Int53
+    message_id: Int53
+    scheduling_state: typing.Optional[MessageSchedulingState] = None

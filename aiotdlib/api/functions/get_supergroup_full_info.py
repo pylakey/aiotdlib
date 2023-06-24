@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetSupergroupFullInfo(BaseObject):
     """
     Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
-    
+
     :param supergroup_id: Supergroup or channel identifier
-    :type supergroup_id: :class:`int`
-    
+    :type supergroup_id: :class:`Int53`
     """
 
-    ID: str = Field("getSupergroupFullInfo", alias="@type")
-    supergroup_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetSupergroupFullInfo:
-        return GetSupergroupFullInfo.construct(**q)
+    ID: typing.Literal["getSupergroupFullInfo"] = "getSupergroupFullInfo"
+    supergroup_id: Int53

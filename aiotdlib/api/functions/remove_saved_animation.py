@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import InputFile
+from ..types.base import *
+
+from ..types.all import (
+    InputFile,
+)
 
 
 class RemoveSavedAnimation(BaseObject):
     """
     Removes an animation from the list of saved animations
-    
+
     :param animation: Animation file to be removed
     :type animation: :class:`InputFile`
-    
     """
 
-    ID: str = Field("removeSavedAnimation", alias="@type")
+    ID: typing.Literal["removeSavedAnimation"] = "removeSavedAnimation"
     animation: InputFile
-
-    @staticmethod
-    def read(q: dict) -> RemoveSavedAnimation:
-        return RemoveSavedAnimation.construct(**q)

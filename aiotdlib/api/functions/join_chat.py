@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class JoinChat(BaseObject):
     """
     Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     """
 
-    ID: str = Field("joinChat", alias="@type")
-    chat_id: int
-
-    @staticmethod
-    def read(q: dict) -> JoinChat:
-        return JoinChat.construct(**q)
+    ID: typing.Literal["joinChat"] = "joinChat"
+    chat_id: Int53

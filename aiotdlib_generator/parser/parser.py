@@ -5,17 +5,17 @@ import urllib.request
 from .entities import (
     Constructor,
     ConstructorShort,
-    Method,
+    Function,
     Parameter,
 )
 from .utils import upper_first
 
 DEFAULT_TD_API_SCHEME_URL = "https://raw.githubusercontent.com/pylakey/td/master/td/generate/scheme/td_api.tl"
-
+UNDOCUMENTED_NULLABLE_FIELDS = {}
 
 class TDApiParser:
     @staticmethod
-    def parse() -> list[typing.Union[Constructor, Method]]:
+    def parse() -> list[typing.Union[Constructor, Function]]:
         abstract_class_docs_regex = re.compile(r"^//@class (?P<name>[^@]*) @description (?P<description>.*)$")
         description_regex = re.compile(r"^//@description (?P<description>.*)$")
         parameter_description_regex = re.compile(r"^//@(?P<name>.*?) (?P<description>.*)$")
@@ -23,6 +23,9 @@ class TDApiParser:
         args_regex = re.compile(r"(?P<name>\w+):(?P<type>[\w<>]+)")
         param_length_constraint = re.compile(r"(?P<min_length>\d+)-(?P<max_length>\d+) characters")
         nullability_constraint = re.compile(r".*may be null.*")
+        empty_constraint = re.compile(r".*may be empty.*")
+        default_value_regex = re.compile(r'defaults to (?P<default_value>\w*?)')
+        default_value_regex2 = re.compile(r"(?P<default_value>\w*?) if (none|unknown)")
 
         scheme = urllib.request.urlopen(DEFAULT_TD_API_SCHEME_URL).read().decode('utf-8')
 
@@ -85,10 +88,12 @@ class TDApiParser:
 
                 for arg_name, arg_type in args_regex.findall(entity_match.group('args')):
                     if arg_name in ['description', 'class']:
-                        arg_name = f'param_{arg_name}'
+                        arg_description = current_entity_params_descriptions.get(f'param_{arg_name}')
+                    else:
+                        arg_description = current_entity_params_descriptions.get(arg_name)
 
-                    arg_description = current_entity_params_descriptions.get(arg_name)
                     arg_nullable = False
+                    arg_default_value = None
                     arg_min_length = None
                     arg_max_length = None
 
@@ -111,19 +116,66 @@ class TDApiParser:
 
                                 arg_max_length = int(param_length_constraint_match.group('max_length'))
 
-                    entity_parameters.append(
-                        Parameter(
-                            name=arg_name,
-                            type=arg_type,
-                            doc=arg_description,
-                            nullable=arg_nullable,
-                            min_length=arg_min_length,
-                            max_length=arg_max_length,
-                        )
+                            default_value_match = default_value_regex.match(c)
+
+                            if bool(default_value_match):
+                                arg_nullable = True
+                                arg_default_value = default_value_match.group('default_value')
+
+                            default_value_match = default_value_regex2.match(c)
+
+                            if bool(default_value_match):
+                                arg_nullable = True
+                                arg_default_value = default_value_match.group('default_value')
+
+                            empty_default_value_match = empty_constraint.match(c)
+
+                            if bool(empty_default_value_match):
+                                arg_type_lower = arg_type.lower()
+
+                                if arg_type_lower == 'string':
+                                    arg_default_value = '""'
+                                elif arg_type_lower.startswith("vector"):
+                                    arg_default_value = '[]'
+                                elif arg_type_lower == 'bytes':
+                                    arg_default_value = 'b""'
+
+                    if not bool(arg_default_value):
+                        # Some workarounds for default values. BETA!
+                        if (
+                                'true, if' in arg_description.lower()
+                                or 'pass true' in arg_description.lower()
+                        ):
+                            arg_default_value = 'False'
+                        elif (
+                                'if not 0' in arg_description.lower()
+                                or 'pass 0 if' in arg_description.lower()
+                                or 'if 0' in arg_description.lower()
+                        ):
+                            arg_default_value = '0'
+                        elif 'pass null' in arg_description.lower():
+                            arg_default_value = 'None'
+                            arg_nullable = True
+                        elif arg_min_length is not None and arg_min_length == 0:
+                            arg_default_value = '""'
+                            arg_nullable = False
+
+                    p = Parameter(
+                        name=arg_name,
+                        type=arg_type,
+                        doc=arg_description,
+                        nullable=arg_nullable,
+                        default_value=arg_default_value,
+                        min_length=arg_min_length,
+                        max_length=arg_max_length,
                     )
+                    entity_parameters.append(p)
+
+                entity_parameters = sorted(entity_parameters, key=lambda x: x.nullable)
+                entity_parameters = sorted(entity_parameters, key=lambda x: x.default_value is not None)
 
                 if is_functions_section:
-                    methods[entity_name] = Method(
+                    methods[entity_name] = Function(
                         name=entity_name,
                         doc=current_entity_description,
                         parameters=entity_parameters,
@@ -147,13 +199,15 @@ class TDApiParser:
                                 is_abstract=parent.is_abstract
                             ),
                         )
+
                         parent.subclasses.append(entity)
                     else:
-                        constructors[entity_name] = Constructor(
+                        c = Constructor(
                             name=entity_name,
                             doc=current_entity_description,
                             parameters=entity_parameters,
                         )
+                        constructors[entity_name] = c
 
                 current_entity_params_descriptions = {}
                 current_entity_description = ""
@@ -198,7 +252,7 @@ class TDApiParser:
                 dep_constructor = constructors.pop(name)
                 constructors[constructor_name].cross_deps.append(dep_constructor)
 
-        methods_list: list[Method] = list(methods.values())
+        methods_list: list[Function] = list(methods.values())
         constructors_list: list[Constructor] = list(constructors.values())
 
         # Sorting subclasses and cross_deps lists

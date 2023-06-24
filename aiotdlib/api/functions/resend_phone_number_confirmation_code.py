@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ResendPhoneNumberConfirmationCode(BaseObject):
     """
     Resends phone number confirmation code
-    
     """
 
-    ID: str = Field("resendPhoneNumberConfirmationCode", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> ResendPhoneNumberConfirmationCode:
-        return ResendPhoneNumberConfirmationCode.construct(**q)
+    ID: typing.Literal["resendPhoneNumberConfirmationCode"] = "resendPhoneNumberConfirmationCode"

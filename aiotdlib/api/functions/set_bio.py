@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SetBio(BaseObject):
     """
     Changes the bio of the current user
-    
-    :param bio: The new value of the user bio; 0-GetOption("bio_length_max") characters without line feeds
-    :type bio: :class:`str`
-    
+
+    :param bio: The new value of the user bio; 0-getOption("bio_length_max") characters without line feeds
+    :type bio: :class:`String`
     """
 
-    ID: str = Field("setBio", alias="@type")
-    bio: str
-
-    @staticmethod
-    def read(q: dict) -> SetBio:
-        return SetBio.construct(**q)
+    ID: typing.Literal["setBio"] = "setBio"
+    bio: String

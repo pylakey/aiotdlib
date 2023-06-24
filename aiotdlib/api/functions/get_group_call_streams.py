@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetGroupCallStreams(BaseObject):
     """
     Returns information about available group call streams
-    
+
     :param group_call_id: Group call identifier
-    :type group_call_id: :class:`int`
-    
+    :type group_call_id: :class:`Int32`
     """
 
-    ID: str = Field("getGroupCallStreams", alias="@type")
-    group_call_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetGroupCallStreams:
-        return GetGroupCallStreams.construct(**q)
+    ID: typing.Literal["getGroupCallStreams"] = "getGroupCallStreams"
+    group_call_id: Int32

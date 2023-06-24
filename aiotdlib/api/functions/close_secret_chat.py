@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class CloseSecretChat(BaseObject):
     """
     Closes a secret chat, effectively transferring its state to secretChatStateClosed
-    
+
     :param secret_chat_id: Secret chat identifier
-    :type secret_chat_id: :class:`int`
-    
+    :type secret_chat_id: :class:`Int32`
     """
 
-    ID: str = Field("closeSecretChat", alias="@type")
-    secret_chat_id: int
-
-    @staticmethod
-    def read(q: dict) -> CloseSecretChat:
-        return CloseSecretChat.construct(**q)
+    ID: typing.Literal["closeSecretChat"] = "closeSecretChat"
+    secret_chat_id: Int32

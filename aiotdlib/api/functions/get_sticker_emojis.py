@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import InputFile
+from ..types.base import *
+
+from ..types.all import (
+    InputFile,
+)
 
 
 class GetStickerEmojis(BaseObject):
     """
     Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
-    
+
     :param sticker: Sticker file identifier
     :type sticker: :class:`InputFile`
-    
     """
 
-    ID: str = Field("getStickerEmojis", alias="@type")
+    ID: typing.Literal["getStickerEmojis"] = "getStickerEmojis"
     sticker: InputFile
-
-    @staticmethod
-    def read(q: dict) -> GetStickerEmojis:
-        return GetStickerEmojis.construct(**q)

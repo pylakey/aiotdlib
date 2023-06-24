@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class Close(BaseObject):
     """
     Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent. Can be called before initialization
-    
     """
 
-    ID: str = Field("close", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> Close:
-        return Close.construct(**q)
+    ID: typing.Literal["close"] = "close"

@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SendCustomRequest(BaseObject):
     """
     Sends a custom request; for bots only
-    
+
     :param method: The method name
-    :type method: :class:`str`
-    
+    :type method: :class:`String`
     :param parameters: JSON-serialized method parameters
-    :type parameters: :class:`str`
-    
+    :type parameters: :class:`String`
     """
 
-    ID: str = Field("sendCustomRequest", alias="@type")
-    method: str
-    parameters: str
-
-    @staticmethod
-    def read(q: dict) -> SendCustomRequest:
-        return SendCustomRequest.construct(**q)
+    ID: typing.Literal["sendCustomRequest"] = "sendCustomRequest"
+    method: String
+    parameters: String

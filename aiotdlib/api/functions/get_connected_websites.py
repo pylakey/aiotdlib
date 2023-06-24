@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetConnectedWebsites(BaseObject):
     """
     Returns all website where the current user used Telegram to log in
-    
     """
 
-    ID: str = Field("getConnectedWebsites", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetConnectedWebsites:
-        return GetConnectedWebsites.construct(**q)
+    ID: typing.Literal["getConnectedWebsites"] = "getConnectedWebsites"

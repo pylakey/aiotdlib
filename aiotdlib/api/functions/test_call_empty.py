@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class TestCallEmpty(BaseObject):
     """
     Does nothing; for testing only. This is an offline method. Can be called before authorization
-    
     """
 
-    ID: str = Field("testCallEmpty", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> TestCallEmpty:
-        return TestCallEmpty.construct(**q)
+    ID: typing.Literal["testCallEmpty"] = "testCallEmpty"

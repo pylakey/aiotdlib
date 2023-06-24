@@ -5,28 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import InputFile
+from ..types.base import *
+
+from ..types.all import (
+    InputFile,
+)
 
 
 class SendCallLog(BaseObject):
     """
     Sends log file for a call to Telegram servers
-    
+
     :param call_id: Call identifier
-    :type call_id: :class:`int`
-    
+    :type call_id: :class:`Int32`
     :param log_file: Call log file. Only inputFileLocal and inputFileGenerated are supported
     :type log_file: :class:`InputFile`
-    
     """
 
-    ID: str = Field("sendCallLog", alias="@type")
-    call_id: int
+    ID: typing.Literal["sendCallLog"] = "sendCallLog"
+    call_id: Int32
     log_file: InputFile
-
-    @staticmethod
-    def read(q: dict) -> SendCallLog:
-        return SendCallLog.construct(**q)

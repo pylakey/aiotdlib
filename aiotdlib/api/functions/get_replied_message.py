@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetRepliedMessage(BaseObject):
     """
-    Returns information about a message that is replied by a given message. Also returns the pinned message, the game message, and the invoice message for messages of the types messagePinMessage, messageGameScore, and messagePaymentSuccessful respectively
-    
+    Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground and topic messages without replied message respectively
+
     :param chat_id: Identifier of the chat the message belongs to
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param message_id: Identifier of the reply message
-    :type message_id: :class:`int`
-    
+    :type message_id: :class:`Int53`
     """
 
-    ID: str = Field("getRepliedMessage", alias="@type")
-    chat_id: int
-    message_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetRepliedMessage:
-        return GetRepliedMessage.construct(**q)
+    ID: typing.Literal["getRepliedMessage"] = "getRepliedMessage"
+    chat_id: Int53
+    message_id: Int53

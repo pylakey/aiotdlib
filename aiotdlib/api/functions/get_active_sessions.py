@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetActiveSessions(BaseObject):
     """
     Returns all active sessions of the current user
-    
     """
 
-    ID: str = Field("getActiveSessions", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetActiveSessions:
-        return GetActiveSessions.construct(**q)
+    ID: typing.Literal["getActiveSessions"] = "getActiveSessions"

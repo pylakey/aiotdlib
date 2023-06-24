@@ -5,27 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
+
+from ..types.all import (
+    ChatAvailableReactions,
+)
 
 
 class SetChatAvailableReactions(BaseObject):
     """
     Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
-    
+
     :param chat_id: Identifier of the chat
-    :type chat_id: :class:`int`
-    
-    :param available_reactions: New list of reactions, available in the chat. All reactions must be active
-    :type available_reactions: :class:`list[str]`
-    
+    :type chat_id: :class:`Int53`
+    :param available_reactions: Reactions available in the chat. All emoji reactions must be active
+    :type available_reactions: :class:`ChatAvailableReactions`
     """
 
-    ID: str = Field("setChatAvailableReactions", alias="@type")
-    chat_id: int
-    available_reactions: list[str]
-
-    @staticmethod
-    def read(q: dict) -> SetChatAvailableReactions:
-        return SetChatAvailableReactions.construct(**q)
+    ID: typing.Literal["setChatAvailableReactions"] = "setChatAvailableReactions"
+    chat_id: Int53
+    available_reactions: ChatAvailableReactions

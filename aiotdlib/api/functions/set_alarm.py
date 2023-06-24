@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SetAlarm(BaseObject):
     """
     Succeeds after a specified amount of time has passed. Can be called before initialization
-    
+
     :param seconds: Number of seconds before the function returns
-    :type seconds: :class:`float`
-    
+    :type seconds: :class:`Double`
     """
 
-    ID: str = Field("setAlarm", alias="@type")
-    seconds: float
-
-    @staticmethod
-    def read(q: dict) -> SetAlarm:
-        return SetAlarm.construct(**q)
+    ID: typing.Literal["setAlarm"] = "setAlarm"
+    seconds: Double

@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetApplicationConfig(BaseObject):
     """
     Returns application config, provided by the server. Can be called before authorization
-    
     """
 
-    ID: str = Field("getApplicationConfig", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetApplicationConfig:
-        return GetApplicationConfig.construct(**q)
+    ID: typing.Literal["getApplicationConfig"] = "getApplicationConfig"

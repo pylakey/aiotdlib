@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ResendChangePhoneNumberCode(BaseObject):
     """
-    Re-sends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
-    
+    Resends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
     """
 
-    ID: str = Field("resendChangePhoneNumberCode", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> ResendChangePhoneNumberCode:
-        return ResendChangePhoneNumberCode.construct(**q)
+    ID: typing.Literal["resendChangePhoneNumberCode"] = "resendChangePhoneNumberCode"

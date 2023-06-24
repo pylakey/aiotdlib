@@ -5,31 +5,26 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetMessageStatistics(BaseObject):
     """
     Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param message_id: Message identifier
-    :type message_id: :class:`int`
-    
+    :type message_id: :class:`Int53`
     :param is_dark: Pass true if a dark theme is used by the application
-    :type is_dark: :class:`bool`
-    
+    :type is_dark: :class:`Bool`
     """
 
-    ID: str = Field("getMessageStatistics", alias="@type")
-    chat_id: int
-    message_id: int
-    is_dark: bool
-
-    @staticmethod
-    def read(q: dict) -> GetMessageStatistics:
-        return GetMessageStatistics.construct(**q)
+    ID: typing.Literal["getMessageStatistics"] = "getMessageStatistics"
+    chat_id: Int53
+    message_id: Int53
+    is_dark: Bool = False

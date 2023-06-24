@@ -5,28 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import PhoneNumberAuthenticationSettings
+from ..types.base import *
+
+from ..types.all import (
+    PhoneNumberAuthenticationSettings,
+)
 
 
 class SendPhoneNumberVerificationCode(BaseObject):
     """
     Sends a code to verify a phone number to be added to a user's Telegram Passport
-    
+
     :param phone_number: The phone number of the user, in international format
-    :type phone_number: :class:`str`
-    
-    :param settings: Settings for the authentication of the user's phone number; pass null to use default settings
-    :type settings: :class:`PhoneNumberAuthenticationSettings`
-    
+    :type phone_number: :class:`String`
+    :param settings: Settings for the authentication of the user's phone number; pass null to use default settings, defaults to None
+    :type settings: :class:`PhoneNumberAuthenticationSettings`, optional
     """
 
-    ID: str = Field("sendPhoneNumberVerificationCode", alias="@type")
-    phone_number: str
-    settings: PhoneNumberAuthenticationSettings
-
-    @staticmethod
-    def read(q: dict) -> SendPhoneNumberVerificationCode:
-        return SendPhoneNumberVerificationCode.construct(**q)
+    ID: typing.Literal["sendPhoneNumberVerificationCode"] = "sendPhoneNumberVerificationCode"
+    phone_number: String
+    settings: typing.Optional[PhoneNumberAuthenticationSettings] = None

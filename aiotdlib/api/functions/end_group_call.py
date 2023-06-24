@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class EndGroupCall(BaseObject):
     """
     Ends a group call. Requires groupCall.can_be_managed
-    
+
     :param group_call_id: Group call identifier
-    :type group_call_id: :class:`int`
-    
+    :type group_call_id: :class:`Int32`
     """
 
-    ID: str = Field("endGroupCall", alias="@type")
-    group_call_id: int
-
-    @staticmethod
-    def read(q: dict) -> EndGroupCall:
-        return EndGroupCall.construct(**q)
+    ID: typing.Literal["endGroupCall"] = "endGroupCall"
+    group_call_id: Int32

@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class CreateSecretChat(BaseObject):
     """
     Returns an existing chat corresponding to a known secret chat
-    
+
     :param secret_chat_id: Secret chat identifier
-    :type secret_chat_id: :class:`int`
-    
+    :type secret_chat_id: :class:`Int32`
     """
 
-    ID: str = Field("createSecretChat", alias="@type")
-    secret_chat_id: int
-
-    @staticmethod
-    def read(q: dict) -> CreateSecretChat:
-        return CreateSecretChat.construct(**q)
+    ID: typing.Literal["createSecretChat"] = "createSecretChat"
+    secret_chat_id: Int32

@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetBackgrounds(BaseObject):
     """
     Returns backgrounds installed by the user
-    
+
     :param for_dark_theme: Pass true to order returned backgrounds for a dark theme
-    :type for_dark_theme: :class:`bool`
-    
+    :type for_dark_theme: :class:`Bool`
     """
 
-    ID: str = Field("getBackgrounds", alias="@type")
-    for_dark_theme: bool
-
-    @staticmethod
-    def read(q: dict) -> GetBackgrounds:
-        return GetBackgrounds.construct(**q)
+    ID: typing.Literal["getBackgrounds"] = "getBackgrounds"
+    for_dark_theme: Bool = False

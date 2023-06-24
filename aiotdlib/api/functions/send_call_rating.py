@@ -5,36 +5,33 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import CallProblem
+from ..types.base import *
+
+from ..types.all import (
+    CallProblem,
+)
 
 
 class SendCallRating(BaseObject):
     """
     Sends a call rating
-    
+
     :param call_id: Call identifier
-    :type call_id: :class:`int`
-    
+    :type call_id: :class:`Int32`
     :param rating: Call rating; 1-5
-    :type rating: :class:`int`
-    
+    :type rating: :class:`Int32`
     :param comment: An optional user comment if the rating is less than 5
-    :type comment: :class:`str`
-    
+    :type comment: :class:`String`
     :param problems: List of the exact types of problems with the call, specified by the user
-    :type problems: :class:`list[CallProblem]`
-    
+    :type problems: :class:`Vector[CallProblem]`
     """
 
-    ID: str = Field("sendCallRating", alias="@type")
-    call_id: int
-    rating: int
-    comment: str
-    problems: list[CallProblem]
-
-    @staticmethod
-    def read(q: dict) -> SendCallRating:
-        return SendCallRating.construct(**q)
+    ID: typing.Literal["sendCallRating"] = "sendCallRating"
+    call_id: Int32
+    rating: Int32
+    comment: String
+    problems: Vector[CallProblem]

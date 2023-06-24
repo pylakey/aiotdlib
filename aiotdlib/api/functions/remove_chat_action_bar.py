@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class RemoveChatActionBar(BaseObject):
     """
     Removes a chat action bar without any other action
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     """
 
-    ID: str = Field("removeChatActionBar", alias="@type")
-    chat_id: int
-
-    @staticmethod
-    def read(q: dict) -> RemoveChatActionBar:
-        return RemoveChatActionBar.construct(**q)
+    ID: typing.Literal["removeChatActionBar"] = "removeChatActionBar"
+    chat_id: Int53

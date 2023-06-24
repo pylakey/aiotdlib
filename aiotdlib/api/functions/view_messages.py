@@ -5,35 +5,33 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
+
+from ..types.all import (
+    MessageSource,
+)
 
 
 class ViewMessages(BaseObject):
     """
     Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button). Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
-    :param message_thread_id: If not 0, a message thread identifier in which the messages are being viewed
-    :type message_thread_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param message_ids: The identifiers of the messages being viewed
-    :type message_ids: :class:`list[int]`
-    
+    :type message_ids: :class:`Vector[Int53]`
     :param force_read: Pass true to mark as read the specified messages even the chat is closed
-    :type force_read: :class:`bool`
-    
+    :type force_read: :class:`Bool`
+    :param source: Source of the message view; pass null to guess the source based on chat open state, defaults to None
+    :type source: :class:`MessageSource`, optional
     """
 
-    ID: str = Field("viewMessages", alias="@type")
-    chat_id: int
-    message_thread_id: int
-    message_ids: list[int]
-    force_read: bool
-
-    @staticmethod
-    def read(q: dict) -> ViewMessages:
-        return ViewMessages.construct(**q)
+    ID: typing.Literal["viewMessages"] = "viewMessages"
+    chat_id: Int53
+    message_ids: Vector[Int53]
+    force_read: Bool = False
+    source: typing.Optional[MessageSource] = None

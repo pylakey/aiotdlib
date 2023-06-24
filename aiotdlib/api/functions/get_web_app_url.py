@@ -5,32 +5,33 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import ThemeParameters
+from ..types.base import *
+
+from ..types.all import (
+    ThemeParameters,
+)
 
 
 class GetWebAppUrl(BaseObject):
     """
-    Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp button is pressed
-    
+    Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
+
     :param bot_user_id: Identifier of the target bot
-    :type bot_user_id: :class:`int`
-    
-    :param url: The URL from the keyboardButtonTypeWebApp button
-    :type url: :class:`str`
-    
-    :param theme: Preferred Web App theme; pass null to use the default theme
-    :type theme: :class:`ThemeParameters`
-    
+    :type bot_user_id: :class:`Int53`
+    :param url: The URL from the keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button
+    :type url: :class:`String`
+    :param application_name: Short name of the application; 0-64 English letters, digits, and underscores
+    :type application_name: :class:`String`
+    :param theme: Preferred Web App theme; pass null to use the default theme, defaults to None
+    :type theme: :class:`ThemeParameters`, optional
     """
 
-    ID: str = Field("getWebAppUrl", alias="@type")
-    bot_user_id: int
-    url: str
-    theme: ThemeParameters
-
-    @staticmethod
-    def read(q: dict) -> GetWebAppUrl:
-        return GetWebAppUrl.construct(**q)
+    ID: typing.Literal["getWebAppUrl"] = "getWebAppUrl"
+    bot_user_id: Int53
+    url: String
+    application_name: String
+    theme: typing.Optional[ThemeParameters] = None

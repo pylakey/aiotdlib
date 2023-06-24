@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ResetAllNotificationSettings(BaseObject):
     """
     Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown
-    
     """
 
-    ID: str = Field("resetAllNotificationSettings", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> ResetAllNotificationSettings:
-        return ResetAllNotificationSettings.construct(**q)
+    ID: typing.Literal["resetAllNotificationSettings"] = "resetAllNotificationSettings"

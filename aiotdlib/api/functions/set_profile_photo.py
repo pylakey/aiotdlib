@@ -5,24 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import InputChatPhoto
+from ..types.base import *
+
+from ..types.all import (
+    InputChatPhoto,
+)
 
 
 class SetProfilePhoto(BaseObject):
     """
     Changes a profile photo for the current user
-    
+
     :param photo: Profile photo to set
     :type photo: :class:`InputChatPhoto`
-    
+    :param is_public: Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
+    :type is_public: :class:`Bool`
     """
 
-    ID: str = Field("setProfilePhoto", alias="@type")
+    ID: typing.Literal["setProfilePhoto"] = "setProfilePhoto"
     photo: InputChatPhoto
-
-    @staticmethod
-    def read(q: dict) -> SetProfilePhoto:
-        return SetProfilePhoto.construct(**q)
+    is_public: Bool = False

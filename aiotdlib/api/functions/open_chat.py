@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class OpenChat(BaseObject):
     """
     Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats)
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     """
 
-    ID: str = Field("openChat", alias="@type")
-    chat_id: int
-
-    @staticmethod
-    def read(q: dict) -> OpenChat:
-        return OpenChat.construct(**q)
+    ID: typing.Literal["openChat"] = "openChat"
+    chat_id: Int53

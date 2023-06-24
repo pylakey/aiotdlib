@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetLogStream(BaseObject):
     """
     Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
-    
     """
 
-    ID: str = Field("getLogStream", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetLogStream:
-        return GetLogStream.construct(**q)
+    ID: typing.Literal["getLogStream"] = "getLogStream"

@@ -3,10 +3,11 @@ from http import HTTPStatus
 
 class AioTDLibError(Exception):
     """This is the base exception class for all TDLib API related errors."""
+
     code: int = None
     message: str = None
 
-    def __init__(self, code: int, message: str):
+    def __init__(self, code: int, message: str = "Unknown Error"):
         super().__init__(message)
         self.code = code
         self.message = message
@@ -16,22 +17,22 @@ class AioTDLibError(Exception):
 
 
 class BadRequest(AioTDLibError):
-    def __init__(self, message: str):
-        super(BadRequest, self).__init__(HTTPStatus.BAD_REQUEST, message)
+    def __init__(self, code: int = HTTPStatus.NOT_FOUND, message: str = "Bad request"):
+        super(BadRequest, self).__init__(code, message)
 
 
 class Unauthorized(AioTDLibError):
-    def __init__(self, message: str):
-        super(Unauthorized, self).__init__(HTTPStatus.UNAUTHORIZED, message)
+    def __init__(self, code: int = HTTPStatus.NOT_FOUND, message: str = "Unauthorized"):
+        super(Unauthorized, self).__init__(code, message)
 
 
 class NotFound(AioTDLibError):
-    def __init__(self, message: str):
-        super(NotFound, self).__init__(HTTPStatus.NOT_FOUND, message)
+    def __init__(self, code: int = HTTPStatus.NOT_FOUND, message: str = "Not found"):
+        super(NotFound, self).__init__(code, message)
 
 
 http_code_to_error = {
     HTTPStatus.BAD_REQUEST: BadRequest,
     HTTPStatus.UNAUTHORIZED: Unauthorized,
-    HTTPStatus.NOT_FOUND: NotFound
+    HTTPStatus.NOT_FOUND: NotFound,
 }

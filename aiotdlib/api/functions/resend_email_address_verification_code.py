@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ResendEmailAddressVerificationCode(BaseObject):
     """
-    Re-sends the code to verify an email address to be added to a user's Telegram Passport
-    
+    Resends the code to verify an email address to be added to a user's Telegram Passport
     """
 
-    ID: str = Field("resendEmailAddressVerificationCode", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> ResendEmailAddressVerificationCode:
-        return ResendEmailAddressVerificationCode.construct(**q)
+    ID: typing.Literal["resendEmailAddressVerificationCode"] = "resendEmailAddressVerificationCode"

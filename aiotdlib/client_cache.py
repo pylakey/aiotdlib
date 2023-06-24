@@ -24,19 +24,25 @@ from .api import (
     SupergroupFullInfo,
     UpdateBasicGroup,
     UpdateBasicGroupFullInfo,
+    UpdateChatAction,
+    UpdateChatBackground,
     UpdateChatDefaultDisableNotification,
     UpdateChatDraftMessage,
+    UpdateChatFolders,
     UpdateChatHasScheduledMessages,
     UpdateChatIsBlocked,
     UpdateChatIsMarkedAsUnread,
+    UpdateChatIsTranslatable,
     UpdateChatLastMessage,
     UpdateChatNotificationSettings,
+    UpdateChatOnlineMemberCount,
     UpdateChatPermissions,
     UpdateChatPhoto,
     UpdateChatPosition,
     UpdateChatReadInbox,
     UpdateChatReadOutbox,
     UpdateChatReplyMarkup,
+    UpdateChatThemes,
     UpdateChatTitle,
     UpdateChatUnreadMentionCount,
     UpdateChatVideoChat,
@@ -50,12 +56,13 @@ from .api import (
     UpdateUserStatus,
     User,
     UserFullInfo,
+    Vector,
 )
 from .api import (
     UpdateChatActionBar,
     UpdateChatHasProtectedContent,
+    UpdateChatMessageAutoDeleteTime,
     UpdateChatMessageSender,
-    UpdateChatMessageTtl,
     UpdateChatPendingJoinRequests,
     UpdateChatTheme,
 )
@@ -106,6 +113,40 @@ class OrderedChat:
         return self.order_tuple < other.order_tuple
 
 
+SomeChatUpdate = typing.Union[
+    UpdateChatAction,
+    UpdateChatActionBar,
+    UpdateChatAvailableReactions,
+    UpdateChatBackground,
+    UpdateChatDefaultDisableNotification,
+    UpdateChatDraftMessage,
+    UpdateChatFolders,
+    UpdateChatHasProtectedContent,
+    UpdateChatHasScheduledMessages,
+    UpdateChatIsBlocked,
+    UpdateChatIsMarkedAsUnread,
+    UpdateChatIsTranslatable,
+    UpdateChatLastMessage,
+    UpdateChatMessageAutoDeleteTime,
+    UpdateChatMessageSender,
+    UpdateChatNotificationSettings,
+    UpdateChatOnlineMemberCount,
+    UpdateChatPendingJoinRequests,
+    UpdateChatPermissions,
+    UpdateChatPhoto,
+    UpdateChatPosition,
+    UpdateChatReadInbox,
+    UpdateChatReadOutbox,
+    UpdateChatReplyMarkup,
+    UpdateChatTheme,
+    UpdateChatThemes,
+    UpdateChatTitle,
+    UpdateChatUnreadMentionCount,
+    UpdateChatUnreadReactionCount,
+    UpdateChatVideoChat,
+]
+
+
 class ClientCache:
     # Client Options
     options: dict[str, typing.Union[str, int, bool]] = {}
@@ -122,9 +163,10 @@ class ClientCache:
 
     # Chats
     chats: dict[int, Chat] = {}
-    main_chats_list: SortedSet[OrderedChat] = SortedSet()
-    have_full_main_chats_list: bool = False
+    main_chat_list: SortedSet[OrderedChat] = SortedSet()
+    have_full_main_chat_list: bool = False
 
+    # noinspection PyTypeChecker
     def __init__(self, client: 'Client'):
         self.logger = logging.getLogger(__name__)
         self.client = client
@@ -147,10 +189,13 @@ class ClientCache:
 
         # Updates changing info only
         client.add_event_handler(self.__on_update_chat_action_bar, API.Types.UPDATE_CHAT_ACTION_BAR)
+        client.add_event_handler(self.__on_update_chat_available_reactions, API.Types.UPDATE_CHAT_AVAILABLE_REACTIONS)
+        client.add_event_handler(self.__on_update_chat_background, API.Types.UPDATE_CHAT_BACKGROUND)
         client.add_event_handler(
             self.__on_update_chat_default_disable_notification,
             API.Types.UPDATE_CHAT_DEFAULT_DISABLE_NOTIFICATION
         )
+        client.add_event_handler(self.__on_update_chat_folders, API.Types.UPDATE_CHAT_FOLDERS)
         client.add_event_handler(
             self.__on_update_chat_has_protected_content,
             API.Types.UPDATE_CHAT_HAS_PROTECTED_CONTENT
@@ -161,20 +206,16 @@ class ClientCache:
         )
         client.add_event_handler(self.__on_update_chat_is_blocked, API.Types.UPDATE_CHAT_IS_BLOCKED)
         client.add_event_handler(self.__on_update_chat_is_marked_as_unread, API.Types.UPDATE_CHAT_IS_MARKED_AS_UNREAD)
+        client.add_event_handler(self.__on_update_chat_is_translatable, API.Types.UPDATE_CHAT_IS_TRANSLATABLE)
+        client.add_event_handler(
+            self.__on_update_chat_message_auto_delete_time,
+            API.Types.UPDATE_CHAT_MESSAGE_AUTO_DELETE_TIME
+        )
         client.add_event_handler(self.__on_update_chat_message_sender, API.Types.UPDATE_CHAT_MESSAGE_SENDER)
-        client.add_event_handler(self.__on_update_chat_message_ttl, API.Types.UPDATE_CHAT_MESSAGE_TTL)
         client.add_event_handler(
             self.__on_update_chat_notification_settings,
-            API.Types.UPDATE_CHAT_NOTIFICATION_SETTINGS
-        )
-        client.add_event_handler(
-            self.__on_update_chat_available_reactions,
-            API.Types.UPDATE_CHAT_AVAILABLE_REACTIONS
-        )
-        client.add_event_handler(
-            self.__on_update_chat_reactions_count,
-            API.Types.UPDATE_CHAT_UNREAD_REACTION_COUNT
-        )
+            API.Types.UPDATE_CHAT_NOTIFICATION_SETTINGS)
+        client.add_event_handler(self.__on_update_chat_online_member_count, API.Types.UPDATE_CHAT_ONLINE_MEMBER_COUNT)
         client.add_event_handler(
             self.__on_update_chat_pending_join_requests,
             API.Types.UPDATE_CHAT_PENDING_JOIN_REQUESTS
@@ -187,6 +228,10 @@ class ClientCache:
         client.add_event_handler(self.__on_update_chat_theme, API.Types.UPDATE_CHAT_THEME)
         client.add_event_handler(self.__on_update_chat_title, API.Types.UPDATE_CHAT_TITLE)
         client.add_event_handler(self.__on_update_chat_unread_mention_count, API.Types.UPDATE_CHAT_UNREAD_MENTION_COUNT)
+        client.add_event_handler(
+            self.__on_update_chat_unread_reaction_count,
+            API.Types.UPDATE_CHAT_UNREAD_REACTION_COUNT
+        )
         client.add_event_handler(self.__on_update_chat_video_chat, API.Types.UPDATE_CHAT_VIDEO_CHAT)
 
     async def get_option_value(self, name: str) -> typing.Union[str, int, bool, None]:
@@ -208,22 +253,21 @@ class ClientCache:
 
         return value
 
-    async def get_main_list_chats(self, limit: int = 100) -> list[Chat]:
-        cached_chats_count = len(self.main_chats_list)
+    async def get_main_chat_list(self, limit: int = 100) -> list[Chat]:
+        main_chat_list_size = len(self.main_chat_list)
 
-        if not self.have_full_main_chats_list and limit > cached_chats_count:
+        if not self.have_full_main_chat_list and limit > main_chat_list_size:
             try:
-                load_limit = min(limit - cached_chats_count, 100)
-                result = await self.client.api.load_chats(ChatListMain(), load_limit)
+                result = await self.client.api.load_chats(limit - main_chat_list_size)
             except NotFound:
-                self.have_full_main_chats_list = True
+                self.have_full_main_chat_list = True
             except AioTDLibError as e:
                 self.logger.error(f'Received an error for get_main_list_chats: {e}')
             else:
                 if isinstance(result, Ok):
-                    return await self.get_main_list_chats(limit)
+                    return await self.get_main_chat_list(limit)
 
-        return [self.chats.get(ordered_chat.chat_id) for ordered_chat in self.main_chats_list[:limit]]
+        return [self.chats.get(ordered_chat.chat_id) for ordered_chat in self.main_chat_list[:limit]]
 
     async def get_chat(self, chat_id: int, *, force_update: bool = True) -> Chat:
         chat = self.chats.get(chat_id)
@@ -298,11 +342,11 @@ class ClientCache:
 
         return secret_chat
 
-    def __set_chat_positions(self, chat: Chat, positions: list[ChatPosition]):
+    def __set_chat_positions(self, chat: Chat, positions: Vector[ChatPosition]):
         for position in chat.positions:
             if isinstance(position.list, ChatListMain):
                 try:
-                    self.main_chats_list.remove(OrderedChat(chat.id, position))
+                    self.main_chat_list.remove(OrderedChat(chat.id, position))
                 except (KeyError, ValueError):
                     pass
 
@@ -310,7 +354,7 @@ class ClientCache:
 
         for position in chat.positions:
             if isinstance(position.list, ChatListMain):
-                self.main_chats_list.add(OrderedChat(chat.id, position))
+                self.main_chat_list.add(OrderedChat(chat.id, position))
 
     async def __on_update_option(self, _: Client, update: UpdateOption):
         if isinstance(update.value, OptionValueEmpty):
@@ -358,7 +402,7 @@ class ClientCache:
             new_positions = [update.position] + [p for p in chat.positions if not isinstance(p, ChatListMain)]
             self.__set_chat_positions(chat, new_positions)
 
-        # TODO: Update chat positions in other lists
+        # TODO: Update chat positions in archive and folders
 
     async def __on_update_chat_last_message(self, _: Client, update: UpdateChatLastMessage):
         chat = self.chats.get(update.chat_id)
@@ -370,95 +414,89 @@ class ClientCache:
         chat.draft_message = update.draft_message
         self.__set_chat_positions(chat, update.positions)
 
+    async def __on_update_chat_data(self, _: Client, update: SomeChatUpdate, *, attribute: str):
+        if update.chat_id in self.chats:
+            new_value = getattr(update, attribute)
+            setattr(self.chats[update.chat_id], attribute, new_value)
+            self.logger.debug(f"Updating {attribute} = {new_value} for chat {update.chat_id}")
+
     async def __on_update_chat_action_bar(self, _: Client, update: UpdateChatActionBar):
-        chat = self.chats[update.chat_id]
-        chat.action_bar = update.action_bar
+        self.chats[update.chat_id].action_bar = update.action_bar
+
+    async def __on_update_chat_available_reactions(self, _: Client, update: UpdateChatAvailableReactions):
+        self.chats[update.chat_id].available_reactions = update.available_reactions
+
+    async def __on_update_chat_background(self, _: Client, update: UpdateChatBackground):
+        self.chats[update.chat_id].background = update.background
 
     async def __on_update_chat_default_disable_notification(
             self,
             _: Client,
             update: UpdateChatDefaultDisableNotification
     ):
-        chat = self.chats[update.chat_id]
-        chat.default_disable_notification = update.default_disable_notification
+        self.chats[update.chat_id].default_disable_notification = update.default_disable_notification
+
+    async def __on_update_chat_folders(self, _: Client, update: UpdateChatFolders):
+        # TODO: Implement this
+        pass
 
     async def __on_update_chat_has_protected_content(self, _: Client, update: UpdateChatHasProtectedContent):
-        chat = self.chats[update.chat_id]
-        chat.has_protected_content = update.has_protected_content
+        self.chats[update.chat_id].has_protected_content = update.has_protected_content
 
     async def __on_update_chat_has_scheduled_messages(self, _: Client, update: UpdateChatHasScheduledMessages):
-        chat = self.chats[update.chat_id]
-        chat.has_scheduled_messages = update.has_scheduled_messages
+        self.chats[update.chat_id].has_scheduled_messages = update.has_scheduled_messages
 
     async def __on_update_chat_is_blocked(self, _: Client, update: UpdateChatIsBlocked):
-        chat = self.chats[update.chat_id]
-        chat.is_blocked = update.is_blocked
+        self.chats[update.chat_id].is_blocked = update.is_blocked
 
     async def __on_update_chat_is_marked_as_unread(self, _: Client, update: UpdateChatIsMarkedAsUnread):
-        chat = self.chats[update.chat_id]
-        chat.is_marked_as_unread = update.is_marked_as_unread
+        self.chats[update.chat_id].is_marked_as_unread = update.is_marked_as_unread
+
+    async def __on_update_chat_is_translatable(self, _: Client, update: UpdateChatIsTranslatable):
+        self.chats[update.chat_id].is_translatable = update.is_translatable
+
+    async def __on_update_chat_message_auto_delete_time(self, _: Client, update: UpdateChatMessageAutoDeleteTime):
+        self.chats[update.chat_id].message_auto_delete_time = update.message_auto_delete_time
 
     async def __on_update_chat_message_sender(self, _: Client, update: UpdateChatMessageSender):
-        chat = self.chats[update.chat_id]
-        chat.message_sender_id = update.message_sender_id
-
-    async def __on_update_chat_message_ttl(self, _: Client, update: UpdateChatMessageTtl):
-        chat = self.chats[update.chat_id]
-        chat.message_ttl = update.message_ttl
+        self.chats[update.chat_id].message_sender_id = update.message_sender_id
 
     async def __on_update_chat_notification_settings(self, _: Client, update: UpdateChatNotificationSettings):
-        chat = self.chats[update.chat_id]
-        chat.notification_settings = update.notification_settings
+        self.chats[update.chat_id].notification_settings = update.notification_settings
 
-    async def __on_update_chat_available_reactions(self, _: Client, update: UpdateChatAvailableReactions):
-        chat = self.chats[update.chat_id]
-        chat.available_reactions = update.available_reactions
-
-    async def __on_update_chat_reactions_count(self, _: Client, update: UpdateChatUnreadReactionCount):
-        chat = self.chats[update.chat_id]
-        chat.unread_reaction_count = update.unread_reaction_count
+    async def __on_update_chat_online_member_count(self, _: Client, update: UpdateChatOnlineMemberCount):
+        pass
 
     async def __on_update_chat_pending_join_requests(self, _: Client, update: UpdateChatPendingJoinRequests):
-        chat = self.chats[update.chat_id]
-        chat.pending_join_requests = update.pending_join_requests
+        self.chats[update.chat_id].pending_join_requests = update.pending_join_requests
 
     async def __on_update_chat_permissions(self, _: Client, update: UpdateChatPermissions):
-        chat = self.chats[update.chat_id]
-        chat.permissions = update.permissions
+        self.chats[update.chat_id].permissions = update.permissions
 
     async def __on_update_chat_photo(self, _: Client, update: UpdateChatPhoto):
-        chat = self.chats[update.chat_id]
-        chat.photo = update.photo
+        self.chats[update.chat_id].photo = update.photo
 
     async def __on_update_chat_read_inbox(self, _: Client, update: UpdateChatReadInbox):
-        chat = self.chats[update.chat_id]
-        chat.last_read_inbox_message_id = update.last_read_inbox_message_id
-        chat.unread_count = update.unread_count
+        self.chats[update.chat_id].last_read_inbox_message_id = update.last_read_inbox_message_id
+        self.chats[update.chat_id].unread_count = update.unread_count
 
     async def __on_update_chat_read_outbox(self, _: Client, update: UpdateChatReadOutbox):
-        chat = self.chats[update.chat_id]
-        chat.last_read_outbox_message_id = update.last_read_outbox_message_id
+        self.chats[update.chat_id].last_read_outbox_message_id = update.last_read_outbox_message_id
 
     async def __on_update_chat_reply_markup(self, _: Client, update: UpdateChatReplyMarkup):
-        chat = self.chats[update.chat_id]
-        chat.reply_markup_message_id = update.reply_markup_message_id
+        self.chats[update.chat_id].reply_markup_message_id = update.reply_markup_message_id
 
     async def __on_update_chat_theme(self, _: Client, update: UpdateChatTheme):
-        chat = self.chats[update.chat_id]
-        chat.theme_name = update.theme_name
+        self.chats[update.chat_id].theme_name = update.theme_name
 
     async def __on_update_chat_title(self, _: Client, update: UpdateChatTitle):
-        chat = self.chats[update.chat_id]
-        chat.title = update.title
+        self.chats[update.chat_id].title = update.title
 
     async def __on_update_chat_unread_mention_count(self, _: Client, update: UpdateChatUnreadMentionCount):
-        chat = self.chats[update.chat_id]
-        chat.unread_mention_count = update.unread_mention_count
+        self.chats[update.chat_id].unread_mention_count = update.unread_mention_count
 
-    async def __on_update_chat_message_ttl_setting(self, _: Client, update: UpdateChatMessageTtl):
-        chat = self.chats[update.chat_id]
-        chat.message_ttl = update.message_ttl
+    async def __on_update_chat_unread_reaction_count(self, _: Client, update: UpdateChatUnreadReactionCount):
+        self.chats[update.chat_id].unread_reaction_count = update.unread_reaction_count
 
     async def __on_update_chat_video_chat(self, _: Client, update: UpdateChatVideoChat):
-        chat = self.chats[update.chat_id]
-        chat.video_chat = update.video_chat
+        self.chats[update.chat_id].video_chat = update.video_chat

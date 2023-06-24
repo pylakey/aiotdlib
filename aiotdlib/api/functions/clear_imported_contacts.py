@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ClearImportedContacts(BaseObject):
     """
     Clears all imported contacts, contact list remains unchanged
-    
     """
 
-    ID: str = Field("clearImportedContacts", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> ClearImportedContacts:
-        return ClearImportedContacts.construct(**q)
+    ID: typing.Literal["clearImportedContacts"] = "clearImportedContacts"

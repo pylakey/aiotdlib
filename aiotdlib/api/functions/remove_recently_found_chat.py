@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class RemoveRecentlyFoundChat(BaseObject):
     """
     Removes a chat from the list of recently found chats
-    
+
     :param chat_id: Identifier of the chat to be removed
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     """
 
-    ID: str = Field("removeRecentlyFoundChat", alias="@type")
-    chat_id: int
-
-    @staticmethod
-    def read(q: dict) -> RemoveRecentlyFoundChat:
-        return RemoveRecentlyFoundChat.construct(**q)
+    ID: typing.Literal["removeRecentlyFoundChat"] = "removeRecentlyFoundChat"
+    chat_id: Int53

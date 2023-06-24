@@ -5,36 +5,33 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import ChatMembersFilter
+from ..types.base import *
+
+from ..types.all import (
+    ChatMembersFilter,
+)
 
 
 class SearchChatMembers(BaseObject):
     """
-    Searches for a specified query in the first name, last name and username of the members of a specified chat. Requires administrator rights in channels
-    
+    Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param query: Query to search for
-    :type query: :class:`str`
-    
+    :type query: :class:`String`
     :param limit: The maximum number of users to be returned; up to 200
-    :type limit: :class:`int`
-    
-    :param filter_: The type of users to search for; pass null to search among all chat members
-    :type filter_: :class:`ChatMembersFilter`
-    
+    :type limit: :class:`Int32`
+    :param filter_: The type of users to search for; pass null to search among all chat members, defaults to None
+    :type filter_: :class:`ChatMembersFilter`, optional
     """
 
-    ID: str = Field("searchChatMembers", alias="@type")
-    chat_id: int
-    query: str
-    limit: int
-    filter_: ChatMembersFilter = Field(..., alias='filter')
-
-    @staticmethod
-    def read(q: dict) -> SearchChatMembers:
-        return SearchChatMembers.construct(**q)
+    ID: typing.Literal["searchChatMembers"] = "searchChatMembers"
+    chat_id: Int53
+    query: String
+    limit: Int32
+    filter_: typing.Optional[ChatMembersFilter] = Field(None, alias="filter")

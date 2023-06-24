@@ -5,33 +5,31 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import InputInvoice
-from ..types import OrderInfo
+from ..types.base import *
+
+from ..types.all import (
+    InputInvoice,
+    OrderInfo,
+)
 
 
 class ValidateOrderInfo(BaseObject):
     """
     Validates the order information provided by a user and returns the available shipping options for a flexible invoice
-    
+
     :param input_invoice: The invoice
     :type input_invoice: :class:`InputInvoice`
-    
-    :param order_info: The order information, provided by the user; pass null if empty
-    :type order_info: :class:`OrderInfo`
-    
     :param allow_save: Pass true to save the order information
-    :type allow_save: :class:`bool`
-    
+    :type allow_save: :class:`Bool`
+    :param order_info: The order information, provided by the user; pass null if empty, defaults to None
+    :type order_info: :class:`OrderInfo`, optional
     """
 
-    ID: str = Field("validateOrderInfo", alias="@type")
+    ID: typing.Literal["validateOrderInfo"] = "validateOrderInfo"
     input_invoice: InputInvoice
-    order_info: OrderInfo
-    allow_save: bool
-
-    @staticmethod
-    def read(q: dict) -> ValidateOrderInfo:
-        return ValidateOrderInfo.construct(**q)
+    allow_save: Bool = False
+    order_info: typing.Optional[OrderInfo] = None

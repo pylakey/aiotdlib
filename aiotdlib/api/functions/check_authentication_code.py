@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class CheckAuthenticationCode(BaseObject):
     """
     Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
-    
+
     :param code: Authentication code to check
-    :type code: :class:`str`
-    
+    :type code: :class:`String`
     """
 
-    ID: str = Field("checkAuthenticationCode", alias="@type")
-    code: str
-
-    @staticmethod
-    def read(q: dict) -> CheckAuthenticationCode:
-        return CheckAuthenticationCode.construct(**q)
+    ID: typing.Literal["checkAuthenticationCode"] = "checkAuthenticationCode"
+    code: String

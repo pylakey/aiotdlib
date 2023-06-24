@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import Location
+from ..types.base import *
+
+from ..types.all import (
+    Location,
+)
 
 
 class SetLocation(BaseObject):
     """
-    Changes the location of the current user. Needs to be called if GetOption("is_location_visible") is true and location changes for more than 1 kilometer
-    
+    Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer
+
     :param location: The new location of the user
     :type location: :class:`Location`
-    
     """
 
-    ID: str = Field("setLocation", alias="@type")
+    ID: typing.Literal["setLocation"] = "setLocation"
     location: Location
-
-    @staticmethod
-    def read(q: dict) -> SetLocation:
-        return SetLocation.construct(**q)

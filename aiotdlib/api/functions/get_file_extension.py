@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetFileExtension(BaseObject):
     """
     Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously
-    
+
     :param mime_type: The MIME type of the file
-    :type mime_type: :class:`str`
-    
+    :type mime_type: :class:`String`
     """
 
-    ID: str = Field("getFileExtension", alias="@type")
-    mime_type: str
-
-    @staticmethod
-    def read(q: dict) -> GetFileExtension:
-        return GetFileExtension.construct(**q)
+    ID: typing.Literal["getFileExtension"] = "getFileExtension"
+    mime_type: String

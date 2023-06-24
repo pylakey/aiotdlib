@@ -5,33 +5,31 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import FormattedText
-from ..types import ReplyMarkup
+from ..types.base import *
+
+from ..types.all import (
+    FormattedText,
+    ReplyMarkup,
+)
 
 
 class EditInlineMessageCaption(BaseObject):
     """
     Edits the caption of an inline message sent via a bot; for bots only
-    
+
     :param inline_message_id: Inline message identifier
-    :type inline_message_id: :class:`str`
-    
-    :param reply_markup: The new message reply markup; pass null if none
-    :type reply_markup: :class:`ReplyMarkup`
-    
-    :param caption: New message content caption; pass null to remove caption; 0-GetOption("message_caption_length_max") characters
-    :type caption: :class:`FormattedText`
-    
+    :type inline_message_id: :class:`String`
+    :param reply_markup: The new message reply markup; pass null if none, defaults to None
+    :type reply_markup: :class:`ReplyMarkup`, optional
+    :param caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters, defaults to None
+    :type caption: :class:`FormattedText`, optional
     """
 
-    ID: str = Field("editInlineMessageCaption", alias="@type")
-    inline_message_id: str
-    reply_markup: ReplyMarkup
-    caption: FormattedText
-
-    @staticmethod
-    def read(q: dict) -> EditInlineMessageCaption:
-        return EditInlineMessageCaption.construct(**q)
+    ID: typing.Literal["editInlineMessageCaption"] = "editInlineMessageCaption"
+    inline_message_id: String
+    reply_markup: typing.Optional[ReplyMarkup] = None
+    caption: typing.Optional[FormattedText] = None

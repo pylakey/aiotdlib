@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetVideoChatAvailableParticipants(BaseObject):
     """
     Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     """
 
-    ID: str = Field("getVideoChatAvailableParticipants", alias="@type")
-    chat_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetVideoChatAvailableParticipants:
-        return GetVideoChatAvailableParticipants.construct(**q)
+    ID: typing.Literal["getVideoChatAvailableParticipants"] = "getVideoChatAvailableParticipants"
+    chat_id: Int53

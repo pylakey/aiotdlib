@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetSavedNotificationSound(BaseObject):
     """
     Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
-    
+
     :param notification_sound_id: Identifier of the notification sound
-    :type notification_sound_id: :class:`int`
-    
+    :type notification_sound_id: :class:`Int64`
     """
 
-    ID: str = Field("getSavedNotificationSound", alias="@type")
-    notification_sound_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetSavedNotificationSound:
-        return GetSavedNotificationSound.construct(**q)
+    ID: typing.Literal["getSavedNotificationSound"] = "getSavedNotificationSound"
+    notification_sound_id: Int64

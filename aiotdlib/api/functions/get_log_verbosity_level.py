@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetLogVerbosityLevel(BaseObject):
     """
     Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
-    
     """
 
-    ID: str = Field("getLogVerbosityLevel", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetLogVerbosityLevel:
-        return GetLogVerbosityLevel.construct(**q)
+    ID: typing.Literal["getLogVerbosityLevel"] = "getLogVerbosityLevel"

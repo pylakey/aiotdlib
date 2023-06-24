@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ViewTrendingStickerSets(BaseObject):
     """
     Informs the server that some trending sticker sets have been viewed by the user
-    
+
     :param sticker_set_ids: Identifiers of viewed trending sticker sets
-    :type sticker_set_ids: :class:`list[int]`
-    
+    :type sticker_set_ids: :class:`Vector[Int64]`
     """
 
-    ID: str = Field("viewTrendingStickerSets", alias="@type")
-    sticker_set_ids: list[int]
-
-    @staticmethod
-    def read(q: dict) -> ViewTrendingStickerSets:
-        return ViewTrendingStickerSets.construct(**q)
+    ID: typing.Literal["viewTrendingStickerSets"] = "viewTrendingStickerSets"
+    sticker_set_ids: Vector[Int64]

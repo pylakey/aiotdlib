@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetBankCardInfo(BaseObject):
     """
     Returns information about a bank card
-    
+
     :param bank_card_number: The bank card number
-    :type bank_card_number: :class:`str`
-    
+    :type bank_card_number: :class:`String`
     """
 
-    ID: str = Field("getBankCardInfo", alias="@type")
-    bank_card_number: str
-
-    @staticmethod
-    def read(q: dict) -> GetBankCardInfo:
-        return GetBankCardInfo.construct(**q)
+    ID: typing.Literal["getBankCardInfo"] = "getBankCardInfo"
+    bank_card_number: String

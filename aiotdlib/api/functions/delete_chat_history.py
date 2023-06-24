@@ -5,31 +5,26 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class DeleteChatHistory(BaseObject):
     """
     Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param remove_from_chat_list: Pass true to remove the chat from all chat lists
-    :type remove_from_chat_list: :class:`bool`
-    
+    :type remove_from_chat_list: :class:`Bool`
     :param revoke: Pass true to delete chat history for all users
-    :type revoke: :class:`bool`
-    
+    :type revoke: :class:`Bool`
     """
 
-    ID: str = Field("deleteChatHistory", alias="@type")
-    chat_id: int
-    remove_from_chat_list: bool
-    revoke: bool
-
-    @staticmethod
-    def read(q: dict) -> DeleteChatHistory:
-        return DeleteChatHistory.construct(**q)
+    ID: typing.Literal["deleteChatHistory"] = "deleteChatHistory"
+    chat_id: Int53
+    remove_from_chat_list: Bool = False
+    revoke: Bool = False

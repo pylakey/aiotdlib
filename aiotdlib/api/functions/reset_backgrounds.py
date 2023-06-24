@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ResetBackgrounds(BaseObject):
     """
     Resets list of installed backgrounds to its default value
-    
     """
 
-    ID: str = Field("resetBackgrounds", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> ResetBackgrounds:
-        return ResetBackgrounds.construct(**q)
+    ID: typing.Literal["resetBackgrounds"] = "resetBackgrounds"

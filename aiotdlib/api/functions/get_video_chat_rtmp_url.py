@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetVideoChatRtmpUrl(BaseObject):
     """
     Returns RTMP URL for streaming to the chat; requires creator privileges
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     """
 
-    ID: str = Field("getVideoChatRtmpUrl", alias="@type")
-    chat_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetVideoChatRtmpUrl:
-        return GetVideoChatRtmpUrl.construct(**q)
+    ID: typing.Literal["getVideoChatRtmpUrl"] = "getVideoChatRtmpUrl"
+    chat_id: Int53

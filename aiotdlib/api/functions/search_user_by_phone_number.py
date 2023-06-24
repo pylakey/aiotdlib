@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SearchUserByPhoneNumber(BaseObject):
     """
     Searches a user by their phone number. Returns a 404 error if the user can't be found
-    
+
     :param phone_number: Phone number to search for
-    :type phone_number: :class:`str`
-    
+    :type phone_number: :class:`String`
     """
 
-    ID: str = Field("searchUserByPhoneNumber", alias="@type")
-    phone_number: str
-
-    @staticmethod
-    def read(q: dict) -> SearchUserByPhoneNumber:
-        return SearchUserByPhoneNumber.construct(**q)
+    ID: typing.Literal["searchUserByPhoneNumber"] = "searchUserByPhoneNumber"
+    phone_number: String

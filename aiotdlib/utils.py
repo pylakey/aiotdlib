@@ -5,12 +5,16 @@ import logging
 import os
 import re
 import sys
+import typing
+from enum import Enum
 from functools import partial
 from typing import (
     Optional,
     TYPE_CHECKING,
     Union,
 )
+
+import ujson
 
 from .api import (
     BaseObject,
@@ -19,6 +23,8 @@ from .api import (
     InputFileLocal,
     InputFileRemote,
     InputThumbnail,
+    TDLibObject,
+    TDLibObjects,
 )
 from .api.errors import AioTDLibError
 from .api.errors.error import http_code_to_error
@@ -27,6 +33,7 @@ if TYPE_CHECKING:
     from .client import Client
 
 logger = logging.getLogger(__name__)
+Query = typing.Union[str, bytes, dict]
 
 
 async def ainput(prompt: str = "", secured: bool = False) -> str:
@@ -86,12 +93,60 @@ def make_thumbnail(thumbnail: str, width: int = None, height: int = None) -> Opt
     return None
 
 
+def encode_query(query: Query) -> bytes:
+    if isinstance(query, dict):
+        return ujson.dumps(query, ensure_ascii=False).encode('utf-8')
+    elif isinstance(query, str):
+        return query.encode('utf-8')
+    elif isinstance(query, bytes):
+        return query
+
+    raise ValueError('Query has wrong type')
+
+
+def parse_tdlib_object(data: dict) -> TDLibObject:
+    if isinstance(data, (list, tuple,)):
+        return [parse_tdlib_object(x) for x in data]
+
+    if not isinstance(data, dict):
+        return data
+
+    type_ = data.get('@type')
+
+    if not bool(type_):
+        logger.error(f"Data: {data}")
+        return data
+
+    type_ = type_.value if isinstance(type_, Enum) else type_
+    object_class = TDLibObjects.get(type_)
+
+    if not bool(object_class):
+        logger.error(f'Object class not found for @type={type_}')
+        return data
+
+    processed_data = {}
+
+    for key, value in data.items():
+        # Workaround for BaseModel.construct(**kwargs).
+        # It doesn't automatically rename fields according to aliases
+        if key in ['json', 'filter', 'type', 'hash']:
+            key = key + "_"
+        elif key == '@extra':
+            key = 'EXTRA'
+            processed_data[key] = value
+            continue
+
+        processed_data[key] = parse_tdlib_object(value)
+
+    return object_class(**data)
+
+
 class PendingRequest:
-    request: Optional[BaseObject] = None
-    update: Optional[BaseObject] = None
+    request: Optional[TDLibObject] = None
+    update: Optional[TDLibObject] = None
     error: bool = False
 
-    def __init__(self, client: 'Client', request: BaseObject) -> None:
+    def __init__(self, client: 'Client', request: TDLibObject) -> None:
         self.client = client
         self.request = request
         self.__ready_event = asyncio.Event()

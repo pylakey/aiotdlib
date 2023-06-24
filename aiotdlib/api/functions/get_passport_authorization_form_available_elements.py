@@ -5,27 +5,25 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetPassportAuthorizationFormAvailableElements(BaseObject):
     """
     Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
-    
-    :param autorization_form_id: Authorization form identifier
-    :type autorization_form_id: :class:`int`
-    
-    :param password: Password of the current user
-    :type password: :class:`str`
-    
+
+    :param authorization_form_id: Authorization form identifier
+    :type authorization_form_id: :class:`Int32`
+    :param password: The 2-step verification password of the current user
+    :type password: :class:`String`
     """
 
-    ID: str = Field("getPassportAuthorizationFormAvailableElements", alias="@type")
-    autorization_form_id: int
-    password: str
-
-    @staticmethod
-    def read(q: dict) -> GetPassportAuthorizationFormAvailableElements:
-        return GetPassportAuthorizationFormAvailableElements.construct(**q)
+    ID: typing.Literal[
+        "getPassportAuthorizationFormAvailableElements"
+    ] = "getPassportAuthorizationFormAvailableElements"
+    authorization_form_id: Int32
+    password: String

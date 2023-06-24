@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ClickAnimatedEmojiMessage(BaseObject):
     """
     Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played
-    
+
     :param chat_id: Chat identifier of the message
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param message_id: Identifier of the clicked message
-    :type message_id: :class:`int`
-    
+    :type message_id: :class:`Int53`
     """
 
-    ID: str = Field("clickAnimatedEmojiMessage", alias="@type")
-    chat_id: int
-    message_id: int
-
-    @staticmethod
-    def read(q: dict) -> ClickAnimatedEmojiMessage:
-        return ClickAnimatedEmojiMessage.construct(**q)
+    ID: typing.Literal["clickAnimatedEmojiMessage"] = "clickAnimatedEmojiMessage"
+    chat_id: Int53
+    message_id: Int53

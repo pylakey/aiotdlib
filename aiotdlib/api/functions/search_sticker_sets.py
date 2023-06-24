@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SearchStickerSets(BaseObject):
     """
     Searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
-    
+
     :param query: Query to search for
-    :type query: :class:`str`
-    
+    :type query: :class:`String`
     """
 
-    ID: str = Field("searchStickerSets", alias="@type")
-    query: str
-
-    @staticmethod
-    def read(q: dict) -> SearchStickerSets:
-        return SearchStickerSets.construct(**q)
+    ID: typing.Literal["searchStickerSets"] = "searchStickerSets"
+    query: String

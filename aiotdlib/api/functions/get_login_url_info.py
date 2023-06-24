@@ -5,31 +5,26 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetLoginUrlInfo(BaseObject):
     """
     Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
-    
+
     :param chat_id: Chat identifier of the message with the button
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param message_id: Message identifier of the message with the button
-    :type message_id: :class:`int`
-    
+    :type message_id: :class:`Int53`
     :param button_id: Button identifier
-    :type button_id: :class:`int`
-    
+    :type button_id: :class:`Int53`
     """
 
-    ID: str = Field("getLoginUrlInfo", alias="@type")
-    chat_id: int
-    message_id: int
-    button_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetLoginUrlInfo:
-        return GetLoginUrlInfo.construct(**q)
+    ID: typing.Literal["getLoginUrlInfo"] = "getLoginUrlInfo"
+    chat_id: Int53
+    message_id: Int53
+    button_id: Int53

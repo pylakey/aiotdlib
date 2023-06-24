@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import Error
+from ..types.base import *
+
+from ..types.all import (
+    Error,
+)
 
 
 class TestReturnError(BaseObject):
     """
     Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously
-    
+
     :param error: The error to be returned
     :type error: :class:`Error`
-    
     """
 
-    ID: str = Field("testReturnError", alias="@type")
+    ID: typing.Literal["testReturnError"] = "testReturnError"
     error: Error
-
-    @staticmethod
-    def read(q: dict) -> TestReturnError:
-        return TestReturnError.construct(**q)

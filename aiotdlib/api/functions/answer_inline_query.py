@@ -5,48 +5,40 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import InputInlineQueryResult
+from ..types.base import *
+
+from ..types.all import (
+    InlineQueryResultsButton,
+    InputInlineQueryResult,
+)
 
 
 class AnswerInlineQuery(BaseObject):
     """
     Sets the result of an inline query; for bots only
-    
+
     :param inline_query_id: Identifier of the inline query
-    :type inline_query_id: :class:`int`
-    
-    :param is_personal: Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
-    :type is_personal: :class:`bool`
-    
+    :type inline_query_id: :class:`Int64`
     :param results: The results of the query
-    :type results: :class:`list[InputInlineQueryResult]`
-    
+    :type results: :class:`Vector[InputInlineQueryResult]`
     :param cache_time: Allowed time to cache the results of the query, in seconds
-    :type cache_time: :class:`int`
-    
+    :type cache_time: :class:`Int32`
     :param next_offset: Offset for the next inline query; pass an empty string if there are no more results
-    :type next_offset: :class:`str`
-    
-    :param switch_pm_text: If non-empty, this text must be shown on the button that opens a private chat with the bot and sends a start message to the bot with the parameter switch_pm_parameter
-    :type switch_pm_text: :class:`str`
-    
-    :param switch_pm_parameter: The parameter for the bot start message
-    :type switch_pm_parameter: :class:`str`
-    
+    :type next_offset: :class:`String`
+    :param is_personal: Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
+    :type is_personal: :class:`Bool`
+    :param button: Button to be shown above inline query results; pass null if none, defaults to None
+    :type button: :class:`InlineQueryResultsButton`, optional
     """
 
-    ID: str = Field("answerInlineQuery", alias="@type")
-    inline_query_id: int
-    is_personal: bool
-    results: list[InputInlineQueryResult]
-    cache_time: int
-    next_offset: str
-    switch_pm_text: str
-    switch_pm_parameter: str
-
-    @staticmethod
-    def read(q: dict) -> AnswerInlineQuery:
-        return AnswerInlineQuery.construct(**q)
+    ID: typing.Literal["answerInlineQuery"] = "answerInlineQuery"
+    inline_query_id: Int64
+    results: Vector[InputInlineQueryResult]
+    cache_time: Int32
+    next_offset: String
+    is_personal: Bool = False
+    button: typing.Optional[InlineQueryResultsButton] = None

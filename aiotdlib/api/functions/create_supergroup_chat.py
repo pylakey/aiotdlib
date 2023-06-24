@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class CreateSupergroupChat(BaseObject):
     """
     Returns an existing chat corresponding to a known supergroup or channel
-    
+
     :param supergroup_id: Supergroup or channel identifier
-    :type supergroup_id: :class:`int`
-    
+    :type supergroup_id: :class:`Int53`
     :param force: Pass true to create the chat without a network request. In this case all information about the chat except its type, title and photo can be incorrect
-    :type force: :class:`bool`
-    
+    :type force: :class:`Bool`
     """
 
-    ID: str = Field("createSupergroupChat", alias="@type")
-    supergroup_id: int
-    force: bool
-
-    @staticmethod
-    def read(q: dict) -> CreateSupergroupChat:
-        return CreateSupergroupChat.construct(**q)
+    ID: typing.Literal["createSupergroupChat"] = "createSupergroupChat"
+    supergroup_id: Int53
+    force: Bool = False

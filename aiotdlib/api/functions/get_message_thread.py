@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetMessageThread(BaseObject):
     """
     Returns information about a message thread. Can be used only if message.can_get_message_thread == true
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param message_id: Identifier of the message
-    :type message_id: :class:`int`
-    
+    :type message_id: :class:`Int53`
     """
 
-    ID: str = Field("getMessageThread", alias="@type")
-    chat_id: int
-    message_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetMessageThread:
-        return GetMessageThread.construct(**q)
+    ID: typing.Literal["getMessageThread"] = "getMessageThread"
+    chat_id: Int53
+    message_id: Int53

@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class AnswerCustomQuery(BaseObject):
     """
     Answers a custom query; for bots only
-    
+
     :param custom_query_id: Identifier of a custom query
-    :type custom_query_id: :class:`int`
-    
+    :type custom_query_id: :class:`Int64`
     :param data: JSON-serialized answer to the query
-    :type data: :class:`str`
-    
+    :type data: :class:`String`
     """
 
-    ID: str = Field("answerCustomQuery", alias="@type")
-    custom_query_id: int
-    data: str
-
-    @staticmethod
-    def read(q: dict) -> AnswerCustomQuery:
-        return AnswerCustomQuery.construct(**q)
+    ID: typing.Literal["answerCustomQuery"] = "answerCustomQuery"
+    custom_query_id: Int64
+    data: String

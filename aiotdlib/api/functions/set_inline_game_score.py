@@ -5,39 +5,32 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SetInlineGameScore(BaseObject):
     """
     Updates the game score of the specified user in a game; for bots only
-    
+
     :param inline_message_id: Inline message identifier
-    :type inline_message_id: :class:`str`
-    
-    :param edit_message: Pass true to edit the game message to include the current scoreboard
-    :type edit_message: :class:`bool`
-    
+    :type inline_message_id: :class:`String`
     :param user_id: User identifier
-    :type user_id: :class:`int`
-    
+    :type user_id: :class:`Int53`
     :param score: The new score
-    :type score: :class:`int`
-    
+    :type score: :class:`Int32`
+    :param edit_message: Pass true to edit the game message to include the current scoreboard
+    :type edit_message: :class:`Bool`
     :param force: Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
-    :type force: :class:`bool`
-    
+    :type force: :class:`Bool`
     """
 
-    ID: str = Field("setInlineGameScore", alias="@type")
-    inline_message_id: str
-    edit_message: bool
-    user_id: int
-    score: int
-    force: bool
-
-    @staticmethod
-    def read(q: dict) -> SetInlineGameScore:
-        return SetInlineGameScore.construct(**q)
+    ID: typing.Literal["setInlineGameScore"] = "setInlineGameScore"
+    inline_message_id: String
+    user_id: Int53
+    score: Int32
+    edit_message: Bool = False
+    force: Bool = False

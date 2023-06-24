@@ -39,6 +39,7 @@ aiotdlib_generator = "aiotdlib_generator.__main__:main"
 
 [tool.poetry.group.dev.dependencies]
 pydash = "^7.0.4"
+black = "^23.3.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

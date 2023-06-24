@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ReadAllChatReactions(BaseObject):
     """
-    Marks all reactions in a chat as read
-    
+    Marks all reactions in a chat or a forum topic as read
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     """
 
-    ID: str = Field("readAllChatReactions", alias="@type")
-    chat_id: int
-
-    @staticmethod
-    def read(q: dict) -> ReadAllChatReactions:
-        return ReadAllChatReactions.construct(**q)
+    ID: typing.Literal["readAllChatReactions"] = "readAllChatReactions"
+    chat_id: Int53

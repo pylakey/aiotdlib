@@ -5,31 +5,26 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ChangeStickerSet(BaseObject):
     """
     Installs/uninstalls or activates/archives a sticker set
-    
+
     :param set_id: Identifier of the sticker set
-    :type set_id: :class:`int`
-    
+    :type set_id: :class:`Int64`
     :param is_installed: The new value of is_installed
-    :type is_installed: :class:`bool`
-    
+    :type is_installed: :class:`Bool`
     :param is_archived: The new value of is_archived. A sticker set can't be installed and archived simultaneously
-    :type is_archived: :class:`bool`
-    
+    :type is_archived: :class:`Bool`
     """
 
-    ID: str = Field("changeStickerSet", alias="@type")
-    set_id: int
-    is_installed: bool
-    is_archived: bool
-
-    @staticmethod
-    def read(q: dict) -> ChangeStickerSet:
-        return ChangeStickerSet.construct(**q)
+    ID: typing.Literal["changeStickerSet"] = "changeStickerSet"
+    set_id: Int64
+    is_installed: Bool
+    is_archived: Bool

@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class Destroy(BaseObject):
     """
     Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed. After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent. Can be called before authorization
-    
     """
 
-    ID: str = Field("destroy", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> Destroy:
-        return Destroy.construct(**q)
+    ID: typing.Literal["destroy"] = "destroy"

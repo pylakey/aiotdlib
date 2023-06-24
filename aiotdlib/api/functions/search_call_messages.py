@@ -5,31 +5,26 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SearchCallMessages(BaseObject):
     """
-    Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
-    
-    :param from_message_id: Identifier of the message from which to search; use 0 to get results from the last message
-    :type from_message_id: :class:`int`
-    
+    Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
+
+    :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+    :type offset: :class:`String`
     :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-    :type limit: :class:`int`
-    
+    :type limit: :class:`Int32`
     :param only_missed: Pass true to search only for messages with missed/declined calls
-    :type only_missed: :class:`bool`
-    
+    :type only_missed: :class:`Bool`
     """
 
-    ID: str = Field("searchCallMessages", alias="@type")
-    from_message_id: int
-    limit: int
-    only_missed: bool
-
-    @staticmethod
-    def read(q: dict) -> SearchCallMessages:
-        return SearchCallMessages.construct(**q)
+    ID: typing.Literal["searchCallMessages"] = "searchCallMessages"
+    offset: String
+    limit: Int32
+    only_missed: Bool = False

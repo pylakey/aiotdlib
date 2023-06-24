@@ -5,31 +5,26 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetGameHighScores(BaseObject):
     """
     Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only
-    
+
     :param chat_id: The chat that contains the message with the game
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param message_id: Identifier of the message
-    :type message_id: :class:`int`
-    
+    :type message_id: :class:`Int53`
     :param user_id: User identifier
-    :type user_id: :class:`int`
-    
+    :type user_id: :class:`Int53`
     """
 
-    ID: str = Field("getGameHighScores", alias="@type")
-    chat_id: int
-    message_id: int
-    user_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetGameHighScores:
-        return GetGameHighScores.construct(**q)
+    ID: typing.Literal["getGameHighScores"] = "getGameHighScores"
+    chat_id: Int53
+    message_id: Int53
+    user_id: Int53

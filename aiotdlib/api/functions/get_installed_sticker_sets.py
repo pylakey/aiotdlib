@@ -5,23 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
+
+from ..types.all import (
+    StickerType,
+)
 
 
 class GetInstalledStickerSets(BaseObject):
     """
     Returns a list of installed sticker sets
-    
-    :param is_masks: Pass true to return mask sticker sets; pass false to return ordinary sticker sets
-    :type is_masks: :class:`bool`
-    
+
+    :param sticker_type: Type of the sticker sets to return
+    :type sticker_type: :class:`StickerType`
     """
 
-    ID: str = Field("getInstalledStickerSets", alias="@type")
-    is_masks: bool
-
-    @staticmethod
-    def read(q: dict) -> GetInstalledStickerSets:
-        return GetInstalledStickerSets.construct(**q)
+    ID: typing.Literal["getInstalledStickerSets"] = "getInstalledStickerSets"
+    sticker_type: StickerType

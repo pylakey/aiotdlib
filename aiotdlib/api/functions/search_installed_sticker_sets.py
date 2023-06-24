@@ -5,31 +5,30 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
+
+from ..types.all import (
+    StickerType,
+)
 
 
 class SearchInstalledStickerSets(BaseObject):
     """
     Searches for installed sticker sets by looking for specified query in their title and name
-    
-    :param is_masks: Pass true to return mask sticker sets; pass false to return ordinary sticker sets
-    :type is_masks: :class:`bool`
-    
+
+    :param sticker_type: Type of the sticker sets to search for
+    :type sticker_type: :class:`StickerType`
     :param query: Query to search for
-    :type query: :class:`str`
-    
+    :type query: :class:`String`
     :param limit: The maximum number of sticker sets to return
-    :type limit: :class:`int`
-    
+    :type limit: :class:`Int32`
     """
 
-    ID: str = Field("searchInstalledStickerSets", alias="@type")
-    is_masks: bool
-    query: str
-    limit: int
-
-    @staticmethod
-    def read(q: dict) -> SearchInstalledStickerSets:
-        return SearchInstalledStickerSets.construct(**q)
+    ID: typing.Literal["searchInstalledStickerSets"] = "searchInstalledStickerSets"
+    sticker_type: StickerType
+    query: String
+    limit: Int32

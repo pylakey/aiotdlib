@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class CanTransferOwnership(BaseObject):
     """
     Checks whether the current session can be used to transfer a chat ownership to another user
-    
     """
 
-    ID: str = Field("canTransferOwnership", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> CanTransferOwnership:
-        return CanTransferOwnership.construct(**q)
+    ID: typing.Literal["canTransferOwnership"] = "canTransferOwnership"

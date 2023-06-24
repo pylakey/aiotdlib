@@ -5,40 +5,42 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import ThemeParameters
+from ..types.base import *
+
+from ..types.all import (
+    ThemeParameters,
+)
 
 
 class OpenWebApp(BaseObject):
     """
     Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
-    
-    :param chat_id: Identifier of the chat in which the Web App is opened
-    :type chat_id: :class:`int`
-    
+
+    :param chat_id: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
+    :type chat_id: :class:`Int53`
     :param bot_user_id: Identifier of the bot, providing the Web App
-    :type bot_user_id: :class:`int`
-    
+    :type bot_user_id: :class:`Int53`
     :param url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
-    :type url: :class:`str`
-    
-    :param theme: Preferred Web App theme; pass null to use the default theme
-    :type theme: :class:`ThemeParameters`
-    
-    :param reply_to_message_id: Identifier of the replied message for the message sent by the Web App; 0 if none
-    :type reply_to_message_id: :class:`int`
-    
+    :type url: :class:`String`
+    :param application_name: Short name of the application; 0-64 English letters, digits, and underscores
+    :type application_name: :class:`String`
+    :param message_thread_id: If not 0, a message thread identifier in which the message will be sent
+    :type message_thread_id: :class:`Int53`
+    :param theme: Preferred Web App theme; pass null to use the default theme, defaults to None
+    :type theme: :class:`ThemeParameters`, optional
+    :param reply_to_message_id: Identifier of the replied message for the message sent by the Web App; 0 if none, defaults to None
+    :type reply_to_message_id: :class:`Int53`, optional
     """
 
-    ID: str = Field("openWebApp", alias="@type")
-    chat_id: int
-    bot_user_id: int
-    url: str
-    theme: ThemeParameters
-    reply_to_message_id: int
-
-    @staticmethod
-    def read(q: dict) -> OpenWebApp:
-        return OpenWebApp.construct(**q)
+    ID: typing.Literal["openWebApp"] = "openWebApp"
+    chat_id: Int53
+    bot_user_id: Int53
+    url: String
+    application_name: String
+    message_thread_id: Int53 = 0
+    theme: typing.Optional[ThemeParameters] = None
+    reply_to_message_id: typing.Optional[Int53] = 0

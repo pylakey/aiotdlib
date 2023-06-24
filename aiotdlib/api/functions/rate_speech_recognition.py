@@ -5,31 +5,26 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class RateSpeechRecognition(BaseObject):
     """
-    Rates recognized speech in a voice note message
-    
+    Rates recognized speech in a video note or a voice note message
+
     :param chat_id: Identifier of the chat to which the message belongs
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param message_id: Identifier of the message
-    :type message_id: :class:`int`
-    
+    :type message_id: :class:`Int53`
     :param is_good: Pass true if the speech recognition is good
-    :type is_good: :class:`bool`
-    
+    :type is_good: :class:`Bool`
     """
 
-    ID: str = Field("rateSpeechRecognition", alias="@type")
-    chat_id: int
-    message_id: int
-    is_good: bool
-
-    @staticmethod
-    def read(q: dict) -> RateSpeechRecognition:
-        return RateSpeechRecognition.construct(**q)
+    ID: typing.Literal["rateSpeechRecognition"] = "rateSpeechRecognition"
+    chat_id: Int53
+    message_id: Int53
+    is_good: Bool = False

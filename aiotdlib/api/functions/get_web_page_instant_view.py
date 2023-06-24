@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetWebPageInstantView(BaseObject):
     """
     Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
-    
+
     :param url: The web page URL
-    :type url: :class:`str`
-    
+    :type url: :class:`String`
     :param force_full: Pass true to get full instant view for the web page
-    :type force_full: :class:`bool`
-    
+    :type force_full: :class:`Bool`
     """
 
-    ID: str = Field("getWebPageInstantView", alias="@type")
-    url: str
-    force_full: bool
-
-    @staticmethod
-    def read(q: dict) -> GetWebPageInstantView:
-        return GetWebPageInstantView.construct(**q)
+    ID: typing.Literal["getWebPageInstantView"] = "getWebPageInstantView"
+    url: String
+    force_full: Bool = False

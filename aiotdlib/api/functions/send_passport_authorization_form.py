@@ -5,28 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import PassportElementType
+from ..types.base import *
+
+from ..types.all import (
+    PassportElementType,
+)
 
 
 class SendPassportAuthorizationForm(BaseObject):
     """
     Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
-    
-    :param autorization_form_id: Authorization form identifier
-    :type autorization_form_id: :class:`int`
-    
+
+    :param authorization_form_id: Authorization form identifier
+    :type authorization_form_id: :class:`Int32`
     :param types: Types of Telegram Passport elements chosen by user to complete the authorization form
-    :type types: :class:`list[PassportElementType]`
-    
+    :type types: :class:`Vector[PassportElementType]`
     """
 
-    ID: str = Field("sendPassportAuthorizationForm", alias="@type")
-    autorization_form_id: int
-    types: list[PassportElementType]
-
-    @staticmethod
-    def read(q: dict) -> SendPassportAuthorizationForm:
-        return SendPassportAuthorizationForm.construct(**q)
+    ID: typing.Literal["sendPassportAuthorizationForm"] = "sendPassportAuthorizationForm"
+    authorization_form_id: Int32
+    types: Vector[PassportElementType]

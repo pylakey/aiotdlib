@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class CheckPasswordRecoveryCode(BaseObject):
     """
     Checks whether a 2-step verification password recovery code sent to an email address is valid
-    
+
     :param recovery_code: Recovery code to check
-    :type recovery_code: :class:`str`
-    
+    :type recovery_code: :class:`String`
     """
 
-    ID: str = Field("checkPasswordRecoveryCode", alias="@type")
-    recovery_code: str
-
-    @staticmethod
-    def read(q: dict) -> CheckPasswordRecoveryCode:
-        return CheckPasswordRecoveryCode.construct(**q)
+    ID: typing.Literal["checkPasswordRecoveryCode"] = "checkPasswordRecoveryCode"
+    recovery_code: String

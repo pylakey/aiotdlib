@@ -5,23 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class DeleteAccount(BaseObject):
     """
     Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword
-    
+
     :param reason: The reason why the account was deleted; optional
-    :type reason: :class:`str`
-    
+    :type reason: :class:`String`
+    :param password: The 2-step verification password of the current user. If not specified, account deletion can be canceled within one week
+    :type password: :class:`String`
     """
 
-    ID: str = Field("deleteAccount", alias="@type")
-    reason: str
-
-    @staticmethod
-    def read(q: dict) -> DeleteAccount:
-        return DeleteAccount.construct(**q)
+    ID: typing.Literal["deleteAccount"] = "deleteAccount"
+    reason: String
+    password: String

@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import PremiumLimitType
+from ..types.base import *
+
+from ..types.all import (
+    PremiumLimitType,
+)
 
 
 class GetPremiumLimit(BaseObject):
     """
     Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
-    
+
     :param limit_type: Type of the limit
     :type limit_type: :class:`PremiumLimitType`
-    
     """
 
-    ID: str = Field("getPremiumLimit", alias="@type")
+    ID: typing.Literal["getPremiumLimit"] = "getPremiumLimit"
     limit_type: PremiumLimitType
-
-    @staticmethod
-    def read(q: dict) -> GetPremiumLimit:
-        return GetPremiumLimit.construct(**q)

@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import InputMessageContent
+from ..types.base import *
+
+from ..types.all import (
+    InputMessageContent,
+)
 
 
 class CreateInvoiceLink(BaseObject):
     """
     Creates a link for the given invoice; for bots only
-    
+
     :param invoice: Information about the invoice of the type inputMessageInvoice
     :type invoice: :class:`InputMessageContent`
-    
     """
 
-    ID: str = Field("createInvoiceLink", alias="@type")
+    ID: typing.Literal["createInvoiceLink"] = "createInvoiceLink"
     invoice: InputMessageContent
-
-    @staticmethod
-    def read(q: dict) -> CreateInvoiceLink:
-        return CreateInvoiceLink.construct(**q)

@@ -5,32 +5,30 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import InputSticker
+from ..types.base import *
+
+from ..types.all import (
+    InputSticker,
+)
 
 
 class AddStickerToSet(BaseObject):
     """
-    Adds a new sticker to a set; for bots only. Returns the sticker set
-    
+    Adds a new sticker to a set; for bots only
+
     :param user_id: Sticker set owner
-    :type user_id: :class:`int`
-    
+    :type user_id: :class:`Int53`
     :param name: Sticker set name
-    :type name: :class:`str`
-    
+    :type name: :class:`String`
     :param sticker: Sticker to add to the set
     :type sticker: :class:`InputSticker`
-    
     """
 
-    ID: str = Field("addStickerToSet", alias="@type")
-    user_id: int
-    name: str
+    ID: typing.Literal["addStickerToSet"] = "addStickerToSet"
+    user_id: Int53
+    name: String
     sticker: InputSticker
-
-    @staticmethod
-    def read(q: dict) -> AddStickerToSet:
-        return AddStickerToSet.construct(**q)

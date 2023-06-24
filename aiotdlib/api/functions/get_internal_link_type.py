@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetInternalLinkType(BaseObject):
     """
     Returns information about the type of an internal link. Returns a 404 error if the link is not internal. Can be called before authorization
-    
+
     :param link: The link
-    :type link: :class:`str`
-    
+    :type link: :class:`String`
     """
 
-    ID: str = Field("getInternalLinkType", alias="@type")
-    link: str
-
-    @staticmethod
-    def read(q: dict) -> GetInternalLinkType:
-        return GetInternalLinkType.construct(**q)
+    ID: typing.Literal["getInternalLinkType"] = "getInternalLinkType"
+    link: String

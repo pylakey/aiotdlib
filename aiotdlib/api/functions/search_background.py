@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SearchBackground(BaseObject):
     """
     Searches for a background by its name
-    
+
     :param name: The name of the background
-    :type name: :class:`str`
-    
+    :type name: :class:`String`
     """
 
-    ID: str = Field("searchBackground", alias="@type")
-    name: str
-
-    @staticmethod
-    def read(q: dict) -> SearchBackground:
-        return SearchBackground.construct(**q)
+    ID: typing.Literal["searchBackground"] = "searchBackground"
+    name: String

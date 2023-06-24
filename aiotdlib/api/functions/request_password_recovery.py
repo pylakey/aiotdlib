@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class RequestPasswordRecovery(BaseObject):
     """
     Requests to send a 2-step verification password recovery code to an email address that was previously set up
-    
     """
 
-    ID: str = Field("requestPasswordRecovery", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> RequestPasswordRecovery:
-        return RequestPasswordRecovery.construct(**q)
+    ID: typing.Literal["requestPasswordRecovery"] = "requestPasswordRecovery"

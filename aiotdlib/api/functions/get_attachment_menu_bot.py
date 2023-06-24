@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetAttachmentMenuBot(BaseObject):
     """
     Returns information about a bot that can be added to attachment menu
-    
+
     :param bot_user_id: Bot's user identifier
-    :type bot_user_id: :class:`int`
-    
+    :type bot_user_id: :class:`Int53`
     """
 
-    ID: str = Field("getAttachmentMenuBot", alias="@type")
-    bot_user_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetAttachmentMenuBot:
-        return GetAttachmentMenuBot.construct(**q)
+    ID: typing.Literal["getAttachmentMenuBot"] = "getAttachmentMenuBot"
+    bot_user_id: Int53

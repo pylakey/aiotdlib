@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SendCallSignalingData(BaseObject):
     """
     Sends call signaling data
-    
+
     :param call_id: Call identifier
-    :type call_id: :class:`int`
-    
+    :type call_id: :class:`Int32`
     :param data: The data
-    :type data: :class:`str`
-    
+    :type data: :class:`Bytes`
     """
 
-    ID: str = Field("sendCallSignalingData", alias="@type")
-    call_id: int
-    data: str
-
-    @staticmethod
-    def read(q: dict) -> SendCallSignalingData:
-        return SendCallSignalingData.construct(**q)
+    ID: typing.Literal["sendCallSignalingData"] = "sendCallSignalingData"
+    call_id: Int32
+    data: Bytes

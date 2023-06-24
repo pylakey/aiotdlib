@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SendChatScreenshotTakenNotification(BaseObject):
     """
     Sends a notification about a screenshot taken in a chat. Supported only in private and secret chats
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     """
 
-    ID: str = Field("sendChatScreenshotTakenNotification", alias="@type")
-    chat_id: int
-
-    @staticmethod
-    def read(q: dict) -> SendChatScreenshotTakenNotification:
-        return SendChatScreenshotTakenNotification.construct(**q)
+    ID: typing.Literal["sendChatScreenshotTakenNotification"] = "sendChatScreenshotTakenNotification"
+    chat_id: Int53

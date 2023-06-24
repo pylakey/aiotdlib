@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import PremiumFeature
+from ..types.base import *
+
+from ..types.all import (
+    PremiumFeature,
+)
 
 
 class ViewPremiumFeature(BaseObject):
     """
     Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen
-    
+
     :param feature: The viewed premium feature
     :type feature: :class:`PremiumFeature`
-    
     """
 
-    ID: str = Field("viewPremiumFeature", alias="@type")
+    ID: typing.Literal["viewPremiumFeature"] = "viewPremiumFeature"
     feature: PremiumFeature
-
-    @staticmethod
-    def read(q: dict) -> ViewPremiumFeature:
-        return ViewPremiumFeature.construct(**q)

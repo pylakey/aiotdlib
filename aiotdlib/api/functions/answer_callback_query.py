@@ -5,39 +5,32 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class AnswerCallbackQuery(BaseObject):
     """
     Sets the result of a callback query; for bots only
-    
+
     :param callback_query_id: Identifier of the callback query
-    :type callback_query_id: :class:`int`
-    
+    :type callback_query_id: :class:`Int64`
     :param text: Text of the answer
-    :type text: :class:`str`
-    
-    :param show_alert: Pass true to show an alert to the user instead of a toast notification
-    :type show_alert: :class:`bool`
-    
+    :type text: :class:`String`
     :param url: URL to be opened
-    :type url: :class:`str`
-    
+    :type url: :class:`String`
     :param cache_time: Time during which the result of the query can be cached, in seconds
-    :type cache_time: :class:`int`
-    
+    :type cache_time: :class:`Int32`
+    :param show_alert: Pass true to show an alert to the user instead of a toast notification
+    :type show_alert: :class:`Bool`
     """
 
-    ID: str = Field("answerCallbackQuery", alias="@type")
-    callback_query_id: int
-    text: str
-    show_alert: bool
-    url: str
-    cache_time: int
-
-    @staticmethod
-    def read(q: dict) -> AnswerCallbackQuery:
-        return AnswerCallbackQuery.construct(**q)
+    ID: typing.Literal["answerCallbackQuery"] = "answerCallbackQuery"
+    callback_query_id: Int64
+    text: String
+    url: String
+    cache_time: Int32
+    show_alert: Bool = False

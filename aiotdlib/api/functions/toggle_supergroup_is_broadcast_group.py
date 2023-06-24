@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ToggleSupergroupIsBroadcastGroup(BaseObject):
     """
     Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup
-    
+
     :param supergroup_id: Identifier of the supergroup
-    :type supergroup_id: :class:`int`
-    
+    :type supergroup_id: :class:`Int53`
     """
 
-    ID: str = Field("toggleSupergroupIsBroadcastGroup", alias="@type")
-    supergroup_id: int
-
-    @staticmethod
-    def read(q: dict) -> ToggleSupergroupIsBroadcastGroup:
-        return ToggleSupergroupIsBroadcastGroup.construct(**q)
+    ID: typing.Literal["toggleSupergroupIsBroadcastGroup"] = "toggleSupergroupIsBroadcastGroup"
+    supergroup_id: Int53

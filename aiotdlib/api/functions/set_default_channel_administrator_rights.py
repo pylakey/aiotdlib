@@ -9,22 +9,20 @@ import typing
 
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import ChatAdministratorRights
+from ..types.base import *
+
+from ..types.all import (
+    ChatAdministratorRights,
+)
 
 
 class SetDefaultChannelAdministratorRights(BaseObject):
     """
     Sets default administrator rights for adding the bot to channel chats; for bots only
-    
+
     :param default_channel_administrator_rights: Default administrator rights for adding the bot to channels; may be null, defaults to None
     :type default_channel_administrator_rights: :class:`ChatAdministratorRights`, optional
-    
     """
 
-    ID: str = Field("setDefaultChannelAdministratorRights", alias="@type")
+    ID: typing.Literal["setDefaultChannelAdministratorRights"] = "setDefaultChannelAdministratorRights"
     default_channel_administrator_rights: typing.Optional[ChatAdministratorRights] = None
-
-    @staticmethod
-    def read(q: dict) -> SetDefaultChannelAdministratorRights:
-        return SetDefaultChannelAdministratorRights.construct(**q)

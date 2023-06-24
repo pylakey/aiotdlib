@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetBasicGroupFullInfo(BaseObject):
     """
     Returns full information about a basic group by its identifier
-    
+
     :param basic_group_id: Basic group identifier
-    :type basic_group_id: :class:`int`
-    
+    :type basic_group_id: :class:`Int53`
     """
 
-    ID: str = Field("getBasicGroupFullInfo", alias="@type")
-    basic_group_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetBasicGroupFullInfo:
-        return GetBasicGroupFullInfo.construct(**q)
+    ID: typing.Literal["getBasicGroupFullInfo"] = "getBasicGroupFullInfo"
+    basic_group_id: Int53

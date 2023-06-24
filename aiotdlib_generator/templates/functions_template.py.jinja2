@@ -1,0 +1,22 @@
+{{ '# ' + "=" * (notice.__len__() + 6) + " #" }}
+{{ '# ' + " " * (notice.__len__() + 6) + " #" }}
+#    {{ notice }}    #
+{{ '# ' + " " * (notice.__len__() + 6) + " #" }}
+{{ '# ' + "=" * (notice.__len__() + 6) + " #" }}
+from __future__ import annotations
+
+import typing
+
+from pydantic import Field
+
+from ..types.base import *
+{% if entity.dependencies %}
+from ..types.all import (
+    {% for dependency in entity.dependencies %}
+    {{ dependency.type }},
+    {% endfor %}
+)
+{% endif %}
+{% import 'base_class_template.py.jinja2' as base_class %}
+{{ base_class.class(entity) }}
+

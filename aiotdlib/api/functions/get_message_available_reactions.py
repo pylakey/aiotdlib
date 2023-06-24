@@ -5,27 +5,26 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetMessageAvailableReactions(BaseObject):
     """
-    Returns reactions, which can be added to a message. The list can change after updateReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message. The method will return Premium reactions, even the current user has no Premium subscription
-    
+    Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
+
     :param chat_id: Identifier of the chat to which the message belongs
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param message_id: Identifier of the message
-    :type message_id: :class:`int`
-    
+    :type message_id: :class:`Int53`
+    :param row_size: Number of reaction per row, 5-25
+    :type row_size: :class:`Int32`
     """
 
-    ID: str = Field("getMessageAvailableReactions", alias="@type")
-    chat_id: int
-    message_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetMessageAvailableReactions:
-        return GetMessageAvailableReactions.construct(**q)
+    ID: typing.Literal["getMessageAvailableReactions"] = "getMessageAvailableReactions"
+    chat_id: Int53
+    message_id: Int53
+    row_size: Int32

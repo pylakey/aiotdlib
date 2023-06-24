@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SendEmailAddressVerificationCode(BaseObject):
     """
     Sends a code to verify an email address to be added to a user's Telegram Passport
-    
+
     :param email_address: Email address
-    :type email_address: :class:`str`
-    
+    :type email_address: :class:`String`
     """
 
-    ID: str = Field("sendEmailAddressVerificationCode", alias="@type")
-    email_address: str
-
-    @staticmethod
-    def read(q: dict) -> SendEmailAddressVerificationCode:
-        return SendEmailAddressVerificationCode.construct(**q)
+    ID: typing.Literal["sendEmailAddressVerificationCode"] = "sendEmailAddressVerificationCode"
+    email_address: String

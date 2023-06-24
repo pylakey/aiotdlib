@@ -5,45 +5,40 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import InputMessageContent
-from ..types import MessageSendOptions
+from ..types.base import *
+
+from ..types.all import (
+    InputMessageContent,
+    MessageSendOptions,
+)
 
 
 class SendMessageAlbum(BaseObject):
     """
     Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
-    
+
     :param chat_id: Target chat
-    :type chat_id: :class:`int`
-    
-    :param message_thread_id: If not 0, a message thread identifier in which the messages will be sent
-    :type message_thread_id: :class:`int`
-    
-    :param reply_to_message_id: Identifier of a replied message; 0 if none
-    :type reply_to_message_id: :class:`int`
-    
-    :param options: Options to be used to send the messages; pass null to use default options
-    :type options: :class:`MessageSendOptions`
-    
+    :type chat_id: :class:`Int53`
     :param input_message_contents: Contents of messages to be sent. At most 10 messages can be added to an album
-    :type input_message_contents: :class:`list[InputMessageContent]`
-    
+    :type input_message_contents: :class:`Vector[InputMessageContent]`
+    :param message_thread_id: If not 0, a message thread identifier in which the messages will be sent
+    :type message_thread_id: :class:`Int53`
     :param only_preview: Pass true to get fake messages instead of actually sending them
-    :type only_preview: :class:`bool`
-    
+    :type only_preview: :class:`Bool`
+    :param reply_to_message_id: Identifier of a replied message; 0 if none, defaults to None
+    :type reply_to_message_id: :class:`Int53`, optional
+    :param options: Options to be used to send the messages; pass null to use default options, defaults to None
+    :type options: :class:`MessageSendOptions`, optional
     """
 
-    ID: str = Field("sendMessageAlbum", alias="@type")
-    chat_id: int
-    message_thread_id: int
-    reply_to_message_id: int
-    options: MessageSendOptions
-    input_message_contents: list[InputMessageContent]
-    only_preview: bool
-
-    @staticmethod
-    def read(q: dict) -> SendMessageAlbum:
-        return SendMessageAlbum.construct(**q)
+    ID: typing.Literal["sendMessageAlbum"] = "sendMessageAlbum"
+    chat_id: Int53
+    input_message_contents: Vector[InputMessageContent]
+    message_thread_id: Int53 = 0
+    only_preview: Bool = False
+    reply_to_message_id: typing.Optional[Int53] = 0
+    options: typing.Optional[MessageSendOptions] = None

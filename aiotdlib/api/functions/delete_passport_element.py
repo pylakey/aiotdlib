@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import PassportElementType
+from ..types.base import *
+
+from ..types.all import (
+    PassportElementType,
+)
 
 
 class DeletePassportElement(BaseObject):
     """
     Deletes a Telegram Passport element
-    
+
     :param type_: Element type
     :type type_: :class:`PassportElementType`
-    
     """
 
-    ID: str = Field("deletePassportElement", alias="@type")
-    type_: PassportElementType = Field(..., alias='type')
-
-    @staticmethod
-    def read(q: dict) -> DeletePassportElement:
-        return DeletePassportElement.construct(**q)
+    ID: typing.Literal["deletePassportElement"] = "deletePassportElement"
+    type_: PassportElementType = Field(..., alias="type")

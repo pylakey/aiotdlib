@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class TestNetwork(BaseObject):
     """
     Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization
-    
     """
 
-    ID: str = Field("testNetwork", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> TestNetwork:
-        return TestNetwork.construct(**q)
+    ID: typing.Literal["testNetwork"] = "testNetwork"

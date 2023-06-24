@@ -1,0 +1,39 @@
+{{ '# ' + "=" * (notice.__len__() + 6) + " #"}}
+{{ '# ' + " " * (notice.__len__() + 6) + " #"}}
+#    {{ notice }}    #
+{{ '# ' + " " * (notice.__len__() + 6) + " #"}}
+{{ '# ' + "=" * (notice.__len__() + 6) + " #"}}
+
+import typing
+
+from .api import API
+from .errors import *
+from .functions import *
+from .types import *
+
+
+TDLibObject = typing.Annotated[typing.Union[
+    {% for entity in entities %}
+    {%- if not entity.is_abstract %}
+    {{ entity.uf_name }},
+    {%- endif %}
+    {%- for subclass in entity.subclasses %}
+    {{ subclass.uf_name }},
+    {%- endfor %}
+    {%- for dep in entity.cross_deps %}
+    {{ dep.uf_name }},
+    {%- endfor %}
+    {% endfor %}
+], Field(discriminator='ID', alias='@type')]
+
+TDLibObjects: dict[str, TDLibObject] = {
+    {% for entity in entities %}
+    '{{ entity.lf_name }}': {{ entity.uf_name }},
+    {%- for subclass in entity.subclasses %}
+    '{{ subclass.lf_name }}': {{ subclass.uf_name }},
+    {%- endfor %}
+    {%- for dep in entity.cross_deps %}
+    '{{ dep.lf_name }}': {{ dep.uf_name }},
+    {%- endfor %}
+    {% endfor %}
+}

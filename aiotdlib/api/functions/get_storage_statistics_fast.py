@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetStorageStatisticsFast(BaseObject):
     """
     Quickly returns approximate storage usage statistics. Can be called before authorization
-    
     """
 
-    ID: str = Field("getStorageStatisticsFast", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetStorageStatisticsFast:
-        return GetStorageStatisticsFast.construct(**q)
+    ID: typing.Literal["getStorageStatisticsFast"] = "getStorageStatisticsFast"

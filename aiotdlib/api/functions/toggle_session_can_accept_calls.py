@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ToggleSessionCanAcceptCalls(BaseObject):
     """
     Toggles whether a session can accept incoming calls
-    
+
     :param session_id: Session identifier
-    :type session_id: :class:`int`
-    
+    :type session_id: :class:`Int64`
     :param can_accept_calls: Pass true to allow accepting incoming calls by the session; pass false otherwise
-    :type can_accept_calls: :class:`bool`
-    
+    :type can_accept_calls: :class:`Bool`
     """
 
-    ID: str = Field("toggleSessionCanAcceptCalls", alias="@type")
-    session_id: int
-    can_accept_calls: bool
-
-    @staticmethod
-    def read(q: dict) -> ToggleSessionCanAcceptCalls:
-        return ToggleSessionCanAcceptCalls.construct(**q)
+    ID: typing.Literal["toggleSessionCanAcceptCalls"] = "toggleSessionCanAcceptCalls"
+    session_id: Int64
+    can_accept_calls: Bool = False

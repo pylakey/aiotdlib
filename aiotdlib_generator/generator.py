@@ -12,11 +12,11 @@ from jinja2 import (
 
 from .parser import (
     Constructor,
-    Method,
+    Function,
     TDApiParser,
 )
 
-Entities = list[typing.Union[Constructor, Method]]
+Entities = list[typing.Union[Constructor, Function]]
 
 LIBRARY_ROOT_PATH = str(pathlib.Path(__file__).parent.parent)
 
@@ -29,18 +29,19 @@ class Generator:
     ):
         self.notice = notice
         self.destination = destination
-        self.jinja_env = Environment(loader=FileSystemLoader(f'{pathlib.Path(__file__).parent}/templates'))
+        self.jinja_env = Environment(
+            loader=FileSystemLoader(f'{pathlib.Path(__file__).parent}/templates'),
+            # trim_blocks=True,
+            # lstrip_blocks=True
+        )
 
     def __prepare_directories(self):
-        types_dir = f"{self.destination}/types/"
         functions_dir = f"{self.destination}/functions/"
-        shutil.rmtree(types_dir, ignore_errors=True)
         shutil.rmtree(functions_dir, ignore_errors=True)
-        os.makedirs(types_dir, exist_ok=True)
         os.makedirs(functions_dir, exist_ok=True)
 
     def render_types_init_file(self, entities: Entities):
-        section_init_file_template = self.jinja_env.get_template('section_init_template.py.jinja')
+        section_init_file_template = self.jinja_env.get_template('types_package_init_template.py.jinja2')
 
         with open(f"{self.destination}/types/__init__.py", "w", encoding="utf-8") as f:
             f.write(
@@ -51,7 +52,7 @@ class Generator:
             )
 
     def render_functions_init_file(self, entities: Entities):
-        section_init_file_template = self.jinja_env.get_template('section_init_template.py.jinja')
+        section_init_file_template = self.jinja_env.get_template('functions_package_init_template.py.jinja2')
 
         with open(f"{self.destination}/functions/__init__.py", "w", encoding="utf-8") as f:
             f.write(
@@ -62,22 +63,28 @@ class Generator:
             )
 
     def render_package_init_file(self, entities: Entities):
-        package_init_file_template = self.jinja_env.get_template('package_init_template.py.jinja')
+        package_init_file_template = self.jinja_env.get_template('package_init_template.py.jinja2')
 
         with open(f"{self.destination}/__init__.py", "w", encoding="utf-8") as f:
             f.write(package_init_file_template.render(notice=self.notice, entities=entities))
 
-    def render_entities_classes(self, entities: Entities):
-        class_template = self.jinja_env.get_template('class_template.py.jinja')
+    def render_types(self, entities: Entities):
+        class_template = self.jinja_env.get_template('types_template.py.jinja2')
+        entities = [e for e in entities if not e.is_function]
+
+        with open(f"{self.destination}/types/all.py", 'w', encoding='utf-8') as f:
+            f.write(class_template.render(notice=self.notice, entities=entities))
+
+    def render_functions(self, entities: Entities):
+        class_template = self.jinja_env.get_template('functions_template.py.jinja2')
+        entities = [e for e in entities if e.is_function]
 
         for entity in entities:
-            section = "functions" if entity.is_function else "types"
-
-            with open(f"{self.destination}/{section}/{entity.snake_name}.py", 'w', encoding='utf-8') as f:
+            with open(f"{self.destination}/functions/{entity.snake_name}.py", 'w', encoding='utf-8') as f:
                 f.write(class_template.render(notice=self.notice, entity=entity))
 
     def render_main_api_class(self, entities: Entities):
-        api_template = self.jinja_env.get_template('api_template.py.jinja')
+        api_template = self.jinja_env.get_template('api_template.py.jinja2')
 
         with open(f"{self.destination}/api.py", "w", encoding="utf-8") as f:
             f.write(api_template.render(notice=self.notice, entities=entities))
@@ -87,8 +94,11 @@ class Generator:
 
         entities = TDApiParser.parse()
 
-        self.render_entities_classes(entities)
+        self.render_types(entities)
         self.render_types_init_file(entities)
+        self.render_functions(entities)
         self.render_functions_init_file(entities)
         self.render_main_api_class(entities)
         self.render_package_init_file(entities)
+
+        os.system(f'black -l 120 {self.destination}')

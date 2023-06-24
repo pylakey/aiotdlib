@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ReplacePrimaryChatInviteLink(BaseObject):
     """
     Replaces current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     """
 
-    ID: str = Field("replacePrimaryChatInviteLink", alias="@type")
-    chat_id: int
-
-    @staticmethod
-    def read(q: dict) -> ReplacePrimaryChatInviteLink:
-        return ReplacePrimaryChatInviteLink.construct(**q)
+    ID: typing.Literal["replacePrimaryChatInviteLink"] = "replacePrimaryChatInviteLink"
+    chat_id: Int53

@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetCountries(BaseObject):
     """
     Returns information about existing countries. Can be called before authorization
-    
     """
 
-    ID: str = Field("getCountries", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetCountries:
-        return GetCountries.construct(**q)
+    ID: typing.Literal["getCountries"] = "getCountries"

@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class RemoveProxy(BaseObject):
     """
     Removes a proxy server. Can be called before authorization
-    
+
     :param proxy_id: Proxy identifier
-    :type proxy_id: :class:`int`
-    
+    :type proxy_id: :class:`Int32`
     """
 
-    ID: str = Field("removeProxy", alias="@type")
-    proxy_id: int
-
-    @staticmethod
-    def read(q: dict) -> RemoveProxy:
-        return RemoveProxy.construct(**q)
+    ID: typing.Literal["removeProxy"] = "removeProxy"
+    proxy_id: Int32

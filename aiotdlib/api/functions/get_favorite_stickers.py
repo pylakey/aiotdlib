@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetFavoriteStickers(BaseObject):
     """
     Returns favorite stickers
-    
     """
 
-    ID: str = Field("getFavoriteStickers", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetFavoriteStickers:
-        return GetFavoriteStickers.construct(**q)
+    ID: typing.Literal["getFavoriteStickers"] = "getFavoriteStickers"

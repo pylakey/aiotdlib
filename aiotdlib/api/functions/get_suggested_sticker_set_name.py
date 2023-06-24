@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetSuggestedStickerSetName(BaseObject):
     """
     Returns a suggested name for a new sticker set with a given title
-    
+
     :param title: Sticker set title; 1-64 characters
-    :type title: :class:`str`
-    
+    :type title: :class:`String`
     """
 
-    ID: str = Field("getSuggestedStickerSetName", alias="@type")
-    title: str = Field(..., min_length=1, max_length=64)
-
-    @staticmethod
-    def read(q: dict) -> GetSuggestedStickerSetName:
-        return GetSuggestedStickerSetName.construct(**q)
+    ID: typing.Literal["getSuggestedStickerSetName"] = "getSuggestedStickerSetName"
+    title: String = Field(..., min_length=1, max_length=64)

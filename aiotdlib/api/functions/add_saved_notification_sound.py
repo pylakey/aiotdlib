@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import InputFile
+from ..types.base import *
+
+from ..types.all import (
+    InputFile,
+)
 
 
 class AddSavedNotificationSound(BaseObject):
     """
     Adds a new notification sound to the list of saved notification sounds. The new notification sound is added to the top of the list. If it is already in the list, its position isn't changed
-    
+
     :param sound: Notification sound file to add
     :type sound: :class:`InputFile`
-    
     """
 
-    ID: str = Field("addSavedNotificationSound", alias="@type")
+    ID: typing.Literal["addSavedNotificationSound"] = "addSavedNotificationSound"
     sound: InputFile
-
-    @staticmethod
-    def read(q: dict) -> AddSavedNotificationSound:
-        return AddSavedNotificationSound.construct(**q)

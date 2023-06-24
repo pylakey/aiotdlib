@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class RemoveFileFromDownloads(BaseObject):
     """
     Removes a file from the file download list
-    
+
     :param file_id: Identifier of the downloaded file
-    :type file_id: :class:`int`
-    
+    :type file_id: :class:`Int32`
     :param delete_from_cache: Pass true to delete the file from the TDLib file cache
-    :type delete_from_cache: :class:`bool`
-    
+    :type delete_from_cache: :class:`Bool`
     """
 
-    ID: str = Field("removeFileFromDownloads", alias="@type")
-    file_id: int
-    delete_from_cache: bool
-
-    @staticmethod
-    def read(q: dict) -> RemoveFileFromDownloads:
-        return RemoveFileFromDownloads.construct(**q)
+    ID: typing.Literal["removeFileFromDownloads"] = "removeFileFromDownloads"
+    file_id: Int32
+    delete_from_cache: Bool = False

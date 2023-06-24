@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class DisableProxy(BaseObject):
     """
     Disables the currently enabled proxy. Can be called before authorization
-    
     """
 
-    ID: str = Field("disableProxy", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> DisableProxy:
-        return DisableProxy.construct(**q)
+    ID: typing.Literal["disableProxy"] = "disableProxy"

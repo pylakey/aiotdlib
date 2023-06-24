@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import NotificationSettingsScope
+from ..types.base import *
+
+from ..types.all import (
+    NotificationSettingsScope,
+)
 
 
 class GetScopeNotificationSettings(BaseObject):
     """
     Returns the notification settings for chats of a given type
-    
+
     :param scope: Types of chats for which to return the notification settings information
     :type scope: :class:`NotificationSettingsScope`
-    
     """
 
-    ID: str = Field("getScopeNotificationSettings", alias="@type")
+    ID: typing.Literal["getScopeNotificationSettings"] = "getScopeNotificationSettings"
     scope: NotificationSettingsScope
-
-    @staticmethod
-    def read(q: dict) -> GetScopeNotificationSettings:
-        return GetScopeNotificationSettings.construct(**q)

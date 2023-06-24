@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class CheckStickerSetName(BaseObject):
     """
     Checks whether a name can be used for a new sticker set
-    
+
     :param name: Name to be checked
-    :type name: :class:`str`
-    
+    :type name: :class:`String`
     """
 
-    ID: str = Field("checkStickerSetName", alias="@type")
-    name: str
-
-    @staticmethod
-    def read(q: dict) -> CheckStickerSetName:
-        return CheckStickerSetName.construct(**q)
+    ID: typing.Literal["checkStickerSetName"] = "checkStickerSetName"
+    name: String

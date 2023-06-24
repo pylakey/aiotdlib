@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SendCallDebugInformation(BaseObject):
     """
     Sends debug information for a call to Telegram servers
-    
+
     :param call_id: Call identifier
-    :type call_id: :class:`int`
-    
+    :type call_id: :class:`Int32`
     :param debug_information: Debug information in application-specific format
-    :type debug_information: :class:`str`
-    
+    :type debug_information: :class:`String`
     """
 
-    ID: str = Field("sendCallDebugInformation", alias="@type")
-    call_id: int
-    debug_information: str
-
-    @staticmethod
-    def read(q: dict) -> SendCallDebugInformation:
-        return SendCallDebugInformation.construct(**q)
+    ID: typing.Literal["sendCallDebugInformation"] = "sendCallDebugInformation"
+    call_id: Int32
+    debug_information: String

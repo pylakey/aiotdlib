@@ -5,31 +5,26 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ProcessChatJoinRequest(BaseObject):
     """
     Handles a pending join request in a chat
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param user_id: Identifier of the user that sent the request
-    :type user_id: :class:`int`
-    
+    :type user_id: :class:`Int53`
     :param approve: Pass true to approve the request; pass false to decline it
-    :type approve: :class:`bool`
-    
+    :type approve: :class:`Bool`
     """
 
-    ID: str = Field("processChatJoinRequest", alias="@type")
-    chat_id: int
-    user_id: int
-    approve: bool
-
-    @staticmethod
-    def read(q: dict) -> ProcessChatJoinRequest:
-        return ProcessChatJoinRequest.construct(**q)
+    ID: typing.Literal["processChatJoinRequest"] = "processChatJoinRequest"
+    chat_id: Int53
+    user_id: Int53
+    approve: Bool = False

@@ -5,29 +5,28 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import InputInvoice
-from ..types import ThemeParameters
+from ..types.base import *
+
+from ..types.all import (
+    InputInvoice,
+    ThemeParameters,
+)
 
 
 class GetPaymentForm(BaseObject):
     """
     Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
-    
+
     :param input_invoice: The invoice
     :type input_invoice: :class:`InputInvoice`
-    
-    :param theme: Preferred payment form theme; pass null to use the default theme
-    :type theme: :class:`ThemeParameters`
-    
+    :param theme: Preferred payment form theme; pass null to use the default theme, defaults to None
+    :type theme: :class:`ThemeParameters`, optional
     """
 
-    ID: str = Field("getPaymentForm", alias="@type")
+    ID: typing.Literal["getPaymentForm"] = "getPaymentForm"
     input_invoice: InputInvoice
-    theme: ThemeParameters
-
-    @staticmethod
-    def read(q: dict) -> GetPaymentForm:
-        return GetPaymentForm.construct(**q)
+    theme: typing.Optional[ThemeParameters] = None

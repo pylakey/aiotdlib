@@ -5,28 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import MessageSender
+from ..types.base import *
+
+from ..types.all import (
+    MessageSender,
+)
 
 
 class SetVideoChatDefaultParticipant(BaseObject):
     """
     Changes default participant identifier, on whose behalf a video chat in the chat will be joined
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param default_participant_id: Default group call participant identifier to join the video chats
     :type default_participant_id: :class:`MessageSender`
-    
     """
 
-    ID: str = Field("setVideoChatDefaultParticipant", alias="@type")
-    chat_id: int
+    ID: typing.Literal["setVideoChatDefaultParticipant"] = "setVideoChatDefaultParticipant"
+    chat_id: Int53
     default_participant_id: MessageSender
-
-    @staticmethod
-    def read(q: dict) -> SetVideoChatDefaultParticipant:
-        return SetVideoChatDefaultParticipant.construct(**q)

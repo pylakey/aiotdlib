@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetSavedAnimations(BaseObject):
     """
     Returns saved animations
-    
     """
 
-    ID: str = Field("getSavedAnimations", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetSavedAnimations:
-        return GetSavedAnimations.construct(**q)
+    ID: typing.Literal["getSavedAnimations"] = "getSavedAnimations"

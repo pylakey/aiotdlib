@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetAllPassportElements(BaseObject):
     """
     Returns all available Telegram Passport elements
-    
-    :param password: Password of the current user
-    :type password: :class:`str`
-    
+
+    :param password: The 2-step verification password of the current user
+    :type password: :class:`String`
     """
 
-    ID: str = Field("getAllPassportElements", alias="@type")
-    password: str
-
-    @staticmethod
-    def read(q: dict) -> GetAllPassportElements:
-        return GetAllPassportElements.construct(**q)
+    ID: typing.Literal["getAllPassportElements"] = "getAllPassportElements"
+    password: String

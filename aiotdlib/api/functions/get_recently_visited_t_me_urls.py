@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetRecentlyVisitedTMeUrls(BaseObject):
     """
     Returns t.me URLs recently visited by a newly registered user
-    
+
     :param referrer: Google Play referrer to identify the user
-    :type referrer: :class:`str`
-    
+    :type referrer: :class:`String`
     """
 
-    ID: str = Field("getRecentlyVisitedTMeUrls", alias="@type")
-    referrer: str
-
-    @staticmethod
-    def read(q: dict) -> GetRecentlyVisitedTMeUrls:
-        return GetRecentlyVisitedTMeUrls.construct(**q)
+    ID: typing.Literal["getRecentlyVisitedTMeUrls"] = "getRecentlyVisitedTMeUrls"
+    referrer: String

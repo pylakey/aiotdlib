@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class StartScheduledGroupCall(BaseObject):
     """
     Starts a scheduled group call
-    
+
     :param group_call_id: Group call identifier
-    :type group_call_id: :class:`int`
-    
+    :type group_call_id: :class:`Int32`
     """
 
-    ID: str = Field("startScheduledGroupCall", alias="@type")
-    group_call_id: int
-
-    @staticmethod
-    def read(q: dict) -> StartScheduledGroupCall:
-        return StartScheduledGroupCall.construct(**q)
+    ID: typing.Literal["startScheduledGroupCall"] = "startScheduledGroupCall"
+    group_call_id: Int32

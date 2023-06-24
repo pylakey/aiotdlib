@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetUserFullInfo(BaseObject):
     """
     Returns full information about a user by their identifier
-    
+
     :param user_id: User identifier
-    :type user_id: :class:`int`
-    
+    :type user_id: :class:`Int53`
     """
 
-    ID: str = Field("getUserFullInfo", alias="@type")
-    user_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetUserFullInfo:
-        return GetUserFullInfo.construct(**q)
+    ID: typing.Literal["getUserFullInfo"] = "getUserFullInfo"
+    user_id: Int53

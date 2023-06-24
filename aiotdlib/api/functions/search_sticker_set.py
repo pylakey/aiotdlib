@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SearchStickerSet(BaseObject):
     """
     Searches for a sticker set by its name
-    
+
     :param name: Name of the sticker set
-    :type name: :class:`str`
-    
+    :type name: :class:`String`
     """
 
-    ID: str = Field("searchStickerSet", alias="@type")
-    name: str
-
-    @staticmethod
-    def read(q: dict) -> SearchStickerSet:
-        return SearchStickerSet.construct(**q)
+    ID: typing.Literal["searchStickerSet"] = "searchStickerSet"
+    name: String

@@ -5,32 +5,30 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import CallProtocol
+from ..types.base import *
+
+from ..types.all import (
+    CallProtocol,
+)
 
 
 class CreateCall(BaseObject):
     """
     Creates a new call
-    
+
     :param user_id: Identifier of the user to be called
-    :type user_id: :class:`int`
-    
+    :type user_id: :class:`Int53`
     :param protocol: The call protocols supported by the application
     :type protocol: :class:`CallProtocol`
-    
     :param is_video: Pass true to create a video call
-    :type is_video: :class:`bool`
-    
+    :type is_video: :class:`Bool`
     """
 
-    ID: str = Field("createCall", alias="@type")
-    user_id: int
+    ID: typing.Literal["createCall"] = "createCall"
+    user_id: Int53
     protocol: CallProtocol
-    is_video: bool
-
-    @staticmethod
-    def read(q: dict) -> CreateCall:
-        return CreateCall.construct(**q)
+    is_video: Bool = False

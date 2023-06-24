@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import AccountTtl
+from ..types.base import *
+
+from ..types.all import (
+    AccountTtl,
+)
 
 
 class SetAccountTtl(BaseObject):
     """
     Changes the period of inactivity after which the account of the current user will automatically be deleted
-    
+
     :param ttl: New account TTL
     :type ttl: :class:`AccountTtl`
-    
     """
 
-    ID: str = Field("setAccountTtl", alias="@type")
+    ID: typing.Literal["setAccountTtl"] = "setAccountTtl"
     ttl: AccountTtl
-
-    @staticmethod
-    def read(q: dict) -> SetAccountTtl:
-        return SetAccountTtl.construct(**q)

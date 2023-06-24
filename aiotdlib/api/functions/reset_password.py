@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ResetPassword(BaseObject):
     """
     Removes 2-step verification password without previous password and access to recovery email address. The password can't be reset immediately and the request needs to be repeated after the specified time
-    
     """
 
-    ID: str = Field("resetPassword", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> ResetPassword:
-        return ResetPassword.construct(**q)
+    ID: typing.Literal["resetPassword"] = "resetPassword"

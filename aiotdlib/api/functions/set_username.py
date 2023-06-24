@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SetUsername(BaseObject):
     """
-    Changes the username of the current user
-    
-    :param username: The new value of the username. Use an empty string to remove the username
-    :type username: :class:`str`
-    
+    Changes the editable username of the current user
+
+    :param username: The new value of the username. Use an empty string to remove the username. The username can't be completely removed if there is another active or disabled username
+    :type username: :class:`String`
     """
 
-    ID: str = Field("setUsername", alias="@type")
-    username: str
-
-    @staticmethod
-    def read(q: dict) -> SetUsername:
-        return SetUsername.construct(**q)
+    ID: typing.Literal["setUsername"] = "setUsername"
+    username: String

@@ -30,6 +30,7 @@ from . import __version__
 from .api import (
     API,
     AioTDLibError,
+    AuthorizationState,
     AuthorizationStateClosed,
     BaseObject,
     BasicGroup,
@@ -39,6 +40,7 @@ from .api import (
     ChatTypePrivate,
     ChatTypeSecret,
     ChatTypeSupergroup,
+    EmailAddressAuthenticationCode,
     Error,
     FormattedText,
     InputMessageAnimation,
@@ -58,6 +60,7 @@ from .api import (
     MessageSendOptions,
     MessageSendingStatePending,
     Messages,
+    Ok,
     ParseTextEntities,
     PhoneNumberAuthenticationSettings,
     ProxyType,
@@ -68,7 +71,7 @@ from .api import (
     SecretChat,
     Supergroup,
     SupergroupFullInfo,
-    TdlibParameters,
+    TDLibObject,
     TextParseModeHTML,
     TextParseModeMarkdown,
     UpdateAuthorizationState,
@@ -101,6 +104,7 @@ from .utils import (
     ainput,
     make_input_file,
     make_thumbnail,
+    parse_tdlib_object,
     str_to_base64,
     strip_phone_number_symbols,
 )
@@ -194,17 +198,17 @@ class ClientOptions(pydantic.BaseModel):
     getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
     """
 
-    disable_persistent_network_statistics: Optional[bool] = True
+    disable_persistent_network_statistics: Optional[bool]
     """
     If true, persistent network statistics will be disabled, which significantly reduces disk usage
     """
 
-    disable_sent_scheduled_message_notifications: Optional[bool] = True
+    disable_sent_scheduled_message_notifications: Optional[bool]
     """
     If true, notifications about outgoing scheduled messages that were sent will be disabled
     """
 
-    disable_time_adjustment_protection: Optional[bool] = True
+    disable_time_adjustment_protection: Optional[bool]
     """
     If true, protection from external time adjustment will be disabled, which significantly reduces disk usage
     """
@@ -225,17 +229,17 @@ class ClientOptions(pydantic.BaseModel):
     If true, the disable_notification value specified in the request will be always used instead of the default value
     """
 
-    ignore_inline_thumbnails: Optional[bool] = True
+    ignore_inline_thumbnails: Optional[bool]
     """
     If true, prevents file thumbnails sent by the server along with messages from being saved on the disk
     """
 
-    ignore_platform_restrictions: Optional[bool] = True
+    ignore_platform_restrictions: Optional[bool]
     """
     If true, chat and message reictions specific to the currently used operating system will be ignored
     """
 
-    is_location_visible: Optional[bool] = False
+    is_location_visible: Optional[bool]
     """
     If true, other users will be allowed to see the current user's location
     """
@@ -294,7 +298,7 @@ class ClientOptions(pydantic.BaseModel):
     If true, quick acknowledgement will be enabled for outgoing messages
     """
 
-    use_storage_optimizer: Optional[bool] = True
+    use_storage_optimizer: Optional[bool]
     """
     If true, the background storage optimizer will be enabled
     """
@@ -346,6 +350,9 @@ class ClientSettings(pydantic.BaseSettings):
     :param last_name: Last name of new account if account with passed phone_number does not exist
     :type last_name: str
 
+    :param email: email address of new account if account with passed phone_number does not exist
+    :type email: str
+
     :param library_path: Path to TDLib binary. By default binary included in package is used
     :type library_path: str
 
@@ -376,6 +383,7 @@ class ClientSettings(pydantic.BaseSettings):
     files_directory: Path = Path(sys.argv[0]).parent
     first_name: str = None
     last_name: str = None
+    email: str = None
     password: pydantic.SecretStr = None
     library_path: str = None
     tdlib_verbosity: TDLibLogVerbosity = TDLibLogVerbosity.ERROR
@@ -447,6 +455,7 @@ class ClientSettings(pydantic.BaseSettings):
 
 
 Undefined = object()
+AUTHORIZATION_REQUEST_ID = 'updateAuthorizationState'
 
 
 class Client:
@@ -463,10 +472,10 @@ class Client:
     def __init__(
             self,
             api_id: int = Undefined,
-            api_hash: pydantic.SecretStr = Undefined,
+            api_hash: str = Undefined,
             database_encryption_key: Union[str, bytes] = Undefined,
             phone_number: str = Undefined,
-            bot_token: pydantic.SecretStr = Undefined,
+            bot_token: str = Undefined,
             use_test_dc: bool = Undefined,
             system_language_code: str = Undefined,
             device_model: str = Undefined,
@@ -475,7 +484,7 @@ class Client:
             files_directory: Path = Undefined,
             first_name: str = Undefined,
             last_name: str = Undefined,
-            password: pydantic.SecretStr = Undefined,
+            password: str = Undefined,
             library_path: str = Undefined,
             tdlib_verbosity: TDLibLogVerbosity = Undefined,
             debug: bool = Undefined,
@@ -568,10 +577,10 @@ class Client:
         """
         settings = {
             'api_id': api_id,
-            'api_hash': api_hash,
+            'api_hash': pydantic.SecretStr(api_hash) if not api_hash is Undefined else Undefined,
             'database_encryption_key': database_encryption_key,
             'phone_number': phone_number,
-            'bot_token': bot_token,
+            'bot_token': pydantic.SecretStr(bot_token) if not bot_token is Undefined else Undefined,
             'use_test_dc': use_test_dc,
             'system_language_code': system_language_code,
             'device_model': device_model,
@@ -580,7 +589,7 @@ class Client:
             'files_directory': files_directory,
             'first_name': first_name,
             'last_name': last_name,
-            'password': password,
+            'password': pydantic.SecretStr(password) if not password is Undefined else Undefined,
             'library_path': library_path,
             'tdlib_verbosity': tdlib_verbosity,
             'debug': debug,
@@ -613,20 +622,20 @@ class Client:
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         await self.stop()
 
-    async def __call_handler(self, handler: Handler, update: BaseObject):
+    async def __call_handler(self, handler: Handler, update: TDLibObject):
         try:
             await handler(self, update)
         except Exception as e:
             self.logger.error(e, exc_info=True)
 
-    async def __call_handlers(self, update: BaseObject):
+    async def __call_handlers(self, update: TDLibObject):
         tasks = []
         tasks.extend(self.__call_handler(h, update) for h in self.__updates_handlers.get(update.ID, []))
         tasks.extend(self.__call_handler(h, update) for h in self.__updates_handlers.get('*', []))
         # Running all handlers concurrently and independently
         await asyncio.gather(*tasks, return_exceptions=True)
 
-    async def __handle_update(self, update: BaseObject):
+    async def __handle_update(self, update: TDLibObject):
         if len(self.__middlewares_handlers) == 0:
             return await self.__call_handlers(update)
 
@@ -640,10 +649,10 @@ class Client:
 
         return await call_next(self, update)
 
-    async def __handle_pending_request(self, update: BaseObject):
+    async def __handle_pending_request(self, update: TDLibObject):
         request_id = update.EXTRA.get('request_id')
 
-        if not bool(request_id) and update.ID in ['updateAuthorizationState']:
+        if not bool(request_id) and update.ID in [AUTHORIZATION_REQUEST_ID]:
             request_id = update.ID
 
         if bool(request_id):
@@ -764,7 +773,7 @@ class Client:
         )
 
     async def _setup_options(self):
-        for k, v in self.settings.options.dict(exclude_none=True).items():
+        for k, v in self.settings.options.dict(exclude_none=True, by_alias=True).items():
             if isinstance(v, bool):
                 option_value = OptionValueBoolean(value=v)
             elif isinstance(v, str):
@@ -784,36 +793,28 @@ class Client:
             except BadRequest as e:
                 self.logger.error(f'Unable to setup option {k} = {v}: {e}!')
 
-    async def _auth_start(self) -> RequestResult:
-        return await self.api.get_authorization_state(request_id="updateAuthorizationState")
+    async def _auth_start(self) -> AuthorizationState:
+        return await self.api.get_authorization_state(request_id=AUTHORIZATION_REQUEST_ID)
 
-    async def _set_tdlib_parameters(self) -> RequestResult:
-        return await self.api.set_tdlib_parameters(
-            parameters=TdlibParameters(
-                use_test_dc=self.settings.use_test_dc,
-                database_directory=os.path.join(f"{self.settings.files_directory}", "database"),
-                files_directory=os.path.join(f"{self.settings.files_directory}", "files"),
-                use_file_database=self.settings.use_file_database,
-                use_chat_info_database=self.settings.use_chat_info_database,
-                use_message_database=self.settings.use_message_database,
-                use_secret_chats=self.settings.use_secret_chats,
-                api_id=self.settings.api_id,
-                api_hash=self.settings.api_hash.get_secret_value(),
-                system_language_code=self.settings.system_language_code,
-                device_model=self.settings.device_model,
-                system_version=self.settings.system_version,
-                application_version=self.settings.application_version,
-                enable_storage_optimizer=self.settings.enable_storage_optimizer,
-                ignore_file_names=self.settings.ignore_file_names
-            ),
-            request_id="updateAuthorizationState"
-        )
-
-    async def _check_database_encryption_key(self) -> RequestResult:
-        self.logger.info('Sending encryption key')
-        result = await self.api.check_database_encryption_key(
-            encryption_key=self.settings.database_encryption_key,
-            request_id="updateAuthorizationState"
+    async def _set_tdlib_parameters(self) -> Ok:
+        result = await self.api.set_tdlib_parameters(
+            database_directory=os.path.join(f"{self.settings.files_directory}", "database"),
+            files_directory=os.path.join(f"{self.settings.files_directory}", "files"),
+            database_encryption_key=self.settings.database_encryption_key,
+            api_id=self.settings.api_id,
+            api_hash=self.settings.api_hash.get_secret_value(),
+            system_language_code=self.settings.system_language_code,
+            device_model=self.settings.device_model,
+            system_version=self.settings.system_version,
+            application_version=self.settings.application_version,
+            use_test_dc=self.settings.use_test_dc,
+            use_file_database=self.settings.use_file_database,
+            use_chat_info_database=self.settings.use_chat_info_database,
+            use_message_database=self.settings.use_message_database,
+            use_secret_chats=self.settings.use_secret_chats,
+            enable_storage_optimizer=self.settings.enable_storage_optimizer,
+            ignore_file_names=self.settings.ignore_file_names,
+            request_id=AUTHORIZATION_REQUEST_ID
         )
 
         await self._setup_options()
@@ -821,13 +822,13 @@ class Client:
 
         return result
 
-    async def _set_authentication_phone_number_or_check_bot_token(self) -> RequestResult:
+    async def _set_authentication_phone_number_or_check_bot_token(self) -> Ok:
         if self.is_bot:
             return await self._check_authentication_bot_token()
 
         return await self._set_authentication_phone_number()
 
-    async def _set_authentication_phone_number(self) -> RequestResult:
+    async def _set_authentication_phone_number(self) -> Ok:
         self.logger.info('Sending phone number')
         return await self.api.set_authentication_phone_number(
             phone_number=self.settings.phone_number,
@@ -838,26 +839,45 @@ class Client:
                 allow_sms_retriever_api=False,
                 authentication_tokens=[]
             ),
-            request_id="updateAuthorizationState"
+            request_id=AUTHORIZATION_REQUEST_ID
         )
 
-    async def _check_authentication_bot_token(self) -> RequestResult:
+    async def _check_authentication_bot_token(self) -> Ok:
         self.logger.info('Sending bot token')
         return await self.api.check_authentication_bot_token(
             self.settings.bot_token.get_secret_value(),
-            request_id="updateAuthorizationState"
+            request_id=AUTHORIZATION_REQUEST_ID
         )
 
-    async def _check_authentication_code(self) -> RequestResult:
-        code = await self._auth_get_code()
+    async def _check_authentication_code(self) -> Ok:
+        code = await self._auth_get_code(code_type='SMS')
         self.logger.info(f'Sending code {code}')
 
         return await self.api.check_authentication_code(
             code=code,
-            request_id="updateAuthorizationState"
+            request_id=AUTHORIZATION_REQUEST_ID
         )
 
-    async def _register_user(self) -> RequestResult:
+    async def _set_authentication_email_address(self) -> Ok:
+        email = await self._auth_get_email()
+
+        return await self.api.set_authentication_email_address(
+            email_address=email,
+            request_id=AUTHORIZATION_REQUEST_ID
+        )
+
+    async def _check_authentication_email_code(self) -> Ok:
+        code = await self._auth_get_code(code_type='EMail')
+        self.logger.info(f'Sending email code {code}')
+
+        return await self.api.check_authentication_email_code(
+            code=EmailAddressAuthenticationCode(
+                code=code
+            ),
+            request_id=AUTHORIZATION_REQUEST_ID
+        )
+
+    async def _register_user(self) -> Ok:
         first_name = await self._auth_get_first_name()
         last_name = await self._auth_get_last_name()
         self.logger.info(f'Registering new user in telegram as {first_name} {last_name or ""}'.strip())
@@ -865,24 +885,24 @@ class Client:
         return await self.api.register_user(
             first_name=first_name,
             last_name=last_name,
-            request_id="updateAuthorizationState"
+            request_id=AUTHORIZATION_REQUEST_ID
         )
 
-    async def _check_authentication_password(self) -> RequestResult:
+    async def _check_authentication_password(self) -> Ok:
         password = await self._auth_get_password()
         self.logger.info('Sending password')
 
         return await self.api.check_authentication_password(
             password=password,
-            request_id="updateAuthorizationState"
+            request_id=AUTHORIZATION_REQUEST_ID
         )
 
     # noinspection PyMethodMayBeStatic
-    async def _auth_get_code(self) -> str:
+    async def _auth_get_code(self, *, code_type: str = 'SMS') -> str:
         code = ""
 
         while len(code) != 5 or not code.isdigit():
-            code = await ainput('Enter code:')
+            code = await ainput(f'Enter {code_type} code:')
 
         return code
 
@@ -912,8 +932,16 @@ class Client:
 
         return last_name
 
+    async def _auth_get_email(self) -> str:
+        email = self.settings.email or ""
+
+        if not bool(email):
+            email = await ainput('Enter your email:')
+
+        return email
+
     async def _auth_completed(self):
-        self.__pending_requests.pop('updateAuthorizationState', None)
+        self.__pending_requests.pop(AUTHORIZATION_REQUEST_ID, None)
 
         if not self.is_bot:
             # Preload main list chats
@@ -933,18 +961,20 @@ class Client:
     async def _auth_closed(self):
         self.logger.info('Auth session is closed')
 
-    async def send(self, query: BaseObject):
+    async def send(self, query: TDLibObject):
         if not self.__running:
             raise RuntimeError('Client not started')
 
-        if self.settings.debug:
-            self.logger.debug(f">>>>> {query.ID} {query.json(by_alias=True)}")
+        query_json = query.dict(by_alias=True)
 
-        await self.loop.run_in_executor(None, self.__tdjson.send, query.dict(by_alias=True))
+        if self.settings.debug:
+            self.logger.debug(f">>>>> {query.ID} {query_json}")
+
+        await self.loop.run_in_executor(None, self.__tdjson.send, query_json)
 
     async def request(
             self,
-            query: BaseObject,
+            query: TDLibObject,
             *,
             request_id: str = None,
             request_timeout: int = None
@@ -971,12 +1001,12 @@ class Client:
 
         return pending_request.update
 
-    async def execute(self, query: BaseObject) -> ExecuteResult:
+    async def execute(self, query: TDLibObject) -> ExecuteResult:
         if not self.__running:
             raise RuntimeError('Client not started')
 
         result = await self.loop.run_in_executor(None, self.__tdjson.execute, query.dict(by_alias=True))
-        result_object = BaseObject.read(result)
+        result_object = parse_tdlib_object(result)
 
         if isinstance(result_object, Error):
             raise AioTDLibError(
@@ -996,9 +1026,9 @@ class Client:
             return None
 
         try:
-            return BaseObject.read(data)
+            return parse_tdlib_object(data)
         except Exception as e:
-            self.logger.error(f'Unable to parse incoming update! {e}', exc_info=True)
+            self.logger.error(f'Unable to parse incoming update: {data}! {e}', exc_info=True)
             return None
 
     async def authorize(self):
@@ -1010,15 +1040,18 @@ class Client:
         auth_actions: AuthActionsDict = {
             None: self._auth_start,
             API.Types.AUTHORIZATION_STATE_WAIT_TDLIB_PARAMETERS: self._set_tdlib_parameters,
-            API.Types.AUTHORIZATION_STATE_WAIT_ENCRYPTION_KEY: self._check_database_encryption_key,
             API.Types.AUTHORIZATION_STATE_WAIT_PHONE_NUMBER: self._set_authentication_phone_number_or_check_bot_token,
             API.Types.AUTHORIZATION_STATE_WAIT_CODE: self._check_authentication_code,
+            API.Types.AUTHORIZATION_STATE_WAIT_EMAIL_ADDRESS: self._set_authentication_email_address,
+            API.Types.AUTHORIZATION_STATE_WAIT_EMAIL_CODE: self._check_authentication_email_code,
             API.Types.AUTHORIZATION_STATE_WAIT_REGISTRATION: self._register_user,
             API.Types.AUTHORIZATION_STATE_WAIT_PASSWORD: self._check_authentication_password,
             API.Types.AUTHORIZATION_STATE_READY: self._auth_completed,
             API.Types.AUTHORIZATION_STATE_LOGGING_OUT: self._auth_logging_out,
             API.Types.AUTHORIZATION_STATE_CLOSING: self._auth_closing,
             API.Types.AUTHORIZATION_STATE_CLOSED: self._auth_closed,
+            # TODO: QR Login support
+            # API.Types.AUTHORIZATION_STATE_WAIT_OTHER_DEVICE_CONFIRMATION: None,
         }
 
         while not self.__is_authorized:
@@ -1105,7 +1138,7 @@ class Client:
         :type limit: int
 
         """
-        return await self.cache.get_main_list_chats(limit)
+        return await self.cache.get_main_chat_list(limit)
 
     async def get_main_list_chats_all(self) -> list[Chat]:
         return await self.get_main_list_chats(limit=TDLIB_MAX_INT)
@@ -1209,7 +1242,7 @@ class Client:
             protect_content: bool = False,
     ):
         """
-        Sends a text message. Returns the sent message
+        Sends a message. Returns the sent message
 
         Args:
         :param chat_id: Target chat

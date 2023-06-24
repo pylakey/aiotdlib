@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class RemoveContacts(BaseObject):
     """
     Removes users from the contact list
-    
+
     :param user_ids: Identifiers of users to be deleted
-    :type user_ids: :class:`list[int]`
-    
+    :type user_ids: :class:`Vector[Int53]`
     """
 
-    ID: str = Field("removeContacts", alias="@type")
-    user_ids: list[int]
-
-    @staticmethod
-    def read(q: dict) -> RemoveContacts:
-        return RemoveContacts.construct(**q)
+    ID: typing.Literal["removeContacts"] = "removeContacts"
+    user_ids: Vector[Int53]

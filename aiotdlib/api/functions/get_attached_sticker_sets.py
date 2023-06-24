@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetAttachedStickerSets(BaseObject):
     """
-    Returns a list of sticker sets attached to a file. Currently, only photos and videos can have attached sticker sets
-    
+    Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets
+
     :param file_id: File identifier
-    :type file_id: :class:`int`
-    
+    :type file_id: :class:`Int32`
     """
 
-    ID: str = Field("getAttachedStickerSets", alias="@type")
-    file_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetAttachedStickerSets:
-        return GetAttachedStickerSets.construct(**q)
+    ID: typing.Literal["getAttachedStickerSets"] = "getAttachedStickerSets"
+    file_id: Int32

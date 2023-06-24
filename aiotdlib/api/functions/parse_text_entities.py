@@ -5,28 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import TextParseMode
+from ..types.base import *
+
+from ..types.all import (
+    TextParseMode,
+)
 
 
 class ParseTextEntities(BaseObject):
     """
-    Parses Bold, Italic, Underline, Strikethrough, Spoiler, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. Can be called synchronously
-    
+    Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
+
     :param text: The text to parse
-    :type text: :class:`str`
-    
+    :type text: :class:`String`
     :param parse_mode: Text parse mode
     :type parse_mode: :class:`TextParseMode`
-    
     """
 
-    ID: str = Field("parseTextEntities", alias="@type")
-    text: str
+    ID: typing.Literal["parseTextEntities"] = "parseTextEntities"
+    text: String
     parse_mode: TextParseMode
-
-    @staticmethod
-    def read(q: dict) -> ParseTextEntities:
-        return ParseTextEntities.construct(**q)

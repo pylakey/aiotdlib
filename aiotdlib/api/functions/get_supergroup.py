@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetSupergroup(BaseObject):
     """
     Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot
-    
+
     :param supergroup_id: Supergroup or channel identifier
-    :type supergroup_id: :class:`int`
-    
+    :type supergroup_id: :class:`Int53`
     """
 
-    ID: str = Field("getSupergroup", alias="@type")
-    supergroup_id: int
-
-    @staticmethod
-    def read(q: dict) -> GetSupergroup:
-        return GetSupergroup.construct(**q)
+    ID: typing.Literal["getSupergroup"] = "getSupergroup"
+    supergroup_id: Int53

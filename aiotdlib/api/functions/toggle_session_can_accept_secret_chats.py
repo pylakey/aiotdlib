@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ToggleSessionCanAcceptSecretChats(BaseObject):
     """
     Toggles whether a session can accept incoming secret chats
-    
+
     :param session_id: Session identifier
-    :type session_id: :class:`int`
-    
-    :param can_accept_secret_chats: Pass true to allow accepring secret chats by the session; pass false otherwise
-    :type can_accept_secret_chats: :class:`bool`
-    
+    :type session_id: :class:`Int64`
+    :param can_accept_secret_chats: Pass true to allow accepting secret chats by the session; pass false otherwise
+    :type can_accept_secret_chats: :class:`Bool`
     """
 
-    ID: str = Field("toggleSessionCanAcceptSecretChats", alias="@type")
-    session_id: int
-    can_accept_secret_chats: bool
-
-    @staticmethod
-    def read(q: dict) -> ToggleSessionCanAcceptSecretChats:
-        return ToggleSessionCanAcceptSecretChats.construct(**q)
+    ID: typing.Literal["toggleSessionCanAcceptSecretChats"] = "toggleSessionCanAcceptSecretChats"
+    session_id: Int64
+    can_accept_secret_chats: Bool = False

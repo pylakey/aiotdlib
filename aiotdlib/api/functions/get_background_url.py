@@ -5,28 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import BackgroundType
+from ..types.base import *
+
+from ..types.all import (
+    BackgroundType,
+)
 
 
 class GetBackgroundUrl(BaseObject):
     """
     Constructs a persistent HTTP URL for a background
-    
+
     :param name: Background name
-    :type name: :class:`str`
-    
+    :type name: :class:`String`
     :param type_: Background type
     :type type_: :class:`BackgroundType`
-    
     """
 
-    ID: str = Field("getBackgroundUrl", alias="@type")
-    name: str
-    type_: BackgroundType = Field(..., alias='type')
-
-    @staticmethod
-    def read(q: dict) -> GetBackgroundUrl:
-        return GetBackgroundUrl.construct(**q)
+    ID: typing.Literal["getBackgroundUrl"] = "getBackgroundUrl"
+    name: String
+    type_: BackgroundType = Field(..., alias="type")

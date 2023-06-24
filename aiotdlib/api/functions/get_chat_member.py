@@ -5,28 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import MessageSender
+from ..types.base import *
+
+from ..types.all import (
+    MessageSender,
+)
 
 
 class GetChatMember(BaseObject):
     """
     Returns information about a single member of a chat
-    
+
     :param chat_id: Chat identifier
-    :type chat_id: :class:`int`
-    
+    :type chat_id: :class:`Int53`
     :param member_id: Member identifier
     :type member_id: :class:`MessageSender`
-    
     """
 
-    ID: str = Field("getChatMember", alias="@type")
-    chat_id: int
+    ID: typing.Literal["getChatMember"] = "getChatMember"
+    chat_id: Int53
     member_id: MessageSender
-
-    @staticmethod
-    def read(q: dict) -> GetChatMember:
-        return GetChatMember.construct(**q)

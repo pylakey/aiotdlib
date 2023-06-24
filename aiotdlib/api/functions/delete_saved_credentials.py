@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class DeleteSavedCredentials(BaseObject):
     """
     Deletes saved credentials for all payment provider bots
-    
     """
 
-    ID: str = Field("deleteSavedCredentials", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> DeleteSavedCredentials:
-        return DeleteSavedCredentials.construct(**q)
+    ID: typing.Literal["deleteSavedCredentials"] = "deleteSavedCredentials"

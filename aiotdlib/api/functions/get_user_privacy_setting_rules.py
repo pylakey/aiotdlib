@@ -5,24 +5,24 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import UserPrivacySetting
+from ..types.base import *
+
+from ..types.all import (
+    UserPrivacySetting,
+)
 
 
 class GetUserPrivacySettingRules(BaseObject):
     """
     Returns the current privacy settings
-    
+
     :param setting: The privacy setting
     :type setting: :class:`UserPrivacySetting`
-    
     """
 
-    ID: str = Field("getUserPrivacySettingRules", alias="@type")
+    ID: typing.Literal["getUserPrivacySettingRules"] = "getUserPrivacySettingRules"
     setting: UserPrivacySetting
-
-    @staticmethod
-    def read(q: dict) -> GetUserPrivacySettingRules:
-        return GetUserPrivacySettingRules.construct(**q)

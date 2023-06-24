@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class CheckChangePhoneNumberCode(BaseObject):
     """
     Checks the authentication code sent to confirm a new phone number of the user
-    
+
     :param code: Authentication code to check
-    :type code: :class:`str`
-    
+    :type code: :class:`String`
     """
 
-    ID: str = Field("checkChangePhoneNumberCode", alias="@type")
-    code: str
-
-    @staticmethod
-    def read(q: dict) -> CheckChangePhoneNumberCode:
-        return CheckChangePhoneNumberCode.construct(**q)
+    ID: typing.Literal["checkChangePhoneNumberCode"] = "checkChangePhoneNumberCode"
+    code: String

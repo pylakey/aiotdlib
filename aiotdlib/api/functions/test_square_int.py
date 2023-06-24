@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class TestSquareInt(BaseObject):
     """
     Returns the squared received number; for testing only. This is an offline method. Can be called before authorization
-    
+
     :param x: Number to square
-    :type x: :class:`int`
-    
+    :type x: :class:`Int32`
     """
 
-    ID: str = Field("testSquareInt", alias="@type")
-    x: int
-
-    @staticmethod
-    def read(q: dict) -> TestSquareInt:
-        return TestSquareInt.construct(**q)
+    ID: typing.Literal["testSquareInt"] = "testSquareInt"
+    x: Int32

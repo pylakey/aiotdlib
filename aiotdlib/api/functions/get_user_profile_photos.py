@@ -5,31 +5,26 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetUserProfilePhotos(BaseObject):
     """
-    Returns the profile photos of a user. The result of this query may be outdated: some photos might have been deleted already
-    
+    Returns the profile photos of a user. Personal and public photo aren't returned
+
     :param user_id: User identifier
-    :type user_id: :class:`int`
-    
+    :type user_id: :class:`Int53`
     :param offset: The number of photos to skip; must be non-negative
-    :type offset: :class:`int`
-    
+    :type offset: :class:`Int32`
     :param limit: The maximum number of photos to be returned; up to 100
-    :type limit: :class:`int`
-    
+    :type limit: :class:`Int32`
     """
 
-    ID: str = Field("getUserProfilePhotos", alias="@type")
-    user_id: int
-    offset: int
-    limit: int
-
-    @staticmethod
-    def read(q: dict) -> GetUserProfilePhotos:
-        return GetUserProfilePhotos.construct(**q)
+    ID: typing.Literal["getUserProfilePhotos"] = "getUserProfilePhotos"
+    user_id: Int53
+    offset: Int32
+    limit: Int32

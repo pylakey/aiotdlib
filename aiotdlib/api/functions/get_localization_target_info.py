@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetLocalizationTargetInfo(BaseObject):
     """
     Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
-    
+
     :param only_local: Pass true to get only locally available information without sending network requests
-    :type only_local: :class:`bool`
-    
+    :type only_local: :class:`Bool`
     """
 
-    ID: str = Field("getLocalizationTargetInfo", alias="@type")
-    only_local: bool
-
-    @staticmethod
-    def read(q: dict) -> GetLocalizationTargetInfo:
-        return GetLocalizationTargetInfo.construct(**q)
+    ID: typing.Literal["getLocalizationTargetInfo"] = "getLocalizationTargetInfo"
+    only_local: Bool = False

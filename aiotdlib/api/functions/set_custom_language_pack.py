@@ -5,29 +5,28 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import LanguagePackInfo
-from ..types import LanguagePackString
+from ..types.base import *
+
+from ..types.all import (
+    LanguagePackInfo,
+    LanguagePackString,
+)
 
 
 class SetCustomLanguagePack(BaseObject):
     """
     Adds or changes a custom local language pack to the current localization target
-    
+
     :param info: Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
     :type info: :class:`LanguagePackInfo`
-    
     :param strings: Strings of the new language pack
-    :type strings: :class:`list[LanguagePackString]`
-    
+    :type strings: :class:`Vector[LanguagePackString]`
     """
 
-    ID: str = Field("setCustomLanguagePack", alias="@type")
+    ID: typing.Literal["setCustomLanguagePack"] = "setCustomLanguagePack"
     info: LanguagePackInfo
-    strings: list[LanguagePackString]
-
-    @staticmethod
-    def read(q: dict) -> SetCustomLanguagePack:
-        return SetCustomLanguagePack.construct(**q)
+    strings: Vector[LanguagePackString]

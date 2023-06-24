@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class DeleteFile(BaseObject):
     """
     Deletes a file from the TDLib file cache
-    
+
     :param file_id: Identifier of the file to delete
-    :type file_id: :class:`int`
-    
+    :type file_id: :class:`Int32`
     """
 
-    ID: str = Field("deleteFile", alias="@type")
-    file_id: int
-
-    @staticmethod
-    def read(q: dict) -> DeleteFile:
-        return DeleteFile.construct(**q)
+    ID: typing.Literal["deleteFile"] = "deleteFile"
+    file_id: Int32

@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class TestCallBytes(BaseObject):
     """
     Returns the received bytes; for testing only. This is an offline method. Can be called before authorization
-    
+
     :param x: Bytes to return
-    :type x: :class:`str`
-    
+    :type x: :class:`Bytes`
     """
 
-    ID: str = Field("testCallBytes", alias="@type")
-    x: str
-
-    @staticmethod
-    def read(q: dict) -> TestCallBytes:
-        return TestCallBytes.construct(**q)
+    ID: typing.Literal["testCallBytes"] = "testCallBytes"
+    x: Bytes

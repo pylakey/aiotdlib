@@ -5,28 +5,27 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
-from ..types import TopChatCategory
+from ..types.base import *
+
+from ..types.all import (
+    TopChatCategory,
+)
 
 
 class GetTopChats(BaseObject):
     """
     Returns a list of frequently used chats. Supported only if the chat info database is enabled
-    
+
     :param category: Category of chats to be returned
     :type category: :class:`TopChatCategory`
-    
     :param limit: The maximum number of chats to be returned; up to 30
-    :type limit: :class:`int`
-    
+    :type limit: :class:`Int32`
     """
 
-    ID: str = Field("getTopChats", alias="@type")
+    ID: typing.Literal["getTopChats"] = "getTopChats"
     category: TopChatCategory
-    limit: int
-
-    @staticmethod
-    def read(q: dict) -> GetTopChats:
-        return GetTopChats.construct(**q)
+    limit: Int32

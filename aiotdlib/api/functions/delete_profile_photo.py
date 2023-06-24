@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class DeleteProfilePhoto(BaseObject):
     """
     Deletes a profile photo
-    
+
     :param profile_photo_id: Identifier of the profile photo to delete
-    :type profile_photo_id: :class:`int`
-    
+    :type profile_photo_id: :class:`Int64`
     """
 
-    ID: str = Field("deleteProfilePhoto", alias="@type")
-    profile_photo_id: int
-
-    @staticmethod
-    def read(q: dict) -> DeleteProfilePhoto:
-        return DeleteProfilePhoto.construct(**q)
+    ID: typing.Literal["deleteProfilePhoto"] = "deleteProfilePhoto"
+    profile_photo_id: Int64

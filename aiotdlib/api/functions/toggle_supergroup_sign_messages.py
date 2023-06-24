@@ -5,27 +5,23 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class ToggleSupergroupSignMessages(BaseObject):
     """
     Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
-    
+
     :param supergroup_id: Identifier of the channel
-    :type supergroup_id: :class:`int`
-    
+    :type supergroup_id: :class:`Int53`
     :param sign_messages: New value of sign_messages
-    :type sign_messages: :class:`bool`
-    
+    :type sign_messages: :class:`Bool`
     """
 
-    ID: str = Field("toggleSupergroupSignMessages", alias="@type")
-    supergroup_id: int
-    sign_messages: bool
-
-    @staticmethod
-    def read(q: dict) -> ToggleSupergroupSignMessages:
-        return ToggleSupergroupSignMessages.construct(**q)
+    ID: typing.Literal["toggleSupergroupSignMessages"] = "toggleSupergroupSignMessages"
+    supergroup_id: Int53
+    sign_messages: Bool

@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class AcceptTermsOfService(BaseObject):
     """
     Accepts Telegram terms of services
-    
+
     :param terms_of_service_id: Terms of service identifier
-    :type terms_of_service_id: :class:`str`
-    
+    :type terms_of_service_id: :class:`String`
     """
 
-    ID: str = Field("acceptTermsOfService", alias="@type")
-    terms_of_service_id: str
-
-    @staticmethod
-    def read(q: dict) -> AcceptTermsOfService:
-        return AcceptTermsOfService.construct(**q)
+    ID: typing.Literal["acceptTermsOfService"] = "acceptTermsOfService"
+    terms_of_service_id: String

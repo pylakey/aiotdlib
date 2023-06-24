@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetRecentlyOpenedChats(BaseObject):
     """
     Returns recently opened chats, this is an offline request. Returns chats in the order of last opening
-    
+
     :param limit: The maximum number of chats to be returned
-    :type limit: :class:`int`
-    
+    :type limit: :class:`Int32`
     """
 
-    ID: str = Field("getRecentlyOpenedChats", alias="@type")
-    limit: int
-
-    @staticmethod
-    def read(q: dict) -> GetRecentlyOpenedChats:
-        return GetRecentlyOpenedChats.construct(**q)
+    ID: typing.Literal["getRecentlyOpenedChats"] = "getRecentlyOpenedChats"
+    limit: Int32

@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetTextEntities(BaseObject):
     """
-    Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) contained in the text. Can be called synchronously
-    
-    :param text: The text in which to look for entites
-    :type text: :class:`str`
-    
+    Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
+
+    :param text: The text in which to look for entities
+    :type text: :class:`String`
     """
 
-    ID: str = Field("getTextEntities", alias="@type")
-    text: str
-
-    @staticmethod
-    def read(q: dict) -> GetTextEntities:
-        return GetTextEntities.construct(**q)
+    ID: typing.Literal["getTextEntities"] = "getTextEntities"
+    text: String

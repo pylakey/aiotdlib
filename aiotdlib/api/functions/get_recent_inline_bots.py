@@ -5,19 +5,16 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetRecentInlineBots(BaseObject):
     """
     Returns up to 20 recently used inline bots in the order of their last usage
-    
     """
 
-    ID: str = Field("getRecentInlineBots", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetRecentInlineBots:
-        return GetRecentInlineBots.construct(**q)
+    ID: typing.Literal["getRecentInlineBots"] = "getRecentInlineBots"

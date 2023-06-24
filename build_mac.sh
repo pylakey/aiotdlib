@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 set -e
+brew install gperf cmake openssl
 rm -rf td/
-git clone https://github.com/pylakey/td
+git clone https://github.com/pylakey/td.git
 cd td
 mkdir build
 cd build
@@ -11,6 +12,6 @@ cmake -DCMAKE_BUILD_TYPE=Release \
       -DTD_ENABLE_LTO=ON \
       ..
 cmake --build . --target install
-cd ../..
-cp -L td/tdlib/lib/libtdjson.dylib "aiotdlib/tdlib/libtdjson_darwin_$(uname -m).dylib"
-rm -rf td/
+cd ..
+cd ..
+ls -l td/tdlib

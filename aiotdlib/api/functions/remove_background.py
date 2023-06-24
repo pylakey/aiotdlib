@@ -5,23 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class RemoveBackground(BaseObject):
     """
     Removes background from the list of installed backgrounds
-    
+
     :param background_id: The background identifier
-    :type background_id: :class:`int`
-    
+    :type background_id: :class:`Int64`
     """
 
-    ID: str = Field("removeBackground", alias="@type")
-    background_id: int
-
-    @staticmethod
-    def read(q: dict) -> RemoveBackground:
-        return RemoveBackground.construct(**q)
+    ID: typing.Literal["removeBackground"] = "removeBackground"
+    background_id: Int64

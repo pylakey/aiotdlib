@@ -5,19 +5,20 @@
 # =============================================================================== #
 from __future__ import annotations
 
+import typing
+
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class GetPremiumStickers(BaseObject):
     """
-    Returns examples of premium stickers for demonstration purposes
-    
+    Returns premium stickers from regular sticker sets
+
+    :param limit: The maximum number of stickers to be returned; 0-100
+    :type limit: :class:`Int32`
     """
 
-    ID: str = Field("getPremiumStickers", alias="@type")
-
-    @staticmethod
-    def read(q: dict) -> GetPremiumStickers:
-        return GetPremiumStickers.construct(**q)
+    ID: typing.Literal["getPremiumStickers"] = "getPremiumStickers"
+    limit: Int32

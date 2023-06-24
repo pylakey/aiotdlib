@@ -9,25 +9,19 @@ import typing
 
 from pydantic import Field
 
-from ..base_object import BaseObject
+from ..types.base import *
 
 
 class SetChatDescription(BaseObject):
     """
     Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
-    
+
     :param chat_id: Identifier of the chat
-    :type chat_id: :class:`int`
-    
-    :param param_description: New chat description; 0-255 characters, defaults to None
-    :type param_description: :class:`str`, optional
-    
+    :type chat_id: :class:`Int53`
+    :param description: New chat description; 0-255 characters
+    :type description: :class:`String`
     """
 
-    ID: str = Field("setChatDescription", alias="@type")
-    chat_id: int
-    param_description: typing.Optional[str] = Field(None, max_length=255)
-
-    @staticmethod
-    def read(q: dict) -> SetChatDescription:
-        return SetChatDescription.construct(**q)
+    ID: typing.Literal["setChatDescription"] = "setChatDescription"
+    chat_id: Int53
+    description: String = Field("", max_length=255)
