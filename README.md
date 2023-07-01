@@ -7,8 +7,12 @@
 > This wrapper is actual
 > for **[TDLib v1.8.14 (958fed6e8e440afe87b57c98216a5c8d3f3caed8)](https://github.com/pylakey/td/commit/958fed6e8e440afe87b57c98216a5c8d3f3caed8)**
 >
-> This package includes prebuilt TDLib binaries for macOS (arm64) and Debian Bullseye (amd64).
-> You can use your own binary by passing `library_path` argument to `Client` class constructor. Make sure it's built
+> This package includes prebuilt TDLib binaries for macOS (arm64), Debian Bookworm (amd64) and FreeBSD (amd64).
+> 
+> For other platform, if you have git, g++, cmake, gperf, zlib1g-dev and libssel-dev, the TDLib binary
+> should be built on installation.
+> 
+> Alternatively, you can use your own binary by passing `library_path` argument to `Client` class constructor. Make sure it's built
 > from [this commit](https://github.com/tdlib/td/commit/958fed6e8e440afe87b57c98216a5c8d3f3caed8). Compatibility with
 > other versions of library is not guaranteed.
 
