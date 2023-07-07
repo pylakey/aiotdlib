@@ -252,20 +252,20 @@ email = ["email-validator (>=1.0.3)"]
 
 [[package]]
 name = "pydash"
-version = "7.0.4"
+version = "7.0.5"
 description = "The kitchen sink of Python utility libraries for doing \"stuff\" in a functional way. Based on the Lo-Dash Javascript library."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pydash-7.0.4-py3-none-any.whl", hash = "sha256:b1278bb7e617a92c3262fb6e9ffb8408d71b6a997a366645dccd001bcc38a25e"},
-    {file = "pydash-7.0.4.tar.gz", hash = "sha256:ebe4cd159a9a61f13d05682ab74390780851645b15097477bef8adc02f0b5a11"},
+    {file = "pydash-7.0.5-py3-none-any.whl", hash = "sha256:ac3c065473dbd224f2dd77d73c1e7bccd9f4a8ab36192b3d9a5da90caf5bf57c"},
+    {file = "pydash-7.0.5.tar.gz", hash = "sha256:a51033cb2b44c19eb05ed4ef055259f5bf28efa3307b1cdcb09d2f3889d2aca9"},
 ]
 
 [package.dependencies]
 typing-extensions = ">=3.10,<4.6.0 || >4.6.0"
 
 [package.extras]
-dev = ["Sphinx", "black", "build", "coverage", "docformatter", "flake8", "flake8-black", "flake8-bugbear", "flake8-isort", "importlib-metadata (<5)", "invoke", "isort", "mypy", "pylint", "pytest", "pytest-cov", "pytest-mypy-testing", "sphinx-autodoc-typehints", "sphinx-rtd-theme", "tox", "twine", "wheel"]
+dev = ["Sphinx", "black", "build", "coverage", "docformatter", "flake8", "flake8-black", "flake8-bugbear", "flake8-isort", "furo", "importlib-metadata (<5)", "invoke", "isort", "mypy", "pylint", "pytest", "pytest-cov", "pytest-mypy-testing", "sphinx-autodoc-typehints", "tox", "twine", "wheel"]
 
 [[package]]
 name = "sortedcontainers"
