@@ -14,6 +14,7 @@ packages = [
 include = [
     "README.md",
     "CHANGELOG.md",
+    {path = "aiotdlib/tdlib/*", format = "wheel"}
 ]
 classifiers = [
     "Framework :: AsyncIO",
@@ -24,6 +25,10 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed",
 ]
+
+[tool.poetry.build]
+script = "build.py"
+generate-setup-file = false
 
 [tool.poetry.dependencies]
 python = "^3.9"
