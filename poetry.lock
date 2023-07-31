@@ -249,13 +249,13 @@ email = ["email-validator (>=1.0.3)"]
 
 [[package]]
 name = "pydash"
-version = "7.0.5"
+version = "7.0.6"
 description = "The kitchen sink of Python utility libraries for doing \"stuff\" in a functional way. Based on the Lo-Dash Javascript library."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pydash-7.0.5-py3-none-any.whl", hash = "sha256:ac3c065473dbd224f2dd77d73c1e7bccd9f4a8ab36192b3d9a5da90caf5bf57c"},
-    {file = "pydash-7.0.5.tar.gz", hash = "sha256:a51033cb2b44c19eb05ed4ef055259f5bf28efa3307b1cdcb09d2f3889d2aca9"},
+    {file = "pydash-7.0.6-py3-none-any.whl", hash = "sha256:10e506935953fde4b0d6fe21a88e17783cd1479256ae96f285b5f89063b4efd6"},
+    {file = "pydash-7.0.6.tar.gz", hash = "sha256:7d9df7e9f36f2bbb08316b609480e7c6468185473a21bdd8e65dda7915565a26"},
 ]
 
 [package.dependencies]
