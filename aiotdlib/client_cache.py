@@ -30,7 +30,7 @@ from .api import (
     UpdateChatDraftMessage,
     UpdateChatFolders,
     UpdateChatHasScheduledMessages,
-    UpdateChatIsBlocked,
+    UpdateChatBlockList,
     UpdateChatIsMarkedAsUnread,
     UpdateChatIsTranslatable,
     UpdateChatLastMessage,
@@ -123,7 +123,7 @@ SomeChatUpdate = typing.Union[
     UpdateChatFolders,
     UpdateChatHasProtectedContent,
     UpdateChatHasScheduledMessages,
-    UpdateChatIsBlocked,
+    UpdateChatBlockList,
     UpdateChatIsMarkedAsUnread,
     UpdateChatIsTranslatable,
     UpdateChatLastMessage,
@@ -204,7 +204,7 @@ class ClientCache:
             self.__on_update_chat_has_scheduled_messages,
             API.Types.UPDATE_CHAT_HAS_SCHEDULED_MESSAGES
         )
-        client.add_event_handler(self.__on_update_chat_is_blocked, API.Types.UPDATE_CHAT_IS_BLOCKED)
+        client.add_event_handler(self.__on_update_chat_is_blocked, API.Types.UPDATE_CHAT_BLOCK_LIST)
         client.add_event_handler(self.__on_update_chat_is_marked_as_unread, API.Types.UPDATE_CHAT_IS_MARKED_AS_UNREAD)
         client.add_event_handler(self.__on_update_chat_is_translatable, API.Types.UPDATE_CHAT_IS_TRANSLATABLE)
         client.add_event_handler(
@@ -446,8 +446,8 @@ class ClientCache:
     async def __on_update_chat_has_scheduled_messages(self, _: Client, update: UpdateChatHasScheduledMessages):
         self.chats[update.chat_id].has_scheduled_messages = update.has_scheduled_messages
 
-    async def __on_update_chat_is_blocked(self, _: Client, update: UpdateChatIsBlocked):
-        self.chats[update.chat_id].is_blocked = update.is_blocked
+    async def __on_update_chat_is_blocked(self, _: Client, update: UpdateChatBlockList):
+        self.chats[update.chat_id].block_list = update.block_list
 
     async def __on_update_chat_is_marked_as_unread(self, _: Client, update: UpdateChatIsMarkedAsUnread):
         self.chats[update.chat_id].is_marked_as_unread = update.is_marked_as_unread

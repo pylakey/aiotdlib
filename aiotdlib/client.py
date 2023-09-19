@@ -55,6 +55,7 @@ from .api import (
     InputMessageVoiceNote,
     InputThumbnail,
     Message,
+    MessageReplyToMessage,
     MessageSchedulingStateSendAtDate,
     MessageSchedulingStateSendWhenOnline,
     MessageSendOptions,
@@ -577,10 +578,10 @@ class Client:
         """
         settings = {
             'api_id': api_id,
-            'api_hash': pydantic.SecretStr(api_hash) if not api_hash is Undefined else Undefined,
+            'api_hash': pydantic.SecretStr(api_hash) if api_hash is not Undefined else Undefined,
             'database_encryption_key': database_encryption_key,
             'phone_number': phone_number,
-            'bot_token': pydantic.SecretStr(bot_token) if not bot_token is Undefined else Undefined,
+            'bot_token': pydantic.SecretStr(bot_token) if bot_token is not Undefined else Undefined,
             'use_test_dc': use_test_dc,
             'system_language_code': system_language_code,
             'device_model': device_model,
@@ -589,7 +590,7 @@ class Client:
             'files_directory': files_directory,
             'first_name': first_name,
             'last_name': last_name,
-            'password': pydantic.SecretStr(password) if not password is Undefined else Undefined,
+            'password': pydantic.SecretStr(password) if password is not Undefined else Undefined,
             'library_path': library_path,
             'tdlib_verbosity': tdlib_verbosity,
             'debug': debug,
@@ -1284,7 +1285,10 @@ class Client:
         return await self.api.send_message(
             chat_id=chat_id,
             message_thread_id=0,
-            reply_to_message_id=reply_to_message_id,
+            reply_to=MessageReplyToMessage(
+                chat_id=chat_id,
+                message_id=reply_to_message_id
+            ) if bool(reply_to_message_id) else None,
             options=MessageSendOptions.construct(
                 disable_notification=disable_notification,
                 from_background=False,
@@ -1853,7 +1857,7 @@ class Client:
                 Document caption
 
             disable_content_type_detection (bool)
-                If true, automatic file type detection will be disabled and the document will be always sent as file.
+                If true, automatic file type detection will be disabled and the document will always be sent as file.
                 Always true for files sent to secret chats
 
             thumbnail (str)
