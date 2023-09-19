@@ -11,14 +11,18 @@ from pydantic import Field
 
 from ..types.base import *
 
+from ..types.all import (
+    ArchiveChatListSettings,
+)
 
-class SendChatScreenshotTakenNotification(BaseObject):
+
+class SetArchiveChatListSettings(BaseObject):
     """
-    Sends a notification about a screenshot taken in a chat. Supported only in private and secret chats
+    Changes settings for automatic moving of chats to and from the Archive chat lists
 
-    :param chat_id: Chat identifier
-    :type chat_id: :class:`Int53`
+    :param settings: New settings
+    :type settings: :class:`ArchiveChatListSettings`
     """
 
-    ID: typing.Literal["sendChatScreenshotTakenNotification"] = "sendChatScreenshotTakenNotification"
-    chat_id: Int53
+    ID: typing.Literal["setArchiveChatListSettings"] = "setArchiveChatListSettings"
+    settings: ArchiveChatListSettings

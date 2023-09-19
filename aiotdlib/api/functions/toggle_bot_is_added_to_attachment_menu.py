@@ -14,7 +14,7 @@ from ..types.base import *
 
 class ToggleBotIsAddedToAttachmentMenu(BaseObject):
     """
-    Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+    Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
 
     :param bot_user_id: Bot's user identifier
     :type bot_user_id: :class:`Int53`

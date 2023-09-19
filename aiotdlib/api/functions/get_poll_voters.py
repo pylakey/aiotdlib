@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetPollVoters(BaseObject):
     """
-    Returns users voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+    Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
 
     :param chat_id: Identifier of the chat to which the poll belongs
     :type chat_id: :class:`Int53`
@@ -22,9 +22,9 @@ class GetPollVoters(BaseObject):
     :type message_id: :class:`Int53`
     :param option_id: 0-based identifier of the answer option
     :type option_id: :class:`Int32`
-    :param offset: Number of users to skip in the result; must be non-negative
+    :param offset: Number of voters to skip in the result; must be non-negative
     :type offset: :class:`Int32`
-    :param limit: The maximum number of users to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned users is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
+    :param limit: The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
     :type limit: :class:`Int32`
     """
 

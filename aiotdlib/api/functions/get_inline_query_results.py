@@ -26,7 +26,7 @@ class GetInlineQueryResults(BaseObject):
     :type chat_id: :class:`Int53`
     :param query: Text of the query
     :type query: :class:`String`
-    :param offset: Offset of the first entry to return
+    :param offset: Offset of the first entry to return; use empty string to get the first chunk of results
     :type offset: :class:`String`
     :param user_location: Location of the user; pass null if unknown or the bot doesn't need user's location, defaults to None
     :type user_location: :class:`Location`, optional

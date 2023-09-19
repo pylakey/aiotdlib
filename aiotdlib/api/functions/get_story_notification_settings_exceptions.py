@@ -12,16 +12,9 @@ from pydantic import Field
 from ..types.base import *
 
 
-class ReorderActiveBotUsernames(BaseObject):
+class GetStoryNotificationSettingsExceptions(BaseObject):
     """
-    Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true
-
-    :param bot_user_id: Identifier of the target bot
-    :type bot_user_id: :class:`Int53`
-    :param usernames: The new order of active usernames. All currently active usernames must be specified
-    :type usernames: :class:`Vector[String]`
+    Returns list of chats with non-default notification settings for stories
     """
 
-    ID: typing.Literal["reorderActiveBotUsernames"] = "reorderActiveBotUsernames"
-    bot_user_id: Int53
-    usernames: Vector[String]
+    ID: typing.Literal["getStoryNotificationSettingsExceptions"] = "getStoryNotificationSettingsExceptions"

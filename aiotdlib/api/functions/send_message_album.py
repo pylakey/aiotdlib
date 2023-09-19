@@ -13,6 +13,7 @@ from ..types.base import *
 
 from ..types.all import (
     InputMessageContent,
+    MessageReplyTo,
     MessageSendOptions,
 )
 
@@ -29,8 +30,8 @@ class SendMessageAlbum(BaseObject):
     :type message_thread_id: :class:`Int53`
     :param only_preview: Pass true to get fake messages instead of actually sending them
     :type only_preview: :class:`Bool`
-    :param reply_to_message_id: Identifier of a replied message; 0 if none, defaults to None
-    :type reply_to_message_id: :class:`Int53`, optional
+    :param reply_to: Identifier of the replied message or story; pass null if none, defaults to None
+    :type reply_to: :class:`MessageReplyTo`, optional
     :param options: Options to be used to send the messages; pass null to use default options, defaults to None
     :type options: :class:`MessageSendOptions`, optional
     """
@@ -40,5 +41,5 @@ class SendMessageAlbum(BaseObject):
     input_message_contents: Vector[InputMessageContent]
     message_thread_id: Int53 = 0
     only_preview: Bool = False
-    reply_to_message_id: typing.Optional[Int53] = 0
+    reply_to: typing.Optional[MessageReplyTo] = None
     options: typing.Optional[MessageSendOptions] = None

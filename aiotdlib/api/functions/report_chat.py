@@ -12,7 +12,7 @@ from pydantic import Field
 from ..types.base import *
 
 from ..types.all import (
-    ChatReportReason,
+    ReportReason,
 )
 
 
@@ -23,7 +23,7 @@ class ReportChat(BaseObject):
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`
     :param reason: The reason for reporting the chat
-    :type reason: :class:`ChatReportReason`
+    :type reason: :class:`ReportReason`
     :param message_ids: Identifiers of reported messages; may be empty to report the whole chat
     :type message_ids: :class:`Vector[Int53]`
     :param text: Additional report details; 0-1024 characters
@@ -32,6 +32,6 @@ class ReportChat(BaseObject):
 
     ID: typing.Literal["reportChat"] = "reportChat"
     chat_id: Int53
-    reason: ChatReportReason
+    reason: ReportReason
     message_ids: Vector[Int53] = []
     text: String = Field("", max_length=1024)

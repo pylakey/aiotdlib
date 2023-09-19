@@ -20,7 +20,7 @@ class TestProxy(BaseObject):
     """
     Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
 
-    :param server: Proxy server IP address
+    :param server: Proxy server domain or IP address
     :type server: :class:`String`
     :param port: Proxy server port
     :type port: :class:`Int32`

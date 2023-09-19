@@ -23,6 +23,7 @@ class API:
         ACCEPT_CALL = "acceptCall"
         ACCEPT_TERMS_OF_SERVICE = "acceptTermsOfService"
         ACCOUNT_TTL = "accountTtl"
+        ACTIVATE_STORY_STEALTH_MODE = "activateStoryStealthMode"
         ADD_APPLICATION_CHANGELOG = "addApplicationChangelog"
         ADD_CHAT_FOLDER_BY_INVITE_LINK = "addChatFolderByInviteLink"
         ADD_CHAT_MEMBER = "addChatMember"
@@ -45,6 +46,7 @@ class API:
         ADDED_REACTION = "addedReaction"
         ADDED_REACTIONS = "addedReactions"
         ADDRESS = "address"
+        ALLOW_BOT_TO_SEND_MESSAGES = "allowBotToSendMessages"
         ANIMATED_CHAT_PHOTO = "animatedChatPhoto"
         ANIMATED_EMOJI = "animatedEmoji"
         ANIMATION = "animation"
@@ -55,6 +57,7 @@ class API:
         ANSWER_PRE_CHECKOUT_QUERY = "answerPreCheckoutQuery"
         ANSWER_SHIPPING_QUERY = "answerShippingQuery"
         ANSWER_WEB_APP_QUERY = "answerWebAppQuery"
+        ARCHIVE_CHAT_LIST_SETTINGS = "archiveChatListSettings"
         ASSIGN_APP_STORE_TRANSACTION = "assignAppStoreTransaction"
         ASSIGN_GOOGLE_PLAY_TRANSACTION = "assignGooglePlayTransaction"
         ATTACHMENT_MENU_BOT = "attachmentMenuBot"
@@ -109,6 +112,9 @@ class API:
         BANK_CARD_INFO = "bankCardInfo"
         BASIC_GROUP = "basicGroup"
         BASIC_GROUP_FULL_INFO = "basicGroupFullInfo"
+        BLOCK_LIST = "blockList"
+        BLOCK_LIST_MAIN = "blockListMain"
+        BLOCK_LIST_STORIES = "blockListStories"
         BLOCK_MESSAGE_SENDER_FROM_REPLIES = "blockMessageSenderFromReplies"
         BOT_COMMAND = "botCommand"
         BOT_COMMAND_SCOPE = "botCommandScope"
@@ -157,7 +163,15 @@ class API:
         CALLBACK_QUERY_PAYLOAD_DATA = "callbackQueryPayloadData"
         CALLBACK_QUERY_PAYLOAD_DATA_WITH_PASSWORD = "callbackQueryPayloadDataWithPassword"
         CALLBACK_QUERY_PAYLOAD_GAME = "callbackQueryPayloadGame"
+        CAN_BOT_SEND_MESSAGES = "canBotSendMessages"
         CAN_PURCHASE_PREMIUM = "canPurchasePremium"
+        CAN_SEND_STORY = "canSendStory"
+        CAN_SEND_STORY_RESULT = "canSendStoryResult"
+        CAN_SEND_STORY_RESULT_ACTIVE_STORY_LIMIT_EXCEEDED = "canSendStoryResultActiveStoryLimitExceeded"
+        CAN_SEND_STORY_RESULT_MONTHLY_LIMIT_EXCEEDED = "canSendStoryResultMonthlyLimitExceeded"
+        CAN_SEND_STORY_RESULT_OK = "canSendStoryResultOk"
+        CAN_SEND_STORY_RESULT_PREMIUM_NEEDED = "canSendStoryResultPremiumNeeded"
+        CAN_SEND_STORY_RESULT_WEEKLY_LIMIT_EXCEEDED = "canSendStoryResultWeeklyLimitExceeded"
         CAN_TRANSFER_OWNERSHIP = "canTransferOwnership"
         CAN_TRANSFER_OWNERSHIP_RESULT = "canTransferOwnershipResult"
         CAN_TRANSFER_OWNERSHIP_RESULT_OK = "canTransferOwnershipResultOk"
@@ -195,6 +209,7 @@ class API:
         CHAT_ACTION_BAR_REPORT_SPAM = "chatActionBarReportSpam"
         CHAT_ACTION_BAR_REPORT_UNRELATED_LOCATION = "chatActionBarReportUnrelatedLocation"
         CHAT_ACTION_BAR_SHARE_PHONE_NUMBER = "chatActionBarSharePhoneNumber"
+        CHAT_ACTIVE_STORIES = "chatActiveStories"
         CHAT_ADMINISTRATOR = "chatAdministrator"
         CHAT_ADMINISTRATOR_RIGHTS = "chatAdministratorRights"
         CHAT_ADMINISTRATORS = "chatAdministrators"
@@ -302,17 +317,6 @@ class API:
         CHAT_PHOTO_STICKER_TYPE_REGULAR_OR_MASK = "chatPhotoStickerTypeRegularOrMask"
         CHAT_PHOTOS = "chatPhotos"
         CHAT_POSITION = "chatPosition"
-        CHAT_REPORT_REASON = "chatReportReason"
-        CHAT_REPORT_REASON_CHILD_ABUSE = "chatReportReasonChildAbuse"
-        CHAT_REPORT_REASON_COPYRIGHT = "chatReportReasonCopyright"
-        CHAT_REPORT_REASON_CUSTOM = "chatReportReasonCustom"
-        CHAT_REPORT_REASON_FAKE = "chatReportReasonFake"
-        CHAT_REPORT_REASON_ILLEGAL_DRUGS = "chatReportReasonIllegalDrugs"
-        CHAT_REPORT_REASON_PERSONAL_DETAILS = "chatReportReasonPersonalDetails"
-        CHAT_REPORT_REASON_PORNOGRAPHY = "chatReportReasonPornography"
-        CHAT_REPORT_REASON_SPAM = "chatReportReasonSpam"
-        CHAT_REPORT_REASON_UNRELATED_LOCATION = "chatReportReasonUnrelatedLocation"
-        CHAT_REPORT_REASON_VIOLENCE = "chatReportReasonViolence"
         CHAT_SOURCE = "chatSource"
         CHAT_SOURCE_MTPROTO_PROXY = "chatSourceMtprotoProxy"
         CHAT_SOURCE_PUBLIC_SERVICE_ANNOUNCEMENT = "chatSourcePublicServiceAnnouncement"
@@ -368,13 +372,16 @@ class API:
         CLEAR_RECENT_STICKERS = "clearRecentStickers"
         CLEAR_RECENTLY_FOUND_CHATS = "clearRecentlyFoundChats"
         CLICK_ANIMATED_EMOJI_MESSAGE = "clickAnimatedEmojiMessage"
+        CLICK_CHAT_SPONSORED_MESSAGE = "clickChatSponsoredMessage"
         CLICK_PREMIUM_SUBSCRIPTION_BUTTON = "clickPremiumSubscriptionButton"
         CLOSE = "close"
         CLOSE_CHAT = "closeChat"
         CLOSE_SECRET_CHAT = "closeSecretChat"
+        CLOSE_STORY = "closeStory"
         CLOSE_WEB_APP = "closeWebApp"
         CLOSED_VECTOR_PATH = "closedVectorPath"
         CONFIRM_QR_CODE_AUTHENTICATION = "confirmQrCodeAuthentication"
+        CONFIRM_SESSION = "confirmSession"
         CONNECTED_WEBSITE = "connectedWebsite"
         CONNECTED_WEBSITES = "connectedWebsites"
         CONNECTION_STATE = "connectionState"
@@ -430,6 +437,7 @@ class API:
         DELETE_SAVED_CREDENTIALS = "deleteSavedCredentials"
         DELETE_SAVED_ORDER_INFO = "deleteSavedOrderInfo"
         DELETE_STICKER_SET = "deleteStickerSet"
+        DELETE_STORY = "deleteStory"
         DESTROY = "destroy"
         DEVICE_TOKEN = "deviceToken"
         DEVICE_TOKEN_APPLE_PUSH = "deviceTokenApplePush"
@@ -473,6 +481,7 @@ class API:
         EDIT_MESSAGE_SCHEDULING_STATE = "editMessageSchedulingState"
         EDIT_MESSAGE_TEXT = "editMessageText"
         EDIT_PROXY = "editProxy"
+        EDIT_STORY = "editStory"
         EMAIL_ADDRESS_AUTHENTICATION = "emailAddressAuthentication"
         EMAIL_ADDRESS_AUTHENTICATION_APPLE_ID = "emailAddressAuthenticationAppleId"
         EMAIL_ADDRESS_AUTHENTICATION_CODE = "emailAddressAuthenticationCode"
@@ -509,6 +518,7 @@ class API:
         FILE_TYPE_NONE = "fileTypeNone"
         FILE_TYPE_NOTIFICATION_SOUND = "fileTypeNotificationSound"
         FILE_TYPE_PHOTO = "fileTypePhoto"
+        FILE_TYPE_PHOTO_STORY = "fileTypePhotoStory"
         FILE_TYPE_PROFILE_PHOTO = "fileTypeProfilePhoto"
         FILE_TYPE_SECRET = "fileTypeSecret"
         FILE_TYPE_SECRET_THUMBNAIL = "fileTypeSecretThumbnail"
@@ -518,6 +528,7 @@ class API:
         FILE_TYPE_UNKNOWN = "fileTypeUnknown"
         FILE_TYPE_VIDEO = "fileTypeVideo"
         FILE_TYPE_VIDEO_NOTE = "fileTypeVideoNote"
+        FILE_TYPE_VIDEO_STORY = "fileTypeVideoStory"
         FILE_TYPE_VOICE_NOTE = "fileTypeVoiceNote"
         FILE_TYPE_WALLPAPER = "fileTypeWallpaper"
         FINISH_FILE_GENERATION = "finishFileGeneration"
@@ -533,6 +544,7 @@ class API:
         FOUND_CHAT_MESSAGES = "foundChatMessages"
         FOUND_FILE_DOWNLOADS = "foundFileDownloads"
         FOUND_MESSAGES = "foundMessages"
+        FOUND_POSITIONS = "foundPositions"
         FOUND_WEB_APP = "foundWebApp"
         GAME = "game"
         GAME_HIGH_SCORE = "gameHighScore"
@@ -541,10 +553,13 @@ class API:
         GET_ACTIVE_LIVE_LOCATION_MESSAGES = "getActiveLiveLocationMessages"
         GET_ACTIVE_SESSIONS = "getActiveSessions"
         GET_ALL_PASSPORT_ELEMENTS = "getAllPassportElements"
+        GET_ALL_STICKER_EMOJIS = "getAllStickerEmojis"
         GET_ANIMATED_EMOJI = "getAnimatedEmoji"
         GET_APPLICATION_CONFIG = "getApplicationConfig"
         GET_APPLICATION_DOWNLOAD_LINK = "getApplicationDownloadLink"
+        GET_ARCHIVE_CHAT_LIST_SETTINGS = "getArchiveChatListSettings"
         GET_ARCHIVED_STICKER_SETS = "getArchivedStickerSets"
+        GET_ARCHIVED_STORIES = "getArchivedStories"
         GET_ATTACHED_STICKER_SETS = "getAttachedStickerSets"
         GET_ATTACHMENT_MENU_BOT = "getAttachmentMenuBot"
         GET_AUTHORIZATION_STATE = "getAuthorizationState"
@@ -562,10 +577,12 @@ class API:
         GET_CALLBACK_QUERY_ANSWER = "getCallbackQueryAnswer"
         GET_CALLBACK_QUERY_MESSAGE = "getCallbackQueryMessage"
         GET_CHAT = "getChat"
+        GET_CHAT_ACTIVE_STORIES = "getChatActiveStories"
         GET_CHAT_ADMINISTRATORS = "getChatAdministrators"
         GET_CHAT_AVAILABLE_MESSAGE_SENDERS = "getChatAvailableMessageSenders"
         GET_CHAT_EVENT_LOG = "getChatEventLog"
         GET_CHAT_FOLDER = "getChatFolder"
+        GET_CHAT_FOLDER_CHAT_COUNT = "getChatFolderChatCount"
         GET_CHAT_FOLDER_CHATS_TO_LEAVE = "getChatFolderChatsToLeave"
         GET_CHAT_FOLDER_DEFAULT_ICON_NAME = "getChatFolderDefaultIconName"
         GET_CHAT_FOLDER_INVITE_LINKS = "getChatFolderInviteLinks"
@@ -584,12 +601,14 @@ class API:
         GET_CHAT_MESSAGE_POSITION = "getChatMessagePosition"
         GET_CHAT_NOTIFICATION_SETTINGS_EXCEPTIONS = "getChatNotificationSettingsExceptions"
         GET_CHAT_PINNED_MESSAGE = "getChatPinnedMessage"
+        GET_CHAT_PINNED_STORIES = "getChatPinnedStories"
         GET_CHAT_SCHEDULED_MESSAGES = "getChatScheduledMessages"
         GET_CHAT_SPARSE_MESSAGE_POSITIONS = "getChatSparseMessagePositions"
         GET_CHAT_SPONSORED_MESSAGES = "getChatSponsoredMessages"
         GET_CHAT_STATISTICS = "getChatStatistics"
         GET_CHATS = "getChats"
         GET_CHATS_FOR_CHAT_FOLDER_INVITE_LINK = "getChatsForChatFolderInviteLink"
+        GET_CLOSE_FRIENDS = "getCloseFriends"
         GET_COMMANDS = "getCommands"
         GET_CONNECTED_WEBSITES = "getConnectedWebsites"
         GET_CONTACTS = "getContacts"
@@ -704,6 +723,10 @@ class API:
         GET_STICKERS = "getStickers"
         GET_STORAGE_STATISTICS = "getStorageStatistics"
         GET_STORAGE_STATISTICS_FAST = "getStorageStatisticsFast"
+        GET_STORY = "getStory"
+        GET_STORY_AVAILABLE_REACTIONS = "getStoryAvailableReactions"
+        GET_STORY_NOTIFICATION_SETTINGS_EXCEPTIONS = "getStoryNotificationSettingsExceptions"
+        GET_STORY_VIEWERS = "getStoryViewers"
         GET_SUGGESTED_FILE_NAME = "getSuggestedFileName"
         GET_SUGGESTED_STICKER_SET_NAME = "getSuggestedStickerSetName"
         GET_SUITABLE_DISCUSSION_CHATS = "getSuitableDiscussionChats"
@@ -827,6 +850,7 @@ class API:
         INPUT_MESSAGE_PHOTO = "inputMessagePhoto"
         INPUT_MESSAGE_POLL = "inputMessagePoll"
         INPUT_MESSAGE_STICKER = "inputMessageSticker"
+        INPUT_MESSAGE_STORY = "inputMessageStory"
         INPUT_MESSAGE_TEXT = "inputMessageText"
         INPUT_MESSAGE_VENUE = "inputMessageVenue"
         INPUT_MESSAGE_VIDEO = "inputMessageVideo"
@@ -859,6 +883,15 @@ class API:
         INPUT_PASSPORT_ELEMENT_ERROR_SOURCE_UNSPECIFIED = "inputPassportElementErrorSourceUnspecified"
         INPUT_PERSONAL_DOCUMENT = "inputPersonalDocument"
         INPUT_STICKER = "inputSticker"
+        INPUT_STORY_AREA = "inputStoryArea"
+        INPUT_STORY_AREA_TYPE = "inputStoryAreaType"
+        INPUT_STORY_AREA_TYPE_FOUND_VENUE = "inputStoryAreaTypeFoundVenue"
+        INPUT_STORY_AREA_TYPE_LOCATION = "inputStoryAreaTypeLocation"
+        INPUT_STORY_AREA_TYPE_PREVIOUS_VENUE = "inputStoryAreaTypePreviousVenue"
+        INPUT_STORY_AREAS = "inputStoryAreas"
+        INPUT_STORY_CONTENT = "inputStoryContent"
+        INPUT_STORY_CONTENT_PHOTO = "inputStoryContentPhoto"
+        INPUT_STORY_CONTENT_VIDEO = "inputStoryContentVideo"
         INPUT_THUMBNAIL = "inputThumbnail"
         INTERNAL_LINK_TYPE = "internalLinkType"
         INTERNAL_LINK_TYPE_ACTIVE_SESSIONS = "internalLinkTypeActiveSessions"
@@ -892,7 +925,9 @@ class API:
         INTERNAL_LINK_TYPE_QR_CODE_AUTHENTICATION = "internalLinkTypeQrCodeAuthentication"
         INTERNAL_LINK_TYPE_RESTORE_PURCHASES = "internalLinkTypeRestorePurchases"
         INTERNAL_LINK_TYPE_SETTINGS = "internalLinkTypeSettings"
+        INTERNAL_LINK_TYPE_SIDE_MENU_BOT = "internalLinkTypeSideMenuBot"
         INTERNAL_LINK_TYPE_STICKER_SET = "internalLinkTypeStickerSet"
+        INTERNAL_LINK_TYPE_STORY = "internalLinkTypeStory"
         INTERNAL_LINK_TYPE_THEME = "internalLinkTypeTheme"
         INTERNAL_LINK_TYPE_THEME_SETTINGS = "internalLinkTypeThemeSettings"
         INTERNAL_LINK_TYPE_UNKNOWN_DEEP_LINK = "internalLinkTypeUnknownDeepLink"
@@ -902,6 +937,10 @@ class API:
         INTERNAL_LINK_TYPE_VIDEO_CHAT = "internalLinkTypeVideoChat"
         INTERNAL_LINK_TYPE_WEB_APP = "internalLinkTypeWebApp"
         INVITE_GROUP_CALL_PARTICIPANTS = "inviteGroupCallParticipants"
+        INVITE_LINK_CHAT_TYPE = "inviteLinkChatType"
+        INVITE_LINK_CHAT_TYPE_BASIC_GROUP = "inviteLinkChatTypeBasicGroup"
+        INVITE_LINK_CHAT_TYPE_CHANNEL = "inviteLinkChatTypeChannel"
+        INVITE_LINK_CHAT_TYPE_SUPERGROUP = "inviteLinkChatTypeSupergroup"
         INVOICE = "invoice"
         JOIN_CHAT = "joinChat"
         JOIN_CHAT_BY_INVITE_LINK = "joinChatByInviteLink"
@@ -932,6 +971,7 @@ class API:
         LANGUAGE_PACK_STRINGS = "languagePackStrings"
         LEAVE_CHAT = "leaveChat"
         LEAVE_GROUP_CALL = "leaveGroupCall"
+        LOAD_ACTIVE_STORIES = "loadActiveStories"
         LOAD_CHATS = "loadChats"
         LOAD_GROUP_CALL_PARTICIPANTS = "loadGroupCallParticipants"
         LOCAL_FILE = "localFile"
@@ -1004,6 +1044,7 @@ class API:
         MESSAGE_PROXIMITY_ALERT_TRIGGERED = "messageProximityAlertTriggered"
         MESSAGE_SCREENSHOT_TAKEN = "messageScreenshotTaken"
         MESSAGE_STICKER = "messageSticker"
+        MESSAGE_STORY = "messageStory"
         MESSAGE_SUGGEST_PROFILE_PHOTO = "messageSuggestProfilePhoto"
         MESSAGE_SUPERGROUP_CHAT_CREATE = "messageSupergroupChatCreate"
         MESSAGE_TEXT = "messageText"
@@ -1043,9 +1084,15 @@ class API:
         MESSAGE_POSITIONS = "messagePositions"
         MESSAGE_REACTION = "messageReaction"
         MESSAGE_REPLY_INFO = "messageReplyInfo"
+        MESSAGE_REPLY_TO = "messageReplyTo"
+        MESSAGE_REPLY_TO_MESSAGE = "messageReplyToMessage"
+        MESSAGE_REPLY_TO_STORY = "messageReplyToStory"
         MESSAGE_SCHEDULING_STATE = "messageSchedulingState"
         MESSAGE_SCHEDULING_STATE_SEND_AT_DATE = "messageSchedulingStateSendAtDate"
         MESSAGE_SCHEDULING_STATE_SEND_WHEN_ONLINE = "messageSchedulingStateSendWhenOnline"
+        MESSAGE_SELF_DESTRUCT_TYPE = "messageSelfDestructType"
+        MESSAGE_SELF_DESTRUCT_TYPE_IMMEDIATELY = "messageSelfDestructTypeImmediately"
+        MESSAGE_SELF_DESTRUCT_TYPE_TIMER = "messageSelfDestructTypeTimer"
         MESSAGE_SEND_OPTIONS = "messageSendOptions"
         MESSAGE_SENDER = "messageSender"
         MESSAGE_SENDER_CHAT = "messageSenderChat"
@@ -1063,7 +1110,14 @@ class API:
         MESSAGE_SOURCE_MESSAGE_THREAD_HISTORY = "messageSourceMessageThreadHistory"
         MESSAGE_SOURCE_NOTIFICATION = "messageSourceNotification"
         MESSAGE_SOURCE_OTHER = "messageSourceOther"
+        MESSAGE_SOURCE_SCREENSHOT = "messageSourceScreenshot"
         MESSAGE_SOURCE_SEARCH = "messageSourceSearch"
+        MESSAGE_SPONSOR = "messageSponsor"
+        MESSAGE_SPONSOR_TYPE = "messageSponsorType"
+        MESSAGE_SPONSOR_TYPE_BOT = "messageSponsorTypeBot"
+        MESSAGE_SPONSOR_TYPE_PRIVATE_CHANNEL = "messageSponsorTypePrivateChannel"
+        MESSAGE_SPONSOR_TYPE_PUBLIC_CHANNEL = "messageSponsorTypePublicChannel"
+        MESSAGE_SPONSOR_TYPE_WEBSITE = "messageSponsorTypeWebsite"
         MESSAGE_STATISTICS = "messageStatistics"
         MESSAGE_THREAD_INFO = "messageThreadInfo"
         MESSAGE_VIEWER = "messageViewer"
@@ -1101,6 +1155,7 @@ class API:
         OK = "ok"
         OPEN_CHAT = "openChat"
         OPEN_MESSAGE_CONTENT = "openMessageContent"
+        OPEN_STORY = "openStory"
         OPEN_WEB_APP = "openWebApp"
         OPTIMIZE_STORAGE = "optimizeStorage"
         OPTION_VALUE = "optionValue"
@@ -1235,11 +1290,13 @@ class API:
         PREMIUM_FEATURE_REAL_TIME_CHAT_TRANSLATION = "premiumFeatureRealTimeChatTranslation"
         PREMIUM_FEATURE_UNIQUE_REACTIONS = "premiumFeatureUniqueReactions"
         PREMIUM_FEATURE_UNIQUE_STICKERS = "premiumFeatureUniqueStickers"
+        PREMIUM_FEATURE_UPGRADED_STORIES = "premiumFeatureUpgradedStories"
         PREMIUM_FEATURE_VOICE_RECOGNITION = "premiumFeatureVoiceRecognition"
         PREMIUM_FEATURE_PROMOTION_ANIMATION = "premiumFeaturePromotionAnimation"
         PREMIUM_FEATURES = "premiumFeatures"
         PREMIUM_LIMIT = "premiumLimit"
         PREMIUM_LIMIT_TYPE = "premiumLimitType"
+        PREMIUM_LIMIT_TYPE_ACTIVE_STORY_COUNT = "premiumLimitTypeActiveStoryCount"
         PREMIUM_LIMIT_TYPE_BIO_LENGTH = "premiumLimitTypeBioLength"
         PREMIUM_LIMIT_TYPE_CAPTION_LENGTH = "premiumLimitTypeCaptionLength"
         PREMIUM_LIMIT_TYPE_CHAT_FOLDER_CHOSEN_CHAT_COUNT = "premiumLimitTypeChatFolderChosenChatCount"
@@ -1247,19 +1304,30 @@ class API:
         PREMIUM_LIMIT_TYPE_CHAT_FOLDER_INVITE_LINK_COUNT = "premiumLimitTypeChatFolderInviteLinkCount"
         PREMIUM_LIMIT_TYPE_CREATED_PUBLIC_CHAT_COUNT = "premiumLimitTypeCreatedPublicChatCount"
         PREMIUM_LIMIT_TYPE_FAVORITE_STICKER_COUNT = "premiumLimitTypeFavoriteStickerCount"
+        PREMIUM_LIMIT_TYPE_MONTHLY_SENT_STORY_COUNT = "premiumLimitTypeMonthlySentStoryCount"
         PREMIUM_LIMIT_TYPE_PINNED_ARCHIVED_CHAT_COUNT = "premiumLimitTypePinnedArchivedChatCount"
         PREMIUM_LIMIT_TYPE_PINNED_CHAT_COUNT = "premiumLimitTypePinnedChatCount"
         PREMIUM_LIMIT_TYPE_SAVED_ANIMATION_COUNT = "premiumLimitTypeSavedAnimationCount"
         PREMIUM_LIMIT_TYPE_SHAREABLE_CHAT_FOLDER_COUNT = "premiumLimitTypeShareableChatFolderCount"
+        PREMIUM_LIMIT_TYPE_STORY_CAPTION_LENGTH = "premiumLimitTypeStoryCaptionLength"
         PREMIUM_LIMIT_TYPE_SUPERGROUP_COUNT = "premiumLimitTypeSupergroupCount"
+        PREMIUM_LIMIT_TYPE_WEEKLY_SENT_STORY_COUNT = "premiumLimitTypeWeeklySentStoryCount"
         PREMIUM_PAYMENT_OPTION = "premiumPaymentOption"
         PREMIUM_SOURCE = "premiumSource"
         PREMIUM_SOURCE_FEATURE = "premiumSourceFeature"
         PREMIUM_SOURCE_LIMIT_EXCEEDED = "premiumSourceLimitExceeded"
         PREMIUM_SOURCE_LINK = "premiumSourceLink"
         PREMIUM_SOURCE_SETTINGS = "premiumSourceSettings"
+        PREMIUM_SOURCE_STORY_FEATURE = "premiumSourceStoryFeature"
         PREMIUM_STATE = "premiumState"
         PREMIUM_STATE_PAYMENT_OPTION = "premiumStatePaymentOption"
+        PREMIUM_STORY_FEATURE = "premiumStoryFeature"
+        PREMIUM_STORY_FEATURE_CUSTOM_EXPIRATION_DURATION = "premiumStoryFeatureCustomExpirationDuration"
+        PREMIUM_STORY_FEATURE_LINKS_AND_FORMATTING = "premiumStoryFeatureLinksAndFormatting"
+        PREMIUM_STORY_FEATURE_PERMANENT_VIEWS_HISTORY = "premiumStoryFeaturePermanentViewsHistory"
+        PREMIUM_STORY_FEATURE_PRIORITY_ORDER = "premiumStoryFeaturePriorityOrder"
+        PREMIUM_STORY_FEATURE_SAVE_STORIES = "premiumStoryFeatureSaveStories"
+        PREMIUM_STORY_FEATURE_STEALTH_MODE = "premiumStoryFeatureStealthMode"
         PROCESS_CHAT_FOLDER_NEW_CHATS = "processChatFolderNewChats"
         PROCESS_CHAT_JOIN_REQUEST = "processChatJoinRequest"
         PROCESS_CHAT_JOIN_REQUESTS = "processChatJoinRequests"
@@ -1301,6 +1369,7 @@ class API:
         PUSH_MESSAGE_CONTENT_RECURRING_PAYMENT = "pushMessageContentRecurringPayment"
         PUSH_MESSAGE_CONTENT_SCREENSHOT_TAKEN = "pushMessageContentScreenshotTaken"
         PUSH_MESSAGE_CONTENT_STICKER = "pushMessageContentSticker"
+        PUSH_MESSAGE_CONTENT_STORY = "pushMessageContentStory"
         PUSH_MESSAGE_CONTENT_SUGGEST_PROFILE_PHOTO = "pushMessageContentSuggestProfilePhoto"
         PUSH_MESSAGE_CONTENT_TEXT = "pushMessageContentText"
         PUSH_MESSAGE_CONTENT_VIDEO = "pushMessageContentVideo"
@@ -1343,8 +1412,8 @@ class API:
         REMOVE_SAVED_NOTIFICATION_SOUND = "removeSavedNotificationSound"
         REMOVE_STICKER_FROM_SET = "removeStickerFromSet"
         REMOVE_TOP_CHAT = "removeTopChat"
-        REORDER_ACTIVE_BOT_USERNAMES = "reorderActiveBotUsernames"
         REORDER_ACTIVE_USERNAMES = "reorderActiveUsernames"
+        REORDER_BOT_ACTIVE_USERNAMES = "reorderBotActiveUsernames"
         REORDER_CHAT_FOLDERS = "reorderChatFolders"
         REORDER_INSTALLED_STICKER_SETS = "reorderInstalledStickerSets"
         REORDER_SUPERGROUP_ACTIVE_USERNAMES = "reorderSupergroupActiveUsernames"
@@ -1358,6 +1427,18 @@ class API:
         REPORT_CHAT = "reportChat"
         REPORT_CHAT_PHOTO = "reportChatPhoto"
         REPORT_MESSAGE_REACTIONS = "reportMessageReactions"
+        REPORT_REASON = "reportReason"
+        REPORT_REASON_CHILD_ABUSE = "reportReasonChildAbuse"
+        REPORT_REASON_COPYRIGHT = "reportReasonCopyright"
+        REPORT_REASON_CUSTOM = "reportReasonCustom"
+        REPORT_REASON_FAKE = "reportReasonFake"
+        REPORT_REASON_ILLEGAL_DRUGS = "reportReasonIllegalDrugs"
+        REPORT_REASON_PERSONAL_DETAILS = "reportReasonPersonalDetails"
+        REPORT_REASON_PORNOGRAPHY = "reportReasonPornography"
+        REPORT_REASON_SPAM = "reportReasonSpam"
+        REPORT_REASON_UNRELATED_LOCATION = "reportReasonUnrelatedLocation"
+        REPORT_REASON_VIOLENCE = "reportReasonViolence"
+        REPORT_STORY = "reportStory"
         REPORT_SUPERGROUP_ANTI_SPAM_FALSE_POSITIVE = "reportSupergroupAntiSpamFalsePositive"
         REPORT_SUPERGROUP_SPAM = "reportSupergroupSpam"
         REQUEST_AUTHENTICATION_PASSWORD_RECOVERY = "requestAuthenticationPasswordRecovery"
@@ -1440,10 +1521,12 @@ class API:
         SEARCH_OUTGOING_DOCUMENT_MESSAGES = "searchOutgoingDocumentMessages"
         SEARCH_PUBLIC_CHAT = "searchPublicChat"
         SEARCH_PUBLIC_CHATS = "searchPublicChats"
+        SEARCH_RECENTLY_FOUND_CHATS = "searchRecentlyFoundChats"
         SEARCH_SECRET_MESSAGES = "searchSecretMessages"
         SEARCH_STICKER_SET = "searchStickerSet"
         SEARCH_STICKER_SETS = "searchStickerSets"
         SEARCH_STICKERS = "searchStickers"
+        SEARCH_STRINGS_BY_PREFIX = "searchStringsByPrefix"
         SEARCH_USER_BY_PHONE_NUMBER = "searchUserByPhoneNumber"
         SEARCH_USER_BY_TOKEN = "searchUserByToken"
         SEARCH_WEB_APP = "searchWebApp"
@@ -1460,7 +1543,6 @@ class API:
         SEND_CALL_RATING = "sendCallRating"
         SEND_CALL_SIGNALING_DATA = "sendCallSignalingData"
         SEND_CHAT_ACTION = "sendChatAction"
-        SEND_CHAT_SCREENSHOT_TAKEN_NOTIFICATION = "sendChatScreenshotTakenNotification"
         SEND_CUSTOM_REQUEST = "sendCustomRequest"
         SEND_EMAIL_ADDRESS_VERIFICATION_CODE = "sendEmailAddressVerificationCode"
         SEND_INLINE_QUERY_RESULT_MESSAGE = "sendInlineQueryResultMessage"
@@ -1470,6 +1552,8 @@ class API:
         SEND_PAYMENT_FORM = "sendPaymentForm"
         SEND_PHONE_NUMBER_CONFIRMATION_CODE = "sendPhoneNumberConfirmationCode"
         SEND_PHONE_NUMBER_VERIFICATION_CODE = "sendPhoneNumberVerificationCode"
+        SEND_STORY = "sendStory"
+        SEND_WEB_APP_CUSTOM_REQUEST = "sendWebAppCustomRequest"
         SEND_WEB_APP_DATA = "sendWebAppData"
         SENT_WEB_APP_MESSAGE = "sentWebAppMessage"
         SESSION = "session"
@@ -1494,6 +1578,7 @@ class API:
         SESSIONS = "sessions"
         SET_ACCOUNT_TTL = "setAccountTtl"
         SET_ALARM = "setAlarm"
+        SET_ARCHIVE_CHAT_LIST_SETTINGS = "setArchiveChatListSettings"
         SET_AUTHENTICATION_EMAIL_ADDRESS = "setAuthenticationEmailAddress"
         SET_AUTHENTICATION_PHONE_NUMBER = "setAuthenticationPhoneNumber"
         SET_AUTO_DOWNLOAD_SETTINGS = "setAutoDownloadSettings"
@@ -1505,6 +1590,7 @@ class API:
         SET_BOT_NAME = "setBotName"
         SET_BOT_PROFILE_PHOTO = "setBotProfilePhoto"
         SET_BOT_UPDATES_STATUS = "setBotUpdatesStatus"
+        SET_CHAT_ACTIVE_STORIES_LIST = "setChatActiveStoriesList"
         SET_CHAT_AVAILABLE_REACTIONS = "setChatAvailableReactions"
         SET_CHAT_BACKGROUND = "setChatBackground"
         SET_CHAT_CLIENT_DATA = "setChatClientData"
@@ -1521,6 +1607,7 @@ class API:
         SET_CHAT_SLOW_MODE_DELAY = "setChatSlowModeDelay"
         SET_CHAT_THEME = "setChatTheme"
         SET_CHAT_TITLE = "setChatTitle"
+        SET_CLOSE_FRIENDS = "setCloseFriends"
         SET_COMMANDS = "setCommands"
         SET_CUSTOM_EMOJI_STICKER_SET_THUMBNAIL = "setCustomEmojiStickerSetThumbnail"
         SET_CUSTOM_LANGUAGE_PACK = "setCustomLanguagePack"
@@ -1545,6 +1632,7 @@ class API:
         SET_LOG_VERBOSITY_LEVEL = "setLogVerbosityLevel"
         SET_LOGIN_EMAIL_ADDRESS = "setLoginEmailAddress"
         SET_MENU_BUTTON = "setMenuButton"
+        SET_MESSAGE_SENDER_BLOCK_LIST = "setMessageSenderBlockList"
         SET_NAME = "setName"
         SET_NETWORK_TYPE = "setNetworkType"
         SET_OPTION = "setOption"
@@ -1563,6 +1651,8 @@ class API:
         SET_STICKER_POSITION_IN_SET = "setStickerPositionInSet"
         SET_STICKER_SET_THUMBNAIL = "setStickerSetThumbnail"
         SET_STICKER_SET_TITLE = "setStickerSetTitle"
+        SET_STORY_PRIVACY_SETTINGS = "setStoryPrivacySettings"
+        SET_STORY_REACTION = "setStoryReaction"
         SET_SUPERGROUP_STICKER_SET = "setSupergroupStickerSet"
         SET_SUPERGROUP_USERNAME = "setSupergroupUsername"
         SET_TDLIB_PARAMETERS = "setTdlibParameters"
@@ -1614,12 +1704,37 @@ class API:
         STORE_PAYMENT_PURPOSE = "storePaymentPurpose"
         STORE_PAYMENT_PURPOSE_GIFTED_PREMIUM = "storePaymentPurposeGiftedPremium"
         STORE_PAYMENT_PURPOSE_PREMIUM_SUBSCRIPTION = "storePaymentPurposePremiumSubscription"
+        STORIES = "stories"
+        STORY = "story"
+        STORY_AREA = "storyArea"
+        STORY_AREA_POSITION = "storyAreaPosition"
+        STORY_AREA_TYPE = "storyAreaType"
+        STORY_AREA_TYPE_LOCATION = "storyAreaTypeLocation"
+        STORY_AREA_TYPE_VENUE = "storyAreaTypeVenue"
+        STORY_CONTENT = "storyContent"
+        STORY_CONTENT_PHOTO = "storyContentPhoto"
+        STORY_CONTENT_UNSUPPORTED = "storyContentUnsupported"
+        STORY_CONTENT_VIDEO = "storyContentVideo"
+        STORY_INFO = "storyInfo"
+        STORY_INTERACTION_INFO = "storyInteractionInfo"
+        STORY_LIST = "storyList"
+        STORY_LIST_ARCHIVE = "storyListArchive"
+        STORY_LIST_MAIN = "storyListMain"
+        STORY_PRIVACY_SETTINGS = "storyPrivacySettings"
+        STORY_PRIVACY_SETTINGS_CLOSE_FRIENDS = "storyPrivacySettingsCloseFriends"
+        STORY_PRIVACY_SETTINGS_CONTACTS = "storyPrivacySettingsContacts"
+        STORY_PRIVACY_SETTINGS_EVERYONE = "storyPrivacySettingsEveryone"
+        STORY_PRIVACY_SETTINGS_SELECTED_USERS = "storyPrivacySettingsSelectedUsers"
+        STORY_VIDEO = "storyVideo"
+        STORY_VIEWER = "storyViewer"
+        STORY_VIEWERS = "storyViewers"
         SUGGEST_USER_PROFILE_PHOTO = "suggestUserProfilePhoto"
         SUGGESTED_ACTION = "suggestedAction"
         SUGGESTED_ACTION_CHECK_PASSWORD = "suggestedActionCheckPassword"
         SUGGESTED_ACTION_CHECK_PHONE_NUMBER = "suggestedActionCheckPhoneNumber"
         SUGGESTED_ACTION_CONVERT_TO_BROADCAST_GROUP = "suggestedActionConvertToBroadcastGroup"
         SUGGESTED_ACTION_ENABLE_ARCHIVE_AND_MUTE_NEW_CHATS = "suggestedActionEnableArchiveAndMuteNewChats"
+        SUGGESTED_ACTION_RESTORE_PREMIUM = "suggestedActionRestorePremium"
         SUGGESTED_ACTION_SET_PASSWORD = "suggestedActionSetPassword"
         SUGGESTED_ACTION_SUBSCRIBE_TO_ANNUAL_PREMIUM = "suggestedActionSubscribeToAnnualPremium"
         SUGGESTED_ACTION_UPGRADE_PREMIUM = "suggestedActionUpgradePremium"
@@ -1728,9 +1843,9 @@ class API:
         TOGGLE_GROUP_CALL_PARTICIPANT_IS_HAND_RAISED = "toggleGroupCallParticipantIsHandRaised"
         TOGGLE_GROUP_CALL_PARTICIPANT_IS_MUTED = "toggleGroupCallParticipantIsMuted"
         TOGGLE_GROUP_CALL_SCREEN_SHARING_IS_PAUSED = "toggleGroupCallScreenSharingIsPaused"
-        TOGGLE_MESSAGE_SENDER_IS_BLOCKED = "toggleMessageSenderIsBlocked"
         TOGGLE_SESSION_CAN_ACCEPT_CALLS = "toggleSessionCanAcceptCalls"
         TOGGLE_SESSION_CAN_ACCEPT_SECRET_CHATS = "toggleSessionCanAcceptSecretChats"
+        TOGGLE_STORY_IS_PINNED = "toggleStoryIsPinned"
         TOGGLE_SUPERGROUP_HAS_AGGRESSIVE_ANTI_SPAM_ENABLED = "toggleSupergroupHasAggressiveAntiSpamEnabled"
         TOGGLE_SUPERGROUP_HAS_HIDDEN_MEMBERS = "toggleSupergroupHasHiddenMembers"
         TOGGLE_SUPERGROUP_IS_ALL_HISTORY_AVAILABLE = "toggleSupergroupIsAllHistoryAvailable"
@@ -1753,6 +1868,7 @@ class API:
         TRANSLATE_MESSAGE_TEXT = "translateMessageText"
         TRANSLATE_TEXT = "translateText"
         TRENDING_STICKER_SETS = "trendingStickerSets"
+        UNCONFIRMED_SESSION = "unconfirmedSession"
         UNPIN_ALL_CHAT_MESSAGES = "unpinAllChatMessages"
         UNPIN_ALL_MESSAGE_THREAD_MESSAGES = "unpinAllMessageThreadMessages"
         UNPIN_CHAT_MESSAGE = "unpinChatMessage"
@@ -1771,14 +1887,15 @@ class API:
         UPDATE_CALL = "updateCall"
         UPDATE_CHAT_ACTION = "updateChatAction"
         UPDATE_CHAT_ACTION_BAR = "updateChatActionBar"
+        UPDATE_CHAT_ACTIVE_STORIES = "updateChatActiveStories"
         UPDATE_CHAT_AVAILABLE_REACTIONS = "updateChatAvailableReactions"
         UPDATE_CHAT_BACKGROUND = "updateChatBackground"
+        UPDATE_CHAT_BLOCK_LIST = "updateChatBlockList"
         UPDATE_CHAT_DEFAULT_DISABLE_NOTIFICATION = "updateChatDefaultDisableNotification"
         UPDATE_CHAT_DRAFT_MESSAGE = "updateChatDraftMessage"
         UPDATE_CHAT_FOLDERS = "updateChatFolders"
         UPDATE_CHAT_HAS_PROTECTED_CONTENT = "updateChatHasProtectedContent"
         UPDATE_CHAT_HAS_SCHEDULED_MESSAGES = "updateChatHasScheduledMessages"
-        UPDATE_CHAT_IS_BLOCKED = "updateChatIsBlocked"
         UPDATE_CHAT_IS_MARKED_AS_UNREAD = "updateChatIsMarkedAsUnread"
         UPDATE_CHAT_IS_TRANSLATABLE = "updateChatIsTranslatable"
         UPDATE_CHAT_LAST_MESSAGE = "updateChatLastMessage"
@@ -1854,11 +1971,18 @@ class API:
         UPDATE_SELECTED_BACKGROUND = "updateSelectedBackground"
         UPDATE_SERVICE_NOTIFICATION = "updateServiceNotification"
         UPDATE_STICKER_SET = "updateStickerSet"
+        UPDATE_STORY = "updateStory"
+        UPDATE_STORY_DELETED = "updateStoryDeleted"
+        UPDATE_STORY_LIST_CHAT_COUNT = "updateStoryListChatCount"
+        UPDATE_STORY_SEND_FAILED = "updateStorySendFailed"
+        UPDATE_STORY_SEND_SUCCEEDED = "updateStorySendSucceeded"
+        UPDATE_STORY_STEALTH_MODE = "updateStoryStealthMode"
         UPDATE_SUGGESTED_ACTIONS = "updateSuggestedActions"
         UPDATE_SUPERGROUP = "updateSupergroup"
         UPDATE_SUPERGROUP_FULL_INFO = "updateSupergroupFullInfo"
         UPDATE_TERMS_OF_SERVICE = "updateTermsOfService"
         UPDATE_TRENDING_STICKER_SETS = "updateTrendingStickerSets"
+        UPDATE_UNCONFIRMED_SESSION = "updateUnconfirmedSession"
         UPDATE_UNREAD_CHAT_COUNT = "updateUnreadChatCount"
         UPDATE_UNREAD_MESSAGE_COUNT = "updateUnreadMessageCount"
         UPDATE_USER = "updateUser"
@@ -1881,6 +2005,7 @@ class API:
         USER_PRIVACY_SETTING_ALLOW_PRIVATE_VOICE_AND_VIDEO_NOTE_MESSAGES = (
             "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
         )
+        USER_PRIVACY_SETTING_SHOW_BIO = "userPrivacySettingShowBio"
         USER_PRIVACY_SETTING_SHOW_LINK_IN_FORWARDED_MESSAGES = "userPrivacySettingShowLinkInForwardedMessages"
         USER_PRIVACY_SETTING_SHOW_PHONE_NUMBER = "userPrivacySettingShowPhoneNumber"
         USER_PRIVACY_SETTING_SHOW_PROFILE_PHOTO = "userPrivacySettingShowProfilePhoto"
@@ -2004,6 +2129,17 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def activate_story_stealth_mode(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
+        """
+        Activates stealth mode for stories, which hides all views of stories from the current user in the last "story_stealth_mode_past_period" seconds and for the next "story_stealth_mode_future_period" seconds; for Telegram Premium users only
+        """
+
+        return await self.client.request(
+            ActivateStoryStealthMode(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def add_application_changelog(
         self,
         previous_application_version: String,
@@ -2013,7 +2149,7 @@ class API:
         skip_validation: bool = False
     ) -> Ok:
         """
-        Adds server-provided application changelog as messages to the chat 777000 (Telegram); for official applications only. Returns a 404 error if nothing changed
+        Adds server-provided application changelog as messages to the chat 777000 (Telegram) or as a stories; for official applications only. Returns a 404 error if nothing changed
 
         :param previous_application_version: The previous application version
         :type previous_application_version: :class:`String`
@@ -2347,7 +2483,7 @@ class API:
         sender_id: MessageSender,
         input_message_content: InputMessageContent,
         disable_notification: Bool = False,
-        reply_to_message_id: typing.Optional[Int53] = 0,
+        reply_to: typing.Optional[MessageReplyTo] = None,
         *,
         request_id: str = None,
         request_timeout: int = None,
@@ -2364,8 +2500,8 @@ class API:
         :type input_message_content: :class:`InputMessageContent`
         :param disable_notification: Pass true to disable notification for the message
         :type disable_notification: :class:`Bool`
-        :param reply_to_message_id: Identifier of the replied message; 0 if none, defaults to None
-        :type reply_to_message_id: :class:`Int53`, optional
+        :param reply_to: Identifier of the replied message or story; pass null if none, defaults to None
+        :type reply_to: :class:`MessageReplyTo`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
@@ -2385,7 +2521,7 @@ class API:
                 sender_id=sender_id,
                 input_message_content=input_message_content,
                 disable_notification=disable_notification,
-                reply_to_message_id=reply_to_message_id,
+                reply_to=reply_to,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -2527,7 +2663,7 @@ class API:
         """
         Adds a proxy server for network requests. Can be called before authorization
 
-        :param server: Proxy server IP address
+        :param server: Proxy server domain or IP address
         :type server: :class:`String`
         :param port: Proxy server port
         :type port: :class:`Int32`
@@ -2726,6 +2862,35 @@ class API:
                 user_id=user_id,
                 name=name,
                 sticker=sticker,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def allow_bot_to_send_messages(
+        self, bot_user_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+    ) -> Ok:
+        """
+        Allows the specified bot to send messages to the user
+
+        :param bot_user_id: Identifier of the target bot
+        :type bot_user_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = AllowBotToSendMessages.construct if skip_validation else AllowBotToSendMessages
+
+        return await self.client.request(
+            _constructor(
+                bot_user_id=bot_user_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -3167,6 +3332,35 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def can_bot_send_messages(
+        self, bot_user_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+    ) -> Ok:
+        """
+        Checks whether the specified bot can send messages to the user. Returns a 404 error if can't and the access can be granted by call to allowBotToSendMessages
+
+        :param bot_user_id: Identifier of the target bot
+        :type bot_user_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = CanBotSendMessages.construct if skip_validation else CanBotSendMessages
+
+        return await self.client.request(
+            _constructor(
+                bot_user_id=bot_user_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def can_purchase_premium(
         self,
         purpose: StorePaymentPurpose,
@@ -3197,6 +3391,17 @@ class API:
             _constructor(
                 purpose=purpose,
             ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def can_send_story(self, *, request_id: str = None, request_timeout: int = None) -> CanSendStoryResult:
+        """
+        Checks whether the current user can send a story
+        """
+
+        return await self.client.request(
+            CanSendStory(),
             request_id=request_id,
             request_timeout=request_timeout,
         )
@@ -3664,7 +3869,7 @@ class API:
         """
         Checks whether a username can be set for a chat
 
-        :param chat_id: Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if the chat is being created
+        :param chat_id: Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created
         :type chat_id: :class:`Int53`
         :param username: Username to be checked
         :type username: :class:`String`
@@ -4133,6 +4338,44 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def click_chat_sponsored_message(
+        self,
+        chat_id: Int53,
+        message_id: Int53,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Ok:
+        """
+        Informs TDLib that the user opened the sponsored chat via the button, the name, the photo, or a mention in the sponsored message
+
+        :param chat_id: Chat identifier of the sponsored message
+        :type chat_id: :class:`Int53`
+        :param message_id: Identifier of the sponsored message
+        :type message_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = ClickChatSponsoredMessage.construct if skip_validation else ClickChatSponsoredMessage
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                message_id=message_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def click_premium_subscription_button(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Informs TDLib that the user clicked Premium subscription button on the Premium features screen
@@ -4218,6 +4461,44 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def close_story(
+        self,
+        story_sender_chat_id: Int53,
+        story_id: Int32,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Ok:
+        """
+        Informs TDLib that a story is closed by the user
+
+        :param story_sender_chat_id: The identifier of the sender of the story to close
+        :type story_sender_chat_id: :class:`Int53`
+        :param story_id: The identifier of the story
+        :type story_id: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = CloseStory.construct if skip_validation else CloseStory
+
+        return await self.client.request(
+            _constructor(
+                story_sender_chat_id=story_sender_chat_id,
+                story_id=story_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def close_web_app(
         self,
         web_app_launch_id: Int64,
@@ -4276,6 +4557,35 @@ class API:
         return await self.client.request(
             _constructor(
                 link=link,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def confirm_session(
+        self, session_id: Int64, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+    ) -> Ok:
+        """
+        Confirms an unconfirmed session of the current user from another device
+
+        :param session_id: Session identifier
+        :type session_id: :class:`Int64`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = ConfirmSession.construct if skip_validation else ConfirmSession
+
+        return await self.client.request(
+            _constructor(
+                session_id=session_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -5660,6 +5970,35 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def delete_story(
+        self, story_id: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+    ) -> Ok:
+        """
+        Deletes a previously sent story
+
+        :param story_id: Identifier of the story to delete
+        :type story_id: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = DeleteStory.construct if skip_validation else DeleteStory
+
+        return await self.client.request(
+            _constructor(
+                story_id=story_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def destroy(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed. After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent. Can be called before authorization
@@ -6585,7 +6924,7 @@ class API:
 
         :param proxy_id: Proxy identifier
         :type proxy_id: :class:`Int32`
-        :param server: Proxy server IP address
+        :param server: Proxy server domain or IP address
         :type server: :class:`String`
         :param port: Proxy server port
         :type port: :class:`Int32`
@@ -6613,6 +6952,52 @@ class API:
                 port=port,
                 type=type_,
                 enable=enable,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def edit_story(
+        self,
+        story_id: Int32,
+        content: typing.Optional[InputStoryContent] = None,
+        areas: typing.Optional[InputStoryAreas] = None,
+        caption: typing.Optional[FormattedText] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes content and caption of a previously sent story
+
+        :param story_id: Identifier of the story to edit
+        :type story_id: :class:`Int32`
+        :param content: New content of the story; pass null to keep the current content, defaults to None
+        :type content: :class:`InputStoryContent`, optional
+        :param areas: New clickable rectangle areas to be shown on the story media; pass null to keep the current areas. Areas can't be edited if story content isn't changed, defaults to None
+        :type areas: :class:`InputStoryAreas`, optional
+        :param caption: New story caption; pass null to keep the current caption, defaults to None
+        :type caption: :class:`FormattedText`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = EditStory.construct if skip_validation else EditStory
+
+        return await self.client.request(
+            _constructor(
+                story_id=story_id,
+                content=content,
+                areas=areas,
+                caption=caption,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -6913,6 +7298,52 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_all_sticker_emojis(
+        self,
+        sticker_type: StickerType,
+        query: String,
+        chat_id: Int53,
+        return_only_main_emoji: Bool = False,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Emojis:
+        """
+        Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
+
+        :param sticker_type: Type of the stickers to search for
+        :type sticker_type: :class:`StickerType`
+        :param query: Search query
+        :type query: :class:`String`
+        :param chat_id: Chat identifier for which to find stickers
+        :type chat_id: :class:`Int53`
+        :param return_only_main_emoji: Pass true if only main emoji for each found sticker must be included in the result
+        :type return_only_main_emoji: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Emojis`
+        """
+
+        _constructor = GetAllStickerEmojis.construct if skip_validation else GetAllStickerEmojis
+
+        return await self.client.request(
+            _constructor(
+                sticker_type=sticker_type,
+                query=query,
+                chat_id=chat_id,
+                return_only_main_emoji=return_only_main_emoji,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_animated_emoji(
         self, emoji: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
     ) -> AnimatedEmoji:
@@ -6964,6 +7395,19 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_archive_chat_list_settings(
+        self, *, request_id: str = None, request_timeout: int = None
+    ) -> ArchiveChatListSettings:
+        """
+        Returns settings for automatic moving of chats to and from the Archive chat lists
+        """
+
+        return await self.client.request(
+            GetArchiveChatListSettings(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_archived_sticker_sets(
         self,
         sticker_type: StickerType,
@@ -7006,6 +7450,44 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_archived_stories(
+        self,
+        from_story_id: Int32,
+        limit: Int32,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Stories:
+        """
+        Returns the list of all stories of the current user. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+
+        :param from_story_id: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
+        :type from_story_id: :class:`Int32`
+        :param limit: The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Stories`
+        """
+
+        _constructor = GetArchivedStories.construct if skip_validation else GetArchivedStories
+
+        return await self.client.request(
+            _constructor(
+                from_story_id=from_story_id,
+                limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_attached_sticker_sets(
         self, file_id: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
     ) -> StickerSets:
@@ -7039,7 +7521,7 @@ class API:
         self, bot_user_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
     ) -> AttachmentMenuBot:
         """
-        Returns information about a bot that can be added to attachment menu
+        Returns information about a bot that can be added to attachment or side menu
 
         :param bot_user_id: Bot's user identifier
         :type bot_user_id: :class:`Int53`
@@ -7277,6 +7759,7 @@ class API:
 
     async def get_blocked_message_senders(
         self,
+        block_list: BlockList,
         offset: Int32,
         limit: Int32,
         *,
@@ -7287,6 +7770,8 @@ class API:
         """
         Returns users and chats that were blocked by the current user
 
+        :param block_list: Block list from which to return users
+        :type block_list: :class:`BlockList`
         :param offset: Number of users and chats to skip in the result; must be non-negative
         :type offset: :class:`Int32`
         :param limit: The maximum number of users and chats to return; up to 100
@@ -7306,6 +7791,7 @@ class API:
 
         return await self.client.request(
             _constructor(
+                block_list=block_list,
                 offset=offset,
                 limit=limit,
             ),
@@ -7515,7 +8001,7 @@ class API:
         self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
     ) -> Chat:
         """
-        Returns information about a chat by its identifier, this is an offline request if the current user is not a bot
+        Returns information about a chat by its identifier; this is an offline request if the current user is not a bot
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
@@ -7531,6 +8017,35 @@ class API:
         """
 
         _constructor = GetChat.construct if skip_validation else GetChat
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chat_active_stories(
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+    ) -> ChatActiveStories:
+        """
+        Returns the list of active stories posted by the given chat
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatActiveStories`
+        """
+
+        _constructor = GetChatActiveStories.construct if skip_validation else GetChatActiveStories
 
         return await self.client.request(
             _constructor(
@@ -7681,6 +8196,35 @@ class API:
         return await self.client.request(
             _constructor(
                 chat_folder_id=chat_folder_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chat_folder_chat_count(
+        self, folder: ChatFolder, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+    ) -> Count:
+        """
+        Returns approximate number of chats in a being created chat folder. Main and archive chat lists must be fully preloaded for this function to work correctly
+
+        :param folder: The new chat folder
+        :type folder: :class:`ChatFolder`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Count`
+        """
+
+        _constructor = GetChatFolderChatCount.construct if skip_validation else GetChatFolderChatCount
+
+        return await self.client.request(
+            _constructor(
+                folder=folder,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -8329,7 +8873,7 @@ class API:
         skip_validation: bool = False
     ) -> Chats:
         """
-        Returns list of chats with non-default notification settings
+        Returns list of chats with non-default notification settings for new messages
 
         :param compare_sound: Pass true to include in the response chats with only non-default sound
         :type compare_sound: :class:`Bool`
@@ -8385,6 +8929,48 @@ class API:
         return await self.client.request(
             _constructor(
                 chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chat_pinned_stories(
+        self,
+        chat_id: Int53,
+        from_story_id: Int32,
+        limit: Int32,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Stories:
+        """
+        Returns the list of pinned stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param from_story_id: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
+        :type from_story_id: :class:`Int32`
+        :param limit: The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Stories`
+        """
+
+        _constructor = GetChatPinnedStories.construct if skip_validation else GetChatPinnedStories
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                from_story_id=from_story_id,
+                limit=limit,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -8604,6 +9190,17 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_close_friends(self, *, request_id: str = None, request_timeout: int = None) -> Users:
+        """
+        Returns all close friends of the current user
+        """
+
+        return await self.client.request(
+            GetCloseFriends(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_commands(
         self,
         language_code: String,
@@ -8655,7 +9252,7 @@ class API:
 
     async def get_contacts(self, *, request_id: str = None, request_timeout: int = None) -> Users:
         """
-        Returns all user contacts
+        Returns all contacts of the user
         """
 
         return await self.client.request(
@@ -9632,7 +10229,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param query: Text of the query
         :type query: :class:`String`
-        :param offset: Offset of the first entry to return
+        :param offset: Offset of the first entry to return; use empty string to get the first chunk of results
         :type offset: :class:`String`
         :param user_location: Location of the user; pass null if unknown or the bot doesn't need user's location, defaults to None
         :type user_location: :class:`Location`, optional
@@ -11217,9 +11814,9 @@ class API:
         request_id: str = None,
         request_timeout: int = None,
         skip_validation: bool = False
-    ) -> Users:
+    ) -> MessageSenders:
         """
-        Returns users voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
+        Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
 
         :param chat_id: Identifier of the chat to which the poll belongs
         :type chat_id: :class:`Int53`
@@ -11227,9 +11824,9 @@ class API:
         :type message_id: :class:`Int53`
         :param option_id: 0-based identifier of the answer option
         :type option_id: :class:`Int32`
-        :param offset: Number of users to skip in the result; must be non-negative
+        :param offset: Number of voters to skip in the result; must be non-negative
         :type offset: :class:`Int32`
-        :param limit: The maximum number of users to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned users is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
+        :param limit: The maximum number of voters to be returned; must be positive and can't be greater than 50. For optimal performance, the number of returned voters is chosen by TDLib and can be smaller than the specified limit, even if the end of the voter list has not been reached
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
@@ -11239,7 +11836,7 @@ class API:
         :type skip_validation: :class:`bool`
 
         :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Users`
+        :rtype: :class:`aiotdlib.api.types.MessageSenders`
         """
 
         _constructor = GetPollVoters.construct if skip_validation else GetPollVoters
@@ -11538,7 +12135,7 @@ class API:
         self, limit: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
     ) -> Chats:
         """
-        Returns recently opened chats, this is an offline request. Returns chats in the order of last opening
+        Returns recently opened chats; this is an offline request. Returns chats in the order of last opening
 
         :param limit: The maximum number of chats to be returned
         :type limit: :class:`Int32`
@@ -11644,7 +12241,7 @@ class API:
         skip_validation: bool = False
     ) -> File:
         """
-        Returns information about a file by its remote ID; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
+        Returns information about a file by its remote identifier; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
 
         :param remote_file_id: Remote identifier of the file to get
         :type remote_file_id: :class:`String`
@@ -12035,6 +12632,144 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_story(
+        self,
+        story_sender_chat_id: Int53,
+        story_id: Int32,
+        only_local: Bool = False,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Story:
+        """
+        Returns a story
+
+        :param story_sender_chat_id: Identifier of the chat that posted the story
+        :type story_sender_chat_id: :class:`Int53`
+        :param story_id: Story identifier
+        :type story_id: :class:`Int32`
+        :param only_local: Pass true to get only locally available information without sending network requests
+        :type only_local: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Story`
+        """
+
+        _constructor = GetStory.construct if skip_validation else GetStory
+
+        return await self.client.request(
+            _constructor(
+                story_sender_chat_id=story_sender_chat_id,
+                story_id=story_id,
+                only_local=only_local,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_story_available_reactions(
+        self, row_size: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+    ) -> AvailableReactions:
+        """
+        Returns reactions, which can be chosen for a story
+
+        :param row_size: Number of reaction per row, 5-25
+        :type row_size: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.AvailableReactions`
+        """
+
+        _constructor = GetStoryAvailableReactions.construct if skip_validation else GetStoryAvailableReactions
+
+        return await self.client.request(
+            _constructor(
+                row_size=row_size,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_story_notification_settings_exceptions(
+        self, *, request_id: str = None, request_timeout: int = None
+    ) -> Chats:
+        """
+        Returns list of chats with non-default notification settings for stories
+        """
+
+        return await self.client.request(
+            GetStoryNotificationSettingsExceptions(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_story_viewers(
+        self,
+        story_id: Int32,
+        offset: String,
+        limit: Int32,
+        query: String = "",
+        only_contacts: Bool = False,
+        prefer_with_reaction: Bool = False,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> StoryViewers:
+        """
+        Returns viewers of a story. The method can be called if story.can_get_viewers == true
+
+        :param story_id: Story identifier
+        :type story_id: :class:`Int32`
+        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+        :type offset: :class:`String`
+        :param limit: The maximum number of story viewers to return
+        :type limit: :class:`Int32`
+        :param query: Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers
+        :type query: :class:`String`
+        :param only_contacts: Pass true to get only contacts; pass false to get all relevant viewers
+        :type only_contacts: :class:`Bool`
+        :param prefer_with_reaction: Pass true to get viewers with reaction first; pass false to get viewers sorted just by view_date
+        :type prefer_with_reaction: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StoryViewers`
+        """
+
+        _constructor = GetStoryViewers.construct if skip_validation else GetStoryViewers
+
+        return await self.client.request(
+            _constructor(
+                story_id=story_id,
+                offset=offset,
+                limit=limit,
+                query=query,
+                only_contacts=only_contacts,
+                prefer_with_reaction=prefer_with_reaction,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_suggested_file_name(
         self,
         file_id: Int32,
@@ -12346,7 +13081,7 @@ class API:
         skip_validation: bool = False
     ) -> Chats:
         """
-        Returns a list of frequently used chats. Supported only if the chat info database is enabled
+        Returns a list of frequently used chats
 
         :param category: Category of chats to be returned
         :type category: :class:`TopChatCategory`
@@ -12720,11 +13455,11 @@ class API:
         skip_validation: bool = False
     ) -> HttpUrl:
         """
-        Returns an HTTPS URL of a Web App to open after keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button is pressed
+        Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
 
         :param bot_user_id: Identifier of the target bot
         :type bot_user_id: :class:`Int53`
-        :param url: The URL from the keyboardButtonTypeWebApp or inlineQueryResultsButtonTypeWebApp button
+        :param url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, an internalLinkTypeSideMenuBot link, or an empty when the bot is opened from the side menu
         :type url: :class:`String`
         :param application_name: Short name of the application; 0-64 English letters, digits, and underscores
         :type application_name: :class:`String`
@@ -13148,6 +13883,40 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def load_active_stories(
+        self,
+        story_list: StoryList,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Ok:
+        """
+        Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by the pair (active_stories.order, active_stories.story_sender_chat_id) in descending order. Returns a 404 error if all active stories have been loaded
+
+        :param story_list: The story list in which to load active stories
+        :type story_list: :class:`StoryList`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = LoadActiveStories.construct if skip_validation else LoadActiveStories
+
+        return await self.client.request(
+            _constructor(
+                story_list=story_list,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def load_chats(
         self,
         limit: Int32,
@@ -13302,6 +14071,44 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def open_story(
+        self,
+        story_sender_chat_id: Int53,
+        story_id: Int32,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Ok:
+        """
+        Informs TDLib that a story is opened and is being viewed by the user
+
+        :param story_sender_chat_id: The identifier of the sender of the opened story
+        :type story_sender_chat_id: :class:`Int53`
+        :param story_id: The identifier of the story
+        :type story_id: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = OpenStory.construct if skip_validation else OpenStory
+
+        return await self.client.request(
+            _constructor(
+                story_sender_chat_id=story_sender_chat_id,
+                story_id=story_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def open_web_app(
         self,
         chat_id: Int53,
@@ -13310,20 +14117,20 @@ class API:
         application_name: String,
         message_thread_id: Int53 = 0,
         theme: typing.Optional[ThemeParameters] = None,
-        reply_to_message_id: typing.Optional[Int53] = 0,
+        reply_to: typing.Optional[MessageReplyTo] = None,
         *,
         request_id: str = None,
         request_timeout: int = None,
         skip_validation: bool = False
     ) -> WebAppInfo:
         """
-        Informs TDLib that a Web App is being opened from attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
+        Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
 
         :param chat_id: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
         :type chat_id: :class:`Int53`
         :param bot_user_id: Identifier of the bot, providing the Web App
         :type bot_user_id: :class:`Int53`
-        :param url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, or an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
+        :param url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
         :type url: :class:`String`
         :param application_name: Short name of the application; 0-64 English letters, digits, and underscores
         :type application_name: :class:`String`
@@ -13331,8 +14138,8 @@ class API:
         :type message_thread_id: :class:`Int53`
         :param theme: Preferred Web App theme; pass null to use the default theme, defaults to None
         :type theme: :class:`ThemeParameters`, optional
-        :param reply_to_message_id: Identifier of the replied message for the message sent by the Web App; 0 if none, defaults to None
-        :type reply_to_message_id: :class:`Int53`, optional
+        :param reply_to: Identifier of the replied message or story for the message sent by the Web App; pass null if none, defaults to None
+        :type reply_to: :class:`MessageReplyTo`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
@@ -13354,7 +14161,7 @@ class API:
                 application_name=application_name,
                 message_thread_id=message_thread_id,
                 theme=theme,
-                reply_to_message_id=reply_to_message_id,
+                reply_to=reply_to,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -14790,44 +15597,6 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def reorder_active_bot_usernames(
-        self,
-        bot_user_id: Int53,
-        usernames: Vector[String],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
-    ) -> Ok:
-        """
-        Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true
-
-        :param bot_user_id: Identifier of the target bot
-        :type bot_user_id: :class:`Int53`
-        :param usernames: The new order of active usernames. All currently active usernames must be specified
-        :type usernames: :class:`Vector[String]`
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
-
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Ok`
-        """
-
-        _constructor = ReorderActiveBotUsernames.construct if skip_validation else ReorderActiveBotUsernames
-
-        return await self.client.request(
-            _constructor(
-                bot_user_id=bot_user_id,
-                usernames=usernames,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
     async def reorder_active_usernames(
         self,
         usernames: Vector[String],
@@ -14856,6 +15625,44 @@ class API:
 
         return await self.client.request(
             _constructor(
+                usernames=usernames,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def reorder_bot_active_usernames(
+        self,
+        bot_user_id: Int53,
+        usernames: Vector[String],
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true
+
+        :param bot_user_id: Identifier of the target bot
+        :type bot_user_id: :class:`Int53`
+        :param usernames: The new order of active usernames. All currently active usernames must be specified
+        :type usernames: :class:`Vector[String]`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = ReorderBotActiveUsernames.construct if skip_validation else ReorderBotActiveUsernames
+
+        return await self.client.request(
+            _constructor(
+                bot_user_id=bot_user_id,
                 usernames=usernames,
             ),
             request_id=request_id,
@@ -15039,7 +15846,7 @@ class API:
     async def report_chat(
         self,
         chat_id: Int53,
-        reason: ChatReportReason,
+        reason: ReportReason,
         message_ids: Vector[Int53] = [],
         text: String = "",
         *,
@@ -15053,7 +15860,7 @@ class API:
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
         :param reason: The reason for reporting the chat
-        :type reason: :class:`ChatReportReason`
+        :type reason: :class:`ReportReason`
         :param message_ids: Identifiers of reported messages; may be empty to report the whole chat
         :type message_ids: :class:`Vector[Int53]`
         :param text: Additional report details; 0-1024 characters
@@ -15086,7 +15893,7 @@ class API:
         self,
         chat_id: Int53,
         file_id: Int32,
-        reason: ChatReportReason,
+        reason: ReportReason,
         text: String = "",
         *,
         request_id: str = None,
@@ -15101,7 +15908,7 @@ class API:
         :param file_id: Identifier of the photo to report. Only full photos from chatPhoto can be reported
         :type file_id: :class:`Int32`
         :param reason: The reason for reporting the chat photo
-        :type reason: :class:`ChatReportReason`
+        :type reason: :class:`ReportReason`
         :param text: Additional report details; 0-1024 characters
         :type text: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -15165,6 +15972,52 @@ class API:
                 chat_id=chat_id,
                 message_id=message_id,
                 sender_id=sender_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def report_story(
+        self,
+        story_sender_chat_id: Int53,
+        story_id: Int32,
+        reason: ReportReason,
+        text: String = "",
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Ok:
+        """
+        Reports a story to the Telegram moderators
+
+        :param story_sender_chat_id: The identifier of the sender of the story to report
+        :type story_sender_chat_id: :class:`Int53`
+        :param story_id: The identifier of the story to report
+        :type story_id: :class:`Int32`
+        :param reason: The reason for reporting the story
+        :type reason: :class:`ReportReason`
+        :param text: Additional report details; 0-1024 characters
+        :type text: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = ReportStory.construct if skip_validation else ReportStory
+
+        return await self.client.request(
+            _constructor(
+                story_sender_chat_id=story_sender_chat_id,
+                story_id=story_id,
+                reason=reason,
+                text=text,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -15835,7 +16688,7 @@ class API:
         skip_validation: bool = False
     ) -> Chats:
         """
-        Searches for the specified query in the title and username of already known chats, this is an offline request. Returns chats in the order seen in the main chat list
+        Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main chat list
 
         :param query: Query to search for. If the query is empty, returns up to 50 recently found chats
         :type query: :class:`String`
@@ -16294,6 +17147,44 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def search_recently_found_chats(
+        self,
+        query: String,
+        limit: Int32,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Chats:
+        """
+        Searches for the specified query in the title and username of up to 50 recently found chats; this is an offline request
+
+        :param query: Query to search for
+        :type query: :class:`String`
+        :param limit: The maximum number of chats to be returned
+        :type limit: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chats`
+        """
+
+        _constructor = SearchRecentlyFoundChats.construct if skip_validation else SearchRecentlyFoundChats
+
+        return await self.client.request(
+            _constructor(
+                query=query,
+                limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def search_secret_messages(
         self,
         chat_id: Int53,
@@ -16439,6 +17330,52 @@ class API:
                 sticker_type=sticker_type,
                 emojis=emojis,
                 limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def search_strings_by_prefix(
+        self,
+        strings: Vector[String],
+        query: String,
+        limit: Int32,
+        return_none_for_empty_query: Bool = False,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> FoundPositions:
+        """
+        Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
+
+        :param strings: The strings to search in for the query
+        :type strings: :class:`Vector[String]`
+        :param query: Query to search for
+        :type query: :class:`String`
+        :param limit: The maximum number of objects to return
+        :type limit: :class:`Int32`
+        :param return_none_for_empty_query: Pass true to receive no results for an empty query
+        :type return_none_for_empty_query: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FoundPositions`
+        """
+
+        _constructor = SearchStringsByPrefix.construct if skip_validation else SearchStringsByPrefix
+
+        return await self.client.request(
+            _constructor(
+                strings=strings,
+                query=query,
+                limit=limit,
+                return_none_for_empty_query=return_none_for_empty_query,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -16818,37 +17755,6 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def send_chat_screenshot_taken_notification(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
-        """
-        Sends a notification about a screenshot taken in a chat. Supported only in private and secret chats
-
-        :param chat_id: Chat identifier
-        :type chat_id: :class:`Int53`
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
-
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Ok`
-        """
-
-        _constructor = (
-            SendChatScreenshotTakenNotification.construct if skip_validation else SendChatScreenshotTakenNotification
-        )
-
-        return await self.client.request(
-            _constructor(
-                chat_id=chat_id,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
     async def send_custom_request(
         self,
         method: String,
@@ -16930,7 +17836,7 @@ class API:
         result_id: String,
         message_thread_id: Int53 = 0,
         hide_via_bot: Bool = False,
-        reply_to_message_id: typing.Optional[Int53] = 0,
+        reply_to: typing.Optional[MessageReplyTo] = None,
         options: typing.Optional[MessageSendOptions] = None,
         *,
         request_id: str = None,
@@ -16944,14 +17850,14 @@ class API:
         :type chat_id: :class:`Int53`
         :param query_id: Identifier of the inline query
         :type query_id: :class:`Int64`
-        :param result_id: Identifier of the inline result
+        :param result_id: Identifier of the inline query result
         :type result_id: :class:`String`
         :param message_thread_id: If not 0, a message thread identifier in which the message will be sent
         :type message_thread_id: :class:`Int53`
         :param hide_via_bot: Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
         :type hide_via_bot: :class:`Bool`
-        :param reply_to_message_id: Identifier of a replied message; 0 if none, defaults to None
-        :type reply_to_message_id: :class:`Int53`, optional
+        :param reply_to: Identifier of the replied message or story; pass null if none, defaults to None
+        :type reply_to: :class:`MessageReplyTo`, optional
         :param options: Options to be used to send the message; pass null to use default options, defaults to None
         :type options: :class:`MessageSendOptions`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -16974,7 +17880,7 @@ class API:
                 result_id=result_id,
                 message_thread_id=message_thread_id,
                 hide_via_bot=hide_via_bot,
-                reply_to_message_id=reply_to_message_id,
+                reply_to=reply_to,
                 options=options,
             ),
             request_id=request_id,
@@ -16986,7 +17892,7 @@ class API:
         chat_id: Int53,
         input_message_content: InputMessageContent,
         message_thread_id: Int53 = 0,
-        reply_to_message_id: typing.Optional[Int53] = 0,
+        reply_to: typing.Optional[MessageReplyTo] = None,
         options: typing.Optional[MessageSendOptions] = None,
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
@@ -17003,8 +17909,8 @@ class API:
         :type input_message_content: :class:`InputMessageContent`
         :param message_thread_id: If not 0, a message thread identifier in which the message will be sent
         :type message_thread_id: :class:`Int53`
-        :param reply_to_message_id: Identifier of the replied message; 0 if none, defaults to None
-        :type reply_to_message_id: :class:`Int53`, optional
+        :param reply_to: Identifier of the replied message or story; pass null if none, defaults to None
+        :type reply_to: :class:`MessageReplyTo`, optional
         :param options: Options to be used to send the message; pass null to use default options, defaults to None
         :type options: :class:`MessageSendOptions`, optional
         :param reply_markup: Markup for replying to the message; pass null if none; for bots only, defaults to None
@@ -17027,7 +17933,7 @@ class API:
                 chat_id=chat_id,
                 input_message_content=input_message_content,
                 message_thread_id=message_thread_id,
-                reply_to_message_id=reply_to_message_id,
+                reply_to=reply_to,
                 options=options,
                 reply_markup=reply_markup,
             ),
@@ -17041,7 +17947,7 @@ class API:
         input_message_contents: Vector[InputMessageContent],
         message_thread_id: Int53 = 0,
         only_preview: Bool = False,
-        reply_to_message_id: typing.Optional[Int53] = 0,
+        reply_to: typing.Optional[MessageReplyTo] = None,
         options: typing.Optional[MessageSendOptions] = None,
         *,
         request_id: str = None,
@@ -17059,8 +17965,8 @@ class API:
         :type message_thread_id: :class:`Int53`
         :param only_preview: Pass true to get fake messages instead of actually sending them
         :type only_preview: :class:`Bool`
-        :param reply_to_message_id: Identifier of a replied message; 0 if none, defaults to None
-        :type reply_to_message_id: :class:`Int53`, optional
+        :param reply_to: Identifier of the replied message or story; pass null if none, defaults to None
+        :type reply_to: :class:`MessageReplyTo`, optional
         :param options: Options to be used to send the messages; pass null to use default options, defaults to None
         :type options: :class:`MessageSendOptions`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -17082,7 +17988,7 @@ class API:
                 input_message_contents=input_message_contents,
                 message_thread_id=message_thread_id,
                 only_preview=only_preview,
-                reply_to_message_id=reply_to_message_id,
+                reply_to=reply_to,
                 options=options,
             ),
             request_id=request_id,
@@ -17261,6 +18167,106 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def send_story(
+        self,
+        content: InputStoryContent,
+        privacy_settings: StoryPrivacySettings,
+        active_period: Int32,
+        is_pinned: Bool = False,
+        protect_content: Bool = False,
+        areas: typing.Optional[InputStoryAreas] = None,
+        caption: typing.Optional[FormattedText] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Story:
+        """
+        Sends a new story. Returns a temporary story
+
+        :param content: Content of the story
+        :type content: :class:`InputStoryContent`
+        :param privacy_settings: The privacy settings for the story
+        :type privacy_settings: :class:`StoryPrivacySettings`
+        :param active_period: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
+        :type active_period: :class:`Int32`
+        :param is_pinned: Pass true to keep the story accessible after expiration
+        :type is_pinned: :class:`Bool`
+        :param protect_content: Pass true if the content of the story must be protected from forwarding and screenshotting
+        :type protect_content: :class:`Bool`
+        :param areas: Clickable rectangle areas to be shown on the story media; pass null if none, defaults to None
+        :type areas: :class:`InputStoryAreas`, optional
+        :param caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters, defaults to None
+        :type caption: :class:`FormattedText`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Story`
+        """
+
+        _constructor = SendStory.construct if skip_validation else SendStory
+
+        return await self.client.request(
+            _constructor(
+                content=content,
+                privacy_settings=privacy_settings,
+                active_period=active_period,
+                is_pinned=is_pinned,
+                protect_content=protect_content,
+                areas=areas,
+                caption=caption,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def send_web_app_custom_request(
+        self,
+        bot_user_id: Int53,
+        method: String,
+        parameters: String,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> CustomRequestResult:
+        """
+        Sends a custom request from a Web App
+
+        :param bot_user_id: Identifier of the bot
+        :type bot_user_id: :class:`Int53`
+        :param method: The method name
+        :type method: :class:`String`
+        :param parameters: JSON-serialized method parameters
+        :type parameters: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.CustomRequestResult`
+        """
+
+        _constructor = SendWebAppCustomRequest.construct if skip_validation else SendWebAppCustomRequest
+
+        return await self.client.request(
+            _constructor(
+                bot_user_id=bot_user_id,
+                method=method,
+                parameters=parameters,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def send_web_app_data(
         self,
         bot_user_id: Int53,
@@ -17356,6 +18362,40 @@ class API:
         return await self.client.request(
             _constructor(
                 seconds=seconds,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_archive_chat_list_settings(
+        self,
+        settings: ArchiveChatListSettings,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes settings for automatic moving of chats to and from the Archive chat lists
+
+        :param settings: New settings
+        :type settings: :class:`ArchiveChatListSettings`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = SetArchiveChatListSettings.construct if skip_validation else SetArchiveChatListSettings
+
+        return await self.client.request(
+            _constructor(
+                settings=settings,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -17777,6 +18817,44 @@ class API:
             _constructor(
                 pending_update_count=pending_update_count,
                 error_message=error_message,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_chat_active_stories_list(
+        self,
+        chat_id: Int53,
+        story_list: StoryList,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes story list in which stories from the chat are shown
+
+        :param chat_id: Identifier of the chat that posted stories
+        :type chat_id: :class:`Int53`
+        :param story_list: New list for active stories posted by the chat
+        :type story_list: :class:`StoryList`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = SetChatActiveStoriesList.construct if skip_validation else SetChatActiveStoriesList
+
+        return await self.client.request(
+            _constructor(
+                chat_id=chat_id,
+                story_list=story_list,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -18406,6 +19484,40 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def set_close_friends(
+        self,
+        user_ids: Vector[Int53],
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes the list of close friends of the current user
+
+        :param user_ids: User identifiers of close friends; the users must be contacts of the current user
+        :type user_ids: :class:`Vector[Int53]`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = SetCloseFriends.construct if skip_validation else SetCloseFriends
+
+        return await self.client.request(
+            _constructor(
+                user_ids=user_ids,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def set_commands(
         self,
         language_code: String,
@@ -18500,7 +19612,7 @@ class API:
         """
         Adds or changes a custom local language pack to the current localization target
 
-        :param info: Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
+        :param info: Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
         :type info: :class:`LanguagePackInfo`
         :param strings: Strings of the new language pack
         :type strings: :class:`Vector[LanguagePackString]`
@@ -18600,7 +19712,7 @@ class API:
 
     async def set_default_channel_administrator_rights(
         self,
-        default_channel_administrator_rights: typing.Optional[ChatAdministratorRights],
+        default_channel_administrator_rights: typing.Optional[ChatAdministratorRights] = None,
         *,
         request_id: str = None,
         request_timeout: int = None,
@@ -18609,7 +19721,7 @@ class API:
         """
         Sets default administrator rights for adding the bot to channel chats; for bots only
 
-        :param default_channel_administrator_rights: Default administrator rights for adding the bot to channels; may be null, defaults to None
+        :param default_channel_administrator_rights: Default administrator rights for adding the bot to channels; pass null to remove default rights, defaults to None
         :type default_channel_administrator_rights: :class:`ChatAdministratorRights`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
@@ -18636,7 +19748,7 @@ class API:
 
     async def set_default_group_administrator_rights(
         self,
-        default_group_administrator_rights: typing.Optional[ChatAdministratorRights],
+        default_group_administrator_rights: typing.Optional[ChatAdministratorRights] = None,
         *,
         request_id: str = None,
         request_timeout: int = None,
@@ -18645,7 +19757,7 @@ class API:
         """
         Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
 
-        :param default_group_administrator_rights: Default administrator rights for adding the bot to basic group and supergroup chats; may be null, defaults to None
+        :param default_group_administrator_rights: Default administrator rights for adding the bot to basic group and supergroup chats; pass null to remove default rights, defaults to None
         :type default_group_administrator_rights: :class:`ChatAdministratorRights`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
@@ -18740,7 +19852,6 @@ class API:
 
     async def set_emoji_status(
         self,
-        duration: Int32,
         emoji_status: typing.Optional[EmojiStatus] = None,
         *,
         request_id: str = None,
@@ -18750,8 +19861,6 @@ class API:
         """
         Changes the emoji status of the current user; for Telegram Premium users only
 
-        :param duration: Duration of the status, in seconds; pass 0 to keep the status active until it will be changed manually
-        :type duration: :class:`Int32`
         :param emoji_status: New emoji status; pass null to switch to the default badge, defaults to None
         :type emoji_status: :class:`EmojiStatus`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -18769,7 +19878,6 @@ class API:
 
         return await self.client.request(
             _constructor(
-                duration=duration,
                 emoji_status=emoji_status,
             ),
             request_id=request_id,
@@ -19328,6 +20436,44 @@ class API:
             _constructor(
                 user_id=user_id,
                 menu_button=menu_button,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_message_sender_block_list(
+        self,
+        sender_id: MessageSender,
+        block_list: typing.Optional[BlockList] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked
+
+        :param sender_id: Identifier of a message sender to block/unblock
+        :type sender_id: :class:`MessageSender`
+        :param block_list: New block list for the message sender; pass null to unblock the message sender, defaults to None
+        :type block_list: :class:`BlockList`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = SetMessageSenderBlockList.construct if skip_validation else SetMessageSenderBlockList
+
+        return await self.client.request(
+            _constructor(
+                sender_id=sender_id,
+                block_list=block_list,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -20028,6 +21174,90 @@ class API:
             _constructor(
                 name=name,
                 title=title,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_story_privacy_settings(
+        self,
+        story_id: Int32,
+        privacy_settings: StoryPrivacySettings,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes privacy settings of a previously sent story
+
+        :param story_id: Identifier of the story
+        :type story_id: :class:`Int32`
+        :param privacy_settings: The new privacy settigs for the story
+        :type privacy_settings: :class:`StoryPrivacySettings`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = SetStoryPrivacySettings.construct if skip_validation else SetStoryPrivacySettings
+
+        return await self.client.request(
+            _constructor(
+                story_id=story_id,
+                privacy_settings=privacy_settings,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_story_reaction(
+        self,
+        story_sender_chat_id: Int53,
+        story_id: Int32,
+        update_recent_reactions: Bool = False,
+        reaction_type: typing.Optional[ReactionType] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Ok:
+        """
+        Changes chosen reaction on a story
+
+        :param story_sender_chat_id: The identifier of the sender of the story
+        :type story_sender_chat_id: :class:`Int53`
+        :param story_id: The identifier of the story
+        :type story_id: :class:`Int32`
+        :param update_recent_reactions: Pass true if the reaction needs to be added to recent reactions
+        :type update_recent_reactions: :class:`Bool`
+        :param reaction_type: Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users, defaults to None
+        :type reaction_type: :class:`ReactionType`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = SetStoryReaction.construct if skip_validation else SetStoryReaction
+
+        return await self.client.request(
+            _constructor(
+                story_sender_chat_id=story_sender_chat_id,
+                story_id=story_id,
+                update_recent_reactions=update_recent_reactions,
+                reaction_type=reaction_type,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -21016,7 +22246,7 @@ class API:
         """
         Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
 
-        :param server: Proxy server IP address
+        :param server: Proxy server domain or IP address
         :type server: :class:`String`
         :param port: Proxy server port
         :type port: :class:`Int32`
@@ -21165,7 +22395,7 @@ class API:
         skip_validation: bool = False
     ) -> Ok:
         """
-        Adds or removes a bot to attachment menu. Bot can be added to attachment menu, only if userTypeBot.can_be_added_to_attachment_menu == true
+        Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
 
         :param bot_user_id: Bot's user identifier
         :type bot_user_id: :class:`Int53`
@@ -21817,7 +23047,7 @@ class API:
         :type group_call_id: :class:`Int32`
         :param participant_id: Participant identifier
         :type participant_id: :class:`MessageSender`
-        :param is_muted: Pass true to mute the user; pass false to unmute the them
+        :param is_muted: Pass true to mute the user; pass false to unmute them
         :type is_muted: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
@@ -21879,44 +23109,6 @@ class API:
             _constructor(
                 group_call_id=group_call_id,
                 is_paused=is_paused,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
-    async def toggle_message_sender_is_blocked(
-        self,
-        sender_id: MessageSender,
-        is_blocked: Bool,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
-    ) -> Ok:
-        """
-        Changes the block state of a message sender. Currently, only users and supergroup chats can be blocked
-
-        :param sender_id: Identifier of a message sender to block/unblock
-        :type sender_id: :class:`MessageSender`
-        :param is_blocked: New value of is_blocked
-        :type is_blocked: :class:`Bool`
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
-
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Ok`
-        """
-
-        _constructor = ToggleMessageSenderIsBlocked.construct if skip_validation else ToggleMessageSenderIsBlocked
-
-        return await self.client.request(
-            _constructor(
-                sender_id=sender_id,
-                is_blocked=is_blocked,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -21995,6 +23187,44 @@ class API:
             _constructor(
                 session_id=session_id,
                 can_accept_secret_chats=can_accept_secret_chats,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def toggle_story_is_pinned(
+        self,
+        story_id: Int32,
+        is_pinned: Bool = False,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+        skip_validation: bool = False
+    ) -> Ok:
+        """
+        Toggles whether a story is accessible after expiration
+
+        :param story_id: Identifier of the story
+        :type story_id: :class:`Int32`
+        :param is_pinned: Pass true to make the story accessible after expiration; pass false to make it private
+        :type is_pinned: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
+        :type skip_validation: :class:`bool`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        _constructor = ToggleStoryIsPinned.construct if skip_validation else ToggleStoryIsPinned
+
+        return await self.client.request(
+            _constructor(
+                story_id=story_id,
+                is_pinned=is_pinned,
             ),
             request_id=request_id,
             request_timeout=request_timeout,

@@ -18,7 +18,7 @@ from ..types.all import (
 
 class GetTopChats(BaseObject):
     """
-    Returns a list of frequently used chats. Supported only if the chat info database is enabled
+    Returns a list of frequently used chats
 
     :param category: Category of chats to be returned
     :type category: :class:`TopChatCategory`

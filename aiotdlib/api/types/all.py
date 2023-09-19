@@ -177,26 +177,50 @@ class Animations(BaseObject):
     animations: Vector[Animation]
 
 
+class ArchiveChatListSettings(BaseObject):
+    """
+    Contains settings for automatic moving of chats to and from the Archive chat lists
+
+    :param archive_and_mute_new_chats_from_unknown_users: True, if new chats from non-contacts will be automatically archived and muted. Can be set to true only if the option "can_archive_and_mute_new_chats_from_unknown_users" is true
+    :type archive_and_mute_new_chats_from_unknown_users: :class:`Bool`
+    :param keep_unmuted_chats_archived: True, if unmuted chats will be kept in the Archive chat list when they get a new message
+    :type keep_unmuted_chats_archived: :class:`Bool`
+    :param keep_chats_from_folders_archived: True, if unmuted chats, that are always included or pinned in a folder, will be kept in the Archive chat list when they get a new message. Ignored if keep_unmuted_chats_archived == true
+    :type keep_chats_from_folders_archived: :class:`Bool`
+    """
+
+    ID: typing.Literal["archiveChatListSettings"] = "archiveChatListSettings"
+    archive_and_mute_new_chats_from_unknown_users: Bool = False
+    keep_unmuted_chats_archived: Bool = False
+    keep_chats_from_folders_archived: Bool = False
+
+
 class AttachmentMenuBot(BaseObject):
     """
-    Represents a bot, which can be added to attachment menu
+    Represents a bot, which can be added to attachment or side menu
 
-    :param bot_user_id: User identifier of the bot added to attachment menu
+    :param bot_user_id: User identifier of the bot
     :type bot_user_id: :class:`Int53`
     :param name: Name for the bot in attachment menu
     :type name: :class:`String`
     :param name_color: Color to highlight selected name of the bot if appropriate; may be null, defaults to None
     :type name_color: :class:`AttachmentMenuBotColor`, optional
-    :param default_icon: Default attachment menu icon for the bot in SVG format; may be null, defaults to None
+    :param default_icon: Default icon for the bot in SVG format; may be null, defaults to None
     :type default_icon: :class:`File`, optional
-    :param ios_static_icon: Attachment menu icon for the bot in SVG format for the official iOS app; may be null, defaults to None
+    :param ios_static_icon: Icon for the bot in SVG format for the official iOS app; may be null, defaults to None
     :type ios_static_icon: :class:`File`, optional
-    :param ios_animated_icon: Attachment menu icon for the bot in TGS format for the official iOS app; may be null, defaults to None
+    :param ios_animated_icon: Icon for the bot in TGS format for the official iOS app; may be null, defaults to None
     :type ios_animated_icon: :class:`File`, optional
-    :param android_icon: Attachment menu icon for the bot in TGS format for the official Android app; may be null, defaults to None
+    :param ios_side_menu_icon: Icon for the bot in PNG format for the official iOS app side menu; may be null, defaults to None
+    :type ios_side_menu_icon: :class:`File`, optional
+    :param android_icon: Icon for the bot in TGS format for the official Android app; may be null, defaults to None
     :type android_icon: :class:`File`, optional
-    :param macos_icon: Attachment menu icon for the bot in TGS format for the official native macOS app; may be null, defaults to None
+    :param android_side_menu_icon: Icon for the bot in SVG format for the official Android app side menu; may be null, defaults to None
+    :type android_side_menu_icon: :class:`File`, optional
+    :param macos_icon: Icon for the bot in TGS format for the official native macOS app; may be null, defaults to None
     :type macos_icon: :class:`File`, optional
+    :param macos_side_menu_icon: Icon for the bot in PNG format for the official macOS app side menu; may be null, defaults to None
+    :type macos_side_menu_icon: :class:`File`, optional
     :param icon_color: Color to highlight selected icon of the bot if appropriate; may be null, defaults to None
     :type icon_color: :class:`AttachmentMenuBotColor`, optional
     :param web_app_placeholder: Default placeholder for opened Web Apps in SVG format; may be null, defaults to None
@@ -213,8 +237,16 @@ class AttachmentMenuBot(BaseObject):
     :type supports_channel_chats: :class:`Bool`
     :param supports_settings: True, if the bot supports "settings_button_pressed" event
     :type supports_settings: :class:`Bool`
-    :param request_write_access: True, if the user must be asked for the permission to the bot to send them messages
+    :param request_write_access: True, if the user must be asked for the permission to send messages to the bot
     :type request_write_access: :class:`Bool`
+    :param is_added: True, if the bot was explicitly added by the user. If the bot isn't added, then on the first bot launch toggleBotIsAddedToAttachmentMenu must be called and the bot must be added or removed
+    :type is_added: :class:`Bool`
+    :param show_in_attachment_menu: True, if the bot must be shown in the attachment menu
+    :type show_in_attachment_menu: :class:`Bool`
+    :param show_in_side_menu: True, if the bot must be shown in the side menu
+    :type show_in_side_menu: :class:`Bool`
+    :param show_disclaimer_in_side_menu: True, if a disclaimer, why the bot is shown in the side menu, is needed
+    :type show_disclaimer_in_side_menu: :class:`Bool`
     """
 
     ID: typing.Literal["attachmentMenuBot"] = "attachmentMenuBot"
@@ -224,8 +256,11 @@ class AttachmentMenuBot(BaseObject):
     default_icon: typing.Optional[File] = None
     ios_static_icon: typing.Optional[File] = None
     ios_animated_icon: typing.Optional[File] = None
+    ios_side_menu_icon: typing.Optional[File] = None
     android_icon: typing.Optional[File] = None
+    android_side_menu_icon: typing.Optional[File] = None
     macos_icon: typing.Optional[File] = None
+    macos_side_menu_icon: typing.Optional[File] = None
     icon_color: typing.Optional[AttachmentMenuBotColor] = None
     web_app_placeholder: typing.Optional[File] = None
     supports_self_chat: Bool = False
@@ -235,6 +270,10 @@ class AttachmentMenuBot(BaseObject):
     supports_channel_chats: Bool = False
     supports_settings: Bool = False
     request_write_access: Bool = False
+    is_added: Bool = False
+    show_in_attachment_menu: Bool = False
+    show_in_side_menu: Bool = False
+    show_disclaimer_in_side_menu: Bool = False
 
 
 class AttachmentMenuBotColor(BaseObject):
@@ -609,6 +648,8 @@ class AutoDownloadSettings(BaseObject):
     :type preload_large_videos: :class:`Bool`
     :param preload_next_audio: True, if the next audio track needs to be preloaded while the user is listening to an audio file
     :type preload_next_audio: :class:`Bool`
+    :param preload_stories: True, if stories needs to be preloaded
+    :type preload_stories: :class:`Bool`
     :param use_less_data_for_calls: True, if "use less data for calls" option needs to be enabled
     :type use_less_data_for_calls: :class:`Bool`
     """
@@ -621,6 +662,7 @@ class AutoDownloadSettings(BaseObject):
     is_auto_download_enabled: Bool = False
     preload_large_videos: Bool = False
     preload_next_audio: Bool = False
+    preload_stories: Bool = False
     use_less_data_for_calls: Bool = False
 
 
@@ -988,6 +1030,28 @@ class BasicGroupFullInfo(BaseObject):
     creator_user_id: typing.Optional[Int53] = 0
 
 
+class BlockListMain(BaseObject):
+    """
+    The main block list that disallows writing messages to the current user, receiving their status and photo, viewing of stories, and some other actions
+    """
+
+    ID: typing.Literal["blockListMain"] = "blockListMain"
+
+
+class BlockListStories(BaseObject):
+    """
+    The block list that disallows viewing of stories of the current user
+    """
+
+    ID: typing.Literal["blockListStories"] = "blockListStories"
+
+
+BlockList = typing.Union[
+    BlockListMain,
+    BlockListStories,
+]
+
+
 class BotCommand(BaseObject):
     """
     Represents a command supported by a bot
@@ -1336,7 +1400,7 @@ class CallProtocol(BaseObject):
 
     :param min_layer: The minimum supported API layer; use 65
     :type min_layer: :class:`Int32`
-    :param max_layer: The maximum supported API layer; use 65
+    :param max_layer: The maximum supported API layer; use 92
     :type max_layer: :class:`Int32`
     :param library_versions: List of supported tgcalls versions
     :type library_versions: :class:`Vector[String]`
@@ -1585,6 +1649,63 @@ CallbackQueryPayload = typing.Union[
 ]
 
 
+class CanSendStoryResultActiveStoryLimitExceeded(BaseObject):
+    """
+    The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire
+    """
+
+    ID: typing.Literal["canSendStoryResultActiveStoryLimitExceeded"] = "canSendStoryResultActiveStoryLimitExceeded"
+
+
+class CanSendStoryResultMonthlyLimitExceeded(BaseObject):
+    """
+    The monthly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
+
+    :param retry_after: Time left before the user can send the next story
+    :type retry_after: :class:`Int32`
+    """
+
+    ID: typing.Literal["canSendStoryResultMonthlyLimitExceeded"] = "canSendStoryResultMonthlyLimitExceeded"
+    retry_after: Int32
+
+
+class CanSendStoryResultOk(BaseObject):
+    """
+    A story can be sent
+    """
+
+    ID: typing.Literal["canSendStoryResultOk"] = "canSendStoryResultOk"
+
+
+class CanSendStoryResultPremiumNeeded(BaseObject):
+    """
+    The user must subscribe to Telegram Premium to be able to post stories
+    """
+
+    ID: typing.Literal["canSendStoryResultPremiumNeeded"] = "canSendStoryResultPremiumNeeded"
+
+
+class CanSendStoryResultWeeklyLimitExceeded(BaseObject):
+    """
+    The weekly limit for the number of posted stories exceeded. The user needs to buy Telegram Premium or wait specified time
+
+    :param retry_after: Time left before the user can send the next story
+    :type retry_after: :class:`Int32`
+    """
+
+    ID: typing.Literal["canSendStoryResultWeeklyLimitExceeded"] = "canSendStoryResultWeeklyLimitExceeded"
+    retry_after: Int32
+
+
+CanSendStoryResult = typing.Union[
+    CanSendStoryResultActiveStoryLimitExceeded,
+    CanSendStoryResultMonthlyLimitExceeded,
+    CanSendStoryResultOk,
+    CanSendStoryResultPremiumNeeded,
+    CanSendStoryResultWeeklyLimitExceeded,
+]
+
+
 class CanTransferOwnershipResultOk(BaseObject):
     """
     The session can be used
@@ -1675,17 +1796,19 @@ class Chat(BaseObject):
     :type client_data: :class:`String`
     :param photo: Chat photo; may be null, defaults to None
     :type photo: :class:`ChatPhotoInfo`, optional
-    :param last_message: Last message in the chat; may be null, defaults to None
+    :param last_message: Last message in the chat; may be null if none or unknown, defaults to None
     :type last_message: :class:`Message`, optional
     :param message_sender_id: Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender, defaults to None
     :type message_sender_id: :class:`MessageSender`, optional
+    :param block_list: Block list to which the chat is added; may be null if none, defaults to None
+    :type block_list: :class:`BlockList`, optional
     :param background: Background set for the chat; may be null if none, defaults to None
     :type background: :class:`ChatBackground`, optional
-    :param action_bar: Information about actions which must be possible to do through the chat action bar; may be null, defaults to None
+    :param action_bar: Information about actions which must be possible to do through the chat action bar; may be null if none, defaults to None
     :type action_bar: :class:`ChatActionBar`, optional
-    :param pending_join_requests: Information about pending join requests; may be null, defaults to None
+    :param pending_join_requests: Information about pending join requests; may be null if none, defaults to None
     :type pending_join_requests: :class:`ChatJoinRequestsInfo`, optional
-    :param draft_message: A draft of a message in the chat; may be null, defaults to None
+    :param draft_message: A draft of a message in the chat; may be null if none, defaults to None
     :type draft_message: :class:`DraftMessage`, optional
     :param has_protected_content: True, if chat content can't be saved locally, forwarded, or copied
     :type has_protected_content: :class:`Bool`
@@ -1693,8 +1816,6 @@ class Chat(BaseObject):
     :type is_translatable: :class:`Bool`
     :param is_marked_as_unread: True, if the chat is marked as unread
     :type is_marked_as_unread: :class:`Bool`
-    :param is_blocked: True, if the chat is blocked by the current user and private messages from the chat can't be received
-    :type is_blocked: :class:`Bool`
     :param has_scheduled_messages: True, if the chat has scheduled messages
     :type has_scheduled_messages: :class:`Bool`
     :param can_be_deleted_only_for_self: True, if the chat messages can be deleted only for the current user while other users will continue to see the messages
@@ -1727,6 +1848,7 @@ class Chat(BaseObject):
     photo: typing.Optional[ChatPhotoInfo] = None
     last_message: typing.Optional[Message] = None
     message_sender_id: typing.Optional[MessageSender] = None
+    block_list: typing.Optional[BlockList] = None
     background: typing.Optional[ChatBackground] = None
     action_bar: typing.Optional[ChatActionBar] = None
     pending_join_requests: typing.Optional[ChatJoinRequestsInfo] = None
@@ -1734,7 +1856,6 @@ class Chat(BaseObject):
     has_protected_content: Bool = False
     is_translatable: Bool = False
     is_marked_as_unread: Bool = False
-    is_blocked: Bool = False
     has_scheduled_messages: Bool = False
     can_be_deleted_only_for_self: Bool = False
     can_be_deleted_for_all_users: Bool = False
@@ -1940,7 +2061,7 @@ class ChatActionBarJoinRequest(BaseObject):
 
 class ChatActionBarReportAddBlock(BaseObject):
     """
-    The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method toggleMessageSenderIsBlocked, or the other user can be added to the contact list using the method addContact. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
+    The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method setMessageSenderBlockList, or the other user can be added to the contact list using the method addContact. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
 
     :param can_unarchive: If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
     :type can_unarchive: :class:`Bool`
@@ -1955,7 +2076,7 @@ class ChatActionBarReportAddBlock(BaseObject):
 
 class ChatActionBarReportSpam(BaseObject):
     """
-    The chat can be reported as spam using the method reportChat with the reason chatReportReasonSpam. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
+    The chat can be reported as spam using the method reportChat with the reason reportReasonSpam. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
 
     :param can_unarchive: If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
     :type can_unarchive: :class:`Bool`
@@ -1967,7 +2088,7 @@ class ChatActionBarReportSpam(BaseObject):
 
 class ChatActionBarReportUnrelatedLocation(BaseObject):
     """
-    The chat is a location-based supergroup, which can be reported as having unrelated location using the method reportChat with the reason chatReportReasonUnrelatedLocation
+    The chat is a location-based supergroup, which can be reported as having unrelated location using the method reportChat with the reason reportReasonUnrelatedLocation
     """
 
     ID: typing.Literal["chatActionBarReportUnrelatedLocation"] = "chatActionBarReportUnrelatedLocation"
@@ -1990,6 +2111,30 @@ ChatActionBar = typing.Union[
     ChatActionBarReportUnrelatedLocation,
     ChatActionBarSharePhoneNumber,
 ]
+
+
+class ChatActiveStories(BaseObject):
+    """
+    Describes active stories posted by a chat
+
+    :param chat_id: Identifier of the chat that posted the stories
+    :type chat_id: :class:`Int53`
+    :param order: A parameter used to determine order of the stories in the story list; 0 if the stories doesn't need to be shown in the story list. Stories must be sorted by the pair (order, story_sender_chat_id) in descending order
+    :type order: :class:`Int53`
+    :param max_read_story_id: Identifier of the last read active story
+    :type max_read_story_id: :class:`Int32`
+    :param stories: Basic information about the stories; use getStory to get full information about the stories. The stories are in a chronological order (i.e., in order of increasing story identifiers)
+    :type stories: :class:`Vector[StoryInfo]`
+    :param list: Identifier of the story list in which the stories are shown; may be null if the stories aren't shown in a story list, defaults to None
+    :type list: :class:`StoryList`, optional
+    """
+
+    ID: typing.Literal["chatActiveStories"] = "chatActiveStories"
+    chat_id: Int53
+    order: Int53
+    max_read_story_id: Int32
+    stories: Vector[StoryInfo]
+    list: typing.Optional[StoryList] = None
 
 
 class ChatAdministrator(BaseObject):
@@ -2910,6 +3055,8 @@ class ChatFolderInfo(BaseObject):
     :type title: :class:`String`
     :param icon: The chosen or default icon for the chat folder
     :type icon: :class:`ChatFolderIcon`
+    :param is_shareable: True, if at least one link has been created for the folder
+    :type is_shareable: :class:`Bool`
     :param has_my_invite_links: True, if the chat folder has invite links created by the current user
     :type has_my_invite_links: :class:`Bool`
     """
@@ -2918,6 +3065,7 @@ class ChatFolderInfo(BaseObject):
     id: Int32
     title: String = Field(..., min_length=1, max_length=12)
     icon: ChatFolderIcon
+    is_shareable: Bool = False
     has_my_invite_links: Bool = False
 
 
@@ -3053,7 +3201,7 @@ class ChatInviteLinkInfo(BaseObject):
     :param accessible_for: If non-zero, the amount of time for which read access to the chat will remain available, in seconds
     :type accessible_for: :class:`Int32`
     :param type_: Type of the chat
-    :type type_: :class:`ChatType`
+    :type type_: :class:`InviteLinkChatType`
     :param title: Title of the chat
     :type title: :class:`String`
     :param description: Chat description
@@ -3068,12 +3216,18 @@ class ChatInviteLinkInfo(BaseObject):
     :type creates_join_request: :class:`Bool`
     :param is_public: True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
     :type is_public: :class:`Bool`
+    :param is_verified: True, if the chat is verified
+    :type is_verified: :class:`Bool`
+    :param is_scam: True, if many users reported this chat as a scam
+    :type is_scam: :class:`Bool`
+    :param is_fake: True, if many users reported this chat as a fake account
+    :type is_fake: :class:`Bool`
     """
 
     ID: typing.Literal["chatInviteLinkInfo"] = "chatInviteLinkInfo"
     chat_id: Int53
     accessible_for: Int32
-    type_: ChatType = Field(..., alias="type")
+    type_: InviteLinkChatType = Field(..., alias="type")
     title: String
     description: String
     member_count: Int32
@@ -3081,6 +3235,9 @@ class ChatInviteLinkInfo(BaseObject):
     photo: typing.Optional[ChatPhotoInfo] = None
     creates_join_request: Bool = False
     is_public: Bool = False
+    is_verified: Bool = False
+    is_scam: Bool = False
+    is_fake: Bool = False
 
 
 class ChatInviteLinkMember(BaseObject):
@@ -3495,10 +3652,18 @@ class ChatNotificationSettings(BaseObject):
     :type mute_for: :class:`Int32`
     :param use_default_sound: If true, the value for the relevant type of chat or the forum chat is used instead of sound_id
     :type use_default_sound: :class:`Bool`
-    :param sound_id: Identifier of the notification sound to be played; 0 if sound is disabled
+    :param sound_id: Identifier of the notification sound to be played for messages; 0 if sound is disabled
     :type sound_id: :class:`Int64`
     :param use_default_show_preview: If true, show_preview is ignored and the value for the relevant type of chat or the forum chat is used instead
     :type use_default_show_preview: :class:`Bool`
+    :param use_default_mute_stories: If true, mute_stories is ignored and the value for the relevant type of chat is used instead
+    :type use_default_mute_stories: :class:`Bool`
+    :param use_default_story_sound: If true, the value for the relevant type of chat is used instead of story_sound_id
+    :type use_default_story_sound: :class:`Bool`
+    :param story_sound_id: Identifier of the notification sound to be played for stories; 0 if sound is disabled
+    :type story_sound_id: :class:`Int64`
+    :param use_default_show_story_sender: If true, show_story_sender is ignored and the value for the relevant type of chat is used instead
+    :type use_default_show_story_sender: :class:`Bool`
     :param use_default_disable_pinned_message_notifications: If true, disable_pinned_message_notifications is ignored and the value for the relevant type of chat or the forum chat is used instead
     :type use_default_disable_pinned_message_notifications: :class:`Bool`
     :param disable_pinned_message_notifications: If true, notifications for incoming pinned messages will be created as for an ordinary unread message
@@ -3509,6 +3674,10 @@ class ChatNotificationSettings(BaseObject):
     :type disable_mention_notifications: :class:`Bool`
     :param show_preview: True, if message content must be displayed in notifications
     :type show_preview: :class:`Bool`
+    :param mute_stories: True, if story notifications are disabled for the chat
+    :type mute_stories: :class:`Bool`
+    :param show_story_sender: True, if the sender of stories must be displayed in notifications
+    :type show_story_sender: :class:`Bool`
     """
 
     ID: typing.Literal["chatNotificationSettings"] = "chatNotificationSettings"
@@ -3517,11 +3686,17 @@ class ChatNotificationSettings(BaseObject):
     use_default_sound: Bool
     sound_id: Int64
     use_default_show_preview: Bool
+    use_default_mute_stories: Bool
+    use_default_story_sound: Bool
+    story_sound_id: Int64
+    use_default_show_story_sender: Bool
     use_default_disable_pinned_message_notifications: Bool
     disable_pinned_message_notifications: Bool
     use_default_disable_mention_notifications: Bool
     disable_mention_notifications: Bool
     show_preview: Bool = False
+    mute_stories: Bool = False
+    show_story_sender: Bool = False
 
 
 class ChatPermissions(BaseObject):
@@ -3711,100 +3886,6 @@ class ChatPosition(BaseObject):
     order: Int64
     source: typing.Optional[ChatSource] = None
     is_pinned: Bool = False
-
-
-class ChatReportReasonChildAbuse(BaseObject):
-    """
-    The chat has child abuse related content
-    """
-
-    ID: typing.Literal["chatReportReasonChildAbuse"] = "chatReportReasonChildAbuse"
-
-
-class ChatReportReasonCopyright(BaseObject):
-    """
-    The chat contains copyrighted content
-    """
-
-    ID: typing.Literal["chatReportReasonCopyright"] = "chatReportReasonCopyright"
-
-
-class ChatReportReasonCustom(BaseObject):
-    """
-    A custom reason provided by the user
-    """
-
-    ID: typing.Literal["chatReportReasonCustom"] = "chatReportReasonCustom"
-
-
-class ChatReportReasonFake(BaseObject):
-    """
-    The chat represents a fake account
-    """
-
-    ID: typing.Literal["chatReportReasonFake"] = "chatReportReasonFake"
-
-
-class ChatReportReasonIllegalDrugs(BaseObject):
-    """
-    The chat has illegal drugs related content
-    """
-
-    ID: typing.Literal["chatReportReasonIllegalDrugs"] = "chatReportReasonIllegalDrugs"
-
-
-class ChatReportReasonPersonalDetails(BaseObject):
-    """
-    The chat contains messages with personal details
-    """
-
-    ID: typing.Literal["chatReportReasonPersonalDetails"] = "chatReportReasonPersonalDetails"
-
-
-class ChatReportReasonPornography(BaseObject):
-    """
-    The chat contains pornographic messages
-    """
-
-    ID: typing.Literal["chatReportReasonPornography"] = "chatReportReasonPornography"
-
-
-class ChatReportReasonSpam(BaseObject):
-    """
-    The chat contains spam messages
-    """
-
-    ID: typing.Literal["chatReportReasonSpam"] = "chatReportReasonSpam"
-
-
-class ChatReportReasonUnrelatedLocation(BaseObject):
-    """
-    The location-based chat is unrelated to its stated location
-    """
-
-    ID: typing.Literal["chatReportReasonUnrelatedLocation"] = "chatReportReasonUnrelatedLocation"
-
-
-class ChatReportReasonViolence(BaseObject):
-    """
-    The chat promotes violence
-    """
-
-    ID: typing.Literal["chatReportReasonViolence"] = "chatReportReasonViolence"
-
-
-ChatReportReason = typing.Union[
-    ChatReportReasonChildAbuse,
-    ChatReportReasonCopyright,
-    ChatReportReasonCustom,
-    ChatReportReasonFake,
-    ChatReportReasonIllegalDrugs,
-    ChatReportReasonPersonalDetails,
-    ChatReportReasonPornography,
-    ChatReportReasonSpam,
-    ChatReportReasonUnrelatedLocation,
-    ChatReportReasonViolence,
-]
 
 
 class ChatSourceMtprotoProxy(BaseObject):
@@ -4256,8 +4337,8 @@ class ConnectedWebsite(BaseObject):
     :type log_in_date: :class:`Int32`
     :param last_active_date: Point in time (Unix timestamp) when obtained authorization was last used
     :type last_active_date: :class:`Int32`
-    :param ip: IP address from which the user was logged in, in human-readable format
-    :type ip: :class:`String`
+    :param ip_address: IP address from which the user was logged in, in human-readable format
+    :type ip_address: :class:`String`
     :param location: Human-readable description of a country and a region from which the user was logged in, based on the IP address
     :type location: :class:`String`
     """
@@ -4270,7 +4351,7 @@ class ConnectedWebsite(BaseObject):
     platform: String
     log_in_date: Int32
     last_active_date: Int32
-    ip: String
+    ip_address: String
     location: String
 
 
@@ -4971,22 +5052,25 @@ class EmojiStatus(BaseObject):
 
     :param custom_emoji_id: Identifier of the custom emoji in stickerFormatTgs format
     :type custom_emoji_id: :class:`Int64`
+    :param expiration_date: Point in time (Unix timestamp) when the status will expire; 0 if never
+    :type expiration_date: :class:`Int32`
     """
 
     ID: typing.Literal["emojiStatus"] = "emojiStatus"
     custom_emoji_id: Int64
+    expiration_date: Int32
 
 
 class EmojiStatuses(BaseObject):
     """
-    Contains a list of emoji statuses
+    Contains a list of custom emoji identifiers, which can be set as emoji statuses
 
-    :param emoji_statuses: The list of emoji statuses
-    :type emoji_statuses: :class:`Vector[EmojiStatus]`
+    :param custom_emoji_ids: The list of custom emoji identifiers
+    :type custom_emoji_ids: :class:`Vector[Int64]`
     """
 
     ID: typing.Literal["emojiStatuses"] = "emojiStatuses"
-    emoji_statuses: Vector[EmojiStatus]
+    custom_emoji_ids: Vector[Int64]
 
 
 class Emojis(BaseObject):
@@ -5190,6 +5274,14 @@ class FileTypePhoto(BaseObject):
     ID: typing.Literal["fileTypePhoto"] = "fileTypePhoto"
 
 
+class FileTypePhotoStory(BaseObject):
+    """
+    The file is a photo published as a story
+    """
+
+    ID: typing.Literal["fileTypePhotoStory"] = "fileTypePhotoStory"
+
+
 class FileTypeProfilePhoto(BaseObject):
     """
     The file is a profile photo
@@ -5262,6 +5354,14 @@ class FileTypeVideoNote(BaseObject):
     ID: typing.Literal["fileTypeVideoNote"] = "fileTypeVideoNote"
 
 
+class FileTypeVideoStory(BaseObject):
+    """
+    The file is a video published as a story
+    """
+
+    ID: typing.Literal["fileTypeVideoStory"] = "fileTypeVideoStory"
+
+
 class FileTypeVoiceNote(BaseObject):
     """
     The file is a voice note
@@ -5285,6 +5385,7 @@ FileType = typing.Union[
     FileTypeNone,
     FileTypeNotificationSound,
     FileTypePhoto,
+    FileTypePhotoStory,
     FileTypeProfilePhoto,
     FileTypeSecret,
     FileTypeSecretThumbnail,
@@ -5294,6 +5395,7 @@ FileType = typing.Union[
     FileTypeUnknown,
     FileTypeVideo,
     FileTypeVideoNote,
+    FileTypeVideoStory,
     FileTypeVoiceNote,
     FileTypeWallpaper,
 ]
@@ -5363,7 +5465,7 @@ class ForumTopic(BaseObject):
     :type notification_settings: :class:`ChatNotificationSettings`
     :param last_message: Last message in the topic; may be null if unknown, defaults to None
     :type last_message: :class:`Message`, optional
-    :param draft_message: A draft of a message in the topic; may be null, defaults to None
+    :param draft_message: A draft of a message in the topic; may be null if none, defaults to None
     :type draft_message: :class:`DraftMessage`, optional
     :param is_pinned: True, if the topic is pinned in the topic list
     :type is_pinned: :class:`Bool`
@@ -5407,7 +5509,7 @@ class ForumTopicInfo(BaseObject):
     :type name: :class:`String`
     :param icon: Icon of the topic
     :type icon: :class:`ForumTopicIcon`
-    :param creation_date: Date the topic was created
+    :param creation_date: Point in time (Unix timestamp) when the topic was created
     :type creation_date: :class:`Int32`
     :param creator_id: Identifier of the creator of the topic
     :type creator_id: :class:`MessageSender`
@@ -5511,12 +5613,29 @@ class FoundMessages(BaseObject):
     next_offset: String
 
 
+class FoundPositions(BaseObject):
+    """
+    Contains 0-based positions of matched objects
+
+    :param total_count: Total number of matched objects
+    :type total_count: :class:`Int32`
+    :param positions: The positions of the matched objects
+    :type positions: :class:`Vector[Int32]`
+    """
+
+    ID: typing.Literal["foundPositions"] = "foundPositions"
+    total_count: Int32
+    positions: Vector[Int32]
+
+
 class FoundWebApp(BaseObject):
     """
     Contains information about a Web App found by its short name
 
     :param web_app: The Web App
     :type web_app: :class:`WebApp`
+    :param supports_settings: True, if the app supports "settings_button_pressed" event
+    :type supports_settings: :class:`Bool`
     :param request_write_access: True, if the user must be asked for the permission to the bot to send them messages
     :type request_write_access: :class:`Bool`
     :param skip_confirmation: True, if there is no need to show an ordinary open URL confirmation before opening the Web App. The field must be ignored and confirmation must be shown anyway if the Web App link was hidden
@@ -5525,6 +5644,7 @@ class FoundWebApp(BaseObject):
 
     ID: typing.Literal["foundWebApp"] = "foundWebApp"
     web_app: WebApp
+    supports_settings: Bool = False
     request_write_access: Bool = False
     skip_confirmation: Bool = False
 
@@ -5879,8 +5999,8 @@ class IdentityDocument(BaseObject):
     :type front_side: :class:`DatedFile`
     :param translation: List of files containing a certified English translation of the document
     :type translation: :class:`Vector[DatedFile]`
-    :param expiry_date: Document expiry date; may be null if not applicable, defaults to None
-    :type expiry_date: :class:`Date`, optional
+    :param expiration_date: Document expiration date; may be null if not applicable, defaults to None
+    :type expiration_date: :class:`Date`, optional
     :param reverse_side: Reverse side of the document; only for driver license and identity card; may be null, defaults to None
     :type reverse_side: :class:`DatedFile`, optional
     :param selfie: Selfie with the document; may be null, defaults to None
@@ -5891,7 +6011,7 @@ class IdentityDocument(BaseObject):
     number: String = Field(..., min_length=1, max_length=24)
     front_side: DatedFile
     translation: Vector[DatedFile]
-    expiry_date: typing.Optional[Date] = None
+    expiration_date: typing.Optional[Date] = None
     reverse_side: typing.Optional[DatedFile] = None
     selfie: typing.Optional[DatedFile] = None
 
@@ -6539,7 +6659,7 @@ class InputFileGenerated(BaseObject):
 
 class InputFileId(BaseObject):
     """
-    A file defined by its unique ID
+    A file defined by its unique identifier
 
     :param id: Unique file identifier
     :type id: :class:`Int32`
@@ -6563,7 +6683,7 @@ class InputFileLocal(BaseObject):
 
 class InputFileRemote(BaseObject):
     """
-    A file defined by its remote ID. The remote ID is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
+    A file defined by its remote identifier. The remote identifier is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
 
     :param id: Remote file identifier
     :type id: :class:`String`
@@ -6591,8 +6711,8 @@ class InputIdentityDocument(BaseObject):
     :type front_side: :class:`InputFile`
     :param translation: List of files containing a certified English translation of the document
     :type translation: :class:`Vector[InputFile]`
-    :param expiry_date: Document expiry date; pass null if not applicable, defaults to None
-    :type expiry_date: :class:`Date`, optional
+    :param expiration_date: Document expiration date; pass null if not applicable, defaults to None
+    :type expiration_date: :class:`Date`, optional
     :param reverse_side: Reverse side of the document; only for driver license and identity card; pass null otherwise, defaults to None
     :type reverse_side: :class:`InputFile`, optional
     :param selfie: Selfie with the document; pass null if unavailable, defaults to None
@@ -6603,7 +6723,7 @@ class InputIdentityDocument(BaseObject):
     number: String = Field(..., min_length=1, max_length=24)
     front_side: InputFile
     translation: Vector[InputFile]
-    expiry_date: typing.Optional[Date] = None
+    expiration_date: typing.Optional[Date] = None
     reverse_side: typing.Optional[InputFile] = None
     selfie: typing.Optional[InputFile] = None
 
@@ -7278,14 +7398,14 @@ class InputMessagePhoto(BaseObject):
     :type width: :class:`Int32`
     :param height: Photo height
     :type height: :class:`Int32`
-    :param self_destruct_time: Photo self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
-    :type self_destruct_time: :class:`Int32`
     :param has_spoiler: True, if the photo preview must be covered by a spoiler animation; not supported in secret chats
     :type has_spoiler: :class:`Bool`
     :param thumbnail: Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail is sent to the other party only in secret chats, defaults to None
     :type thumbnail: :class:`InputThumbnail`, optional
     :param caption: Photo caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters, defaults to None
     :type caption: :class:`FormattedText`, optional
+    :param self_destruct_type: Photo self-destruct type; pass null if none; private chats only, defaults to None
+    :type self_destruct_type: :class:`MessageSelfDestructType`, optional
     """
 
     ID: typing.Literal["inputMessagePhoto"] = "inputMessagePhoto"
@@ -7293,10 +7413,10 @@ class InputMessagePhoto(BaseObject):
     added_sticker_file_ids: Vector[Int32]
     width: Int32
     height: Int32
-    self_destruct_time: Int32
     has_spoiler: Bool = False
     thumbnail: typing.Optional[InputThumbnail] = None
     caption: typing.Optional[FormattedText] = None
+    self_destruct_type: typing.Optional[MessageSelfDestructType] = None
 
 
 class InputMessagePoll(BaseObject):
@@ -7353,6 +7473,21 @@ class InputMessageSticker(BaseObject):
     thumbnail: typing.Optional[InputThumbnail] = None
 
 
+class InputMessageStory(BaseObject):
+    """
+    A message with a forwarded story. Stories can't be sent to secret chats. A story can be forwarded only if story.can_be_forwarded
+
+    :param story_sender_chat_id: Identifier of the chat that posted the story
+    :type story_sender_chat_id: :class:`Int53`
+    :param story_id: Story identifier
+    :type story_id: :class:`Int32`
+    """
+
+    ID: typing.Literal["inputMessageStory"] = "inputMessageStory"
+    story_sender_chat_id: Int53
+    story_id: Int32
+
+
 class InputMessageText(BaseObject):
     """
     A text message
@@ -7397,8 +7532,6 @@ class InputMessageVideo(BaseObject):
     :type width: :class:`Int32`
     :param height: Video height
     :type height: :class:`Int32`
-    :param self_destruct_time: Video self-destruct time, in seconds (0-60). A non-zero self-destruct time can be specified only in private chats
-    :type self_destruct_time: :class:`Int32`
     :param supports_streaming: True, if the video is supposed to be streamed
     :type supports_streaming: :class:`Bool`
     :param has_spoiler: True, if the video preview must be covered by a spoiler animation; not supported in secret chats
@@ -7407,6 +7540,8 @@ class InputMessageVideo(BaseObject):
     :type thumbnail: :class:`InputThumbnail`, optional
     :param caption: Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters, defaults to None
     :type caption: :class:`FormattedText`, optional
+    :param self_destruct_type: Video self-destruct type; pass null if none; private chats only, defaults to None
+    :type self_destruct_type: :class:`MessageSelfDestructType`, optional
     """
 
     ID: typing.Literal["inputMessageVideo"] = "inputMessageVideo"
@@ -7415,11 +7550,11 @@ class InputMessageVideo(BaseObject):
     duration: Int32
     width: Int32
     height: Int32
-    self_destruct_time: Int32
     supports_streaming: Bool = False
     has_spoiler: Bool = False
     thumbnail: typing.Optional[InputThumbnail] = None
     caption: typing.Optional[FormattedText] = None
+    self_destruct_type: typing.Optional[MessageSelfDestructType] = None
 
 
 class InputMessageVideoNote(BaseObject):
@@ -7477,6 +7612,7 @@ InputMessageContent = typing.Union[
     InputMessagePhoto,
     InputMessagePoll,
     InputMessageSticker,
+    InputMessageStory,
     InputMessageText,
     InputMessageVenue,
     InputMessageVideo,
@@ -7840,6 +7976,124 @@ class InputSticker(BaseObject):
     mask_position: typing.Optional[MaskPosition] = None
 
 
+class InputStoryArea(BaseObject):
+    """
+    Describes a clickable rectangle area on a story media to be added
+
+    :param position: Position of the area
+    :type position: :class:`StoryAreaPosition`
+    :param type_: Type of the area
+    :type type_: :class:`InputStoryAreaType`
+    """
+
+    ID: typing.Literal["inputStoryArea"] = "inputStoryArea"
+    position: StoryAreaPosition
+    type_: InputStoryAreaType = Field(..., alias="type")
+
+
+class InputStoryAreaTypeFoundVenue(BaseObject):
+    """
+    An area pointing to a venue found by the bot getOption("venue_search_bot_username")
+
+    :param query_id: Identifier of the inline query, used to found the venue
+    :type query_id: :class:`Int64`
+    :param result_id: Identifier of the inline query result
+    :type result_id: :class:`String`
+    """
+
+    ID: typing.Literal["inputStoryAreaTypeFoundVenue"] = "inputStoryAreaTypeFoundVenue"
+    query_id: Int64
+    result_id: String
+
+
+class InputStoryAreaTypeLocation(BaseObject):
+    """
+    An area pointing to a location
+
+    :param location: The location
+    :type location: :class:`Location`
+    """
+
+    ID: typing.Literal["inputStoryAreaTypeLocation"] = "inputStoryAreaTypeLocation"
+    location: Location
+
+
+class InputStoryAreaTypePreviousVenue(BaseObject):
+    """
+    An area pointing to a venue already added to the story
+
+    :param venue_provider: Provider of the venue
+    :type venue_provider: :class:`String`
+    :param venue_id: Identifier of the venue in the provider database
+    :type venue_id: :class:`String`
+    """
+
+    ID: typing.Literal["inputStoryAreaTypePreviousVenue"] = "inputStoryAreaTypePreviousVenue"
+    venue_provider: String
+    venue_id: String
+
+
+InputStoryAreaType = typing.Union[
+    InputStoryAreaTypeFoundVenue,
+    InputStoryAreaTypeLocation,
+    InputStoryAreaTypePreviousVenue,
+]
+
+
+class InputStoryAreas(BaseObject):
+    """
+    Contains a list of story areas to be added
+
+    :param areas: List of 0-10 input story areas
+    :type areas: :class:`Vector[InputStoryArea]`
+    """
+
+    ID: typing.Literal["inputStoryAreas"] = "inputStoryAreas"
+    areas: Vector[InputStoryArea]
+
+
+class InputStoryContentPhoto(BaseObject):
+    """
+    A photo story
+
+    :param photo: Photo to send. The photo must be at most 10 MB in size. The photo size must be 1080x1920
+    :type photo: :class:`InputFile`
+    :param added_sticker_file_ids: File identifiers of the stickers added to the photo, if applicable
+    :type added_sticker_file_ids: :class:`Vector[Int32]`
+    """
+
+    ID: typing.Literal["inputStoryContentPhoto"] = "inputStoryContentPhoto"
+    photo: InputFile
+    added_sticker_file_ids: Vector[Int32]
+
+
+class InputStoryContentVideo(BaseObject):
+    """
+    A video story
+
+    :param video: Video to be sent. The video size must be 720x1280. The video must be streamable and stored in MPEG4 format, after encoding with x265 codec and key frames added each second
+    :type video: :class:`InputFile`
+    :param added_sticker_file_ids: File identifiers of the stickers added to the video, if applicable
+    :type added_sticker_file_ids: :class:`Vector[Int32]`
+    :param duration: Precise duration of the video, in seconds; 0-60
+    :type duration: :class:`Double`
+    :param is_animation: True, if the video has no sound
+    :type is_animation: :class:`Bool`
+    """
+
+    ID: typing.Literal["inputStoryContentVideo"] = "inputStoryContentVideo"
+    video: InputFile
+    added_sticker_file_ids: Vector[Int32]
+    duration: Double
+    is_animation: Bool = False
+
+
+InputStoryContent = typing.Union[
+    InputStoryContentPhoto,
+    InputStoryContentVideo,
+]
+
+
 class InputThumbnail(BaseObject):
     """
     A thumbnail to be sent along with a file; must be in JPEG or WEBP format for stickers, and less than 200 KB in size
@@ -7868,7 +8122,7 @@ class InternalLinkTypeActiveSessions(BaseObject):
 
 class InternalLinkTypeAttachmentMenuBot(BaseObject):
     """
-    The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then user needs to confirm adding the bot to attachment menu. If user confirms adding, then use toggleBotIsAddedToAttachmentMenu to add it. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
+    The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
 
     :param target_chat: Target chat to be opened
     :type target_chat: :class:`TargetChat`
@@ -8169,7 +8423,7 @@ class InternalLinkTypeProxy(BaseObject):
     """
     The link is a link to a proxy. Call addProxy with the given parameters to process the link and add the proxy
 
-    :param server: Proxy server IP address
+    :param server: Proxy server domain or IP address
     :type server: :class:`String`
     :param port: Proxy server port
     :type port: :class:`Int32`
@@ -8219,6 +8473,21 @@ class InternalLinkTypeSettings(BaseObject):
     ID: typing.Literal["internalLinkTypeSettings"] = "internalLinkTypeSettings"
 
 
+class InternalLinkTypeSideMenuBot(BaseObject):
+    """
+    The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL
+
+    :param bot_username: Username of the bot
+    :type bot_username: :class:`String`
+    :param url: URL to be passed to getWebAppUrl
+    :type url: :class:`String`
+    """
+
+    ID: typing.Literal["internalLinkTypeSideMenuBot"] = "internalLinkTypeSideMenuBot"
+    bot_username: String
+    url: String
+
+
 class InternalLinkTypeStickerSet(BaseObject):
     """
     The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
@@ -8232,6 +8501,21 @@ class InternalLinkTypeStickerSet(BaseObject):
     ID: typing.Literal["internalLinkTypeStickerSet"] = "internalLinkTypeStickerSet"
     sticker_set_name: String
     expect_custom_emoji: Bool = False
+
+
+class InternalLinkTypeStory(BaseObject):
+    """
+    The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier
+
+    :param story_sender_username: Username of the sender of the story
+    :type story_sender_username: :class:`String`
+    :param story_id: Story identifier
+    :type story_id: :class:`Int32`
+    """
+
+    ID: typing.Literal["internalLinkTypeStory"] = "internalLinkTypeStory"
+    story_sender_username: String
+    story_id: Int32
 
 
 class InternalLinkTypeTheme(BaseObject):
@@ -8318,7 +8602,7 @@ class InternalLinkTypeVideoChat(BaseObject):
 
 class InternalLinkTypeWebApp(BaseObject):
     """
-    The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed, then calling getWebAppLinkUrl and opening the returned URL
+    The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being a third-party apps instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then call getWebAppLinkUrl and open the returned URL as a Web App
 
     :param bot_username: Username of the bot that owns the Web App
     :type bot_username: :class:`String`
@@ -8364,7 +8648,9 @@ InternalLinkType = typing.Union[
     InternalLinkTypeQrCodeAuthentication,
     InternalLinkTypeRestorePurchases,
     InternalLinkTypeSettings,
+    InternalLinkTypeSideMenuBot,
     InternalLinkTypeStickerSet,
+    InternalLinkTypeStory,
     InternalLinkTypeTheme,
     InternalLinkTypeThemeSettings,
     InternalLinkTypeUnknownDeepLink,
@@ -8373,6 +8659,37 @@ InternalLinkType = typing.Union[
     InternalLinkTypeUserToken,
     InternalLinkTypeVideoChat,
     InternalLinkTypeWebApp,
+]
+
+
+class InviteLinkChatTypeBasicGroup(BaseObject):
+    """
+    The link is an invite link for a basic group
+    """
+
+    ID: typing.Literal["inviteLinkChatTypeBasicGroup"] = "inviteLinkChatTypeBasicGroup"
+
+
+class InviteLinkChatTypeChannel(BaseObject):
+    """
+    The link is an invite link for a channel
+    """
+
+    ID: typing.Literal["inviteLinkChatTypeChannel"] = "inviteLinkChatTypeChannel"
+
+
+class InviteLinkChatTypeSupergroup(BaseObject):
+    """
+    The link is an invite link for a supergroup
+    """
+
+    ID: typing.Literal["inviteLinkChatTypeSupergroup"] = "inviteLinkChatTypeSupergroup"
+
+
+InviteLinkChatType = typing.Union[
+    InviteLinkChatTypeBasicGroup,
+    InviteLinkChatTypeChannel,
+    InviteLinkChatTypeSupergroup,
 ]
 
 
@@ -9048,15 +9365,11 @@ class Message(BaseObject):
     :type edit_date: :class:`Int32`
     :param unread_reactions: Information about unread reactions added to the message
     :type unread_reactions: :class:`Vector[UnreadReaction]`
-    :param reply_in_chat_id: If non-zero, the identifier of the chat to which the replied message belongs; Currently, only messages in the Replies chat can have different reply_in_chat_id and chat_id
-    :type reply_in_chat_id: :class:`Int53`
-    :param reply_to_message_id: If non-zero, the identifier of the message this message is replying to; can be the identifier of a deleted message
-    :type reply_to_message_id: :class:`Int53`
     :param message_thread_id: If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
     :type message_thread_id: :class:`Int53`
-    :param self_destruct_in: Time left before the message self-destruct timer expires, in seconds. If the self-destruct timer isn't started yet, equals to the value of the self_destruct_time field
+    :param self_destruct_in: Time left before the message self-destruct timer expires, in seconds; 0 if self-desctruction isn't scheduled yet
     :type self_destruct_in: :class:`Double`
-    :param auto_delete_in: Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never. TDLib will send updateDeleteMessages or updateMessageContent once the time expires
+    :param auto_delete_in: Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
     :type auto_delete_in: :class:`Double`
     :param via_bot_user_id: If non-zero, the user identifier of the bot through which this message was sent
     :type via_bot_user_id: :class:`Int53`
@@ -9068,15 +9381,19 @@ class Message(BaseObject):
     :type restriction_reason: :class:`String`
     :param content: Content of the message
     :type content: :class:`MessageContent`
-    :param sending_state: The sending state of the message; may be null, defaults to None
+    :param sending_state: The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent, defaults to None
     :type sending_state: :class:`MessageSendingState`, optional
-    :param scheduling_state: The scheduling state of the message; may be null, defaults to None
+    :param scheduling_state: The scheduling state of the message; may be null if the message isn't scheduled, defaults to None
     :type scheduling_state: :class:`MessageSchedulingState`, optional
-    :param forward_info: Information about the initial message sender; may be null, defaults to None
+    :param forward_info: Information about the initial message sender; may be null if none or unknown, defaults to None
     :type forward_info: :class:`MessageForwardInfo`, optional
-    :param interaction_info: Information about interactions with the message; may be null, defaults to None
+    :param interaction_info: Information about interactions with the message; may be null if none, defaults to None
     :type interaction_info: :class:`MessageInteractionInfo`, optional
-    :param reply_markup: Reply markup for the message; may be null, defaults to None
+    :param reply_to: Information about the message or the story this message is replying to; may be null if none, defaults to None
+    :type reply_to: :class:`MessageReplyTo`, optional
+    :param self_destruct_type: The message's self-destruct type; may be null if none, defaults to None
+    :type self_destruct_type: :class:`MessageSelfDestructType`, optional
+    :param reply_markup: Reply markup for the message; may be null if none, defaults to None
     :type reply_markup: :class:`ReplyMarkup`, optional
     :param is_outgoing: True, if the message is outgoing
     :type is_outgoing: :class:`Bool`
@@ -9112,8 +9429,6 @@ class Message(BaseObject):
     :type is_topic_message: :class:`Bool`
     :param contains_unread_mention: True, if the message contains an unread mention for the current user
     :type contains_unread_mention: :class:`Bool`
-    :param self_destruct_time: The message's self-destruct time, in seconds; 0 if none. TDLib will send updateDeleteMessages or updateMessageContent once the time expires, defaults to None
-    :type self_destruct_time: :class:`Int32`, optional
     """
 
     ID: typing.Literal["message"] = "message"
@@ -9123,8 +9438,6 @@ class Message(BaseObject):
     date: Int32
     edit_date: Int32
     unread_reactions: Vector[UnreadReaction]
-    reply_in_chat_id: Int53
-    reply_to_message_id: Int53
     message_thread_id: Int53
     self_destruct_in: Double
     auto_delete_in: Double
@@ -9137,6 +9450,8 @@ class Message(BaseObject):
     scheduling_state: typing.Optional[MessageSchedulingState] = None
     forward_info: typing.Optional[MessageForwardInfo] = None
     interaction_info: typing.Optional[MessageInteractionInfo] = None
+    reply_to: typing.Optional[MessageReplyTo] = None
+    self_destruct_type: typing.Optional[MessageSelfDestructType] = None
     reply_markup: typing.Optional[ReplyMarkup] = None
     is_outgoing: Bool = False
     is_pinned: Bool = False
@@ -9155,7 +9470,6 @@ class Message(BaseObject):
     is_channel_post: Bool = False
     is_topic_message: Bool = False
     contains_unread_mention: Bool = False
-    self_destruct_time: typing.Optional[Int32] = 0
 
 
 class MessageAutoDeleteTime(BaseObject):
@@ -9272,10 +9586,13 @@ class MessageBotWriteAccessAllowed(BaseObject):
 
     :param web_app: Information about the Web App, which requested the access; may be null if none or the Web App was opened from the attachment menu, defaults to None
     :type web_app: :class:`WebApp`, optional
+    :param by_request: True, if user allowed the bot to send messages by an explicit call to allowBotToSendMessages
+    :type by_request: :class:`Bool`
     """
 
     ID: typing.Literal["messageBotWriteAccessAllowed"] = "messageBotWriteAccessAllowed"
     web_app: typing.Optional[WebApp] = None
+    by_request: Bool = False
 
 
 class MessageCall(BaseObject):
@@ -9913,6 +10230,24 @@ class MessageSticker(BaseObject):
     is_premium: Bool = False
 
 
+class MessageStory(BaseObject):
+    """
+    A message with a forwarded story
+
+    :param story_sender_chat_id: Identifier of the chat that posted the story
+    :type story_sender_chat_id: :class:`Int53`
+    :param story_id: Story identifier
+    :type story_id: :class:`Int32`
+    :param via_mention: True, if the story was automatically forwarded because of a mention of the user
+    :type via_mention: :class:`Bool`
+    """
+
+    ID: typing.Literal["messageStory"] = "messageStory"
+    story_sender_chat_id: Int53
+    story_id: Int32
+    via_mention: Bool = False
+
+
 class MessageSuggestProfilePhoto(BaseObject):
     """
     A profile photo was suggested to a user in a private chat
@@ -9954,7 +10289,7 @@ class MessageText(BaseObject):
 
 class MessageUnsupported(BaseObject):
     """
-    Message content that is not supported in the current TDLib version
+    A message content that is not supported in the current TDLib version
     """
 
     ID: typing.Literal["messageUnsupported"] = "messageUnsupported"
@@ -10169,6 +10504,7 @@ MessageContent = typing.Union[
     MessageProximityAlertTriggered,
     MessageScreenshotTaken,
     MessageSticker,
+    MessageStory,
     MessageSuggestProfilePhoto,
     MessageSupergroupChatCreate,
     MessageText,
@@ -10561,11 +10897,47 @@ class MessageReplyInfo(BaseObject):
     last_message_id: Int53
 
 
+class MessageReplyToMessage(BaseObject):
+    """
+    Describes a replied message
+
+    :param chat_id: The identifier of the chat to which the replied message belongs; ignored for outgoing replies. For example, messages in the Replies chat are replies to messages in different chats
+    :type chat_id: :class:`Int53`
+    :param message_id: The identifier of the replied message
+    :type message_id: :class:`Int53`
+    """
+
+    ID: typing.Literal["messageReplyToMessage"] = "messageReplyToMessage"
+    chat_id: Int53
+    message_id: Int53
+
+
+class MessageReplyToStory(BaseObject):
+    """
+    Describes a replied story
+
+    :param story_sender_chat_id: The identifier of the sender of the replied story. Currently, stories can be replied only in the sender's chat
+    :type story_sender_chat_id: :class:`Int53`
+    :param story_id: The identifier of the replied story
+    :type story_id: :class:`Int32`
+    """
+
+    ID: typing.Literal["messageReplyToStory"] = "messageReplyToStory"
+    story_sender_chat_id: Int53
+    story_id: Int32
+
+
+MessageReplyTo = typing.Union[
+    MessageReplyToMessage,
+    MessageReplyToStory,
+]
+
+
 class MessageSchedulingStateSendAtDate(BaseObject):
     """
     The message will be sent at the specified date
 
-    :param send_date: Date the message will be sent. The date must be within 367 days in the future
+    :param send_date: Point in time (Unix timestamp) when the message will be sent. The date must be within 367 days in the future
     :type send_date: :class:`Int32`
     """
 
@@ -10584,6 +10956,32 @@ class MessageSchedulingStateSendWhenOnline(BaseObject):
 MessageSchedulingState = typing.Union[
     MessageSchedulingStateSendAtDate,
     MessageSchedulingStateSendWhenOnline,
+]
+
+
+class MessageSelfDestructTypeImmediately(BaseObject):
+    """
+    The message can be opened only once and will be self-destructed once closed
+    """
+
+    ID: typing.Literal["messageSelfDestructTypeImmediately"] = "messageSelfDestructTypeImmediately"
+
+
+class MessageSelfDestructTypeTimer(BaseObject):
+    """
+    The message will be self-destructed in the specified time after its content was opened
+
+    :param self_destruct_time: The message's self-destruct time, in seconds; must be between 0 and 60 in private chats
+    :type self_destruct_time: :class:`Int32`
+    """
+
+    ID: typing.Literal["messageSelfDestructTypeTimer"] = "messageSelfDestructTypeTimer"
+    self_destruct_time: Int32
+
+
+MessageSelfDestructType = typing.Union[
+    MessageSelfDestructTypeImmediately,
+    MessageSelfDestructTypeTimer,
 ]
 
 
@@ -10765,6 +11163,14 @@ class MessageSourceOther(BaseObject):
     ID: typing.Literal["messageSourceOther"] = "messageSourceOther"
 
 
+class MessageSourceScreenshot(BaseObject):
+    """
+    The message was screenshotted; the source must be used only if the message content was visible during the screenshot
+    """
+
+    ID: typing.Literal["messageSourceScreenshot"] = "messageSourceScreenshot"
+
+
 class MessageSourceSearch(BaseObject):
     """
     The message is from search results, including file downloads, local file list, outgoing document messages, calendar
@@ -10782,7 +11188,94 @@ MessageSource = typing.Union[
     MessageSourceMessageThreadHistory,
     MessageSourceNotification,
     MessageSourceOther,
+    MessageSourceScreenshot,
     MessageSourceSearch,
+]
+
+
+class MessageSponsor(BaseObject):
+    """
+    Information about the sponsor of a message
+
+    :param type_: Type of the sponsor
+    :type type_: :class:`MessageSponsorType`
+    :param info: Additional optional information about the sponsor to be shown along with the message
+    :type info: :class:`String`
+    :param photo: Photo of the sponsor; may be null if must not be shown, defaults to None
+    :type photo: :class:`ChatPhotoInfo`, optional
+    """
+
+    ID: typing.Literal["messageSponsor"] = "messageSponsor"
+    type_: MessageSponsorType = Field(..., alias="type")
+    info: String
+    photo: typing.Optional[ChatPhotoInfo] = None
+
+
+class MessageSponsorTypeBot(BaseObject):
+    """
+    The sponsor is a bot
+
+    :param bot_user_id: User identifier of the bot
+    :type bot_user_id: :class:`Int53`
+    :param link: An internal link to be opened when the sponsored message is clicked
+    :type link: :class:`InternalLinkType`
+    """
+
+    ID: typing.Literal["messageSponsorTypeBot"] = "messageSponsorTypeBot"
+    bot_user_id: Int53
+    link: InternalLinkType
+
+
+class MessageSponsorTypePrivateChannel(BaseObject):
+    """
+    The sponsor is a private channel chat
+
+    :param title: Title of the chat
+    :type title: :class:`String`
+    :param invite_link: Invite link for the channel
+    :type invite_link: :class:`String`
+    """
+
+    ID: typing.Literal["messageSponsorTypePrivateChannel"] = "messageSponsorTypePrivateChannel"
+    title: String
+    invite_link: String
+
+
+class MessageSponsorTypePublicChannel(BaseObject):
+    """
+    The sponsor is a public channel chat
+
+    :param chat_id: Sponsor chat identifier
+    :type chat_id: :class:`Int53`
+    :param link: An internal link to be opened when the sponsored message is clicked; may be null if the sponsor chat needs to be opened instead, defaults to None
+    :type link: :class:`InternalLinkType`, optional
+    """
+
+    ID: typing.Literal["messageSponsorTypePublicChannel"] = "messageSponsorTypePublicChannel"
+    chat_id: Int53
+    link: typing.Optional[InternalLinkType] = None
+
+
+class MessageSponsorTypeWebsite(BaseObject):
+    """
+    The sponsor is a website
+
+    :param url: URL of the website
+    :type url: :class:`String`
+    :param name: Name of the website
+    :type name: :class:`String`
+    """
+
+    ID: typing.Literal["messageSponsorTypeWebsite"] = "messageSponsorTypeWebsite"
+    url: String
+    name: String
+
+
+MessageSponsorType = typing.Union[
+    MessageSponsorTypeBot,
+    MessageSponsorTypePrivateChannel,
+    MessageSponsorTypePublicChannel,
+    MessageSponsorTypeWebsite,
 ]
 
 
@@ -10812,7 +11305,7 @@ class MessageThreadInfo(BaseObject):
     :type messages: :class:`Vector[Message]`
     :param reply_info: Information about the message thread; may be null for forum topic threads, defaults to None
     :type reply_info: :class:`MessageReplyInfo`, optional
-    :param draft_message: A draft of a message in the message thread; may be null, defaults to None
+    :param draft_message: A draft of a message in the message thread; may be null if none, defaults to None
     :type draft_message: :class:`DraftMessage`, optional
     """
 
@@ -11183,7 +11676,7 @@ class NotificationTypeNewPushMessage(BaseObject):
     """
     New message was received through a push notification
 
-    :param message_id: The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages, or as reply_to_message_id
+    :param message_id: The message identifier. The message will not be available in the chat history, but the identifier can be used in viewMessages, or as a message to reply
     :type message_id: :class:`Int53`
     :param sender_id: Identifier of the sender of the message. Corresponding user or chat may be inaccessible
     :type sender_id: :class:`MessageSender`
@@ -12800,8 +13293,8 @@ class Poll(BaseObject):
     :type options: :class:`Vector[PollOption]`
     :param total_voter_count: Total number of voters, participating in the poll
     :type total_voter_count: :class:`Int32`
-    :param recent_voter_user_ids: User identifiers of recent voters, if the poll is non-anonymous
-    :type recent_voter_user_ids: :class:`Vector[Int53]`
+    :param recent_voter_ids: Identifiers of recent voters, if the poll is non-anonymous
+    :type recent_voter_ids: :class:`Vector[MessageSender]`
     :param type_: Type of the poll
     :type type_: :class:`PollType`
     :param open_period: Amount of time the poll will be active after creation, in seconds
@@ -12819,7 +13312,7 @@ class Poll(BaseObject):
     question: String = Field(..., min_length=1, max_length=300)
     options: Vector[PollOption]
     total_voter_count: Int32
-    recent_voter_user_ids: Vector[Int53]
+    recent_voter_ids: Vector[MessageSender]
     type_: PollType = Field(..., alias="type")
     open_period: Int32
     close_date: Int32
@@ -12926,7 +13419,7 @@ class PremiumFeatureDisabledAds(BaseObject):
 
 class PremiumFeatureEmojiStatus(BaseObject):
     """
-    A emoji status shown along with the user's name
+    An emoji status shown along with the user's name
     """
 
     ID: typing.Literal["premiumFeatureEmojiStatus"] = "premiumFeatureEmojiStatus"
@@ -12996,6 +13489,14 @@ class PremiumFeatureUniqueStickers(BaseObject):
     ID: typing.Literal["premiumFeatureUniqueStickers"] = "premiumFeatureUniqueStickers"
 
 
+class PremiumFeatureUpgradedStories(BaseObject):
+    """
+    Allowed to use many additional features for stories
+    """
+
+    ID: typing.Literal["premiumFeatureUpgradedStories"] = "premiumFeatureUpgradedStories"
+
+
 class PremiumFeatureVoiceRecognition(BaseObject):
     """
     The ability to convert voice notes to text
@@ -13019,6 +13520,7 @@ PremiumFeature = typing.Union[
     PremiumFeatureRealTimeChatTranslation,
     PremiumFeatureUniqueReactions,
     PremiumFeatureUniqueStickers,
+    PremiumFeatureUpgradedStories,
     PremiumFeatureVoiceRecognition,
 ]
 
@@ -13072,6 +13574,14 @@ class PremiumLimit(BaseObject):
     type_: PremiumLimitType = Field(..., alias="type")
     default_value: Int32
     premium_value: Int32
+
+
+class PremiumLimitTypeActiveStoryCount(BaseObject):
+    """
+    The maximum number of active stories
+    """
+
+    ID: typing.Literal["premiumLimitTypeActiveStoryCount"] = "premiumLimitTypeActiveStoryCount"
 
 
 class PremiumLimitTypeBioLength(BaseObject):
@@ -13130,6 +13640,14 @@ class PremiumLimitTypeFavoriteStickerCount(BaseObject):
     ID: typing.Literal["premiumLimitTypeFavoriteStickerCount"] = "premiumLimitTypeFavoriteStickerCount"
 
 
+class PremiumLimitTypeMonthlySentStoryCount(BaseObject):
+    """
+    The maximum number of stories sent per month
+    """
+
+    ID: typing.Literal["premiumLimitTypeMonthlySentStoryCount"] = "premiumLimitTypeMonthlySentStoryCount"
+
+
 class PremiumLimitTypePinnedArchivedChatCount(BaseObject):
     """
     The maximum number of pinned chats in the archive chat list
@@ -13162,6 +13680,14 @@ class PremiumLimitTypeShareableChatFolderCount(BaseObject):
     ID: typing.Literal["premiumLimitTypeShareableChatFolderCount"] = "premiumLimitTypeShareableChatFolderCount"
 
 
+class PremiumLimitTypeStoryCaptionLength(BaseObject):
+    """
+    The maximum length of captions of sent stories
+    """
+
+    ID: typing.Literal["premiumLimitTypeStoryCaptionLength"] = "premiumLimitTypeStoryCaptionLength"
+
+
 class PremiumLimitTypeSupergroupCount(BaseObject):
     """
     The maximum number of joined supergroups and channels
@@ -13170,7 +13696,16 @@ class PremiumLimitTypeSupergroupCount(BaseObject):
     ID: typing.Literal["premiumLimitTypeSupergroupCount"] = "premiumLimitTypeSupergroupCount"
 
 
+class PremiumLimitTypeWeeklySentStoryCount(BaseObject):
+    """
+    The maximum number of stories sent per week
+    """
+
+    ID: typing.Literal["premiumLimitTypeWeeklySentStoryCount"] = "premiumLimitTypeWeeklySentStoryCount"
+
+
 PremiumLimitType = typing.Union[
+    PremiumLimitTypeActiveStoryCount,
     PremiumLimitTypeBioLength,
     PremiumLimitTypeCaptionLength,
     PremiumLimitTypeChatFolderChosenChatCount,
@@ -13178,11 +13713,14 @@ PremiumLimitType = typing.Union[
     PremiumLimitTypeChatFolderInviteLinkCount,
     PremiumLimitTypeCreatedPublicChatCount,
     PremiumLimitTypeFavoriteStickerCount,
+    PremiumLimitTypeMonthlySentStoryCount,
     PremiumLimitTypePinnedArchivedChatCount,
     PremiumLimitTypePinnedChatCount,
     PremiumLimitTypeSavedAnimationCount,
     PremiumLimitTypeShareableChatFolderCount,
+    PremiumLimitTypeStoryCaptionLength,
     PremiumLimitTypeSupergroupCount,
+    PremiumLimitTypeWeeklySentStoryCount,
 ]
 
 
@@ -13257,11 +13795,24 @@ class PremiumSourceSettings(BaseObject):
     ID: typing.Literal["premiumSourceSettings"] = "premiumSourceSettings"
 
 
+class PremiumSourceStoryFeature(BaseObject):
+    """
+    A user tried to use a Premium story feature
+
+    :param feature: The used feature
+    :type feature: :class:`PremiumStoryFeature`
+    """
+
+    ID: typing.Literal["premiumSourceStoryFeature"] = "premiumSourceStoryFeature"
+    feature: PremiumStoryFeature
+
+
 PremiumSource = typing.Union[
     PremiumSourceFeature,
     PremiumSourceLimitExceeded,
     PremiumSourceLink,
     PremiumSourceSettings,
+    PremiumSourceStoryFeature,
 ]
 
 
@@ -13302,6 +13853,64 @@ class PremiumStatePaymentOption(BaseObject):
     last_transaction_id: String
     is_current: Bool = False
     is_upgrade: Bool = False
+
+
+class PremiumStoryFeatureCustomExpirationDuration(BaseObject):
+    """
+    The ability to set custom expiration duration for stories
+    """
+
+    ID: typing.Literal["premiumStoryFeatureCustomExpirationDuration"] = "premiumStoryFeatureCustomExpirationDuration"
+
+
+class PremiumStoryFeatureLinksAndFormatting(BaseObject):
+    """
+    The ability to use links and formatting in story caption
+    """
+
+    ID: typing.Literal["premiumStoryFeatureLinksAndFormatting"] = "premiumStoryFeatureLinksAndFormatting"
+
+
+class PremiumStoryFeaturePermanentViewsHistory(BaseObject):
+    """
+    The ability to check who opened the current user's stories after they expire
+    """
+
+    ID: typing.Literal["premiumStoryFeaturePermanentViewsHistory"] = "premiumStoryFeaturePermanentViewsHistory"
+
+
+class PremiumStoryFeaturePriorityOrder(BaseObject):
+    """
+    User stories are displayed before stories of non-premium contacts
+    """
+
+    ID: typing.Literal["premiumStoryFeaturePriorityOrder"] = "premiumStoryFeaturePriorityOrder"
+
+
+class PremiumStoryFeatureSaveStories(BaseObject):
+    """
+    The ability to save other's unprotected stories
+    """
+
+    ID: typing.Literal["premiumStoryFeatureSaveStories"] = "premiumStoryFeatureSaveStories"
+
+
+class PremiumStoryFeatureStealthMode(BaseObject):
+    """
+    The ability to hide the fact that the user viewed other's stories
+    """
+
+    ID: typing.Literal["premiumStoryFeatureStealthMode"] = "premiumStoryFeatureStealthMode"
+
+
+PremiumStoryFeature = typing.Union[
+    PremiumStoryFeatureCustomExpirationDuration,
+    PremiumStoryFeatureLinksAndFormatting,
+    PremiumStoryFeaturePermanentViewsHistory,
+    PremiumStoryFeaturePriorityOrder,
+    PremiumStoryFeatureSaveStories,
+    PremiumStoryFeatureStealthMode,
+]
 
 
 class ProfilePhoto(BaseObject):
@@ -13349,7 +13958,7 @@ class Proxy(BaseObject):
 
     :param id: Unique identifier of the proxy
     :type id: :class:`Int32`
-    :param server: Proxy server IP address
+    :param server: Proxy server domain or IP address
     :type server: :class:`String`
     :param port: Proxy server port
     :type port: :class:`Int32`
@@ -13807,6 +14416,18 @@ class PushMessageContentSticker(BaseObject):
     is_pinned: Bool = False
 
 
+class PushMessageContentStory(BaseObject):
+    """
+    A message with a story
+
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`Bool`
+    """
+
+    ID: typing.Literal["pushMessageContentStory"] = "pushMessageContentStory"
+    is_pinned: Bool = False
+
+
 class PushMessageContentSuggestProfilePhoto(BaseObject):
     """
     A profile photo was suggested to the user
@@ -13908,6 +14529,7 @@ PushMessageContent = typing.Union[
     PushMessageContentRecurringPayment,
     PushMessageContentScreenshotTaken,
     PushMessageContentSticker,
+    PushMessageContentStory,
     PushMessageContentSuggestProfilePhoto,
     PushMessageContentText,
     PushMessageContentVideo,
@@ -14001,7 +14623,7 @@ class RemoteFile(BaseObject):
     """
     Represents a remote file
 
-    :param id: Remote file identifier; may be empty. Can be used by the current user across application restarts or even from other devices. Uniquely identifies a file, but a file can have a lot of different valid identifiers. If the ID starts with "http://" or "https://", it represents the HTTP URL of the file. TDLib is currently unable to download files if only their URL is known. If downloadFile/addFileToDownloads is called on such a file or if it is sent to a secret chat, TDLib starts a file generation process by sending updateFileGenerationStart to the application with the HTTP URL in the original_path and "#url#" as the conversion string. Application must generate the file by downloading it to the specified location
+    :param id: Remote file identifier; may be empty. Can be used by the current user across application restarts or even from other devices. Uniquely identifies a file, but a file can have a lot of different valid identifiers. If the identifier starts with "http://" or "https://", it represents the HTTP URL of the file. TDLib is currently unable to download files if only their URL is known. If downloadFile/addFileToDownloads is called on such a file or if it is sent to a secret chat, TDLib starts a file generation process by sending updateFileGenerationStart to the application with the HTTP URL in the original_path and "#url#" as the conversion string. Application must generate the file by downloading it to the specified location
     :type id: :class:`String`
     :param unique_id: Unique file identifier; may be empty if unknown. The unique file identifier which is the same for the same file even for different users and is persistent over time
     :type unique_id: :class:`String`
@@ -14092,6 +14714,100 @@ ReplyMarkup = typing.Union[
     ReplyMarkupInlineKeyboard,
     ReplyMarkupRemoveKeyboard,
     ReplyMarkupShowKeyboard,
+]
+
+
+class ReportReasonChildAbuse(BaseObject):
+    """
+    The chat has child abuse related content
+    """
+
+    ID: typing.Literal["reportReasonChildAbuse"] = "reportReasonChildAbuse"
+
+
+class ReportReasonCopyright(BaseObject):
+    """
+    The chat contains copyrighted content
+    """
+
+    ID: typing.Literal["reportReasonCopyright"] = "reportReasonCopyright"
+
+
+class ReportReasonCustom(BaseObject):
+    """
+    A custom reason provided by the user
+    """
+
+    ID: typing.Literal["reportReasonCustom"] = "reportReasonCustom"
+
+
+class ReportReasonFake(BaseObject):
+    """
+    The chat represents a fake account
+    """
+
+    ID: typing.Literal["reportReasonFake"] = "reportReasonFake"
+
+
+class ReportReasonIllegalDrugs(BaseObject):
+    """
+    The chat has illegal drugs related content
+    """
+
+    ID: typing.Literal["reportReasonIllegalDrugs"] = "reportReasonIllegalDrugs"
+
+
+class ReportReasonPersonalDetails(BaseObject):
+    """
+    The chat contains messages with personal details
+    """
+
+    ID: typing.Literal["reportReasonPersonalDetails"] = "reportReasonPersonalDetails"
+
+
+class ReportReasonPornography(BaseObject):
+    """
+    The chat contains pornographic messages
+    """
+
+    ID: typing.Literal["reportReasonPornography"] = "reportReasonPornography"
+
+
+class ReportReasonSpam(BaseObject):
+    """
+    The chat contains spam messages
+    """
+
+    ID: typing.Literal["reportReasonSpam"] = "reportReasonSpam"
+
+
+class ReportReasonUnrelatedLocation(BaseObject):
+    """
+    The location-based chat is unrelated to its stated location
+    """
+
+    ID: typing.Literal["reportReasonUnrelatedLocation"] = "reportReasonUnrelatedLocation"
+
+
+class ReportReasonViolence(BaseObject):
+    """
+    The chat promotes violence
+    """
+
+    ID: typing.Literal["reportReasonViolence"] = "reportReasonViolence"
+
+
+ReportReason = typing.Union[
+    ReportReasonChildAbuse,
+    ReportReasonCopyright,
+    ReportReasonCustom,
+    ReportReasonFake,
+    ReportReasonIllegalDrugs,
+    ReportReasonPersonalDetails,
+    ReportReasonPornography,
+    ReportReasonSpam,
+    ReportReasonUnrelatedLocation,
+    ReportReasonViolence,
 ]
 
 
@@ -14445,8 +15161,16 @@ class ScopeNotificationSettings(BaseObject):
     :type mute_for: :class:`Int32`
     :param sound_id: Identifier of the notification sound to be played; 0 if sound is disabled
     :type sound_id: :class:`Int64`
+    :param use_default_mute_stories: If true, mute_stories is ignored and story notifications are received only for the first 5 chats from topChatCategoryUsers
+    :type use_default_mute_stories: :class:`Bool`
+    :param story_sound_id: Identifier of the notification sound to be played for stories; 0 if sound is disabled
+    :type story_sound_id: :class:`Int64`
     :param show_preview: True, if message content must be displayed in notifications
     :type show_preview: :class:`Bool`
+    :param mute_stories: True, if story notifications are disabled for the chat
+    :type mute_stories: :class:`Bool`
+    :param show_story_sender: True, if the sender of stories must be displayed in notifications
+    :type show_story_sender: :class:`Bool`
     :param disable_pinned_message_notifications: True, if notifications for incoming pinned messages will be created as for an ordinary unread message
     :type disable_pinned_message_notifications: :class:`Bool`
     :param disable_mention_notifications: True, if notifications for messages with mentions will be created as for an ordinary unread message
@@ -14456,7 +15180,11 @@ class ScopeNotificationSettings(BaseObject):
     ID: typing.Literal["scopeNotificationSettings"] = "scopeNotificationSettings"
     mute_for: Int32
     sound_id: Int64
+    use_default_mute_stories: Bool
+    story_sound_id: Int64
     show_preview: Bool = False
+    mute_stories: Bool = False
+    show_story_sender: Bool = False
     disable_pinned_message_notifications: Bool = False
     disable_mention_notifications: Bool = False
 
@@ -14724,16 +15452,16 @@ class Session(BaseObject):
     :type log_in_date: :class:`Int32`
     :param last_active_date: Point in time (Unix timestamp) when the session was last used
     :type last_active_date: :class:`Int32`
-    :param ip: IP address from which the session was created, in human-readable format
-    :type ip: :class:`String`
-    :param country: A two-letter country code for the country from which the session was created, based on the IP address
-    :type country: :class:`String`
-    :param region: Region code from which the session was created, based on the IP address
-    :type region: :class:`String`
+    :param ip_address: IP address from which the session was created, in human-readable format
+    :type ip_address: :class:`String`
+    :param location: A human-readable description of the location from which the session was created, based on the IP address
+    :type location: :class:`String`
     :param is_current: True, if this session is the current session
     :type is_current: :class:`Bool`
     :param is_password_pending: True, if a 2-step verification password is needed to complete authorization of the session
     :type is_password_pending: :class:`Bool`
+    :param is_unconfirmed: True, if the session wasn't confirmed from another session
+    :type is_unconfirmed: :class:`Bool`
     :param can_accept_secret_chats: True, if incoming secret chats can be accepted by the session
     :type can_accept_secret_chats: :class:`Bool`
     :param can_accept_calls: True, if incoming calls can be accepted by the session
@@ -14753,11 +15481,11 @@ class Session(BaseObject):
     system_version: String
     log_in_date: Int32
     last_active_date: Int32
-    ip: String
-    country: String
-    region: String
+    ip_address: String
+    location: String
     is_current: Bool = False
     is_password_pending: Bool = False
+    is_unconfirmed: Bool = False
     can_accept_secret_chats: Bool = False
     can_accept_calls: Bool = False
     is_official_application: Bool = False
@@ -15002,34 +15730,22 @@ class SponsoredMessage(BaseObject):
 
     :param message_id: Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages
     :type message_id: :class:`Int53`
-    :param sponsor_chat_id: Sponsor chat identifier; 0 if the sponsor chat is accessible through an invite link
-    :type sponsor_chat_id: :class:`Int53`
     :param content: Content of the message. Currently, can be only of the type messageText
     :type content: :class:`MessageContent`
-    :param sponsor_info: If non-empty, information about the sponsor to be shown along with the message
-    :type sponsor_info: :class:`String`
+    :param sponsor: Information about the sponsor of the message
+    :type sponsor: :class:`MessageSponsor`
     :param additional_info: If non-empty, additional information about the sponsored message to be shown along with the message
     :type additional_info: :class:`String`
-    :param sponsor_chat_info: Information about the sponsor chat; may be null unless sponsor_chat_id == 0, defaults to None
-    :type sponsor_chat_info: :class:`ChatInviteLinkInfo`, optional
-    :param link: An internal link to be opened when the sponsored message is clicked; may be null if the sponsor chat needs to be opened instead, defaults to None
-    :type link: :class:`InternalLinkType`, optional
     :param is_recommended: True, if the message needs to be labeled as "recommended" instead of "sponsored"
     :type is_recommended: :class:`Bool`
-    :param show_chat_photo: True, if the sponsor's chat photo must be shown
-    :type show_chat_photo: :class:`Bool`
     """
 
     ID: typing.Literal["sponsoredMessage"] = "sponsoredMessage"
     message_id: Int53
-    sponsor_chat_id: Int53
     content: MessageContent
-    sponsor_info: String
+    sponsor: MessageSponsor
     additional_info: String
-    sponsor_chat_info: typing.Optional[ChatInviteLinkInfo] = None
-    link: typing.Optional[InternalLinkType] = None
     is_recommended: Bool = False
-    show_chat_photo: Bool = False
 
 
 class SponsoredMessages(BaseObject):
@@ -15501,6 +16217,383 @@ StorePaymentPurpose = typing.Union[
 ]
 
 
+class Stories(BaseObject):
+    """
+    Represents a list of stories
+
+    :param total_count: Approximate total number of stories found
+    :type total_count: :class:`Int32`
+    :param stories: The list of stories
+    :type stories: :class:`Vector[Story]`
+    """
+
+    ID: typing.Literal["stories"] = "stories"
+    total_count: Int32
+    stories: Vector[Story]
+
+
+class Story(BaseObject):
+    """
+    Represents a story
+
+    :param id: Unique story identifier among stories of the given sender
+    :type id: :class:`Int32`
+    :param sender_chat_id: Identifier of the chat that posted the story
+    :type sender_chat_id: :class:`Int53`
+    :param date: Point in time (Unix timestamp) when the story was published
+    :type date: :class:`Int32`
+    :param privacy_settings: Privacy rules affecting story visibility; may be approximate for non-owned stories
+    :type privacy_settings: :class:`StoryPrivacySettings`
+    :param content: Content of the story
+    :type content: :class:`StoryContent`
+    :param areas: Clickable areas to be shown on the story content
+    :type areas: :class:`Vector[StoryArea]`
+    :param caption: Caption of the story
+    :type caption: :class:`FormattedText`
+    :param interaction_info: Information about interactions with the story; may be null if the story isn't owned or there were no interactions, defaults to None
+    :type interaction_info: :class:`StoryInteractionInfo`, optional
+    :param chosen_reaction_type: Type of the chosen reaction; may be null if none, defaults to None
+    :type chosen_reaction_type: :class:`ReactionType`, optional
+    :param is_being_sent: True, if the story is being sent by the current user
+    :type is_being_sent: :class:`Bool`
+    :param is_being_edited: True, if the story is being edited by the current user
+    :type is_being_edited: :class:`Bool`
+    :param is_edited: True, if the story was edited
+    :type is_edited: :class:`Bool`
+    :param is_pinned: True, if the story is saved in the sender's profile and will be available there after expiration
+    :type is_pinned: :class:`Bool`
+    :param is_visible_only_for_self: True, if the story is visible only for the current user
+    :type is_visible_only_for_self: :class:`Bool`
+    :param can_be_forwarded: True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden
+    :type can_be_forwarded: :class:`Bool`
+    :param can_be_replied: True, if the story can be replied in the chat with the story sender
+    :type can_be_replied: :class:`Bool`
+    :param can_get_viewers: True, if users viewed the story can be received through getStoryViewers
+    :type can_get_viewers: :class:`Bool`
+    :param has_expired_viewers: True, if users viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
+    :type has_expired_viewers: :class:`Bool`
+    """
+
+    ID: typing.Literal["story"] = "story"
+    id: Int32
+    sender_chat_id: Int53
+    date: Int32
+    privacy_settings: StoryPrivacySettings
+    content: StoryContent
+    areas: Vector[StoryArea]
+    caption: FormattedText
+    interaction_info: typing.Optional[StoryInteractionInfo] = None
+    chosen_reaction_type: typing.Optional[ReactionType] = None
+    is_being_sent: Bool = False
+    is_being_edited: Bool = False
+    is_edited: Bool = False
+    is_pinned: Bool = False
+    is_visible_only_for_self: Bool = False
+    can_be_forwarded: Bool = False
+    can_be_replied: Bool = False
+    can_get_viewers: Bool = False
+    has_expired_viewers: Bool = False
+
+
+class StoryArea(BaseObject):
+    """
+    Describes a clickable rectangle area on a story media
+
+    :param position: Position of the area
+    :type position: :class:`StoryAreaPosition`
+    :param type_: Type of the area
+    :type type_: :class:`StoryAreaType`
+    """
+
+    ID: typing.Literal["storyArea"] = "storyArea"
+    position: StoryAreaPosition
+    type_: StoryAreaType = Field(..., alias="type")
+
+
+class StoryAreaPosition(BaseObject):
+    """
+    Describes position of a clickable rectangle area on a story media
+
+    :param x_percentage: The abscissa of the rectangle's center, as a percentage of the media width
+    :type x_percentage: :class:`Double`
+    :param y_percentage: The ordinate of the rectangle's center, as a percentage of the media height
+    :type y_percentage: :class:`Double`
+    :param width_percentage: The width of the rectangle, as a percentage of the media width
+    :type width_percentage: :class:`Double`
+    :param height_percentage: The ordinate of the rectangle's center, as a percentage of the media height
+    :type height_percentage: :class:`Double`
+    :param rotation_angle: Clockwise rotation angle of the rectangle, in degrees; 0-360
+    :type rotation_angle: :class:`Double`
+    """
+
+    ID: typing.Literal["storyAreaPosition"] = "storyAreaPosition"
+    x_percentage: Double
+    y_percentage: Double
+    width_percentage: Double
+    height_percentage: Double
+    rotation_angle: Double
+
+
+class StoryAreaTypeLocation(BaseObject):
+    """
+    An area pointing to a location
+
+    :param location: The location
+    :type location: :class:`Location`
+    """
+
+    ID: typing.Literal["storyAreaTypeLocation"] = "storyAreaTypeLocation"
+    location: Location
+
+
+class StoryAreaTypeVenue(BaseObject):
+    """
+    An area pointing to a venue
+
+    :param venue: Information about the venue
+    :type venue: :class:`Venue`
+    """
+
+    ID: typing.Literal["storyAreaTypeVenue"] = "storyAreaTypeVenue"
+    venue: Venue
+
+
+StoryAreaType = typing.Union[
+    StoryAreaTypeLocation,
+    StoryAreaTypeVenue,
+]
+
+
+class StoryContentPhoto(BaseObject):
+    """
+    A photo story
+
+    :param photo: The photo
+    :type photo: :class:`Photo`
+    """
+
+    ID: typing.Literal["storyContentPhoto"] = "storyContentPhoto"
+    photo: Photo
+
+
+class StoryContentUnsupported(BaseObject):
+    """
+    A story content that is not supported in the current TDLib version
+    """
+
+    ID: typing.Literal["storyContentUnsupported"] = "storyContentUnsupported"
+
+
+class StoryContentVideo(BaseObject):
+    """
+    A video story
+
+    :param video: The video in MPEG4 format
+    :type video: :class:`StoryVideo`
+    :param alternative_video: Alternative version of the video in MPEG4 format, encoded by x264 codec; may be null, defaults to None
+    :type alternative_video: :class:`StoryVideo`, optional
+    """
+
+    ID: typing.Literal["storyContentVideo"] = "storyContentVideo"
+    video: StoryVideo
+    alternative_video: typing.Optional[StoryVideo] = None
+
+
+StoryContent = typing.Union[
+    StoryContentPhoto,
+    StoryContentUnsupported,
+    StoryContentVideo,
+]
+
+
+class StoryInfo(BaseObject):
+    """
+    Contains basic information about a story
+
+    :param story_id: Unique story identifier among stories of the given sender
+    :type story_id: :class:`Int32`
+    :param date: Point in time (Unix timestamp) when the story was published
+    :type date: :class:`Int32`
+    :param is_for_close_friends: True, if the story is available only to close friends
+    :type is_for_close_friends: :class:`Bool`
+    """
+
+    ID: typing.Literal["storyInfo"] = "storyInfo"
+    story_id: Int32
+    date: Int32
+    is_for_close_friends: Bool = False
+
+
+class StoryInteractionInfo(BaseObject):
+    """
+    Contains information about interactions with a story
+
+    :param view_count: Number of times the story was viewed
+    :type view_count: :class:`Int32`
+    :param reaction_count: Number of reactions added to the story
+    :type reaction_count: :class:`Int32`
+    :param recent_viewer_user_ids: Identifiers of at most 3 recent viewers of the story
+    :type recent_viewer_user_ids: :class:`Vector[Int53]`
+    """
+
+    ID: typing.Literal["storyInteractionInfo"] = "storyInteractionInfo"
+    view_count: Int32
+    reaction_count: Int32
+    recent_viewer_user_ids: Vector[Int53]
+
+
+class StoryListArchive(BaseObject):
+    """
+    The list of stories, shown in the Arvhive chat list
+    """
+
+    ID: typing.Literal["storyListArchive"] = "storyListArchive"
+
+
+class StoryListMain(BaseObject):
+    """
+    The list of stories, shown in the main chat list and folder chat lists
+    """
+
+    ID: typing.Literal["storyListMain"] = "storyListMain"
+
+
+StoryList = typing.Union[
+    StoryListArchive,
+    StoryListMain,
+]
+
+
+class StoryPrivacySettingsCloseFriends(BaseObject):
+    """
+    The story can be viewed by all close friends
+    """
+
+    ID: typing.Literal["storyPrivacySettingsCloseFriends"] = "storyPrivacySettingsCloseFriends"
+
+
+class StoryPrivacySettingsContacts(BaseObject):
+    """
+    The story can be viewed by all contacts except chosen users
+
+    :param except_user_ids: User identifiers of the contacts that can't see the story; always unknown and empty for non-owned stories
+    :type except_user_ids: :class:`Vector[Int53]`
+    """
+
+    ID: typing.Literal["storyPrivacySettingsContacts"] = "storyPrivacySettingsContacts"
+    except_user_ids: Vector[Int53]
+
+
+class StoryPrivacySettingsEveryone(BaseObject):
+    """
+    The story can be viewed by everyone
+
+    :param except_user_ids: Identifiers of the users that can't see the story; always unknown and empty for non-owned stories
+    :type except_user_ids: :class:`Vector[Int53]`
+    """
+
+    ID: typing.Literal["storyPrivacySettingsEveryone"] = "storyPrivacySettingsEveryone"
+    except_user_ids: Vector[Int53]
+
+
+class StoryPrivacySettingsSelectedUsers(BaseObject):
+    """
+    The story can be viewed by certain specified users
+
+    :param user_ids: Identifiers of the users; always unknown and empty for non-owned stories
+    :type user_ids: :class:`Vector[Int53]`
+    """
+
+    ID: typing.Literal["storyPrivacySettingsSelectedUsers"] = "storyPrivacySettingsSelectedUsers"
+    user_ids: Vector[Int53]
+
+
+StoryPrivacySettings = typing.Union[
+    StoryPrivacySettingsCloseFriends,
+    StoryPrivacySettingsContacts,
+    StoryPrivacySettingsEveryone,
+    StoryPrivacySettingsSelectedUsers,
+]
+
+
+class StoryVideo(BaseObject):
+    """
+    Describes a video file sent in a story
+
+    :param duration: Duration of the video, in seconds
+    :type duration: :class:`Double`
+    :param width: Video width
+    :type width: :class:`Int32`
+    :param height: Video height
+    :type height: :class:`Int32`
+    :param preload_prefix_size: Size of file prefix, which is supposed to be preloaded, in bytes
+    :type preload_prefix_size: :class:`Int32`
+    :param video: File containing the video
+    :type video: :class:`File`
+    :param minithumbnail: Video minithumbnail; may be null, defaults to None
+    :type minithumbnail: :class:`Minithumbnail`, optional
+    :param thumbnail: Video thumbnail in JPEG or MPEG4 format; may be null, defaults to None
+    :type thumbnail: :class:`Thumbnail`, optional
+    :param has_stickers: True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets
+    :type has_stickers: :class:`Bool`
+    :param is_animation: True, if the video has no sound
+    :type is_animation: :class:`Bool`
+    """
+
+    ID: typing.Literal["storyVideo"] = "storyVideo"
+    duration: Double
+    width: Int32
+    height: Int32
+    preload_prefix_size: Int32
+    video: File
+    minithumbnail: typing.Optional[Minithumbnail] = None
+    thumbnail: typing.Optional[Thumbnail] = None
+    has_stickers: Bool = False
+    is_animation: Bool = False
+
+
+class StoryViewer(BaseObject):
+    """
+    Represents a viewer of a story
+
+    :param user_id: User identifier of the viewer
+    :type user_id: :class:`Int53`
+    :param view_date: Approximate point in time (Unix timestamp) when the story was viewed
+    :type view_date: :class:`Int32`
+    :param block_list: Block list to which the user is added; may be null if none, defaults to None
+    :type block_list: :class:`BlockList`, optional
+    :param chosen_reaction_type: Type of the reaction that was chosen by the user; may be null if none, defaults to None
+    :type chosen_reaction_type: :class:`ReactionType`, optional
+    """
+
+    ID: typing.Literal["storyViewer"] = "storyViewer"
+    user_id: Int53
+    view_date: Int32
+    block_list: typing.Optional[BlockList] = None
+    chosen_reaction_type: typing.Optional[ReactionType] = None
+
+
+class StoryViewers(BaseObject):
+    """
+    Represents a list of story viewers
+
+    :param total_count: Approximate total number of story viewers found
+    :type total_count: :class:`Int32`
+    :param total_reaction_count: Approximate total number of reactions set by found story viewers
+    :type total_reaction_count: :class:`Int32`
+    :param viewers: List of story viewers
+    :type viewers: :class:`Vector[StoryViewer]`
+    :param next_offset: The offset for the next request. If empty, there are no more results
+    :type next_offset: :class:`String`
+    """
+
+    ID: typing.Literal["storyViewers"] = "storyViewers"
+    total_count: Int32
+    total_reaction_count: Int32
+    viewers: Vector[StoryViewer]
+    next_offset: String
+
+
 class SuggestedActionCheckPassword(BaseObject):
     """
     Suggests the user to check whether they still remember their 2-step verification password
@@ -15531,10 +16624,18 @@ class SuggestedActionConvertToBroadcastGroup(BaseObject):
 
 class SuggestedActionEnableArchiveAndMuteNewChats(BaseObject):
     """
-    Suggests the user to enable "archive_and_mute_new_chats_from_unknown_users" option
+    Suggests the user to enable archive_and_mute_new_chats_from_unknown_users setting in archiveChatListSettings
     """
 
     ID: typing.Literal["suggestedActionEnableArchiveAndMuteNewChats"] = "suggestedActionEnableArchiveAndMuteNewChats"
+
+
+class SuggestedActionRestorePremium(BaseObject):
+    """
+    Suggests the user to restore a recently expired Premium subscription
+    """
+
+    ID: typing.Literal["suggestedActionRestorePremium"] = "suggestedActionRestorePremium"
 
 
 class SuggestedActionSetPassword(BaseObject):
@@ -15578,6 +16679,7 @@ SuggestedAction = typing.Union[
     SuggestedActionCheckPhoneNumber,
     SuggestedActionConvertToBroadcastGroup,
     SuggestedActionEnableArchiveAndMuteNewChats,
+    SuggestedActionRestorePremium,
     SuggestedActionSetPassword,
     SuggestedActionSubscribeToAnnualPremium,
     SuggestedActionUpgradePremium,
@@ -15662,7 +16764,7 @@ class SupergroupFullInfo(BaseObject):
     :type bot_commands: :class:`Vector[BotCommands]`
     :param photo: Chat photo; may be null if empty or unknown. If non-null, then it is the same photo as in chat.photo, defaults to None
     :type photo: :class:`ChatPhoto`, optional
-    :param location: Location to which the supergroup is connected; may be null, defaults to None
+    :param location: Location to which the supergroup is connected; may be null if none, defaults to None
     :type location: :class:`ChatLocation`, optional
     :param invite_link: Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only, defaults to None
     :type invite_link: :class:`ChatInviteLink`, optional
@@ -15672,8 +16774,6 @@ class SupergroupFullInfo(BaseObject):
     :type has_hidden_members: :class:`Bool`
     :param can_hide_members: True, if non-administrators and non-bots can be hidden in responses to getSupergroupMembers and searchChatMembers for non-administrators
     :type can_hide_members: :class:`Bool`
-    :param can_set_username: True, if the chat username can be changed
-    :type can_set_username: :class:`Bool`
     :param can_set_sticker_set: True, if the supergroup sticker set can be changed
     :type can_set_sticker_set: :class:`Bool`
     :param can_set_location: True, if the supergroup location can be changed
@@ -15715,7 +16815,6 @@ class SupergroupFullInfo(BaseObject):
     can_get_members: Bool = False
     has_hidden_members: Bool = False
     can_hide_members: Bool = False
-    can_set_username: Bool = False
     can_set_sticker_set: Bool = False
     can_set_location: Bool = False
     can_get_statistics: Bool = False
@@ -16428,7 +17527,7 @@ class Thumbnail(BaseObject):
 
 class ThumbnailFormatGif(BaseObject):
     """
-    The thumbnail is in static GIF format. It will be used only for some bot inline results
+    The thumbnail is in static GIF format. It will be used only for some bot inline query results
     """
 
     ID: typing.Literal["thumbnailFormatGif"] = "thumbnailFormatGif"
@@ -16578,6 +17677,27 @@ class TrendingStickerSets(BaseObject):
     is_premium: Bool = False
 
 
+class UnconfirmedSession(BaseObject):
+    """
+    Contains information about an unconfirmed session
+
+    :param id: Session identifier
+    :type id: :class:`Int64`
+    :param log_in_date: Point in time (Unix timestamp) when the user has logged in
+    :type log_in_date: :class:`Int32`
+    :param device_model: Model of the device that was used for the session creation, as provided by the application
+    :type device_model: :class:`String`
+    :param location: A human-readable description of the location from which the session was created, based on the IP address
+    :type location: :class:`String`
+    """
+
+    ID: typing.Literal["unconfirmedSession"] = "unconfirmedSession"
+    id: Int64
+    log_in_date: Int32
+    device_model: String
+    location: String
+
+
 class UnreadReaction(BaseObject):
     """
     Contains information about an unread reaction to a message
@@ -16670,9 +17790,9 @@ class UpdateAnimationSearchParameters(BaseObject):
 
 class UpdateAttachmentMenuBots(BaseObject):
     """
-    The list of bots added to attachment menu has changed
+    The list of bots added to attachment or side menu has changed
 
-    :param bots: The new list of bots added to attachment menu. The bots must not be shown on scheduled messages screen
+    :param bots: The new list of bots. The bots must not be shown on scheduled messages screen
     :type bots: :class:`Vector[AttachmentMenuBot]`
     """
 
@@ -16782,6 +17902,18 @@ class UpdateChatActionBar(BaseObject):
     action_bar: typing.Optional[ChatActionBar] = None
 
 
+class UpdateChatActiveStories(BaseObject):
+    """
+    The list of active stories posted by a specific chat has changed
+
+    :param active_stories: The new list of active stories
+    :type active_stories: :class:`ChatActiveStories`
+    """
+
+    ID: typing.Literal["updateChatActiveStories"] = "updateChatActiveStories"
+    active_stories: ChatActiveStories
+
+
 class UpdateChatAvailableReactions(BaseObject):
     """
     The chat available reactions were changed
@@ -16810,6 +17942,21 @@ class UpdateChatBackground(BaseObject):
     ID: typing.Literal["updateChatBackground"] = "updateChatBackground"
     chat_id: Int53
     background: typing.Optional[ChatBackground] = None
+
+
+class UpdateChatBlockList(BaseObject):
+    """
+    A chat was blocked or unblocked
+
+    :param chat_id: Chat identifier
+    :type chat_id: :class:`Int53`
+    :param block_list: Block list to which the chat is added; may be null if none, defaults to None
+    :type block_list: :class:`BlockList`, optional
+    """
+
+    ID: typing.Literal["updateChatBlockList"] = "updateChatBlockList"
+    chat_id: Int53
+    block_list: typing.Optional[BlockList] = None
 
 
 class UpdateChatDefaultDisableNotification(BaseObject):
@@ -16888,21 +18035,6 @@ class UpdateChatHasScheduledMessages(BaseObject):
     ID: typing.Literal["updateChatHasScheduledMessages"] = "updateChatHasScheduledMessages"
     chat_id: Int53
     has_scheduled_messages: Bool
-
-
-class UpdateChatIsBlocked(BaseObject):
-    """
-    A chat was blocked or unblocked
-
-    :param chat_id: Chat identifier
-    :type chat_id: :class:`Int53`
-    :param is_blocked: New value of is_blocked
-    :type is_blocked: :class:`Bool`
-    """
-
-    ID: typing.Literal["updateChatIsBlocked"] = "updateChatIsBlocked"
-    chat_id: Int53
-    is_blocked: Bool
 
 
 class UpdateChatIsMarkedAsUnread(BaseObject):
@@ -17980,9 +19112,9 @@ class UpdateNotificationGroup(BaseObject):
     :type notification_sound_id: :class:`Int64`
     :param total_count: Total number of unread notifications in the group, can be bigger than number of active notifications
     :type total_count: :class:`Int32`
-    :param added_notifications: List of added group notifications, sorted by notification ID
+    :param added_notifications: List of added group notifications, sorted by notification identifier
     :type added_notifications: :class:`Vector[Notification]`
-    :param removed_notification_ids: Identifiers of removed group notifications, sorted by notification ID
+    :param removed_notification_ids: Identifiers of removed group notifications, sorted by notification identifier
     :type removed_notification_ids: :class:`Vector[Int32]`
     """
 
@@ -18030,15 +19162,15 @@ class UpdatePollAnswer(BaseObject):
 
     :param poll_id: Unique poll identifier
     :type poll_id: :class:`Int64`
-    :param user_id: The user, who changed the answer to the poll
-    :type user_id: :class:`Int53`
+    :param voter_id: Identifier of the message sender that changed the answer to the poll
+    :type voter_id: :class:`MessageSender`
     :param option_ids: 0-based identifiers of answer options, chosen by the user
     :type option_ids: :class:`Vector[Int32]`
     """
 
     ID: typing.Literal["updatePollAnswer"] = "updatePollAnswer"
     poll_id: Int64
-    user_id: Int53
+    voter_id: MessageSender
     option_ids: Vector[Int32]
 
 
@@ -18150,6 +19282,99 @@ class UpdateStickerSet(BaseObject):
     sticker_set: StickerSet
 
 
+class UpdateStory(BaseObject):
+    """
+    A story was changed
+
+    :param story: The new information about the story
+    :type story: :class:`Story`
+    """
+
+    ID: typing.Literal["updateStory"] = "updateStory"
+    story: Story
+
+
+class UpdateStoryDeleted(BaseObject):
+    """
+    A story became inaccessible
+
+    :param story_sender_chat_id: Identifier of the chat that posted the story
+    :type story_sender_chat_id: :class:`Int53`
+    :param story_id: Story identifier
+    :type story_id: :class:`Int32`
+    """
+
+    ID: typing.Literal["updateStoryDeleted"] = "updateStoryDeleted"
+    story_sender_chat_id: Int53
+    story_id: Int32
+
+
+class UpdateStoryListChatCount(BaseObject):
+    """
+    Number of chats in a story list has changed
+
+    :param story_list: The story list
+    :type story_list: :class:`StoryList`
+    :param chat_count: Approximate total number of chats with active stories in the list
+    :type chat_count: :class:`Int32`
+    """
+
+    ID: typing.Literal["updateStoryListChatCount"] = "updateStoryListChatCount"
+    story_list: StoryList
+    chat_count: Int32
+
+
+class UpdateStorySendFailed(BaseObject):
+    """
+    A story failed to send. If the story sending is canceled, then updateStoryDeleted will be received instead of this update
+
+    :param story: The failed to send story
+    :type story: :class:`Story`
+    :param error_code: An error code
+    :type error_code: :class:`Int32`
+    :param error_message: Error message
+    :type error_message: :class:`String`
+    :param error: The cause of the failure; may be null if unknown, defaults to None
+    :type error: :class:`CanSendStoryResult`, optional
+    """
+
+    ID: typing.Literal["updateStorySendFailed"] = "updateStorySendFailed"
+    story: Story
+    error_code: Int32
+    error_message: String
+    error: typing.Optional[CanSendStoryResult] = None
+
+
+class UpdateStorySendSucceeded(BaseObject):
+    """
+    A story has been successfully sent
+
+    :param story: The sent story
+    :type story: :class:`Story`
+    :param old_story_id: The previous temporary story identifier
+    :type old_story_id: :class:`Int32`
+    """
+
+    ID: typing.Literal["updateStorySendSucceeded"] = "updateStorySendSucceeded"
+    story: Story
+    old_story_id: Int32
+
+
+class UpdateStoryStealthMode(BaseObject):
+    """
+    Story stealth mode settings have changed
+
+    :param active_until_date: Point in time (Unix timestamp) until stealth mode is active; 0 if it is disabled
+    :type active_until_date: :class:`Int32`
+    :param cooldown_until_date: Point in time (Unix timestamp) when stealth mode can be enabled again; 0 if there is no active cooldown
+    :type cooldown_until_date: :class:`Int32`
+    """
+
+    ID: typing.Literal["updateStoryStealthMode"] = "updateStoryStealthMode"
+    active_until_date: Int32
+    cooldown_until_date: Int32
+
+
 class UpdateSuggestedActions(BaseObject):
     """
     The list of suggested to the user actions has changed
@@ -18220,6 +19445,18 @@ class UpdateTrendingStickerSets(BaseObject):
     ID: typing.Literal["updateTrendingStickerSets"] = "updateTrendingStickerSets"
     sticker_type: StickerType
     sticker_sets: TrendingStickerSets
+
+
+class UpdateUnconfirmedSession(BaseObject):
+    """
+    The first unconfirmed session has changed
+
+    :param session: The unconfirmed session; may be null if none, defaults to None
+    :type session: :class:`UnconfirmedSession`, optional
+    """
+
+    ID: typing.Literal["updateUnconfirmedSession"] = "updateUnconfirmedSession"
+    session: typing.Optional[UnconfirmedSession] = None
 
 
 class UpdateUnreadChatCount(BaseObject):
@@ -18362,14 +19599,15 @@ Update = typing.Union[
     UpdateCall,
     UpdateChatAction,
     UpdateChatActionBar,
+    UpdateChatActiveStories,
     UpdateChatAvailableReactions,
     UpdateChatBackground,
+    UpdateChatBlockList,
     UpdateChatDefaultDisableNotification,
     UpdateChatDraftMessage,
     UpdateChatFolders,
     UpdateChatHasProtectedContent,
     UpdateChatHasScheduledMessages,
-    UpdateChatIsBlocked,
     UpdateChatIsMarkedAsUnread,
     UpdateChatIsTranslatable,
     UpdateChatLastMessage,
@@ -18445,11 +19683,18 @@ Update = typing.Union[
     UpdateSelectedBackground,
     UpdateServiceNotification,
     UpdateStickerSet,
+    UpdateStory,
+    UpdateStoryDeleted,
+    UpdateStoryListChatCount,
+    UpdateStorySendFailed,
+    UpdateStorySendSucceeded,
+    UpdateStoryStealthMode,
     UpdateSuggestedActions,
     UpdateSupergroup,
     UpdateSupergroupFullInfo,
     UpdateTermsOfService,
     UpdateTrendingStickerSets,
+    UpdateUnconfirmedSession,
     UpdateUnreadChatCount,
     UpdateUnreadMessageCount,
     UpdateUser,
@@ -18491,6 +19736,8 @@ class User(BaseObject):
     :type is_contact: :class:`Bool`
     :param is_mutual_contact: The user is a contact of the current user and the current user is a contact of the user
     :type is_mutual_contact: :class:`Bool`
+    :param is_close_friend: The user is a close friend of the current user; implies that the user is a contact
+    :type is_close_friend: :class:`Bool`
     :param restriction_reason: If non-empty, it contains a human-readable description of the reason why access to this user must be restricted
     :type restriction_reason: :class:`String`
     :param have_access: If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method
@@ -18515,6 +19762,10 @@ class User(BaseObject):
     :type is_scam: :class:`Bool`
     :param is_fake: True, if many users reported this user as a fake account
     :type is_fake: :class:`Bool`
+    :param has_active_stories: True, if the user has non-expired stories available to the current user
+    :type has_active_stories: :class:`Bool`
+    :param has_unread_active_stories: True, if the user has unread non-expired stories available to the current user
+    :type has_unread_active_stories: :class:`Bool`
     :param added_to_attachment_menu: True, if the user added the current bot to attachment menu; only available to bots
     :type added_to_attachment_menu: :class:`Bool`
     """
@@ -18527,6 +19778,7 @@ class User(BaseObject):
     status: UserStatus
     is_contact: Bool
     is_mutual_contact: Bool
+    is_close_friend: Bool
     restriction_reason: String
     have_access: Bool
     type_: UserType = Field(..., alias="type")
@@ -18539,6 +19791,8 @@ class User(BaseObject):
     is_support: Bool = False
     is_scam: Bool = False
     is_fake: Bool = False
+    has_active_stories: Bool = False
+    has_unread_active_stories: Bool = False
     added_to_attachment_menu: Bool = False
 
 
@@ -18556,12 +19810,12 @@ class UserFullInfo(BaseObject):
     :type photo: :class:`ChatPhoto`, optional
     :param public_photo: User profile photo visible if the main photo is hidden by privacy settings; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and both photo and personal_photo are null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos, defaults to None
     :type public_photo: :class:`ChatPhoto`, optional
+    :param block_list: Block list to which the user is added; may be null if none, defaults to None
+    :type block_list: :class:`BlockList`, optional
     :param bio: A short user bio; may be null for bots, defaults to None
     :type bio: :class:`FormattedText`, optional
-    :param bot_info: For bots, information about the bot; may be null, defaults to None
+    :param bot_info: For bots, information about the bot; may be null if the user isn't a bot, defaults to None
     :type bot_info: :class:`BotInfo`, optional
-    :param is_blocked: True, if the user is blocked by the current user
-    :type is_blocked: :class:`Bool`
     :param can_be_called: True, if the user can be called
     :type can_be_called: :class:`Bool`
     :param supports_video_calls: True, if a video call can be created with the user
@@ -18572,6 +19826,8 @@ class UserFullInfo(BaseObject):
     :type has_private_forwards: :class:`Bool`
     :param has_restricted_voice_and_video_note_messages: True, if voice and video notes can't be sent or forwarded to the user
     :type has_restricted_voice_and_video_note_messages: :class:`Bool`
+    :param has_pinned_stories: True, if the user has pinned stories
+    :type has_pinned_stories: :class:`Bool`
     :param need_phone_number_privacy_exception: True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used
     :type need_phone_number_privacy_exception: :class:`Bool`
     """
@@ -18582,14 +19838,15 @@ class UserFullInfo(BaseObject):
     personal_photo: typing.Optional[ChatPhoto] = None
     photo: typing.Optional[ChatPhoto] = None
     public_photo: typing.Optional[ChatPhoto] = None
+    block_list: typing.Optional[BlockList] = None
     bio: typing.Optional[FormattedText] = None
     bot_info: typing.Optional[BotInfo] = None
-    is_blocked: Bool = False
     can_be_called: Bool = False
     supports_video_calls: Bool = False
     has_private_calls: Bool = False
     has_private_forwards: Bool = False
     has_restricted_voice_and_video_note_messages: Bool = False
+    has_pinned_stories: Bool = False
     need_phone_number_privacy_exception: Bool = False
 
 
@@ -18650,6 +19907,14 @@ class UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages(BaseObject):
     ] = "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
 
 
+class UserPrivacySettingShowBio(BaseObject):
+    """
+    A privacy setting for managing whether the user's bio is visible
+    """
+
+    ID: typing.Literal["userPrivacySettingShowBio"] = "userPrivacySettingShowBio"
+
+
 class UserPrivacySettingShowLinkInForwardedMessages(BaseObject):
     """
     A privacy setting for managing whether a link to the user's account is included in forwarded messages
@@ -18690,6 +19955,7 @@ UserPrivacySetting = typing.Union[
     UserPrivacySettingAllowFindingByPhoneNumber,
     UserPrivacySettingAllowPeerToPeerCalls,
     UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages,
+    UserPrivacySettingShowBio,
     UserPrivacySettingShowLinkInForwardedMessages,
     UserPrivacySettingShowPhoneNumber,
     UserPrivacySettingShowProfilePhoto,
@@ -18719,7 +19985,7 @@ class UserPrivacySettingRuleAllowChatMembers(BaseObject):
 
 class UserPrivacySettingRuleAllowContacts(BaseObject):
     """
-    A rule to allow all of a user's contacts to do something
+    A rule to allow all contacts of the user to do something
     """
 
     ID: typing.Literal["userPrivacySettingRuleAllowContacts"] = "userPrivacySettingRuleAllowContacts"
@@ -18759,7 +20025,7 @@ class UserPrivacySettingRuleRestrictChatMembers(BaseObject):
 
 class UserPrivacySettingRuleRestrictContacts(BaseObject):
     """
-    A rule to restrict all contacts of a user from doing something
+    A rule to restrict all contacts of the user from doing something
     """
 
     ID: typing.Literal["userPrivacySettingRuleRestrictContacts"] = "userPrivacySettingRuleRestrictContacts"
@@ -18901,7 +20167,7 @@ class UserTypeBot(BaseObject):
     :type is_inline: :class:`Bool`
     :param need_location: True, if the location of the user is expected to be sent with every inline query to this bot
     :type need_location: :class:`Bool`
-    :param can_be_added_to_attachment_menu: True, if the bot can be added to attachment menu
+    :param can_be_added_to_attachment_menu: True, if the bot can be added to attachment or side menu
     :type can_be_added_to_attachment_menu: :class:`Bool`
     """
 
@@ -19252,6 +20518,10 @@ class WebPage(BaseObject):
     :type video_note: :class:`VideoNote`, optional
     :param voice_note: Preview of the content as a voice note, if available; may be null, defaults to None
     :type voice_note: :class:`VoiceNote`, optional
+    :param story_sender_chat_id: The identifier of the sender of the previewed story; 0 if none, defaults to None
+    :type story_sender_chat_id: :class:`Int53`, optional
+    :param story_id: The identifier of the previewed story; 0 if none, defaults to None
+    :type story_id: :class:`Int32`, optional
     :param instant_view_version: Version of web page instant view (currently, can be 1 or 2); 0 if none, defaults to None
     :type instant_view_version: :class:`Int32`, optional
     """
@@ -19277,6 +20547,8 @@ class WebPage(BaseObject):
     video: typing.Optional[Video] = None
     video_note: typing.Optional[VideoNote] = None
     voice_note: typing.Optional[VoiceNote] = None
+    story_sender_chat_id: typing.Optional[Int53] = 0
+    story_id: typing.Optional[Int32] = 0
     instant_view_version: typing.Optional[Int32] = 0
 
 
@@ -19339,6 +20611,7 @@ CallStateDiscarded.update_forward_refs()
 CallStateError.update_forward_refs()
 CallStateReady.update_forward_refs()
 Chat.update_forward_refs()
+ChatActiveStories.update_forward_refs()
 ChatAdministrators.update_forward_refs()
 ChatAvailableReactionsSome.update_forward_refs()
 ChatBackground.update_forward_refs()
@@ -19407,7 +20680,6 @@ DraftMessage.update_forward_refs()
 EmojiCategories.update_forward_refs()
 EmojiCategory.update_forward_refs()
 EmojiReaction.update_forward_refs()
-EmojiStatuses.update_forward_refs()
 EncryptedPassportElement.update_forward_refs()
 File.update_forward_refs()
 FileDownload.update_forward_refs()
@@ -19489,6 +20761,11 @@ InputPassportElementUtilityBill.update_forward_refs()
 InputPassportElementError.update_forward_refs()
 InputPersonalDocument.update_forward_refs()
 InputSticker.update_forward_refs()
+InputStoryArea.update_forward_refs()
+InputStoryAreaTypeLocation.update_forward_refs()
+InputStoryAreas.update_forward_refs()
+InputStoryContentPhoto.update_forward_refs()
+InputStoryContentVideo.update_forward_refs()
 InputThumbnail.update_forward_refs()
 InternalLinkTypeAttachmentMenuBot.update_forward_refs()
 InternalLinkTypeBotAddToChannel.update_forward_refs()
@@ -19549,6 +20826,9 @@ MessageReaction.update_forward_refs()
 MessageReplyInfo.update_forward_refs()
 MessageSendOptions.update_forward_refs()
 MessageSenders.update_forward_refs()
+MessageSponsor.update_forward_refs()
+MessageSponsorTypeBot.update_forward_refs()
+MessageSponsorTypePublicChannel.update_forward_refs()
 MessageStatistics.update_forward_refs()
 MessageThreadInfo.update_forward_refs()
 MessageViewers.update_forward_refs()
@@ -19628,6 +20908,7 @@ PremiumLimit.update_forward_refs()
 PremiumPaymentOption.update_forward_refs()
 PremiumSourceFeature.update_forward_refs()
 PremiumSourceLimitExceeded.update_forward_refs()
+PremiumSourceStoryFeature.update_forward_refs()
 PremiumState.update_forward_refs()
 PremiumStatePaymentOption.update_forward_refs()
 ProfilePhoto.update_forward_refs()
@@ -19677,6 +20958,16 @@ Stickers.update_forward_refs()
 StorageStatistics.update_forward_refs()
 StorageStatisticsByChat.update_forward_refs()
 StorageStatisticsByFileType.update_forward_refs()
+Stories.update_forward_refs()
+Story.update_forward_refs()
+StoryArea.update_forward_refs()
+StoryAreaTypeLocation.update_forward_refs()
+StoryAreaTypeVenue.update_forward_refs()
+StoryContentPhoto.update_forward_refs()
+StoryContentVideo.update_forward_refs()
+StoryVideo.update_forward_refs()
+StoryViewer.update_forward_refs()
+StoryViewers.update_forward_refs()
 Supergroup.update_forward_refs()
 SupergroupFullInfo.update_forward_refs()
 TMeUrl.update_forward_refs()
@@ -19702,8 +20993,10 @@ UpdateBasicGroupFullInfo.update_forward_refs()
 UpdateCall.update_forward_refs()
 UpdateChatAction.update_forward_refs()
 UpdateChatActionBar.update_forward_refs()
+UpdateChatActiveStories.update_forward_refs()
 UpdateChatAvailableReactions.update_forward_refs()
 UpdateChatBackground.update_forward_refs()
+UpdateChatBlockList.update_forward_refs()
 UpdateChatDraftMessage.update_forward_refs()
 UpdateChatFolders.update_forward_refs()
 UpdateChatLastMessage.update_forward_refs()
@@ -19746,16 +21039,22 @@ UpdateNotification.update_forward_refs()
 UpdateNotificationGroup.update_forward_refs()
 UpdateOption.update_forward_refs()
 UpdatePoll.update_forward_refs()
+UpdatePollAnswer.update_forward_refs()
 UpdateScopeNotificationSettings.update_forward_refs()
 UpdateSecretChat.update_forward_refs()
 UpdateSelectedBackground.update_forward_refs()
 UpdateServiceNotification.update_forward_refs()
 UpdateStickerSet.update_forward_refs()
+UpdateStory.update_forward_refs()
+UpdateStoryListChatCount.update_forward_refs()
+UpdateStorySendFailed.update_forward_refs()
+UpdateStorySendSucceeded.update_forward_refs()
 UpdateSuggestedActions.update_forward_refs()
 UpdateSupergroup.update_forward_refs()
 UpdateSupergroupFullInfo.update_forward_refs()
 UpdateTermsOfService.update_forward_refs()
 UpdateTrendingStickerSets.update_forward_refs()
+UpdateUnconfirmedSession.update_forward_refs()
 UpdateUnreadChatCount.update_forward_refs()
 UpdateUnreadMessageCount.update_forward_refs()
 UpdateUser.update_forward_refs()

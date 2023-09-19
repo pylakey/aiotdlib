@@ -18,7 +18,7 @@ from ..types.all import (
 
 class GetChatNotificationSettingsExceptions(BaseObject):
     """
-    Returns list of chats with non-default notification settings
+    Returns list of chats with non-default notification settings for new messages
 
     :param compare_sound: Pass true to include in the response chats with only non-default sound
     :type compare_sound: :class:`Bool`

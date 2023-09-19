@@ -12,7 +12,7 @@ from pydantic import Field
 from ..types.base import *
 
 from ..types.all import (
-    ChatReportReason,
+    ReportReason,
 )
 
 
@@ -25,7 +25,7 @@ class ReportChatPhoto(BaseObject):
     :param file_id: Identifier of the photo to report. Only full photos from chatPhoto can be reported
     :type file_id: :class:`Int32`
     :param reason: The reason for reporting the chat photo
-    :type reason: :class:`ChatReportReason`
+    :type reason: :class:`ReportReason`
     :param text: Additional report details; 0-1024 characters
     :type text: :class:`String`
     """
@@ -33,5 +33,5 @@ class ReportChatPhoto(BaseObject):
     ID: typing.Literal["reportChatPhoto"] = "reportChatPhoto"
     chat_id: Int53
     file_id: Int32
-    reason: ChatReportReason
+    reason: ReportReason
     text: String = Field("", max_length=1024)

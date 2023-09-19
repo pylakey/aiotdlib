@@ -11,6 +11,9 @@ from .accept_call import AcceptCall
 from .accept_terms_of_service import AcceptTermsOfService
 
 
+from .activate_story_stealth_mode import ActivateStoryStealthMode
+
+
 from .add_application_changelog import AddApplicationChangelog
 
 
@@ -68,6 +71,9 @@ from .add_saved_notification_sound import AddSavedNotificationSound
 from .add_sticker_to_set import AddStickerToSet
 
 
+from .allow_bot_to_send_messages import AllowBotToSendMessages
+
+
 from .answer_callback_query import AnswerCallbackQuery
 
 
@@ -98,7 +104,13 @@ from .ban_chat_member import BanChatMember
 from .block_message_sender_from_replies import BlockMessageSenderFromReplies
 
 
+from .can_bot_send_messages import CanBotSendMessages
+
+
 from .can_purchase_premium import CanPurchasePremium
+
+
+from .can_send_story import CanSendStory
 
 
 from .can_transfer_ownership import CanTransferOwnership
@@ -200,6 +212,9 @@ from .clear_recently_found_chats import ClearRecentlyFoundChats
 from .click_animated_emoji_message import ClickAnimatedEmojiMessage
 
 
+from .click_chat_sponsored_message import ClickChatSponsoredMessage
+
+
 from .click_premium_subscription_button import ClickPremiumSubscriptionButton
 
 
@@ -212,10 +227,16 @@ from .close_chat import CloseChat
 from .close_secret_chat import CloseSecretChat
 
 
+from .close_story import CloseStory
+
+
 from .close_web_app import CloseWebApp
 
 
 from .confirm_qr_code_authentication import ConfirmQrCodeAuthentication
+
+
+from .confirm_session import ConfirmSession
 
 
 from .create_basic_group_chat import CreateBasicGroupChat
@@ -329,6 +350,9 @@ from .delete_saved_order_info import DeleteSavedOrderInfo
 from .delete_sticker_set import DeleteStickerSet
 
 
+from .delete_story import DeleteStory
+
+
 from .destroy import Destroy
 
 
@@ -401,6 +425,9 @@ from .edit_message_text import EditMessageText
 from .edit_proxy import EditProxy
 
 
+from .edit_story import EditStory
+
+
 from .enable_proxy import EnableProxy
 
 
@@ -431,6 +458,9 @@ from .get_active_sessions import GetActiveSessions
 from .get_all_passport_elements import GetAllPassportElements
 
 
+from .get_all_sticker_emojis import GetAllStickerEmojis
+
+
 from .get_animated_emoji import GetAnimatedEmoji
 
 
@@ -440,7 +470,13 @@ from .get_application_config import GetApplicationConfig
 from .get_application_download_link import GetApplicationDownloadLink
 
 
+from .get_archive_chat_list_settings import GetArchiveChatListSettings
+
+
 from .get_archived_sticker_sets import GetArchivedStickerSets
+
+
+from .get_archived_stories import GetArchivedStories
 
 
 from .get_attached_sticker_sets import GetAttachedStickerSets
@@ -494,6 +530,9 @@ from .get_callback_query_message import GetCallbackQueryMessage
 from .get_chat import GetChat
 
 
+from .get_chat_active_stories import GetChatActiveStories
+
+
 from .get_chat_administrators import GetChatAdministrators
 
 
@@ -504,6 +543,9 @@ from .get_chat_event_log import GetChatEventLog
 
 
 from .get_chat_folder import GetChatFolder
+
+
+from .get_chat_folder_chat_count import GetChatFolderChatCount
 
 
 from .get_chat_folder_chats_to_leave import GetChatFolderChatsToLeave
@@ -560,6 +602,9 @@ from .get_chat_notification_settings_exceptions import GetChatNotificationSettin
 from .get_chat_pinned_message import GetChatPinnedMessage
 
 
+from .get_chat_pinned_stories import GetChatPinnedStories
+
+
 from .get_chat_scheduled_messages import GetChatScheduledMessages
 
 
@@ -576,6 +621,9 @@ from .get_chats import GetChats
 
 
 from .get_chats_for_chat_folder_invite_link import GetChatsForChatFolderInviteLink
+
+
+from .get_close_friends import GetCloseFriends
 
 
 from .get_commands import GetCommands
@@ -920,6 +968,18 @@ from .get_storage_statistics import GetStorageStatistics
 from .get_storage_statistics_fast import GetStorageStatisticsFast
 
 
+from .get_story import GetStory
+
+
+from .get_story_available_reactions import GetStoryAvailableReactions
+
+
+from .get_story_notification_settings_exceptions import GetStoryNotificationSettingsExceptions
+
+
+from .get_story_viewers import GetStoryViewers
+
+
 from .get_suggested_file_name import GetSuggestedFileName
 
 
@@ -1025,6 +1085,9 @@ from .leave_chat import LeaveChat
 from .leave_group_call import LeaveGroupCall
 
 
+from .load_active_stories import LoadActiveStories
+
+
 from .load_chats import LoadChats
 
 
@@ -1038,6 +1101,9 @@ from .open_chat import OpenChat
 
 
 from .open_message_content import OpenMessageContent
+
+
+from .open_story import OpenStory
 
 
 from .open_web_app import OpenWebApp
@@ -1160,10 +1226,10 @@ from .remove_sticker_from_set import RemoveStickerFromSet
 from .remove_top_chat import RemoveTopChat
 
 
-from .reorder_active_bot_usernames import ReorderActiveBotUsernames
-
-
 from .reorder_active_usernames import ReorderActiveUsernames
+
+
+from .reorder_bot_active_usernames import ReorderBotActiveUsernames
 
 
 from .reorder_chat_folders import ReorderChatFolders
@@ -1188,6 +1254,9 @@ from .report_chat_photo import ReportChatPhoto
 
 
 from .report_message_reactions import ReportMessageReactions
+
+
+from .report_story import ReportStory
 
 
 from .report_supergroup_anti_spam_false_positive import ReportSupergroupAntiSpamFalsePositive
@@ -1304,6 +1373,9 @@ from .search_public_chat import SearchPublicChat
 from .search_public_chats import SearchPublicChats
 
 
+from .search_recently_found_chats import SearchRecentlyFoundChats
+
+
 from .search_secret_messages import SearchSecretMessages
 
 
@@ -1314,6 +1386,9 @@ from .search_sticker_sets import SearchStickerSets
 
 
 from .search_stickers import SearchStickers
+
+
+from .search_strings_by_prefix import SearchStringsByPrefix
 
 
 from .search_user_by_phone_number import SearchUserByPhoneNumber
@@ -1346,9 +1421,6 @@ from .send_call_signaling_data import SendCallSignalingData
 from .send_chat_action import SendChatAction
 
 
-from .send_chat_screenshot_taken_notification import SendChatScreenshotTakenNotification
-
-
 from .send_custom_request import SendCustomRequest
 
 
@@ -1376,6 +1448,12 @@ from .send_phone_number_confirmation_code import SendPhoneNumberConfirmationCode
 from .send_phone_number_verification_code import SendPhoneNumberVerificationCode
 
 
+from .send_story import SendStory
+
+
+from .send_web_app_custom_request import SendWebAppCustomRequest
+
+
 from .send_web_app_data import SendWebAppData
 
 
@@ -1383,6 +1461,9 @@ from .set_account_ttl import SetAccountTtl
 
 
 from .set_alarm import SetAlarm
+
+
+from .set_archive_chat_list_settings import SetArchiveChatListSettings
 
 
 from .set_authentication_email_address import SetAuthenticationEmailAddress
@@ -1416,6 +1497,9 @@ from .set_bot_profile_photo import SetBotProfilePhoto
 
 
 from .set_bot_updates_status import SetBotUpdatesStatus
+
+
+from .set_chat_active_stories_list import SetChatActiveStoriesList
 
 
 from .set_chat_available_reactions import SetChatAvailableReactions
@@ -1464,6 +1548,9 @@ from .set_chat_theme import SetChatTheme
 
 
 from .set_chat_title import SetChatTitle
+
+
+from .set_close_friends import SetCloseFriends
 
 
 from .set_commands import SetCommands
@@ -1538,6 +1625,9 @@ from .set_login_email_address import SetLoginEmailAddress
 from .set_menu_button import SetMenuButton
 
 
+from .set_message_sender_block_list import SetMessageSenderBlockList
+
+
 from .set_name import SetName
 
 
@@ -1590,6 +1680,12 @@ from .set_sticker_set_thumbnail import SetStickerSetThumbnail
 
 
 from .set_sticker_set_title import SetStickerSetTitle
+
+
+from .set_story_privacy_settings import SetStoryPrivacySettings
+
+
+from .set_story_reaction import SetStoryReaction
 
 
 from .set_supergroup_sticker_set import SetSupergroupStickerSet
@@ -1745,13 +1841,13 @@ from .toggle_group_call_participant_is_muted import ToggleGroupCallParticipantIs
 from .toggle_group_call_screen_sharing_is_paused import ToggleGroupCallScreenSharingIsPaused
 
 
-from .toggle_message_sender_is_blocked import ToggleMessageSenderIsBlocked
-
-
 from .toggle_session_can_accept_calls import ToggleSessionCanAcceptCalls
 
 
 from .toggle_session_can_accept_secret_chats import ToggleSessionCanAcceptSecretChats
+
+
+from .toggle_story_is_pinned import ToggleStoryIsPinned
 
 
 from .toggle_supergroup_has_aggressive_anti_spam_enabled import ToggleSupergroupHasAggressiveAntiSpamEnabled
@@ -1826,6 +1922,7 @@ from .write_generated_file_part import WriteGeneratedFilePart
 __all__ = [
     "AcceptCall",
     "AcceptTermsOfService",
+    "ActivateStoryStealthMode",
     "AddApplicationChangelog",
     "AddChatFolderByInviteLink",
     "AddChatMember",
@@ -1845,6 +1942,7 @@ __all__ = [
     "AddSavedAnimation",
     "AddSavedNotificationSound",
     "AddStickerToSet",
+    "AllowBotToSendMessages",
     "AnswerCallbackQuery",
     "AnswerCustomQuery",
     "AnswerInlineQuery",
@@ -1855,7 +1953,9 @@ __all__ = [
     "AssignGooglePlayTransaction",
     "BanChatMember",
     "BlockMessageSenderFromReplies",
+    "CanBotSendMessages",
     "CanPurchasePremium",
+    "CanSendStory",
     "CanTransferOwnership",
     "CancelDownloadFile",
     "CancelPasswordReset",
@@ -1889,12 +1989,15 @@ __all__ = [
     "ClearRecentStickers",
     "ClearRecentlyFoundChats",
     "ClickAnimatedEmojiMessage",
+    "ClickChatSponsoredMessage",
     "ClickPremiumSubscriptionButton",
     "Close",
     "CloseChat",
     "CloseSecretChat",
+    "CloseStory",
     "CloseWebApp",
     "ConfirmQrCodeAuthentication",
+    "ConfirmSession",
     "CreateBasicGroupChat",
     "CreateCall",
     "CreateChatFolder",
@@ -1932,6 +2035,7 @@ __all__ = [
     "DeleteSavedCredentials",
     "DeleteSavedOrderInfo",
     "DeleteStickerSet",
+    "DeleteStory",
     "Destroy",
     "DisableAllSupergroupUsernames",
     "DisableProxy",
@@ -1956,6 +2060,7 @@ __all__ = [
     "EditMessageSchedulingState",
     "EditMessageText",
     "EditProxy",
+    "EditStory",
     "EnableProxy",
     "EndGroupCall",
     "EndGroupCallRecording",
@@ -1966,10 +2071,13 @@ __all__ = [
     "GetActiveLiveLocationMessages",
     "GetActiveSessions",
     "GetAllPassportElements",
+    "GetAllStickerEmojis",
     "GetAnimatedEmoji",
     "GetApplicationConfig",
     "GetApplicationDownloadLink",
+    "GetArchiveChatListSettings",
     "GetArchivedStickerSets",
+    "GetArchivedStories",
     "GetAttachedStickerSets",
     "GetAttachmentMenuBot",
     "GetAuthorizationState",
@@ -1987,10 +2095,12 @@ __all__ = [
     "GetCallbackQueryAnswer",
     "GetCallbackQueryMessage",
     "GetChat",
+    "GetChatActiveStories",
     "GetChatAdministrators",
     "GetChatAvailableMessageSenders",
     "GetChatEventLog",
     "GetChatFolder",
+    "GetChatFolderChatCount",
     "GetChatFolderChatsToLeave",
     "GetChatFolderDefaultIconName",
     "GetChatFolderInviteLinks",
@@ -2009,12 +2119,14 @@ __all__ = [
     "GetChatMessagePosition",
     "GetChatNotificationSettingsExceptions",
     "GetChatPinnedMessage",
+    "GetChatPinnedStories",
     "GetChatScheduledMessages",
     "GetChatSparseMessagePositions",
     "GetChatSponsoredMessages",
     "GetChatStatistics",
     "GetChats",
     "GetChatsForChatFolderInviteLink",
+    "GetCloseFriends",
     "GetCommands",
     "GetConnectedWebsites",
     "GetContacts",
@@ -2129,6 +2241,10 @@ __all__ = [
     "GetStickers",
     "GetStorageStatistics",
     "GetStorageStatisticsFast",
+    "GetStory",
+    "GetStoryAvailableReactions",
+    "GetStoryNotificationSettingsExceptions",
+    "GetStoryViewers",
     "GetSuggestedFileName",
     "GetSuggestedStickerSetName",
     "GetSuitableDiscussionChats",
@@ -2164,11 +2280,13 @@ __all__ = [
     "JoinGroupCall",
     "LeaveChat",
     "LeaveGroupCall",
+    "LoadActiveStories",
     "LoadChats",
     "LoadGroupCallParticipants",
     "LogOut",
     "OpenChat",
     "OpenMessageContent",
+    "OpenStory",
     "OpenWebApp",
     "OptimizeStorage",
     "ParseMarkdown",
@@ -2209,8 +2327,8 @@ __all__ = [
     "RemoveSavedNotificationSound",
     "RemoveStickerFromSet",
     "RemoveTopChat",
-    "ReorderActiveBotUsernames",
     "ReorderActiveUsernames",
+    "ReorderBotActiveUsernames",
     "ReorderChatFolders",
     "ReorderInstalledStickerSets",
     "ReorderSupergroupActiveUsernames",
@@ -2219,6 +2337,7 @@ __all__ = [
     "ReportChat",
     "ReportChatPhoto",
     "ReportMessageReactions",
+    "ReportStory",
     "ReportSupergroupAntiSpamFalsePositive",
     "ReportSupergroupSpam",
     "RequestAuthenticationPasswordRecovery",
@@ -2257,10 +2376,12 @@ __all__ = [
     "SearchOutgoingDocumentMessages",
     "SearchPublicChat",
     "SearchPublicChats",
+    "SearchRecentlyFoundChats",
     "SearchSecretMessages",
     "SearchStickerSet",
     "SearchStickerSets",
     "SearchStickers",
+    "SearchStringsByPrefix",
     "SearchUserByPhoneNumber",
     "SearchUserByToken",
     "SearchWebApp",
@@ -2271,7 +2392,6 @@ __all__ = [
     "SendCallRating",
     "SendCallSignalingData",
     "SendChatAction",
-    "SendChatScreenshotTakenNotification",
     "SendCustomRequest",
     "SendEmailAddressVerificationCode",
     "SendInlineQueryResultMessage",
@@ -2281,9 +2401,12 @@ __all__ = [
     "SendPaymentForm",
     "SendPhoneNumberConfirmationCode",
     "SendPhoneNumberVerificationCode",
+    "SendStory",
+    "SendWebAppCustomRequest",
     "SendWebAppData",
     "SetAccountTtl",
     "SetAlarm",
+    "SetArchiveChatListSettings",
     "SetAuthenticationEmailAddress",
     "SetAuthenticationPhoneNumber",
     "SetAutoDownloadSettings",
@@ -2295,6 +2418,7 @@ __all__ = [
     "SetBotName",
     "SetBotProfilePhoto",
     "SetBotUpdatesStatus",
+    "SetChatActiveStoriesList",
     "SetChatAvailableReactions",
     "SetChatBackground",
     "SetChatClientData",
@@ -2311,6 +2435,7 @@ __all__ = [
     "SetChatSlowModeDelay",
     "SetChatTheme",
     "SetChatTitle",
+    "SetCloseFriends",
     "SetCommands",
     "SetCustomEmojiStickerSetThumbnail",
     "SetCustomLanguagePack",
@@ -2335,6 +2460,7 @@ __all__ = [
     "SetLogVerbosityLevel",
     "SetLoginEmailAddress",
     "SetMenuButton",
+    "SetMessageSenderBlockList",
     "SetName",
     "SetNetworkType",
     "SetOption",
@@ -2353,6 +2479,8 @@ __all__ = [
     "SetStickerPositionInSet",
     "SetStickerSetThumbnail",
     "SetStickerSetTitle",
+    "SetStoryPrivacySettings",
+    "SetStoryReaction",
     "SetSupergroupStickerSet",
     "SetSupergroupUsername",
     "SetTdlibParameters",
@@ -2404,9 +2532,9 @@ __all__ = [
     "ToggleGroupCallParticipantIsHandRaised",
     "ToggleGroupCallParticipantIsMuted",
     "ToggleGroupCallScreenSharingIsPaused",
-    "ToggleMessageSenderIsBlocked",
     "ToggleSessionCanAcceptCalls",
     "ToggleSessionCanAcceptSecretChats",
+    "ToggleStoryIsPinned",
     "ToggleSupergroupHasAggressiveAntiSpamEnabled",
     "ToggleSupergroupHasHiddenMembers",
     "ToggleSupergroupIsAllHistoryAvailable",

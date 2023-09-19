@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetAttachmentMenuBot(BaseObject):
     """
-    Returns information about a bot that can be added to attachment menu
+    Returns information about a bot that can be added to attachment or side menu
 
     :param bot_user_id: Bot's user identifier
     :type bot_user_id: :class:`Int53`

@@ -21,7 +21,7 @@ class SetCustomLanguagePack(BaseObject):
     """
     Adds or changes a custom local language pack to the current localization target
 
-    :param info: Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
+    :param info: Information about the language pack. Language pack identifier must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization
     :type info: :class:`LanguagePackInfo`
     :param strings: Strings of the new language pack
     :type strings: :class:`Vector[LanguagePackString]`

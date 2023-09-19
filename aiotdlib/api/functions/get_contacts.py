@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetContacts(BaseObject):
     """
-    Returns all user contacts
+    Returns all contacts of the user
     """
 
     ID: typing.Literal["getContacts"] = "getContacts"

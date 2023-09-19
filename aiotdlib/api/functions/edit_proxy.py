@@ -22,7 +22,7 @@ class EditProxy(BaseObject):
 
     :param proxy_id: Proxy identifier
     :type proxy_id: :class:`Int32`
-    :param server: Proxy server IP address
+    :param server: Proxy server domain or IP address
     :type server: :class:`String`
     :param port: Proxy server port
     :type port: :class:`Int32`
