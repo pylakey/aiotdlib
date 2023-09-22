@@ -1,4 +1,9 @@
-__version__ = "0.21.0"
+__version__ = "0.22.0"
+
+import pydantic
+
+if pydantic.VERSION.startswith("2"):
+    raise NotImplementedError("Aiotdlib currently does not support Pydantic V2")
 
 from .client import (
     Client,
