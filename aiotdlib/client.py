@@ -96,9 +96,9 @@ from .handlers import (
 )
 from .middlewares import MiddlewareCallable
 from .tdjson import (
-    TDJson,
     TDLIB_MAX_INT,
     TDLibLogVerbosity,
+    create_client,
 )
 from .utils import (
     PendingRequest,
@@ -461,12 +461,6 @@ AUTHORIZATION_REQUEST_ID = 'updateAuthorizationState'
 
 class Client:
     loop: asyncio.AbstractEventLoop = None
-    __current_authorization_state = None
-    __is_authorized = False
-    __running = False
-    __pending_requests: dict[str, PendingRequest] = {}
-    __pending_messages: dict[str, Message] = {}
-    __updates_handlers: dict[str, set[Handler]] = {}
     __middlewares: list[MiddlewareCallable] = []
     __middlewares_handlers: list[MiddlewareCallable] = []
 
@@ -576,6 +570,13 @@ class Client:
         :type options: ClientOptions
 
         """
+        self.__current_authorization_state = None
+        self.__is_authorized = False
+        self.__running = False
+        self.__pending_requests: dict[str, PendingRequest] = {}
+        self.__pending_messages: dict[str, Message] = {}
+        self.__updates_handlers: dict[str, set[Handler]] = {}
+
         settings = {
             'api_id': api_id,
             'api_hash': pydantic.SecretStr(api_hash) if api_hash is not Undefined else Undefined,
@@ -606,11 +607,12 @@ class Client:
         }
         settings = {k: v for k, v in settings.items() if v is not Undefined}
         self.settings = ClientSettings(**settings)
-        self.logger = logging.getLogger(self.__class__.__name__)
+        self.__tdjson = create_client()
+        self.logger = logging.getLogger(f"{self.__class__.__name__ }:{self.__tdjson.client_id}")
         self.logger.setLevel(logging.DEBUG if self.settings.debug else logging.INFO)
-        self.__tdjson = TDJson(library_path=self.settings.library_path, verbosity=self.settings.tdlib_verbosity)
         self.api = API(self)
         self.cache = ClientCache(self)
+        self.__update_task: typing.Optional[asyncio.Task[None]] = None
 
     @property
     def is_bot(self) -> bool:
@@ -706,7 +708,7 @@ class Client:
 
         if bool(self.__tdjson):
             self.logger.info('Gracefully closing TDLib connection')
-            self.__tdjson.stop()
+            await self.__tdjson.stop()
 
     async def _setup_proxy(self):
         if not bool(self.settings.proxy_settings):
@@ -971,7 +973,7 @@ class Client:
         if self.settings.debug:
             self.logger.debug(f">>>>> {query.ID} {query_json}")
 
-        await self.loop.run_in_executor(None, self.__tdjson.send, query_json)
+        await self.__tdjson.send(query_json)
 
     async def request(
             self,
@@ -1006,7 +1008,7 @@ class Client:
         if not self.__running:
             raise RuntimeError('Client not started')
 
-        result = await self.loop.run_in_executor(None, self.__tdjson.execute, query.dict(by_alias=True))
+        result = await self.__tdjson.execute(query.dict(by_alias=True))
         result_object = parse_tdlib_object(result)
 
         if isinstance(result_object, Error):
@@ -1017,12 +1019,11 @@ class Client:
 
         return result_object
 
-    async def receive(self, timeout: float = 1.0) -> Optional[BaseObject]:
+    async def receive(self) -> Optional[BaseObject]:
         if not self.__running:
             raise RuntimeError('Client not started')
 
-        data = await self.loop.run_in_executor(None, self.__tdjson.receive, timeout)
-
+        data = await self.__tdjson.receive()
         if not bool(data):
             return None
 
@@ -1092,7 +1093,7 @@ class Client:
 
         # Starting updates loop
         self.__running = True
-        self.loop.create_task(self.__updates_loop())
+        self.__update_task = self.loop.create_task(self.__updates_loop())
 
         # Initialize authorization process
         await self.authorize()

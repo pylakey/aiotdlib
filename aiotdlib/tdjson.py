@@ -1,3 +1,4 @@
+import asyncio
 import logging
 import platform
 import sys
@@ -70,8 +71,6 @@ class TDJson:
     __td_execute: typing.Callable[[bytes], bytes]
     __td_set_log_message_callback: typing.Callable[[log_message_callback_type], None]
 
-    td_json_client: typing.Optional[int] = None
-
     def __init__(self, library_path: str = None, verbosity: TDLibLogVerbosity = TDLibLogVerbosity.ERROR) -> None:
         if library_path is None:
             library_path = _get_tdjson_lib_path()
@@ -83,11 +82,14 @@ class TDJson:
         self.logger.info('Using shared library "%s"', library_path)
         self.initialize(library_path, verbosity)
 
+        self.__clients = dict[int, ClientTDJson]()
+        self.__loop: typing.Optional[asyncio.AbstractEventLoop] = None
+        self.__listen_task: typing.Optional[asyncio.Task] = None
+
     def __del__(self) -> None:
-        try:
-            self.stop()
-        except:
-            pass
+        for client_id in self.__clients:
+            self.stop(client_id)
+        self.__listen_task.cancel()
 
     def inject_library(self, library_path: str):
         # load TDLib functions from shared library
@@ -121,27 +123,17 @@ class TDJson:
     def initialize(self, library_path: str, verbosity: TDLibLogVerbosity) -> None:
         self.inject_library(library_path)
 
-        if bool(self.td_json_client):
-            raise RuntimeError('TDJson instance is already initialized')
-
         self.__td_set_log_message_callback(log_message_callback_type(self.__log_message_callback))
-        self.td_json_client = self.__td_create_client_id()
         self.execute({'@type': 'setLogVerbosityLevel', 'new_verbosity_level': verbosity})
 
-    def send(self, query: Query):
-        if not bool(self.td_json_client):
-            raise RuntimeError('Instance is not initialized')
-
+    def send(self, query: Query, client_id: int):
         query = encode_query(query)
-        self.logger.debug(f'[me >>>] Sending {query}')
-        self.__td_send(self.td_json_client, query)
+        self.logger.debug('[%s >>>] Sending %s', client_id, query)
+        self.__td_send(client_id, query)
 
     def execute(self, query: Query) -> typing.Optional[dict]:
-        if not bool(self.td_json_client):
-            raise RuntimeError('Instance is not initialized')
-
         query = encode_query(query)
-        self.logger.debug(f'Executing query {query} as client {self.td_json_client}')
+        self.logger.debug('Executing query %s', query)
         result = self.__td_execute(query)
 
         if result:
@@ -150,29 +142,78 @@ class TDJson:
         return result
 
     def receive(self, timeout: float = 10.0) -> typing.Optional[dict]:
-        if not bool(self.td_json_client):
-            raise RuntimeError('Instance is not initialized')
-
         result = self.__td_receive(timeout)
 
         if bool(result):
-            self.logger.debug(f'[me <<<] Received {result}')
             result = ujson.loads(result)
-
-            # Each returned object will have an "@client_id" field,
-            # containing the identifier of the client for which a response or an update was received.
-            if result.pop('@client_id', None) != self.td_json_client:
-                # TODO: Support handling multiple clients with single TDJson instance
-                return None
 
         return result
 
-    def stop(self) -> None:
+    def stop(self, client_id: int) -> None:
         # TDLib client instances are destroyed automatically after they are closed, so we need to send close
-        self.send({'@type': 'close'})
+        self.send({'@type': 'close'}, client_id)
 
     def __log_message_callback(self, verbosity_level: int, message: str) -> None:
         if verbosity_level == TDLibLogVerbosity.FATAL:
             self.logger.error('TDLib fatal error: %s', message)
 
         sys.stdout.flush()
+
+    def new_client(self):
+        """
+        Instantiate a new client
+        """
+        if self.__loop is None:
+            self.__loop = asyncio.get_running_loop()
+        if self.__listen_task is None:
+            self.logger.debug("Starting listen task")
+            self.__listen_task = self.__loop.create_task(self.listen())
+        client_id = self.__td_create_client_id()
+        client = self.__clients[client_id] = ClientTDJson(client_id)
+        return client
+
+    async def listen(self):
+        while True:
+            result = await self.__loop.run_in_executor(None, self.receive)
+            if result is None:
+                continue
+            client_id = result.pop('@client_id', None)
+            self.logger.debug('[%s <<<] Received %s', client_id, result)
+            if client_id is None:
+                continue
+            await self.__clients[client_id].queue.put(result)
+
+
+class ClientTDJson:
+    """
+    Must not be instantiated directly but rather through the new_client()
+    function
+    """
+
+    def __init__(self, client_id: int):
+        self.client_id = client_id
+        self.__loop = asyncio.get_running_loop()
+        self.queue = asyncio.Queue[dict]()
+        self.logger = logging.getLogger(f"{self.__class__.__name__}:{self.client_id}")
+
+    async def __run_in_executor(self, func: typing.Callable, *args):
+        return await self.__loop.run_in_executor(None, func, *args)
+
+    async def send(self, query: Query) -> None:
+        return await self.__run_in_executor(td_json.send, query, self.client_id)
+
+    async def receive(self) -> dict:
+        return await self.queue.get()
+
+    async def execute(self, query: Query) -> typing.Optional[dict]:
+        return await self.__run_in_executor(td_json.execute, query)
+
+    async def stop(self) -> None:
+        return await self.__run_in_executor(td_json.stop, self.client_id)
+
+
+td_json = TDJson()
+
+
+def create_client() -> ClientTDJson:
+    return td_json.new_client()
