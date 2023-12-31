@@ -460,10 +460,6 @@ AUTHORIZATION_REQUEST_ID = 'updateAuthorizationState'
 
 
 class Client:
-    loop: asyncio.AbstractEventLoop = None
-    __middlewares: list[MiddlewareCallable] = []
-    __middlewares_handlers: list[MiddlewareCallable] = []
-
     def __init__(
             self,
             api_id: int = Undefined,
@@ -491,7 +487,8 @@ class Client:
             use_secret_chats: bool = Undefined,
             enable_storage_optimizer: bool = Undefined,
             ignore_file_names: bool = Undefined,
-            options: ClientOptions = Undefined
+            options: ClientOptions = Undefined,
+            loop: Union[asyncio.AbstractEventLoop, None] = None
     ):
         """
         :param api_id: Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
@@ -576,7 +573,10 @@ class Client:
         self.__pending_requests: dict[str, PendingRequest] = {}
         self.__pending_messages: dict[str, Message] = {}
         self.__updates_handlers: dict[str, set[Handler]] = {}
+        self.__middlewares: list[MiddlewareCallable] = []
+        self.__middlewares_handlers: list[MiddlewareCallable] = []
 
+        self.loop: asyncio.AbstractEventLoop = loop
         settings = {
             'api_id': api_id,
             'api_hash': pydantic.SecretStr(api_hash) if api_hash is not Undefined else Undefined,
@@ -1089,7 +1089,8 @@ class Client:
         self.__middlewares_handlers = list(reversed(self.__middlewares))
 
         # Setting up asyncio stuff
-        self.loop = asyncio.get_running_loop()
+        if not bool(self.loop):
+            self.loop = asyncio.get_running_loop()
 
         # Starting updates loop
         self.__running = True
