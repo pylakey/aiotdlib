@@ -148,28 +148,28 @@ SomeChatUpdate = typing.Union[
 
 
 class ClientCache:
-    # Client Options
-    options: dict[str, typing.Union[str, int, bool]] = {}
-
-    users: dict[int, User] = {}
-    basic_groups: dict[int, BasicGroup] = {}
-    supergroups: dict[int, Supergroup] = {}
-    secret_chats: dict[int, SecretChat] = {}
-
-    # Full Info
-    users_full_info: dict[int, UserFullInfo] = {}
-    basic_groups_full_info: dict[int, BasicGroupFullInfo] = {}
-    supergroups_full_info: dict[int, SupergroupFullInfo] = {}
-
-    # Chats
-    chats: dict[int, Chat] = {}
-    main_chat_list: SortedSet[OrderedChat] = SortedSet()
-    have_full_main_chat_list: bool = False
-
     # noinspection PyTypeChecker
     def __init__(self, client: 'Client'):
         self.logger = logging.getLogger(__name__)
         self.client = client
+
+        # Client Options
+        self.options: dict[str, typing.Union[str, int, bool]] = {}
+
+        self.users: dict[int, User] = {}
+        self.basic_groups: dict[int, BasicGroup] = {}
+        self.supergroups: dict[int, Supergroup] = {}
+        self.secret_chats: dict[int, SecretChat] = {}
+
+        # Full Info
+        self.users_full_info: dict[int, UserFullInfo] = {}
+        self.basic_groups_full_info: dict[int, BasicGroupFullInfo] = {}
+        self.supergroups_full_info: dict[int, SupergroupFullInfo] = {}
+
+        # Chats
+        self.chats: dict[int, Chat] = {}
+        self.main_chat_list: SortedSet[OrderedChat] = SortedSet()
+        self.have_full_main_chat_list: bool = False
 
         client.add_event_handler(self.__on_update_option, API.Types.UPDATE_OPTION)
         client.add_event_handler(self.__on_update_user, API.Types.UPDATE_USER)
