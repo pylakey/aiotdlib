@@ -4,7 +4,7 @@ from typing import Awaitable
 from typing import Callable
 from typing import TypeVar
 
-from aiotdlib.api import BaseObject
+from .api import BaseObject
 from .handlers import HandlerCallable
 
 SomeUpdate = TypeVar('SomeUpdate', bound=BaseObject)
