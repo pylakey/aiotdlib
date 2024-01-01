@@ -12,9 +12,9 @@ from enum import IntEnum
 
 import ujson
 
-from .types import Packet
 from .types import Query
 from .utils import encode_query
+from .utils import run_in_executor
 
 LogMessageCallback = CFUNCTYPE(None, c_int, c_char_p)
 ARCH_ALIASES = {
@@ -45,7 +45,7 @@ def _get_bundled_tdjson_lib_path() -> str:
         raise RuntimeError('Prebuilt TDLib binary is not included for this system')
 
     binary_name = f'libtdjson_{system_name}_{machine_name}.{extension}'
-    return str((pathlib.Path(__file__) / 'tdlib' / binary_name).absolute())
+    return str((pathlib.Path(__file__).parent / 'tdlib' / binary_name).absolute())
 
 
 class TDLibLogVerbosity(IntEnum):
@@ -68,10 +68,10 @@ class CoreTDJson:
         library_path = pathlib.Path(library_path)
 
         if not bool(library_path.exists()):
-            raise FileNotFoundError('Library path does not exist')
+            raise FileNotFoundError(f'Library path {library_path} does not exist')
 
         if not bool(library_path.is_file()):
-            raise IsADirectoryError('Library path must point to a binary file')
+            raise IsADirectoryError(f'Library path {library_path} must point to a binary file')
 
         self.logger.info('Using "%s" TDLib binary', library_path)
 
@@ -225,18 +225,14 @@ class TDJsonClient:
         self.client_id = td_json.subscribe(self)
         self.logger = logging.getLogger(f"{self.__class__.__name__}:{self.client_id}")
 
-    async def __run_in_executor(self, func: typing.Callable, *args):
-        return await self.__loop.run_in_executor(None, func, *args)
-
     async def send(self, query: Query) -> None:
-        return await self.__run_in_executor(self.td_json.send, query, self.client_id)
+        return await run_in_executor(self.td_json.send, query, self.client_id)
 
-    async def execute(self, query: Query) -> typing.Optional[Packet]:
-        return await self.__run_in_executor(self.td_json.execute, query)
+    async def execute(self, query: Query) -> typing.Optional[dict]:
+        return await run_in_executor(self.td_json.execute, query)
 
     async def stop(self) -> None:
-        self.td_json.unsubscribe(self.client_id)
-        return await self.__run_in_executor(self.td_json.close_client, self.client_id)
+        return await run_in_executor(self.td_json.close_client, self.client_id)
 
     async def receive(self) -> Packet:
         return await self.__queue.get()

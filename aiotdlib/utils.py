@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import asyncio
 import base64
 import getpass
@@ -5,6 +7,7 @@ import logging
 import os
 import re
 import sys
+import typing
 from enum import Enum
 from functools import partial
 from typing import Optional
@@ -175,3 +178,8 @@ class PendingRequest:
             )
 
         raise RuntimeError(f'Unknown TDLib error')
+
+
+async def run_in_executor(func: typing.Callable, *args):
+    loop = asyncio.get_running_loop()
+    return await loop.run_in_executor(None, func, *args)
