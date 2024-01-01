@@ -1,5 +1,8 @@
+from __future__ import annotations
+
 import asyncio
 import logging
+import pathlib
 import platform
 import sys
 import typing
@@ -7,13 +10,11 @@ from ctypes import *
 from ctypes.util import find_library
 from enum import IntEnum
 
-import pkg_resources
 import ujson
 
-from aiotdlib.utils import (
-    Query,
-    encode_query,
-)
+from .types import Packet
+from .types import Query
+from .utils import encode_query
 
 LogMessageCallback = CFUNCTYPE(None, c_int, c_char_p)
 ARCH_ALIASES = {
@@ -21,7 +22,6 @@ ARCH_ALIASES = {
     "aarch64": "arm64",
     "arm64v8": "arm64",
 }
-
 SYSTEM_LIB_EXTENSION = {
     'darwin': 'dylib',
     'linux': 'so',
@@ -44,9 +44,8 @@ def _get_tdjson_lib_path() -> str:
     if not bool(extension):
         raise RuntimeError('Prebuilt TDLib binary is not included for this system')
 
-    binary_path = f'tdlib/libtdjson_{system_name}_{machine_name}.{extension}'
-
-    return pkg_resources.resource_filename('aiotdlib', binary_path)
+    binary_name = f'libtdjson_{system_name}_{machine_name}.{extension}'
+    return str((pathlib.Path(__file__) / 'tdlib' / binary_name).absolute())
 
 
 class TDLibLogVerbosity(IntEnum):
@@ -130,7 +129,7 @@ class TDJson:
         self.logger.debug('[%s >>>] Sending %s', client_id, query)
         self.__td_send(client_id, query)
 
-    def execute(self, query: Query) -> typing.Optional[dict]:
+    def execute(self, query: Query) -> typing.Optional[Packet]:
         query = encode_query(query)
         self.logger.debug('Executing query %s', query)
         result = self.__td_execute(query)
@@ -140,7 +139,7 @@ class TDJson:
 
         return result
 
-    def receive(self, timeout: float = 10.0) -> typing.Optional[dict]:
+    def receive(self, timeout: float = 10.0) -> typing.Optional[Packet]:
         result = self.__td_receive(timeout)
 
         if bool(result):
