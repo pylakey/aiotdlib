@@ -29,7 +29,7 @@ SYSTEM_LIB_EXTENSION = {
 }
 
 
-def _get_tdjson_lib_path() -> str:
+def _get_bundled_tdjson_lib_path() -> str:
     tdjson_path = find_library('tdjson')
 
     if tdjson_path is not None:
@@ -58,71 +58,84 @@ class TDLibLogVerbosity(IntEnum):
     MAXIMUM = 1023
 
 
-class TDJson:
-    logger: logging.Logger
-
-    # TDLib functions typings
-    __tdjson: CDLL
-    __td_create_client_id: typing.Callable[[], int]
-    __td_receive: typing.Callable[[float], bytes]
-    __td_send: typing.Callable[[int, bytes], None]
-    __td_execute: typing.Callable[[bytes], bytes]
-    __td_set_log_message_callback: typing.Callable[[log_message_callback_type], None]
-
-    def __init__(self, library_path: str = None, verbosity: TDLibLogVerbosity = TDLibLogVerbosity.ERROR) -> None:
-        if library_path is None:
-            library_path = _get_tdjson_lib_path()
-
-        if library_path is None:
-            raise ValueError('Unable to find TD library binaries')
-
+class CoreTDJson:
+    def __init__(self, library_path: str | pathlib.Path) -> None:
         self.logger = logging.getLogger(__name__)
-        self.logger.info('Using shared library "%s"', library_path)
-        self.initialize(library_path, verbosity)
 
-        self.__clients = dict[int, ClientTDJson]()
-        self.__loop: typing.Optional[asyncio.AbstractEventLoop] = None
-        self.__listen_task: typing.Optional[asyncio.Task] = None
+        if not bool(library_path):
+            raise ValueError('Library path must be provided')
 
-    def __del__(self) -> None:
-        for client_id in self.__clients:
-            self.stop(client_id)
-        self.__listen_task.cancel()
+        library_path = pathlib.Path(library_path)
 
-    def inject_library(self, library_path: str):
+        if not bool(library_path.exists()):
+            raise FileNotFoundError('Library path does not exist')
+
+        if not bool(library_path.is_file()):
+            raise IsADirectoryError('Library path must point to a binary file')
+
+        self.logger.info('Using "%s" TDLib binary', library_path)
+
+        # TDLib functions typings
+        self.__td_send: typing.Callable[[int, bytes], None]
+        self.__td_execute: typing.Callable[[bytes], bytes]
+        self.__td_set_log_message_callback: typing.Callable[[LogMessageCallback], None]
+
         # load TDLib functions from shared library
-        self.__tdjson = CDLL(library_path)
+        self.__tdjson: CDLL = CDLL(str(library_path))
 
         # TDJSON_EXPORT int td_create_client_id();
-        self.__td_create_client_id = self.__tdjson.td_create_client_id
+        self.__td_create_client_id: typing.Callable[[], int] = self.__tdjson.td_create_client_id
         self.__td_create_client_id.restype = c_int
         self.__td_create_client_id.argtypes = []
 
         # TDJSON_EXPORT const char *td_receive(double timeout);
-        self.__td_receive = self.__tdjson.td_receive
+        self.__td_receive: typing.Callable[[float], bytes] = self.__tdjson.td_receive
         self.__td_receive.restype = c_char_p
         self.__td_receive.argtypes = [c_double]
 
         # TDJSON_EXPORT void td_send(int client_id, const char *request);
-        self.__td_send = self.__tdjson.td_send
+        self.__td_send: typing.Callable[[int, bytes], None] = self.__tdjson.td_send
         self.__td_send.restype = None
         self.__td_send.argtypes = [c_int, c_char_p]
 
         # TDJSON_EXPORT const char *td_execute(const char *request);
-        self.__td_execute = self.__tdjson.td_execute
+        self.__td_execute: typing.Callable[[bytes], bytes] = self.__tdjson.td_execute
         self.__td_execute.restype = c_char_p
         self.__td_execute.argtypes = [c_char_p]
 
         # td_set_log_message_callback
-        self.__td_set_log_message_callback = self.__tdjson.td_set_log_message_callback
+        self.__td_set_log_message_callback: typing.Callable[
+            [LogMessageCallback],
+            None
+        ] = self.__tdjson.td_set_log_message_callback
         self.__td_set_log_message_callback.restype = None
-        self.__td_set_log_message_callback.argtypes = [log_message_callback_type]
+        self.__td_set_log_message_callback.argtypes = [LogMessageCallback]
+        self.__td_set_log_message_callback(LogMessageCallback(self.__log_message_callback))
 
-    def initialize(self, library_path: str, verbosity: TDLibLogVerbosity) -> None:
-        self.inject_library(library_path)
+    def __log_message_callback(self, verbosity_level: int, message: str) -> None:
+        if verbosity_level == TDLibLogVerbosity.FATAL:
+            self.logger.error('TDLib FATAL error: %s', message)
 
-        self.__td_set_log_message_callback(log_message_callback_type(self.__log_message_callback))
+        sys.stdout.flush()
+
+
+class TDJson(CoreTDJson):
+    def __init__(
+            self,
+            library_path: str | pathlib.Path,
+            verbosity: TDLibLogVerbosity = TDLibLogVerbosity.ERROR,
+            loop: typing.Optional[asyncio.AbstractEventLoop, None] = None
+    ) -> None:
+        super().__init__(library_path)
+        self.__clients = dict[int, TDJsonClient]()
+        self.__loop: typing.Optional[asyncio.AbstractEventLoop] = loop
+        self.__listen_task: typing.Optional[asyncio.Task] = None
         self.execute({'@type': 'setLogVerbosityLevel', 'new_verbosity_level': verbosity})
+
+    def __del__(self) -> None:
+        for client_id in self.__clients:
+            self.close_client(client_id)
+        self.__listen_task.cancel()
 
     def send(self, query: Query, client_id: int):
         query = encode_query(query)
@@ -147,71 +160,86 @@ class TDJson:
 
         return result
 
-    def stop(self, client_id: int) -> None:
+    def close_client(self, client_id: int) -> None:
         # TDLib client instances are destroyed automatically after they are closed, so we need to send close
         self.send({'@type': 'close'}, client_id)
 
-    def __log_message_callback(self, verbosity_level: int, message: str) -> None:
-        if verbosity_level == TDLibLogVerbosity.FATAL:
-            self.logger.error('TDLib fatal error: %s', message)
-
-        sys.stdout.flush()
-
-    def new_client(self):
-        """
-        Instantiate a new client
-        """
+    def subscribe(self, client: TDJsonClient) -> int:
         if self.__loop is None:
             self.__loop = asyncio.get_running_loop()
+
         if self.__listen_task is None:
             self.logger.debug("Starting listen task")
             self.__listen_task = self.__loop.create_task(self.listen())
+
         client_id = self.__td_create_client_id()
-        client = self.__clients[client_id] = ClientTDJson(client_id)
-        return client
+        self.__clients[client_id] = client
+        return client_id
+
+    def unsubscribe(self, client_id: int) -> None:
+        self.__clients.pop(client_id, None)
+
+        if len(self.__clients) == 0:
+            self.__listen_task.cancel()
 
     async def listen(self):
         while True:
-            result = await self.__loop.run_in_executor(None, self.receive)
-            if result is None:
+            packet = await self.__loop.run_in_executor(None, self.receive)
+
+            if not isinstance(packet, Packet):
                 continue
-            client_id = result.pop('@client_id', None)
-            self.logger.debug('[%s <<<] Received %s', client_id, result)
-            if client_id is None:
+
+            client_id = packet.pop('@client_id', 0)
+
+            if not bool(client_id):
                 continue
-            await self.__clients[client_id].queue.put(result)
+
+            self.logger.debug('[%s <<<] Received %s', client_id, packet)
+            client = self.__clients.get(client_id)
+
+            if isinstance(client, TDJsonClient):
+                await client.enqueue(packet)
 
 
-class ClientTDJson:
-    """
-    Must not be instantiated directly but rather through the new_client()
-    function
-    """
+DEFAULT_TDJSON = TDJson(library_path=_get_bundled_tdjson_lib_path())
 
-    def __init__(self, client_id: int):
-        self.client_id = client_id
+
+class TDJsonClient:
+    @classmethod
+    def create(
+            cls,
+            library_path: typing.Optional[str] = None,
+            tdlib_verbosity: TDLibLogVerbosity = TDLibLogVerbosity.ERROR,
+    ):
+        if not bool(library_path):
+            return cls(DEFAULT_TDJSON)
+
+        tdjson = TDJson(library_path=library_path, verbosity=tdlib_verbosity)
+        return cls(tdjson)
+
+    def __init__(self, td_json: TDJson):
+        super().__init__()
+        self.__queue = asyncio.Queue[Packet]()
         self.__loop = asyncio.get_running_loop()
-        self.queue = asyncio.Queue[dict]()
+        self.td_json = td_json
+        self.client_id = td_json.subscribe(self)
         self.logger = logging.getLogger(f"{self.__class__.__name__}:{self.client_id}")
 
     async def __run_in_executor(self, func: typing.Callable, *args):
         return await self.__loop.run_in_executor(None, func, *args)
 
     async def send(self, query: Query) -> None:
-        return await self.__run_in_executor(td_json.send, query, self.client_id)
+        return await self.__run_in_executor(self.td_json.send, query, self.client_id)
 
-    async def receive(self) -> dict:
-        return await self.queue.get()
-
-    async def execute(self, query: Query) -> typing.Optional[dict]:
-        return await self.__run_in_executor(td_json.execute, query)
+    async def execute(self, query: Query) -> typing.Optional[Packet]:
+        return await self.__run_in_executor(self.td_json.execute, query)
 
     async def stop(self) -> None:
-        return await self.__run_in_executor(td_json.stop, self.client_id)
+        self.td_json.unsubscribe(self.client_id)
+        return await self.__run_in_executor(self.td_json.close_client, self.client_id)
 
+    async def receive(self) -> Packet:
+        return await self.__queue.get()
 
-td_json = TDJson()
-
-
-def create_client() -> ClientTDJson:
-    return td_json.new_client()
+    async def enqueue(self, packet: Packet) -> None:
+        await self.__queue.put(packet)
