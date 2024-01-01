@@ -1,40 +1,33 @@
 import re
-from abc import (
-    ABC,
-    abstractmethod,
-)
-from typing import (
-    Any,
-    Callable,
-    Coroutine,
-    NoReturn,
-    Optional,
-    Union,
-)
+from abc import ABC
+from abc import abstractmethod
+from typing import Awaitable
+from typing import Callable
+from typing import NoReturn
+from typing import Optional
+from typing import Union
 
-from aiotdlib.api import (
-    BaseObject,
-    MessageAnimation,
-    MessageAudio,
-    MessageContact,
-    MessageDice,
-    MessageDocument,
-    MessageGame,
-    MessageInvoice,
-    MessageLocation,
-    MessagePhoto,
-    MessagePoll,
-    MessageSticker,
-    MessageText,
-    MessageUnsupported,
-    MessageVenue,
-    MessageVideo,
-    MessageVideoNote,
-    MessageVoiceNote,
-    UpdateNewMessage,
-)
+from aiotdlib.api import BaseObject
+from aiotdlib.api import MessageAnimation
+from aiotdlib.api import MessageAudio
+from aiotdlib.api import MessageContact
+from aiotdlib.api import MessageDice
+from aiotdlib.api import MessageDocument
+from aiotdlib.api import MessageGame
+from aiotdlib.api import MessageInvoice
+from aiotdlib.api import MessageLocation
+from aiotdlib.api import MessagePhoto
+from aiotdlib.api import MessagePoll
+from aiotdlib.api import MessageSticker
+from aiotdlib.api import MessageText
+from aiotdlib.api import MessageUnsupported
+from aiotdlib.api import MessageVenue
+from aiotdlib.api import MessageVideo
+from aiotdlib.api import MessageVideoNote
+from aiotdlib.api import MessageVoiceNote
+from aiotdlib.api import UpdateNewMessage
 
-FilterCallable = Callable[[BaseObject], Coroutine[Any, Any, bool]]
+FilterCallable = Callable[[BaseObject], Awaitable[bool]]
 
 
 class BaseFilter(ABC):

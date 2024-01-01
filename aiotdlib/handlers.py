@@ -1,27 +1,22 @@
 from __future__ import annotations
 
 import asyncio
-from typing import (
-    Any,
-    Callable,
-    Coroutine,
-    Optional,
-    TYPE_CHECKING,
-    TypeVar,
-    Union,
-)
+from typing import Awaitable
+from typing import Callable
+from typing import Optional
+from typing import TYPE_CHECKING
+from typing import TypeVar
+from typing import Union
 
 from .api import BaseObject
-from .filters import (
-    BaseFilter,
-    FilterCallable,
-)
+from .filters import BaseFilter
+from .filters import FilterCallable
 
 if TYPE_CHECKING:
     from client import Client
 
 SomeUpdate = TypeVar('SomeUpdate', bound=BaseObject)
-HandlerCallable = Callable[['Client', SomeUpdate], Coroutine[Any, Any, None]]
+HandlerCallable = Callable[['Client', SomeUpdate], Awaitable[None]]
 
 
 class Handler(object):
