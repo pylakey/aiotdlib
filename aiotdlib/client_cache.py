@@ -5,71 +5,65 @@ import typing
 
 from sortedcontainers import SortedSet
 
-from .api import (
-    API,
-    AioTDLibError,
-    BasicGroup,
-    BasicGroupFullInfo,
-    Chat,
-    ChatListMain,
-    ChatPosition,
-    NotFound,
-    Ok,
-    OptionValueBoolean,
-    OptionValueEmpty,
-    OptionValueInteger,
-    OptionValueString,
-    SecretChat,
-    Supergroup,
-    SupergroupFullInfo,
-    UpdateBasicGroup,
-    UpdateBasicGroupFullInfo,
-    UpdateChatAction,
-    UpdateChatBackground,
-    UpdateChatDefaultDisableNotification,
-    UpdateChatDraftMessage,
-    UpdateChatFolders,
-    UpdateChatHasScheduledMessages,
-    UpdateChatBlockList,
-    UpdateChatIsMarkedAsUnread,
-    UpdateChatIsTranslatable,
-    UpdateChatLastMessage,
-    UpdateChatNotificationSettings,
-    UpdateChatOnlineMemberCount,
-    UpdateChatPermissions,
-    UpdateChatPhoto,
-    UpdateChatPosition,
-    UpdateChatReadInbox,
-    UpdateChatReadOutbox,
-    UpdateChatReplyMarkup,
-    UpdateChatThemes,
-    UpdateChatTitle,
-    UpdateChatUnreadMentionCount,
-    UpdateChatVideoChat,
-    UpdateNewChat,
-    UpdateOption,
-    UpdateSecretChat,
-    UpdateSupergroup,
-    UpdateSupergroupFullInfo,
-    UpdateUser,
-    UpdateUserFullInfo,
-    UpdateUserStatus,
-    User,
-    UserFullInfo,
-    Vector,
-)
-from .api import (
-    UpdateChatActionBar,
-    UpdateChatHasProtectedContent,
-    UpdateChatMessageAutoDeleteTime,
-    UpdateChatMessageSender,
-    UpdateChatPendingJoinRequests,
-    UpdateChatTheme,
-)
-from .api import (
-    UpdateChatAvailableReactions,
-    UpdateChatUnreadReactionCount,
-)
+from .api import API
+from .api import AioTDLibError
+from .api import BasicGroup
+from .api import BasicGroupFullInfo
+from .api import Chat
+from .api import ChatListMain
+from .api import ChatPosition
+from .api import NotFound
+from .api import Ok
+from .api import OptionValueBoolean
+from .api import OptionValueEmpty
+from .api import OptionValueInteger
+from .api import OptionValueString
+from .api import SecretChat
+from .api import Supergroup
+from .api import SupergroupFullInfo
+from .api import UpdateBasicGroup
+from .api import UpdateBasicGroupFullInfo
+from .api import UpdateChatAction
+from .api import UpdateChatActionBar
+from .api import UpdateChatAvailableReactions
+from .api import UpdateChatBackground
+from .api import UpdateChatBlockList
+from .api import UpdateChatDefaultDisableNotification
+from .api import UpdateChatDraftMessage
+from .api import UpdateChatFolders
+from .api import UpdateChatHasProtectedContent
+from .api import UpdateChatHasScheduledMessages
+from .api import UpdateChatIsMarkedAsUnread
+from .api import UpdateChatIsTranslatable
+from .api import UpdateChatLastMessage
+from .api import UpdateChatMessageAutoDeleteTime
+from .api import UpdateChatMessageSender
+from .api import UpdateChatNotificationSettings
+from .api import UpdateChatOnlineMemberCount
+from .api import UpdateChatPendingJoinRequests
+from .api import UpdateChatPermissions
+from .api import UpdateChatPhoto
+from .api import UpdateChatPosition
+from .api import UpdateChatReadInbox
+from .api import UpdateChatReadOutbox
+from .api import UpdateChatReplyMarkup
+from .api import UpdateChatTheme
+from .api import UpdateChatThemes
+from .api import UpdateChatTitle
+from .api import UpdateChatUnreadMentionCount
+from .api import UpdateChatUnreadReactionCount
+from .api import UpdateChatVideoChat
+from .api import UpdateNewChat
+from .api import UpdateOption
+from .api import UpdateSecretChat
+from .api import UpdateSupergroup
+from .api import UpdateSupergroupFullInfo
+from .api import UpdateUser
+from .api import UpdateUserFullInfo
+from .api import UpdateUserStatus
+from .api import User
+from .api import UserFullInfo
+from .api import Vector
 
 if typing.TYPE_CHECKING:
     from .client import Client
@@ -258,7 +252,7 @@ class ClientCache:
 
         if not self.have_full_main_chat_list and limit > main_chat_list_size:
             try:
-                result = await self.client.api.load_chats(limit - main_chat_list_size)
+                result = await self.client.api.load_chats(limit - main_chat_list_size, request_timeout=300)
             except NotFound:
                 self.have_full_main_chat_list = True
             except AioTDLibError as e:
