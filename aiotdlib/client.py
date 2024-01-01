@@ -88,6 +88,7 @@ from .api import (
     OptionValueString,
 )
 from .client_cache import ClientCache
+from .constants import TDLIB_MAX_INT
 from .filters import Filters
 from .handlers import (
     FilterCallable,

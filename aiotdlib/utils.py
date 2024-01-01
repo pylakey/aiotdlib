@@ -5,35 +5,30 @@ import logging
 import os
 import re
 import sys
-import typing
 from enum import Enum
 from functools import partial
-from typing import (
-    Optional,
-    TYPE_CHECKING,
-    Union,
-)
+from typing import Optional
+from typing import TYPE_CHECKING
+from typing import Union
 
 import ujson
 
-from .api import (
-    BaseObject,
-    Error,
-    InputFileId,
-    InputFileLocal,
-    InputFileRemote,
-    InputThumbnail,
-    TDLibObject,
-    TDLibObjects,
-)
+from .api import BaseObject
+from .api import Error
+from .api import InputFileId
+from .api import InputFileLocal
+from .api import InputFileRemote
+from .api import InputThumbnail
+from .api import TDLibObject
+from .api import TDLibObjects
 from .api.errors import AioTDLibError
 from .api.errors.error import http_code_to_error
+from .types import Query
 
 if TYPE_CHECKING:
     from .client import Client
 
 logger = logging.getLogger(__name__)
-Query = typing.Union[str, bytes, dict]
 
 
 async def ainput(prompt: str = "", secured: bool = False) -> str:

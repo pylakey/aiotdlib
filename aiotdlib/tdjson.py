@@ -15,8 +15,7 @@ from aiotdlib.utils import (
     encode_query,
 )
 
-TDLIB_MAX_INT = 2 ** 63 - 1
-log_message_callback_type = CFUNCTYPE(None, c_int, c_char_p)
+LogMessageCallback = CFUNCTYPE(None, c_int, c_char_p)
 ARCH_ALIASES = {
     "x86_64": "amd64",
     "aarch64": "arm64",
