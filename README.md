@@ -64,7 +64,7 @@ async def main():
 
     async with client:
         me = await client.api.get_me()
-        logging.info(f"Successfully logged in as {me.json()}")
+        logging.info(f"Successfully logged in as {me.model_dump_json()}")
 
 
 if __name__ == '__main__':
@@ -84,7 +84,7 @@ from aiotdlib import Client
 async def main():
     async with Client() as client:
         me = await client.api.get_me()
-        logging.info(f"Successfully logged in as {me.json()}")
+        logging.info(f"Successfully logged in as {me.model_dump_json()}")
 
 
 if __name__ == '__main__':
