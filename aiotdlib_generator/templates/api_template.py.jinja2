@@ -36,8 +36,7 @@ class API:
             {% endfor %}
             *,
             request_id: str = None,
-            request_timeout: int = None,
-            skip_validation: bool = False
+            request_timeout: int = None
     ){% else %}(self, *, request_id: str = None, request_timeout: int = None){% endif %} -> {{ entity.return_type_str }}:
         """
         {{ entity.doc }}
@@ -50,8 +49,6 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
         {% if entity.return_type_str %}
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.{{ entity.return_type_str }}`
@@ -59,11 +56,8 @@ class API:
         {% endif -%}
         """
 
-        {% if entity.parameters %}
-        _constructor = {{ entity.uf_name }}.construct if skip_validation else {{ entity.uf_name }}
-        {% endif %}
         return await self.client.request(
-            {% if entity.parameters %}_constructor(
+            {% if entity.parameters %}{{ entity.uf_name }}(
                 {% for parameter in entity.parameters %}
                 {{ parameter.name.rstrip('_') }}={{ parameter.name }},
                 {% endfor %}
