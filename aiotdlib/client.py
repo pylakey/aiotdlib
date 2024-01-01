@@ -106,6 +106,7 @@ ChatInfo = Union[
     SupergroupFullInfo,
     SecretChat
 ]
+Undefined = object()
 
 
 class ClientProxyType(str, enum.Enum):
