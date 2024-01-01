@@ -44,14 +44,14 @@ from .base import *
 {%- endfor %}
 {% for entity in entities -%}
 {%- if not entity.is_abstract and entity.dependencies %}
-{{ entity.uf_name }}.update_forward_refs()
+{{ entity.uf_name }}.model_rebuild()
 {%- endif %}
 {%- for subclass in entity.subclasses %}
 {%- if subclass.dependencies %}
-{{ subclass.uf_name }}.update_forward_refs()
+{{ subclass.uf_name }}.model_rebuild()
 {%- endif %}
 {%- endfor %}
 {%- for dep in entity.cross_deps %}
-{{ dep.uf_name }}.update_forward_refs()
+{{ dep.uf_name }}.model_rebuild()
 {%- endfor %}
 {%- endfor %}

@@ -11,11 +11,11 @@ from pydantic import ConfigDict
 from pydantic import Field
 
 Bool = bool
-Double = Annotated[float, Field(lt=2 ** 64)]
+Double = Annotated[float, Field(lt=2**64)]
 String = str
-Int32 = Annotated[int, Field(lt=2 ** 32)]
-Int53 = Annotated[int, Field(lt=2 ** 53)]
-Int64 = Annotated[int, Field(lt=2 ** 64)]
+Int32 = Annotated[int, Field(lt=2**32)]
+Int53 = Annotated[int, Field(lt=2**53)]
+Int64 = Annotated[int, Field(lt=2**64)]
 Bytes = typing.Union[str, bytes]
 Vector = list
 
