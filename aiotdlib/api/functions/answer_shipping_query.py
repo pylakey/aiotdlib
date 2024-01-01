@@ -28,7 +28,7 @@ class AnswerShippingQuery(BaseObject):
     :type error_message: :class:`String`
     """
 
-    ID: typing.Literal["answerShippingQuery"] = "answerShippingQuery"
+    ID: typing.Literal["answerShippingQuery"] = Field("answerShippingQuery", validation_alias="@type", alias="@type")
     shipping_query_id: Int64
     shipping_options: Vector[ShippingOption]
     error_message: String

@@ -26,6 +26,8 @@ class SuggestUserProfilePhoto(BaseObject):
     :type photo: :class:`InputChatPhoto`
     """
 
-    ID: typing.Literal["suggestUserProfilePhoto"] = "suggestUserProfilePhoto"
+    ID: typing.Literal["suggestUserProfilePhoto"] = Field(
+        "suggestUserProfilePhoto", validation_alias="@type", alias="@type"
+    )
     user_id: Int53
     photo: InputChatPhoto

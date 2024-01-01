@@ -30,7 +30,7 @@ class SetStoryReaction(BaseObject):
     :type reaction_type: :class:`ReactionType`, optional
     """
 
-    ID: typing.Literal["setStoryReaction"] = "setStoryReaction"
+    ID: typing.Literal["setStoryReaction"] = Field("setStoryReaction", validation_alias="@type", alias="@type")
     story_sender_chat_id: Int53
     story_id: Int32
     update_recent_reactions: Bool = False

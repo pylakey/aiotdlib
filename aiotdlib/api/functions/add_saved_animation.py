@@ -24,5 +24,5 @@ class AddSavedAnimation(BaseObject):
     :type animation: :class:`InputFile`
     """
 
-    ID: typing.Literal["addSavedAnimation"] = "addSavedAnimation"
+    ID: typing.Literal["addSavedAnimation"] = Field("addSavedAnimation", validation_alias="@type", alias="@type")
     animation: InputFile

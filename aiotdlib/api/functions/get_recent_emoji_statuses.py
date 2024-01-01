@@ -17,4 +17,6 @@ class GetRecentEmojiStatuses(BaseObject):
     Returns recent emoji statuses
     """
 
-    ID: typing.Literal["getRecentEmojiStatuses"] = "getRecentEmojiStatuses"
+    ID: typing.Literal["getRecentEmojiStatuses"] = Field(
+        "getRecentEmojiStatuses", validation_alias="@type", alias="@type"
+    )

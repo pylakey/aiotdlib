@@ -28,7 +28,9 @@ class SetForumTopicNotificationSettings(BaseObject):
     :type notification_settings: :class:`ChatNotificationSettings`
     """
 
-    ID: typing.Literal["setForumTopicNotificationSettings"] = "setForumTopicNotificationSettings"
+    ID: typing.Literal["setForumTopicNotificationSettings"] = Field(
+        "setForumTopicNotificationSettings", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_thread_id: Int53
     notification_settings: ChatNotificationSettings

@@ -20,5 +20,7 @@ class GetChatAdministrators(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getChatAdministrators"] = "getChatAdministrators"
+    ID: typing.Literal["getChatAdministrators"] = Field(
+        "getChatAdministrators", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53

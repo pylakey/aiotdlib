@@ -20,5 +20,5 @@ class GetGroupCall(BaseObject):
     :type group_call_id: :class:`Int32`
     """
 
-    ID: typing.Literal["getGroupCall"] = "getGroupCall"
+    ID: typing.Literal["getGroupCall"] = Field("getGroupCall", validation_alias="@type", alias="@type")
     group_call_id: Int32

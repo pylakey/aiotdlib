@@ -22,6 +22,6 @@ class GetChatStatistics(BaseObject):
     :type is_dark: :class:`Bool`
     """
 
-    ID: typing.Literal["getChatStatistics"] = "getChatStatistics"
+    ID: typing.Literal["getChatStatistics"] = Field("getChatStatistics", validation_alias="@type", alias="@type")
     chat_id: Int53
     is_dark: Bool = False

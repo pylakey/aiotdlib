@@ -29,7 +29,9 @@ class EditInlineMessageMedia(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["editInlineMessageMedia"] = "editInlineMessageMedia"
+    ID: typing.Literal["editInlineMessageMedia"] = Field(
+        "editInlineMessageMedia", validation_alias="@type", alias="@type"
+    )
     inline_message_id: String
     input_message_content: InputMessageContent
     reply_markup: typing.Optional[ReplyMarkup] = None

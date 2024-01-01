@@ -17,4 +17,6 @@ class GetSavedNotificationSounds(BaseObject):
     Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
     """
 
-    ID: typing.Literal["getSavedNotificationSounds"] = "getSavedNotificationSounds"
+    ID: typing.Literal["getSavedNotificationSounds"] = Field(
+        "getSavedNotificationSounds", validation_alias="@type", alias="@type"
+    )

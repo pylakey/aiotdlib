@@ -22,6 +22,8 @@ class RemoveNotificationGroup(BaseObject):
     :type max_notification_id: :class:`Int32`
     """
 
-    ID: typing.Literal["removeNotificationGroup"] = "removeNotificationGroup"
+    ID: typing.Literal["removeNotificationGroup"] = Field(
+        "removeNotificationGroup", validation_alias="@type", alias="@type"
+    )
     notification_group_id: Int32
     max_notification_id: Int32

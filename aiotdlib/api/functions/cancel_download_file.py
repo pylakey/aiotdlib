@@ -22,6 +22,6 @@ class CancelDownloadFile(BaseObject):
     :type only_if_pending: :class:`Bool`
     """
 
-    ID: typing.Literal["cancelDownloadFile"] = "cancelDownloadFile"
+    ID: typing.Literal["cancelDownloadFile"] = Field("cancelDownloadFile", validation_alias="@type", alias="@type")
     file_id: Int32
     only_if_pending: Bool = False

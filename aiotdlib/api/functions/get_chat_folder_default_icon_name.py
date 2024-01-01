@@ -24,5 +24,7 @@ class GetChatFolderDefaultIconName(BaseObject):
     :type folder: :class:`ChatFolder`
     """
 
-    ID: typing.Literal["getChatFolderDefaultIconName"] = "getChatFolderDefaultIconName"
+    ID: typing.Literal["getChatFolderDefaultIconName"] = Field(
+        "getChatFolderDefaultIconName", validation_alias="@type", alias="@type"
+    )
     folder: ChatFolder

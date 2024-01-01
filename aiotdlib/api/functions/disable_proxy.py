@@ -17,4 +17,4 @@ class DisableProxy(BaseObject):
     Disables the currently enabled proxy. Can be called before authorization
     """
 
-    ID: typing.Literal["disableProxy"] = "disableProxy"
+    ID: typing.Literal["disableProxy"] = Field("disableProxy", validation_alias="@type", alias="@type")

@@ -24,7 +24,7 @@ class GetUserProfilePhotos(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["getUserProfilePhotos"] = "getUserProfilePhotos"
+    ID: typing.Literal["getUserProfilePhotos"] = Field("getUserProfilePhotos", validation_alias="@type", alias="@type")
     user_id: Int53
     offset: Int32
     limit: Int32

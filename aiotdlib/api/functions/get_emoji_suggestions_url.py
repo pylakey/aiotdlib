@@ -20,5 +20,7 @@ class GetEmojiSuggestionsUrl(BaseObject):
     :type language_code: :class:`String`
     """
 
-    ID: typing.Literal["getEmojiSuggestionsUrl"] = "getEmojiSuggestionsUrl"
+    ID: typing.Literal["getEmojiSuggestionsUrl"] = Field(
+        "getEmojiSuggestionsUrl", validation_alias="@type", alias="@type"
+    )
     language_code: String

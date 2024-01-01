@@ -28,7 +28,9 @@ class GetArchivedStickerSets(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["getArchivedStickerSets"] = "getArchivedStickerSets"
+    ID: typing.Literal["getArchivedStickerSets"] = Field(
+        "getArchivedStickerSets", validation_alias="@type", alias="@type"
+    )
     sticker_type: StickerType
     offset_sticker_set_id: Int64
     limit: Int32

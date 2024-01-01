@@ -20,5 +20,5 @@ class GetBasicGroup(BaseObject):
     :type basic_group_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getBasicGroup"] = "getBasicGroup"
+    ID: typing.Literal["getBasicGroup"] = Field("getBasicGroup", validation_alias="@type", alias="@type")
     basic_group_id: Int53

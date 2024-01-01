@@ -20,5 +20,5 @@ class CloseWebApp(BaseObject):
     :type web_app_launch_id: :class:`Int64`
     """
 
-    ID: typing.Literal["closeWebApp"] = "closeWebApp"
+    ID: typing.Literal["closeWebApp"] = Field("closeWebApp", validation_alias="@type", alias="@type")
     web_app_launch_id: Int64

@@ -20,5 +20,5 @@ class GetPhoneNumberInfo(BaseObject):
     :type phone_number_prefix: :class:`String`
     """
 
-    ID: typing.Literal["getPhoneNumberInfo"] = "getPhoneNumberInfo"
+    ID: typing.Literal["getPhoneNumberInfo"] = Field("getPhoneNumberInfo", validation_alias="@type", alias="@type")
     phone_number_prefix: String

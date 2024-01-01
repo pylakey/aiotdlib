@@ -20,5 +20,7 @@ class GetChatInviteLinkCounts(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getChatInviteLinkCounts"] = "getChatInviteLinkCounts"
+    ID: typing.Literal["getChatInviteLinkCounts"] = Field(
+        "getChatInviteLinkCounts", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53

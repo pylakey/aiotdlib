@@ -26,6 +26,6 @@ class GetInternalLink(BaseObject):
     :type is_http: :class:`Bool`
     """
 
-    ID: typing.Literal["getInternalLink"] = "getInternalLink"
+    ID: typing.Literal["getInternalLink"] = Field("getInternalLink", validation_alias="@type", alias="@type")
     type_: InternalLinkType = Field(..., alias="type")
     is_http: Bool = False

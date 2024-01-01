@@ -22,6 +22,8 @@ class ProcessChatFolderNewChats(BaseObject):
     :type added_chat_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["processChatFolderNewChats"] = "processChatFolderNewChats"
+    ID: typing.Literal["processChatFolderNewChats"] = Field(
+        "processChatFolderNewChats", validation_alias="@type", alias="@type"
+    )
     chat_folder_id: Int32
     added_chat_ids: Vector[Int53]

@@ -22,6 +22,6 @@ class GetForumTopicLink(BaseObject):
     :type message_thread_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getForumTopicLink"] = "getForumTopicLink"
+    ID: typing.Literal["getForumTopicLink"] = Field("getForumTopicLink", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_thread_id: Int53

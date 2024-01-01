@@ -28,7 +28,7 @@ class GetChatHistory(BaseObject):
     :type only_local: :class:`Bool`
     """
 
-    ID: typing.Literal["getChatHistory"] = "getChatHistory"
+    ID: typing.Literal["getChatHistory"] = Field("getChatHistory", validation_alias="@type", alias="@type")
     chat_id: Int53
     from_message_id: Int53
     offset: Int32

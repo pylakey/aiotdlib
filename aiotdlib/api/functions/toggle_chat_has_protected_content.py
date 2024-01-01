@@ -22,6 +22,8 @@ class ToggleChatHasProtectedContent(BaseObject):
     :type has_protected_content: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleChatHasProtectedContent"] = "toggleChatHasProtectedContent"
+    ID: typing.Literal["toggleChatHasProtectedContent"] = Field(
+        "toggleChatHasProtectedContent", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     has_protected_content: Bool

@@ -29,7 +29,7 @@ class SetChatMemberStatus(BaseObject):
     :type status: :class:`ChatMemberStatus`
     """
 
-    ID: typing.Literal["setChatMemberStatus"] = "setChatMemberStatus"
+    ID: typing.Literal["setChatMemberStatus"] = Field("setChatMemberStatus", validation_alias="@type", alias="@type")
     chat_id: Int53
     member_id: MessageSender
     status: ChatMemberStatus

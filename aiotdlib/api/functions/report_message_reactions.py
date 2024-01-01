@@ -28,7 +28,9 @@ class ReportMessageReactions(BaseObject):
     :type sender_id: :class:`MessageSender`
     """
 
-    ID: typing.Literal["reportMessageReactions"] = "reportMessageReactions"
+    ID: typing.Literal["reportMessageReactions"] = Field(
+        "reportMessageReactions", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     sender_id: MessageSender

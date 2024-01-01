@@ -24,7 +24,9 @@ class ToggleForumTopicIsPinned(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleForumTopicIsPinned"] = "toggleForumTopicIsPinned"
+    ID: typing.Literal["toggleForumTopicIsPinned"] = Field(
+        "toggleForumTopicIsPinned", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_thread_id: Int53
     is_pinned: Bool = False

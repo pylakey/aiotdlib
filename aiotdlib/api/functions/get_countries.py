@@ -17,4 +17,4 @@ class GetCountries(BaseObject):
     Returns information about existing countries. Can be called before authorization
     """
 
-    ID: typing.Literal["getCountries"] = "getCountries"
+    ID: typing.Literal["getCountries"] = Field("getCountries", validation_alias="@type", alias="@type")

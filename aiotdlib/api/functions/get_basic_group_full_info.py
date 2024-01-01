@@ -20,5 +20,7 @@ class GetBasicGroupFullInfo(BaseObject):
     :type basic_group_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getBasicGroupFullInfo"] = "getBasicGroupFullInfo"
+    ID: typing.Literal["getBasicGroupFullInfo"] = Field(
+        "getBasicGroupFullInfo", validation_alias="@type", alias="@type"
+    )
     basic_group_id: Int53

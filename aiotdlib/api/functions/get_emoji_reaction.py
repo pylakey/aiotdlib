@@ -20,5 +20,5 @@ class GetEmojiReaction(BaseObject):
     :type emoji: :class:`String`
     """
 
-    ID: typing.Literal["getEmojiReaction"] = "getEmojiReaction"
+    ID: typing.Literal["getEmojiReaction"] = Field("getEmojiReaction", validation_alias="@type", alias="@type")
     emoji: String

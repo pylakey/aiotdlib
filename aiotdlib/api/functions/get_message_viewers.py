@@ -22,6 +22,6 @@ class GetMessageViewers(BaseObject):
     :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getMessageViewers"] = "getMessageViewers"
+    ID: typing.Literal["getMessageViewers"] = Field("getMessageViewers", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53

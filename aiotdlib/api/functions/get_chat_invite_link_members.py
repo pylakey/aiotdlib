@@ -30,7 +30,9 @@ class GetChatInviteLinkMembers(BaseObject):
     :type offset_member: :class:`ChatInviteLinkMember`, optional
     """
 
-    ID: typing.Literal["getChatInviteLinkMembers"] = "getChatInviteLinkMembers"
+    ID: typing.Literal["getChatInviteLinkMembers"] = Field(
+        "getChatInviteLinkMembers", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     invite_link: String
     limit: Int32

@@ -22,6 +22,6 @@ class DeleteChatFolder(BaseObject):
     :type leave_chat_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["deleteChatFolder"] = "deleteChatFolder"
+    ID: typing.Literal["deleteChatFolder"] = Field("deleteChatFolder", validation_alias="@type", alias="@type")
     chat_folder_id: Int32
     leave_chat_ids: Vector[Int53]

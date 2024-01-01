@@ -26,6 +26,6 @@ class RegisterDevice(BaseObject):
     :type other_user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["registerDevice"] = "registerDevice"
+    ID: typing.Literal["registerDevice"] = Field("registerDevice", validation_alias="@type", alias="@type")
     device_token: DeviceToken
     other_user_ids: Vector[Int53]

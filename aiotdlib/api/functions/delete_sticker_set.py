@@ -20,5 +20,5 @@ class DeleteStickerSet(BaseObject):
     :type name: :class:`String`
     """
 
-    ID: typing.Literal["deleteStickerSet"] = "deleteStickerSet"
+    ID: typing.Literal["deleteStickerSet"] = Field("deleteStickerSet", validation_alias="@type", alias="@type")
     name: String

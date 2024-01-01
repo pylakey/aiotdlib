@@ -28,7 +28,9 @@ class GetMessageThreadHistory(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["getMessageThreadHistory"] = "getMessageThreadHistory"
+    ID: typing.Literal["getMessageThreadHistory"] = Field(
+        "getMessageThreadHistory", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     from_message_id: Int53

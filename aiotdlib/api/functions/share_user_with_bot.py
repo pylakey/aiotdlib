@@ -28,7 +28,7 @@ class ShareUserWithBot(BaseObject):
     :type only_check: :class:`Bool`
     """
 
-    ID: typing.Literal["shareUserWithBot"] = "shareUserWithBot"
+    ID: typing.Literal["shareUserWithBot"] = Field("shareUserWithBot", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     button_id: Int32

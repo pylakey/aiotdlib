@@ -26,6 +26,6 @@ class SendCallLog(BaseObject):
     :type log_file: :class:`InputFile`
     """
 
-    ID: typing.Literal["sendCallLog"] = "sendCallLog"
+    ID: typing.Literal["sendCallLog"] = Field("sendCallLog", validation_alias="@type", alias="@type")
     call_id: Int32
     log_file: InputFile

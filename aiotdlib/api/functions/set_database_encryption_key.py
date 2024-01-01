@@ -20,5 +20,7 @@ class SetDatabaseEncryptionKey(BaseObject):
     :type new_encryption_key: :class:`Bytes`
     """
 
-    ID: typing.Literal["setDatabaseEncryptionKey"] = "setDatabaseEncryptionKey"
+    ID: typing.Literal["setDatabaseEncryptionKey"] = Field(
+        "setDatabaseEncryptionKey", validation_alias="@type", alias="@type"
+    )
     new_encryption_key: Bytes

@@ -20,5 +20,5 @@ class EnableProxy(BaseObject):
     :type proxy_id: :class:`Int32`
     """
 
-    ID: typing.Literal["enableProxy"] = "enableProxy"
+    ID: typing.Literal["enableProxy"] = Field("enableProxy", validation_alias="@type", alias="@type")
     proxy_id: Int32

@@ -24,5 +24,7 @@ class CheckCreatedPublicChatsLimit(BaseObject):
     :type type_: :class:`PublicChatType`
     """
 
-    ID: typing.Literal["checkCreatedPublicChatsLimit"] = "checkCreatedPublicChatsLimit"
+    ID: typing.Literal["checkCreatedPublicChatsLimit"] = Field(
+        "checkCreatedPublicChatsLimit", validation_alias="@type", alias="@type"
+    )
     type_: PublicChatType = Field(..., alias="type")

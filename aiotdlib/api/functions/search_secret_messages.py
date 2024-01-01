@@ -32,7 +32,7 @@ class SearchSecretMessages(BaseObject):
     :type filter_: :class:`SearchMessagesFilter`, optional
     """
 
-    ID: typing.Literal["searchSecretMessages"] = "searchSecretMessages"
+    ID: typing.Literal["searchSecretMessages"] = Field("searchSecretMessages", validation_alias="@type", alias="@type")
     chat_id: Int53
     query: String
     offset: String

@@ -22,6 +22,6 @@ class SearchContacts(BaseObject):
     :type query: :class:`String`
     """
 
-    ID: typing.Literal["searchContacts"] = "searchContacts"
+    ID: typing.Literal["searchContacts"] = Field("searchContacts", validation_alias="@type", alias="@type")
     limit: Int32
     query: String = ""

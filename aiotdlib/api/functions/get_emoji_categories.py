@@ -24,5 +24,5 @@ class GetEmojiCategories(BaseObject):
     :type type_: :class:`EmojiCategoryType`, optional
     """
 
-    ID: typing.Literal["getEmojiCategories"] = "getEmojiCategories"
+    ID: typing.Literal["getEmojiCategories"] = Field("getEmojiCategories", validation_alias="@type", alias="@type")
     type_: typing.Optional[EmojiCategoryType] = Field(None, alias="type")

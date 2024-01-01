@@ -22,6 +22,8 @@ class GetGroupCallInviteLink(BaseObject):
     :type can_self_unmute: :class:`Bool`
     """
 
-    ID: typing.Literal["getGroupCallInviteLink"] = "getGroupCallInviteLink"
+    ID: typing.Literal["getGroupCallInviteLink"] = Field(
+        "getGroupCallInviteLink", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     can_self_unmute: Bool = False

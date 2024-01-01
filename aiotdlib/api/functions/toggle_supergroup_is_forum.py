@@ -22,6 +22,8 @@ class ToggleSupergroupIsForum(BaseObject):
     :type is_forum: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleSupergroupIsForum"] = "toggleSupergroupIsForum"
+    ID: typing.Literal["toggleSupergroupIsForum"] = Field(
+        "toggleSupergroupIsForum", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53
     is_forum: Bool

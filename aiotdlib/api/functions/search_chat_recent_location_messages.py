@@ -22,6 +22,8 @@ class SearchChatRecentLocationMessages(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["searchChatRecentLocationMessages"] = "searchChatRecentLocationMessages"
+    ID: typing.Literal["searchChatRecentLocationMessages"] = Field(
+        "searchChatRecentLocationMessages", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     limit: Int32

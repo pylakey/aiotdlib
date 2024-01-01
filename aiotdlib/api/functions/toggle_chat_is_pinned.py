@@ -28,7 +28,7 @@ class ToggleChatIsPinned(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleChatIsPinned"] = "toggleChatIsPinned"
+    ID: typing.Literal["toggleChatIsPinned"] = Field("toggleChatIsPinned", validation_alias="@type", alias="@type")
     chat_list: ChatList
     chat_id: Int53
     is_pinned: Bool = False

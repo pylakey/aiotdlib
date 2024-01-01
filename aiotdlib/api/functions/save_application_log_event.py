@@ -28,7 +28,9 @@ class SaveApplicationLogEvent(BaseObject):
     :type data: :class:`JsonValue`
     """
 
-    ID: typing.Literal["saveApplicationLogEvent"] = "saveApplicationLogEvent"
+    ID: typing.Literal["saveApplicationLogEvent"] = Field(
+        "saveApplicationLogEvent", validation_alias="@type", alias="@type"
+    )
     type_: String = Field(..., alias="type")
     chat_id: Int53
     data: JsonValue

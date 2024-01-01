@@ -20,5 +20,5 @@ class GetMessageLinkInfo(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["getMessageLinkInfo"] = "getMessageLinkInfo"
+    ID: typing.Literal["getMessageLinkInfo"] = Field("getMessageLinkInfo", validation_alias="@type", alias="@type")
     url: String

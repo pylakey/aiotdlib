@@ -20,5 +20,7 @@ class CheckAuthenticationBotToken(BaseObject):
     :type token: :class:`String`
     """
 
-    ID: typing.Literal["checkAuthenticationBotToken"] = "checkAuthenticationBotToken"
+    ID: typing.Literal["checkAuthenticationBotToken"] = Field(
+        "checkAuthenticationBotToken", validation_alias="@type", alias="@type"
+    )
     token: String

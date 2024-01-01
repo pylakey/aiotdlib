@@ -17,4 +17,4 @@ class GetSavedOrderInfo(BaseObject):
     Returns saved order information. Returns a 404 error if there is no saved order information
     """
 
-    ID: typing.Literal["getSavedOrderInfo"] = "getSavedOrderInfo"
+    ID: typing.Literal["getSavedOrderInfo"] = Field("getSavedOrderInfo", validation_alias="@type", alias="@type")

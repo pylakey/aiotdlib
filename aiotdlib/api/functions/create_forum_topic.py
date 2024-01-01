@@ -28,7 +28,7 @@ class CreateForumTopic(BaseObject):
     :type icon: :class:`ForumTopicIcon`
     """
 
-    ID: typing.Literal["createForumTopic"] = "createForumTopic"
+    ID: typing.Literal["createForumTopic"] = Field("createForumTopic", validation_alias="@type", alias="@type")
     chat_id: Int53
     name: String = Field(..., min_length=1, max_length=128)
     icon: ForumTopicIcon

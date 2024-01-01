@@ -17,4 +17,6 @@ class RequestPasswordRecovery(BaseObject):
     Requests to send a 2-step verification password recovery code to an email address that was previously set up
     """
 
-    ID: typing.Literal["requestPasswordRecovery"] = "requestPasswordRecovery"
+    ID: typing.Literal["requestPasswordRecovery"] = Field(
+        "requestPasswordRecovery", validation_alias="@type", alias="@type"
+    )

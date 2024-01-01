@@ -26,7 +26,9 @@ class SearchStringsByPrefix(BaseObject):
     :type return_none_for_empty_query: :class:`Bool`
     """
 
-    ID: typing.Literal["searchStringsByPrefix"] = "searchStringsByPrefix"
+    ID: typing.Literal["searchStringsByPrefix"] = Field(
+        "searchStringsByPrefix", validation_alias="@type", alias="@type"
+    )
     strings: Vector[String]
     query: String
     limit: Int32

@@ -22,6 +22,8 @@ class ReportSupergroupAntiSpamFalsePositive(BaseObject):
     :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["reportSupergroupAntiSpamFalsePositive"] = "reportSupergroupAntiSpamFalsePositive"
+    ID: typing.Literal["reportSupergroupAntiSpamFalsePositive"] = Field(
+        "reportSupergroupAntiSpamFalsePositive", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53
     message_id: Int53

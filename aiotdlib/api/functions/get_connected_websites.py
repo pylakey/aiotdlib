@@ -17,4 +17,4 @@ class GetConnectedWebsites(BaseObject):
     Returns all website where the current user used Telegram to log in
     """
 
-    ID: typing.Literal["getConnectedWebsites"] = "getConnectedWebsites"
+    ID: typing.Literal["getConnectedWebsites"] = Field("getConnectedWebsites", validation_alias="@type", alias="@type")

@@ -22,6 +22,8 @@ class SetRecoveryEmailAddress(BaseObject):
     :type new_recovery_email_address: :class:`String`
     """
 
-    ID: typing.Literal["setRecoveryEmailAddress"] = "setRecoveryEmailAddress"
+    ID: typing.Literal["setRecoveryEmailAddress"] = Field(
+        "setRecoveryEmailAddress", validation_alias="@type", alias="@type"
+    )
     password: String
     new_recovery_email_address: String

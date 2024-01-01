@@ -22,6 +22,6 @@ class SetChatTitle(BaseObject):
     :type title: :class:`String`
     """
 
-    ID: typing.Literal["setChatTitle"] = "setChatTitle"
+    ID: typing.Literal["setChatTitle"] = Field("setChatTitle", validation_alias="@type", alias="@type")
     chat_id: Int53
     title: String = Field(..., min_length=1, max_length=128)

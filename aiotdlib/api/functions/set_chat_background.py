@@ -31,7 +31,7 @@ class SetChatBackground(BaseObject):
     :type type_: :class:`BackgroundType`, optional
     """
 
-    ID: typing.Literal["setChatBackground"] = "setChatBackground"
+    ID: typing.Literal["setChatBackground"] = Field("setChatBackground", validation_alias="@type", alias="@type")
     chat_id: Int53
     dark_theme_dimming: Int32
     background: typing.Optional[InputBackground] = None

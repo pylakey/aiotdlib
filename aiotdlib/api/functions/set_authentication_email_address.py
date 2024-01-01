@@ -20,5 +20,7 @@ class SetAuthenticationEmailAddress(BaseObject):
     :type email_address: :class:`String`
     """
 
-    ID: typing.Literal["setAuthenticationEmailAddress"] = "setAuthenticationEmailAddress"
+    ID: typing.Literal["setAuthenticationEmailAddress"] = Field(
+        "setAuthenticationEmailAddress", validation_alias="@type", alias="@type"
+    )
     email_address: String

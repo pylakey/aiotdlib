@@ -31,7 +31,7 @@ class EditMessageCaption(BaseObject):
     :type caption: :class:`FormattedText`, optional
     """
 
-    ID: typing.Literal["editMessageCaption"] = "editMessageCaption"
+    ID: typing.Literal["editMessageCaption"] = Field("editMessageCaption", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     reply_markup: typing.Optional[ReplyMarkup] = None

@@ -20,5 +20,5 @@ class SetCloseFriends(BaseObject):
     :type user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["setCloseFriends"] = "setCloseFriends"
+    ID: typing.Literal["setCloseFriends"] = Field("setCloseFriends", validation_alias="@type", alias="@type")
     user_ids: Vector[Int53]

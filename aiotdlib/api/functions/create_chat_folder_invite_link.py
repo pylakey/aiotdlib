@@ -24,7 +24,9 @@ class CreateChatFolderInviteLink(BaseObject):
     :type name: :class:`String`
     """
 
-    ID: typing.Literal["createChatFolderInviteLink"] = "createChatFolderInviteLink"
+    ID: typing.Literal["createChatFolderInviteLink"] = Field(
+        "createChatFolderInviteLink", validation_alias="@type", alias="@type"
+    )
     chat_folder_id: Int32
     chat_ids: Vector[Int53]
     name: String = Field("", max_length=32)

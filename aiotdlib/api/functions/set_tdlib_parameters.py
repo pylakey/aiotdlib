@@ -50,7 +50,7 @@ class SetTdlibParameters(BaseObject):
     :type ignore_file_names: :class:`Bool`
     """
 
-    ID: typing.Literal["setTdlibParameters"] = "setTdlibParameters"
+    ID: typing.Literal["setTdlibParameters"] = Field("setTdlibParameters", validation_alias="@type", alias="@type")
     database_directory: String
     files_directory: String
     database_encryption_key: Bytes

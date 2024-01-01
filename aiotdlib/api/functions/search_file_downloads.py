@@ -28,7 +28,7 @@ class SearchFileDownloads(BaseObject):
     :type only_completed: :class:`Bool`
     """
 
-    ID: typing.Literal["searchFileDownloads"] = "searchFileDownloads"
+    ID: typing.Literal["searchFileDownloads"] = Field("searchFileDownloads", validation_alias="@type", alias="@type")
     offset: String
     limit: Int32
     query: String = ""

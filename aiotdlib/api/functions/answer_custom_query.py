@@ -22,6 +22,6 @@ class AnswerCustomQuery(BaseObject):
     :type data: :class:`String`
     """
 
-    ID: typing.Literal["answerCustomQuery"] = "answerCustomQuery"
+    ID: typing.Literal["answerCustomQuery"] = Field("answerCustomQuery", validation_alias="@type", alias="@type")
     custom_query_id: Int64
     data: String

@@ -28,7 +28,9 @@ class ToggleGroupCallParticipantIsMuted(BaseObject):
     :type is_muted: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleGroupCallParticipantIsMuted"] = "toggleGroupCallParticipantIsMuted"
+    ID: typing.Literal["toggleGroupCallParticipantIsMuted"] = Field(
+        "toggleGroupCallParticipantIsMuted", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     participant_id: MessageSender
     is_muted: Bool = False

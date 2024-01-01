@@ -26,6 +26,8 @@ class AssignAppStoreTransaction(BaseObject):
     :type purpose: :class:`StorePaymentPurpose`
     """
 
-    ID: typing.Literal["assignAppStoreTransaction"] = "assignAppStoreTransaction"
+    ID: typing.Literal["assignAppStoreTransaction"] = Field(
+        "assignAppStoreTransaction", validation_alias="@type", alias="@type"
+    )
     receipt: Bytes
     purpose: StorePaymentPurpose

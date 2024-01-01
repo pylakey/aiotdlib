@@ -24,5 +24,7 @@ class SetDefaultGroupAdministratorRights(BaseObject):
     :type default_group_administrator_rights: :class:`ChatAdministratorRights`, optional
     """
 
-    ID: typing.Literal["setDefaultGroupAdministratorRights"] = "setDefaultGroupAdministratorRights"
+    ID: typing.Literal["setDefaultGroupAdministratorRights"] = Field(
+        "setDefaultGroupAdministratorRights", validation_alias="@type", alias="@type"
+    )
     default_group_administrator_rights: typing.Optional[ChatAdministratorRights] = None

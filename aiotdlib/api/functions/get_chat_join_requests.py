@@ -32,7 +32,7 @@ class GetChatJoinRequests(BaseObject):
     :type offset_request: :class:`ChatJoinRequest`, optional
     """
 
-    ID: typing.Literal["getChatJoinRequests"] = "getChatJoinRequests"
+    ID: typing.Literal["getChatJoinRequests"] = Field("getChatJoinRequests", validation_alias="@type", alias="@type")
     chat_id: Int53
     invite_link: String
     query: String

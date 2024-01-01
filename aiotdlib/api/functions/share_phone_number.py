@@ -20,5 +20,5 @@ class SharePhoneNumber(BaseObject):
     :type user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["sharePhoneNumber"] = "sharePhoneNumber"
+    ID: typing.Literal["sharePhoneNumber"] = Field("sharePhoneNumber", validation_alias="@type", alias="@type")
     user_id: Int53

@@ -20,5 +20,5 @@ class GetAttachmentMenuBot(BaseObject):
     :type bot_user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getAttachmentMenuBot"] = "getAttachmentMenuBot"
+    ID: typing.Literal["getAttachmentMenuBot"] = Field("getAttachmentMenuBot", validation_alias="@type", alias="@type")
     bot_user_id: Int53

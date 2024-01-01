@@ -20,5 +20,5 @@ class AddRecentlyFoundChat(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["addRecentlyFoundChat"] = "addRecentlyFoundChat"
+    ID: typing.Literal["addRecentlyFoundChat"] = Field("addRecentlyFoundChat", validation_alias="@type", alias="@type")
     chat_id: Int53

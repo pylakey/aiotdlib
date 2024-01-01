@@ -39,7 +39,7 @@ class SearchChatMessages(BaseObject):
     :type filter_: :class:`SearchMessagesFilter`, optional
     """
 
-    ID: typing.Literal["searchChatMessages"] = "searchChatMessages"
+    ID: typing.Literal["searchChatMessages"] = Field("searchChatMessages", validation_alias="@type", alias="@type")
     chat_id: Int53
     query: String
     from_message_id: Int53

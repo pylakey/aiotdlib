@@ -22,6 +22,6 @@ class AddLogMessage(BaseObject):
     :type text: :class:`String`
     """
 
-    ID: typing.Literal["addLogMessage"] = "addLogMessage"
+    ID: typing.Literal["addLogMessage"] = Field("addLogMessage", validation_alias="@type", alias="@type")
     verbosity_level: Int32
     text: String

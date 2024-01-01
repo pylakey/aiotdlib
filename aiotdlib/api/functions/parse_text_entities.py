@@ -26,6 +26,6 @@ class ParseTextEntities(BaseObject):
     :type parse_mode: :class:`TextParseMode`
     """
 
-    ID: typing.Literal["parseTextEntities"] = "parseTextEntities"
+    ID: typing.Literal["parseTextEntities"] = Field("parseTextEntities", validation_alias="@type", alias="@type")
     text: String
     parse_mode: TextParseMode

@@ -24,5 +24,7 @@ class RemoveFavoriteSticker(BaseObject):
     :type sticker: :class:`InputFile`
     """
 
-    ID: typing.Literal["removeFavoriteSticker"] = "removeFavoriteSticker"
+    ID: typing.Literal["removeFavoriteSticker"] = Field(
+        "removeFavoriteSticker", validation_alias="@type", alias="@type"
+    )
     sticker: InputFile

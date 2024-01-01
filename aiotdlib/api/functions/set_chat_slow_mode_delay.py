@@ -22,6 +22,6 @@ class SetChatSlowModeDelay(BaseObject):
     :type slow_mode_delay: :class:`Int32`
     """
 
-    ID: typing.Literal["setChatSlowModeDelay"] = "setChatSlowModeDelay"
+    ID: typing.Literal["setChatSlowModeDelay"] = Field("setChatSlowModeDelay", validation_alias="@type", alias="@type")
     chat_id: Int53
     slow_mode_delay: Int32

@@ -32,7 +32,9 @@ class GetGroupCallStreamSegment(BaseObject):
     :type video_quality: :class:`GroupCallVideoQuality`, optional
     """
 
-    ID: typing.Literal["getGroupCallStreamSegment"] = "getGroupCallStreamSegment"
+    ID: typing.Literal["getGroupCallStreamSegment"] = Field(
+        "getGroupCallStreamSegment", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     time_offset: Int53
     scale: Int32

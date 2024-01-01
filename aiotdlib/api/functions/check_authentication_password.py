@@ -20,5 +20,7 @@ class CheckAuthenticationPassword(BaseObject):
     :type password: :class:`String`
     """
 
-    ID: typing.Literal["checkAuthenticationPassword"] = "checkAuthenticationPassword"
+    ID: typing.Literal["checkAuthenticationPassword"] = Field(
+        "checkAuthenticationPassword", validation_alias="@type", alias="@type"
+    )
     password: String

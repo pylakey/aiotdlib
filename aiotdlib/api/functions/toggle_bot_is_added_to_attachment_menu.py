@@ -24,7 +24,9 @@ class ToggleBotIsAddedToAttachmentMenu(BaseObject):
     :type allow_write_access: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleBotIsAddedToAttachmentMenu"] = "toggleBotIsAddedToAttachmentMenu"
+    ID: typing.Literal["toggleBotIsAddedToAttachmentMenu"] = Field(
+        "toggleBotIsAddedToAttachmentMenu", validation_alias="@type", alias="@type"
+    )
     bot_user_id: Int53
     is_added: Bool = False
     allow_write_access: Bool = False

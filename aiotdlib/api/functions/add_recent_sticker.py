@@ -26,6 +26,6 @@ class AddRecentSticker(BaseObject):
     :type is_attached: :class:`Bool`
     """
 
-    ID: typing.Literal["addRecentSticker"] = "addRecentSticker"
+    ID: typing.Literal["addRecentSticker"] = Field("addRecentSticker", validation_alias="@type", alias="@type")
     sticker: InputFile
     is_attached: Bool = False

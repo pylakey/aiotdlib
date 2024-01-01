@@ -20,5 +20,7 @@ class ConfirmQrCodeAuthentication(BaseObject):
     :type link: :class:`String`
     """
 
-    ID: typing.Literal["confirmQrCodeAuthentication"] = "confirmQrCodeAuthentication"
+    ID: typing.Literal["confirmQrCodeAuthentication"] = Field(
+        "confirmQrCodeAuthentication", validation_alias="@type", alias="@type"
+    )
     link: String

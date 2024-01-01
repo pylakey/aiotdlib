@@ -17,4 +17,4 @@ class TestCallEmpty(BaseObject):
     Does nothing; for testing only. This is an offline method. Can be called before authorization
     """
 
-    ID: typing.Literal["testCallEmpty"] = "testCallEmpty"
+    ID: typing.Literal["testCallEmpty"] = Field("testCallEmpty", validation_alias="@type", alias="@type")

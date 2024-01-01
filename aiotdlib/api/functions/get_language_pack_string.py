@@ -26,7 +26,9 @@ class GetLanguagePackString(BaseObject):
     :type key: :class:`String`
     """
 
-    ID: typing.Literal["getLanguagePackString"] = "getLanguagePackString"
+    ID: typing.Literal["getLanguagePackString"] = Field(
+        "getLanguagePackString", validation_alias="@type", alias="@type"
+    )
     language_pack_database_path: String
     localization_target: String
     language_pack_id: String

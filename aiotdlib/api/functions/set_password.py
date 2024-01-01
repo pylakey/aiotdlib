@@ -28,7 +28,7 @@ class SetPassword(BaseObject):
     :type new_recovery_email_address: :class:`String`
     """
 
-    ID: typing.Literal["setPassword"] = "setPassword"
+    ID: typing.Literal["setPassword"] = Field("setPassword", validation_alias="@type", alias="@type")
     old_password: String
     new_password: String = ""
     new_hint: String = ""

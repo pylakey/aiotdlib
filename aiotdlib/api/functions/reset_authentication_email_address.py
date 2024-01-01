@@ -17,4 +17,6 @@ class ResetAuthenticationEmailAddress(BaseObject):
     Resets the login email address. May return an error with a message "TASK_ALREADY_EXISTS" if reset is still pending. Works only when the current authorization state is authorizationStateWaitEmailCode and authorization_state.can_reset_email_address == true
     """
 
-    ID: typing.Literal["resetAuthenticationEmailAddress"] = "resetAuthenticationEmailAddress"
+    ID: typing.Literal["resetAuthenticationEmailAddress"] = Field(
+        "resetAuthenticationEmailAddress", validation_alias="@type", alias="@type"
+    )

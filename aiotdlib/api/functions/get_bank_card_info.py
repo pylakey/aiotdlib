@@ -20,5 +20,5 @@ class GetBankCardInfo(BaseObject):
     :type bank_card_number: :class:`String`
     """
 
-    ID: typing.Literal["getBankCardInfo"] = "getBankCardInfo"
+    ID: typing.Literal["getBankCardInfo"] = Field("getBankCardInfo", validation_alias="@type", alias="@type")
     bank_card_number: String

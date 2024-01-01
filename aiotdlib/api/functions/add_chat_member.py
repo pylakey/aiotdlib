@@ -24,7 +24,7 @@ class AddChatMember(BaseObject):
     :type forward_limit: :class:`Int32`
     """
 
-    ID: typing.Literal["addChatMember"] = "addChatMember"
+    ID: typing.Literal["addChatMember"] = Field("addChatMember", validation_alias="@type", alias="@type")
     chat_id: Int53
     user_id: Int53
     forward_limit: Int32

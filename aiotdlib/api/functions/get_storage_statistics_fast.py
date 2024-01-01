@@ -17,4 +17,6 @@ class GetStorageStatisticsFast(BaseObject):
     Quickly returns approximate storage usage statistics. Can be called before authorization
     """
 
-    ID: typing.Literal["getStorageStatisticsFast"] = "getStorageStatisticsFast"
+    ID: typing.Literal["getStorageStatisticsFast"] = Field(
+        "getStorageStatisticsFast", validation_alias="@type", alias="@type"
+    )

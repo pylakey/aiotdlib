@@ -20,5 +20,7 @@ class DisableAllSupergroupUsernames(BaseObject):
     :type supergroup_id: :class:`Int53`
     """
 
-    ID: typing.Literal["disableAllSupergroupUsernames"] = "disableAllSupergroupUsernames"
+    ID: typing.Literal["disableAllSupergroupUsernames"] = Field(
+        "disableAllSupergroupUsernames", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53

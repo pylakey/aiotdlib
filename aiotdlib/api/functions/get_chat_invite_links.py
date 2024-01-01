@@ -30,7 +30,7 @@ class GetChatInviteLinks(BaseObject):
     :type is_revoked: :class:`Bool`
     """
 
-    ID: typing.Literal["getChatInviteLinks"] = "getChatInviteLinks"
+    ID: typing.Literal["getChatInviteLinks"] = Field("getChatInviteLinks", validation_alias="@type", alias="@type")
     chat_id: Int53
     creator_user_id: Int53
     offset_date: Int32

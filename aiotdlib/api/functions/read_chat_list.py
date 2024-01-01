@@ -24,5 +24,5 @@ class ReadChatList(BaseObject):
     :type chat_list: :class:`ChatList`
     """
 
-    ID: typing.Literal["readChatList"] = "readChatList"
+    ID: typing.Literal["readChatList"] = Field("readChatList", validation_alias="@type", alias="@type")
     chat_list: ChatList

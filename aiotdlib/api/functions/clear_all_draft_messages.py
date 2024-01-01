@@ -20,5 +20,7 @@ class ClearAllDraftMessages(BaseObject):
     :type exclude_secret_chats: :class:`Bool`
     """
 
-    ID: typing.Literal["clearAllDraftMessages"] = "clearAllDraftMessages"
+    ID: typing.Literal["clearAllDraftMessages"] = Field(
+        "clearAllDraftMessages", validation_alias="@type", alias="@type"
+    )
     exclude_secret_chats: Bool = False

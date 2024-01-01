@@ -28,7 +28,7 @@ class DiscardCall(BaseObject):
     :type is_video: :class:`Bool`
     """
 
-    ID: typing.Literal["discardCall"] = "discardCall"
+    ID: typing.Literal["discardCall"] = Field("discardCall", validation_alias="@type", alias="@type")
     call_id: Int32
     duration: Int32
     connection_id: Int64

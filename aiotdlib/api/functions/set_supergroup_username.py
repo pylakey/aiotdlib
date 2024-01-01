@@ -22,6 +22,8 @@ class SetSupergroupUsername(BaseObject):
     :type username: :class:`String`
     """
 
-    ID: typing.Literal["setSupergroupUsername"] = "setSupergroupUsername"
+    ID: typing.Literal["setSupergroupUsername"] = Field(
+        "setSupergroupUsername", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53
     username: String

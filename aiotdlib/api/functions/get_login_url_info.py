@@ -24,7 +24,7 @@ class GetLoginUrlInfo(BaseObject):
     :type button_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getLoginUrlInfo"] = "getLoginUrlInfo"
+    ID: typing.Literal["getLoginUrlInfo"] = Field("getLoginUrlInfo", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     button_id: Int53

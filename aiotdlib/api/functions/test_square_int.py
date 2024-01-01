@@ -20,5 +20,5 @@ class TestSquareInt(BaseObject):
     :type x: :class:`Int32`
     """
 
-    ID: typing.Literal["testSquareInt"] = "testSquareInt"
+    ID: typing.Literal["testSquareInt"] = Field("testSquareInt", validation_alias="@type", alias="@type")
     x: Int32

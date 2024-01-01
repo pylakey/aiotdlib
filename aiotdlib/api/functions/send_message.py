@@ -37,7 +37,7 @@ class SendMessage(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["sendMessage"] = "sendMessage"
+    ID: typing.Literal["sendMessage"] = Field("sendMessage", validation_alias="@type", alias="@type")
     chat_id: Int53
     input_message_content: InputMessageContent
     message_thread_id: Int53 = 0

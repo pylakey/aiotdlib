@@ -20,5 +20,7 @@ class DeleteAllCallMessages(BaseObject):
     :type revoke: :class:`Bool`
     """
 
-    ID: typing.Literal["deleteAllCallMessages"] = "deleteAllCallMessages"
+    ID: typing.Literal["deleteAllCallMessages"] = Field(
+        "deleteAllCallMessages", validation_alias="@type", alias="@type"
+    )
     revoke: Bool = False

@@ -22,6 +22,8 @@ class SetChatDiscussionGroup(BaseObject):
     :type discussion_chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["setChatDiscussionGroup"] = "setChatDiscussionGroup"
+    ID: typing.Literal["setChatDiscussionGroup"] = Field(
+        "setChatDiscussionGroup", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     discussion_chat_id: Int53

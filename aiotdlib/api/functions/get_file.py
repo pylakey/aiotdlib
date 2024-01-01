@@ -20,5 +20,5 @@ class GetFile(BaseObject):
     :type file_id: :class:`Int32`
     """
 
-    ID: typing.Literal["getFile"] = "getFile"
+    ID: typing.Literal["getFile"] = Field("getFile", validation_alias="@type", alias="@type")
     file_id: Int32

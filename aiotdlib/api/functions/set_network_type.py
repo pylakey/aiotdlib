@@ -24,5 +24,5 @@ class SetNetworkType(BaseObject):
     :type type_: :class:`NetworkType`, optional
     """
 
-    ID: typing.Literal["setNetworkType"] = "setNetworkType"
+    ID: typing.Literal["setNetworkType"] = Field("setNetworkType", validation_alias="@type", alias="@type")
     type_: typing.Optional[NetworkType] = Field(None, alias="type")

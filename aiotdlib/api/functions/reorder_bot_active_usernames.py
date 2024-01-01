@@ -22,6 +22,8 @@ class ReorderBotActiveUsernames(BaseObject):
     :type usernames: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["reorderBotActiveUsernames"] = "reorderBotActiveUsernames"
+    ID: typing.Literal["reorderBotActiveUsernames"] = Field(
+        "reorderBotActiveUsernames", validation_alias="@type", alias="@type"
+    )
     bot_user_id: Int53
     usernames: Vector[String]

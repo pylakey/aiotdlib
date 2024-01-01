@@ -27,6 +27,8 @@ class SetMessageSenderBlockList(BaseObject):
     :type block_list: :class:`BlockList`, optional
     """
 
-    ID: typing.Literal["setMessageSenderBlockList"] = "setMessageSenderBlockList"
+    ID: typing.Literal["setMessageSenderBlockList"] = Field(
+        "setMessageSenderBlockList", validation_alias="@type", alias="@type"
+    )
     sender_id: MessageSender
     block_list: typing.Optional[BlockList] = None

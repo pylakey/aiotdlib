@@ -22,6 +22,8 @@ class SendCallDebugInformation(BaseObject):
     :type debug_information: :class:`String`
     """
 
-    ID: typing.Literal["sendCallDebugInformation"] = "sendCallDebugInformation"
+    ID: typing.Literal["sendCallDebugInformation"] = Field(
+        "sendCallDebugInformation", validation_alias="@type", alias="@type"
+    )
     call_id: Int32
     debug_information: String

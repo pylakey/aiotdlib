@@ -22,6 +22,6 @@ class SearchChatsOnServer(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["searchChatsOnServer"] = "searchChatsOnServer"
+    ID: typing.Literal["searchChatsOnServer"] = Field("searchChatsOnServer", validation_alias="@type", alias="@type")
     query: String
     limit: Int32

@@ -32,7 +32,9 @@ class GetInlineQueryResults(BaseObject):
     :type user_location: :class:`Location`, optional
     """
 
-    ID: typing.Literal["getInlineQueryResults"] = "getInlineQueryResults"
+    ID: typing.Literal["getInlineQueryResults"] = Field(
+        "getInlineQueryResults", validation_alias="@type", alias="@type"
+    )
     bot_user_id: Int53
     chat_id: Int53
     query: String

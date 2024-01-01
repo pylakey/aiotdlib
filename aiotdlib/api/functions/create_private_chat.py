@@ -22,6 +22,6 @@ class CreatePrivateChat(BaseObject):
     :type force: :class:`Bool`
     """
 
-    ID: typing.Literal["createPrivateChat"] = "createPrivateChat"
+    ID: typing.Literal["createPrivateChat"] = Field("createPrivateChat", validation_alias="@type", alias="@type")
     user_id: Int53
     force: Bool = False

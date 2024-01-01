@@ -22,6 +22,8 @@ class ToggleGroupCallMuteNewParticipants(BaseObject):
     :type mute_new_participants: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleGroupCallMuteNewParticipants"] = "toggleGroupCallMuteNewParticipants"
+    ID: typing.Literal["toggleGroupCallMuteNewParticipants"] = Field(
+        "toggleGroupCallMuteNewParticipants", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     mute_new_participants: Bool

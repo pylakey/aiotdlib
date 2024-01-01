@@ -20,5 +20,7 @@ class RevokeGroupCallInviteLink(BaseObject):
     :type group_call_id: :class:`Int32`
     """
 
-    ID: typing.Literal["revokeGroupCallInviteLink"] = "revokeGroupCallInviteLink"
+    ID: typing.Literal["revokeGroupCallInviteLink"] = Field(
+        "revokeGroupCallInviteLink", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32

@@ -24,5 +24,5 @@ class TestReturnError(BaseObject):
     :type error: :class:`Error`
     """
 
-    ID: typing.Literal["testReturnError"] = "testReturnError"
+    ID: typing.Literal["testReturnError"] = Field("testReturnError", validation_alias="@type", alias="@type")
     error: Error

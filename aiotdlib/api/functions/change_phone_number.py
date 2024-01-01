@@ -26,6 +26,6 @@ class ChangePhoneNumber(BaseObject):
     :type settings: :class:`PhoneNumberAuthenticationSettings`, optional
     """
 
-    ID: typing.Literal["changePhoneNumber"] = "changePhoneNumber"
+    ID: typing.Literal["changePhoneNumber"] = Field("changePhoneNumber", validation_alias="@type", alias="@type")
     phone_number: String
     settings: typing.Optional[PhoneNumberAuthenticationSettings] = None

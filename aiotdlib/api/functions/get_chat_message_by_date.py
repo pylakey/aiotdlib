@@ -22,6 +22,6 @@ class GetChatMessageByDate(BaseObject):
     :type date: :class:`Int32`
     """
 
-    ID: typing.Literal["getChatMessageByDate"] = "getChatMessageByDate"
+    ID: typing.Literal["getChatMessageByDate"] = Field("getChatMessageByDate", validation_alias="@type", alias="@type")
     chat_id: Int53
     date: Int32

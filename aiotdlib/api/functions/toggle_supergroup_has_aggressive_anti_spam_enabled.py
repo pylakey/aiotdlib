@@ -22,6 +22,8 @@ class ToggleSupergroupHasAggressiveAntiSpamEnabled(BaseObject):
     :type has_aggressive_anti_spam_enabled: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleSupergroupHasAggressiveAntiSpamEnabled"] = "toggleSupergroupHasAggressiveAntiSpamEnabled"
+    ID: typing.Literal["toggleSupergroupHasAggressiveAntiSpamEnabled"] = Field(
+        "toggleSupergroupHasAggressiveAntiSpamEnabled", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53
     has_aggressive_anti_spam_enabled: Bool

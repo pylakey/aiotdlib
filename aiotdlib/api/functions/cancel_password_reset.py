@@ -17,4 +17,4 @@ class CancelPasswordReset(BaseObject):
     Cancels reset of 2-step verification password. The method can be called if passwordState.pending_reset_date > 0
     """
 
-    ID: typing.Literal["cancelPasswordReset"] = "cancelPasswordReset"
+    ID: typing.Literal["cancelPasswordReset"] = Field("cancelPasswordReset", validation_alias="@type", alias="@type")

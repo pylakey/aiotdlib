@@ -20,5 +20,5 @@ class GetLanguagePackInfo(BaseObject):
     :type language_pack_id: :class:`String`
     """
 
-    ID: typing.Literal["getLanguagePackInfo"] = "getLanguagePackInfo"
+    ID: typing.Literal["getLanguagePackInfo"] = Field("getLanguagePackInfo", validation_alias="@type", alias="@type")
     language_pack_id: String

@@ -17,4 +17,6 @@ class ResendChangePhoneNumberCode(BaseObject):
     Resends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
     """
 
-    ID: typing.Literal["resendChangePhoneNumberCode"] = "resendChangePhoneNumberCode"
+    ID: typing.Literal["resendChangePhoneNumberCode"] = Field(
+        "resendChangePhoneNumberCode", validation_alias="@type", alias="@type"
+    )

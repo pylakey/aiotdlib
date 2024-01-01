@@ -24,5 +24,7 @@ class SetDefaultMessageAutoDeleteTime(BaseObject):
     :type message_auto_delete_time: :class:`MessageAutoDeleteTime`
     """
 
-    ID: typing.Literal["setDefaultMessageAutoDeleteTime"] = "setDefaultMessageAutoDeleteTime"
+    ID: typing.Literal["setDefaultMessageAutoDeleteTime"] = Field(
+        "setDefaultMessageAutoDeleteTime", validation_alias="@type", alias="@type"
+    )
     message_auto_delete_time: MessageAutoDeleteTime = 0

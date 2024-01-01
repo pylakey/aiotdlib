@@ -17,4 +17,4 @@ class GetCurrentState(BaseObject):
     Returns all updates needed to restore current TDLib state, i.e. all actual updateAuthorizationState/updateUser/updateNewChat and others. This is especially useful if TDLib is run in a separate process. Can be called before initialization
     """
 
-    ID: typing.Literal["getCurrentState"] = "getCurrentState"
+    ID: typing.Literal["getCurrentState"] = Field("getCurrentState", validation_alias="@type", alias="@type")

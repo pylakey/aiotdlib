@@ -22,6 +22,8 @@ class DeleteChatFolderInviteLink(BaseObject):
     :type invite_link: :class:`String`
     """
 
-    ID: typing.Literal["deleteChatFolderInviteLink"] = "deleteChatFolderInviteLink"
+    ID: typing.Literal["deleteChatFolderInviteLink"] = Field(
+        "deleteChatFolderInviteLink", validation_alias="@type", alias="@type"
+    )
     chat_folder_id: Int32
     invite_link: String

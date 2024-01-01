@@ -26,6 +26,6 @@ class SetProfilePhoto(BaseObject):
     :type is_public: :class:`Bool`
     """
 
-    ID: typing.Literal["setProfilePhoto"] = "setProfilePhoto"
+    ID: typing.Literal["setProfilePhoto"] = Field("setProfilePhoto", validation_alias="@type", alias="@type")
     photo: InputChatPhoto
     is_public: Bool = False

@@ -17,4 +17,6 @@ class GetDatabaseStatistics(BaseObject):
     Returns database statistics
     """
 
-    ID: typing.Literal["getDatabaseStatistics"] = "getDatabaseStatistics"
+    ID: typing.Literal["getDatabaseStatistics"] = Field(
+        "getDatabaseStatistics", validation_alias="@type", alias="@type"
+    )

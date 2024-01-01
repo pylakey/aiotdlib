@@ -24,7 +24,9 @@ class GetMessageEmbeddingCode(BaseObject):
     :type for_album: :class:`Bool`
     """
 
-    ID: typing.Literal["getMessageEmbeddingCode"] = "getMessageEmbeddingCode"
+    ID: typing.Literal["getMessageEmbeddingCode"] = Field(
+        "getMessageEmbeddingCode", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     for_album: Bool = False

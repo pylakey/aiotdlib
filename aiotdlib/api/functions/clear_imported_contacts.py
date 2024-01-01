@@ -17,4 +17,6 @@ class ClearImportedContacts(BaseObject):
     Clears all imported contacts, contact list remains unchanged
     """
 
-    ID: typing.Literal["clearImportedContacts"] = "clearImportedContacts"
+    ID: typing.Literal["clearImportedContacts"] = Field(
+        "clearImportedContacts", validation_alias="@type", alias="@type"
+    )

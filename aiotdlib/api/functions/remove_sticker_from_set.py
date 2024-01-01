@@ -24,5 +24,5 @@ class RemoveStickerFromSet(BaseObject):
     :type sticker: :class:`InputFile`
     """
 
-    ID: typing.Literal["removeStickerFromSet"] = "removeStickerFromSet"
+    ID: typing.Literal["removeStickerFromSet"] = Field("removeStickerFromSet", validation_alias="@type", alias="@type")
     sticker: InputFile

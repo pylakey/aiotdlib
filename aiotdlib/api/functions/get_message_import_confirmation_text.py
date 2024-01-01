@@ -20,5 +20,7 @@ class GetMessageImportConfirmationText(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getMessageImportConfirmationText"] = "getMessageImportConfirmationText"
+    ID: typing.Literal["getMessageImportConfirmationText"] = Field(
+        "getMessageImportConfirmationText", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53

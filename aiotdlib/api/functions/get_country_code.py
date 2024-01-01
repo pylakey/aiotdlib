@@ -17,4 +17,4 @@ class GetCountryCode(BaseObject):
     Uses the current IP address to find the current country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
     """
 
-    ID: typing.Literal["getCountryCode"] = "getCountryCode"
+    ID: typing.Literal["getCountryCode"] = Field("getCountryCode", validation_alias="@type", alias="@type")

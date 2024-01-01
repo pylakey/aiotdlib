@@ -26,6 +26,6 @@ class GetRemoteFile(BaseObject):
     :type file_type: :class:`FileType`, optional
     """
 
-    ID: typing.Literal["getRemoteFile"] = "getRemoteFile"
+    ID: typing.Literal["getRemoteFile"] = Field("getRemoteFile", validation_alias="@type", alias="@type")
     remote_file_id: String
     file_type: typing.Optional[FileType] = None

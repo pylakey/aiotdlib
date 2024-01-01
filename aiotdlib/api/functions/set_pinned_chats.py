@@ -26,6 +26,6 @@ class SetPinnedChats(BaseObject):
     :type chat_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["setPinnedChats"] = "setPinnedChats"
+    ID: typing.Literal["setPinnedChats"] = Field("setPinnedChats", validation_alias="@type", alias="@type")
     chat_list: ChatList
     chat_ids: Vector[Int53]

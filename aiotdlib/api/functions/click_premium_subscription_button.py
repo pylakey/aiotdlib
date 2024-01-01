@@ -17,4 +17,6 @@ class ClickPremiumSubscriptionButton(BaseObject):
     Informs TDLib that the user clicked Premium subscription button on the Premium features screen
     """
 
-    ID: typing.Literal["clickPremiumSubscriptionButton"] = "clickPremiumSubscriptionButton"
+    ID: typing.Literal["clickPremiumSubscriptionButton"] = Field(
+        "clickPremiumSubscriptionButton", validation_alias="@type", alias="@type"
+    )

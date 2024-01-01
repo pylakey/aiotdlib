@@ -28,7 +28,9 @@ class EditMessageSchedulingState(BaseObject):
     :type scheduling_state: :class:`MessageSchedulingState`, optional
     """
 
-    ID: typing.Literal["editMessageSchedulingState"] = "editMessageSchedulingState"
+    ID: typing.Literal["editMessageSchedulingState"] = Field(
+        "editMessageSchedulingState", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     scheduling_state: typing.Optional[MessageSchedulingState] = None

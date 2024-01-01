@@ -17,4 +17,4 @@ class GetPremiumState(BaseObject):
     Returns state of Telegram Premium subscription and promotion videos for Premium features
     """
 
-    ID: typing.Literal["getPremiumState"] = "getPremiumState"
+    ID: typing.Literal["getPremiumState"] = Field("getPremiumState", validation_alias="@type", alias="@type")

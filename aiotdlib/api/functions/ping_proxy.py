@@ -20,5 +20,5 @@ class PingProxy(BaseObject):
     :type proxy_id: :class:`Int32`
     """
 
-    ID: typing.Literal["pingProxy"] = "pingProxy"
+    ID: typing.Literal["pingProxy"] = Field("pingProxy", validation_alias="@type", alias="@type")
     proxy_id: Int32

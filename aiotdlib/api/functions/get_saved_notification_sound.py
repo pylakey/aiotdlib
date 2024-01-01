@@ -20,5 +20,7 @@ class GetSavedNotificationSound(BaseObject):
     :type notification_sound_id: :class:`Int64`
     """
 
-    ID: typing.Literal["getSavedNotificationSound"] = "getSavedNotificationSound"
+    ID: typing.Literal["getSavedNotificationSound"] = Field(
+        "getSavedNotificationSound", validation_alias="@type", alias="@type"
+    )
     notification_sound_id: Int64

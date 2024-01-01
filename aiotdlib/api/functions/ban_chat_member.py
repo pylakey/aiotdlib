@@ -30,7 +30,7 @@ class BanChatMember(BaseObject):
     :type revoke_messages: :class:`Bool`
     """
 
-    ID: typing.Literal["banChatMember"] = "banChatMember"
+    ID: typing.Literal["banChatMember"] = Field("banChatMember", validation_alias="@type", alias="@type")
     chat_id: Int53
     member_id: MessageSender
     banned_until_date: Int32

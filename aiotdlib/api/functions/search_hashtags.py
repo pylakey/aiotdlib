@@ -22,6 +22,6 @@ class SearchHashtags(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["searchHashtags"] = "searchHashtags"
+    ID: typing.Literal["searchHashtags"] = Field("searchHashtags", validation_alias="@type", alias="@type")
     prefix: String
     limit: Int32

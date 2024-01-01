@@ -20,5 +20,5 @@ class TestCallString(BaseObject):
     :type x: :class:`String`
     """
 
-    ID: typing.Literal["testCallString"] = "testCallString"
+    ID: typing.Literal["testCallString"] = Field("testCallString", validation_alias="@type", alias="@type")
     x: String

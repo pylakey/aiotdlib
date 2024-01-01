@@ -34,7 +34,7 @@ class GetMapThumbnailFile(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getMapThumbnailFile"] = "getMapThumbnailFile"
+    ID: typing.Literal["getMapThumbnailFile"] = Field("getMapThumbnailFile", validation_alias="@type", alias="@type")
     location: Location
     zoom: Int32
     width: Int32

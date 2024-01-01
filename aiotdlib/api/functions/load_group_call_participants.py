@@ -22,6 +22,8 @@ class LoadGroupCallParticipants(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["loadGroupCallParticipants"] = "loadGroupCallParticipants"
+    ID: typing.Literal["loadGroupCallParticipants"] = Field(
+        "loadGroupCallParticipants", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     limit: Int32

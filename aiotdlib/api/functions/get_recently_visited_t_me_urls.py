@@ -20,5 +20,7 @@ class GetRecentlyVisitedTMeUrls(BaseObject):
     :type referrer: :class:`String`
     """
 
-    ID: typing.Literal["getRecentlyVisitedTMeUrls"] = "getRecentlyVisitedTMeUrls"
+    ID: typing.Literal["getRecentlyVisitedTMeUrls"] = Field(
+        "getRecentlyVisitedTMeUrls", validation_alias="@type", alias="@type"
+    )
     referrer: String

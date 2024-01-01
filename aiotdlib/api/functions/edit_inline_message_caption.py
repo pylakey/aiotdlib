@@ -29,7 +29,9 @@ class EditInlineMessageCaption(BaseObject):
     :type caption: :class:`FormattedText`, optional
     """
 
-    ID: typing.Literal["editInlineMessageCaption"] = "editInlineMessageCaption"
+    ID: typing.Literal["editInlineMessageCaption"] = Field(
+        "editInlineMessageCaption", validation_alias="@type", alias="@type"
+    )
     inline_message_id: String
     reply_markup: typing.Optional[ReplyMarkup] = None
     caption: typing.Optional[FormattedText] = None

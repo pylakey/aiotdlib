@@ -26,6 +26,6 @@ class AddContact(BaseObject):
     :type share_phone_number: :class:`Bool`
     """
 
-    ID: typing.Literal["addContact"] = "addContact"
+    ID: typing.Literal["addContact"] = Field("addContact", validation_alias="@type", alias="@type")
     contact: Contact
     share_phone_number: Bool = False

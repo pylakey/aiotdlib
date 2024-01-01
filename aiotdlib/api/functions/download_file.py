@@ -28,7 +28,7 @@ class DownloadFile(BaseObject):
     :type synchronous: :class:`Bool`
     """
 
-    ID: typing.Literal["downloadFile"] = "downloadFile"
+    ID: typing.Literal["downloadFile"] = Field("downloadFile", validation_alias="@type", alias="@type")
     file_id: Int32
     priority: Int32
     offset: Int53

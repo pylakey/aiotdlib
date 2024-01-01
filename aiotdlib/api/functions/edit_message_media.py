@@ -31,7 +31,7 @@ class EditMessageMedia(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["editMessageMedia"] = "editMessageMedia"
+    ID: typing.Literal["editMessageMedia"] = Field("editMessageMedia", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     input_message_content: InputMessageContent

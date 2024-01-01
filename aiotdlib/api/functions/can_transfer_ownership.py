@@ -17,4 +17,4 @@ class CanTransferOwnership(BaseObject):
     Checks whether the current session can be used to transfer a chat ownership to another user
     """
 
-    ID: typing.Literal["canTransferOwnership"] = "canTransferOwnership"
+    ID: typing.Literal["canTransferOwnership"] = Field("canTransferOwnership", validation_alias="@type", alias="@type")

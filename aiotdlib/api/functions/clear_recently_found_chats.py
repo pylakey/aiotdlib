@@ -17,4 +17,6 @@ class ClearRecentlyFoundChats(BaseObject):
     Clears the list of recently found chats
     """
 
-    ID: typing.Literal["clearRecentlyFoundChats"] = "clearRecentlyFoundChats"
+    ID: typing.Literal["clearRecentlyFoundChats"] = Field(
+        "clearRecentlyFoundChats", validation_alias="@type", alias="@type"
+    )

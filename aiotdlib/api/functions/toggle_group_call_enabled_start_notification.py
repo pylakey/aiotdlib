@@ -22,6 +22,8 @@ class ToggleGroupCallEnabledStartNotification(BaseObject):
     :type enabled_start_notification: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleGroupCallEnabledStartNotification"] = "toggleGroupCallEnabledStartNotification"
+    ID: typing.Literal["toggleGroupCallEnabledStartNotification"] = Field(
+        "toggleGroupCallEnabledStartNotification", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     enabled_start_notification: Bool

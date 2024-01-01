@@ -22,6 +22,6 @@ class SetChatClientData(BaseObject):
     :type client_data: :class:`String`
     """
 
-    ID: typing.Literal["setChatClientData"] = "setChatClientData"
+    ID: typing.Literal["setChatClientData"] = Field("setChatClientData", validation_alias="@type", alias="@type")
     chat_id: Int53
     client_data: String

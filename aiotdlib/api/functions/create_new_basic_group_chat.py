@@ -24,7 +24,9 @@ class CreateNewBasicGroupChat(BaseObject):
     :type message_auto_delete_time: :class:`Int32`
     """
 
-    ID: typing.Literal["createNewBasicGroupChat"] = "createNewBasicGroupChat"
+    ID: typing.Literal["createNewBasicGroupChat"] = Field(
+        "createNewBasicGroupChat", validation_alias="@type", alias="@type"
+    )
     title: String = Field(..., min_length=1, max_length=128)
     user_ids: Vector[Int53] = []
     message_auto_delete_time: Int32 = 0

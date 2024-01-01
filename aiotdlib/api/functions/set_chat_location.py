@@ -26,6 +26,6 @@ class SetChatLocation(BaseObject):
     :type location: :class:`ChatLocation`
     """
 
-    ID: typing.Literal["setChatLocation"] = "setChatLocation"
+    ID: typing.Literal["setChatLocation"] = Field("setChatLocation", validation_alias="@type", alias="@type")
     chat_id: Int53
     location: ChatLocation

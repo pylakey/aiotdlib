@@ -28,7 +28,9 @@ class GetTrendingStickerSets(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["getTrendingStickerSets"] = "getTrendingStickerSets"
+    ID: typing.Literal["getTrendingStickerSets"] = Field(
+        "getTrendingStickerSets", validation_alias="@type", alias="@type"
+    )
     sticker_type: StickerType
     offset: Int32
     limit: Int32

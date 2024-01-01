@@ -27,6 +27,6 @@ class GetPaymentForm(BaseObject):
     :type theme: :class:`ThemeParameters`, optional
     """
 
-    ID: typing.Literal["getPaymentForm"] = "getPaymentForm"
+    ID: typing.Literal["getPaymentForm"] = Field("getPaymentForm", validation_alias="@type", alias="@type")
     input_invoice: InputInvoice
     theme: typing.Optional[ThemeParameters] = None

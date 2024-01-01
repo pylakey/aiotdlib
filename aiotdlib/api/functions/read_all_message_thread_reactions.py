@@ -22,6 +22,8 @@ class ReadAllMessageThreadReactions(BaseObject):
     :type message_thread_id: :class:`Int53`
     """
 
-    ID: typing.Literal["readAllMessageThreadReactions"] = "readAllMessageThreadReactions"
+    ID: typing.Literal["readAllMessageThreadReactions"] = Field(
+        "readAllMessageThreadReactions", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_thread_id: Int53

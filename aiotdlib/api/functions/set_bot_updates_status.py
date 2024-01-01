@@ -22,6 +22,6 @@ class SetBotUpdatesStatus(BaseObject):
     :type error_message: :class:`String`
     """
 
-    ID: typing.Literal["setBotUpdatesStatus"] = "setBotUpdatesStatus"
+    ID: typing.Literal["setBotUpdatesStatus"] = Field("setBotUpdatesStatus", validation_alias="@type", alias="@type")
     pending_update_count: Int32
     error_message: String

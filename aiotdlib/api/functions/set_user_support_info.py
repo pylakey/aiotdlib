@@ -26,6 +26,6 @@ class SetUserSupportInfo(BaseObject):
     :type message: :class:`FormattedText`
     """
 
-    ID: typing.Literal["setUserSupportInfo"] = "setUserSupportInfo"
+    ID: typing.Literal["setUserSupportInfo"] = Field("setUserSupportInfo", validation_alias="@type", alias="@type")
     user_id: Int53
     message: FormattedText

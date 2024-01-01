@@ -20,5 +20,7 @@ class ReplacePrimaryChatInviteLink(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["replacePrimaryChatInviteLink"] = "replacePrimaryChatInviteLink"
+    ID: typing.Literal["replacePrimaryChatInviteLink"] = Field(
+        "replacePrimaryChatInviteLink", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53

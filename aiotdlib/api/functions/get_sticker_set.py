@@ -20,5 +20,5 @@ class GetStickerSet(BaseObject):
     :type set_id: :class:`Int64`
     """
 
-    ID: typing.Literal["getStickerSet"] = "getStickerSet"
+    ID: typing.Literal["getStickerSet"] = Field("getStickerSet", validation_alias="@type", alias="@type")
     set_id: Int64

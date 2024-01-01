@@ -20,5 +20,5 @@ class GetMessageFileType(BaseObject):
     :type message_file_head: :class:`String`
     """
 
-    ID: typing.Literal["getMessageFileType"] = "getMessageFileType"
+    ID: typing.Literal["getMessageFileType"] = Field("getMessageFileType", validation_alias="@type", alias="@type")
     message_file_head: String

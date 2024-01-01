@@ -20,5 +20,5 @@ class SearchStickerSet(BaseObject):
     :type name: :class:`String`
     """
 
-    ID: typing.Literal["searchStickerSet"] = "searchStickerSet"
+    ID: typing.Literal["searchStickerSet"] = Field("searchStickerSet", validation_alias="@type", alias="@type")
     name: String

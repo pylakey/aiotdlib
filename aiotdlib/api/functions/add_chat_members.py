@@ -22,6 +22,6 @@ class AddChatMembers(BaseObject):
     :type user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["addChatMembers"] = "addChatMembers"
+    ID: typing.Literal["addChatMembers"] = Field("addChatMembers", validation_alias="@type", alias="@type")
     chat_id: Int53
     user_ids: Vector[Int53]

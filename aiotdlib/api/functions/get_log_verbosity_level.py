@@ -17,4 +17,4 @@ class GetLogVerbosityLevel(BaseObject):
     Returns current verbosity level of the internal logging of TDLib. Can be called synchronously
     """
 
-    ID: typing.Literal["getLogVerbosityLevel"] = "getLogVerbosityLevel"
+    ID: typing.Literal["getLogVerbosityLevel"] = Field("getLogVerbosityLevel", validation_alias="@type", alias="@type")

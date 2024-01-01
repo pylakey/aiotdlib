@@ -17,4 +17,4 @@ class GetUserLink(BaseObject):
     Returns an HTTPS link, which can be used to get information about the current user
     """
 
-    ID: typing.Literal["getUserLink"] = "getUserLink"
+    ID: typing.Literal["getUserLink"] = Field("getUserLink", validation_alias="@type", alias="@type")

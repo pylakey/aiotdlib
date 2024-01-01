@@ -17,4 +17,6 @@ class GetRecommendedChatFolders(BaseObject):
     Returns recommended chat folders for the current user
     """
 
-    ID: typing.Literal["getRecommendedChatFolders"] = "getRecommendedChatFolders"
+    ID: typing.Literal["getRecommendedChatFolders"] = Field(
+        "getRecommendedChatFolders", validation_alias="@type", alias="@type"
+    )

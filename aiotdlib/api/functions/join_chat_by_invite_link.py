@@ -20,5 +20,5 @@ class JoinChatByInviteLink(BaseObject):
     :type invite_link: :class:`String`
     """
 
-    ID: typing.Literal["joinChatByInviteLink"] = "joinChatByInviteLink"
+    ID: typing.Literal["joinChatByInviteLink"] = Field("joinChatByInviteLink", validation_alias="@type", alias="@type")
     invite_link: String

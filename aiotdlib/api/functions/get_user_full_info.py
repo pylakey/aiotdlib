@@ -20,5 +20,5 @@ class GetUserFullInfo(BaseObject):
     :type user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getUserFullInfo"] = "getUserFullInfo"
+    ID: typing.Literal["getUserFullInfo"] = Field("getUserFullInfo", validation_alias="@type", alias="@type")
     user_id: Int53

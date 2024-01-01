@@ -20,5 +20,7 @@ class GetLogTagVerbosityLevel(BaseObject):
     :type tag: :class:`String`
     """
 
-    ID: typing.Literal["getLogTagVerbosityLevel"] = "getLogTagVerbosityLevel"
+    ID: typing.Literal["getLogTagVerbosityLevel"] = Field(
+        "getLogTagVerbosityLevel", validation_alias="@type", alias="@type"
+    )
     tag: String

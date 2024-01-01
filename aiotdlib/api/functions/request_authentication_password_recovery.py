@@ -17,4 +17,6 @@ class RequestAuthenticationPasswordRecovery(BaseObject):
     Requests to send a 2-step verification password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
     """
 
-    ID: typing.Literal["requestAuthenticationPasswordRecovery"] = "requestAuthenticationPasswordRecovery"
+    ID: typing.Literal["requestAuthenticationPasswordRecovery"] = Field(
+        "requestAuthenticationPasswordRecovery", validation_alias="@type", alias="@type"
+    )

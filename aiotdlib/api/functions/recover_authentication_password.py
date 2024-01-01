@@ -24,7 +24,9 @@ class RecoverAuthenticationPassword(BaseObject):
     :type new_hint: :class:`String`
     """
 
-    ID: typing.Literal["recoverAuthenticationPassword"] = "recoverAuthenticationPassword"
+    ID: typing.Literal["recoverAuthenticationPassword"] = Field(
+        "recoverAuthenticationPassword", validation_alias="@type", alias="@type"
+    )
     recovery_code: String
     new_password: String = ""
     new_hint: String = ""

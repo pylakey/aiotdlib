@@ -30,7 +30,7 @@ class GetStickers(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getStickers"] = "getStickers"
+    ID: typing.Literal["getStickers"] = Field("getStickers", validation_alias="@type", alias="@type")
     sticker_type: StickerType
     query: String
     limit: Int32

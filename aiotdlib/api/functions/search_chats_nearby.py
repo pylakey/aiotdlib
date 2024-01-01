@@ -24,5 +24,5 @@ class SearchChatsNearby(BaseObject):
     :type location: :class:`Location`
     """
 
-    ID: typing.Literal["searchChatsNearby"] = "searchChatsNearby"
+    ID: typing.Literal["searchChatsNearby"] = Field("searchChatsNearby", validation_alias="@type", alias="@type")
     location: Location

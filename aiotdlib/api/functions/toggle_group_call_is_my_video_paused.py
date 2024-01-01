@@ -22,6 +22,8 @@ class ToggleGroupCallIsMyVideoPaused(BaseObject):
     :type is_my_video_paused: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleGroupCallIsMyVideoPaused"] = "toggleGroupCallIsMyVideoPaused"
+    ID: typing.Literal["toggleGroupCallIsMyVideoPaused"] = Field(
+        "toggleGroupCallIsMyVideoPaused", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     is_my_video_paused: Bool = False

@@ -20,5 +20,5 @@ class TerminateSession(BaseObject):
     :type session_id: :class:`Int64`
     """
 
-    ID: typing.Literal["terminateSession"] = "terminateSession"
+    ID: typing.Literal["terminateSession"] = Field("terminateSession", validation_alias="@type", alias="@type")
     session_id: Int64

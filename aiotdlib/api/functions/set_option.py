@@ -26,6 +26,6 @@ class SetOption(BaseObject):
     :type value: :class:`OptionValue`, optional
     """
 
-    ID: typing.Literal["setOption"] = "setOption"
+    ID: typing.Literal["setOption"] = Field("setOption", validation_alias="@type", alias="@type")
     name: String
     value: typing.Optional[OptionValue] = None

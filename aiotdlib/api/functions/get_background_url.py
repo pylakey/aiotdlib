@@ -26,6 +26,6 @@ class GetBackgroundUrl(BaseObject):
     :type type_: :class:`BackgroundType`
     """
 
-    ID: typing.Literal["getBackgroundUrl"] = "getBackgroundUrl"
+    ID: typing.Literal["getBackgroundUrl"] = Field("getBackgroundUrl", validation_alias="@type", alias="@type")
     name: String
     type_: BackgroundType = Field(..., alias="type")

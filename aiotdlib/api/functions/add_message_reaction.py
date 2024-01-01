@@ -32,7 +32,7 @@ class AddMessageReaction(BaseObject):
     :type update_recent_reactions: :class:`Bool`
     """
 
-    ID: typing.Literal["addMessageReaction"] = "addMessageReaction"
+    ID: typing.Literal["addMessageReaction"] = Field("addMessageReaction", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     reaction_type: ReactionType

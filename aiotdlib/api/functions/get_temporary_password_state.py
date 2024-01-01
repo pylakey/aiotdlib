@@ -17,4 +17,6 @@ class GetTemporaryPasswordState(BaseObject):
     Returns information about the current temporary password
     """
 
-    ID: typing.Literal["getTemporaryPasswordState"] = "getTemporaryPasswordState"
+    ID: typing.Literal["getTemporaryPasswordState"] = Field(
+        "getTemporaryPasswordState", validation_alias="@type", alias="@type"
+    )

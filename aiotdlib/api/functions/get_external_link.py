@@ -22,6 +22,6 @@ class GetExternalLink(BaseObject):
     :type allow_write_access: :class:`Bool`
     """
 
-    ID: typing.Literal["getExternalLink"] = "getExternalLink"
+    ID: typing.Literal["getExternalLink"] = Field("getExternalLink", validation_alias="@type", alias="@type")
     link: String
     allow_write_access: Bool = False

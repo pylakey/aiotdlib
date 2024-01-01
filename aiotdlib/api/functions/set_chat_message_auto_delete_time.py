@@ -22,6 +22,8 @@ class SetChatMessageAutoDeleteTime(BaseObject):
     :type message_auto_delete_time: :class:`Int32`
     """
 
-    ID: typing.Literal["setChatMessageAutoDeleteTime"] = "setChatMessageAutoDeleteTime"
+    ID: typing.Literal["setChatMessageAutoDeleteTime"] = Field(
+        "setChatMessageAutoDeleteTime", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_auto_delete_time: Int32 = 0

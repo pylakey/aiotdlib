@@ -24,5 +24,5 @@ class GetPremiumLimit(BaseObject):
     :type limit_type: :class:`PremiumLimitType`
     """
 
-    ID: typing.Literal["getPremiumLimit"] = "getPremiumLimit"
+    ID: typing.Literal["getPremiumLimit"] = Field("getPremiumLimit", validation_alias="@type", alias="@type")
     limit_type: PremiumLimitType

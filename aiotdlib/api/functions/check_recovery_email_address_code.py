@@ -20,5 +20,7 @@ class CheckRecoveryEmailAddressCode(BaseObject):
     :type code: :class:`String`
     """
 
-    ID: typing.Literal["checkRecoveryEmailAddressCode"] = "checkRecoveryEmailAddressCode"
+    ID: typing.Literal["checkRecoveryEmailAddressCode"] = Field(
+        "checkRecoveryEmailAddressCode", validation_alias="@type", alias="@type"
+    )
     code: String

@@ -22,8 +22,8 @@ class GetPassportAuthorizationFormAvailableElements(BaseObject):
     :type password: :class:`String`
     """
 
-    ID: typing.Literal[
-        "getPassportAuthorizationFormAvailableElements"
-    ] = "getPassportAuthorizationFormAvailableElements"
+    ID: typing.Literal["getPassportAuthorizationFormAvailableElements"] = Field(
+        "getPassportAuthorizationFormAvailableElements", validation_alias="@type", alias="@type"
+    )
     authorization_form_id: Int32
     password: String

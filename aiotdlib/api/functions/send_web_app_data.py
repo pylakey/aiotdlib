@@ -24,7 +24,7 @@ class SendWebAppData(BaseObject):
     :type data: :class:`String`
     """
 
-    ID: typing.Literal["sendWebAppData"] = "sendWebAppData"
+    ID: typing.Literal["sendWebAppData"] = Field("sendWebAppData", validation_alias="@type", alias="@type")
     bot_user_id: Int53
     button_text: String
     data: String

@@ -26,6 +26,8 @@ class SetStickerPositionInSet(BaseObject):
     :type position: :class:`Int32`
     """
 
-    ID: typing.Literal["setStickerPositionInSet"] = "setStickerPositionInSet"
+    ID: typing.Literal["setStickerPositionInSet"] = Field(
+        "setStickerPositionInSet", validation_alias="@type", alias="@type"
+    )
     sticker: InputFile
     position: Int32

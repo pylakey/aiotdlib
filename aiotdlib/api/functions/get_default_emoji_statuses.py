@@ -17,4 +17,6 @@ class GetDefaultEmojiStatuses(BaseObject):
     Returns default emoji statuses
     """
 
-    ID: typing.Literal["getDefaultEmojiStatuses"] = "getDefaultEmojiStatuses"
+    ID: typing.Literal["getDefaultEmojiStatuses"] = Field(
+        "getDefaultEmojiStatuses", validation_alias="@type", alias="@type"
+    )

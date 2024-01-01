@@ -35,7 +35,9 @@ class EditMessageLiveLocation(BaseObject):
     :type location: :class:`Location`, optional
     """
 
-    ID: typing.Literal["editMessageLiveLocation"] = "editMessageLiveLocation"
+    ID: typing.Literal["editMessageLiveLocation"] = Field(
+        "editMessageLiveLocation", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     heading: Int32 = 0

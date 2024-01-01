@@ -30,7 +30,7 @@ class EditChatInviteLink(BaseObject):
     :type creates_join_request: :class:`Bool`
     """
 
-    ID: typing.Literal["editChatInviteLink"] = "editChatInviteLink"
+    ID: typing.Literal["editChatInviteLink"] = Field("editChatInviteLink", validation_alias="@type", alias="@type")
     chat_id: Int53
     invite_link: String
     name: String = Field("", max_length=32)

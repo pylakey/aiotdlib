@@ -22,6 +22,6 @@ class SetStickerSetTitle(BaseObject):
     :type title: :class:`String`
     """
 
-    ID: typing.Literal["setStickerSetTitle"] = "setStickerSetTitle"
+    ID: typing.Literal["setStickerSetTitle"] = Field("setStickerSetTitle", validation_alias="@type", alias="@type")
     name: String
     title: String

@@ -20,5 +20,5 @@ class SetBio(BaseObject):
     :type bio: :class:`String`
     """
 
-    ID: typing.Literal["setBio"] = "setBio"
+    ID: typing.Literal["setBio"] = Field("setBio", validation_alias="@type", alias="@type")
     bio: String

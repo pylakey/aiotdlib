@@ -17,4 +17,6 @@ class GetStoryNotificationSettingsExceptions(BaseObject):
     Returns list of chats with non-default notification settings for stories
     """
 
-    ID: typing.Literal["getStoryNotificationSettingsExceptions"] = "getStoryNotificationSettingsExceptions"
+    ID: typing.Literal["getStoryNotificationSettingsExceptions"] = Field(
+        "getStoryNotificationSettingsExceptions", validation_alias="@type", alias="@type"
+    )

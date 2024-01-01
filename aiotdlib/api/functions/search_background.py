@@ -20,5 +20,5 @@ class SearchBackground(BaseObject):
     :type name: :class:`String`
     """
 
-    ID: typing.Literal["searchBackground"] = "searchBackground"
+    ID: typing.Literal["searchBackground"] = Field("searchBackground", validation_alias="@type", alias="@type")
     name: String

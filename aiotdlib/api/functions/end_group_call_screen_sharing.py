@@ -20,5 +20,7 @@ class EndGroupCallScreenSharing(BaseObject):
     :type group_call_id: :class:`Int32`
     """
 
-    ID: typing.Literal["endGroupCallScreenSharing"] = "endGroupCallScreenSharing"
+    ID: typing.Literal["endGroupCallScreenSharing"] = Field(
+        "endGroupCallScreenSharing", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32

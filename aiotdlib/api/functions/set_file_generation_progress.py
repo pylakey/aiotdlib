@@ -24,7 +24,9 @@ class SetFileGenerationProgress(BaseObject):
     :type expected_size: :class:`Int53`, optional
     """
 
-    ID: typing.Literal["setFileGenerationProgress"] = "setFileGenerationProgress"
+    ID: typing.Literal["setFileGenerationProgress"] = Field(
+        "setFileGenerationProgress", validation_alias="@type", alias="@type"
+    )
     generation_id: Int64
     local_prefix_size: Int53
     expected_size: typing.Optional[Int53] = 0

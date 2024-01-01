@@ -24,7 +24,7 @@ class GetGroupsInCommon(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["getGroupsInCommon"] = "getGroupsInCommon"
+    ID: typing.Literal["getGroupsInCommon"] = Field("getGroupsInCommon", validation_alias="@type", alias="@type")
     user_id: Int53
     offset_chat_id: Int53
     limit: Int32

@@ -17,4 +17,4 @@ class GetSavedAnimations(BaseObject):
     Returns saved animations
     """
 
-    ID: typing.Literal["getSavedAnimations"] = "getSavedAnimations"
+    ID: typing.Literal["getSavedAnimations"] = Field("getSavedAnimations", validation_alias="@type", alias="@type")

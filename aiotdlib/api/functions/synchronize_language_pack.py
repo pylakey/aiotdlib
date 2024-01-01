@@ -20,5 +20,7 @@ class SynchronizeLanguagePack(BaseObject):
     :type language_pack_id: :class:`String`
     """
 
-    ID: typing.Literal["synchronizeLanguagePack"] = "synchronizeLanguagePack"
+    ID: typing.Literal["synchronizeLanguagePack"] = Field(
+        "synchronizeLanguagePack", validation_alias="@type", alias="@type"
+    )
     language_pack_id: String

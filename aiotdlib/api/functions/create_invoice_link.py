@@ -24,5 +24,5 @@ class CreateInvoiceLink(BaseObject):
     :type invoice: :class:`InputMessageContent`
     """
 
-    ID: typing.Literal["createInvoiceLink"] = "createInvoiceLink"
+    ID: typing.Literal["createInvoiceLink"] = Field("createInvoiceLink", validation_alias="@type", alias="@type")
     invoice: InputMessageContent

@@ -20,5 +20,7 @@ class AddCustomServerLanguagePack(BaseObject):
     :type language_pack_id: :class:`String`
     """
 
-    ID: typing.Literal["addCustomServerLanguagePack"] = "addCustomServerLanguagePack"
+    ID: typing.Literal["addCustomServerLanguagePack"] = Field(
+        "addCustomServerLanguagePack", validation_alias="@type", alias="@type"
+    )
     language_pack_id: String

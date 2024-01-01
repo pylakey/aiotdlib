@@ -22,6 +22,6 @@ class SetChatTheme(BaseObject):
     :type theme_name: :class:`String`
     """
 
-    ID: typing.Literal["setChatTheme"] = "setChatTheme"
+    ID: typing.Literal["setChatTheme"] = Field("setChatTheme", validation_alias="@type", alias="@type")
     chat_id: Int53
     theme_name: String

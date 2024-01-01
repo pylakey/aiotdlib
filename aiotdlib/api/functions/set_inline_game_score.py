@@ -28,7 +28,7 @@ class SetInlineGameScore(BaseObject):
     :type force: :class:`Bool`
     """
 
-    ID: typing.Literal["setInlineGameScore"] = "setInlineGameScore"
+    ID: typing.Literal["setInlineGameScore"] = Field("setInlineGameScore", validation_alias="@type", alias="@type")
     inline_message_id: String
     user_id: Int53
     score: Int32

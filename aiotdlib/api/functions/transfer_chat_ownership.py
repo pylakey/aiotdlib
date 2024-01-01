@@ -24,7 +24,9 @@ class TransferChatOwnership(BaseObject):
     :type password: :class:`String`
     """
 
-    ID: typing.Literal["transferChatOwnership"] = "transferChatOwnership"
+    ID: typing.Literal["transferChatOwnership"] = Field(
+        "transferChatOwnership", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     user_id: Int53
     password: String

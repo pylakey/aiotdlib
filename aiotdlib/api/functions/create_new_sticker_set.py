@@ -40,7 +40,7 @@ class CreateNewStickerSet(BaseObject):
     :type source: :class:`String`
     """
 
-    ID: typing.Literal["createNewStickerSet"] = "createNewStickerSet"
+    ID: typing.Literal["createNewStickerSet"] = Field("createNewStickerSet", validation_alias="@type", alias="@type")
     user_id: Int53
     title: String = Field(..., min_length=1, max_length=64)
     name: String = Field(..., min_length=1, max_length=64)

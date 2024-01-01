@@ -32,7 +32,7 @@ class TestProxy(BaseObject):
     :type timeout: :class:`Double`
     """
 
-    ID: typing.Literal["testProxy"] = "testProxy"
+    ID: typing.Literal["testProxy"] = Field("testProxy", validation_alias="@type", alias="@type")
     server: String
     port: Int32
     type_: ProxyType = Field(..., alias="type")

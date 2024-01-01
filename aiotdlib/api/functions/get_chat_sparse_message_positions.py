@@ -30,7 +30,9 @@ class GetChatSparseMessagePositions(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["getChatSparseMessagePositions"] = "getChatSparseMessagePositions"
+    ID: typing.Literal["getChatSparseMessagePositions"] = Field(
+        "getChatSparseMessagePositions", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     filter_: SearchMessagesFilter = Field(..., alias="filter")
     from_message_id: Int53

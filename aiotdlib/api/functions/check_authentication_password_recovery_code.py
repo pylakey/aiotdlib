@@ -20,5 +20,7 @@ class CheckAuthenticationPasswordRecoveryCode(BaseObject):
     :type recovery_code: :class:`String`
     """
 
-    ID: typing.Literal["checkAuthenticationPasswordRecoveryCode"] = "checkAuthenticationPasswordRecoveryCode"
+    ID: typing.Literal["checkAuthenticationPasswordRecoveryCode"] = Field(
+        "checkAuthenticationPasswordRecoveryCode", validation_alias="@type", alias="@type"
+    )
     recovery_code: String

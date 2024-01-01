@@ -24,7 +24,7 @@ class DeleteMessages(BaseObject):
     :type revoke: :class:`Bool`
     """
 
-    ID: typing.Literal["deleteMessages"] = "deleteMessages"
+    ID: typing.Literal["deleteMessages"] = Field("deleteMessages", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_ids: Vector[Int53]
     revoke: Bool = False

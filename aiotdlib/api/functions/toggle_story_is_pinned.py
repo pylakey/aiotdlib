@@ -22,6 +22,6 @@ class ToggleStoryIsPinned(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleStoryIsPinned"] = "toggleStoryIsPinned"
+    ID: typing.Literal["toggleStoryIsPinned"] = Field("toggleStoryIsPinned", validation_alias="@type", alias="@type")
     story_id: Int32
     is_pinned: Bool = False

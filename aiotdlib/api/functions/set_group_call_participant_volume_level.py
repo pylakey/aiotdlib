@@ -28,7 +28,9 @@ class SetGroupCallParticipantVolumeLevel(BaseObject):
     :type volume_level: :class:`Int32`
     """
 
-    ID: typing.Literal["setGroupCallParticipantVolumeLevel"] = "setGroupCallParticipantVolumeLevel"
+    ID: typing.Literal["setGroupCallParticipantVolumeLevel"] = Field(
+        "setGroupCallParticipantVolumeLevel", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     participant_id: MessageSender
     volume_level: Int32

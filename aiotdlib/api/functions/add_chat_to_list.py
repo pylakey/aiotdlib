@@ -26,6 +26,6 @@ class AddChatToList(BaseObject):
     :type chat_list: :class:`ChatList`
     """
 
-    ID: typing.Literal["addChatToList"] = "addChatToList"
+    ID: typing.Literal["addChatToList"] = Field("addChatToList", validation_alias="@type", alias="@type")
     chat_id: Int53
     chat_list: ChatList

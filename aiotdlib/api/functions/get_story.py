@@ -24,7 +24,7 @@ class GetStory(BaseObject):
     :type only_local: :class:`Bool`
     """
 
-    ID: typing.Literal["getStory"] = "getStory"
+    ID: typing.Literal["getStory"] = Field("getStory", validation_alias="@type", alias="@type")
     story_sender_chat_id: Int53
     story_id: Int32
     only_local: Bool = False

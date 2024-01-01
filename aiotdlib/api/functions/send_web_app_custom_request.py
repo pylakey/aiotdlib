@@ -24,7 +24,9 @@ class SendWebAppCustomRequest(BaseObject):
     :type parameters: :class:`String`
     """
 
-    ID: typing.Literal["sendWebAppCustomRequest"] = "sendWebAppCustomRequest"
+    ID: typing.Literal["sendWebAppCustomRequest"] = Field(
+        "sendWebAppCustomRequest", validation_alias="@type", alias="@type"
+    )
     bot_user_id: Int53
     method: String
     parameters: String

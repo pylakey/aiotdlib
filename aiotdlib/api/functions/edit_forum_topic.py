@@ -28,7 +28,7 @@ class EditForumTopic(BaseObject):
     :type edit_icon_custom_emoji: :class:`Bool`
     """
 
-    ID: typing.Literal["editForumTopic"] = "editForumTopic"
+    ID: typing.Literal["editForumTopic"] = Field("editForumTopic", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_thread_id: Int53
     icon_custom_emoji_id: Int64

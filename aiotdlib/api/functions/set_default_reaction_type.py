@@ -24,5 +24,7 @@ class SetDefaultReactionType(BaseObject):
     :type reaction_type: :class:`ReactionType`
     """
 
-    ID: typing.Literal["setDefaultReactionType"] = "setDefaultReactionType"
+    ID: typing.Literal["setDefaultReactionType"] = Field(
+        "setDefaultReactionType", validation_alias="@type", alias="@type"
+    )
     reaction_type: ReactionType

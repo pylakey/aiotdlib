@@ -20,5 +20,5 @@ class RemoveBackground(BaseObject):
     :type background_id: :class:`Int64`
     """
 
-    ID: typing.Literal["removeBackground"] = "removeBackground"
+    ID: typing.Literal["removeBackground"] = Field("removeBackground", validation_alias="@type", alias="@type")
     background_id: Int64

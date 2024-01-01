@@ -26,7 +26,7 @@ class GetLoginUrl(BaseObject):
     :type allow_write_access: :class:`Bool`
     """
 
-    ID: typing.Literal["getLoginUrl"] = "getLoginUrl"
+    ID: typing.Literal["getLoginUrl"] = Field("getLoginUrl", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     button_id: Int53

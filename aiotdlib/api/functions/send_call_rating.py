@@ -30,7 +30,7 @@ class SendCallRating(BaseObject):
     :type problems: :class:`Vector[CallProblem]`
     """
 
-    ID: typing.Literal["sendCallRating"] = "sendCallRating"
+    ID: typing.Literal["sendCallRating"] = Field("sendCallRating", validation_alias="@type", alias="@type")
     call_id: Int32
     rating: Int32
     comment: String

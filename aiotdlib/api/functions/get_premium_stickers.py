@@ -20,5 +20,5 @@ class GetPremiumStickers(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["getPremiumStickers"] = "getPremiumStickers"
+    ID: typing.Literal["getPremiumStickers"] = Field("getPremiumStickers", validation_alias="@type", alias="@type")
     limit: Int32

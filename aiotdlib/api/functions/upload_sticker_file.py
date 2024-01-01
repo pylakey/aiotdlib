@@ -29,7 +29,7 @@ class UploadStickerFile(BaseObject):
     :type sticker: :class:`InputFile`
     """
 
-    ID: typing.Literal["uploadStickerFile"] = "uploadStickerFile"
+    ID: typing.Literal["uploadStickerFile"] = Field("uploadStickerFile", validation_alias="@type", alias="@type")
     user_id: Int53
     sticker_format: StickerFormat
     sticker: InputFile

@@ -17,4 +17,6 @@ class TerminateAllOtherSessions(BaseObject):
     Terminates all other sessions of the current user
     """
 
-    ID: typing.Literal["terminateAllOtherSessions"] = "terminateAllOtherSessions"
+    ID: typing.Literal["terminateAllOtherSessions"] = Field(
+        "terminateAllOtherSessions", validation_alias="@type", alias="@type"
+    )

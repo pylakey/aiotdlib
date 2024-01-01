@@ -39,7 +39,7 @@ class SendStory(BaseObject):
     :type caption: :class:`FormattedText`, optional
     """
 
-    ID: typing.Literal["sendStory"] = "sendStory"
+    ID: typing.Literal["sendStory"] = Field("sendStory", validation_alias="@type", alias="@type")
     content: InputStoryContent
     privacy_settings: StoryPrivacySettings
     active_period: Int32

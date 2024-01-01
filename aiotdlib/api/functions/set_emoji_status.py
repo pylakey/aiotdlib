@@ -24,5 +24,5 @@ class SetEmojiStatus(BaseObject):
     :type emoji_status: :class:`EmojiStatus`, optional
     """
 
-    ID: typing.Literal["setEmojiStatus"] = "setEmojiStatus"
+    ID: typing.Literal["setEmojiStatus"] = Field("setEmojiStatus", validation_alias="@type", alias="@type")
     emoji_status: typing.Optional[EmojiStatus] = None

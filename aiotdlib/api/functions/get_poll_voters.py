@@ -28,7 +28,7 @@ class GetPollVoters(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["getPollVoters"] = "getPollVoters"
+    ID: typing.Literal["getPollVoters"] = Field("getPollVoters", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     option_id: Int32

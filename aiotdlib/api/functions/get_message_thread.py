@@ -22,6 +22,6 @@ class GetMessageThread(BaseObject):
     :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getMessageThread"] = "getMessageThread"
+    ID: typing.Literal["getMessageThread"] = Field("getMessageThread", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53

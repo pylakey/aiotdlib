@@ -20,5 +20,5 @@ class CreateSecretChat(BaseObject):
     :type secret_chat_id: :class:`Int32`
     """
 
-    ID: typing.Literal["createSecretChat"] = "createSecretChat"
+    ID: typing.Literal["createSecretChat"] = Field("createSecretChat", validation_alias="@type", alias="@type")
     secret_chat_id: Int32

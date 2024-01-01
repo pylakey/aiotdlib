@@ -20,5 +20,7 @@ class GetPreferredCountryLanguage(BaseObject):
     :type country_code: :class:`String`
     """
 
-    ID: typing.Literal["getPreferredCountryLanguage"] = "getPreferredCountryLanguage"
+    ID: typing.Literal["getPreferredCountryLanguage"] = Field(
+        "getPreferredCountryLanguage", validation_alias="@type", alias="@type"
+    )
     country_code: String

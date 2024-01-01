@@ -22,6 +22,8 @@ class DeleteChatReplyMarkup(BaseObject):
     :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["deleteChatReplyMarkup"] = "deleteChatReplyMarkup"
+    ID: typing.Literal["deleteChatReplyMarkup"] = Field(
+        "deleteChatReplyMarkup", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53

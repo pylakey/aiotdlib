@@ -24,5 +24,7 @@ class GetCreatedPublicChats(BaseObject):
     :type type_: :class:`PublicChatType`
     """
 
-    ID: typing.Literal["getCreatedPublicChats"] = "getCreatedPublicChats"
+    ID: typing.Literal["getCreatedPublicChats"] = Field(
+        "getCreatedPublicChats", validation_alias="@type", alias="@type"
+    )
     type_: PublicChatType = Field(..., alias="type")

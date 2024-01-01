@@ -24,7 +24,9 @@ class StartGroupCallScreenSharing(BaseObject):
     :type payload: :class:`String`
     """
 
-    ID: typing.Literal["startGroupCallScreenSharing"] = "startGroupCallScreenSharing"
+    ID: typing.Literal["startGroupCallScreenSharing"] = Field(
+        "startGroupCallScreenSharing", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     audio_source_id: Int32
     payload: String

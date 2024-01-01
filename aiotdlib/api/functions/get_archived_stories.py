@@ -22,6 +22,6 @@ class GetArchivedStories(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["getArchivedStories"] = "getArchivedStories"
+    ID: typing.Literal["getArchivedStories"] = Field("getArchivedStories", validation_alias="@type", alias="@type")
     from_story_id: Int32
     limit: Int32

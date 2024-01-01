@@ -24,5 +24,7 @@ class AddSavedNotificationSound(BaseObject):
     :type sound: :class:`InputFile`
     """
 
-    ID: typing.Literal["addSavedNotificationSound"] = "addSavedNotificationSound"
+    ID: typing.Literal["addSavedNotificationSound"] = Field(
+        "addSavedNotificationSound", validation_alias="@type", alias="@type"
+    )
     sound: InputFile

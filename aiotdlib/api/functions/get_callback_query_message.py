@@ -24,7 +24,9 @@ class GetCallbackQueryMessage(BaseObject):
     :type callback_query_id: :class:`Int64`
     """
 
-    ID: typing.Literal["getCallbackQueryMessage"] = "getCallbackQueryMessage"
+    ID: typing.Literal["getCallbackQueryMessage"] = Field(
+        "getCallbackQueryMessage", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     callback_query_id: Int64

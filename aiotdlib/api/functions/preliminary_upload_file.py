@@ -29,7 +29,9 @@ class PreliminaryUploadFile(BaseObject):
     :type file_type: :class:`FileType`, optional
     """
 
-    ID: typing.Literal["preliminaryUploadFile"] = "preliminaryUploadFile"
+    ID: typing.Literal["preliminaryUploadFile"] = Field(
+        "preliminaryUploadFile", validation_alias="@type", alias="@type"
+    )
     file: InputFile
     priority: Int32
     file_type: typing.Optional[FileType] = None

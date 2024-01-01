@@ -22,6 +22,8 @@ class GetInlineGameHighScores(BaseObject):
     :type user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getInlineGameHighScores"] = "getInlineGameHighScores"
+    ID: typing.Literal["getInlineGameHighScores"] = Field(
+        "getInlineGameHighScores", validation_alias="@type", alias="@type"
+    )
     inline_message_id: String
     user_id: Int53

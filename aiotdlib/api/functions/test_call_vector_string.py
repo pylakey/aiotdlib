@@ -20,5 +20,5 @@ class TestCallVectorString(BaseObject):
     :type x: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["testCallVectorString"] = "testCallVectorString"
+    ID: typing.Literal["testCallVectorString"] = Field("testCallVectorString", validation_alias="@type", alias="@type")
     x: Vector[String]

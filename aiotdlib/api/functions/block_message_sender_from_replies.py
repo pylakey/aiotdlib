@@ -26,7 +26,9 @@ class BlockMessageSenderFromReplies(BaseObject):
     :type report_spam: :class:`Bool`
     """
 
-    ID: typing.Literal["blockMessageSenderFromReplies"] = "blockMessageSenderFromReplies"
+    ID: typing.Literal["blockMessageSenderFromReplies"] = Field(
+        "blockMessageSenderFromReplies", validation_alias="@type", alias="@type"
+    )
     message_id: Int53
     delete_message: Bool = False
     delete_all_messages: Bool = False

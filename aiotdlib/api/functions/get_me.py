@@ -17,4 +17,4 @@ class GetMe(BaseObject):
     Returns the current user
     """
 
-    ID: typing.Literal["getMe"] = "getMe"
+    ID: typing.Literal["getMe"] = Field("getMe", validation_alias="@type", alias="@type")

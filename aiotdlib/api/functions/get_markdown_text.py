@@ -24,5 +24,5 @@ class GetMarkdownText(BaseObject):
     :type text: :class:`FormattedText`
     """
 
-    ID: typing.Literal["getMarkdownText"] = "getMarkdownText"
+    ID: typing.Literal["getMarkdownText"] = Field("getMarkdownText", validation_alias="@type", alias="@type")
     text: FormattedText

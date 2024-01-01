@@ -20,5 +20,5 @@ class DeleteStory(BaseObject):
     :type story_id: :class:`Int32`
     """
 
-    ID: typing.Literal["deleteStory"] = "deleteStory"
+    ID: typing.Literal["deleteStory"] = Field("deleteStory", validation_alias="@type", alias="@type")
     story_id: Int32

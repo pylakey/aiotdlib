@@ -26,7 +26,9 @@ class StartGroupCallRecording(BaseObject):
     :type use_portrait_orientation: :class:`Bool`
     """
 
-    ID: typing.Literal["startGroupCallRecording"] = "startGroupCallRecording"
+    ID: typing.Literal["startGroupCallRecording"] = Field(
+        "startGroupCallRecording", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     title: String = Field("", max_length=64)
     record_video: Bool = False

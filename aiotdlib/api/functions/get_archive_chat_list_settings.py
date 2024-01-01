@@ -17,4 +17,6 @@ class GetArchiveChatListSettings(BaseObject):
     Returns settings for automatic moving of chats to and from the Archive chat lists
     """
 
-    ID: typing.Literal["getArchiveChatListSettings"] = "getArchiveChatListSettings"
+    ID: typing.Literal["getArchiveChatListSettings"] = Field(
+        "getArchiveChatListSettings", validation_alias="@type", alias="@type"
+    )

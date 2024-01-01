@@ -22,6 +22,8 @@ class GetLanguagePackStrings(BaseObject):
     :type keys: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["getLanguagePackStrings"] = "getLanguagePackStrings"
+    ID: typing.Literal["getLanguagePackStrings"] = Field(
+        "getLanguagePackStrings", validation_alias="@type", alias="@type"
+    )
     language_pack_id: String
     keys: Vector[String]

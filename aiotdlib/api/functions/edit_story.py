@@ -32,7 +32,7 @@ class EditStory(BaseObject):
     :type caption: :class:`FormattedText`, optional
     """
 
-    ID: typing.Literal["editStory"] = "editStory"
+    ID: typing.Literal["editStory"] = Field("editStory", validation_alias="@type", alias="@type")
     story_id: Int32
     content: typing.Optional[InputStoryContent] = None
     areas: typing.Optional[InputStoryAreas] = None

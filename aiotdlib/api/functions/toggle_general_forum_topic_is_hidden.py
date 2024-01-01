@@ -22,6 +22,8 @@ class ToggleGeneralForumTopicIsHidden(BaseObject):
     :type is_hidden: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleGeneralForumTopicIsHidden"] = "toggleGeneralForumTopicIsHidden"
+    ID: typing.Literal["toggleGeneralForumTopicIsHidden"] = Field(
+        "toggleGeneralForumTopicIsHidden", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     is_hidden: Bool = False

@@ -22,6 +22,6 @@ class CreateBasicGroupChat(BaseObject):
     :type force: :class:`Bool`
     """
 
-    ID: typing.Literal["createBasicGroupChat"] = "createBasicGroupChat"
+    ID: typing.Literal["createBasicGroupChat"] = Field("createBasicGroupChat", validation_alias="@type", alias="@type")
     basic_group_id: Int53
     force: Bool = False

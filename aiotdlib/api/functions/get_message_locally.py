@@ -22,6 +22,6 @@ class GetMessageLocally(BaseObject):
     :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getMessageLocally"] = "getMessageLocally"
+    ID: typing.Literal["getMessageLocally"] = Field("getMessageLocally", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53

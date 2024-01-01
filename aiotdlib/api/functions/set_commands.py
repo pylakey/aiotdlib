@@ -29,7 +29,7 @@ class SetCommands(BaseObject):
     :type scope: :class:`BotCommandScope`, optional
     """
 
-    ID: typing.Literal["setCommands"] = "setCommands"
+    ID: typing.Literal["setCommands"] = Field("setCommands", validation_alias="@type", alias="@type")
     language_code: String
     commands: Vector[BotCommand]
     scope: typing.Optional[BotCommandScope] = None

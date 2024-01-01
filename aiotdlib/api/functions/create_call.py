@@ -28,7 +28,7 @@ class CreateCall(BaseObject):
     :type is_video: :class:`Bool`
     """
 
-    ID: typing.Literal["createCall"] = "createCall"
+    ID: typing.Literal["createCall"] = Field("createCall", validation_alias="@type", alias="@type")
     user_id: Int53
     protocol: CallProtocol
     is_video: Bool = False

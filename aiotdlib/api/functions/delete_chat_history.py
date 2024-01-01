@@ -24,7 +24,7 @@ class DeleteChatHistory(BaseObject):
     :type revoke: :class:`Bool`
     """
 
-    ID: typing.Literal["deleteChatHistory"] = "deleteChatHistory"
+    ID: typing.Literal["deleteChatHistory"] = Field("deleteChatHistory", validation_alias="@type", alias="@type")
     chat_id: Int53
     remove_from_chat_list: Bool = False
     revoke: Bool = False

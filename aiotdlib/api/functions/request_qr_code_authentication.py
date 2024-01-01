@@ -20,5 +20,7 @@ class RequestQrCodeAuthentication(BaseObject):
     :type other_user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["requestQrCodeAuthentication"] = "requestQrCodeAuthentication"
+    ID: typing.Literal["requestQrCodeAuthentication"] = Field(
+        "requestQrCodeAuthentication", validation_alias="@type", alias="@type"
+    )
     other_user_ids: Vector[Int53]

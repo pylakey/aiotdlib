@@ -17,4 +17,4 @@ class CanSendStory(BaseObject):
     Checks whether the current user can send a story
     """
 
-    ID: typing.Literal["canSendStory"] = "canSendStory"
+    ID: typing.Literal["canSendStory"] = Field("canSendStory", validation_alias="@type", alias="@type")

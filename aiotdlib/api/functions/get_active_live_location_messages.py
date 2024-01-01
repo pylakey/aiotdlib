@@ -17,4 +17,6 @@ class GetActiveLiveLocationMessages(BaseObject):
     Returns all active live locations that need to be updated by the application. The list is persistent across application restarts only if the message database is used
     """
 
-    ID: typing.Literal["getActiveLiveLocationMessages"] = "getActiveLiveLocationMessages"
+    ID: typing.Literal["getActiveLiveLocationMessages"] = Field(
+        "getActiveLiveLocationMessages", validation_alias="@type", alias="@type"
+    )

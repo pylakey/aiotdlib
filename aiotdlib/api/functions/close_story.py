@@ -22,6 +22,6 @@ class CloseStory(BaseObject):
     :type story_id: :class:`Int32`
     """
 
-    ID: typing.Literal["closeStory"] = "closeStory"
+    ID: typing.Literal["closeStory"] = Field("closeStory", validation_alias="@type", alias="@type")
     story_sender_chat_id: Int53
     story_id: Int32

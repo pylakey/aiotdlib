@@ -22,6 +22,8 @@ class ToggleSessionCanAcceptSecretChats(BaseObject):
     :type can_accept_secret_chats: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleSessionCanAcceptSecretChats"] = "toggleSessionCanAcceptSecretChats"
+    ID: typing.Literal["toggleSessionCanAcceptSecretChats"] = Field(
+        "toggleSessionCanAcceptSecretChats", validation_alias="@type", alias="@type"
+    )
     session_id: Int64
     can_accept_secret_chats: Bool = False

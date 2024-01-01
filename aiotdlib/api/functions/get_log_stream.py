@@ -17,4 +17,4 @@ class GetLogStream(BaseObject):
     Returns information about currently used log stream for internal logging of TDLib. Can be called synchronously
     """
 
-    ID: typing.Literal["getLogStream"] = "getLogStream"
+    ID: typing.Literal["getLogStream"] = Field("getLogStream", validation_alias="@type", alias="@type")

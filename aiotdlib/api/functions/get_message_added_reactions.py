@@ -32,7 +32,9 @@ class GetMessageAddedReactions(BaseObject):
     :type reaction_type: :class:`ReactionType`, optional
     """
 
-    ID: typing.Literal["getMessageAddedReactions"] = "getMessageAddedReactions"
+    ID: typing.Literal["getMessageAddedReactions"] = Field(
+        "getMessageAddedReactions", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     offset: String

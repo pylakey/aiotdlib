@@ -20,5 +20,5 @@ class SetLogVerbosityLevel(BaseObject):
     :type new_verbosity_level: :class:`Int32`
     """
 
-    ID: typing.Literal["setLogVerbosityLevel"] = "setLogVerbosityLevel"
+    ID: typing.Literal["setLogVerbosityLevel"] = Field("setLogVerbosityLevel", validation_alias="@type", alias="@type")
     new_verbosity_level: Int32

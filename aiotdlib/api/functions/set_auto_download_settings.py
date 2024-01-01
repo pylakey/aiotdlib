@@ -27,6 +27,8 @@ class SetAutoDownloadSettings(BaseObject):
     :type type_: :class:`NetworkType`
     """
 
-    ID: typing.Literal["setAutoDownloadSettings"] = "setAutoDownloadSettings"
+    ID: typing.Literal["setAutoDownloadSettings"] = Field(
+        "setAutoDownloadSettings", validation_alias="@type", alias="@type"
+    )
     settings: AutoDownloadSettings
     type_: NetworkType = Field(..., alias="type")

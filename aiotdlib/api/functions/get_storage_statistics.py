@@ -20,5 +20,5 @@ class GetStorageStatistics(BaseObject):
     :type chat_limit: :class:`Int32`
     """
 
-    ID: typing.Literal["getStorageStatistics"] = "getStorageStatistics"
+    ID: typing.Literal["getStorageStatistics"] = Field("getStorageStatistics", validation_alias="@type", alias="@type")
     chat_limit: Int32

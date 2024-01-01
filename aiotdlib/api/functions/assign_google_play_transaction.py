@@ -30,7 +30,9 @@ class AssignGooglePlayTransaction(BaseObject):
     :type purpose: :class:`StorePaymentPurpose`
     """
 
-    ID: typing.Literal["assignGooglePlayTransaction"] = "assignGooglePlayTransaction"
+    ID: typing.Literal["assignGooglePlayTransaction"] = Field(
+        "assignGooglePlayTransaction", validation_alias="@type", alias="@type"
+    )
     package_name: String
     store_product_id: String
     purchase_token: String

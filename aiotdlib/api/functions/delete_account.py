@@ -22,6 +22,6 @@ class DeleteAccount(BaseObject):
     :type password: :class:`String`
     """
 
-    ID: typing.Literal["deleteAccount"] = "deleteAccount"
+    ID: typing.Literal["deleteAccount"] = Field("deleteAccount", validation_alias="@type", alias="@type")
     reason: String
     password: String

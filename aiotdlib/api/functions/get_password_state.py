@@ -17,4 +17,4 @@ class GetPasswordState(BaseObject):
     Returns the current state of 2-step verification
     """
 
-    ID: typing.Literal["getPasswordState"] = "getPasswordState"
+    ID: typing.Literal["getPasswordState"] = Field("getPasswordState", validation_alias="@type", alias="@type")

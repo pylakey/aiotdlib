@@ -24,5 +24,5 @@ class SetLocation(BaseObject):
     :type location: :class:`Location`
     """
 
-    ID: typing.Literal["setLocation"] = "setLocation"
+    ID: typing.Literal["setLocation"] = Field("setLocation", validation_alias="@type", alias="@type")
     location: Location

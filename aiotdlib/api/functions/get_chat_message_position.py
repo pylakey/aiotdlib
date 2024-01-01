@@ -30,7 +30,9 @@ class GetChatMessagePosition(BaseObject):
     :type message_thread_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getChatMessagePosition"] = "getChatMessagePosition"
+    ID: typing.Literal["getChatMessagePosition"] = Field(
+        "getChatMessagePosition", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     filter_: SearchMessagesFilter = Field(..., alias="filter")

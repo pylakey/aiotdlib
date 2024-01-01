@@ -20,5 +20,7 @@ class ViewTrendingStickerSets(BaseObject):
     :type sticker_set_ids: :class:`Vector[Int64]`
     """
 
-    ID: typing.Literal["viewTrendingStickerSets"] = "viewTrendingStickerSets"
+    ID: typing.Literal["viewTrendingStickerSets"] = Field(
+        "viewTrendingStickerSets", validation_alias="@type", alias="@type"
+    )
     sticker_set_ids: Vector[Int64]

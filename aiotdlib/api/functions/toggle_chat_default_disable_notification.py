@@ -22,6 +22,8 @@ class ToggleChatDefaultDisableNotification(BaseObject):
     :type default_disable_notification: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleChatDefaultDisableNotification"] = "toggleChatDefaultDisableNotification"
+    ID: typing.Literal["toggleChatDefaultDisableNotification"] = Field(
+        "toggleChatDefaultDisableNotification", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     default_disable_notification: Bool

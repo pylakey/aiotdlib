@@ -26,6 +26,6 @@ class AnswerWebAppQuery(BaseObject):
     :type result: :class:`InputInlineQueryResult`
     """
 
-    ID: typing.Literal["answerWebAppQuery"] = "answerWebAppQuery"
+    ID: typing.Literal["answerWebAppQuery"] = Field("answerWebAppQuery", validation_alias="@type", alias="@type")
     web_app_query_id: String
     result: InputInlineQueryResult

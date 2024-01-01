@@ -26,7 +26,9 @@ class GetPassportAuthorizationForm(BaseObject):
     :type nonce: :class:`String`
     """
 
-    ID: typing.Literal["getPassportAuthorizationForm"] = "getPassportAuthorizationForm"
+    ID: typing.Literal["getPassportAuthorizationForm"] = Field(
+        "getPassportAuthorizationForm", validation_alias="@type", alias="@type"
+    )
     bot_user_id: Int53
     scope: String
     public_key: String

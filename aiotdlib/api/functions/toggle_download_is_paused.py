@@ -22,6 +22,8 @@ class ToggleDownloadIsPaused(BaseObject):
     :type is_paused: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleDownloadIsPaused"] = "toggleDownloadIsPaused"
+    ID: typing.Literal["toggleDownloadIsPaused"] = Field(
+        "toggleDownloadIsPaused", validation_alias="@type", alias="@type"
+    )
     file_id: Int32
     is_paused: Bool = False

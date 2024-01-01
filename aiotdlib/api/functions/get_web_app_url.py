@@ -30,7 +30,7 @@ class GetWebAppUrl(BaseObject):
     :type theme: :class:`ThemeParameters`, optional
     """
 
-    ID: typing.Literal["getWebAppUrl"] = "getWebAppUrl"
+    ID: typing.Literal["getWebAppUrl"] = Field("getWebAppUrl", validation_alias="@type", alias="@type")
     bot_user_id: Int53
     url: String
     application_name: String

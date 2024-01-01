@@ -20,5 +20,7 @@ class CancelPreliminaryUploadFile(BaseObject):
     :type file_id: :class:`Int32`
     """
 
-    ID: typing.Literal["cancelPreliminaryUploadFile"] = "cancelPreliminaryUploadFile"
+    ID: typing.Literal["cancelPreliminaryUploadFile"] = Field(
+        "cancelPreliminaryUploadFile", validation_alias="@type", alias="@type"
+    )
     file_id: Int32

@@ -26,6 +26,8 @@ class GetChatNotificationSettingsExceptions(BaseObject):
     :type scope: :class:`NotificationSettingsScope`, optional
     """
 
-    ID: typing.Literal["getChatNotificationSettingsExceptions"] = "getChatNotificationSettingsExceptions"
+    ID: typing.Literal["getChatNotificationSettingsExceptions"] = Field(
+        "getChatNotificationSettingsExceptions", validation_alias="@type", alias="@type"
+    )
     compare_sound: Bool = False
     scope: typing.Optional[NotificationSettingsScope] = None

@@ -37,7 +37,7 @@ class SearchMessages(BaseObject):
     :type filter_: :class:`SearchMessagesFilter`, optional
     """
 
-    ID: typing.Literal["searchMessages"] = "searchMessages"
+    ID: typing.Literal["searchMessages"] = Field("searchMessages", validation_alias="@type", alias="@type")
     query: String
     offset: String
     limit: Int32

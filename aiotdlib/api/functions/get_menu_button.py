@@ -20,5 +20,5 @@ class GetMenuButton(BaseObject):
     :type user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getMenuButton"] = "getMenuButton"
+    ID: typing.Literal["getMenuButton"] = Field("getMenuButton", validation_alias="@type", alias="@type")
     user_id: Int53

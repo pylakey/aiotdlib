@@ -20,5 +20,5 @@ class CanBotSendMessages(BaseObject):
     :type bot_user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["canBotSendMessages"] = "canBotSendMessages"
+    ID: typing.Literal["canBotSendMessages"] = Field("canBotSendMessages", validation_alias="@type", alias="@type")
     bot_user_id: Int53

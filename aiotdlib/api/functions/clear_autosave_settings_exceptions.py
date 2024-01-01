@@ -17,4 +17,6 @@ class ClearAutosaveSettingsExceptions(BaseObject):
     Clears the list of all autosave settings exceptions. The method is guaranteed to work only after at least one call to getAutosaveSettings
     """
 
-    ID: typing.Literal["clearAutosaveSettingsExceptions"] = "clearAutosaveSettingsExceptions"
+    ID: typing.Literal["clearAutosaveSettingsExceptions"] = Field(
+        "clearAutosaveSettingsExceptions", validation_alias="@type", alias="@type"
+    )

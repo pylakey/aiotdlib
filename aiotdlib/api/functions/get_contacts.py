@@ -17,4 +17,4 @@ class GetContacts(BaseObject):
     Returns all contacts of the user
     """
 
-    ID: typing.Literal["getContacts"] = "getContacts"
+    ID: typing.Literal["getContacts"] = Field("getContacts", validation_alias="@type", alias="@type")

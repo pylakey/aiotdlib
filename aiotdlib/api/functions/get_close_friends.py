@@ -17,4 +17,4 @@ class GetCloseFriends(BaseObject):
     Returns all close friends of the current user
     """
 
-    ID: typing.Literal["getCloseFriends"] = "getCloseFriends"
+    ID: typing.Literal["getCloseFriends"] = Field("getCloseFriends", validation_alias="@type", alias="@type")

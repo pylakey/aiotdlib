@@ -22,6 +22,6 @@ class UnpinChatMessage(BaseObject):
     :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["unpinChatMessage"] = "unpinChatMessage"
+    ID: typing.Literal["unpinChatMessage"] = Field("unpinChatMessage", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53

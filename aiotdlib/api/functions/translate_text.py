@@ -26,6 +26,6 @@ class TranslateText(BaseObject):
     :type to_language_code: :class:`String`
     """
 
-    ID: typing.Literal["translateText"] = "translateText"
+    ID: typing.Literal["translateText"] = Field("translateText", validation_alias="@type", alias="@type")
     text: FormattedText
     to_language_code: String

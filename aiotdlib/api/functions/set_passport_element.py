@@ -26,6 +26,6 @@ class SetPassportElement(BaseObject):
     :type password: :class:`String`
     """
 
-    ID: typing.Literal["setPassportElement"] = "setPassportElement"
+    ID: typing.Literal["setPassportElement"] = Field("setPassportElement", validation_alias="@type", alias="@type")
     element: InputPassportElement
     password: String

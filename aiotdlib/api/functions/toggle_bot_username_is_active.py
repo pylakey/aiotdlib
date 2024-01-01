@@ -24,7 +24,9 @@ class ToggleBotUsernameIsActive(BaseObject):
     :type is_active: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleBotUsernameIsActive"] = "toggleBotUsernameIsActive"
+    ID: typing.Literal["toggleBotUsernameIsActive"] = Field(
+        "toggleBotUsernameIsActive", validation_alias="@type", alias="@type"
+    )
     bot_user_id: Int53
     username: String
     is_active: Bool = False

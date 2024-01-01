@@ -22,6 +22,6 @@ class SetPinnedForumTopics(BaseObject):
     :type message_thread_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["setPinnedForumTopics"] = "setPinnedForumTopics"
+    ID: typing.Literal["setPinnedForumTopics"] = Field("setPinnedForumTopics", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_thread_ids: Vector[Int53]

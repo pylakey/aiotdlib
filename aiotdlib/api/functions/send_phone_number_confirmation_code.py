@@ -28,7 +28,9 @@ class SendPhoneNumberConfirmationCode(BaseObject):
     :type settings: :class:`PhoneNumberAuthenticationSettings`, optional
     """
 
-    ID: typing.Literal["sendPhoneNumberConfirmationCode"] = "sendPhoneNumberConfirmationCode"
+    ID: typing.Literal["sendPhoneNumberConfirmationCode"] = Field(
+        "sendPhoneNumberConfirmationCode", validation_alias="@type", alias="@type"
+    )
     hash_: String = Field(..., alias="hash")
     phone_number: String
     settings: typing.Optional[PhoneNumberAuthenticationSettings] = None

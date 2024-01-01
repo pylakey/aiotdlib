@@ -38,7 +38,7 @@ class ForwardMessages(BaseObject):
     :type options: :class:`MessageSendOptions`, optional
     """
 
-    ID: typing.Literal["forwardMessages"] = "forwardMessages"
+    ID: typing.Literal["forwardMessages"] = Field("forwardMessages", validation_alias="@type", alias="@type")
     chat_id: Int53
     from_chat_id: Int53
     message_ids: Vector[Int53]

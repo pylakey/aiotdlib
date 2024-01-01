@@ -24,5 +24,5 @@ class GetStickerEmojis(BaseObject):
     :type sticker: :class:`InputFile`
     """
 
-    ID: typing.Literal["getStickerEmojis"] = "getStickerEmojis"
+    ID: typing.Literal["getStickerEmojis"] = Field("getStickerEmojis", validation_alias="@type", alias="@type")
     sticker: InputFile

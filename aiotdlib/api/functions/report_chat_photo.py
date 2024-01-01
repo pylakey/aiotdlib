@@ -30,7 +30,7 @@ class ReportChatPhoto(BaseObject):
     :type text: :class:`String`
     """
 
-    ID: typing.Literal["reportChatPhoto"] = "reportChatPhoto"
+    ID: typing.Literal["reportChatPhoto"] = Field("reportChatPhoto", validation_alias="@type", alias="@type")
     chat_id: Int53
     file_id: Int32
     reason: ReportReason

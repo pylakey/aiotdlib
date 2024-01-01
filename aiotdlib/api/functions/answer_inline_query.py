@@ -35,7 +35,7 @@ class AnswerInlineQuery(BaseObject):
     :type button: :class:`InlineQueryResultsButton`, optional
     """
 
-    ID: typing.Literal["answerInlineQuery"] = "answerInlineQuery"
+    ID: typing.Literal["answerInlineQuery"] = Field("answerInlineQuery", validation_alias="@type", alias="@type")
     inline_query_id: Int64
     results: Vector[InputInlineQueryResult]
     cache_time: Int32

@@ -20,5 +20,5 @@ class GetDeepLinkInfo(BaseObject):
     :type link: :class:`String`
     """
 
-    ID: typing.Literal["getDeepLinkInfo"] = "getDeepLinkInfo"
+    ID: typing.Literal["getDeepLinkInfo"] = Field("getDeepLinkInfo", validation_alias="@type", alias="@type")
     link: String

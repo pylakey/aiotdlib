@@ -17,4 +17,4 @@ class ClearRecentReactions(BaseObject):
     Clears the list of recently used reactions
     """
 
-    ID: typing.Literal["clearRecentReactions"] = "clearRecentReactions"
+    ID: typing.Literal["clearRecentReactions"] = Field("clearRecentReactions", validation_alias="@type", alias="@type")

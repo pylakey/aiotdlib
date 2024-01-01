@@ -28,7 +28,9 @@ class GetChatMessageCalendar(BaseObject):
     :type from_message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getChatMessageCalendar"] = "getChatMessageCalendar"
+    ID: typing.Literal["getChatMessageCalendar"] = Field(
+        "getChatMessageCalendar", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     filter_: SearchMessagesFilter = Field(..., alias="filter")
     from_message_id: Int53

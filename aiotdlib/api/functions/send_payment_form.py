@@ -35,7 +35,7 @@ class SendPaymentForm(BaseObject):
     :type tip_amount: :class:`Int53`
     """
 
-    ID: typing.Literal["sendPaymentForm"] = "sendPaymentForm"
+    ID: typing.Literal["sendPaymentForm"] = Field("sendPaymentForm", validation_alias="@type", alias="@type")
     input_invoice: InputInvoice
     payment_form_id: Int64
     order_info_id: String

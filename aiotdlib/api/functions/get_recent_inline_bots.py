@@ -17,4 +17,4 @@ class GetRecentInlineBots(BaseObject):
     Returns up to 20 recently used inline bots in the order of their last usage
     """
 
-    ID: typing.Literal["getRecentInlineBots"] = "getRecentInlineBots"
+    ID: typing.Literal["getRecentInlineBots"] = Field("getRecentInlineBots", validation_alias="@type", alias="@type")

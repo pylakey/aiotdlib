@@ -22,6 +22,8 @@ class GetWebPageInstantView(BaseObject):
     :type force_full: :class:`Bool`
     """
 
-    ID: typing.Literal["getWebPageInstantView"] = "getWebPageInstantView"
+    ID: typing.Literal["getWebPageInstantView"] = Field(
+        "getWebPageInstantView", validation_alias="@type", alias="@type"
+    )
     url: String
     force_full: Bool = False

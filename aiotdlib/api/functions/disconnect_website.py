@@ -20,5 +20,5 @@ class DisconnectWebsite(BaseObject):
     :type website_id: :class:`Int64`
     """
 
-    ID: typing.Literal["disconnectWebsite"] = "disconnectWebsite"
+    ID: typing.Literal["disconnectWebsite"] = Field("disconnectWebsite", validation_alias="@type", alias="@type")
     website_id: Int64

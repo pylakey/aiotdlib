@@ -24,5 +24,5 @@ class GetPremiumFeatures(BaseObject):
     :type source: :class:`PremiumSource`, optional
     """
 
-    ID: typing.Literal["getPremiumFeatures"] = "getPremiumFeatures"
+    ID: typing.Literal["getPremiumFeatures"] = Field("getPremiumFeatures", validation_alias="@type", alias="@type")
     source: typing.Optional[PremiumSource] = None

@@ -24,7 +24,9 @@ class RemoveAllFilesFromDownloads(BaseObject):
     :type delete_from_cache: :class:`Bool`
     """
 
-    ID: typing.Literal["removeAllFilesFromDownloads"] = "removeAllFilesFromDownloads"
+    ID: typing.Literal["removeAllFilesFromDownloads"] = Field(
+        "removeAllFilesFromDownloads", validation_alias="@type", alias="@type"
+    )
     only_active: Bool = False
     only_completed: Bool = False
     delete_from_cache: Bool = False

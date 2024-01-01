@@ -22,6 +22,8 @@ class ToggleSupergroupJoinByRequest(BaseObject):
     :type join_by_request: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleSupergroupJoinByRequest"] = "toggleSupergroupJoinByRequest"
+    ID: typing.Literal["toggleSupergroupJoinByRequest"] = Field(
+        "toggleSupergroupJoinByRequest", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53
     join_by_request: Bool

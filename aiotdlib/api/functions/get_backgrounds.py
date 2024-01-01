@@ -20,5 +20,5 @@ class GetBackgrounds(BaseObject):
     :type for_dark_theme: :class:`Bool`
     """
 
-    ID: typing.Literal["getBackgrounds"] = "getBackgrounds"
+    ID: typing.Literal["getBackgrounds"] = Field("getBackgrounds", validation_alias="@type", alias="@type")
     for_dark_theme: Bool = False

@@ -26,6 +26,8 @@ class SendPassportAuthorizationForm(BaseObject):
     :type types: :class:`Vector[PassportElementType]`
     """
 
-    ID: typing.Literal["sendPassportAuthorizationForm"] = "sendPassportAuthorizationForm"
+    ID: typing.Literal["sendPassportAuthorizationForm"] = Field(
+        "sendPassportAuthorizationForm", validation_alias="@type", alias="@type"
+    )
     authorization_form_id: Int32
     types: Vector[PassportElementType]

@@ -17,4 +17,6 @@ class GetAutoDownloadSettingsPresets(BaseObject):
     Returns auto-download settings presets for the current user
     """
 
-    ID: typing.Literal["getAutoDownloadSettingsPresets"] = "getAutoDownloadSettingsPresets"
+    ID: typing.Literal["getAutoDownloadSettingsPresets"] = Field(
+        "getAutoDownloadSettingsPresets", validation_alias="@type", alias="@type"
+    )

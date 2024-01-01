@@ -30,7 +30,7 @@ class GetAllStickerEmojis(BaseObject):
     :type return_only_main_emoji: :class:`Bool`
     """
 
-    ID: typing.Literal["getAllStickerEmojis"] = "getAllStickerEmojis"
+    ID: typing.Literal["getAllStickerEmojis"] = Field("getAllStickerEmojis", validation_alias="@type", alias="@type")
     sticker_type: StickerType
     query: String
     chat_id: Int53

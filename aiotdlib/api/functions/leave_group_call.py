@@ -20,5 +20,5 @@ class LeaveGroupCall(BaseObject):
     :type group_call_id: :class:`Int32`
     """
 
-    ID: typing.Literal["leaveGroupCall"] = "leaveGroupCall"
+    ID: typing.Literal["leaveGroupCall"] = Field("leaveGroupCall", validation_alias="@type", alias="@type")
     group_call_id: Int32

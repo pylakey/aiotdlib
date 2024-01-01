@@ -22,6 +22,8 @@ class ToggleSupergroupHasHiddenMembers(BaseObject):
     :type has_hidden_members: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleSupergroupHasHiddenMembers"] = "toggleSupergroupHasHiddenMembers"
+    ID: typing.Literal["toggleSupergroupHasHiddenMembers"] = Field(
+        "toggleSupergroupHasHiddenMembers", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53
     has_hidden_members: Bool

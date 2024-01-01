@@ -20,5 +20,5 @@ class DeleteFile(BaseObject):
     :type file_id: :class:`Int32`
     """
 
-    ID: typing.Literal["deleteFile"] = "deleteFile"
+    ID: typing.Literal["deleteFile"] = Field("deleteFile", validation_alias="@type", alias="@type")
     file_id: Int32

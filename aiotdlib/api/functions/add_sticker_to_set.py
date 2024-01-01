@@ -28,7 +28,7 @@ class AddStickerToSet(BaseObject):
     :type sticker: :class:`InputSticker`
     """
 
-    ID: typing.Literal["addStickerToSet"] = "addStickerToSet"
+    ID: typing.Literal["addStickerToSet"] = Field("addStickerToSet", validation_alias="@type", alias="@type")
     user_id: Int53
     name: String
     sticker: InputSticker

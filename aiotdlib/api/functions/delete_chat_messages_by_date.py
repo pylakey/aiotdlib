@@ -26,7 +26,9 @@ class DeleteChatMessagesByDate(BaseObject):
     :type revoke: :class:`Bool`
     """
 
-    ID: typing.Literal["deleteChatMessagesByDate"] = "deleteChatMessagesByDate"
+    ID: typing.Literal["deleteChatMessagesByDate"] = Field(
+        "deleteChatMessagesByDate", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     min_date: Int32
     max_date: Int32

@@ -17,4 +17,4 @@ class GetAutosaveSettings(BaseObject):
     Returns autosave settings for the current user
     """
 
-    ID: typing.Literal["getAutosaveSettings"] = "getAutosaveSettings"
+    ID: typing.Literal["getAutosaveSettings"] = Field("getAutosaveSettings", validation_alias="@type", alias="@type")

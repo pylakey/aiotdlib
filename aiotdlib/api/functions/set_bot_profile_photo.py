@@ -26,6 +26,6 @@ class SetBotProfilePhoto(BaseObject):
     :type photo: :class:`InputChatPhoto`, optional
     """
 
-    ID: typing.Literal["setBotProfilePhoto"] = "setBotProfilePhoto"
+    ID: typing.Literal["setBotProfilePhoto"] = Field("setBotProfilePhoto", validation_alias="@type", alias="@type")
     bot_user_id: Int53
     photo: typing.Optional[InputChatPhoto] = None

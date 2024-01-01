@@ -24,5 +24,7 @@ class ChangeImportedContacts(BaseObject):
     :type contacts: :class:`Vector[Contact]`
     """
 
-    ID: typing.Literal["changeImportedContacts"] = "changeImportedContacts"
+    ID: typing.Literal["changeImportedContacts"] = Field(
+        "changeImportedContacts", validation_alias="@type", alias="@type"
+    )
     contacts: Vector[Contact]

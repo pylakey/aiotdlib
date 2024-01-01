@@ -22,6 +22,6 @@ class ReorderChatFolders(BaseObject):
     :type main_chat_list_position: :class:`Int32`
     """
 
-    ID: typing.Literal["reorderChatFolders"] = "reorderChatFolders"
+    ID: typing.Literal["reorderChatFolders"] = Field("reorderChatFolders", validation_alias="@type", alias="@type")
     chat_folder_ids: Vector[Int32]
     main_chat_list_position: Int32

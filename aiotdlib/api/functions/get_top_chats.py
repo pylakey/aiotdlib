@@ -26,6 +26,6 @@ class GetTopChats(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["getTopChats"] = "getTopChats"
+    ID: typing.Literal["getTopChats"] = Field("getTopChats", validation_alias="@type", alias="@type")
     category: TopChatCategory
     limit: Int32

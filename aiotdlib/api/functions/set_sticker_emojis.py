@@ -26,6 +26,6 @@ class SetStickerEmojis(BaseObject):
     :type emojis: :class:`String`
     """
 
-    ID: typing.Literal["setStickerEmojis"] = "setStickerEmojis"
+    ID: typing.Literal["setStickerEmojis"] = Field("setStickerEmojis", validation_alias="@type", alias="@type")
     sticker: InputFile
     emojis: String

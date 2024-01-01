@@ -17,4 +17,4 @@ class GetActiveSessions(BaseObject):
     Returns all active sessions of the current user
     """
 
-    ID: typing.Literal["getActiveSessions"] = "getActiveSessions"
+    ID: typing.Literal["getActiveSessions"] = Field("getActiveSessions", validation_alias="@type", alias="@type")

@@ -20,5 +20,7 @@ class GetVideoChatAvailableParticipants(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getVideoChatAvailableParticipants"] = "getVideoChatAvailableParticipants"
+    ID: typing.Literal["getVideoChatAvailableParticipants"] = Field(
+        "getVideoChatAvailableParticipants", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53

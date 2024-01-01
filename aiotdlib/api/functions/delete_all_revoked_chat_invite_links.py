@@ -22,6 +22,8 @@ class DeleteAllRevokedChatInviteLinks(BaseObject):
     :type creator_user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["deleteAllRevokedChatInviteLinks"] = "deleteAllRevokedChatInviteLinks"
+    ID: typing.Literal["deleteAllRevokedChatInviteLinks"] = Field(
+        "deleteAllRevokedChatInviteLinks", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     creator_user_id: Int53

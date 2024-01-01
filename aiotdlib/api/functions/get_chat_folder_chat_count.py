@@ -24,5 +24,7 @@ class GetChatFolderChatCount(BaseObject):
     :type folder: :class:`ChatFolder`
     """
 
-    ID: typing.Literal["getChatFolderChatCount"] = "getChatFolderChatCount"
+    ID: typing.Literal["getChatFolderChatCount"] = Field(
+        "getChatFolderChatCount", validation_alias="@type", alias="@type"
+    )
     folder: ChatFolder

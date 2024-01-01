@@ -22,6 +22,8 @@ class ToggleSessionCanAcceptCalls(BaseObject):
     :type can_accept_calls: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleSessionCanAcceptCalls"] = "toggleSessionCanAcceptCalls"
+    ID: typing.Literal["toggleSessionCanAcceptCalls"] = Field(
+        "toggleSessionCanAcceptCalls", validation_alias="@type", alias="@type"
+    )
     session_id: Int64
     can_accept_calls: Bool = False

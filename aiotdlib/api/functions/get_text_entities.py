@@ -20,5 +20,5 @@ class GetTextEntities(BaseObject):
     :type text: :class:`String`
     """
 
-    ID: typing.Literal["getTextEntities"] = "getTextEntities"
+    ID: typing.Literal["getTextEntities"] = Field("getTextEntities", validation_alias="@type", alias="@type")
     text: String

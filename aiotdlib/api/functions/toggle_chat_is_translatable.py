@@ -22,6 +22,8 @@ class ToggleChatIsTranslatable(BaseObject):
     :type is_translatable: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleChatIsTranslatable"] = "toggleChatIsTranslatable"
+    ID: typing.Literal["toggleChatIsTranslatable"] = Field(
+        "toggleChatIsTranslatable", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     is_translatable: Bool

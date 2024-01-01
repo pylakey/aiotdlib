@@ -22,6 +22,6 @@ class CreateSupergroupChat(BaseObject):
     :type force: :class:`Bool`
     """
 
-    ID: typing.Literal["createSupergroupChat"] = "createSupergroupChat"
+    ID: typing.Literal["createSupergroupChat"] = Field("createSupergroupChat", validation_alias="@type", alias="@type")
     supergroup_id: Int53
     force: Bool = False

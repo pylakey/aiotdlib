@@ -20,5 +20,7 @@ class CheckPhoneNumberVerificationCode(BaseObject):
     :type code: :class:`String`
     """
 
-    ID: typing.Literal["checkPhoneNumberVerificationCode"] = "checkPhoneNumberVerificationCode"
+    ID: typing.Literal["checkPhoneNumberVerificationCode"] = Field(
+        "checkPhoneNumberVerificationCode", validation_alias="@type", alias="@type"
+    )
     code: String

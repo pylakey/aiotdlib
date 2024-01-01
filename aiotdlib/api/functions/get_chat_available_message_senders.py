@@ -20,5 +20,7 @@ class GetChatAvailableMessageSenders(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getChatAvailableMessageSenders"] = "getChatAvailableMessageSenders"
+    ID: typing.Literal["getChatAvailableMessageSenders"] = Field(
+        "getChatAvailableMessageSenders", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53

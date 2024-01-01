@@ -24,5 +24,5 @@ class SetAccountTtl(BaseObject):
     :type ttl: :class:`AccountTtl`
     """
 
-    ID: typing.Literal["setAccountTtl"] = "setAccountTtl"
+    ID: typing.Literal["setAccountTtl"] = Field("setAccountTtl", validation_alias="@type", alias="@type")
     ttl: AccountTtl

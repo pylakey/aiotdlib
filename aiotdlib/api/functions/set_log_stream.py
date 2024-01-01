@@ -24,5 +24,5 @@ class SetLogStream(BaseObject):
     :type log_stream: :class:`LogStream`
     """
 
-    ID: typing.Literal["setLogStream"] = "setLogStream"
+    ID: typing.Literal["setLogStream"] = Field("setLogStream", validation_alias="@type", alias="@type")
     log_stream: LogStream

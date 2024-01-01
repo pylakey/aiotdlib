@@ -28,7 +28,7 @@ class SendChatAction(BaseObject):
     :type action: :class:`ChatAction`, optional
     """
 
-    ID: typing.Literal["sendChatAction"] = "sendChatAction"
+    ID: typing.Literal["sendChatAction"] = Field("sendChatAction", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_thread_id: Int53 = 0
     action: typing.Optional[ChatAction] = None

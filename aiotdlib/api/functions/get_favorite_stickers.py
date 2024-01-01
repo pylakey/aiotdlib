@@ -17,4 +17,4 @@ class GetFavoriteStickers(BaseObject):
     Returns favorite stickers
     """
 
-    ID: typing.Literal["getFavoriteStickers"] = "getFavoriteStickers"
+    ID: typing.Literal["getFavoriteStickers"] = Field("getFavoriteStickers", validation_alias="@type", alias="@type")

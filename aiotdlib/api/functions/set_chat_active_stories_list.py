@@ -26,6 +26,8 @@ class SetChatActiveStoriesList(BaseObject):
     :type story_list: :class:`StoryList`
     """
 
-    ID: typing.Literal["setChatActiveStoriesList"] = "setChatActiveStoriesList"
+    ID: typing.Literal["setChatActiveStoriesList"] = Field(
+        "setChatActiveStoriesList", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     story_list: StoryList

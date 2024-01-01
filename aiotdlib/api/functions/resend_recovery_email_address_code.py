@@ -17,4 +17,6 @@ class ResendRecoveryEmailAddressCode(BaseObject):
     Resends the 2-step verification recovery email address verification code
     """
 
-    ID: typing.Literal["resendRecoveryEmailAddressCode"] = "resendRecoveryEmailAddressCode"
+    ID: typing.Literal["resendRecoveryEmailAddressCode"] = Field(
+        "resendRecoveryEmailAddressCode", validation_alias="@type", alias="@type"
+    )

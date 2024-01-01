@@ -24,5 +24,5 @@ class GetWebPagePreview(BaseObject):
     :type text: :class:`FormattedText`
     """
 
-    ID: typing.Literal["getWebPagePreview"] = "getWebPagePreview"
+    ID: typing.Literal["getWebPagePreview"] = Field("getWebPagePreview", validation_alias="@type", alias="@type")
     text: FormattedText

@@ -27,6 +27,8 @@ class SetCustomLanguagePack(BaseObject):
     :type strings: :class:`Vector[LanguagePackString]`
     """
 
-    ID: typing.Literal["setCustomLanguagePack"] = "setCustomLanguagePack"
+    ID: typing.Literal["setCustomLanguagePack"] = Field(
+        "setCustomLanguagePack", validation_alias="@type", alias="@type"
+    )
     info: LanguagePackInfo
     strings: Vector[LanguagePackString]

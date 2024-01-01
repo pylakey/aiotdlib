@@ -22,6 +22,8 @@ class SendCallSignalingData(BaseObject):
     :type data: :class:`Bytes`
     """
 
-    ID: typing.Literal["sendCallSignalingData"] = "sendCallSignalingData"
+    ID: typing.Literal["sendCallSignalingData"] = Field(
+        "sendCallSignalingData", validation_alias="@type", alias="@type"
+    )
     call_id: Int32
     data: Bytes

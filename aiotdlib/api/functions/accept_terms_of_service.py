@@ -20,5 +20,5 @@ class AcceptTermsOfService(BaseObject):
     :type terms_of_service_id: :class:`String`
     """
 
-    ID: typing.Literal["acceptTermsOfService"] = "acceptTermsOfService"
+    ID: typing.Literal["acceptTermsOfService"] = Field("acceptTermsOfService", validation_alias="@type", alias="@type")
     terms_of_service_id: String

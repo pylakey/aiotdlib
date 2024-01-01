@@ -20,5 +20,7 @@ class GetSupergroupFullInfo(BaseObject):
     :type supergroup_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getSupergroupFullInfo"] = "getSupergroupFullInfo"
+    ID: typing.Literal["getSupergroupFullInfo"] = Field(
+        "getSupergroupFullInfo", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53

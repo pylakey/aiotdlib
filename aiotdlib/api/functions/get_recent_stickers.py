@@ -20,5 +20,5 @@ class GetRecentStickers(BaseObject):
     :type is_attached: :class:`Bool`
     """
 
-    ID: typing.Literal["getRecentStickers"] = "getRecentStickers"
+    ID: typing.Literal["getRecentStickers"] = Field("getRecentStickers", validation_alias="@type", alias="@type")
     is_attached: Bool = False

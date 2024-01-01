@@ -32,7 +32,7 @@ class EditProxy(BaseObject):
     :type enable: :class:`Bool`
     """
 
-    ID: typing.Literal["editProxy"] = "editProxy"
+    ID: typing.Literal["editProxy"] = Field("editProxy", validation_alias="@type", alias="@type")
     proxy_id: Int32
     server: String
     port: Int32

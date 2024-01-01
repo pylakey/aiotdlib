@@ -26,7 +26,7 @@ class PinChatMessage(BaseObject):
     :type only_for_self: :class:`Bool`
     """
 
-    ID: typing.Literal["pinChatMessage"] = "pinChatMessage"
+    ID: typing.Literal["pinChatMessage"] = Field("pinChatMessage", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     disable_notification: Bool = False

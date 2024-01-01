@@ -37,7 +37,9 @@ class SendInlineQueryResultMessage(BaseObject):
     :type options: :class:`MessageSendOptions`, optional
     """
 
-    ID: typing.Literal["sendInlineQueryResultMessage"] = "sendInlineQueryResultMessage"
+    ID: typing.Literal["sendInlineQueryResultMessage"] = Field(
+        "sendInlineQueryResultMessage", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     query_id: Int64
     result_id: String

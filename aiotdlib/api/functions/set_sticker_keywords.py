@@ -26,6 +26,6 @@ class SetStickerKeywords(BaseObject):
     :type keywords: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["setStickerKeywords"] = "setStickerKeywords"
+    ID: typing.Literal["setStickerKeywords"] = Field("setStickerKeywords", validation_alias="@type", alias="@type")
     sticker: InputFile
     keywords: Vector[String]

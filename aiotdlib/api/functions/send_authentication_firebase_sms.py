@@ -20,5 +20,7 @@ class SendAuthenticationFirebaseSms(BaseObject):
     :type token: :class:`String`
     """
 
-    ID: typing.Literal["sendAuthenticationFirebaseSms"] = "sendAuthenticationFirebaseSms"
+    ID: typing.Literal["sendAuthenticationFirebaseSms"] = Field(
+        "sendAuthenticationFirebaseSms", validation_alias="@type", alias="@type"
+    )
     token: String

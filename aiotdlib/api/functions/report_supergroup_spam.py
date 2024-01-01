@@ -22,6 +22,6 @@ class ReportSupergroupSpam(BaseObject):
     :type message_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["reportSupergroupSpam"] = "reportSupergroupSpam"
+    ID: typing.Literal["reportSupergroupSpam"] = Field("reportSupergroupSpam", validation_alias="@type", alias="@type")
     supergroup_id: Int53
     message_ids: Vector[Int53]

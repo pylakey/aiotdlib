@@ -17,4 +17,4 @@ class ResetBackgrounds(BaseObject):
     Resets list of installed backgrounds to its default value
     """
 
-    ID: typing.Literal["resetBackgrounds"] = "resetBackgrounds"
+    ID: typing.Literal["resetBackgrounds"] = Field("resetBackgrounds", validation_alias="@type", alias="@type")

@@ -17,4 +17,6 @@ class ResetNetworkStatistics(BaseObject):
     Resets all network data usage statistics to zero. Can be called before authorization
     """
 
-    ID: typing.Literal["resetNetworkStatistics"] = "resetNetworkStatistics"
+    ID: typing.Literal["resetNetworkStatistics"] = Field(
+        "resetNetworkStatistics", validation_alias="@type", alias="@type"
+    )

@@ -20,5 +20,7 @@ class GetCustomEmojiStickers(BaseObject):
     :type custom_emoji_ids: :class:`Vector[Int64]`
     """
 
-    ID: typing.Literal["getCustomEmojiStickers"] = "getCustomEmojiStickers"
+    ID: typing.Literal["getCustomEmojiStickers"] = Field(
+        "getCustomEmojiStickers", validation_alias="@type", alias="@type"
+    )
     custom_emoji_ids: Vector[Int64]

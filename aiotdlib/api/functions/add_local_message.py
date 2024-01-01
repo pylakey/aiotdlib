@@ -34,7 +34,7 @@ class AddLocalMessage(BaseObject):
     :type reply_to: :class:`MessageReplyTo`, optional
     """
 
-    ID: typing.Literal["addLocalMessage"] = "addLocalMessage"
+    ID: typing.Literal["addLocalMessage"] = Field("addLocalMessage", validation_alias="@type", alias="@type")
     chat_id: Int53
     sender_id: MessageSender
     input_message_content: InputMessageContent

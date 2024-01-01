@@ -28,7 +28,7 @@ class ImportMessages(BaseObject):
     :type attached_files: :class:`Vector[InputFile]`
     """
 
-    ID: typing.Literal["importMessages"] = "importMessages"
+    ID: typing.Literal["importMessages"] = Field("importMessages", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_file: InputFile
     attached_files: Vector[InputFile]

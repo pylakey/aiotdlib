@@ -24,7 +24,7 @@ class TranslateMessageText(BaseObject):
     :type to_language_code: :class:`String`
     """
 
-    ID: typing.Literal["translateMessageText"] = "translateMessageText"
+    ID: typing.Literal["translateMessageText"] = Field("translateMessageText", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     to_language_code: String

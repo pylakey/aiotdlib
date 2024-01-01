@@ -28,7 +28,9 @@ class GetBlockedMessageSenders(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["getBlockedMessageSenders"] = "getBlockedMessageSenders"
+    ID: typing.Literal["getBlockedMessageSenders"] = Field(
+        "getBlockedMessageSenders", validation_alias="@type", alias="@type"
+    )
     block_list: BlockList
     offset: Int32
     limit: Int32

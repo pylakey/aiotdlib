@@ -17,4 +17,6 @@ class GetDefaultProfilePhotoCustomEmojiStickers(BaseObject):
     Returns default list of custom emoji stickers for placing on a profile photo
     """
 
-    ID: typing.Literal["getDefaultProfilePhotoCustomEmojiStickers"] = "getDefaultProfilePhotoCustomEmojiStickers"
+    ID: typing.Literal["getDefaultProfilePhotoCustomEmojiStickers"] = Field(
+        "getDefaultProfilePhotoCustomEmojiStickers", validation_alias="@type", alias="@type"
+    )

@@ -22,6 +22,8 @@ class SetSupergroupStickerSet(BaseObject):
     :type sticker_set_id: :class:`Int64`
     """
 
-    ID: typing.Literal["setSupergroupStickerSet"] = "setSupergroupStickerSet"
+    ID: typing.Literal["setSupergroupStickerSet"] = Field(
+        "setSupergroupStickerSet", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53
     sticker_set_id: Int64

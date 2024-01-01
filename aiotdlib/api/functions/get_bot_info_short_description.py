@@ -22,6 +22,8 @@ class GetBotInfoShortDescription(BaseObject):
     :type language_code: :class:`String`
     """
 
-    ID: typing.Literal["getBotInfoShortDescription"] = "getBotInfoShortDescription"
+    ID: typing.Literal["getBotInfoShortDescription"] = Field(
+        "getBotInfoShortDescription", validation_alias="@type", alias="@type"
+    )
     bot_user_id: Int53
     language_code: String

@@ -26,6 +26,8 @@ class SetStoryPrivacySettings(BaseObject):
     :type privacy_settings: :class:`StoryPrivacySettings`
     """
 
-    ID: typing.Literal["setStoryPrivacySettings"] = "setStoryPrivacySettings"
+    ID: typing.Literal["setStoryPrivacySettings"] = Field(
+        "setStoryPrivacySettings", validation_alias="@type", alias="@type"
+    )
     story_id: Int32
     privacy_settings: StoryPrivacySettings

@@ -22,6 +22,8 @@ class ToggleSupergroupSignMessages(BaseObject):
     :type sign_messages: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleSupergroupSignMessages"] = "toggleSupergroupSignMessages"
+    ID: typing.Literal["toggleSupergroupSignMessages"] = Field(
+        "toggleSupergroupSignMessages", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53
     sign_messages: Bool

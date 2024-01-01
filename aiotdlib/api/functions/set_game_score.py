@@ -30,7 +30,7 @@ class SetGameScore(BaseObject):
     :type force: :class:`Bool`
     """
 
-    ID: typing.Literal["setGameScore"] = "setGameScore"
+    ID: typing.Literal["setGameScore"] = Field("setGameScore", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     user_id: Int53

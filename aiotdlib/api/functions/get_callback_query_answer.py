@@ -28,7 +28,9 @@ class GetCallbackQueryAnswer(BaseObject):
     :type payload: :class:`CallbackQueryPayload`
     """
 
-    ID: typing.Literal["getCallbackQueryAnswer"] = "getCallbackQueryAnswer"
+    ID: typing.Literal["getCallbackQueryAnswer"] = Field(
+        "getCallbackQueryAnswer", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     payload: CallbackQueryPayload

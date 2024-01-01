@@ -26,6 +26,6 @@ class EditChatFolder(BaseObject):
     :type folder: :class:`ChatFolder`
     """
 
-    ID: typing.Literal["editChatFolder"] = "editChatFolder"
+    ID: typing.Literal["editChatFolder"] = Field("editChatFolder", validation_alias="@type", alias="@type")
     chat_folder_id: Int32
     folder: ChatFolder

@@ -26,6 +26,6 @@ class AcceptCall(BaseObject):
     :type protocol: :class:`CallProtocol`
     """
 
-    ID: typing.Literal["acceptCall"] = "acceptCall"
+    ID: typing.Literal["acceptCall"] = Field("acceptCall", validation_alias="@type", alias="@type")
     call_id: Int32
     protocol: CallProtocol

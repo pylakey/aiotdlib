@@ -22,6 +22,8 @@ class GetPhoneNumberInfoSync(BaseObject):
     :type phone_number_prefix: :class:`String`
     """
 
-    ID: typing.Literal["getPhoneNumberInfoSync"] = "getPhoneNumberInfoSync"
+    ID: typing.Literal["getPhoneNumberInfoSync"] = Field(
+        "getPhoneNumberInfoSync", validation_alias="@type", alias="@type"
+    )
     language_code: String
     phone_number_prefix: String

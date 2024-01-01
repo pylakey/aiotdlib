@@ -20,5 +20,5 @@ class GetFileExtension(BaseObject):
     :type mime_type: :class:`String`
     """
 
-    ID: typing.Literal["getFileExtension"] = "getFileExtension"
+    ID: typing.Literal["getFileExtension"] = Field("getFileExtension", validation_alias="@type", alias="@type")
     mime_type: String

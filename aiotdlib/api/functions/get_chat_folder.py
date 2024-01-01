@@ -20,5 +20,5 @@ class GetChatFolder(BaseObject):
     :type chat_folder_id: :class:`Int32`
     """
 
-    ID: typing.Literal["getChatFolder"] = "getChatFolder"
+    ID: typing.Literal["getChatFolder"] = Field("getChatFolder", validation_alias="@type", alias="@type")
     chat_folder_id: Int32

@@ -24,7 +24,7 @@ class SearchEmojis(BaseObject):
     :type input_language_codes: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["searchEmojis"] = "searchEmojis"
+    ID: typing.Literal["searchEmojis"] = Field("searchEmojis", validation_alias="@type", alias="@type")
     text: String
     exact_match: Bool = False
     input_language_codes: Vector[String] = []

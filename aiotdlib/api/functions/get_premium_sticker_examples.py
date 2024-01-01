@@ -17,4 +17,6 @@ class GetPremiumStickerExamples(BaseObject):
     Returns examples of premium stickers for demonstration purposes
     """
 
-    ID: typing.Literal["getPremiumStickerExamples"] = "getPremiumStickerExamples"
+    ID: typing.Literal["getPremiumStickerExamples"] = Field(
+        "getPremiumStickerExamples", validation_alias="@type", alias="@type"
+    )

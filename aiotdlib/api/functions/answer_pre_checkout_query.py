@@ -22,6 +22,8 @@ class AnswerPreCheckoutQuery(BaseObject):
     :type error_message: :class:`String`
     """
 
-    ID: typing.Literal["answerPreCheckoutQuery"] = "answerPreCheckoutQuery"
+    ID: typing.Literal["answerPreCheckoutQuery"] = Field(
+        "answerPreCheckoutQuery", validation_alias="@type", alias="@type"
+    )
     pre_checkout_query_id: Int64
     error_message: String

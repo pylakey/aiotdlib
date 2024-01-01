@@ -26,6 +26,8 @@ class SetPassportElementErrors(BaseObject):
     :type errors: :class:`Vector[InputPassportElementError]`
     """
 
-    ID: typing.Literal["setPassportElementErrors"] = "setPassportElementErrors"
+    ID: typing.Literal["setPassportElementErrors"] = Field(
+        "setPassportElementErrors", validation_alias="@type", alias="@type"
+    )
     user_id: Int53
     errors: Vector[InputPassportElementError]

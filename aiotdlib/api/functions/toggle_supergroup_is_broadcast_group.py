@@ -20,5 +20,7 @@ class ToggleSupergroupIsBroadcastGroup(BaseObject):
     :type supergroup_id: :class:`Int53`
     """
 
-    ID: typing.Literal["toggleSupergroupIsBroadcastGroup"] = "toggleSupergroupIsBroadcastGroup"
+    ID: typing.Literal["toggleSupergroupIsBroadcastGroup"] = Field(
+        "toggleSupergroupIsBroadcastGroup", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53

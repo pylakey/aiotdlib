@@ -28,7 +28,7 @@ class SetChatDraftMessage(BaseObject):
     :type draft_message: :class:`DraftMessage`, optional
     """
 
-    ID: typing.Literal["setChatDraftMessage"] = "setChatDraftMessage"
+    ID: typing.Literal["setChatDraftMessage"] = Field("setChatDraftMessage", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_thread_id: Int53 = 0
     draft_message: typing.Optional[DraftMessage] = None

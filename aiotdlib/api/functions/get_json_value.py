@@ -20,5 +20,5 @@ class GetJsonValue(BaseObject):
     :type json_: :class:`String`
     """
 
-    ID: typing.Literal["getJsonValue"] = "getJsonValue"
+    ID: typing.Literal["getJsonValue"] = Field("getJsonValue", validation_alias="@type", alias="@type")
     json_: String = Field(..., alias="json")

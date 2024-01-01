@@ -30,7 +30,7 @@ class ViewMessages(BaseObject):
     :type source: :class:`MessageSource`, optional
     """
 
-    ID: typing.Literal["viewMessages"] = "viewMessages"
+    ID: typing.Literal["viewMessages"] = Field("viewMessages", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_ids: Vector[Int53]
     force_read: Bool = False

@@ -22,6 +22,6 @@ class ResendMessages(BaseObject):
     :type message_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["resendMessages"] = "resendMessages"
+    ID: typing.Literal["resendMessages"] = Field("resendMessages", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_ids: Vector[Int53]

@@ -17,4 +17,6 @@ class GetThemedEmojiStatuses(BaseObject):
     Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
     """
 
-    ID: typing.Literal["getThemedEmojiStatuses"] = "getThemedEmojiStatuses"
+    ID: typing.Literal["getThemedEmojiStatuses"] = Field(
+        "getThemedEmojiStatuses", validation_alias="@type", alias="@type"
+    )

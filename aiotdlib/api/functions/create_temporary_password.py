@@ -22,6 +22,8 @@ class CreateTemporaryPassword(BaseObject):
     :type valid_for: :class:`Int32`
     """
 
-    ID: typing.Literal["createTemporaryPassword"] = "createTemporaryPassword"
+    ID: typing.Literal["createTemporaryPassword"] = Field(
+        "createTemporaryPassword", validation_alias="@type", alias="@type"
+    )
     password: String
     valid_for: Int32

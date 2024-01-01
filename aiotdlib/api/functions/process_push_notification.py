@@ -20,5 +20,7 @@ class ProcessPushNotification(BaseObject):
     :type payload: :class:`String`
     """
 
-    ID: typing.Literal["processPushNotification"] = "processPushNotification"
+    ID: typing.Literal["processPushNotification"] = Field(
+        "processPushNotification", validation_alias="@type", alias="@type"
+    )
     payload: String

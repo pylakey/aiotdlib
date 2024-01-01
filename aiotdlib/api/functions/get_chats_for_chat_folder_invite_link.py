@@ -20,5 +20,7 @@ class GetChatsForChatFolderInviteLink(BaseObject):
     :type chat_folder_id: :class:`Int32`
     """
 
-    ID: typing.Literal["getChatsForChatFolderInviteLink"] = "getChatsForChatFolderInviteLink"
+    ID: typing.Literal["getChatsForChatFolderInviteLink"] = Field(
+        "getChatsForChatFolderInviteLink", validation_alias="@type", alias="@type"
+    )
     chat_folder_id: Int32

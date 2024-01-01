@@ -36,7 +36,7 @@ class SendMessageAlbum(BaseObject):
     :type options: :class:`MessageSendOptions`, optional
     """
 
-    ID: typing.Literal["sendMessageAlbum"] = "sendMessageAlbum"
+    ID: typing.Literal["sendMessageAlbum"] = Field("sendMessageAlbum", validation_alias="@type", alias="@type")
     chat_id: Int53
     input_message_contents: Vector[InputMessageContent]
     message_thread_id: Int53 = 0

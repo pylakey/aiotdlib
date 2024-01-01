@@ -22,6 +22,6 @@ class SearchWebApp(BaseObject):
     :type web_app_short_name: :class:`String`
     """
 
-    ID: typing.Literal["searchWebApp"] = "searchWebApp"
+    ID: typing.Literal["searchWebApp"] = Field("searchWebApp", validation_alias="@type", alias="@type")
     bot_user_id: Int53
     web_app_short_name: String

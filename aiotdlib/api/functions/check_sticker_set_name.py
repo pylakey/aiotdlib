@@ -20,5 +20,5 @@ class CheckStickerSetName(BaseObject):
     :type name: :class:`String`
     """
 
-    ID: typing.Literal["checkStickerSetName"] = "checkStickerSetName"
+    ID: typing.Literal["checkStickerSetName"] = Field("checkStickerSetName", validation_alias="@type", alias="@type")
     name: String

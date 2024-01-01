@@ -24,7 +24,7 @@ class ReadFilePart(BaseObject):
     :type count: :class:`Int53`
     """
 
-    ID: typing.Literal["readFilePart"] = "readFilePart"
+    ID: typing.Literal["readFilePart"] = Field("readFilePart", validation_alias="@type", alias="@type")
     file_id: Int32
     offset: Int53
     count: Int53

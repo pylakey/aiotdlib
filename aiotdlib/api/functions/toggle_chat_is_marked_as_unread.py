@@ -22,6 +22,8 @@ class ToggleChatIsMarkedAsUnread(BaseObject):
     :type is_marked_as_unread: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleChatIsMarkedAsUnread"] = "toggleChatIsMarkedAsUnread"
+    ID: typing.Literal["toggleChatIsMarkedAsUnread"] = Field(
+        "toggleChatIsMarkedAsUnread", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     is_marked_as_unread: Bool

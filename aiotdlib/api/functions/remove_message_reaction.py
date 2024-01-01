@@ -28,7 +28,9 @@ class RemoveMessageReaction(BaseObject):
     :type reaction_type: :class:`ReactionType`
     """
 
-    ID: typing.Literal["removeMessageReaction"] = "removeMessageReaction"
+    ID: typing.Literal["removeMessageReaction"] = Field(
+        "removeMessageReaction", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     reaction_type: ReactionType

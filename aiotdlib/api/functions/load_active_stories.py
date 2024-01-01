@@ -24,5 +24,5 @@ class LoadActiveStories(BaseObject):
     :type story_list: :class:`StoryList`
     """
 
-    ID: typing.Literal["loadActiveStories"] = "loadActiveStories"
+    ID: typing.Literal["loadActiveStories"] = Field("loadActiveStories", validation_alias="@type", alias="@type")
     story_list: StoryList

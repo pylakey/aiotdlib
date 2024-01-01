@@ -20,5 +20,7 @@ class GetAttachedStickerSets(BaseObject):
     :type file_id: :class:`Int32`
     """
 
-    ID: typing.Literal["getAttachedStickerSets"] = "getAttachedStickerSets"
+    ID: typing.Literal["getAttachedStickerSets"] = Field(
+        "getAttachedStickerSets", validation_alias="@type", alias="@type"
+    )
     file_id: Int32

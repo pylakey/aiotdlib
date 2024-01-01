@@ -20,5 +20,5 @@ class DeleteLanguagePack(BaseObject):
     :type language_pack_id: :class:`String`
     """
 
-    ID: typing.Literal["deleteLanguagePack"] = "deleteLanguagePack"
+    ID: typing.Literal["deleteLanguagePack"] = Field("deleteLanguagePack", validation_alias="@type", alias="@type")
     language_pack_id: String

@@ -30,7 +30,7 @@ class GetSupergroupMembers(BaseObject):
     :type filter_: :class:`SupergroupMembersFilter`, optional
     """
 
-    ID: typing.Literal["getSupergroupMembers"] = "getSupergroupMembers"
+    ID: typing.Literal["getSupergroupMembers"] = Field("getSupergroupMembers", validation_alias="@type", alias="@type")
     supergroup_id: Int53
     offset: Int32
     limit: Int32

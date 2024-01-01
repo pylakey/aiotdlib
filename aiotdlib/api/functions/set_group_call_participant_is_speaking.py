@@ -24,7 +24,9 @@ class SetGroupCallParticipantIsSpeaking(BaseObject):
     :type is_speaking: :class:`Bool`
     """
 
-    ID: typing.Literal["setGroupCallParticipantIsSpeaking"] = "setGroupCallParticipantIsSpeaking"
+    ID: typing.Literal["setGroupCallParticipantIsSpeaking"] = Field(
+        "setGroupCallParticipantIsSpeaking", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     audio_source: Int32
     is_speaking: Bool = False

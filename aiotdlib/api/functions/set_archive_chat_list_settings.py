@@ -24,5 +24,7 @@ class SetArchiveChatListSettings(BaseObject):
     :type settings: :class:`ArchiveChatListSettings`
     """
 
-    ID: typing.Literal["setArchiveChatListSettings"] = "setArchiveChatListSettings"
+    ID: typing.Literal["setArchiveChatListSettings"] = Field(
+        "setArchiveChatListSettings", validation_alias="@type", alias="@type"
+    )
     settings: ArchiveChatListSettings

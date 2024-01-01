@@ -20,5 +20,7 @@ class SetInactiveSessionTtl(BaseObject):
     :type inactive_session_ttl_days: :class:`Int32`
     """
 
-    ID: typing.Literal["setInactiveSessionTtl"] = "setInactiveSessionTtl"
+    ID: typing.Literal["setInactiveSessionTtl"] = Field(
+        "setInactiveSessionTtl", validation_alias="@type", alias="@type"
+    )
     inactive_session_ttl_days: Int32

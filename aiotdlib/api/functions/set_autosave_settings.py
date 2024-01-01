@@ -27,6 +27,6 @@ class SetAutosaveSettings(BaseObject):
     :type settings: :class:`ScopeAutosaveSettings`, optional
     """
 
-    ID: typing.Literal["setAutosaveSettings"] = "setAutosaveSettings"
+    ID: typing.Literal["setAutosaveSettings"] = Field("setAutosaveSettings", validation_alias="@type", alias="@type")
     scope: AutosaveSettingsScope
     settings: typing.Optional[ScopeAutosaveSettings] = None

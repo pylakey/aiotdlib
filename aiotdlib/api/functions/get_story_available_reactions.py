@@ -20,5 +20,7 @@ class GetStoryAvailableReactions(BaseObject):
     :type row_size: :class:`Int32`
     """
 
-    ID: typing.Literal["getStoryAvailableReactions"] = "getStoryAvailableReactions"
+    ID: typing.Literal["getStoryAvailableReactions"] = Field(
+        "getStoryAvailableReactions", validation_alias="@type", alias="@type"
+    )
     row_size: Int32

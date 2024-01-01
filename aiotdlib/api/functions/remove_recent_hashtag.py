@@ -20,5 +20,5 @@ class RemoveRecentHashtag(BaseObject):
     :type hashtag: :class:`String`
     """
 
-    ID: typing.Literal["removeRecentHashtag"] = "removeRecentHashtag"
+    ID: typing.Literal["removeRecentHashtag"] = Field("removeRecentHashtag", validation_alias="@type", alias="@type")
     hashtag: String

@@ -20,5 +20,5 @@ class GetNetworkStatistics(BaseObject):
     :type only_current: :class:`Bool`
     """
 
-    ID: typing.Literal["getNetworkStatistics"] = "getNetworkStatistics"
+    ID: typing.Literal["getNetworkStatistics"] = Field("getNetworkStatistics", validation_alias="@type", alias="@type")
     only_current: Bool = False

@@ -24,7 +24,9 @@ class ProcessChatJoinRequests(BaseObject):
     :type approve: :class:`Bool`
     """
 
-    ID: typing.Literal["processChatJoinRequests"] = "processChatJoinRequests"
+    ID: typing.Literal["processChatJoinRequests"] = Field(
+        "processChatJoinRequests", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     invite_link: String
     approve: Bool = False

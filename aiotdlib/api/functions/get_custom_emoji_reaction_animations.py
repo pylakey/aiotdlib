@@ -17,4 +17,6 @@ class GetCustomEmojiReactionAnimations(BaseObject):
     Returns TGS stickers with generic animations for custom emoji reactions
     """
 
-    ID: typing.Literal["getCustomEmojiReactionAnimations"] = "getCustomEmojiReactionAnimations"
+    ID: typing.Literal["getCustomEmojiReactionAnimations"] = Field(
+        "getCustomEmojiReactionAnimations", validation_alias="@type", alias="@type"
+    )

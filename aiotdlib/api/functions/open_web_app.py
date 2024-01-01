@@ -37,7 +37,7 @@ class OpenWebApp(BaseObject):
     :type reply_to: :class:`MessageReplyTo`, optional
     """
 
-    ID: typing.Literal["openWebApp"] = "openWebApp"
+    ID: typing.Literal["openWebApp"] = Field("openWebApp", validation_alias="@type", alias="@type")
     chat_id: Int53
     bot_user_id: Int53
     url: String

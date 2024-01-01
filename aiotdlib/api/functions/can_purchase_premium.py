@@ -24,5 +24,5 @@ class CanPurchasePremium(BaseObject):
     :type purpose: :class:`StorePaymentPurpose`
     """
 
-    ID: typing.Literal["canPurchasePremium"] = "canPurchasePremium"
+    ID: typing.Literal["canPurchasePremium"] = Field("canPurchasePremium", validation_alias="@type", alias="@type")
     purpose: StorePaymentPurpose

@@ -20,5 +20,5 @@ class GetProxyLink(BaseObject):
     :type proxy_id: :class:`Int32`
     """
 
-    ID: typing.Literal["getProxyLink"] = "getProxyLink"
+    ID: typing.Literal["getProxyLink"] = Field("getProxyLink", validation_alias="@type", alias="@type")
     proxy_id: Int32

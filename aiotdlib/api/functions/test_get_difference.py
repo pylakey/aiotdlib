@@ -17,4 +17,4 @@ class TestGetDifference(BaseObject):
     Forces an updates.getDifference call to the Telegram servers; for testing only
     """
 
-    ID: typing.Literal["testGetDifference"] = "testGetDifference"
+    ID: typing.Literal["testGetDifference"] = Field("testGetDifference", validation_alias="@type", alias="@type")

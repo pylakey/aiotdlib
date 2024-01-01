@@ -30,7 +30,7 @@ class GetStoryViewers(BaseObject):
     :type prefer_with_reaction: :class:`Bool`
     """
 
-    ID: typing.Literal["getStoryViewers"] = "getStoryViewers"
+    ID: typing.Literal["getStoryViewers"] = Field("getStoryViewers", validation_alias="@type", alias="@type")
     story_id: Int32
     offset: String
     limit: Int32

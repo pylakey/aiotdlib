@@ -40,7 +40,7 @@ class OptimizeStorage(BaseObject):
     :type return_deleted_file_statistics: :class:`Bool`
     """
 
-    ID: typing.Literal["optimizeStorage"] = "optimizeStorage"
+    ID: typing.Literal["optimizeStorage"] = Field("optimizeStorage", validation_alias="@type", alias="@type")
     size: Int53
     ttl: Int32
     count: Int32

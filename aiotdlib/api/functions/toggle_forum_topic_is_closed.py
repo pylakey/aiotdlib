@@ -24,7 +24,9 @@ class ToggleForumTopicIsClosed(BaseObject):
     :type is_closed: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleForumTopicIsClosed"] = "toggleForumTopicIsClosed"
+    ID: typing.Literal["toggleForumTopicIsClosed"] = Field(
+        "toggleForumTopicIsClosed", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_thread_id: Int53
     is_closed: Bool = False

@@ -26,6 +26,6 @@ class SetChatPermissions(BaseObject):
     :type permissions: :class:`ChatPermissions`
     """
 
-    ID: typing.Literal["setChatPermissions"] = "setChatPermissions"
+    ID: typing.Literal["setChatPermissions"] = Field("setChatPermissions", validation_alias="@type", alias="@type")
     chat_id: Int53
     permissions: ChatPermissions

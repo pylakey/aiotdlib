@@ -20,5 +20,7 @@ class GetLocalizationTargetInfo(BaseObject):
     :type only_local: :class:`Bool`
     """
 
-    ID: typing.Literal["getLocalizationTargetInfo"] = "getLocalizationTargetInfo"
+    ID: typing.Literal["getLocalizationTargetInfo"] = Field(
+        "getLocalizationTargetInfo", validation_alias="@type", alias="@type"
+    )
     only_local: Bool = False

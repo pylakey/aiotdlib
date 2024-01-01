@@ -20,5 +20,5 @@ class DeleteProfilePhoto(BaseObject):
     :type profile_photo_id: :class:`Int64`
     """
 
-    ID: typing.Literal["deleteProfilePhoto"] = "deleteProfilePhoto"
+    ID: typing.Literal["deleteProfilePhoto"] = Field("deleteProfilePhoto", validation_alias="@type", alias="@type")
     profile_photo_id: Int64

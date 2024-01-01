@@ -24,7 +24,7 @@ class GetStatisticalGraph(BaseObject):
     :type x: :class:`Int53`
     """
 
-    ID: typing.Literal["getStatisticalGraph"] = "getStatisticalGraph"
+    ID: typing.Literal["getStatisticalGraph"] = Field("getStatisticalGraph", validation_alias="@type", alias="@type")
     chat_id: Int53
     token: String
     x: Int53

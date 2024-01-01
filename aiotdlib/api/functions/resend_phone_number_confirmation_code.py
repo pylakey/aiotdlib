@@ -17,4 +17,6 @@ class ResendPhoneNumberConfirmationCode(BaseObject):
     Resends phone number confirmation code
     """
 
-    ID: typing.Literal["resendPhoneNumberConfirmationCode"] = "resendPhoneNumberConfirmationCode"
+    ID: typing.Literal["resendPhoneNumberConfirmationCode"] = Field(
+        "resendPhoneNumberConfirmationCode", validation_alias="@type", alias="@type"
+    )

@@ -27,6 +27,8 @@ class SetStickerMaskPosition(BaseObject):
     :type mask_position: :class:`MaskPosition`, optional
     """
 
-    ID: typing.Literal["setStickerMaskPosition"] = "setStickerMaskPosition"
+    ID: typing.Literal["setStickerMaskPosition"] = Field(
+        "setStickerMaskPosition", validation_alias="@type", alias="@type"
+    )
     sticker: InputFile
     mask_position: typing.Optional[MaskPosition] = None

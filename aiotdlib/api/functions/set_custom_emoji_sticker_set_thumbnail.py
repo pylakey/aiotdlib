@@ -22,6 +22,8 @@ class SetCustomEmojiStickerSetThumbnail(BaseObject):
     :type custom_emoji_id: :class:`Int64`
     """
 
-    ID: typing.Literal["setCustomEmojiStickerSetThumbnail"] = "setCustomEmojiStickerSetThumbnail"
+    ID: typing.Literal["setCustomEmojiStickerSetThumbnail"] = Field(
+        "setCustomEmojiStickerSetThumbnail", validation_alias="@type", alias="@type"
+    )
     name: String
     custom_emoji_id: Int64

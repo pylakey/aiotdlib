@@ -20,5 +20,5 @@ class CleanFileName(BaseObject):
     :type file_name: :class:`String`
     """
 
-    ID: typing.Literal["cleanFileName"] = "cleanFileName"
+    ID: typing.Literal["cleanFileName"] = Field("cleanFileName", validation_alias="@type", alias="@type")
     file_name: String

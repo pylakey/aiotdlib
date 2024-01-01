@@ -24,7 +24,7 @@ class SetPollAnswer(BaseObject):
     :type option_ids: :class:`Vector[Int32]`
     """
 
-    ID: typing.Literal["setPollAnswer"] = "setPollAnswer"
+    ID: typing.Literal["setPollAnswer"] = Field("setPollAnswer", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     option_ids: Vector[Int32]

@@ -20,5 +20,5 @@ class GetPushReceiverId(BaseObject):
     :type payload: :class:`String`
     """
 
-    ID: typing.Literal["getPushReceiverId"] = "getPushReceiverId"
+    ID: typing.Literal["getPushReceiverId"] = Field("getPushReceiverId", validation_alias="@type", alias="@type")
     payload: String

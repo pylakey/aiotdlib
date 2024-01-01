@@ -20,5 +20,5 @@ class GetFileMimeType(BaseObject):
     :type file_name: :class:`String`
     """
 
-    ID: typing.Literal["getFileMimeType"] = "getFileMimeType"
+    ID: typing.Literal["getFileMimeType"] = Field("getFileMimeType", validation_alias="@type", alias="@type")
     file_name: String

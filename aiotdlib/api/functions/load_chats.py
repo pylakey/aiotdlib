@@ -26,6 +26,6 @@ class LoadChats(BaseObject):
     :type chat_list: :class:`ChatList`, optional
     """
 
-    ID: typing.Literal["loadChats"] = "loadChats"
+    ID: typing.Literal["loadChats"] = Field("loadChats", validation_alias="@type", alias="@type")
     limit: Int32
     chat_list: typing.Optional[ChatList] = None

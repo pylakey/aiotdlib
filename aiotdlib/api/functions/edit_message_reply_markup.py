@@ -28,7 +28,9 @@ class EditMessageReplyMarkup(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["editMessageReplyMarkup"] = "editMessageReplyMarkup"
+    ID: typing.Literal["editMessageReplyMarkup"] = Field(
+        "editMessageReplyMarkup", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     reply_markup: typing.Optional[ReplyMarkup] = None

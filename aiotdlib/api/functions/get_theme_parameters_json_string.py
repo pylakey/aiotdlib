@@ -24,5 +24,7 @@ class GetThemeParametersJsonString(BaseObject):
     :type theme: :class:`ThemeParameters`
     """
 
-    ID: typing.Literal["getThemeParametersJsonString"] = "getThemeParametersJsonString"
+    ID: typing.Literal["getThemeParametersJsonString"] = Field(
+        "getThemeParametersJsonString", validation_alias="@type", alias="@type"
+    )
     theme: ThemeParameters

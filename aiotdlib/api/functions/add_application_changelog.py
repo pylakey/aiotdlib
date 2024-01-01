@@ -20,5 +20,7 @@ class AddApplicationChangelog(BaseObject):
     :type previous_application_version: :class:`String`
     """
 
-    ID: typing.Literal["addApplicationChangelog"] = "addApplicationChangelog"
+    ID: typing.Literal["addApplicationChangelog"] = Field(
+        "addApplicationChangelog", validation_alias="@type", alias="@type"
+    )
     previous_application_version: String

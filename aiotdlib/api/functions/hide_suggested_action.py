@@ -24,5 +24,5 @@ class HideSuggestedAction(BaseObject):
     :type action: :class:`SuggestedAction`
     """
 
-    ID: typing.Literal["hideSuggestedAction"] = "hideSuggestedAction"
+    ID: typing.Literal["hideSuggestedAction"] = Field("hideSuggestedAction", validation_alias="@type", alias="@type")
     action: SuggestedAction

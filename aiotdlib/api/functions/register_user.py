@@ -22,6 +22,6 @@ class RegisterUser(BaseObject):
     :type last_name: :class:`String`
     """
 
-    ID: typing.Literal["registerUser"] = "registerUser"
+    ID: typing.Literal["registerUser"] = Field("registerUser", validation_alias="@type", alias="@type")
     first_name: String = Field(..., min_length=1, max_length=64)
     last_name: String = Field("", max_length=64)

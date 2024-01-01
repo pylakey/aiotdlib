@@ -34,7 +34,7 @@ class GetChatEventLog(BaseObject):
     :type filters: :class:`ChatEventLogFilters`, optional
     """
 
-    ID: typing.Literal["getChatEventLog"] = "getChatEventLog"
+    ID: typing.Literal["getChatEventLog"] = Field("getChatEventLog", validation_alias="@type", alias="@type")
     chat_id: Int53
     query: String
     from_event_id: Int64

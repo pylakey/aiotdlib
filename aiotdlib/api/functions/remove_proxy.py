@@ -20,5 +20,5 @@ class RemoveProxy(BaseObject):
     :type proxy_id: :class:`Int32`
     """
 
-    ID: typing.Literal["removeProxy"] = "removeProxy"
+    ID: typing.Literal["removeProxy"] = Field("removeProxy", validation_alias="@type", alias="@type")
     proxy_id: Int32

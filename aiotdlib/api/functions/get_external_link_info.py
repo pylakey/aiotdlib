@@ -20,5 +20,5 @@ class GetExternalLinkInfo(BaseObject):
     :type link: :class:`String`
     """
 
-    ID: typing.Literal["getExternalLinkInfo"] = "getExternalLinkInfo"
+    ID: typing.Literal["getExternalLinkInfo"] = Field("getExternalLinkInfo", validation_alias="@type", alias="@type")
     link: String

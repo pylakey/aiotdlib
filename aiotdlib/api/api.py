@@ -8,7 +8,7 @@ from .functions import *
 from .types import *
 
 if typing.TYPE_CHECKING:
-    from ..client import Client
+    from aiotdlib.client import Client
 
 
 class API:
@@ -2058,13 +2058,7 @@ class API:
         self.client = client
 
     async def accept_call(
-        self,
-        call_id: Int32,
-        protocol: CallProtocol,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, call_id: Int32, protocol: CallProtocol, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Accepts an incoming call
@@ -2077,17 +2071,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AcceptCall.construct if skip_validation else AcceptCall
-
         return await self.client.request(
-            _constructor(
+            AcceptCall(
                 call_id=call_id,
                 protocol=protocol,
             ),
@@ -2096,12 +2086,7 @@ class API:
         )
 
     async def accept_terms_of_service(
-        self,
-        terms_of_service_id: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, terms_of_service_id: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Accepts Telegram terms of services
@@ -2112,17 +2097,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AcceptTermsOfService.construct if skip_validation else AcceptTermsOfService
-
         return await self.client.request(
-            _constructor(
+            AcceptTermsOfService(
                 terms_of_service_id=terms_of_service_id,
             ),
             request_id=request_id,
@@ -2141,12 +2122,7 @@ class API:
         )
 
     async def add_application_changelog(
-        self,
-        previous_application_version: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, previous_application_version: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Adds server-provided application changelog as messages to the chat 777000 (Telegram) or as a stories; for official applications only. Returns a 404 error if nothing changed
@@ -2157,17 +2133,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AddApplicationChangelog.construct if skip_validation else AddApplicationChangelog
-
         return await self.client.request(
-            _constructor(
+            AddApplicationChangelog(
                 previous_application_version=previous_application_version,
             ),
             request_id=request_id,
@@ -2175,13 +2147,7 @@ class API:
         )
 
     async def add_chat_folder_by_invite_link(
-        self,
-        invite_link: String,
-        chat_ids: Vector[Int53],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, invite_link: String, chat_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Adds a chat folder by an invite link
@@ -2194,17 +2160,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AddChatFolderByInviteLink.construct if skip_validation else AddChatFolderByInviteLink
-
         return await self.client.request(
-            _constructor(
+            AddChatFolderByInviteLink(
                 invite_link=invite_link,
                 chat_ids=chat_ids,
             ),
@@ -2219,8 +2181,7 @@ class API:
         forward_limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Adds a new member to a chat. Members can't be added to private or secret chats
@@ -2235,17 +2196,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AddChatMember.construct if skip_validation else AddChatMember
-
         return await self.client.request(
-            _constructor(
+            AddChatMember(
                 chat_id=chat_id,
                 user_id=user_id,
                 forward_limit=forward_limit,
@@ -2255,13 +2212,7 @@ class API:
         )
 
     async def add_chat_members(
-        self,
-        chat_id: Int53,
-        user_ids: Vector[Int53],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, user_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
@@ -2274,17 +2225,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AddChatMembers.construct if skip_validation else AddChatMembers
-
         return await self.client.request(
-            _constructor(
+            AddChatMembers(
                 chat_id=chat_id,
                 user_ids=user_ids,
             ),
@@ -2293,13 +2240,7 @@ class API:
         )
 
     async def add_chat_to_list(
-        self,
-        chat_id: Int53,
-        chat_list: ChatList,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, chat_list: ChatList, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Adds a chat to a chat list. A chat can't be simultaneously in Main and Archive chat lists, so it is automatically removed from another one if needed
@@ -2312,17 +2253,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AddChatToList.construct if skip_validation else AddChatToList
-
         return await self.client.request(
-            _constructor(
+            AddChatToList(
                 chat_id=chat_id,
                 chat_list=chat_list,
             ),
@@ -2331,13 +2268,7 @@ class API:
         )
 
     async def add_contact(
-        self,
-        contact: Contact,
-        share_phone_number: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, contact: Contact, share_phone_number: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Adds a user to the contact list or edits an existing contact by their user identifier
@@ -2350,17 +2281,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AddContact.construct if skip_validation else AddContact
-
         return await self.client.request(
-            _constructor(
+            AddContact(
                 contact=contact,
                 share_phone_number=share_phone_number,
             ),
@@ -2369,12 +2296,7 @@ class API:
         )
 
     async def add_custom_server_language_pack(
-        self,
-        language_pack_id: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, language_pack_id: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
@@ -2385,17 +2307,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AddCustomServerLanguagePack.construct if skip_validation else AddCustomServerLanguagePack
-
         return await self.client.request(
-            _constructor(
+            AddCustomServerLanguagePack(
                 language_pack_id=language_pack_id,
             ),
             request_id=request_id,
@@ -2403,7 +2321,7 @@ class API:
         )
 
     async def add_favorite_sticker(
-        self, sticker: InputFile, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, sticker: InputFile, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to favorite stickers
@@ -2414,17 +2332,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AddFavoriteSticker.construct if skip_validation else AddFavoriteSticker
-
         return await self.client.request(
-            _constructor(
+            AddFavoriteSticker(
                 sticker=sticker,
             ),
             request_id=request_id,
@@ -2439,8 +2353,7 @@ class API:
         priority: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> File:
         """
         Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent from download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
@@ -2457,17 +2370,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.File`
         """
 
-        _constructor = AddFileToDownloads.construct if skip_validation else AddFileToDownloads
-
         return await self.client.request(
-            _constructor(
+            AddFileToDownloads(
                 file_id=file_id,
                 chat_id=chat_id,
                 message_id=message_id,
@@ -2486,8 +2395,7 @@ class API:
         reply_to: typing.Optional[MessageReplyTo] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Message:
         """
         Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
@@ -2506,17 +2414,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = AddLocalMessage.construct if skip_validation else AddLocalMessage
-
         return await self.client.request(
-            _constructor(
+            AddLocalMessage(
                 chat_id=chat_id,
                 sender_id=sender_id,
                 input_message_content=input_message_content,
@@ -2528,13 +2432,7 @@ class API:
         )
 
     async def add_log_message(
-        self,
-        verbosity_level: Int32,
-        text: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, verbosity_level: Int32, text: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Adds a message to TDLib internal log. Can be called synchronously
@@ -2547,17 +2445,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AddLogMessage.construct if skip_validation else AddLogMessage
-
         return await self.client.request(
-            _constructor(
+            AddLogMessage(
                 verbosity_level=verbosity_level,
                 text=text,
             ),
@@ -2574,8 +2468,7 @@ class API:
         update_recent_reactions: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
@@ -2594,17 +2487,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AddMessageReaction.construct if skip_validation else AddMessageReaction
-
         return await self.client.request(
-            _constructor(
+            AddMessageReaction(
                 chat_id=chat_id,
                 message_id=message_id,
                 reaction_type=reaction_type,
@@ -2616,12 +2505,7 @@ class API:
         )
 
     async def add_network_statistics(
-        self,
-        entry: NetworkStatisticsEntry,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, entry: NetworkStatisticsEntry, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Adds the specified data to data usage statistics. Can be called before authorization
@@ -2632,17 +2516,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AddNetworkStatistics.construct if skip_validation else AddNetworkStatistics
-
         return await self.client.request(
-            _constructor(
+            AddNetworkStatistics(
                 entry=entry,
             ),
             request_id=request_id,
@@ -2657,8 +2537,7 @@ class API:
         enable: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Proxy:
         """
         Adds a proxy server for network requests. Can be called before authorization
@@ -2675,17 +2554,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Proxy`
         """
 
-        _constructor = AddProxy.construct if skip_validation else AddProxy
-
         return await self.client.request(
-            _constructor(
+            AddProxy(
                 server=server,
                 port=port,
                 type=type_,
@@ -2696,13 +2571,7 @@ class API:
         )
 
     async def add_recent_sticker(
-        self,
-        sticker: InputFile,
-        is_attached: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, sticker: InputFile, is_attached: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Stickers:
         """
         Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to recent stickers
@@ -2715,17 +2584,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Stickers`
         """
 
-        _constructor = AddRecentSticker.construct if skip_validation else AddRecentSticker
-
         return await self.client.request(
-            _constructor(
+            AddRecentSticker(
                 sticker=sticker,
                 is_attached=is_attached,
             ),
@@ -2734,7 +2599,7 @@ class API:
         )
 
     async def add_recently_found_chat(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first
@@ -2745,17 +2610,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AddRecentlyFoundChat.construct if skip_validation else AddRecentlyFoundChat
-
         return await self.client.request(
-            _constructor(
+            AddRecentlyFoundChat(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -2763,12 +2624,7 @@ class API:
         )
 
     async def add_saved_animation(
-        self,
-        animation: InputFile,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, animation: InputFile, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Manually adds a new animation to the list of saved animations. The new animation is added to the beginning of the list. If the animation was already in the list, it is removed first. Only non-secret video animations with MIME type "video/mp4" can be added to the list
@@ -2779,17 +2635,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AddSavedAnimation.construct if skip_validation else AddSavedAnimation
-
         return await self.client.request(
-            _constructor(
+            AddSavedAnimation(
                 animation=animation,
             ),
             request_id=request_id,
@@ -2797,7 +2649,7 @@ class API:
         )
 
     async def add_saved_notification_sound(
-        self, sound: InputFile, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, sound: InputFile, *, request_id: str = None, request_timeout: int = None
     ) -> NotificationSound:
         """
         Adds a new notification sound to the list of saved notification sounds. The new notification sound is added to the top of the list. If it is already in the list, its position isn't changed
@@ -2808,17 +2660,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.NotificationSound`
         """
 
-        _constructor = AddSavedNotificationSound.construct if skip_validation else AddSavedNotificationSound
-
         return await self.client.request(
-            _constructor(
+            AddSavedNotificationSound(
                 sound=sound,
             ),
             request_id=request_id,
@@ -2832,8 +2680,7 @@ class API:
         sticker: InputSticker,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Adds a new sticker to a set; for bots only
@@ -2848,17 +2695,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AddStickerToSet.construct if skip_validation else AddStickerToSet
-
         return await self.client.request(
-            _constructor(
+            AddStickerToSet(
                 user_id=user_id,
                 name=name,
                 sticker=sticker,
@@ -2868,7 +2711,7 @@ class API:
         )
 
     async def allow_bot_to_send_messages(
-        self, bot_user_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, bot_user_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Allows the specified bot to send messages to the user
@@ -2879,17 +2722,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AllowBotToSendMessages.construct if skip_validation else AllowBotToSendMessages
-
         return await self.client.request(
-            _constructor(
+            AllowBotToSendMessages(
                 bot_user_id=bot_user_id,
             ),
             request_id=request_id,
@@ -2905,8 +2744,7 @@ class API:
         show_alert: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets the result of a callback query; for bots only
@@ -2925,17 +2763,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AnswerCallbackQuery.construct if skip_validation else AnswerCallbackQuery
-
         return await self.client.request(
-            _constructor(
+            AnswerCallbackQuery(
                 callback_query_id=callback_query_id,
                 text=text,
                 url=url,
@@ -2947,13 +2781,7 @@ class API:
         )
 
     async def answer_custom_query(
-        self,
-        custom_query_id: Int64,
-        data: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, custom_query_id: Int64, data: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Answers a custom query; for bots only
@@ -2966,17 +2794,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AnswerCustomQuery.construct if skip_validation else AnswerCustomQuery
-
         return await self.client.request(
-            _constructor(
+            AnswerCustomQuery(
                 custom_query_id=custom_query_id,
                 data=data,
             ),
@@ -2994,8 +2818,7 @@ class API:
         button: typing.Optional[InlineQueryResultsButton] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets the result of an inline query; for bots only
@@ -3016,17 +2839,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AnswerInlineQuery.construct if skip_validation else AnswerInlineQuery
-
         return await self.client.request(
-            _constructor(
+            AnswerInlineQuery(
                 inline_query_id=inline_query_id,
                 results=results,
                 cache_time=cache_time,
@@ -3044,8 +2863,7 @@ class API:
         error_message: String,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets the result of a pre-checkout query; for bots only
@@ -3058,17 +2876,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AnswerPreCheckoutQuery.construct if skip_validation else AnswerPreCheckoutQuery
-
         return await self.client.request(
-            _constructor(
+            AnswerPreCheckoutQuery(
                 pre_checkout_query_id=pre_checkout_query_id,
                 error_message=error_message,
             ),
@@ -3083,8 +2897,7 @@ class API:
         error_message: String,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets the result of a shipping query; for bots only
@@ -3099,17 +2912,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AnswerShippingQuery.construct if skip_validation else AnswerShippingQuery
-
         return await self.client.request(
-            _constructor(
+            AnswerShippingQuery(
                 shipping_query_id=shipping_query_id,
                 shipping_options=shipping_options,
                 error_message=error_message,
@@ -3124,8 +2933,7 @@ class API:
         result: InputInlineQueryResult,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> SentWebAppMessage:
         """
         Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
@@ -3138,17 +2946,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.SentWebAppMessage`
         """
 
-        _constructor = AnswerWebAppQuery.construct if skip_validation else AnswerWebAppQuery
-
         return await self.client.request(
-            _constructor(
+            AnswerWebAppQuery(
                 web_app_query_id=web_app_query_id,
                 result=result,
             ),
@@ -3157,13 +2961,7 @@ class API:
         )
 
     async def assign_app_store_transaction(
-        self,
-        receipt: Bytes,
-        purpose: StorePaymentPurpose,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, receipt: Bytes, purpose: StorePaymentPurpose, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Informs server about a purchase through App Store. For official applications only
@@ -3176,17 +2974,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AssignAppStoreTransaction.construct if skip_validation else AssignAppStoreTransaction
-
         return await self.client.request(
-            _constructor(
+            AssignAppStoreTransaction(
                 receipt=receipt,
                 purpose=purpose,
             ),
@@ -3202,8 +2996,7 @@ class API:
         purpose: StorePaymentPurpose,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Informs server about a purchase through Google Play. For official applications only
@@ -3220,17 +3013,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = AssignGooglePlayTransaction.construct if skip_validation else AssignGooglePlayTransaction
-
         return await self.client.request(
-            _constructor(
+            AssignGooglePlayTransaction(
                 package_name=package_name,
                 store_product_id=store_product_id,
                 purchase_token=purchase_token,
@@ -3248,8 +3037,7 @@ class API:
         revoke_messages: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
@@ -3266,17 +3054,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = BanChatMember.construct if skip_validation else BanChatMember
-
         return await self.client.request(
-            _constructor(
+            BanChatMember(
                 chat_id=chat_id,
                 member_id=member_id,
                 banned_until_date=banned_until_date,
@@ -3294,8 +3078,7 @@ class API:
         report_spam: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Blocks an original sender of a message in the Replies chat
@@ -3312,17 +3095,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = BlockMessageSenderFromReplies.construct if skip_validation else BlockMessageSenderFromReplies
-
         return await self.client.request(
-            _constructor(
+            BlockMessageSenderFromReplies(
                 message_id=message_id,
                 delete_message=delete_message,
                 delete_all_messages=delete_all_messages,
@@ -3333,7 +3112,7 @@ class API:
         )
 
     async def can_bot_send_messages(
-        self, bot_user_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, bot_user_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Checks whether the specified bot can send messages to the user. Returns a 404 error if can't and the access can be granted by call to allowBotToSendMessages
@@ -3344,17 +3123,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CanBotSendMessages.construct if skip_validation else CanBotSendMessages
-
         return await self.client.request(
-            _constructor(
+            CanBotSendMessages(
                 bot_user_id=bot_user_id,
             ),
             request_id=request_id,
@@ -3362,12 +3137,7 @@ class API:
         )
 
     async def can_purchase_premium(
-        self,
-        purpose: StorePaymentPurpose,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, purpose: StorePaymentPurpose, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
@@ -3378,17 +3148,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CanPurchasePremium.construct if skip_validation else CanPurchasePremium
-
         return await self.client.request(
-            _constructor(
+            CanPurchasePremium(
                 purpose=purpose,
             ),
             request_id=request_id,
@@ -3420,13 +3186,7 @@ class API:
         )
 
     async def cancel_download_file(
-        self,
-        file_id: Int32,
-        only_if_pending: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, file_id: Int32, only_if_pending: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Stops the downloading of a file. If a file has already been downloaded, does nothing
@@ -3439,17 +3199,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CancelDownloadFile.construct if skip_validation else CancelDownloadFile
-
         return await self.client.request(
-            _constructor(
+            CancelDownloadFile(
                 file_id=file_id,
                 only_if_pending=only_if_pending,
             ),
@@ -3469,7 +3225,7 @@ class API:
         )
 
     async def cancel_preliminary_upload_file(
-        self, file_id: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, file_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined
@@ -3480,17 +3236,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CancelPreliminaryUploadFile.construct if skip_validation else CancelPreliminaryUploadFile
-
         return await self.client.request(
-            _constructor(
+            CancelPreliminaryUploadFile(
                 file_id=file_id,
             ),
             request_id=request_id,
@@ -3498,12 +3250,7 @@ class API:
         )
 
     async def change_imported_contacts(
-        self,
-        contacts: Vector[Contact],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, contacts: Vector[Contact], *, request_id: str = None, request_timeout: int = None
     ) -> ImportedContacts:
         """
         Changes imported contacts using the list of contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts. Query result depends on the result of the previous query, so only one query is possible at the same time
@@ -3514,17 +3261,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ImportedContacts`
         """
 
-        _constructor = ChangeImportedContacts.construct if skip_validation else ChangeImportedContacts
-
         return await self.client.request(
-            _constructor(
+            ChangeImportedContacts(
                 contacts=contacts,
             ),
             request_id=request_id,
@@ -3537,8 +3280,7 @@ class API:
         settings: typing.Optional[PhoneNumberAuthenticationSettings] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> AuthenticationCodeInfo:
         """
         Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code
@@ -3551,17 +3293,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.AuthenticationCodeInfo`
         """
 
-        _constructor = ChangePhoneNumber.construct if skip_validation else ChangePhoneNumber
-
         return await self.client.request(
-            _constructor(
+            ChangePhoneNumber(
                 phone_number=phone_number,
                 settings=settings,
             ),
@@ -3576,8 +3314,7 @@ class API:
         is_archived: Bool,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Installs/uninstalls or activates/archives a sticker set
@@ -3592,17 +3329,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ChangeStickerSet.construct if skip_validation else ChangeStickerSet
-
         return await self.client.request(
-            _constructor(
+            ChangeStickerSet(
                 set_id=set_id,
                 is_installed=is_installed,
                 is_archived=is_archived,
@@ -3612,7 +3345,7 @@ class API:
         )
 
     async def check_authentication_bot_token(
-        self, token: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, token: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Checks the authentication token of a bot; to log in as a bot. Works only when the current authorization state is authorizationStateWaitPhoneNumber. Can be used instead of setAuthenticationPhoneNumber and checkAuthenticationCode to log in
@@ -3623,17 +3356,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CheckAuthenticationBotToken.construct if skip_validation else CheckAuthenticationBotToken
-
         return await self.client.request(
-            _constructor(
+            CheckAuthenticationBotToken(
                 token=token,
             ),
             request_id=request_id,
@@ -3641,7 +3370,7 @@ class API:
         )
 
     async def check_authentication_code(
-        self, code: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, code: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
@@ -3652,17 +3381,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CheckAuthenticationCode.construct if skip_validation else CheckAuthenticationCode
-
         return await self.client.request(
-            _constructor(
+            CheckAuthenticationCode(
                 code=code,
             ),
             request_id=request_id,
@@ -3670,12 +3395,7 @@ class API:
         )
 
     async def check_authentication_email_code(
-        self,
-        code: EmailAddressAuthentication,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, code: EmailAddressAuthentication, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode
@@ -3686,17 +3406,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CheckAuthenticationEmailCode.construct if skip_validation else CheckAuthenticationEmailCode
-
         return await self.client.request(
-            _constructor(
+            CheckAuthenticationEmailCode(
                 code=code,
             ),
             request_id=request_id,
@@ -3704,7 +3420,7 @@ class API:
         )
 
     async def check_authentication_password(
-        self, password: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, password: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Checks the 2-step verification password for correctness. Works only when the current authorization state is authorizationStateWaitPassword
@@ -3715,17 +3431,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CheckAuthenticationPassword.construct if skip_validation else CheckAuthenticationPassword
-
         return await self.client.request(
-            _constructor(
+            CheckAuthenticationPassword(
                 password=password,
             ),
             request_id=request_id,
@@ -3733,12 +3445,7 @@ class API:
         )
 
     async def check_authentication_password_recovery_code(
-        self,
-        recovery_code: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, recovery_code: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Checks whether a 2-step verification password recovery code sent to an email address is valid. Works only when the current authorization state is authorizationStateWaitPassword
@@ -3749,21 +3456,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            CheckAuthenticationPasswordRecoveryCode.construct
-            if skip_validation
-            else CheckAuthenticationPasswordRecoveryCode
-        )
-
         return await self.client.request(
-            _constructor(
+            CheckAuthenticationPasswordRecoveryCode(
                 recovery_code=recovery_code,
             ),
             request_id=request_id,
@@ -3771,7 +3470,7 @@ class API:
         )
 
     async def check_change_phone_number_code(
-        self, code: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, code: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Checks the authentication code sent to confirm a new phone number of the user
@@ -3782,17 +3481,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CheckChangePhoneNumberCode.construct if skip_validation else CheckChangePhoneNumberCode
-
         return await self.client.request(
-            _constructor(
+            CheckChangePhoneNumberCode(
                 code=code,
             ),
             request_id=request_id,
@@ -3800,7 +3495,7 @@ class API:
         )
 
     async def check_chat_folder_invite_link(
-        self, invite_link: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, invite_link: String, *, request_id: str = None, request_timeout: int = None
     ) -> ChatFolderInviteLinkInfo:
         """
         Checks the validity of an invite link for a chat folder and returns information about the corresponding chat folder
@@ -3811,17 +3506,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatFolderInviteLinkInfo`
         """
 
-        _constructor = CheckChatFolderInviteLink.construct if skip_validation else CheckChatFolderInviteLink
-
         return await self.client.request(
-            _constructor(
+            CheckChatFolderInviteLink(
                 invite_link=invite_link,
             ),
             request_id=request_id,
@@ -3829,7 +3520,7 @@ class API:
         )
 
     async def check_chat_invite_link(
-        self, invite_link: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, invite_link: String, *, request_id: str = None, request_timeout: int = None
     ) -> ChatInviteLinkInfo:
         """
         Checks the validity of an invite link for a chat and returns information about the corresponding chat
@@ -3840,17 +3531,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatInviteLinkInfo`
         """
 
-        _constructor = CheckChatInviteLink.construct if skip_validation else CheckChatInviteLink
-
         return await self.client.request(
-            _constructor(
+            CheckChatInviteLink(
                 invite_link=invite_link,
             ),
             request_id=request_id,
@@ -3858,13 +3545,7 @@ class API:
         )
 
     async def check_chat_username(
-        self,
-        chat_id: Int53,
-        username: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, username: String, *, request_id: str = None, request_timeout: int = None
     ) -> CheckChatUsernameResult:
         """
         Checks whether a username can be set for a chat
@@ -3877,17 +3558,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.CheckChatUsernameResult`
         """
 
-        _constructor = CheckChatUsername.construct if skip_validation else CheckChatUsername
-
         return await self.client.request(
-            _constructor(
+            CheckChatUsername(
                 chat_id=chat_id,
                 username=username,
             ),
@@ -3896,12 +3573,7 @@ class API:
         )
 
     async def check_created_public_chats_limit(
-        self,
-        type_: PublicChatType,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, type_: PublicChatType, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached. The limit can be increased with Telegram Premium
@@ -3912,17 +3584,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CheckCreatedPublicChatsLimit.construct if skip_validation else CheckCreatedPublicChatsLimit
-
         return await self.client.request(
-            _constructor(
+            CheckCreatedPublicChatsLimit(
                 type=type_,
             ),
             request_id=request_id,
@@ -3930,7 +3598,7 @@ class API:
         )
 
     async def check_email_address_verification_code(
-        self, code: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, code: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Checks the email address verification code for Telegram Passport
@@ -3941,19 +3609,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            CheckEmailAddressVerificationCode.construct if skip_validation else CheckEmailAddressVerificationCode
-        )
-
         return await self.client.request(
-            _constructor(
+            CheckEmailAddressVerificationCode(
                 code=code,
             ),
             request_id=request_id,
@@ -3961,12 +3623,7 @@ class API:
         )
 
     async def check_login_email_address_code(
-        self,
-        code: EmailAddressAuthentication,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, code: EmailAddressAuthentication, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Checks the login email address authentication
@@ -3977,17 +3634,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CheckLoginEmailAddressCode.construct if skip_validation else CheckLoginEmailAddressCode
-
         return await self.client.request(
-            _constructor(
+            CheckLoginEmailAddressCode(
                 code=code,
             ),
             request_id=request_id,
@@ -3995,12 +3648,7 @@ class API:
         )
 
     async def check_password_recovery_code(
-        self,
-        recovery_code: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, recovery_code: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Checks whether a 2-step verification password recovery code sent to an email address is valid
@@ -4011,17 +3659,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CheckPasswordRecoveryCode.construct if skip_validation else CheckPasswordRecoveryCode
-
         return await self.client.request(
-            _constructor(
+            CheckPasswordRecoveryCode(
                 recovery_code=recovery_code,
             ),
             request_id=request_id,
@@ -4029,7 +3673,7 @@ class API:
         )
 
     async def check_phone_number_confirmation_code(
-        self, code: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, code: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Checks phone number confirmation code
@@ -4040,19 +3684,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            CheckPhoneNumberConfirmationCode.construct if skip_validation else CheckPhoneNumberConfirmationCode
-        )
-
         return await self.client.request(
-            _constructor(
+            CheckPhoneNumberConfirmationCode(
                 code=code,
             ),
             request_id=request_id,
@@ -4060,7 +3698,7 @@ class API:
         )
 
     async def check_phone_number_verification_code(
-        self, code: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, code: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Checks the phone number verification code for Telegram Passport
@@ -4071,19 +3709,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            CheckPhoneNumberVerificationCode.construct if skip_validation else CheckPhoneNumberVerificationCode
-        )
-
         return await self.client.request(
-            _constructor(
+            CheckPhoneNumberVerificationCode(
                 code=code,
             ),
             request_id=request_id,
@@ -4091,7 +3723,7 @@ class API:
         )
 
     async def check_recovery_email_address_code(
-        self, code: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, code: String, *, request_id: str = None, request_timeout: int = None
     ) -> PasswordState:
         """
         Checks the 2-step verification recovery email address verification code
@@ -4102,17 +3734,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PasswordState`
         """
 
-        _constructor = CheckRecoveryEmailAddressCode.construct if skip_validation else CheckRecoveryEmailAddressCode
-
         return await self.client.request(
-            _constructor(
+            CheckRecoveryEmailAddressCode(
                 code=code,
             ),
             request_id=request_id,
@@ -4120,7 +3748,7 @@ class API:
         )
 
     async def check_sticker_set_name(
-        self, name: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, name: String, *, request_id: str = None, request_timeout: int = None
     ) -> CheckStickerSetNameResult:
         """
         Checks whether a name can be used for a new sticker set
@@ -4131,26 +3759,20 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.CheckStickerSetNameResult`
         """
 
-        _constructor = CheckStickerSetName.construct if skip_validation else CheckStickerSetName
-
         return await self.client.request(
-            _constructor(
+            CheckStickerSetName(
                 name=name,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def clean_file_name(
-        self, file_name: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Text:
+    async def clean_file_name(self, file_name: String, *, request_id: str = None, request_timeout: int = None) -> Text:
         """
         Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. Can be called synchronously
 
@@ -4160,17 +3782,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = CleanFileName.construct if skip_validation else CleanFileName
-
         return await self.client.request(
-            _constructor(
+            CleanFileName(
                 file_name=file_name,
             ),
             request_id=request_id,
@@ -4178,12 +3796,7 @@ class API:
         )
 
     async def clear_all_draft_messages(
-        self,
-        exclude_secret_chats: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, exclude_secret_chats: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Clears message drafts in all chats
@@ -4194,17 +3807,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ClearAllDraftMessages.construct if skip_validation else ClearAllDraftMessages
-
         return await self.client.request(
-            _constructor(
+            ClearAllDraftMessages(
                 exclude_secret_chats=exclude_secret_chats,
             ),
             request_id=request_id,
@@ -4256,12 +3865,7 @@ class API:
         )
 
     async def clear_recent_stickers(
-        self,
-        is_attached: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, is_attached: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Clears the list of recently used stickers
@@ -4272,17 +3876,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ClearRecentStickers.construct if skip_validation else ClearRecentStickers
-
         return await self.client.request(
-            _constructor(
+            ClearRecentStickers(
                 is_attached=is_attached,
             ),
             request_id=request_id,
@@ -4301,13 +3901,7 @@ class API:
         )
 
     async def click_animated_emoji_message(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Sticker:
         """
         Informs TDLib that a message with an animated emoji was clicked by the user. Returns a big animated sticker to be played or a 404 error if usual animation needs to be played
@@ -4320,17 +3914,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Sticker`
         """
 
-        _constructor = ClickAnimatedEmojiMessage.construct if skip_validation else ClickAnimatedEmojiMessage
-
         return await self.client.request(
-            _constructor(
+            ClickAnimatedEmojiMessage(
                 chat_id=chat_id,
                 message_id=message_id,
             ),
@@ -4339,13 +3929,7 @@ class API:
         )
 
     async def click_chat_sponsored_message(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Informs TDLib that the user opened the sponsored chat via the button, the name, the photo, or a mention in the sponsored message
@@ -4358,17 +3942,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ClickChatSponsoredMessage.construct if skip_validation else ClickChatSponsoredMessage
-
         return await self.client.request(
-            _constructor(
+            ClickChatSponsoredMessage(
                 chat_id=chat_id,
                 message_id=message_id,
             ),
@@ -4398,9 +3978,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def close_chat(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def close_chat(self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed
 
@@ -4410,17 +3988,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CloseChat.construct if skip_validation else CloseChat
-
         return await self.client.request(
-            _constructor(
+            CloseChat(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -4428,12 +4002,7 @@ class API:
         )
 
     async def close_secret_chat(
-        self,
-        secret_chat_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, secret_chat_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Closes a secret chat, effectively transferring its state to secretChatStateClosed
@@ -4444,17 +4013,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CloseSecretChat.construct if skip_validation else CloseSecretChat
-
         return await self.client.request(
-            _constructor(
+            CloseSecretChat(
                 secret_chat_id=secret_chat_id,
             ),
             request_id=request_id,
@@ -4462,13 +4027,7 @@ class API:
         )
 
     async def close_story(
-        self,
-        story_sender_chat_id: Int53,
-        story_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, story_sender_chat_id: Int53, story_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Informs TDLib that a story is closed by the user
@@ -4481,17 +4040,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CloseStory.construct if skip_validation else CloseStory
-
         return await self.client.request(
-            _constructor(
+            CloseStory(
                 story_sender_chat_id=story_sender_chat_id,
                 story_id=story_id,
             ),
@@ -4500,12 +4055,7 @@ class API:
         )
 
     async def close_web_app(
-        self,
-        web_app_launch_id: Int64,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, web_app_launch_id: Int64, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Informs TDLib that a previously opened Web App was closed
@@ -4516,17 +4066,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = CloseWebApp.construct if skip_validation else CloseWebApp
-
         return await self.client.request(
-            _constructor(
+            CloseWebApp(
                 web_app_launch_id=web_app_launch_id,
             ),
             request_id=request_id,
@@ -4534,7 +4080,7 @@ class API:
         )
 
     async def confirm_qr_code_authentication(
-        self, link: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, link: String, *, request_id: str = None, request_timeout: int = None
     ) -> Session:
         """
         Confirms QR code authentication on another device. Returns created session on success
@@ -4545,26 +4091,20 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Session`
         """
 
-        _constructor = ConfirmQrCodeAuthentication.construct if skip_validation else ConfirmQrCodeAuthentication
-
         return await self.client.request(
-            _constructor(
+            ConfirmQrCodeAuthentication(
                 link=link,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def confirm_session(
-        self, session_id: Int64, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def confirm_session(self, session_id: Int64, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Confirms an unconfirmed session of the current user from another device
 
@@ -4574,17 +4114,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ConfirmSession.construct if skip_validation else ConfirmSession
-
         return await self.client.request(
-            _constructor(
+            ConfirmSession(
                 session_id=session_id,
             ),
             request_id=request_id,
@@ -4592,13 +4128,7 @@ class API:
         )
 
     async def create_basic_group_chat(
-        self,
-        basic_group_id: Int53,
-        force: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, basic_group_id: Int53, force: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Chat:
         """
         Returns an existing chat corresponding to a known basic group
@@ -4611,17 +4141,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chat`
         """
 
-        _constructor = CreateBasicGroupChat.construct if skip_validation else CreateBasicGroupChat
-
         return await self.client.request(
-            _constructor(
+            CreateBasicGroupChat(
                 basic_group_id=basic_group_id,
                 force=force,
             ),
@@ -4636,8 +4162,7 @@ class API:
         is_video: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> CallId:
         """
         Creates a new call
@@ -4652,17 +4177,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.CallId`
         """
 
-        _constructor = CreateCall.construct if skip_validation else CreateCall
-
         return await self.client.request(
-            _constructor(
+            CreateCall(
                 user_id=user_id,
                 protocol=protocol,
                 is_video=is_video,
@@ -4672,7 +4193,7 @@ class API:
         )
 
     async def create_chat_folder(
-        self, folder: ChatFolder, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, folder: ChatFolder, *, request_id: str = None, request_timeout: int = None
     ) -> ChatFolderInfo:
         """
         Creates new chat folder. Returns information about the created chat folder. There can be up to getOption("chat_folder_count_max") chat folders, but the limit can be increased with Telegram Premium
@@ -4683,17 +4204,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatFolderInfo`
         """
 
-        _constructor = CreateChatFolder.construct if skip_validation else CreateChatFolder
-
         return await self.client.request(
-            _constructor(
+            CreateChatFolder(
                 folder=folder,
             ),
             request_id=request_id,
@@ -4707,8 +4224,7 @@ class API:
         name: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> ChatFolderInviteLink:
         """
         Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
@@ -4723,17 +4239,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatFolderInviteLink`
         """
 
-        _constructor = CreateChatFolderInviteLink.construct if skip_validation else CreateChatFolderInviteLink
-
         return await self.client.request(
-            _constructor(
+            CreateChatFolderInviteLink(
                 chat_folder_id=chat_folder_id,
                 chat_ids=chat_ids,
                 name=name,
@@ -4751,8 +4263,7 @@ class API:
         creates_join_request: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> ChatInviteLink:
         """
         Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
@@ -4771,17 +4282,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatInviteLink`
         """
 
-        _constructor = CreateChatInviteLink.construct if skip_validation else CreateChatInviteLink
-
         return await self.client.request(
-            _constructor(
+            CreateChatInviteLink(
                 chat_id=chat_id,
                 name=name,
                 expiration_date=expiration_date,
@@ -4793,14 +4300,7 @@ class API:
         )
 
     async def create_forum_topic(
-        self,
-        chat_id: Int53,
-        name: String,
-        icon: ForumTopicIcon,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, name: String, icon: ForumTopicIcon, *, request_id: str = None, request_timeout: int = None
     ) -> ForumTopicInfo:
         """
         Creates a topic in a forum supergroup chat; requires can_manage_topics rights in the supergroup
@@ -4815,17 +4315,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ForumTopicInfo`
         """
 
-        _constructor = CreateForumTopic.construct if skip_validation else CreateForumTopic
-
         return await self.client.request(
-            _constructor(
+            CreateForumTopic(
                 chat_id=chat_id,
                 name=name,
                 icon=icon,
@@ -4835,12 +4331,7 @@ class API:
         )
 
     async def create_invoice_link(
-        self,
-        invoice: InputMessageContent,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, invoice: InputMessageContent, *, request_id: str = None, request_timeout: int = None
     ) -> HttpUrl:
         """
         Creates a link for the given invoice; for bots only
@@ -4851,17 +4342,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
 
-        _constructor = CreateInvoiceLink.construct if skip_validation else CreateInvoiceLink
-
         return await self.client.request(
-            _constructor(
+            CreateInvoiceLink(
                 invoice=invoice,
             ),
             request_id=request_id,
@@ -4875,8 +4362,7 @@ class API:
         message_auto_delete_time: Int32 = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Chat:
         """
         Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
@@ -4891,17 +4377,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chat`
         """
 
-        _constructor = CreateNewBasicGroupChat.construct if skip_validation else CreateNewBasicGroupChat
-
         return await self.client.request(
-            _constructor(
+            CreateNewBasicGroupChat(
                 title=title,
                 user_ids=user_ids,
                 message_auto_delete_time=message_auto_delete_time,
@@ -4911,7 +4393,7 @@ class API:
         )
 
     async def create_new_secret_chat(
-        self, user_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, user_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Chat:
         """
         Creates a new secret chat. Returns the newly created chat
@@ -4922,17 +4404,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chat`
         """
 
-        _constructor = CreateNewSecretChat.construct if skip_validation else CreateNewSecretChat
-
         return await self.client.request(
-            _constructor(
+            CreateNewSecretChat(
                 user_id=user_id,
             ),
             request_id=request_id,
@@ -4951,8 +4429,7 @@ class API:
         source: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> StickerSet:
         """
         Creates a new sticker set. Returns the newly created sticker set
@@ -4977,17 +4454,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.StickerSet`
         """
 
-        _constructor = CreateNewStickerSet.construct if skip_validation else CreateNewStickerSet
-
         return await self.client.request(
-            _constructor(
+            CreateNewStickerSet(
                 user_id=user_id,
                 title=title,
                 name=name,
@@ -5012,8 +4485,7 @@ class API:
         location: typing.Optional[ChatLocation] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Chat:
         """
         Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
@@ -5036,17 +4508,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chat`
         """
 
-        _constructor = CreateNewSupergroupChat.construct if skip_validation else CreateNewSupergroupChat
-
         return await self.client.request(
-            _constructor(
+            CreateNewSupergroupChat(
                 title=title,
                 is_forum=is_forum,
                 is_channel=is_channel,
@@ -5060,13 +4528,7 @@ class API:
         )
 
     async def create_private_chat(
-        self,
-        user_id: Int53,
-        force: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, user_id: Int53, force: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Chat:
         """
         Returns an existing chat corresponding to a given user
@@ -5079,17 +4541,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chat`
         """
 
-        _constructor = CreatePrivateChat.construct if skip_validation else CreatePrivateChat
-
         return await self.client.request(
-            _constructor(
+            CreatePrivateChat(
                 user_id=user_id,
                 force=force,
             ),
@@ -5098,12 +4556,7 @@ class API:
         )
 
     async def create_secret_chat(
-        self,
-        secret_chat_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, secret_chat_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Chat:
         """
         Returns an existing chat corresponding to a known secret chat
@@ -5114,17 +4567,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chat`
         """
 
-        _constructor = CreateSecretChat.construct if skip_validation else CreateSecretChat
-
         return await self.client.request(
-            _constructor(
+            CreateSecretChat(
                 secret_chat_id=secret_chat_id,
             ),
             request_id=request_id,
@@ -5132,13 +4581,7 @@ class API:
         )
 
     async def create_supergroup_chat(
-        self,
-        supergroup_id: Int53,
-        force: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, force: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Chat:
         """
         Returns an existing chat corresponding to a known supergroup or channel
@@ -5151,17 +4594,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chat`
         """
 
-        _constructor = CreateSupergroupChat.construct if skip_validation else CreateSupergroupChat
-
         return await self.client.request(
-            _constructor(
+            CreateSupergroupChat(
                 supergroup_id=supergroup_id,
                 force=force,
             ),
@@ -5170,13 +4609,7 @@ class API:
         )
 
     async def create_temporary_password(
-        self,
-        password: String,
-        valid_for: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, password: String, valid_for: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> TemporaryPasswordState:
         """
         Creates a new temporary password for processing payments
@@ -5189,17 +4622,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.TemporaryPasswordState`
         """
 
-        _constructor = CreateTemporaryPassword.construct if skip_validation else CreateTemporaryPassword
-
         return await self.client.request(
-            _constructor(
+            CreateTemporaryPassword(
                 password=password,
                 valid_for=valid_for,
             ),
@@ -5215,8 +4644,7 @@ class API:
         is_rtmp_stream: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> GroupCallId:
         """
         Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
@@ -5233,17 +4661,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.GroupCallId`
         """
 
-        _constructor = CreateVideoChat.construct if skip_validation else CreateVideoChat
-
         return await self.client.request(
-            _constructor(
+            CreateVideoChat(
                 chat_id=chat_id,
                 title=title,
                 start_date=start_date,
@@ -5254,13 +4678,7 @@ class API:
         )
 
     async def delete_account(
-        self,
-        reason: String,
-        password: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, reason: String, password: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword
@@ -5273,17 +4691,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteAccount.construct if skip_validation else DeleteAccount
-
         return await self.client.request(
-            _constructor(
+            DeleteAccount(
                 reason=reason,
                 password=password,
             ),
@@ -5292,12 +4706,7 @@ class API:
         )
 
     async def delete_all_call_messages(
-        self,
-        revoke: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, revoke: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Deletes all call messages
@@ -5308,17 +4717,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteAllCallMessages.construct if skip_validation else DeleteAllCallMessages
-
         return await self.client.request(
-            _constructor(
+            DeleteAllCallMessages(
                 revoke=revoke,
             ),
             request_id=request_id,
@@ -5326,13 +4731,7 @@ class API:
         )
 
     async def delete_all_revoked_chat_invite_links(
-        self,
-        chat_id: Int53,
-        creator_user_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, creator_user_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Deletes all revoked chat invite links created by a given chat administrator. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -5345,17 +4744,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteAllRevokedChatInviteLinks.construct if skip_validation else DeleteAllRevokedChatInviteLinks
-
         return await self.client.request(
-            _constructor(
+            DeleteAllRevokedChatInviteLinks(
                 chat_id=chat_id,
                 creator_user_id=creator_user_id,
             ),
@@ -5363,9 +4758,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def delete_chat(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def delete_chat(self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
 
@@ -5375,17 +4768,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteChat.construct if skip_validation else DeleteChat
-
         return await self.client.request(
-            _constructor(
+            DeleteChat(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -5398,8 +4787,7 @@ class API:
         leave_chat_ids: Vector[Int53],
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Deletes existing chat folder
@@ -5412,17 +4800,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteChatFolder.construct if skip_validation else DeleteChatFolder
-
         return await self.client.request(
-            _constructor(
+            DeleteChatFolder(
                 chat_folder_id=chat_folder_id,
                 leave_chat_ids=leave_chat_ids,
             ),
@@ -5431,13 +4815,7 @@ class API:
         )
 
     async def delete_chat_folder_invite_link(
-        self,
-        chat_folder_id: Int32,
-        invite_link: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_folder_id: Int32, invite_link: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Deletes an invite link for a chat folder
@@ -5450,17 +4828,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteChatFolderInviteLink.construct if skip_validation else DeleteChatFolderInviteLink
-
         return await self.client.request(
-            _constructor(
+            DeleteChatFolderInviteLink(
                 chat_folder_id=chat_folder_id,
                 invite_link=invite_link,
             ),
@@ -5475,8 +4849,7 @@ class API:
         revoke: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
@@ -5491,17 +4864,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteChatHistory.construct if skip_validation else DeleteChatHistory
-
         return await self.client.request(
-            _constructor(
+            DeleteChatHistory(
                 chat_id=chat_id,
                 remove_from_chat_list=remove_from_chat_list,
                 revoke=revoke,
@@ -5518,8 +4887,7 @@ class API:
         revoke: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Deletes all messages between the specified dates in a chat. Supported only for private chats and basic groups. Messages sent in the last 30 seconds will not be deleted
@@ -5536,17 +4904,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteChatMessagesByDate.construct if skip_validation else DeleteChatMessagesByDate
-
         return await self.client.request(
-            _constructor(
+            DeleteChatMessagesByDate(
                 chat_id=chat_id,
                 min_date=min_date,
                 max_date=max_date,
@@ -5557,13 +4921,7 @@ class API:
         )
 
     async def delete_chat_messages_by_sender(
-        self,
-        chat_id: Int53,
-        sender_id: MessageSender,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, sender_id: MessageSender, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
@@ -5576,17 +4934,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteChatMessagesBySender.construct if skip_validation else DeleteChatMessagesBySender
-
         return await self.client.request(
-            _constructor(
+            DeleteChatMessagesBySender(
                 chat_id=chat_id,
                 sender_id=sender_id,
             ),
@@ -5595,13 +4949,7 @@ class API:
         )
 
     async def delete_chat_reply_markup(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a replyMarkupForceReply reply markup has been used. An updateChatReplyMarkup update will be sent if the reply markup is changed
@@ -5614,17 +4962,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteChatReplyMarkup.construct if skip_validation else DeleteChatReplyMarkup
-
         return await self.client.request(
-            _constructor(
+            DeleteChatReplyMarkup(
                 chat_id=chat_id,
                 message_id=message_id,
             ),
@@ -5638,8 +4982,7 @@ class API:
         scope: typing.Optional[BotCommandScope] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Deletes commands supported by the bot for the given user scope and language; for bots only
@@ -5652,17 +4995,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteCommands.construct if skip_validation else DeleteCommands
-
         return await self.client.request(
-            _constructor(
+            DeleteCommands(
                 language_code=language_code,
                 scope=scope,
             ),
@@ -5670,9 +5009,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def delete_file(
-        self, file_id: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def delete_file(self, file_id: Int32, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Deletes a file from the TDLib file cache
 
@@ -5682,17 +5019,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteFile.construct if skip_validation else DeleteFile
-
         return await self.client.request(
-            _constructor(
+            DeleteFile(
                 file_id=file_id,
             ),
             request_id=request_id,
@@ -5700,13 +5033,7 @@ class API:
         )
 
     async def delete_forum_topic(
-        self,
-        chat_id: Int53,
-        message_thread_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_thread_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Deletes all messages in a forum topic; requires can_delete_messages administrator right in the supergroup unless the user is creator of the topic, the topic has no messages from other users and has at most 11 messages
@@ -5719,17 +5046,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteForumTopic.construct if skip_validation else DeleteForumTopic
-
         return await self.client.request(
-            _constructor(
+            DeleteForumTopic(
                 chat_id=chat_id,
                 message_thread_id=message_thread_id,
             ),
@@ -5738,12 +5061,7 @@ class API:
         )
 
     async def delete_language_pack(
-        self,
-        language_pack_id: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, language_pack_id: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization
@@ -5754,17 +5072,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteLanguagePack.construct if skip_validation else DeleteLanguagePack
-
         return await self.client.request(
-            _constructor(
+            DeleteLanguagePack(
                 language_pack_id=language_pack_id,
             ),
             request_id=request_id,
@@ -5778,8 +5092,7 @@ class API:
         revoke: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Deletes messages
@@ -5794,17 +5107,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteMessages.construct if skip_validation else DeleteMessages
-
         return await self.client.request(
-            _constructor(
+            DeleteMessages(
                 chat_id=chat_id,
                 message_ids=message_ids,
                 revoke=revoke,
@@ -5814,12 +5123,7 @@ class API:
         )
 
     async def delete_passport_element(
-        self,
-        type_: PassportElementType,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, type_: PassportElementType, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Deletes a Telegram Passport element
@@ -5830,17 +5134,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeletePassportElement.construct if skip_validation else DeletePassportElement
-
         return await self.client.request(
-            _constructor(
+            DeletePassportElement(
                 type=type_,
             ),
             request_id=request_id,
@@ -5848,12 +5148,7 @@ class API:
         )
 
     async def delete_profile_photo(
-        self,
-        profile_photo_id: Int64,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, profile_photo_id: Int64, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Deletes a profile photo
@@ -5864,17 +5159,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteProfilePhoto.construct if skip_validation else DeleteProfilePhoto
-
         return await self.client.request(
-            _constructor(
+            DeleteProfilePhoto(
                 profile_photo_id=profile_photo_id,
             ),
             request_id=request_id,
@@ -5882,13 +5173,7 @@ class API:
         )
 
     async def delete_revoked_chat_invite_link(
-        self,
-        chat_id: Int53,
-        invite_link: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, invite_link: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Deletes revoked chat invite links. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -5901,17 +5186,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteRevokedChatInviteLink.construct if skip_validation else DeleteRevokedChatInviteLink
-
         return await self.client.request(
-            _constructor(
+            DeleteRevokedChatInviteLink(
                 chat_id=chat_id,
                 invite_link=invite_link,
             ),
@@ -5941,9 +5222,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def delete_sticker_set(
-        self, name: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def delete_sticker_set(self, name: String, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Deleted a sticker set; for bots only
 
@@ -5953,26 +5232,20 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteStickerSet.construct if skip_validation else DeleteStickerSet
-
         return await self.client.request(
-            _constructor(
+            DeleteStickerSet(
                 name=name,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def delete_story(
-        self, story_id: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def delete_story(self, story_id: Int32, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Deletes a previously sent story
 
@@ -5982,17 +5255,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DeleteStory.construct if skip_validation else DeleteStory
-
         return await self.client.request(
-            _constructor(
+            DeleteStory(
                 story_id=story_id,
             ),
             request_id=request_id,
@@ -6011,12 +5280,7 @@ class API:
         )
 
     async def disable_all_supergroup_usernames(
-        self,
-        supergroup_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Disables all active non-editable usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
@@ -6027,17 +5291,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DisableAllSupergroupUsernames.construct if skip_validation else DisableAllSupergroupUsernames
-
         return await self.client.request(
-            _constructor(
+            DisableAllSupergroupUsernames(
                 supergroup_id=supergroup_id,
             ),
             request_id=request_id,
@@ -6064,8 +5324,7 @@ class API:
         is_video: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Discards a call
@@ -6084,17 +5343,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DiscardCall.construct if skip_validation else DiscardCall
-
         return await self.client.request(
-            _constructor(
+            DiscardCall(
                 call_id=call_id,
                 duration=duration,
                 connection_id=connection_id,
@@ -6116,9 +5371,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def disconnect_website(
-        self, website_id: Int64, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def disconnect_website(self, website_id: Int64, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Disconnects website from the current user's Telegram account
 
@@ -6128,17 +5381,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = DisconnectWebsite.construct if skip_validation else DisconnectWebsite
-
         return await self.client.request(
-            _constructor(
+            DisconnectWebsite(
                 website_id=website_id,
             ),
             request_id=request_id,
@@ -6154,8 +5403,7 @@ class API:
         synchronous: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> File:
         """
         Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
@@ -6174,17 +5422,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.File`
         """
 
-        _constructor = DownloadFile.construct if skip_validation else DownloadFile
-
         return await self.client.request(
-            _constructor(
+            DownloadFile(
                 file_id=file_id,
                 priority=priority,
                 offset=offset,
@@ -6196,13 +5440,7 @@ class API:
         )
 
     async def edit_chat_folder(
-        self,
-        chat_folder_id: Int32,
-        folder: ChatFolder,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_folder_id: Int32, folder: ChatFolder, *, request_id: str = None, request_timeout: int = None
     ) -> ChatFolderInfo:
         """
         Edits existing chat folder. Returns information about the edited chat folder
@@ -6215,17 +5453,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatFolderInfo`
         """
 
-        _constructor = EditChatFolder.construct if skip_validation else EditChatFolder
-
         return await self.client.request(
-            _constructor(
+            EditChatFolder(
                 chat_folder_id=chat_folder_id,
                 folder=folder,
             ),
@@ -6241,8 +5475,7 @@ class API:
         name: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> ChatFolderInviteLink:
         """
         Edits an invite link for a chat folder
@@ -6259,17 +5492,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatFolderInviteLink`
         """
 
-        _constructor = EditChatFolderInviteLink.construct if skip_validation else EditChatFolderInviteLink
-
         return await self.client.request(
-            _constructor(
+            EditChatFolderInviteLink(
                 chat_folder_id=chat_folder_id,
                 invite_link=invite_link,
                 chat_ids=chat_ids,
@@ -6289,8 +5518,7 @@ class API:
         creates_join_request: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> ChatInviteLink:
         """
         Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -6311,17 +5539,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatInviteLink`
         """
 
-        _constructor = EditChatInviteLink.construct if skip_validation else EditChatInviteLink
-
         return await self.client.request(
-            _constructor(
+            EditChatInviteLink(
                 chat_id=chat_id,
                 invite_link=invite_link,
                 name=name,
@@ -6334,12 +5558,7 @@ class API:
         )
 
     async def edit_custom_language_pack_info(
-        self,
-        info: LanguagePackInfo,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, info: LanguagePackInfo, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Edits information about a custom local language pack in the current localization target. Can be called before authorization
@@ -6350,17 +5569,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = EditCustomLanguagePackInfo.construct if skip_validation else EditCustomLanguagePackInfo
-
         return await self.client.request(
-            _constructor(
+            EditCustomLanguagePackInfo(
                 info=info,
             ),
             request_id=request_id,
@@ -6376,8 +5591,7 @@ class API:
         edit_icon_custom_emoji: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
@@ -6396,17 +5610,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = EditForumTopic.construct if skip_validation else EditForumTopic
-
         return await self.client.request(
-            _constructor(
+            EditForumTopic(
                 chat_id=chat_id,
                 message_thread_id=message_thread_id,
                 icon_custom_emoji_id=icon_custom_emoji_id,
@@ -6424,8 +5634,7 @@ class API:
         caption: typing.Optional[FormattedText] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Edits the caption of an inline message sent via a bot; for bots only
@@ -6440,17 +5649,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = EditInlineMessageCaption.construct if skip_validation else EditInlineMessageCaption
-
         return await self.client.request(
-            _constructor(
+            EditInlineMessageCaption(
                 inline_message_id=inline_message_id,
                 reply_markup=reply_markup,
                 caption=caption,
@@ -6468,8 +5673,7 @@ class API:
         location: typing.Optional[Location] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Edits the content of a live location in an inline message sent via a bot; for bots only
@@ -6488,17 +5692,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = EditInlineMessageLiveLocation.construct if skip_validation else EditInlineMessageLiveLocation
-
         return await self.client.request(
-            _constructor(
+            EditInlineMessageLiveLocation(
                 inline_message_id=inline_message_id,
                 heading=heading,
                 proximity_alert_radius=proximity_alert_radius,
@@ -6516,8 +5716,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
@@ -6532,17 +5731,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = EditInlineMessageMedia.construct if skip_validation else EditInlineMessageMedia
-
         return await self.client.request(
-            _constructor(
+            EditInlineMessageMedia(
                 inline_message_id=inline_message_id,
                 input_message_content=input_message_content,
                 reply_markup=reply_markup,
@@ -6557,8 +5752,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Edits the reply markup of an inline message sent via a bot; for bots only
@@ -6571,17 +5765,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = EditInlineMessageReplyMarkup.construct if skip_validation else EditInlineMessageReplyMarkup
-
         return await self.client.request(
-            _constructor(
+            EditInlineMessageReplyMarkup(
                 inline_message_id=inline_message_id,
                 reply_markup=reply_markup,
             ),
@@ -6596,8 +5786,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Edits the text of an inline text or game message sent via a bot; for bots only
@@ -6612,17 +5801,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = EditInlineMessageText.construct if skip_validation else EditInlineMessageText
-
         return await self.client.request(
-            _constructor(
+            EditInlineMessageText(
                 inline_message_id=inline_message_id,
                 input_message_content=input_message_content,
                 reply_markup=reply_markup,
@@ -6639,8 +5824,7 @@ class API:
         caption: typing.Optional[FormattedText] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Message:
         """
         Edits the message content caption. Returns the edited message after the edit is completed on the server side
@@ -6657,17 +5841,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = EditMessageCaption.construct if skip_validation else EditMessageCaption
-
         return await self.client.request(
-            _constructor(
+            EditMessageCaption(
                 chat_id=chat_id,
                 message_id=message_id,
                 reply_markup=reply_markup,
@@ -6687,8 +5867,7 @@ class API:
         location: typing.Optional[Location] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Message:
         """
         Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
@@ -6709,17 +5888,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = EditMessageLiveLocation.construct if skip_validation else EditMessageLiveLocation
-
         return await self.client.request(
-            _constructor(
+            EditMessageLiveLocation(
                 chat_id=chat_id,
                 message_id=message_id,
                 heading=heading,
@@ -6739,8 +5914,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Message:
         """
         Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
@@ -6757,17 +5931,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = EditMessageMedia.construct if skip_validation else EditMessageMedia
-
         return await self.client.request(
-            _constructor(
+            EditMessageMedia(
                 chat_id=chat_id,
                 message_id=message_id,
                 input_message_content=input_message_content,
@@ -6784,8 +5954,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Message:
         """
         Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
@@ -6800,17 +5969,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = EditMessageReplyMarkup.construct if skip_validation else EditMessageReplyMarkup
-
         return await self.client.request(
-            _constructor(
+            EditMessageReplyMarkup(
                 chat_id=chat_id,
                 message_id=message_id,
                 reply_markup=reply_markup,
@@ -6826,8 +5991,7 @@ class API:
         scheduling_state: typing.Optional[MessageSchedulingState] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
@@ -6842,17 +6006,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = EditMessageSchedulingState.construct if skip_validation else EditMessageSchedulingState
-
         return await self.client.request(
-            _constructor(
+            EditMessageSchedulingState(
                 chat_id=chat_id,
                 message_id=message_id,
                 scheduling_state=scheduling_state,
@@ -6869,8 +6029,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Message:
         """
         Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
@@ -6887,17 +6046,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = EditMessageText.construct if skip_validation else EditMessageText
-
         return await self.client.request(
-            _constructor(
+            EditMessageText(
                 chat_id=chat_id,
                 message_id=message_id,
                 input_message_content=input_message_content,
@@ -6916,8 +6071,7 @@ class API:
         enable: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Proxy:
         """
         Edits an existing proxy server for network requests. Can be called before authorization
@@ -6936,17 +6090,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Proxy`
         """
 
-        _constructor = EditProxy.construct if skip_validation else EditProxy
-
         return await self.client.request(
-            _constructor(
+            EditProxy(
                 proxy_id=proxy_id,
                 server=server,
                 port=port,
@@ -6965,8 +6115,7 @@ class API:
         caption: typing.Optional[FormattedText] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes content and caption of a previously sent story
@@ -6983,17 +6132,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = EditStory.construct if skip_validation else EditStory
-
         return await self.client.request(
-            _constructor(
+            EditStory(
                 story_id=story_id,
                 content=content,
                 areas=areas,
@@ -7003,9 +6148,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def enable_proxy(
-        self, proxy_id: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def enable_proxy(self, proxy_id: Int32, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization
 
@@ -7015,31 +6158,20 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = EnableProxy.construct if skip_validation else EnableProxy
-
         return await self.client.request(
-            _constructor(
+            EnableProxy(
                 proxy_id=proxy_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def end_group_call(
-        self,
-        group_call_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
-    ) -> Ok:
+    async def end_group_call(self, group_call_id: Int32, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Ends a group call. Requires groupCall.can_be_managed
 
@@ -7049,17 +6181,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = EndGroupCall.construct if skip_validation else EndGroupCall
-
         return await self.client.request(
-            _constructor(
+            EndGroupCall(
                 group_call_id=group_call_id,
             ),
             request_id=request_id,
@@ -7067,12 +6195,7 @@ class API:
         )
 
     async def end_group_call_recording(
-        self,
-        group_call_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, group_call_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Ends recording of an active group call. Requires groupCall.can_be_managed group call flag
@@ -7083,17 +6206,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = EndGroupCallRecording.construct if skip_validation else EndGroupCallRecording
-
         return await self.client.request(
-            _constructor(
+            EndGroupCallRecording(
                 group_call_id=group_call_id,
             ),
             request_id=request_id,
@@ -7101,12 +6220,7 @@ class API:
         )
 
     async def end_group_call_screen_sharing(
-        self,
-        group_call_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, group_call_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Ends screen sharing in a joined group call
@@ -7117,17 +6231,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = EndGroupCallScreenSharing.construct if skip_validation else EndGroupCallScreenSharing
-
         return await self.client.request(
-            _constructor(
+            EndGroupCallScreenSharing(
                 group_call_id=group_call_id,
             ),
             request_id=request_id,
@@ -7140,8 +6250,7 @@ class API:
         error: typing.Optional[Error] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Finishes the file generation
@@ -7154,17 +6263,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = FinishFileGeneration.construct if skip_validation else FinishFileGeneration
-
         return await self.client.request(
-            _constructor(
+            FinishFileGeneration(
                 generation_id=generation_id,
                 error=error,
             ),
@@ -7184,8 +6289,7 @@ class API:
         options: typing.Optional[MessageSendOptions] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Messages:
         """
         Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
@@ -7210,17 +6314,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Messages`
         """
 
-        _constructor = ForwardMessages.construct if skip_validation else ForwardMessages
-
         return await self.client.request(
-            _constructor(
+            ForwardMessages(
                 chat_id=chat_id,
                 from_chat_id=from_chat_id,
                 message_ids=message_ids,
@@ -7270,7 +6370,7 @@ class API:
         )
 
     async def get_all_passport_elements(
-        self, password: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, password: String, *, request_id: str = None, request_timeout: int = None
     ) -> PassportElements:
         """
         Returns all available Telegram Passport elements
@@ -7281,17 +6381,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PassportElements`
         """
 
-        _constructor = GetAllPassportElements.construct if skip_validation else GetAllPassportElements
-
         return await self.client.request(
-            _constructor(
+            GetAllPassportElements(
                 password=password,
             ),
             request_id=request_id,
@@ -7306,8 +6402,7 @@ class API:
         return_only_main_emoji: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Emojis:
         """
         Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
@@ -7324,17 +6419,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Emojis`
         """
 
-        _constructor = GetAllStickerEmojis.construct if skip_validation else GetAllStickerEmojis
-
         return await self.client.request(
-            _constructor(
+            GetAllStickerEmojis(
                 sticker_type=sticker_type,
                 query=query,
                 chat_id=chat_id,
@@ -7345,7 +6436,7 @@ class API:
         )
 
     async def get_animated_emoji(
-        self, emoji: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, emoji: String, *, request_id: str = None, request_timeout: int = None
     ) -> AnimatedEmoji:
         """
         Returns an animated emoji corresponding to a given emoji. Returns a 404 error if the emoji has no animated emoji
@@ -7356,17 +6447,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.AnimatedEmoji`
         """
 
-        _constructor = GetAnimatedEmoji.construct if skip_validation else GetAnimatedEmoji
-
         return await self.client.request(
-            _constructor(
+            GetAnimatedEmoji(
                 emoji=emoji,
             ),
             request_id=request_id,
@@ -7415,8 +6502,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> StickerSets:
         """
         Returns a list of archived sticker sets
@@ -7431,17 +6517,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.StickerSets`
         """
 
-        _constructor = GetArchivedStickerSets.construct if skip_validation else GetArchivedStickerSets
-
         return await self.client.request(
-            _constructor(
+            GetArchivedStickerSets(
                 sticker_type=sticker_type,
                 offset_sticker_set_id=offset_sticker_set_id,
                 limit=limit,
@@ -7451,13 +6533,7 @@ class API:
         )
 
     async def get_archived_stories(
-        self,
-        from_story_id: Int32,
-        limit: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, from_story_id: Int32, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Stories:
         """
         Returns the list of all stories of the current user. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
@@ -7470,17 +6546,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Stories`
         """
 
-        _constructor = GetArchivedStories.construct if skip_validation else GetArchivedStories
-
         return await self.client.request(
-            _constructor(
+            GetArchivedStories(
                 from_story_id=from_story_id,
                 limit=limit,
             ),
@@ -7489,7 +6561,7 @@ class API:
         )
 
     async def get_attached_sticker_sets(
-        self, file_id: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, file_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> StickerSets:
         """
         Returns a list of sticker sets attached to a file, including regular, mask, and emoji sticker sets. Currently, only animations, photos, and videos can have attached sticker sets
@@ -7500,17 +6572,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.StickerSets`
         """
 
-        _constructor = GetAttachedStickerSets.construct if skip_validation else GetAttachedStickerSets
-
         return await self.client.request(
-            _constructor(
+            GetAttachedStickerSets(
                 file_id=file_id,
             ),
             request_id=request_id,
@@ -7518,7 +6586,7 @@ class API:
         )
 
     async def get_attachment_menu_bot(
-        self, bot_user_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, bot_user_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> AttachmentMenuBot:
         """
         Returns information about a bot that can be added to attachment or side menu
@@ -7529,17 +6597,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.AttachmentMenuBot`
         """
 
-        _constructor = GetAttachmentMenuBot.construct if skip_validation else GetAttachmentMenuBot
-
         return await self.client.request(
-            _constructor(
+            GetAttachmentMenuBot(
                 bot_user_id=bot_user_id,
             ),
             request_id=request_id,
@@ -7584,13 +6648,7 @@ class API:
         )
 
     async def get_background_url(
-        self,
-        name: String,
-        type_: BackgroundType,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, name: String, type_: BackgroundType, *, request_id: str = None, request_timeout: int = None
     ) -> HttpUrl:
         """
         Constructs a persistent HTTP URL for a background
@@ -7603,17 +6661,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
 
-        _constructor = GetBackgroundUrl.construct if skip_validation else GetBackgroundUrl
-
         return await self.client.request(
-            _constructor(
+            GetBackgroundUrl(
                 name=name,
                 type=type_,
             ),
@@ -7622,12 +6676,7 @@ class API:
         )
 
     async def get_backgrounds(
-        self,
-        for_dark_theme: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, for_dark_theme: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Backgrounds:
         """
         Returns backgrounds installed by the user
@@ -7638,17 +6687,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Backgrounds`
         """
 
-        _constructor = GetBackgrounds.construct if skip_validation else GetBackgrounds
-
         return await self.client.request(
-            _constructor(
+            GetBackgrounds(
                 for_dark_theme=for_dark_theme,
             ),
             request_id=request_id,
@@ -7656,12 +6701,7 @@ class API:
         )
 
     async def get_bank_card_info(
-        self,
-        bank_card_number: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, bank_card_number: String, *, request_id: str = None, request_timeout: int = None
     ) -> BankCardInfo:
         """
         Returns information about a bank card
@@ -7672,17 +6712,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.BankCardInfo`
         """
 
-        _constructor = GetBankCardInfo.construct if skip_validation else GetBankCardInfo
-
         return await self.client.request(
-            _constructor(
+            GetBankCardInfo(
                 bank_card_number=bank_card_number,
             ),
             request_id=request_id,
@@ -7690,12 +6726,7 @@ class API:
         )
 
     async def get_basic_group(
-        self,
-        basic_group_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, basic_group_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> BasicGroup:
         """
         Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot
@@ -7706,17 +6737,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.BasicGroup`
         """
 
-        _constructor = GetBasicGroup.construct if skip_validation else GetBasicGroup
-
         return await self.client.request(
-            _constructor(
+            GetBasicGroup(
                 basic_group_id=basic_group_id,
             ),
             request_id=request_id,
@@ -7724,12 +6751,7 @@ class API:
         )
 
     async def get_basic_group_full_info(
-        self,
-        basic_group_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, basic_group_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> BasicGroupFullInfo:
         """
         Returns full information about a basic group by its identifier
@@ -7740,17 +6762,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.BasicGroupFullInfo`
         """
 
-        _constructor = GetBasicGroupFullInfo.construct if skip_validation else GetBasicGroupFullInfo
-
         return await self.client.request(
-            _constructor(
+            GetBasicGroupFullInfo(
                 basic_group_id=basic_group_id,
             ),
             request_id=request_id,
@@ -7758,14 +6776,7 @@ class API:
         )
 
     async def get_blocked_message_senders(
-        self,
-        block_list: BlockList,
-        offset: Int32,
-        limit: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, block_list: BlockList, offset: Int32, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> MessageSenders:
         """
         Returns users and chats that were blocked by the current user
@@ -7780,17 +6791,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.MessageSenders`
         """
 
-        _constructor = GetBlockedMessageSenders.construct if skip_validation else GetBlockedMessageSenders
-
         return await self.client.request(
-            _constructor(
+            GetBlockedMessageSenders(
                 block_list=block_list,
                 offset=offset,
                 limit=limit,
@@ -7800,13 +6807,7 @@ class API:
         )
 
     async def get_bot_info_description(
-        self,
-        bot_user_id: Int53,
-        language_code: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, bot_user_id: Int53, language_code: String, *, request_id: str = None, request_timeout: int = None
     ) -> Text:
         """
         Returns the text shown in the chat with a bot if the chat is empty in the given language. Can be called only if userTypeBot.can_be_edited == true
@@ -7819,17 +6820,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = GetBotInfoDescription.construct if skip_validation else GetBotInfoDescription
-
         return await self.client.request(
-            _constructor(
+            GetBotInfoDescription(
                 bot_user_id=bot_user_id,
                 language_code=language_code,
             ),
@@ -7838,13 +6835,7 @@ class API:
         )
 
     async def get_bot_info_short_description(
-        self,
-        bot_user_id: Int53,
-        language_code: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, bot_user_id: Int53, language_code: String, *, request_id: str = None, request_timeout: int = None
     ) -> Text:
         """
         Returns the text shown on a bot's profile page and sent together with the link when users share the bot in the given language. Can be called only if userTypeBot.can_be_edited == true
@@ -7857,17 +6848,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = GetBotInfoShortDescription.construct if skip_validation else GetBotInfoShortDescription
-
         return await self.client.request(
-            _constructor(
+            GetBotInfoShortDescription(
                 bot_user_id=bot_user_id,
                 language_code=language_code,
             ),
@@ -7876,13 +6863,7 @@ class API:
         )
 
     async def get_bot_name(
-        self,
-        bot_user_id: Int53,
-        language_code: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, bot_user_id: Int53, language_code: String, *, request_id: str = None, request_timeout: int = None
     ) -> Text:
         """
         Returns the name of a bot in the given language. Can be called only if userTypeBot.can_be_edited == true
@@ -7895,17 +6876,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = GetBotName.construct if skip_validation else GetBotName
-
         return await self.client.request(
-            _constructor(
+            GetBotName(
                 bot_user_id=bot_user_id,
                 language_code=language_code,
             ),
@@ -7920,8 +6897,7 @@ class API:
         payload: CallbackQueryPayload,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> CallbackQueryAnswer:
         """
         Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
@@ -7936,17 +6912,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.CallbackQueryAnswer`
         """
 
-        _constructor = GetCallbackQueryAnswer.construct if skip_validation else GetCallbackQueryAnswer
-
         return await self.client.request(
-            _constructor(
+            GetCallbackQueryAnswer(
                 chat_id=chat_id,
                 message_id=message_id,
                 payload=payload,
@@ -7962,8 +6934,7 @@ class API:
         callback_query_id: Int64,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Message:
         """
         Returns information about a message with the callback button that originated a callback query; for bots only
@@ -7978,17 +6949,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = GetCallbackQueryMessage.construct if skip_validation else GetCallbackQueryMessage
-
         return await self.client.request(
-            _constructor(
+            GetCallbackQueryMessage(
                 chat_id=chat_id,
                 message_id=message_id,
                 callback_query_id=callback_query_id,
@@ -7997,9 +6964,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_chat(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Chat:
+    async def get_chat(self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None) -> Chat:
         """
         Returns information about a chat by its identifier; this is an offline request if the current user is not a bot
 
@@ -8009,17 +6974,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chat`
         """
 
-        _constructor = GetChat.construct if skip_validation else GetChat
-
         return await self.client.request(
-            _constructor(
+            GetChat(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -8027,7 +6988,7 @@ class API:
         )
 
     async def get_chat_active_stories(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> ChatActiveStories:
         """
         Returns the list of active stories posted by the given chat
@@ -8038,17 +6999,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatActiveStories`
         """
 
-        _constructor = GetChatActiveStories.construct if skip_validation else GetChatActiveStories
-
         return await self.client.request(
-            _constructor(
+            GetChatActiveStories(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -8056,7 +7013,7 @@ class API:
         )
 
     async def get_chat_administrators(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> ChatAdministrators:
         """
         Returns a list of administrators of the chat with their custom titles
@@ -8067,17 +7024,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatAdministrators`
         """
 
-        _constructor = GetChatAdministrators.construct if skip_validation else GetChatAdministrators
-
         return await self.client.request(
-            _constructor(
+            GetChatAdministrators(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -8085,7 +7038,7 @@ class API:
         )
 
     async def get_chat_available_message_senders(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> ChatMessageSenders:
         """
         Returns list of message sender identifiers, which can be used to send messages in a chat
@@ -8096,17 +7049,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatMessageSenders`
         """
 
-        _constructor = GetChatAvailableMessageSenders.construct if skip_validation else GetChatAvailableMessageSenders
-
         return await self.client.request(
-            _constructor(
+            GetChatAvailableMessageSenders(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -8123,8 +7072,7 @@ class API:
         filters: typing.Optional[ChatEventLogFilters] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> ChatEvents:
         """
         Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
@@ -8145,17 +7093,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatEvents`
         """
 
-        _constructor = GetChatEventLog.construct if skip_validation else GetChatEventLog
-
         return await self.client.request(
-            _constructor(
+            GetChatEventLog(
                 chat_id=chat_id,
                 query=query,
                 from_event_id=from_event_id,
@@ -8168,12 +7112,7 @@ class API:
         )
 
     async def get_chat_folder(
-        self,
-        chat_folder_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_folder_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> ChatFolder:
         """
         Returns information about a chat folder by its identifier
@@ -8184,17 +7123,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatFolder`
         """
 
-        _constructor = GetChatFolder.construct if skip_validation else GetChatFolder
-
         return await self.client.request(
-            _constructor(
+            GetChatFolder(
                 chat_folder_id=chat_folder_id,
             ),
             request_id=request_id,
@@ -8202,7 +7137,7 @@ class API:
         )
 
     async def get_chat_folder_chat_count(
-        self, folder: ChatFolder, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, folder: ChatFolder, *, request_id: str = None, request_timeout: int = None
     ) -> Count:
         """
         Returns approximate number of chats in a being created chat folder. Main and archive chat lists must be fully preloaded for this function to work correctly
@@ -8213,17 +7148,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Count`
         """
 
-        _constructor = GetChatFolderChatCount.construct if skip_validation else GetChatFolderChatCount
-
         return await self.client.request(
-            _constructor(
+            GetChatFolderChatCount(
                 folder=folder,
             ),
             request_id=request_id,
@@ -8231,12 +7162,7 @@ class API:
         )
 
     async def get_chat_folder_chats_to_leave(
-        self,
-        chat_folder_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_folder_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Chats:
         """
         Returns identifiers of pinned or always included chats from a chat folder, which are suggested to be left when the chat folder is deleted
@@ -8247,17 +7173,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chats`
         """
 
-        _constructor = GetChatFolderChatsToLeave.construct if skip_validation else GetChatFolderChatsToLeave
-
         return await self.client.request(
-            _constructor(
+            GetChatFolderChatsToLeave(
                 chat_folder_id=chat_folder_id,
             ),
             request_id=request_id,
@@ -8265,7 +7187,7 @@ class API:
         )
 
     async def get_chat_folder_default_icon_name(
-        self, folder: ChatFolder, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, folder: ChatFolder, *, request_id: str = None, request_timeout: int = None
     ) -> ChatFolderIcon:
         """
         Returns default icon name for a folder. Can be called synchronously
@@ -8276,17 +7198,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatFolderIcon`
         """
 
-        _constructor = GetChatFolderDefaultIconName.construct if skip_validation else GetChatFolderDefaultIconName
-
         return await self.client.request(
-            _constructor(
+            GetChatFolderDefaultIconName(
                 folder=folder,
             ),
             request_id=request_id,
@@ -8294,12 +7212,7 @@ class API:
         )
 
     async def get_chat_folder_invite_links(
-        self,
-        chat_folder_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_folder_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> ChatFolderInviteLinks:
         """
         Returns invite links created by the current user for a shareable chat folder
@@ -8310,17 +7223,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatFolderInviteLinks`
         """
 
-        _constructor = GetChatFolderInviteLinks.construct if skip_validation else GetChatFolderInviteLinks
-
         return await self.client.request(
-            _constructor(
+            GetChatFolderInviteLinks(
                 chat_folder_id=chat_folder_id,
             ),
             request_id=request_id,
@@ -8328,12 +7237,7 @@ class API:
         )
 
     async def get_chat_folder_new_chats(
-        self,
-        chat_folder_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_folder_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Chats:
         """
         Returns new chats added to a shareable chat folder by its owner. The method must be called at most once in getOption("chat_folder_new_chats_update_period") for the given chat folder
@@ -8344,17 +7248,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chats`
         """
 
-        _constructor = GetChatFolderNewChats.construct if skip_validation else GetChatFolderNewChats
-
         return await self.client.request(
-            _constructor(
+            GetChatFolderNewChats(
                 chat_folder_id=chat_folder_id,
             ),
             request_id=request_id,
@@ -8370,8 +7270,7 @@ class API:
         only_local: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Messages:
         """
         Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
@@ -8390,17 +7289,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Messages`
         """
 
-        _constructor = GetChatHistory.construct if skip_validation else GetChatHistory
-
         return await self.client.request(
-            _constructor(
+            GetChatHistory(
                 chat_id=chat_id,
                 from_message_id=from_message_id,
                 offset=offset,
@@ -8412,13 +7307,7 @@ class API:
         )
 
     async def get_chat_invite_link(
-        self,
-        chat_id: Int53,
-        invite_link: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, invite_link: String, *, request_id: str = None, request_timeout: int = None
     ) -> ChatInviteLink:
         """
         Returns information about an invite link. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
@@ -8431,17 +7320,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatInviteLink`
         """
 
-        _constructor = GetChatInviteLink.construct if skip_validation else GetChatInviteLink
-
         return await self.client.request(
-            _constructor(
+            GetChatInviteLink(
                 chat_id=chat_id,
                 invite_link=invite_link,
             ),
@@ -8450,7 +7335,7 @@ class API:
         )
 
     async def get_chat_invite_link_counts(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> ChatInviteLinkCounts:
         """
         Returns list of chat administrators with number of their invite links. Requires owner privileges in the chat
@@ -8461,17 +7346,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatInviteLinkCounts`
         """
 
-        _constructor = GetChatInviteLinkCounts.construct if skip_validation else GetChatInviteLinkCounts
-
         return await self.client.request(
-            _constructor(
+            GetChatInviteLinkCounts(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -8486,8 +7367,7 @@ class API:
         offset_member: typing.Optional[ChatInviteLinkMember] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> ChatInviteLinkMembers:
         """
         Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -8504,17 +7384,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatInviteLinkMembers`
         """
 
-        _constructor = GetChatInviteLinkMembers.construct if skip_validation else GetChatInviteLinkMembers
-
         return await self.client.request(
-            _constructor(
+            GetChatInviteLinkMembers(
                 chat_id=chat_id,
                 invite_link=invite_link,
                 limit=limit,
@@ -8534,8 +7410,7 @@ class API:
         is_revoked: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> ChatInviteLinks:
         """
         Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
@@ -8556,17 +7431,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatInviteLinks`
         """
 
-        _constructor = GetChatInviteLinks.construct if skip_validation else GetChatInviteLinks
-
         return await self.client.request(
-            _constructor(
+            GetChatInviteLinks(
                 chat_id=chat_id,
                 creator_user_id=creator_user_id,
                 offset_date=offset_date,
@@ -8587,8 +7458,7 @@ class API:
         offset_request: typing.Optional[ChatJoinRequest] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> ChatJoinRequests:
         """
         Returns pending join requests in a chat
@@ -8607,17 +7477,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatJoinRequests`
         """
 
-        _constructor = GetChatJoinRequests.construct if skip_validation else GetChatJoinRequests
-
         return await self.client.request(
-            _constructor(
+            GetChatJoinRequests(
                 chat_id=chat_id,
                 invite_link=invite_link,
                 query=query,
@@ -8629,7 +7495,7 @@ class API:
         )
 
     async def get_chat_lists_to_add_chat(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> ChatLists:
         """
         Returns chat lists to which the chat can be added. This is an offline request
@@ -8640,17 +7506,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatLists`
         """
 
-        _constructor = GetChatListsToAddChat.construct if skip_validation else GetChatListsToAddChat
-
         return await self.client.request(
-            _constructor(
+            GetChatListsToAddChat(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -8658,13 +7520,7 @@ class API:
         )
 
     async def get_chat_member(
-        self,
-        chat_id: Int53,
-        member_id: MessageSender,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, member_id: MessageSender, *, request_id: str = None, request_timeout: int = None
     ) -> ChatMember:
         """
         Returns information about a single member of a chat
@@ -8677,17 +7533,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatMember`
         """
 
-        _constructor = GetChatMember.construct if skip_validation else GetChatMember
-
         return await self.client.request(
-            _constructor(
+            GetChatMember(
                 chat_id=chat_id,
                 member_id=member_id,
             ),
@@ -8696,13 +7548,7 @@ class API:
         )
 
     async def get_chat_message_by_date(
-        self,
-        chat_id: Int53,
-        date: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, date: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Message:
         """
         Returns the last message sent in a chat no later than the specified date
@@ -8715,17 +7561,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = GetChatMessageByDate.construct if skip_validation else GetChatMessageByDate
-
         return await self.client.request(
-            _constructor(
+            GetChatMessageByDate(
                 chat_id=chat_id,
                 date=date,
             ),
@@ -8740,8 +7582,7 @@ class API:
         from_message_id: Int53,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> MessageCalendar:
         """
         Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
@@ -8756,17 +7597,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.MessageCalendar`
         """
 
-        _constructor = GetChatMessageCalendar.construct if skip_validation else GetChatMessageCalendar
-
         return await self.client.request(
-            _constructor(
+            GetChatMessageCalendar(
                 chat_id=chat_id,
                 filter=filter_,
                 from_message_id=from_message_id,
@@ -8782,8 +7619,7 @@ class API:
         return_local: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Count:
         """
         Returns approximate number of messages of the specified type in the chat
@@ -8798,17 +7634,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Count`
         """
 
-        _constructor = GetChatMessageCount.construct if skip_validation else GetChatMessageCount
-
         return await self.client.request(
-            _constructor(
+            GetChatMessageCount(
                 chat_id=chat_id,
                 filter=filter_,
                 return_local=return_local,
@@ -8825,8 +7657,7 @@ class API:
         message_thread_id: Int53 = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Count:
         """
         Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats
@@ -8843,17 +7674,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Count`
         """
 
-        _constructor = GetChatMessagePosition.construct if skip_validation else GetChatMessagePosition
-
         return await self.client.request(
-            _constructor(
+            GetChatMessagePosition(
                 chat_id=chat_id,
                 message_id=message_id,
                 filter=filter_,
@@ -8869,8 +7696,7 @@ class API:
         scope: typing.Optional[NotificationSettingsScope] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Chats:
         """
         Returns list of chats with non-default notification settings for new messages
@@ -8883,21 +7709,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chats`
         """
 
-        _constructor = (
-            GetChatNotificationSettingsExceptions.construct
-            if skip_validation
-            else GetChatNotificationSettingsExceptions
-        )
-
         return await self.client.request(
-            _constructor(
+            GetChatNotificationSettingsExceptions(
                 compare_sound=compare_sound,
                 scope=scope,
             ),
@@ -8906,7 +7724,7 @@ class API:
         )
 
     async def get_chat_pinned_message(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Message:
         """
         Returns information about a newest pinned message in the chat
@@ -8917,17 +7735,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = GetChatPinnedMessage.construct if skip_validation else GetChatPinnedMessage
-
         return await self.client.request(
-            _constructor(
+            GetChatPinnedMessage(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -8935,14 +7749,7 @@ class API:
         )
 
     async def get_chat_pinned_stories(
-        self,
-        chat_id: Int53,
-        from_story_id: Int32,
-        limit: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, from_story_id: Int32, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Stories:
         """
         Returns the list of pinned stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
@@ -8957,17 +7764,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Stories`
         """
 
-        _constructor = GetChatPinnedStories.construct if skip_validation else GetChatPinnedStories
-
         return await self.client.request(
-            _constructor(
+            GetChatPinnedStories(
                 chat_id=chat_id,
                 from_story_id=from_story_id,
                 limit=limit,
@@ -8977,7 +7780,7 @@ class API:
         )
 
     async def get_chat_scheduled_messages(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Messages:
         """
         Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
@@ -8988,17 +7791,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Messages`
         """
 
-        _constructor = GetChatScheduledMessages.construct if skip_validation else GetChatScheduledMessages
-
         return await self.client.request(
-            _constructor(
+            GetChatScheduledMessages(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -9013,8 +7812,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> MessagePositions:
         """
         Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
@@ -9031,17 +7829,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.MessagePositions`
         """
 
-        _constructor = GetChatSparseMessagePositions.construct if skip_validation else GetChatSparseMessagePositions
-
         return await self.client.request(
-            _constructor(
+            GetChatSparseMessagePositions(
                 chat_id=chat_id,
                 filter=filter_,
                 from_message_id=from_message_id,
@@ -9052,7 +7846,7 @@ class API:
         )
 
     async def get_chat_sponsored_messages(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> SponsoredMessages:
         """
         Returns sponsored messages to be shown in a chat; for channel chats only
@@ -9063,17 +7857,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.SponsoredMessages`
         """
 
-        _constructor = GetChatSponsoredMessages.construct if skip_validation else GetChatSponsoredMessages
-
         return await self.client.request(
-            _constructor(
+            GetChatSponsoredMessages(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -9081,13 +7871,7 @@ class API:
         )
 
     async def get_chat_statistics(
-        self,
-        chat_id: Int53,
-        is_dark: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, is_dark: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> ChatStatistics:
         """
         Returns detailed statistics about a chat. Currently, this method can be used only for supergroups and channels. Can be used only if supergroupFullInfo.can_get_statistics == true
@@ -9100,17 +7884,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatStatistics`
         """
 
-        _constructor = GetChatStatistics.construct if skip_validation else GetChatStatistics
-
         return await self.client.request(
-            _constructor(
+            GetChatStatistics(
                 chat_id=chat_id,
                 is_dark=is_dark,
             ),
@@ -9124,8 +7904,7 @@ class API:
         chat_list: typing.Optional[ChatList] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Chats:
         """
         Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
@@ -9138,17 +7917,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chats`
         """
 
-        _constructor = GetChats.construct if skip_validation else GetChats
-
         return await self.client.request(
-            _constructor(
+            GetChats(
                 limit=limit,
                 chat_list=chat_list,
             ),
@@ -9157,12 +7932,7 @@ class API:
         )
 
     async def get_chats_for_chat_folder_invite_link(
-        self,
-        chat_folder_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_folder_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Chats:
         """
         Returns identifiers of chats from a chat folder, suitable for adding to a chat folder invite link
@@ -9173,17 +7943,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chats`
         """
 
-        _constructor = GetChatsForChatFolderInviteLink.construct if skip_validation else GetChatsForChatFolderInviteLink
-
         return await self.client.request(
-            _constructor(
+            GetChatsForChatFolderInviteLink(
                 chat_folder_id=chat_folder_id,
             ),
             request_id=request_id,
@@ -9207,8 +7973,7 @@ class API:
         scope: typing.Optional[BotCommandScope] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> BotCommands:
         """
         Returns list of commands supported by the bot for the given user scope and language; for bots only
@@ -9221,17 +7986,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.BotCommands`
         """
 
-        _constructor = GetCommands.construct if skip_validation else GetCommands
-
         return await self.client.request(
-            _constructor(
+            GetCommands(
                 language_code=language_code,
                 scope=scope,
             ),
@@ -9284,12 +8045,7 @@ class API:
         )
 
     async def get_created_public_chats(
-        self,
-        type_: PublicChatType,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, type_: PublicChatType, *, request_id: str = None, request_timeout: int = None
     ) -> Chats:
         """
         Returns a list of public chats of the specified type, owned by the user
@@ -9300,17 +8056,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chats`
         """
 
-        _constructor = GetCreatedPublicChats.construct if skip_validation else GetCreatedPublicChats
-
         return await self.client.request(
-            _constructor(
+            GetCreatedPublicChats(
                 type=type_,
             ),
             request_id=request_id,
@@ -9342,12 +8094,7 @@ class API:
         )
 
     async def get_custom_emoji_stickers(
-        self,
-        custom_emoji_ids: Vector[Int64],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, custom_emoji_ids: Vector[Int64], *, request_id: str = None, request_timeout: int = None
     ) -> Stickers:
         """
         Returns list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
@@ -9358,17 +8105,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Stickers`
         """
 
-        _constructor = GetCustomEmojiStickers.construct if skip_validation else GetCustomEmojiStickers
-
         return await self.client.request(
-            _constructor(
+            GetCustomEmojiStickers(
                 custom_emoji_ids=custom_emoji_ids,
             ),
             request_id=request_id,
@@ -9389,7 +8132,7 @@ class API:
         )
 
     async def get_deep_link_info(
-        self, link: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, link: String, *, request_id: str = None, request_timeout: int = None
     ) -> DeepLinkInfo:
         """
         Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for unknown links. Can be called before authorization
@@ -9400,17 +8143,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.DeepLinkInfo`
         """
 
-        _constructor = GetDeepLinkInfo.construct if skip_validation else GetDeepLinkInfo
-
         return await self.client.request(
-            _constructor(
+            GetDeepLinkInfo(
                 link=link,
             ),
             request_id=request_id,
@@ -9468,12 +8207,7 @@ class API:
         )
 
     async def get_emoji_categories(
-        self,
-        type_: typing.Optional[EmojiCategoryType] = None,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, type_: typing.Optional[EmojiCategoryType] = None, *, request_id: str = None, request_timeout: int = None
     ) -> EmojiCategories:
         """
         Returns available emojis categories
@@ -9484,17 +8218,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.EmojiCategories`
         """
 
-        _constructor = GetEmojiCategories.construct if skip_validation else GetEmojiCategories
-
         return await self.client.request(
-            _constructor(
+            GetEmojiCategories(
                 type=type_,
             ),
             request_id=request_id,
@@ -9502,7 +8232,7 @@ class API:
         )
 
     async def get_emoji_reaction(
-        self, emoji: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, emoji: String, *, request_id: str = None, request_timeout: int = None
     ) -> EmojiReaction:
         """
         Returns information about a emoji reaction. Returns a 404 error if the reaction is not found
@@ -9513,17 +8243,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.EmojiReaction`
         """
 
-        _constructor = GetEmojiReaction.construct if skip_validation else GetEmojiReaction
-
         return await self.client.request(
-            _constructor(
+            GetEmojiReaction(
                 emoji=emoji,
             ),
             request_id=request_id,
@@ -9531,12 +8257,7 @@ class API:
         )
 
     async def get_emoji_suggestions_url(
-        self,
-        language_code: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, language_code: String, *, request_id: str = None, request_timeout: int = None
     ) -> HttpUrl:
         """
         Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation
@@ -9547,17 +8268,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
 
-        _constructor = GetEmojiSuggestionsUrl.construct if skip_validation else GetEmojiSuggestionsUrl
-
         return await self.client.request(
-            _constructor(
+            GetEmojiSuggestionsUrl(
                 language_code=language_code,
             ),
             request_id=request_id,
@@ -9565,13 +8282,7 @@ class API:
         )
 
     async def get_external_link(
-        self,
-        link: String,
-        allow_write_access: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, link: String, allow_write_access: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> HttpUrl:
         """
         Returns an HTTP URL which can be used to automatically authorize the current user on a website after clicking an HTTP link. Use the method getExternalLinkInfo to find whether a prior user confirmation is needed
@@ -9584,17 +8295,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
 
-        _constructor = GetExternalLink.construct if skip_validation else GetExternalLink
-
         return await self.client.request(
-            _constructor(
+            GetExternalLink(
                 link=link,
                 allow_write_access=allow_write_access,
             ),
@@ -9603,7 +8310,7 @@ class API:
         )
 
     async def get_external_link_info(
-        self, link: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, link: String, *, request_id: str = None, request_timeout: int = None
     ) -> LoginUrlInfo:
         """
         Returns information about an action to be done when the current user clicks an external link. Don't use this method for links from secret chats if web page preview is disabled in secret chats
@@ -9614,17 +8321,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.LoginUrlInfo`
         """
 
-        _constructor = GetExternalLinkInfo.construct if skip_validation else GetExternalLinkInfo
-
         return await self.client.request(
-            _constructor(
+            GetExternalLinkInfo(
                 link=link,
             ),
             request_id=request_id,
@@ -9642,9 +8345,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_file(
-        self, file_id: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> File:
+    async def get_file(self, file_id: Int32, *, request_id: str = None, request_timeout: int = None) -> File:
         """
         Returns information about a file; this is an offline request
 
@@ -9654,17 +8355,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.File`
         """
 
-        _constructor = GetFile.construct if skip_validation else GetFile
-
         return await self.client.request(
-            _constructor(
+            GetFile(
                 file_id=file_id,
             ),
             request_id=request_id,
@@ -9672,13 +8369,7 @@ class API:
         )
 
     async def get_file_downloaded_prefix_size(
-        self,
-        file_id: Int32,
-        offset: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, file_id: Int32, offset: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> FileDownloadedPrefixSize:
         """
         Returns file downloaded prefix size from a given offset, in bytes
@@ -9691,17 +8382,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FileDownloadedPrefixSize`
         """
 
-        _constructor = GetFileDownloadedPrefixSize.construct if skip_validation else GetFileDownloadedPrefixSize
-
         return await self.client.request(
-            _constructor(
+            GetFileDownloadedPrefixSize(
                 file_id=file_id,
                 offset=offset,
             ),
@@ -9710,7 +8397,7 @@ class API:
         )
 
     async def get_file_extension(
-        self, mime_type: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, mime_type: String, *, request_id: str = None, request_timeout: int = None
     ) -> Text:
         """
         Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. Can be called synchronously
@@ -9721,17 +8408,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = GetFileExtension.construct if skip_validation else GetFileExtension
-
         return await self.client.request(
-            _constructor(
+            GetFileExtension(
                 mime_type=mime_type,
             ),
             request_id=request_id,
@@ -9739,7 +8422,7 @@ class API:
         )
 
     async def get_file_mime_type(
-        self, file_name: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, file_name: String, *, request_id: str = None, request_timeout: int = None
     ) -> Text:
         """
         Returns the MIME type of a file, guessed by its extension. Returns an empty string on failure. Can be called synchronously
@@ -9750,17 +8433,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = GetFileMimeType.construct if skip_validation else GetFileMimeType
-
         return await self.client.request(
-            _constructor(
+            GetFileMimeType(
                 file_name=file_name,
             ),
             request_id=request_id,
@@ -9768,13 +8447,7 @@ class API:
         )
 
     async def get_forum_topic(
-        self,
-        chat_id: Int53,
-        message_thread_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_thread_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> ForumTopic:
         """
         Returns information about a forum topic
@@ -9787,17 +8460,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ForumTopic`
         """
 
-        _constructor = GetForumTopic.construct if skip_validation else GetForumTopic
-
         return await self.client.request(
-            _constructor(
+            GetForumTopic(
                 chat_id=chat_id,
                 message_thread_id=message_thread_id,
             ),
@@ -9817,13 +8486,7 @@ class API:
         )
 
     async def get_forum_topic_link(
-        self,
-        chat_id: Int53,
-        message_thread_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_thread_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> MessageLink:
         """
         Returns an HTTPS link to a topic in a forum chat. This is an offline request
@@ -9836,17 +8499,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.MessageLink`
         """
 
-        _constructor = GetForumTopicLink.construct if skip_validation else GetForumTopicLink
-
         return await self.client.request(
-            _constructor(
+            GetForumTopicLink(
                 chat_id=chat_id,
                 message_thread_id=message_thread_id,
             ),
@@ -9864,8 +8523,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> ForumTopics:
         """
         Returns found forum topics in a forum chat. This is a temporary method for getting information about topic list from the server
@@ -9886,17 +8544,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ForumTopics`
         """
 
-        _constructor = GetForumTopics.construct if skip_validation else GetForumTopics
-
         return await self.client.request(
-            _constructor(
+            GetForumTopics(
                 chat_id=chat_id,
                 query=query,
                 offset_date=offset_date,
@@ -9909,14 +8563,7 @@ class API:
         )
 
     async def get_game_high_scores(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        user_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_id: Int53, user_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> GameHighScores:
         """
         Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only
@@ -9931,17 +8578,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.GameHighScores`
         """
 
-        _constructor = GetGameHighScores.construct if skip_validation else GetGameHighScores
-
         return await self.client.request(
-            _constructor(
+            GetGameHighScores(
                 chat_id=chat_id,
                 message_id=message_id,
                 user_id=user_id,
@@ -9951,12 +8594,7 @@ class API:
         )
 
     async def get_group_call(
-        self,
-        group_call_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, group_call_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> GroupCall:
         """
         Returns information about a group call
@@ -9967,17 +8605,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.GroupCall`
         """
 
-        _constructor = GetGroupCall.construct if skip_validation else GetGroupCall
-
         return await self.client.request(
-            _constructor(
+            GetGroupCall(
                 group_call_id=group_call_id,
             ),
             request_id=request_id,
@@ -9990,8 +8624,7 @@ class API:
         can_self_unmute: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> HttpUrl:
         """
         Returns invite link to a video chat in a public chat
@@ -10004,17 +8637,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
 
-        _constructor = GetGroupCallInviteLink.construct if skip_validation else GetGroupCallInviteLink
-
         return await self.client.request(
-            _constructor(
+            GetGroupCallInviteLink(
                 group_call_id=group_call_id,
                 can_self_unmute=can_self_unmute,
             ),
@@ -10031,8 +8660,7 @@ class API:
         video_quality: typing.Optional[GroupCallVideoQuality] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> FilePart:
         """
         Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
@@ -10051,17 +8679,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FilePart`
         """
 
-        _constructor = GetGroupCallStreamSegment.construct if skip_validation else GetGroupCallStreamSegment
-
         return await self.client.request(
-            _constructor(
+            GetGroupCallStreamSegment(
                 group_call_id=group_call_id,
                 time_offset=time_offset,
                 scale=scale,
@@ -10073,12 +8697,7 @@ class API:
         )
 
     async def get_group_call_streams(
-        self,
-        group_call_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, group_call_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> GroupCallStreams:
         """
         Returns information about available group call streams
@@ -10089,17 +8708,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.GroupCallStreams`
         """
 
-        _constructor = GetGroupCallStreams.construct if skip_validation else GetGroupCallStreams
-
         return await self.client.request(
-            _constructor(
+            GetGroupCallStreams(
                 group_call_id=group_call_id,
             ),
             request_id=request_id,
@@ -10113,8 +8728,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Chats:
         """
         Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
@@ -10129,17 +8743,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chats`
         """
 
-        _constructor = GetGroupsInCommon.construct if skip_validation else GetGroupsInCommon
-
         return await self.client.request(
-            _constructor(
+            GetGroupsInCommon(
                 user_id=user_id,
                 offset_chat_id=offset_chat_id,
                 limit=limit,
@@ -10171,13 +8781,7 @@ class API:
         )
 
     async def get_inline_game_high_scores(
-        self,
-        inline_message_id: String,
-        user_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, inline_message_id: String, user_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> GameHighScores:
         """
         Returns game high scores and some part of the high score table in the range of the specified user; for bots only
@@ -10190,17 +8794,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.GameHighScores`
         """
 
-        _constructor = GetInlineGameHighScores.construct if skip_validation else GetInlineGameHighScores
-
         return await self.client.request(
-            _constructor(
+            GetInlineGameHighScores(
                 inline_message_id=inline_message_id,
                 user_id=user_id,
             ),
@@ -10217,8 +8817,7 @@ class API:
         user_location: typing.Optional[Location] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> InlineQueryResults:
         """
         Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
@@ -10237,17 +8836,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.InlineQueryResults`
         """
 
-        _constructor = GetInlineQueryResults.construct if skip_validation else GetInlineQueryResults
-
         return await self.client.request(
-            _constructor(
+            GetInlineQueryResults(
                 bot_user_id=bot_user_id,
                 chat_id=chat_id,
                 query=query,
@@ -10259,12 +8854,7 @@ class API:
         )
 
     async def get_installed_sticker_sets(
-        self,
-        sticker_type: StickerType,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, sticker_type: StickerType, *, request_id: str = None, request_timeout: int = None
     ) -> StickerSets:
         """
         Returns a list of installed sticker sets
@@ -10275,17 +8865,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.StickerSets`
         """
 
-        _constructor = GetInstalledStickerSets.construct if skip_validation else GetInstalledStickerSets
-
         return await self.client.request(
-            _constructor(
+            GetInstalledStickerSets(
                 sticker_type=sticker_type,
             ),
             request_id=request_id,
@@ -10293,13 +8879,7 @@ class API:
         )
 
     async def get_internal_link(
-        self,
-        type_: InternalLinkType,
-        is_http: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, type_: InternalLinkType, is_http: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> HttpUrl:
         """
         Returns an HTTPS or a tg: link with the given type. Can be called before authorization
@@ -10312,17 +8892,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
 
-        _constructor = GetInternalLink.construct if skip_validation else GetInternalLink
-
         return await self.client.request(
-            _constructor(
+            GetInternalLink(
                 type=type_,
                 is_http=is_http,
             ),
@@ -10331,7 +8907,7 @@ class API:
         )
 
     async def get_internal_link_type(
-        self, link: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, link: String, *, request_id: str = None, request_timeout: int = None
     ) -> InternalLinkType:
         """
         Returns information about the type of an internal link. Returns a 404 error if the link is not internal. Can be called before authorization
@@ -10342,17 +8918,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.InternalLinkType`
         """
 
-        _constructor = GetInternalLinkType.construct if skip_validation else GetInternalLinkType
-
         return await self.client.request(
-            _constructor(
+            GetInternalLinkType(
                 link=link,
             ),
             request_id=request_id,
@@ -10360,12 +8932,7 @@ class API:
         )
 
     async def get_json_string(
-        self,
-        json_value: JsonValue,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, json_value: JsonValue, *, request_id: str = None, request_timeout: int = None
     ) -> Text:
         """
         Converts a JsonValue object to corresponding JSON-serialized string. Can be called synchronously
@@ -10376,26 +8943,20 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = GetJsonString.construct if skip_validation else GetJsonString
-
         return await self.client.request(
-            _constructor(
+            GetJsonString(
                 json_value=json_value,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def get_json_value(
-        self, json_: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> JsonValue:
+    async def get_json_value(self, json_: String, *, request_id: str = None, request_timeout: int = None) -> JsonValue:
         """
         Converts a JSON-serialized string to corresponding JsonValue object. Can be called synchronously
 
@@ -10405,17 +8966,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.JsonValue`
         """
 
-        _constructor = GetJsonValue.construct if skip_validation else GetJsonValue
-
         return await self.client.request(
-            _constructor(
+            GetJsonValue(
                 json=json_,
             ),
             request_id=request_id,
@@ -10423,12 +8980,7 @@ class API:
         )
 
     async def get_language_pack_info(
-        self,
-        language_pack_id: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, language_pack_id: String, *, request_id: str = None, request_timeout: int = None
     ) -> LanguagePackInfo:
         """
         Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
@@ -10439,17 +8991,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.LanguagePackInfo`
         """
 
-        _constructor = GetLanguagePackInfo.construct if skip_validation else GetLanguagePackInfo
-
         return await self.client.request(
-            _constructor(
+            GetLanguagePackInfo(
                 language_pack_id=language_pack_id,
             ),
             request_id=request_id,
@@ -10464,8 +9012,7 @@ class API:
         key: String,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> LanguagePackStringValue:
         """
         Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously
@@ -10482,17 +9029,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.LanguagePackStringValue`
         """
 
-        _constructor = GetLanguagePackString.construct if skip_validation else GetLanguagePackString
-
         return await self.client.request(
-            _constructor(
+            GetLanguagePackString(
                 language_pack_database_path=language_pack_database_path,
                 localization_target=localization_target,
                 language_pack_id=language_pack_id,
@@ -10503,13 +9046,7 @@ class API:
         )
 
     async def get_language_pack_strings(
-        self,
-        language_pack_id: String,
-        keys: Vector[String],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, language_pack_id: String, keys: Vector[String], *, request_id: str = None, request_timeout: int = None
     ) -> LanguagePackStrings:
         """
         Returns strings from a language pack in the current localization target by their keys. Can be called before authorization
@@ -10522,17 +9059,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.LanguagePackStrings`
         """
 
-        _constructor = GetLanguagePackStrings.construct if skip_validation else GetLanguagePackStrings
-
         return await self.client.request(
-            _constructor(
+            GetLanguagePackStrings(
                 language_pack_id=language_pack_id,
                 keys=keys,
             ),
@@ -10541,12 +9074,7 @@ class API:
         )
 
     async def get_localization_target_info(
-        self,
-        only_local: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, only_local: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> LocalizationTargetInfo:
         """
         Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
@@ -10557,17 +9085,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.LocalizationTargetInfo`
         """
 
-        _constructor = GetLocalizationTargetInfo.construct if skip_validation else GetLocalizationTargetInfo
-
         return await self.client.request(
-            _constructor(
+            GetLocalizationTargetInfo(
                 only_local=only_local,
             ),
             request_id=request_id,
@@ -10586,7 +9110,7 @@ class API:
         )
 
     async def get_log_tag_verbosity_level(
-        self, tag: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, tag: String, *, request_id: str = None, request_timeout: int = None
     ) -> LogVerbosityLevel:
         """
         Returns current verbosity level for a specified TDLib internal log tag. Can be called synchronously
@@ -10597,17 +9121,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.LogVerbosityLevel`
         """
 
-        _constructor = GetLogTagVerbosityLevel.construct if skip_validation else GetLogTagVerbosityLevel
-
         return await self.client.request(
-            _constructor(
+            GetLogTagVerbosityLevel(
                 tag=tag,
             ),
             request_id=request_id,
@@ -10646,8 +9166,7 @@ class API:
         allow_write_access: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> HttpUrl:
         """
         Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button
@@ -10664,17 +9183,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
 
-        _constructor = GetLoginUrl.construct if skip_validation else GetLoginUrl
-
         return await self.client.request(
-            _constructor(
+            GetLoginUrl(
                 chat_id=chat_id,
                 message_id=message_id,
                 button_id=button_id,
@@ -10691,8 +9206,7 @@ class API:
         button_id: Int53,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> LoginUrlInfo:
         """
         Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
@@ -10707,17 +9221,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.LoginUrlInfo`
         """
 
-        _constructor = GetLoginUrlInfo.construct if skip_validation else GetLoginUrlInfo
-
         return await self.client.request(
-            _constructor(
+            GetLoginUrlInfo(
                 chat_id=chat_id,
                 message_id=message_id,
                 button_id=button_id,
@@ -10736,8 +9246,7 @@ class API:
         chat_id: Int53,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> File:
         """
         Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
@@ -10758,17 +9267,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.File`
         """
 
-        _constructor = GetMapThumbnailFile.construct if skip_validation else GetMapThumbnailFile
-
         return await self.client.request(
-            _constructor(
+            GetMapThumbnailFile(
                 location=location,
                 zoom=zoom,
                 width=width,
@@ -10781,7 +9286,7 @@ class API:
         )
 
     async def get_markdown_text(
-        self, text: FormattedText, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, text: FormattedText, *, request_id: str = None, request_timeout: int = None
     ) -> FormattedText:
         """
         Replaces text entities with Markdown formatting in a human-friendly format. Entities that can't be represented in Markdown unambiguously are kept as is. Can be called synchronously
@@ -10792,17 +9297,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FormattedText`
         """
 
-        _constructor = GetMarkdownText.construct if skip_validation else GetMarkdownText
-
         return await self.client.request(
-            _constructor(
+            GetMarkdownText(
                 text=text,
             ),
             request_id=request_id,
@@ -10821,7 +9322,7 @@ class API:
         )
 
     async def get_menu_button(
-        self, user_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, user_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> BotMenuButton:
         """
         Returns menu button set by the bot for the given user; for bots only
@@ -10832,17 +9333,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.BotMenuButton`
         """
 
-        _constructor = GetMenuButton.construct if skip_validation else GetMenuButton
-
         return await self.client.request(
-            _constructor(
+            GetMenuButton(
                 user_id=user_id,
             ),
             request_id=request_id,
@@ -10850,13 +9347,7 @@ class API:
         )
 
     async def get_message(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Message:
         """
         Returns information about a message
@@ -10869,17 +9360,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = GetMessage.construct if skip_validation else GetMessage
-
         return await self.client.request(
-            _constructor(
+            GetMessage(
                 chat_id=chat_id,
                 message_id=message_id,
             ),
@@ -10896,8 +9383,7 @@ class API:
         reaction_type: typing.Optional[ReactionType] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> AddedReactions:
         """
         Returns reactions added for a message, along with their sender
@@ -10916,17 +9402,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.AddedReactions`
         """
 
-        _constructor = GetMessageAddedReactions.construct if skip_validation else GetMessageAddedReactions
-
         return await self.client.request(
-            _constructor(
+            GetMessageAddedReactions(
                 chat_id=chat_id,
                 message_id=message_id,
                 offset=offset,
@@ -10938,14 +9420,7 @@ class API:
         )
 
     async def get_message_available_reactions(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        row_size: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_id: Int53, row_size: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> AvailableReactions:
         """
         Returns reactions, which can be added to a message. The list can change after updateActiveEmojiReactions, updateChatAvailableReactions for the chat, or updateMessageInteractionInfo for the message
@@ -10960,17 +9435,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.AvailableReactions`
         """
 
-        _constructor = GetMessageAvailableReactions.construct if skip_validation else GetMessageAvailableReactions
-
         return await self.client.request(
-            _constructor(
+            GetMessageAvailableReactions(
                 chat_id=chat_id,
                 message_id=message_id,
                 row_size=row_size,
@@ -10986,8 +9457,7 @@ class API:
         for_album: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Text:
         """
         Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username
@@ -11002,17 +9472,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = GetMessageEmbeddingCode.construct if skip_validation else GetMessageEmbeddingCode
-
         return await self.client.request(
-            _constructor(
+            GetMessageEmbeddingCode(
                 chat_id=chat_id,
                 message_id=message_id,
                 for_album=for_album,
@@ -11022,12 +9488,7 @@ class API:
         )
 
     async def get_message_file_type(
-        self,
-        message_file_head: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, message_file_head: String, *, request_id: str = None, request_timeout: int = None
     ) -> MessageFileType:
         """
         Returns information about a file with messages exported from another application
@@ -11038,17 +9499,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.MessageFileType`
         """
 
-        _constructor = GetMessageFileType.construct if skip_validation else GetMessageFileType
-
         return await self.client.request(
-            _constructor(
+            GetMessageFileType(
                 message_file_head=message_file_head,
             ),
             request_id=request_id,
@@ -11056,7 +9513,7 @@ class API:
         )
 
     async def get_message_import_confirmation_text(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Text:
         """
         Returns a confirmation text to be shown to the user before starting message import
@@ -11067,19 +9524,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = (
-            GetMessageImportConfirmationText.construct if skip_validation else GetMessageImportConfirmationText
-        )
-
         return await self.client.request(
-            _constructor(
+            GetMessageImportConfirmationText(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -11095,8 +9546,7 @@ class API:
         in_message_thread: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> MessageLink:
         """
         Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
@@ -11115,17 +9565,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.MessageLink`
         """
 
-        _constructor = GetMessageLink.construct if skip_validation else GetMessageLink
-
         return await self.client.request(
-            _constructor(
+            GetMessageLink(
                 chat_id=chat_id,
                 message_id=message_id,
                 media_timestamp=media_timestamp,
@@ -11137,7 +9583,7 @@ class API:
         )
 
     async def get_message_link_info(
-        self, url: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, url: String, *, request_id: str = None, request_timeout: int = None
     ) -> MessageLinkInfo:
         """
         Returns information about a public or private message link. Can be called for any internal link of the type internalLinkTypeMessage
@@ -11148,17 +9594,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.MessageLinkInfo`
         """
 
-        _constructor = GetMessageLinkInfo.construct if skip_validation else GetMessageLinkInfo
-
         return await self.client.request(
-            _constructor(
+            GetMessageLinkInfo(
                 url=url,
             ),
             request_id=request_id,
@@ -11166,13 +9608,7 @@ class API:
         )
 
     async def get_message_locally(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Message:
         """
         Returns information about a message, if it is available without sending network request. This is an offline request
@@ -11185,17 +9621,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = GetMessageLocally.construct if skip_validation else GetMessageLocally
-
         return await self.client.request(
-            _constructor(
+            GetMessageLocally(
                 chat_id=chat_id,
                 message_id=message_id,
             ),
@@ -11211,8 +9643,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> FoundMessages:
         """
         Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
@@ -11229,17 +9660,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FoundMessages`
         """
 
-        _constructor = GetMessagePublicForwards.construct if skip_validation else GetMessagePublicForwards
-
         return await self.client.request(
-            _constructor(
+            GetMessagePublicForwards(
                 chat_id=chat_id,
                 message_id=message_id,
                 offset=offset,
@@ -11256,8 +9683,7 @@ class API:
         is_dark: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> MessageStatistics:
         """
         Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
@@ -11272,17 +9698,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.MessageStatistics`
         """
 
-        _constructor = GetMessageStatistics.construct if skip_validation else GetMessageStatistics
-
         return await self.client.request(
-            _constructor(
+            GetMessageStatistics(
                 chat_id=chat_id,
                 message_id=message_id,
                 is_dark=is_dark,
@@ -11292,13 +9714,7 @@ class API:
         )
 
     async def get_message_thread(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> MessageThreadInfo:
         """
         Returns information about a message thread. Can be used only if message.can_get_message_thread == true
@@ -11311,17 +9727,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.MessageThreadInfo`
         """
 
-        _constructor = GetMessageThread.construct if skip_validation else GetMessageThread
-
         return await self.client.request(
-            _constructor(
+            GetMessageThread(
                 chat_id=chat_id,
                 message_id=message_id,
             ),
@@ -11338,8 +9750,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Messages:
         """
         Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -11358,17 +9769,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Messages`
         """
 
-        _constructor = GetMessageThreadHistory.construct if skip_validation else GetMessageThreadHistory
-
         return await self.client.request(
-            _constructor(
+            GetMessageThreadHistory(
                 chat_id=chat_id,
                 message_id=message_id,
                 from_message_id=from_message_id,
@@ -11380,13 +9787,7 @@ class API:
         )
 
     async def get_message_viewers(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> MessageViewers:
         """
         Returns viewers of a recent outgoing message in a basic group or a supergroup chat. For video notes and voice notes only users, opened content of the message, are returned. The method can be called if message.can_get_viewers == true
@@ -11399,17 +9800,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.MessageViewers`
         """
 
-        _constructor = GetMessageViewers.construct if skip_validation else GetMessageViewers
-
         return await self.client.request(
-            _constructor(
+            GetMessageViewers(
                 chat_id=chat_id,
                 message_id=message_id,
             ),
@@ -11418,13 +9815,7 @@ class API:
         )
 
     async def get_messages(
-        self,
-        chat_id: Int53,
-        message_ids: Vector[Int53],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Messages:
         """
         Returns information about messages. If a message is not found, returns null on the corresponding position of the result
@@ -11437,17 +9828,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Messages`
         """
 
-        _constructor = GetMessages.construct if skip_validation else GetMessages
-
         return await self.client.request(
-            _constructor(
+            GetMessages(
                 chat_id=chat_id,
                 message_ids=message_ids,
             ),
@@ -11456,12 +9843,7 @@ class API:
         )
 
     async def get_network_statistics(
-        self,
-        only_current: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, only_current: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> NetworkStatistics:
         """
         Returns network data usage statistics. Can be called before authorization
@@ -11472,26 +9854,20 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.NetworkStatistics`
         """
 
-        _constructor = GetNetworkStatistics.construct if skip_validation else GetNetworkStatistics
-
         return await self.client.request(
-            _constructor(
+            GetNetworkStatistics(
                 only_current=only_current,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def get_option(
-        self, name: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> OptionValue:
+    async def get_option(self, name: String, *, request_id: str = None, request_timeout: int = None) -> OptionValue:
         """
         Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
 
@@ -11501,17 +9877,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.OptionValue`
         """
 
-        _constructor = GetOption.construct if skip_validation else GetOption
-
         return await self.client.request(
-            _constructor(
+            GetOption(
                 name=name,
             ),
             request_id=request_id,
@@ -11526,8 +9898,7 @@ class API:
         nonce: String,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> PassportAuthorizationForm:
         """
         Returns a Telegram Passport authorization form for sharing data with a service
@@ -11544,17 +9915,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PassportAuthorizationForm`
         """
 
-        _constructor = GetPassportAuthorizationForm.construct if skip_validation else GetPassportAuthorizationForm
-
         return await self.client.request(
-            _constructor(
+            GetPassportAuthorizationForm(
                 bot_user_id=bot_user_id,
                 scope=scope,
                 public_key=public_key,
@@ -11565,13 +9932,7 @@ class API:
         )
 
     async def get_passport_authorization_form_available_elements(
-        self,
-        authorization_form_id: Int32,
-        password: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, authorization_form_id: Int32, password: String, *, request_id: str = None, request_timeout: int = None
     ) -> PassportElementsWithErrors:
         """
         Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
@@ -11584,21 +9945,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PassportElementsWithErrors`
         """
 
-        _constructor = (
-            GetPassportAuthorizationFormAvailableElements.construct
-            if skip_validation
-            else GetPassportAuthorizationFormAvailableElements
-        )
-
         return await self.client.request(
-            _constructor(
+            GetPassportAuthorizationFormAvailableElements(
                 authorization_form_id=authorization_form_id,
                 password=password,
             ),
@@ -11607,13 +9960,7 @@ class API:
         )
 
     async def get_passport_element(
-        self,
-        type_: PassportElementType,
-        password: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, type_: PassportElementType, password: String, *, request_id: str = None, request_timeout: int = None
     ) -> PassportElement:
         """
         Returns one of the available Telegram Passport elements
@@ -11626,17 +9973,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PassportElement`
         """
 
-        _constructor = GetPassportElement.construct if skip_validation else GetPassportElement
-
         return await self.client.request(
-            _constructor(
+            GetPassportElement(
                 type=type_,
                 password=password,
             ),
@@ -11661,8 +10004,7 @@ class API:
         theme: typing.Optional[ThemeParameters] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> PaymentForm:
         """
         Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
@@ -11675,17 +10017,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PaymentForm`
         """
 
-        _constructor = GetPaymentForm.construct if skip_validation else GetPaymentForm
-
         return await self.client.request(
-            _constructor(
+            GetPaymentForm(
                 input_invoice=input_invoice,
                 theme=theme,
             ),
@@ -11694,13 +10032,7 @@ class API:
         )
 
     async def get_payment_receipt(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> PaymentReceipt:
         """
         Returns information about a successful payment
@@ -11713,17 +10045,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PaymentReceipt`
         """
 
-        _constructor = GetPaymentReceipt.construct if skip_validation else GetPaymentReceipt
-
         return await self.client.request(
-            _constructor(
+            GetPaymentReceipt(
                 chat_id=chat_id,
                 message_id=message_id,
             ),
@@ -11732,12 +10060,7 @@ class API:
         )
 
     async def get_phone_number_info(
-        self,
-        phone_number_prefix: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, phone_number_prefix: String, *, request_id: str = None, request_timeout: int = None
     ) -> PhoneNumberInfo:
         """
         Returns information about a phone number by its prefix. Can be called before authorization
@@ -11748,17 +10071,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PhoneNumberInfo`
         """
 
-        _constructor = GetPhoneNumberInfo.construct if skip_validation else GetPhoneNumberInfo
-
         return await self.client.request(
-            _constructor(
+            GetPhoneNumberInfo(
                 phone_number_prefix=phone_number_prefix,
             ),
             request_id=request_id,
@@ -11766,13 +10085,7 @@ class API:
         )
 
     async def get_phone_number_info_sync(
-        self,
-        language_code: String,
-        phone_number_prefix: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, language_code: String, phone_number_prefix: String, *, request_id: str = None, request_timeout: int = None
     ) -> PhoneNumberInfo:
         """
         Returns information about a phone number by its prefix synchronously. getCountries must be called at least once after changing localization to the specified language if properly localized country information is expected. Can be called synchronously
@@ -11785,17 +10098,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PhoneNumberInfo`
         """
 
-        _constructor = GetPhoneNumberInfoSync.construct if skip_validation else GetPhoneNumberInfoSync
-
         return await self.client.request(
-            _constructor(
+            GetPhoneNumberInfoSync(
                 language_code=language_code,
                 phone_number_prefix=phone_number_prefix,
             ),
@@ -11812,8 +10121,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> MessageSenders:
         """
         Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
@@ -11832,17 +10140,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.MessageSenders`
         """
 
-        _constructor = GetPollVoters.construct if skip_validation else GetPollVoters
-
         return await self.client.request(
-            _constructor(
+            GetPollVoters(
                 chat_id=chat_id,
                 message_id=message_id,
                 option_id=option_id,
@@ -11854,12 +10158,7 @@ class API:
         )
 
     async def get_preferred_country_language(
-        self,
-        country_code: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, country_code: String, *, request_id: str = None, request_timeout: int = None
     ) -> Text:
         """
         Returns an IETF language tag of the language preferred in the country, which must be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
@@ -11870,17 +10169,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = GetPreferredCountryLanguage.construct if skip_validation else GetPreferredCountryLanguage
-
         return await self.client.request(
-            _constructor(
+            GetPreferredCountryLanguage(
                 country_code=country_code,
             ),
             request_id=request_id,
@@ -11888,12 +10183,7 @@ class API:
         )
 
     async def get_premium_features(
-        self,
-        source: typing.Optional[PremiumSource] = None,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, source: typing.Optional[PremiumSource] = None, *, request_id: str = None, request_timeout: int = None
     ) -> PremiumFeatures:
         """
         Returns information about features, available to Premium users
@@ -11904,17 +10194,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PremiumFeatures`
         """
 
-        _constructor = GetPremiumFeatures.construct if skip_validation else GetPremiumFeatures
-
         return await self.client.request(
-            _constructor(
+            GetPremiumFeatures(
                 source=source,
             ),
             request_id=request_id,
@@ -11922,12 +10208,7 @@ class API:
         )
 
     async def get_premium_limit(
-        self,
-        limit_type: PremiumLimitType,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, limit_type: PremiumLimitType, *, request_id: str = None, request_timeout: int = None
     ) -> PremiumLimit:
         """
         Returns information about a limit, increased for Premium users. Returns a 404 error if the limit is unknown
@@ -11938,17 +10219,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PremiumLimit`
         """
 
-        _constructor = GetPremiumLimit.construct if skip_validation else GetPremiumLimit
-
         return await self.client.request(
-            _constructor(
+            GetPremiumLimit(
                 limit_type=limit_type,
             ),
             request_id=request_id,
@@ -11978,7 +10255,7 @@ class API:
         )
 
     async def get_premium_stickers(
-        self, limit: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Stickers:
         """
         Returns premium stickers from regular sticker sets
@@ -11989,17 +10266,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Stickers`
         """
 
-        _constructor = GetPremiumStickers.construct if skip_validation else GetPremiumStickers
-
         return await self.client.request(
-            _constructor(
+            GetPremiumStickers(
                 limit=limit,
             ),
             request_id=request_id,
@@ -12017,9 +10290,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_proxy_link(
-        self, proxy_id: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> HttpUrl:
+    async def get_proxy_link(self, proxy_id: Int32, *, request_id: str = None, request_timeout: int = None) -> HttpUrl:
         """
         Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
 
@@ -12029,17 +10300,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
 
-        _constructor = GetProxyLink.construct if skip_validation else GetProxyLink
-
         return await self.client.request(
-            _constructor(
+            GetProxyLink(
                 proxy_id=proxy_id,
             ),
             request_id=request_id,
@@ -12047,7 +10314,7 @@ class API:
         )
 
     async def get_push_receiver_id(
-        self, payload: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, payload: String, *, request_id: str = None, request_timeout: int = None
     ) -> PushReceiverId:
         """
         Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
@@ -12058,17 +10325,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PushReceiverId`
         """
 
-        _constructor = GetPushReceiverId.construct if skip_validation else GetPushReceiverId
-
         return await self.client.request(
-            _constructor(
+            GetPushReceiverId(
                 payload=payload,
             ),
             request_id=request_id,
@@ -12098,12 +10361,7 @@ class API:
         )
 
     async def get_recent_stickers(
-        self,
-        is_attached: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, is_attached: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Stickers:
         """
         Returns a list of recently used stickers
@@ -12114,17 +10372,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Stickers`
         """
 
-        _constructor = GetRecentStickers.construct if skip_validation else GetRecentStickers
-
         return await self.client.request(
-            _constructor(
+            GetRecentStickers(
                 is_attached=is_attached,
             ),
             request_id=request_id,
@@ -12132,7 +10386,7 @@ class API:
         )
 
     async def get_recently_opened_chats(
-        self, limit: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Chats:
         """
         Returns recently opened chats; this is an offline request. Returns chats in the order of last opening
@@ -12143,17 +10397,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chats`
         """
 
-        _constructor = GetRecentlyOpenedChats.construct if skip_validation else GetRecentlyOpenedChats
-
         return await self.client.request(
-            _constructor(
+            GetRecentlyOpenedChats(
                 limit=limit,
             ),
             request_id=request_id,
@@ -12161,7 +10411,7 @@ class API:
         )
 
     async def get_recently_visited_t_me_urls(
-        self, referrer: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, referrer: String, *, request_id: str = None, request_timeout: int = None
     ) -> TMeUrls:
         """
         Returns t.me URLs recently visited by a newly registered user
@@ -12172,17 +10422,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.TMeUrls`
         """
 
-        _constructor = GetRecentlyVisitedTMeUrls.construct if skip_validation else GetRecentlyVisitedTMeUrls
-
         return await self.client.request(
-            _constructor(
+            GetRecentlyVisitedTMeUrls(
                 referrer=referrer,
             ),
             request_id=request_id,
@@ -12203,7 +10449,7 @@ class API:
         )
 
     async def get_recovery_email_address(
-        self, password: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, password: String, *, request_id: str = None, request_timeout: int = None
     ) -> RecoveryEmailAddress:
         """
         Returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user
@@ -12214,17 +10460,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.RecoveryEmailAddress`
         """
 
-        _constructor = GetRecoveryEmailAddress.construct if skip_validation else GetRecoveryEmailAddress
-
         return await self.client.request(
-            _constructor(
+            GetRecoveryEmailAddress(
                 password=password,
             ),
             request_id=request_id,
@@ -12237,8 +10479,7 @@ class API:
         file_type: typing.Optional[FileType] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> File:
         """
         Returns information about a file by its remote identifier; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
@@ -12251,17 +10492,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.File`
         """
 
-        _constructor = GetRemoteFile.construct if skip_validation else GetRemoteFile
-
         return await self.client.request(
-            _constructor(
+            GetRemoteFile(
                 remote_file_id=remote_file_id,
                 file_type=file_type,
             ),
@@ -12270,13 +10507,7 @@ class API:
         )
 
     async def get_replied_message(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Message:
         """
         Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground and topic messages without replied message respectively
@@ -12289,17 +10520,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = GetRepliedMessage.construct if skip_validation else GetRepliedMessage
-
         return await self.client.request(
-            _constructor(
+            GetRepliedMessage(
                 chat_id=chat_id,
                 message_id=message_id,
             ),
@@ -12319,12 +10546,7 @@ class API:
         )
 
     async def get_saved_notification_sound(
-        self,
-        notification_sound_id: Int64,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, notification_sound_id: Int64, *, request_id: str = None, request_timeout: int = None
     ) -> NotificationSounds:
         """
         Returns saved notification sound by its identifier. Returns a 404 error if there is no saved notification sound with the specified identifier
@@ -12335,17 +10557,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.NotificationSounds`
         """
 
-        _constructor = GetSavedNotificationSound.construct if skip_validation else GetSavedNotificationSound
-
         return await self.client.request(
-            _constructor(
+            GetSavedNotificationSound(
                 notification_sound_id=notification_sound_id,
             ),
             request_id=request_id,
@@ -12377,12 +10595,7 @@ class API:
         )
 
     async def get_scope_notification_settings(
-        self,
-        scope: NotificationSettingsScope,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, scope: NotificationSettingsScope, *, request_id: str = None, request_timeout: int = None
     ) -> ScopeNotificationSettings:
         """
         Returns the notification settings for chats of a given type
@@ -12393,17 +10606,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ScopeNotificationSettings`
         """
 
-        _constructor = GetScopeNotificationSettings.construct if skip_validation else GetScopeNotificationSettings
-
         return await self.client.request(
-            _constructor(
+            GetScopeNotificationSettings(
                 scope=scope,
             ),
             request_id=request_id,
@@ -12411,12 +10620,7 @@ class API:
         )
 
     async def get_secret_chat(
-        self,
-        secret_chat_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, secret_chat_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> SecretChat:
         """
         Returns information about a secret chat by its identifier. This is an offline request
@@ -12427,17 +10631,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.SecretChat`
         """
 
-        _constructor = GetSecretChat.construct if skip_validation else GetSecretChat
-
         return await self.client.request(
-            _constructor(
+            GetSecretChat(
                 secret_chat_id=secret_chat_id,
             ),
             request_id=request_id,
@@ -12445,14 +10645,7 @@ class API:
         )
 
     async def get_statistical_graph(
-        self,
-        chat_id: Int53,
-        token: String,
-        x: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, token: String, x: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> StatisticalGraph:
         """
         Loads an asynchronous or a zoomed in statistical graph
@@ -12467,17 +10660,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.StatisticalGraph`
         """
 
-        _constructor = GetStatisticalGraph.construct if skip_validation else GetStatisticalGraph
-
         return await self.client.request(
-            _constructor(
+            GetStatisticalGraph(
                 chat_id=chat_id,
                 token=token,
                 x=x,
@@ -12487,7 +10676,7 @@ class API:
         )
 
     async def get_sticker_emojis(
-        self, sticker: InputFile, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, sticker: InputFile, *, request_id: str = None, request_timeout: int = None
     ) -> Emojis:
         """
         Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
@@ -12498,17 +10687,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Emojis`
         """
 
-        _constructor = GetStickerEmojis.construct if skip_validation else GetStickerEmojis
-
         return await self.client.request(
-            _constructor(
+            GetStickerEmojis(
                 sticker=sticker,
             ),
             request_id=request_id,
@@ -12516,7 +10701,7 @@ class API:
         )
 
     async def get_sticker_set(
-        self, set_id: Int64, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, set_id: Int64, *, request_id: str = None, request_timeout: int = None
     ) -> StickerSet:
         """
         Returns information about a sticker set by its identifier
@@ -12527,17 +10712,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.StickerSet`
         """
 
-        _constructor = GetStickerSet.construct if skip_validation else GetStickerSet
-
         return await self.client.request(
-            _constructor(
+            GetStickerSet(
                 set_id=set_id,
             ),
             request_id=request_id,
@@ -12552,8 +10733,7 @@ class API:
         chat_id: Int53,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Stickers:
         """
         Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
@@ -12570,17 +10750,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Stickers`
         """
 
-        _constructor = GetStickers.construct if skip_validation else GetStickers
-
         return await self.client.request(
-            _constructor(
+            GetStickers(
                 sticker_type=sticker_type,
                 query=query,
                 limit=limit,
@@ -12591,7 +10767,7 @@ class API:
         )
 
     async def get_storage_statistics(
-        self, chat_limit: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> StorageStatistics:
         """
         Returns storage usage statistics. Can be called before authorization
@@ -12602,17 +10778,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.StorageStatistics`
         """
 
-        _constructor = GetStorageStatistics.construct if skip_validation else GetStorageStatistics
-
         return await self.client.request(
-            _constructor(
+            GetStorageStatistics(
                 chat_limit=chat_limit,
             ),
             request_id=request_id,
@@ -12639,8 +10811,7 @@ class API:
         only_local: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Story:
         """
         Returns a story
@@ -12655,17 +10826,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Story`
         """
 
-        _constructor = GetStory.construct if skip_validation else GetStory
-
         return await self.client.request(
-            _constructor(
+            GetStory(
                 story_sender_chat_id=story_sender_chat_id,
                 story_id=story_id,
                 only_local=only_local,
@@ -12675,7 +10842,7 @@ class API:
         )
 
     async def get_story_available_reactions(
-        self, row_size: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, row_size: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> AvailableReactions:
         """
         Returns reactions, which can be chosen for a story
@@ -12686,17 +10853,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.AvailableReactions`
         """
 
-        _constructor = GetStoryAvailableReactions.construct if skip_validation else GetStoryAvailableReactions
-
         return await self.client.request(
-            _constructor(
+            GetStoryAvailableReactions(
                 row_size=row_size,
             ),
             request_id=request_id,
@@ -12726,8 +10889,7 @@ class API:
         prefer_with_reaction: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> StoryViewers:
         """
         Returns viewers of a story. The method can be called if story.can_get_viewers == true
@@ -12748,17 +10910,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.StoryViewers`
         """
 
-        _constructor = GetStoryViewers.construct if skip_validation else GetStoryViewers
-
         return await self.client.request(
-            _constructor(
+            GetStoryViewers(
                 story_id=story_id,
                 offset=offset,
                 limit=limit,
@@ -12771,13 +10929,7 @@ class API:
         )
 
     async def get_suggested_file_name(
-        self,
-        file_id: Int32,
-        directory: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, file_id: Int32, directory: String, *, request_id: str = None, request_timeout: int = None
     ) -> Text:
         """
         Returns suggested name for saving a file in a given directory
@@ -12790,17 +10942,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = GetSuggestedFileName.construct if skip_validation else GetSuggestedFileName
-
         return await self.client.request(
-            _constructor(
+            GetSuggestedFileName(
                 file_id=file_id,
                 directory=directory,
             ),
@@ -12809,7 +10957,7 @@ class API:
         )
 
     async def get_suggested_sticker_set_name(
-        self, title: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, title: String, *, request_id: str = None, request_timeout: int = None
     ) -> Text:
         """
         Returns a suggested name for a new sticker set with a given title
@@ -12820,17 +10968,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = GetSuggestedStickerSetName.construct if skip_validation else GetSuggestedStickerSetName
-
         return await self.client.request(
-            _constructor(
+            GetSuggestedStickerSetName(
                 title=title,
             ),
             request_id=request_id,
@@ -12849,12 +10993,7 @@ class API:
         )
 
     async def get_supergroup(
-        self,
-        supergroup_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Supergroup:
         """
         Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot
@@ -12865,17 +11004,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Supergroup`
         """
 
-        _constructor = GetSupergroup.construct if skip_validation else GetSupergroup
-
         return await self.client.request(
-            _constructor(
+            GetSupergroup(
                 supergroup_id=supergroup_id,
             ),
             request_id=request_id,
@@ -12883,12 +11018,7 @@ class API:
         )
 
     async def get_supergroup_full_info(
-        self,
-        supergroup_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> SupergroupFullInfo:
         """
         Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
@@ -12899,17 +11029,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.SupergroupFullInfo`
         """
 
-        _constructor = GetSupergroupFullInfo.construct if skip_validation else GetSupergroupFullInfo
-
         return await self.client.request(
-            _constructor(
+            GetSupergroupFullInfo(
                 supergroup_id=supergroup_id,
             ),
             request_id=request_id,
@@ -12924,8 +11050,7 @@ class API:
         filter_: typing.Optional[SupergroupMembersFilter] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> ChatMembers:
         """
         Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
@@ -12942,17 +11067,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatMembers`
         """
 
-        _constructor = GetSupergroupMembers.construct if skip_validation else GetSupergroupMembers
-
         return await self.client.request(
-            _constructor(
+            GetSupergroupMembers(
                 supergroup_id=supergroup_id,
                 offset=offset,
                 limit=limit,
@@ -12998,7 +11119,7 @@ class API:
         )
 
     async def get_text_entities(
-        self, text: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, text: String, *, request_id: str = None, request_timeout: int = None
     ) -> TextEntities:
         """
         Returns all entities (mentions, hashtags, cashtags, bot commands, bank card numbers, URLs, and email addresses) found in the text. Can be called synchronously
@@ -13009,17 +11130,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.TextEntities`
         """
 
-        _constructor = GetTextEntities.construct if skip_validation else GetTextEntities
-
         return await self.client.request(
-            _constructor(
+            GetTextEntities(
                 text=text,
             ),
             request_id=request_id,
@@ -13027,12 +11144,7 @@ class API:
         )
 
     async def get_theme_parameters_json_string(
-        self,
-        theme: ThemeParameters,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, theme: ThemeParameters, *, request_id: str = None, request_timeout: int = None
     ) -> Text:
         """
         Converts a themeParameters object to corresponding JSON-serialized string. Can be called synchronously
@@ -13043,17 +11155,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = GetThemeParametersJsonString.construct if skip_validation else GetThemeParametersJsonString
-
         return await self.client.request(
-            _constructor(
+            GetThemeParametersJsonString(
                 theme=theme,
             ),
             request_id=request_id,
@@ -13072,13 +11180,7 @@ class API:
         )
 
     async def get_top_chats(
-        self,
-        category: TopChatCategory,
-        limit: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, category: TopChatCategory, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Chats:
         """
         Returns a list of frequently used chats
@@ -13091,17 +11193,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chats`
         """
 
-        _constructor = GetTopChats.construct if skip_validation else GetTopChats
-
         return await self.client.request(
-            _constructor(
+            GetTopChats(
                 category=category,
                 limit=limit,
             ),
@@ -13116,8 +11214,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> TrendingStickerSets:
         """
         Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
@@ -13132,17 +11229,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.TrendingStickerSets`
         """
 
-        _constructor = GetTrendingStickerSets.construct if skip_validation else GetTrendingStickerSets
-
         return await self.client.request(
-            _constructor(
+            GetTrendingStickerSets(
                 sticker_type=sticker_type,
                 offset=offset,
                 limit=limit,
@@ -13151,9 +11244,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_user(
-        self, user_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> User:
+    async def get_user(self, user_id: Int53, *, request_id: str = None, request_timeout: int = None) -> User:
         """
         Returns information about a user by their identifier. This is an offline request if the current user is not a bot
 
@@ -13163,17 +11254,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.User`
         """
 
-        _constructor = GetUser.construct if skip_validation else GetUser
-
         return await self.client.request(
-            _constructor(
+            GetUser(
                 user_id=user_id,
             ),
             request_id=request_id,
@@ -13181,7 +11268,7 @@ class API:
         )
 
     async def get_user_full_info(
-        self, user_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, user_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> UserFullInfo:
         """
         Returns full information about a user by their identifier
@@ -13192,17 +11279,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.UserFullInfo`
         """
 
-        _constructor = GetUserFullInfo.construct if skip_validation else GetUserFullInfo
-
         return await self.client.request(
-            _constructor(
+            GetUserFullInfo(
                 user_id=user_id,
             ),
             request_id=request_id,
@@ -13221,12 +11304,7 @@ class API:
         )
 
     async def get_user_privacy_setting_rules(
-        self,
-        setting: UserPrivacySetting,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, setting: UserPrivacySetting, *, request_id: str = None, request_timeout: int = None
     ) -> UserPrivacySettingRules:
         """
         Returns the current privacy settings
@@ -13237,17 +11315,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.UserPrivacySettingRules`
         """
 
-        _constructor = GetUserPrivacySettingRules.construct if skip_validation else GetUserPrivacySettingRules
-
         return await self.client.request(
-            _constructor(
+            GetUserPrivacySettingRules(
                 setting=setting,
             ),
             request_id=request_id,
@@ -13255,14 +11329,7 @@ class API:
         )
 
     async def get_user_profile_photos(
-        self,
-        user_id: Int53,
-        offset: Int32,
-        limit: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, user_id: Int53, offset: Int32, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> ChatPhotos:
         """
         Returns the profile photos of a user. Personal and public photo aren't returned
@@ -13277,17 +11344,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatPhotos`
         """
 
-        _constructor = GetUserProfilePhotos.construct if skip_validation else GetUserProfilePhotos
-
         return await self.client.request(
-            _constructor(
+            GetUserProfilePhotos(
                 user_id=user_id,
                 offset=offset,
                 limit=limit,
@@ -13297,7 +11360,7 @@ class API:
         )
 
     async def get_user_support_info(
-        self, user_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, user_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> UserSupportInfo:
         """
         Returns support information for the given user; for Telegram support only
@@ -13308,17 +11371,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.UserSupportInfo`
         """
 
-        _constructor = GetUserSupportInfo.construct if skip_validation else GetUserSupportInfo
-
         return await self.client.request(
-            _constructor(
+            GetUserSupportInfo(
                 user_id=user_id,
             ),
             request_id=request_id,
@@ -13326,7 +11385,7 @@ class API:
         )
 
     async def get_video_chat_available_participants(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> MessageSenders:
         """
         Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
@@ -13337,19 +11396,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.MessageSenders`
         """
 
-        _constructor = (
-            GetVideoChatAvailableParticipants.construct if skip_validation else GetVideoChatAvailableParticipants
-        )
-
         return await self.client.request(
-            _constructor(
+            GetVideoChatAvailableParticipants(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -13357,7 +11410,7 @@ class API:
         )
 
     async def get_video_chat_rtmp_url(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> RtmpUrl:
         """
         Returns RTMP URL for streaming to the chat; requires creator privileges
@@ -13368,17 +11421,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.RtmpUrl`
         """
 
-        _constructor = GetVideoChatRtmpUrl.construct if skip_validation else GetVideoChatRtmpUrl
-
         return await self.client.request(
-            _constructor(
+            GetVideoChatRtmpUrl(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -13396,8 +11445,7 @@ class API:
         theme: typing.Optional[ThemeParameters] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> HttpUrl:
         """
         Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
@@ -13420,17 +11468,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
 
-        _constructor = GetWebAppLinkUrl.construct if skip_validation else GetWebAppLinkUrl
-
         return await self.client.request(
-            _constructor(
+            GetWebAppLinkUrl(
                 bot_user_id=bot_user_id,
                 web_app_short_name=web_app_short_name,
                 start_parameter=start_parameter,
@@ -13451,8 +11495,7 @@ class API:
         theme: typing.Optional[ThemeParameters] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> HttpUrl:
         """
         Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
@@ -13469,17 +11512,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.HttpUrl`
         """
 
-        _constructor = GetWebAppUrl.construct if skip_validation else GetWebAppUrl
-
         return await self.client.request(
-            _constructor(
+            GetWebAppUrl(
                 bot_user_id=bot_user_id,
                 url=url,
                 application_name=application_name,
@@ -13490,13 +11529,7 @@ class API:
         )
 
     async def get_web_page_instant_view(
-        self,
-        url: String,
-        force_full: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, url: String, force_full: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> WebPageInstantView:
         """
         Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
@@ -13509,17 +11542,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.WebPageInstantView`
         """
 
-        _constructor = GetWebPageInstantView.construct if skip_validation else GetWebPageInstantView
-
         return await self.client.request(
-            _constructor(
+            GetWebPageInstantView(
                 url=url,
                 force_full=force_full,
             ),
@@ -13528,7 +11557,7 @@ class API:
         )
 
     async def get_web_page_preview(
-        self, text: FormattedText, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, text: FormattedText, *, request_id: str = None, request_timeout: int = None
     ) -> WebPage:
         """
         Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview
@@ -13539,17 +11568,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.WebPage`
         """
 
-        _constructor = GetWebPagePreview.construct if skip_validation else GetWebPagePreview
-
         return await self.client.request(
-            _constructor(
+            GetWebPagePreview(
                 text=text,
             ),
             request_id=request_id,
@@ -13557,12 +11582,7 @@ class API:
         )
 
     async def hide_suggested_action(
-        self,
-        action: SuggestedAction,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, action: SuggestedAction, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Hides a suggested action
@@ -13573,17 +11593,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = HideSuggestedAction.construct if skip_validation else HideSuggestedAction
-
         return await self.client.request(
-            _constructor(
+            HideSuggestedAction(
                 action=action,
             ),
             request_id=request_id,
@@ -13591,12 +11607,7 @@ class API:
         )
 
     async def import_contacts(
-        self,
-        contacts: Vector[Contact],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, contacts: Vector[Contact], *, request_id: str = None, request_timeout: int = None
     ) -> ImportedContacts:
         """
         Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored
@@ -13607,17 +11618,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ImportedContacts`
         """
 
-        _constructor = ImportContacts.construct if skip_validation else ImportContacts
-
         return await self.client.request(
-            _constructor(
+            ImportContacts(
                 contacts=contacts,
             ),
             request_id=request_id,
@@ -13631,8 +11638,7 @@ class API:
         attached_files: Vector[InputFile],
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Imports messages exported from another app
@@ -13647,17 +11653,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ImportMessages.construct if skip_validation else ImportMessages
-
         return await self.client.request(
-            _constructor(
+            ImportMessages(
                 chat_id=chat_id,
                 message_file=message_file,
                 attached_files=attached_files,
@@ -13667,13 +11669,7 @@ class API:
         )
 
     async def invite_group_call_participants(
-        self,
-        group_call_id: Int32,
-        user_ids: Vector[Int53],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, group_call_id: Int32, user_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
@@ -13686,17 +11682,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = InviteGroupCallParticipants.construct if skip_validation else InviteGroupCallParticipants
-
         return await self.client.request(
-            _constructor(
+            InviteGroupCallParticipants(
                 group_call_id=group_call_id,
                 user_ids=user_ids,
             ),
@@ -13704,9 +11696,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def join_chat(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def join_chat(self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Adds the current user as a new member to a chat. Private and secret chats can't be joined using this method. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
 
@@ -13716,17 +11706,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = JoinChat.construct if skip_validation else JoinChat
-
         return await self.client.request(
-            _constructor(
+            JoinChat(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -13734,7 +11720,7 @@ class API:
         )
 
     async def join_chat_by_invite_link(
-        self, invite_link: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, invite_link: String, *, request_id: str = None, request_timeout: int = None
     ) -> Chat:
         """
         Uses an invite link to add the current user to the chat if possible. May return an error with a message "INVITE_REQUEST_SENT" if only a join request was created
@@ -13745,17 +11731,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chat`
         """
 
-        _constructor = JoinChatByInviteLink.construct if skip_validation else JoinChatByInviteLink
-
         return await self.client.request(
-            _constructor(
+            JoinChatByInviteLink(
                 invite_link=invite_link,
             ),
             request_id=request_id,
@@ -13773,8 +11755,7 @@ class API:
         participant_id: typing.Optional[MessageSender] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Text:
         """
         Joins an active group call. Returns join response payload for tgcalls
@@ -13797,17 +11778,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = JoinGroupCall.construct if skip_validation else JoinGroupCall
-
         return await self.client.request(
-            _constructor(
+            JoinGroupCall(
                 group_call_id=group_call_id,
                 audio_source_id=audio_source_id,
                 payload=payload,
@@ -13820,9 +11797,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def leave_chat(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def leave_chat(self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Removes the current user from chat members. Private and secret chats can't be left using this method
 
@@ -13832,17 +11807,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = LeaveChat.construct if skip_validation else LeaveChat
-
         return await self.client.request(
-            _constructor(
+            LeaveChat(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -13850,12 +11821,7 @@ class API:
         )
 
     async def leave_group_call(
-        self,
-        group_call_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, group_call_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Leaves a group call
@@ -13866,17 +11832,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = LeaveGroupCall.construct if skip_validation else LeaveGroupCall
-
         return await self.client.request(
-            _constructor(
+            LeaveGroupCall(
                 group_call_id=group_call_id,
             ),
             request_id=request_id,
@@ -13884,12 +11846,7 @@ class API:
         )
 
     async def load_active_stories(
-        self,
-        story_list: StoryList,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, story_list: StoryList, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Loads more active stories from a story list. The loaded stories will be sent through updates. Active stories are sorted by the pair (active_stories.order, active_stories.story_sender_chat_id) in descending order. Returns a 404 error if all active stories have been loaded
@@ -13900,17 +11857,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = LoadActiveStories.construct if skip_validation else LoadActiveStories
-
         return await self.client.request(
-            _constructor(
+            LoadActiveStories(
                 story_list=story_list,
             ),
             request_id=request_id,
@@ -13923,8 +11876,7 @@ class API:
         chat_list: typing.Optional[ChatList] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
@@ -13937,17 +11889,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = LoadChats.construct if skip_validation else LoadChats
-
         return await self.client.request(
-            _constructor(
+            LoadChats(
                 limit=limit,
                 chat_list=chat_list,
             ),
@@ -13956,13 +11904,7 @@ class API:
         )
 
     async def load_group_call_participants(
-        self,
-        group_call_id: Int32,
-        limit: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, group_call_id: Int32, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Loads more participants of a group call. The loaded participants will be received through updates. Use the field groupCall.loaded_all_participants to check whether all participants have already been loaded
@@ -13975,17 +11917,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = LoadGroupCallParticipants.construct if skip_validation else LoadGroupCallParticipants
-
         return await self.client.request(
-            _constructor(
+            LoadGroupCallParticipants(
                 group_call_id=group_call_id,
                 limit=limit,
             ),
@@ -14004,9 +11942,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def open_chat(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def open_chat(self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats)
 
@@ -14016,17 +11952,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = OpenChat.construct if skip_validation else OpenChat
-
         return await self.client.request(
-            _constructor(
+            OpenChat(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -14034,13 +11966,7 @@ class API:
         )
 
     async def open_message_content(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed
@@ -14053,17 +11979,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = OpenMessageContent.construct if skip_validation else OpenMessageContent
-
         return await self.client.request(
-            _constructor(
+            OpenMessageContent(
                 chat_id=chat_id,
                 message_id=message_id,
             ),
@@ -14072,13 +11994,7 @@ class API:
         )
 
     async def open_story(
-        self,
-        story_sender_chat_id: Int53,
-        story_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, story_sender_chat_id: Int53, story_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Informs TDLib that a story is opened and is being viewed by the user
@@ -14091,17 +12007,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = OpenStory.construct if skip_validation else OpenStory
-
         return await self.client.request(
-            _constructor(
+            OpenStory(
                 story_sender_chat_id=story_sender_chat_id,
                 story_id=story_id,
             ),
@@ -14120,8 +12032,7 @@ class API:
         reply_to: typing.Optional[MessageReplyTo] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> WebAppInfo:
         """
         Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
@@ -14144,17 +12055,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.WebAppInfo`
         """
 
-        _constructor = OpenWebApp.construct if skip_validation else OpenWebApp
-
         return await self.client.request(
-            _constructor(
+            OpenWebApp(
                 chat_id=chat_id,
                 bot_user_id=bot_user_id,
                 url=url,
@@ -14180,8 +12087,7 @@ class API:
         return_deleted_file_statistics: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> StorageStatistics:
         """
         Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
@@ -14208,17 +12114,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.StorageStatistics`
         """
 
-        _constructor = OptimizeStorage.construct if skip_validation else OptimizeStorage
-
         return await self.client.request(
-            _constructor(
+            OptimizeStorage(
                 size=size,
                 ttl=ttl,
                 count=count,
@@ -14234,7 +12136,7 @@ class API:
         )
 
     async def parse_markdown(
-        self, text: FormattedText, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, text: FormattedText, *, request_id: str = None, request_timeout: int = None
     ) -> FormattedText:
         """
         Parses Markdown entities in a human-friendly format, ignoring markup errors. Can be called synchronously
@@ -14245,17 +12147,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FormattedText`
         """
 
-        _constructor = ParseMarkdown.construct if skip_validation else ParseMarkdown
-
         return await self.client.request(
-            _constructor(
+            ParseMarkdown(
                 text=text,
             ),
             request_id=request_id,
@@ -14263,13 +12161,7 @@ class API:
         )
 
     async def parse_text_entities(
-        self,
-        text: String,
-        parse_mode: TextParseMode,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, text: String, parse_mode: TextParseMode, *, request_id: str = None, request_timeout: int = None
     ) -> FormattedText:
         """
         Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
@@ -14282,17 +12174,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FormattedText`
         """
 
-        _constructor = ParseTextEntities.construct if skip_validation else ParseTextEntities
-
         return await self.client.request(
-            _constructor(
+            ParseTextEntities(
                 text=text,
                 parse_mode=parse_mode,
             ),
@@ -14308,8 +12196,7 @@ class API:
         only_for_self: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
@@ -14326,17 +12213,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = PinChatMessage.construct if skip_validation else PinChatMessage
-
         return await self.client.request(
-            _constructor(
+            PinChatMessage(
                 chat_id=chat_id,
                 message_id=message_id,
                 disable_notification=disable_notification,
@@ -14346,9 +12229,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def ping_proxy(
-        self, proxy_id: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Seconds:
+    async def ping_proxy(self, proxy_id: Int32, *, request_id: str = None, request_timeout: int = None) -> Seconds:
         """
         Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
 
@@ -14358,17 +12239,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Seconds`
         """
 
-        _constructor = PingProxy.construct if skip_validation else PingProxy
-
         return await self.client.request(
-            _constructor(
+            PingProxy(
                 proxy_id=proxy_id,
             ),
             request_id=request_id,
@@ -14382,8 +12259,7 @@ class API:
         file_type: typing.Optional[FileType] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> File:
         """
         Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
@@ -14398,17 +12274,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.File`
         """
 
-        _constructor = PreliminaryUploadFile.construct if skip_validation else PreliminaryUploadFile
-
         return await self.client.request(
-            _constructor(
+            PreliminaryUploadFile(
                 file=file,
                 priority=priority,
                 file_type=file_type,
@@ -14423,8 +12295,7 @@ class API:
         added_chat_ids: Vector[Int53],
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Process new chats added to a shareable chat folder by its owner
@@ -14437,17 +12308,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ProcessChatFolderNewChats.construct if skip_validation else ProcessChatFolderNewChats
-
         return await self.client.request(
-            _constructor(
+            ProcessChatFolderNewChats(
                 chat_folder_id=chat_folder_id,
                 added_chat_ids=added_chat_ids,
             ),
@@ -14462,8 +12329,7 @@ class API:
         approve: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Handles a pending join request in a chat
@@ -14478,17 +12344,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ProcessChatJoinRequest.construct if skip_validation else ProcessChatJoinRequest
-
         return await self.client.request(
-            _constructor(
+            ProcessChatJoinRequest(
                 chat_id=chat_id,
                 user_id=user_id,
                 approve=approve,
@@ -14504,8 +12366,7 @@ class API:
         approve: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Handles all pending join requests for a given link in a chat
@@ -14520,17 +12381,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ProcessChatJoinRequests.construct if skip_validation else ProcessChatJoinRequests
-
         return await self.client.request(
-            _constructor(
+            ProcessChatJoinRequests(
                 chat_id=chat_id,
                 invite_link=invite_link,
                 approve=approve,
@@ -14540,7 +12397,7 @@ class API:
         )
 
     async def process_push_notification(
-        self, payload: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, payload: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Handles a push notification. Returns error with code 406 if the push notification is not supported and connection to the server is required to fetch new data. Can be called before authorization
@@ -14551,17 +12408,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ProcessPushNotification.construct if skip_validation else ProcessPushNotification
-
         return await self.client.request(
-            _constructor(
+            ProcessPushNotification(
                 payload=payload,
             ),
             request_id=request_id,
@@ -14575,8 +12428,7 @@ class API:
         is_good: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Rates recognized speech in a video note or a voice note message
@@ -14591,17 +12443,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RateSpeechRecognition.construct if skip_validation else RateSpeechRecognition
-
         return await self.client.request(
-            _constructor(
+            RateSpeechRecognition(
                 chat_id=chat_id,
                 message_id=message_id,
                 is_good=is_good,
@@ -14611,7 +12459,7 @@ class API:
         )
 
     async def read_all_chat_mentions(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Marks all mentions in a chat as read
@@ -14622,17 +12470,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ReadAllChatMentions.construct if skip_validation else ReadAllChatMentions
-
         return await self.client.request(
-            _constructor(
+            ReadAllChatMentions(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -14640,7 +12484,7 @@ class API:
         )
 
     async def read_all_chat_reactions(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Marks all reactions in a chat or a forum topic as read
@@ -14651,17 +12495,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ReadAllChatReactions.construct if skip_validation else ReadAllChatReactions
-
         return await self.client.request(
-            _constructor(
+            ReadAllChatReactions(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -14669,13 +12509,7 @@ class API:
         )
 
     async def read_all_message_thread_mentions(
-        self,
-        chat_id: Int53,
-        message_thread_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_thread_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Marks all mentions in a forum topic as read
@@ -14688,17 +12522,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ReadAllMessageThreadMentions.construct if skip_validation else ReadAllMessageThreadMentions
-
         return await self.client.request(
-            _constructor(
+            ReadAllMessageThreadMentions(
                 chat_id=chat_id,
                 message_thread_id=message_thread_id,
             ),
@@ -14707,13 +12537,7 @@ class API:
         )
 
     async def read_all_message_thread_reactions(
-        self,
-        chat_id: Int53,
-        message_thread_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_thread_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Marks all reactions in a forum topic as read
@@ -14726,17 +12550,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ReadAllMessageThreadReactions.construct if skip_validation else ReadAllMessageThreadReactions
-
         return await self.client.request(
-            _constructor(
+            ReadAllMessageThreadReactions(
                 chat_id=chat_id,
                 message_thread_id=message_thread_id,
             ),
@@ -14744,9 +12564,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def read_chat_list(
-        self, chat_list: ChatList, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def read_chat_list(self, chat_list: ChatList, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Traverse all chats in a chat list and marks all messages in the chats as read
 
@@ -14756,17 +12574,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ReadChatList.construct if skip_validation else ReadChatList
-
         return await self.client.request(
-            _constructor(
+            ReadChatList(
                 chat_list=chat_list,
             ),
             request_id=request_id,
@@ -14774,14 +12588,7 @@ class API:
         )
 
     async def read_file_part(
-        self,
-        file_id: Int32,
-        offset: Int53,
-        count: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, file_id: Int32, offset: Int53, count: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> FilePart:
         """
         Reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct read from the file
@@ -14796,17 +12603,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FilePart`
         """
 
-        _constructor = ReadFilePart.construct if skip_validation else ReadFilePart
-
         return await self.client.request(
-            _constructor(
+            ReadFilePart(
                 file_id=file_id,
                 offset=offset,
                 count=count,
@@ -14816,13 +12619,7 @@ class API:
         )
 
     async def recognize_speech(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
@@ -14835,17 +12632,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RecognizeSpeech.construct if skip_validation else RecognizeSpeech
-
         return await self.client.request(
-            _constructor(
+            RecognizeSpeech(
                 chat_id=chat_id,
                 message_id=message_id,
             ),
@@ -14860,8 +12653,7 @@ class API:
         new_hint: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Recovers the 2-step verification password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
@@ -14876,17 +12668,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RecoverAuthenticationPassword.construct if skip_validation else RecoverAuthenticationPassword
-
         return await self.client.request(
-            _constructor(
+            RecoverAuthenticationPassword(
                 recovery_code=recovery_code,
                 new_password=new_password,
                 new_hint=new_hint,
@@ -14902,8 +12690,7 @@ class API:
         new_hint: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> PasswordState:
         """
         Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
@@ -14918,17 +12705,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PasswordState`
         """
 
-        _constructor = RecoverPassword.construct if skip_validation else RecoverPassword
-
         return await self.client.request(
-            _constructor(
+            RecoverPassword(
                 recovery_code=recovery_code,
                 new_password=new_password,
                 new_hint=new_hint,
@@ -14943,8 +12726,7 @@ class API:
         other_user_ids: Vector[Int53],
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> PushReceiverId:
         """
         Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
@@ -14957,17 +12739,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PushReceiverId`
         """
 
-        _constructor = RegisterDevice.construct if skip_validation else RegisterDevice
-
         return await self.client.request(
-            _constructor(
+            RegisterDevice(
                 device_token=device_token,
                 other_user_ids=other_user_ids,
             ),
@@ -14976,13 +12754,7 @@ class API:
         )
 
     async def register_user(
-        self,
-        first_name: String,
-        last_name: String = "",
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, first_name: String, last_name: String = "", *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
@@ -14995,17 +12767,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RegisterUser.construct if skip_validation else RegisterUser
-
         return await self.client.request(
-            _constructor(
+            RegisterUser(
                 first_name=first_name,
                 last_name=last_name,
             ),
@@ -15020,8 +12788,7 @@ class API:
         delete_from_cache: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Removes all files from the file download list
@@ -15036,17 +12803,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveAllFilesFromDownloads.construct if skip_validation else RemoveAllFilesFromDownloads
-
         return await self.client.request(
-            _constructor(
+            RemoveAllFilesFromDownloads(
                 only_active=only_active,
                 only_completed=only_completed,
                 delete_from_cache=delete_from_cache,
@@ -15056,12 +12819,7 @@ class API:
         )
 
     async def remove_background(
-        self,
-        background_id: Int64,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, background_id: Int64, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes background from the list of installed backgrounds
@@ -15072,17 +12830,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveBackground.construct if skip_validation else RemoveBackground
-
         return await self.client.request(
-            _constructor(
+            RemoveBackground(
                 background_id=background_id,
             ),
             request_id=request_id,
@@ -15090,7 +12844,7 @@ class API:
         )
 
     async def remove_chat_action_bar(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes a chat action bar without any other action
@@ -15101,17 +12855,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveChatActionBar.construct if skip_validation else RemoveChatActionBar
-
         return await self.client.request(
-            _constructor(
+            RemoveChatActionBar(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -15119,12 +12869,7 @@ class API:
         )
 
     async def remove_contacts(
-        self,
-        user_ids: Vector[Int53],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, user_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes users from the contact list
@@ -15135,17 +12880,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveContacts.construct if skip_validation else RemoveContacts
-
         return await self.client.request(
-            _constructor(
+            RemoveContacts(
                 user_ids=user_ids,
             ),
             request_id=request_id,
@@ -15153,7 +12894,7 @@ class API:
         )
 
     async def remove_favorite_sticker(
-        self, sticker: InputFile, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, sticker: InputFile, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes a sticker from the list of favorite stickers
@@ -15164,17 +12905,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveFavoriteSticker.construct if skip_validation else RemoveFavoriteSticker
-
         return await self.client.request(
-            _constructor(
+            RemoveFavoriteSticker(
                 sticker=sticker,
             ),
             request_id=request_id,
@@ -15182,13 +12919,7 @@ class API:
         )
 
     async def remove_file_from_downloads(
-        self,
-        file_id: Int32,
-        delete_from_cache: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, file_id: Int32, delete_from_cache: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes a file from the file download list
@@ -15201,17 +12932,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveFileFromDownloads.construct if skip_validation else RemoveFileFromDownloads
-
         return await self.client.request(
-            _constructor(
+            RemoveFileFromDownloads(
                 file_id=file_id,
                 delete_from_cache=delete_from_cache,
             ),
@@ -15226,8 +12953,7 @@ class API:
         reaction_type: ReactionType,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Removes a reaction from a message. A chosen reaction can always be removed
@@ -15242,17 +12968,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveMessageReaction.construct if skip_validation else RemoveMessageReaction
-
         return await self.client.request(
-            _constructor(
+            RemoveMessageReaction(
                 chat_id=chat_id,
                 message_id=message_id,
                 reaction_type=reaction_type,
@@ -15267,8 +12989,7 @@ class API:
         notification_id: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user
@@ -15281,17 +13002,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveNotification.construct if skip_validation else RemoveNotification
-
         return await self.client.request(
-            _constructor(
+            RemoveNotification(
                 notification_group_id=notification_group_id,
                 notification_id=notification_id,
             ),
@@ -15305,8 +13022,7 @@ class API:
         max_notification_id: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user
@@ -15319,17 +13035,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveNotificationGroup.construct if skip_validation else RemoveNotificationGroup
-
         return await self.client.request(
-            _constructor(
+            RemoveNotificationGroup(
                 notification_group_id=notification_group_id,
                 max_notification_id=max_notification_id,
             ),
@@ -15337,9 +13049,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def remove_proxy(
-        self, proxy_id: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def remove_proxy(self, proxy_id: Int32, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Removes a proxy server. Can be called before authorization
 
@@ -15349,17 +13059,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveProxy.construct if skip_validation else RemoveProxy
-
         return await self.client.request(
-            _constructor(
+            RemoveProxy(
                 proxy_id=proxy_id,
             ),
             request_id=request_id,
@@ -15367,7 +13073,7 @@ class API:
         )
 
     async def remove_recent_hashtag(
-        self, hashtag: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, hashtag: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes a hashtag from the list of recently used hashtags
@@ -15378,17 +13084,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveRecentHashtag.construct if skip_validation else RemoveRecentHashtag
-
         return await self.client.request(
-            _constructor(
+            RemoveRecentHashtag(
                 hashtag=hashtag,
             ),
             request_id=request_id,
@@ -15396,13 +13098,7 @@ class API:
         )
 
     async def remove_recent_sticker(
-        self,
-        sticker: InputFile,
-        is_attached: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, sticker: InputFile, is_attached: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes a sticker from the list of recently used stickers
@@ -15415,17 +13111,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveRecentSticker.construct if skip_validation else RemoveRecentSticker
-
         return await self.client.request(
-            _constructor(
+            RemoveRecentSticker(
                 sticker=sticker,
                 is_attached=is_attached,
             ),
@@ -15434,7 +13126,7 @@ class API:
         )
 
     async def remove_recently_found_chat(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes a chat from the list of recently found chats
@@ -15445,17 +13137,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveRecentlyFoundChat.construct if skip_validation else RemoveRecentlyFoundChat
-
         return await self.client.request(
-            _constructor(
+            RemoveRecentlyFoundChat(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -15463,12 +13151,7 @@ class API:
         )
 
     async def remove_saved_animation(
-        self,
-        animation: InputFile,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, animation: InputFile, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes an animation from the list of saved animations
@@ -15479,17 +13162,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveSavedAnimation.construct if skip_validation else RemoveSavedAnimation
-
         return await self.client.request(
-            _constructor(
+            RemoveSavedAnimation(
                 animation=animation,
             ),
             request_id=request_id,
@@ -15497,12 +13176,7 @@ class API:
         )
 
     async def remove_saved_notification_sound(
-        self,
-        notification_sound_id: Int64,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, notification_sound_id: Int64, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes a notification sound from the list of saved notification sounds
@@ -15513,17 +13187,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveSavedNotificationSound.construct if skip_validation else RemoveSavedNotificationSound
-
         return await self.client.request(
-            _constructor(
+            RemoveSavedNotificationSound(
                 notification_sound_id=notification_sound_id,
             ),
             request_id=request_id,
@@ -15531,7 +13201,7 @@ class API:
         )
 
     async def remove_sticker_from_set(
-        self, sticker: InputFile, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, sticker: InputFile, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot
@@ -15542,17 +13212,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveStickerFromSet.construct if skip_validation else RemoveStickerFromSet
-
         return await self.client.request(
-            _constructor(
+            RemoveStickerFromSet(
                 sticker=sticker,
             ),
             request_id=request_id,
@@ -15560,13 +13226,7 @@ class API:
         )
 
     async def remove_top_chat(
-        self,
-        category: TopChatCategory,
-        chat_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, category: TopChatCategory, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled
@@ -15579,17 +13239,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RemoveTopChat.construct if skip_validation else RemoveTopChat
-
         return await self.client.request(
-            _constructor(
+            RemoveTopChat(
                 category=category,
                 chat_id=chat_id,
             ),
@@ -15598,12 +13254,7 @@ class API:
         )
 
     async def reorder_active_usernames(
-        self,
-        usernames: Vector[String],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, usernames: Vector[String], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes order of active usernames of the current user
@@ -15614,17 +13265,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ReorderActiveUsernames.construct if skip_validation else ReorderActiveUsernames
-
         return await self.client.request(
-            _constructor(
+            ReorderActiveUsernames(
                 usernames=usernames,
             ),
             request_id=request_id,
@@ -15632,13 +13279,7 @@ class API:
         )
 
     async def reorder_bot_active_usernames(
-        self,
-        bot_user_id: Int53,
-        usernames: Vector[String],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, bot_user_id: Int53, usernames: Vector[String], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes order of active usernames of a bot. Can be called only if userTypeBot.can_be_edited == true
@@ -15651,17 +13292,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ReorderBotActiveUsernames.construct if skip_validation else ReorderBotActiveUsernames
-
         return await self.client.request(
-            _constructor(
+            ReorderBotActiveUsernames(
                 bot_user_id=bot_user_id,
                 usernames=usernames,
             ),
@@ -15675,8 +13312,7 @@ class API:
         main_chat_list_position: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the order of chat folders
@@ -15689,17 +13325,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ReorderChatFolders.construct if skip_validation else ReorderChatFolders
-
         return await self.client.request(
-            _constructor(
+            ReorderChatFolders(
                 chat_folder_ids=chat_folder_ids,
                 main_chat_list_position=main_chat_list_position,
             ),
@@ -15713,8 +13345,7 @@ class API:
         sticker_set_ids: Vector[Int64],
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the order of installed sticker sets
@@ -15727,17 +13358,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ReorderInstalledStickerSets.construct if skip_validation else ReorderInstalledStickerSets
-
         return await self.client.request(
-            _constructor(
+            ReorderInstalledStickerSets(
                 sticker_type=sticker_type,
                 sticker_set_ids=sticker_set_ids,
             ),
@@ -15746,13 +13373,7 @@ class API:
         )
 
     async def reorder_supergroup_active_usernames(
-        self,
-        supergroup_id: Int53,
-        usernames: Vector[String],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, usernames: Vector[String], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes order of active usernames of a supergroup or channel, requires owner privileges in the supergroup or channel
@@ -15765,19 +13386,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ReorderSupergroupActiveUsernames.construct if skip_validation else ReorderSupergroupActiveUsernames
-        )
-
         return await self.client.request(
-            _constructor(
+            ReorderSupergroupActiveUsernames(
                 supergroup_id=supergroup_id,
                 usernames=usernames,
             ),
@@ -15786,7 +13401,7 @@ class API:
         )
 
     async def replace_primary_chat_invite_link(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> ChatInviteLink:
         """
         Replaces current primary invite link for a chat with a new primary invite link. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
@@ -15797,17 +13412,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatInviteLink`
         """
 
-        _constructor = ReplacePrimaryChatInviteLink.construct if skip_validation else ReplacePrimaryChatInviteLink
-
         return await self.client.request(
-            _constructor(
+            ReplacePrimaryChatInviteLink(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -15815,7 +13426,7 @@ class API:
         )
 
     async def replace_video_chat_rtmp_url(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> RtmpUrl:
         """
         Replaces the current RTMP URL for streaming to the chat; requires creator privileges
@@ -15826,17 +13437,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.RtmpUrl`
         """
 
-        _constructor = ReplaceVideoChatRtmpUrl.construct if skip_validation else ReplaceVideoChatRtmpUrl
-
         return await self.client.request(
-            _constructor(
+            ReplaceVideoChatRtmpUrl(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -15851,8 +13458,7 @@ class API:
         text: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
@@ -15869,17 +13475,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ReportChat.construct if skip_validation else ReportChat
-
         return await self.client.request(
-            _constructor(
+            ReportChat(
                 chat_id=chat_id,
                 reason=reason,
                 message_ids=message_ids,
@@ -15897,8 +13499,7 @@ class API:
         text: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
@@ -15915,17 +13516,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ReportChatPhoto.construct if skip_validation else ReportChatPhoto
-
         return await self.client.request(
-            _constructor(
+            ReportChatPhoto(
                 chat_id=chat_id,
                 file_id=file_id,
                 reason=reason,
@@ -15942,8 +13539,7 @@ class API:
         sender_id: MessageSender,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
@@ -15958,17 +13554,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ReportMessageReactions.construct if skip_validation else ReportMessageReactions
-
         return await self.client.request(
-            _constructor(
+            ReportMessageReactions(
                 chat_id=chat_id,
                 message_id=message_id,
                 sender_id=sender_id,
@@ -15985,8 +13577,7 @@ class API:
         text: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Reports a story to the Telegram moderators
@@ -16003,17 +13594,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ReportStory.construct if skip_validation else ReportStory
-
         return await self.client.request(
-            _constructor(
+            ReportStory(
                 story_sender_chat_id=story_sender_chat_id,
                 story_id=story_id,
                 reason=reason,
@@ -16024,13 +13611,7 @@ class API:
         )
 
     async def report_supergroup_anti_spam_false_positive(
-        self,
-        supergroup_id: Int53,
-        message_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Reports a false deletion of a message by aggressive anti-spam checks; requires administrator rights in the supergroup. Can be called only for messages from chatEventMessageDeleted with can_report_anti_spam_false_positive == true
@@ -16043,21 +13624,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ReportSupergroupAntiSpamFalsePositive.construct
-            if skip_validation
-            else ReportSupergroupAntiSpamFalsePositive
-        )
-
         return await self.client.request(
-            _constructor(
+            ReportSupergroupAntiSpamFalsePositive(
                 supergroup_id=supergroup_id,
                 message_id=message_id,
             ),
@@ -16066,13 +13639,7 @@ class API:
         )
 
     async def report_supergroup_spam(
-        self,
-        supergroup_id: Int53,
-        message_ids: Vector[Int53],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, message_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Reports messages in a supergroup as spam; requires administrator rights in the supergroup
@@ -16085,17 +13652,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ReportSupergroupSpam.construct if skip_validation else ReportSupergroupSpam
-
         return await self.client.request(
-            _constructor(
+            ReportSupergroupSpam(
                 supergroup_id=supergroup_id,
                 message_ids=message_ids,
             ),
@@ -16130,12 +13693,7 @@ class API:
         )
 
     async def request_qr_code_authentication(
-        self,
-        other_user_ids: Vector[Int53],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, other_user_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
@@ -16146,17 +13704,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RequestQrCodeAuthentication.construct if skip_validation else RequestQrCodeAuthentication
-
         return await self.client.request(
-            _constructor(
+            RequestQrCodeAuthentication(
                 other_user_ids=other_user_ids,
             ),
             request_id=request_id,
@@ -16214,13 +13768,7 @@ class API:
         )
 
     async def resend_messages(
-        self,
-        chat_id: Int53,
-        message_ids: Vector[Int53],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Messages:
         """
         Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
@@ -16233,17 +13781,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Messages`
         """
 
-        _constructor = ResendMessages.construct if skip_validation else ResendMessages
-
         return await self.client.request(
-            _constructor(
+            ResendMessages(
                 chat_id=chat_id,
                 message_ids=message_ids,
             ),
@@ -16346,13 +13890,7 @@ class API:
         )
 
     async def revoke_chat_invite_link(
-        self,
-        chat_id: Int53,
-        invite_link: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, invite_link: String, *, request_id: str = None, request_timeout: int = None
     ) -> ChatInviteLinks:
         """
         Revokes invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links. If a primary link is revoked, then additionally to the revoked link returns new primary link
@@ -16365,17 +13903,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatInviteLinks`
         """
 
-        _constructor = RevokeChatInviteLink.construct if skip_validation else RevokeChatInviteLink
-
         return await self.client.request(
-            _constructor(
+            RevokeChatInviteLink(
                 chat_id=chat_id,
                 invite_link=invite_link,
             ),
@@ -16384,12 +13918,7 @@ class API:
         )
 
     async def revoke_group_call_invite_link(
-        self,
-        group_call_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, group_call_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Revokes invite link for a group call. Requires groupCall.can_be_managed group call flag
@@ -16400,17 +13929,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = RevokeGroupCallInviteLink.construct if skip_validation else RevokeGroupCallInviteLink
-
         return await self.client.request(
-            _constructor(
+            RevokeGroupCallInviteLink(
                 group_call_id=group_call_id,
             ),
             request_id=request_id,
@@ -16418,14 +13943,7 @@ class API:
         )
 
     async def save_application_log_event(
-        self,
-        type_: String,
-        chat_id: Int53,
-        data: JsonValue,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, type_: String, chat_id: Int53, data: JsonValue, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Saves application log event on the server. Can be called before authorization
@@ -16440,17 +13958,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SaveApplicationLogEvent.construct if skip_validation else SaveApplicationLogEvent
-
         return await self.client.request(
-            _constructor(
+            SaveApplicationLogEvent(
                 type=type_,
                 chat_id=chat_id,
                 data=data,
@@ -16460,7 +13974,7 @@ class API:
         )
 
     async def search_background(
-        self, name: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, name: String, *, request_id: str = None, request_timeout: int = None
     ) -> Background:
         """
         Searches for a background by its name
@@ -16471,17 +13985,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Background`
         """
 
-        _constructor = SearchBackground.construct if skip_validation else SearchBackground
-
         return await self.client.request(
-            _constructor(
+            SearchBackground(
                 name=name,
             ),
             request_id=request_id,
@@ -16495,8 +14005,7 @@ class API:
         only_missed: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> FoundMessages:
         """
         Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -16511,17 +14020,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FoundMessages`
         """
 
-        _constructor = SearchCallMessages.construct if skip_validation else SearchCallMessages
-
         return await self.client.request(
-            _constructor(
+            SearchCallMessages(
                 offset=offset,
                 limit=limit,
                 only_missed=only_missed,
@@ -16538,8 +14043,7 @@ class API:
         filter_: typing.Optional[ChatMembersFilter] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> ChatMembers:
         """
         Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels
@@ -16556,17 +14060,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatMembers`
         """
 
-        _constructor = SearchChatMembers.construct if skip_validation else SearchChatMembers
-
         return await self.client.request(
-            _constructor(
+            SearchChatMembers(
                 chat_id=chat_id,
                 query=query,
                 limit=limit,
@@ -16588,8 +14088,7 @@ class API:
         filter_: typing.Optional[SearchMessagesFilter] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> FoundChatMessages:
         """
         Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and message_thread_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
@@ -16614,17 +14113,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FoundChatMessages`
         """
 
-        _constructor = SearchChatMessages.construct if skip_validation else SearchChatMessages
-
         return await self.client.request(
-            _constructor(
+            SearchChatMessages(
                 chat_id=chat_id,
                 query=query,
                 from_message_id=from_message_id,
@@ -16639,13 +14134,7 @@ class API:
         )
 
     async def search_chat_recent_location_messages(
-        self,
-        chat_id: Int53,
-        limit: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Messages:
         """
         Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
@@ -16658,19 +14147,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Messages`
         """
 
-        _constructor = (
-            SearchChatRecentLocationMessages.construct if skip_validation else SearchChatRecentLocationMessages
-        )
-
         return await self.client.request(
-            _constructor(
+            SearchChatRecentLocationMessages(
                 chat_id=chat_id,
                 limit=limit,
             ),
@@ -16679,13 +14162,7 @@ class API:
         )
 
     async def search_chats(
-        self,
-        query: String,
-        limit: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, query: String, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Chats:
         """
         Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main chat list
@@ -16698,17 +14175,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chats`
         """
 
-        _constructor = SearchChats.construct if skip_validation else SearchChats
-
         return await self.client.request(
-            _constructor(
+            SearchChats(
                 query=query,
                 limit=limit,
             ),
@@ -16717,7 +14190,7 @@ class API:
         )
 
     async def search_chats_nearby(
-        self, location: Location, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, location: Location, *, request_id: str = None, request_timeout: int = None
     ) -> ChatsNearby:
         """
         Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats
@@ -16728,17 +14201,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ChatsNearby`
         """
 
-        _constructor = SearchChatsNearby.construct if skip_validation else SearchChatsNearby
-
         return await self.client.request(
-            _constructor(
+            SearchChatsNearby(
                 location=location,
             ),
             request_id=request_id,
@@ -16746,13 +14215,7 @@ class API:
         )
 
     async def search_chats_on_server(
-        self,
-        query: String,
-        limit: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, query: String, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Chats:
         """
         Searches for the specified query in the title and username of already known chats via request to the server. Returns chats in the order seen in the main chat list
@@ -16765,17 +14228,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chats`
         """
 
-        _constructor = SearchChatsOnServer.construct if skip_validation else SearchChatsOnServer
-
         return await self.client.request(
-            _constructor(
+            SearchChatsOnServer(
                 query=query,
                 limit=limit,
             ),
@@ -16784,13 +14243,7 @@ class API:
         )
 
     async def search_contacts(
-        self,
-        limit: Int32,
-        query: String = "",
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, limit: Int32, query: String = "", *, request_id: str = None, request_timeout: int = None
     ) -> Users:
         """
         Searches for the specified query in the first names, last names and usernames of the known user contacts
@@ -16803,17 +14256,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Users`
         """
 
-        _constructor = SearchContacts.construct if skip_validation else SearchContacts
-
         return await self.client.request(
-            _constructor(
+            SearchContacts(
                 limit=limit,
                 query=query,
             ),
@@ -16828,8 +14277,7 @@ class API:
         input_language_codes: Vector[String] = [],
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Emojis:
         """
         Searches for emojis by keywords. Supported only if the file database is enabled
@@ -16844,17 +14292,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Emojis`
         """
 
-        _constructor = SearchEmojis.construct if skip_validation else SearchEmojis
-
         return await self.client.request(
-            _constructor(
+            SearchEmojis(
                 text=text,
                 exact_match=exact_match,
                 input_language_codes=input_language_codes,
@@ -16872,8 +14316,7 @@ class API:
         only_completed: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> FoundFileDownloads:
         """
         Searches for files in the file download list or recently downloaded files from the list
@@ -16892,17 +14335,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FoundFileDownloads`
         """
 
-        _constructor = SearchFileDownloads.construct if skip_validation else SearchFileDownloads
-
         return await self.client.request(
-            _constructor(
+            SearchFileDownloads(
                 offset=offset,
                 limit=limit,
                 query=query,
@@ -16914,13 +14353,7 @@ class API:
         )
 
     async def search_hashtags(
-        self,
-        prefix: String,
-        limit: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, prefix: String, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Hashtags:
         """
         Searches for recently used hashtags by their prefix
@@ -16933,17 +14366,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Hashtags`
         """
 
-        _constructor = SearchHashtags.construct if skip_validation else SearchHashtags
-
         return await self.client.request(
-            _constructor(
+            SearchHashtags(
                 prefix=prefix,
                 limit=limit,
             ),
@@ -16958,8 +14387,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> StickerSets:
         """
         Searches for installed sticker sets by looking for specified query in their title and name
@@ -16974,17 +14402,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.StickerSets`
         """
 
-        _constructor = SearchInstalledStickerSets.construct if skip_validation else SearchInstalledStickerSets
-
         return await self.client.request(
-            _constructor(
+            SearchInstalledStickerSets(
                 sticker_type=sticker_type,
                 query=query,
                 limit=limit,
@@ -17004,8 +14428,7 @@ class API:
         filter_: typing.Optional[SearchMessagesFilter] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> FoundMessages:
         """
         Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
@@ -17028,17 +14451,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FoundMessages`
         """
 
-        _constructor = SearchMessages.construct if skip_validation else SearchMessages
-
         return await self.client.request(
-            _constructor(
+            SearchMessages(
                 query=query,
                 offset=offset,
                 limit=limit,
@@ -17052,13 +14471,7 @@ class API:
         )
 
     async def search_outgoing_document_messages(
-        self,
-        query: String,
-        limit: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, query: String, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> FoundMessages:
         """
         Searches for outgoing messages with content of the type messageDocument in all chats except secret chats. Returns the results in reverse chronological order
@@ -17071,17 +14484,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FoundMessages`
         """
 
-        _constructor = SearchOutgoingDocumentMessages.construct if skip_validation else SearchOutgoingDocumentMessages
-
         return await self.client.request(
-            _constructor(
+            SearchOutgoingDocumentMessages(
                 query=query,
                 limit=limit,
             ),
@@ -17090,7 +14499,7 @@ class API:
         )
 
     async def search_public_chat(
-        self, username: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, username: String, *, request_id: str = None, request_timeout: int = None
     ) -> Chat:
         """
         Searches a public chat by its username. Currently, only private chats, supergroups and channels can be public. Returns the chat if found; otherwise, an error is returned
@@ -17101,26 +14510,20 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chat`
         """
 
-        _constructor = SearchPublicChat.construct if skip_validation else SearchPublicChat
-
         return await self.client.request(
-            _constructor(
+            SearchPublicChat(
                 username=username,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def search_public_chats(
-        self, query: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Chats:
+    async def search_public_chats(self, query: String, *, request_id: str = None, request_timeout: int = None) -> Chats:
         """
         Searches public chats by looking for specified query in their username and title. Currently, only private chats, supergroups and channels can be public. Returns a meaningful number of results. Excludes private chats with contacts and chats from the chat list from the results
 
@@ -17130,17 +14533,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chats`
         """
 
-        _constructor = SearchPublicChats.construct if skip_validation else SearchPublicChats
-
         return await self.client.request(
-            _constructor(
+            SearchPublicChats(
                 query=query,
             ),
             request_id=request_id,
@@ -17148,13 +14547,7 @@ class API:
         )
 
     async def search_recently_found_chats(
-        self,
-        query: String,
-        limit: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, query: String, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Chats:
         """
         Searches for the specified query in the title and username of up to 50 recently found chats; this is an offline request
@@ -17167,17 +14560,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chats`
         """
 
-        _constructor = SearchRecentlyFoundChats.construct if skip_validation else SearchRecentlyFoundChats
-
         return await self.client.request(
-            _constructor(
+            SearchRecentlyFoundChats(
                 query=query,
                 limit=limit,
             ),
@@ -17194,8 +14583,7 @@ class API:
         filter_: typing.Optional[SearchMessagesFilter] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> FoundMessages:
         """
         Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
@@ -17214,17 +14602,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FoundMessages`
         """
 
-        _constructor = SearchSecretMessages.construct if skip_validation else SearchSecretMessages
-
         return await self.client.request(
-            _constructor(
+            SearchSecretMessages(
                 chat_id=chat_id,
                 query=query,
                 offset=offset,
@@ -17236,7 +14620,7 @@ class API:
         )
 
     async def search_sticker_set(
-        self, name: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, name: String, *, request_id: str = None, request_timeout: int = None
     ) -> StickerSet:
         """
         Searches for a sticker set by its name
@@ -17247,17 +14631,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.StickerSet`
         """
 
-        _constructor = SearchStickerSet.construct if skip_validation else SearchStickerSet
-
         return await self.client.request(
-            _constructor(
+            SearchStickerSet(
                 name=name,
             ),
             request_id=request_id,
@@ -17265,7 +14645,7 @@ class API:
         )
 
     async def search_sticker_sets(
-        self, query: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, query: String, *, request_id: str = None, request_timeout: int = None
     ) -> StickerSets:
         """
         Searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
@@ -17276,17 +14656,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.StickerSets`
         """
 
-        _constructor = SearchStickerSets.construct if skip_validation else SearchStickerSets
-
         return await self.client.request(
-            _constructor(
+            SearchStickerSets(
                 query=query,
             ),
             request_id=request_id,
@@ -17300,8 +14676,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Stickers:
         """
         Searches for stickers from public sticker sets that correspond to any of the given emoji
@@ -17316,17 +14691,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Stickers`
         """
 
-        _constructor = SearchStickers.construct if skip_validation else SearchStickers
-
         return await self.client.request(
-            _constructor(
+            SearchStickers(
                 sticker_type=sticker_type,
                 emojis=emojis,
                 limit=limit,
@@ -17343,8 +14714,7 @@ class API:
         return_none_for_empty_query: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> FoundPositions:
         """
         Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
@@ -17361,17 +14731,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FoundPositions`
         """
 
-        _constructor = SearchStringsByPrefix.construct if skip_validation else SearchStringsByPrefix
-
         return await self.client.request(
-            _constructor(
+            SearchStringsByPrefix(
                 strings=strings,
                 query=query,
                 limit=limit,
@@ -17382,12 +14748,7 @@ class API:
         )
 
     async def search_user_by_phone_number(
-        self,
-        phone_number: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, phone_number: String, *, request_id: str = None, request_timeout: int = None
     ) -> User:
         """
         Searches a user by their phone number. Returns a 404 error if the user can't be found
@@ -17398,26 +14759,20 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.User`
         """
 
-        _constructor = SearchUserByPhoneNumber.construct if skip_validation else SearchUserByPhoneNumber
-
         return await self.client.request(
-            _constructor(
+            SearchUserByPhoneNumber(
                 phone_number=phone_number,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def search_user_by_token(
-        self, token: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> User:
+    async def search_user_by_token(self, token: String, *, request_id: str = None, request_timeout: int = None) -> User:
         """
         Searches a user by a token from the user's link
 
@@ -17427,17 +14782,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.User`
         """
 
-        _constructor = SearchUserByToken.construct if skip_validation else SearchUserByToken
-
         return await self.client.request(
-            _constructor(
+            SearchUserByToken(
                 token=token,
             ),
             request_id=request_id,
@@ -17445,13 +14796,7 @@ class API:
         )
 
     async def search_web_app(
-        self,
-        bot_user_id: Int53,
-        web_app_short_name: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, bot_user_id: Int53, web_app_short_name: String, *, request_id: str = None, request_timeout: int = None
     ) -> FoundWebApp:
         """
         Returns information about a Web App by its short name. Returns a 404 error if the Web App is not found
@@ -17464,17 +14809,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FoundWebApp`
         """
 
-        _constructor = SearchWebApp.construct if skip_validation else SearchWebApp
-
         return await self.client.request(
-            _constructor(
+            SearchWebApp(
                 bot_user_id=bot_user_id,
                 web_app_short_name=web_app_short_name,
             ),
@@ -17483,7 +14824,7 @@ class API:
         )
 
     async def send_authentication_firebase_sms(
-        self, token: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, token: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
@@ -17494,17 +14835,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SendAuthenticationFirebaseSms.construct if skip_validation else SendAuthenticationFirebaseSms
-
         return await self.client.request(
-            _constructor(
+            SendAuthenticationFirebaseSms(
                 token=token,
             ),
             request_id=request_id,
@@ -17518,8 +14855,7 @@ class API:
         parameter: String,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Message:
         """
         Invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
@@ -17534,17 +14870,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = SendBotStartMessage.construct if skip_validation else SendBotStartMessage
-
         return await self.client.request(
-            _constructor(
+            SendBotStartMessage(
                 bot_user_id=bot_user_id,
                 chat_id=chat_id,
                 parameter=parameter,
@@ -17554,13 +14886,7 @@ class API:
         )
 
     async def send_call_debug_information(
-        self,
-        call_id: Int32,
-        debug_information: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, call_id: Int32, debug_information: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Sends debug information for a call to Telegram servers
@@ -17573,17 +14899,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SendCallDebugInformation.construct if skip_validation else SendCallDebugInformation
-
         return await self.client.request(
-            _constructor(
+            SendCallDebugInformation(
                 call_id=call_id,
                 debug_information=debug_information,
             ),
@@ -17592,13 +14914,7 @@ class API:
         )
 
     async def send_call_log(
-        self,
-        call_id: Int32,
-        log_file: InputFile,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, call_id: Int32, log_file: InputFile, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Sends log file for a call to Telegram servers
@@ -17611,17 +14927,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SendCallLog.construct if skip_validation else SendCallLog
-
         return await self.client.request(
-            _constructor(
+            SendCallLog(
                 call_id=call_id,
                 log_file=log_file,
             ),
@@ -17637,8 +14949,7 @@ class API:
         problems: Vector[CallProblem],
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sends a call rating
@@ -17655,17 +14966,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SendCallRating.construct if skip_validation else SendCallRating
-
         return await self.client.request(
-            _constructor(
+            SendCallRating(
                 call_id=call_id,
                 rating=rating,
                 comment=comment,
@@ -17676,13 +14983,7 @@ class API:
         )
 
     async def send_call_signaling_data(
-        self,
-        call_id: Int32,
-        data: Bytes,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, call_id: Int32, data: Bytes, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Sends call signaling data
@@ -17695,17 +14996,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SendCallSignalingData.construct if skip_validation else SendCallSignalingData
-
         return await self.client.request(
-            _constructor(
+            SendCallSignalingData(
                 call_id=call_id,
                 data=data,
             ),
@@ -17720,8 +15017,7 @@ class API:
         action: typing.Optional[ChatAction] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sends a notification about user activity in a chat
@@ -17736,17 +15032,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SendChatAction.construct if skip_validation else SendChatAction
-
         return await self.client.request(
-            _constructor(
+            SendChatAction(
                 chat_id=chat_id,
                 message_thread_id=message_thread_id,
                 action=action,
@@ -17756,13 +15048,7 @@ class API:
         )
 
     async def send_custom_request(
-        self,
-        method: String,
-        parameters: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, method: String, parameters: String, *, request_id: str = None, request_timeout: int = None
     ) -> CustomRequestResult:
         """
         Sends a custom request; for bots only
@@ -17775,17 +15061,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.CustomRequestResult`
         """
 
-        _constructor = SendCustomRequest.construct if skip_validation else SendCustomRequest
-
         return await self.client.request(
-            _constructor(
+            SendCustomRequest(
                 method=method,
                 parameters=parameters,
             ),
@@ -17794,12 +15076,7 @@ class API:
         )
 
     async def send_email_address_verification_code(
-        self,
-        email_address: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, email_address: String, *, request_id: str = None, request_timeout: int = None
     ) -> EmailAddressAuthenticationCodeInfo:
         """
         Sends a code to verify an email address to be added to a user's Telegram Passport
@@ -17810,19 +15087,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.EmailAddressAuthenticationCodeInfo`
         """
 
-        _constructor = (
-            SendEmailAddressVerificationCode.construct if skip_validation else SendEmailAddressVerificationCode
-        )
-
         return await self.client.request(
-            _constructor(
+            SendEmailAddressVerificationCode(
                 email_address=email_address,
             ),
             request_id=request_id,
@@ -17840,8 +15111,7 @@ class API:
         options: typing.Optional[MessageSendOptions] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Message:
         """
         Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
@@ -17864,17 +15134,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = SendInlineQueryResultMessage.construct if skip_validation else SendInlineQueryResultMessage
-
         return await self.client.request(
-            _constructor(
+            SendInlineQueryResultMessage(
                 chat_id=chat_id,
                 query_id=query_id,
                 result_id=result_id,
@@ -17897,8 +15163,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Message:
         """
         Sends a message. Returns the sent message
@@ -17919,17 +15184,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = SendMessage.construct if skip_validation else SendMessage
-
         return await self.client.request(
-            _constructor(
+            SendMessage(
                 chat_id=chat_id,
                 input_message_content=input_message_content,
                 message_thread_id=message_thread_id,
@@ -17951,8 +15212,7 @@ class API:
         options: typing.Optional[MessageSendOptions] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Messages:
         """
         Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
@@ -17973,17 +15233,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Messages`
         """
 
-        _constructor = SendMessageAlbum.construct if skip_validation else SendMessageAlbum
-
         return await self.client.request(
-            _constructor(
+            SendMessageAlbum(
                 chat_id=chat_id,
                 input_message_contents=input_message_contents,
                 message_thread_id=message_thread_id,
@@ -18001,8 +15257,7 @@ class API:
         types: Vector[PassportElementType],
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
@@ -18015,17 +15270,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SendPassportAuthorizationForm.construct if skip_validation else SendPassportAuthorizationForm
-
         return await self.client.request(
-            _constructor(
+            SendPassportAuthorizationForm(
                 authorization_form_id=authorization_form_id,
                 types=types,
             ),
@@ -18043,8 +15294,7 @@ class API:
         tip_amount: Int53,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> PaymentResult:
         """
         Sends a filled-out payment form to the bot for final verification
@@ -18065,17 +15315,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PaymentResult`
         """
 
-        _constructor = SendPaymentForm.construct if skip_validation else SendPaymentForm
-
         return await self.client.request(
-            _constructor(
+            SendPaymentForm(
                 input_invoice=input_invoice,
                 payment_form_id=payment_form_id,
                 order_info_id=order_info_id,
@@ -18094,8 +15340,7 @@ class API:
         settings: typing.Optional[PhoneNumberAuthenticationSettings] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> AuthenticationCodeInfo:
         """
         Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
@@ -18110,17 +15355,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.AuthenticationCodeInfo`
         """
 
-        _constructor = SendPhoneNumberConfirmationCode.construct if skip_validation else SendPhoneNumberConfirmationCode
-
         return await self.client.request(
-            _constructor(
+            SendPhoneNumberConfirmationCode(
                 hash=hash_,
                 phone_number=phone_number,
                 settings=settings,
@@ -18135,8 +15376,7 @@ class API:
         settings: typing.Optional[PhoneNumberAuthenticationSettings] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> AuthenticationCodeInfo:
         """
         Sends a code to verify a phone number to be added to a user's Telegram Passport
@@ -18149,17 +15389,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.AuthenticationCodeInfo`
         """
 
-        _constructor = SendPhoneNumberVerificationCode.construct if skip_validation else SendPhoneNumberVerificationCode
-
         return await self.client.request(
-            _constructor(
+            SendPhoneNumberVerificationCode(
                 phone_number=phone_number,
                 settings=settings,
             ),
@@ -18178,8 +15414,7 @@ class API:
         caption: typing.Optional[FormattedText] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Story:
         """
         Sends a new story. Returns a temporary story
@@ -18202,17 +15437,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Story`
         """
 
-        _constructor = SendStory.construct if skip_validation else SendStory
-
         return await self.client.request(
-            _constructor(
+            SendStory(
                 content=content,
                 privacy_settings=privacy_settings,
                 active_period=active_period,
@@ -18232,8 +15463,7 @@ class API:
         parameters: String,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> CustomRequestResult:
         """
         Sends a custom request from a Web App
@@ -18248,17 +15478,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.CustomRequestResult`
         """
 
-        _constructor = SendWebAppCustomRequest.construct if skip_validation else SendWebAppCustomRequest
-
         return await self.client.request(
-            _constructor(
+            SendWebAppCustomRequest(
                 bot_user_id=bot_user_id,
                 method=method,
                 parameters=parameters,
@@ -18274,8 +15500,7 @@ class API:
         data: String,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sends data received from a keyboardButtonTypeWebApp Web App to a bot
@@ -18290,17 +15515,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SendWebAppData.construct if skip_validation else SendWebAppData
-
         return await self.client.request(
-            _constructor(
+            SendWebAppData(
                 bot_user_id=bot_user_id,
                 button_text=button_text,
                 data=data,
@@ -18309,9 +15530,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def set_account_ttl(
-        self, ttl: AccountTtl, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def set_account_ttl(self, ttl: AccountTtl, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Changes the period of inactivity after which the account of the current user will automatically be deleted
 
@@ -18321,26 +15540,20 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetAccountTtl.construct if skip_validation else SetAccountTtl
-
         return await self.client.request(
-            _constructor(
+            SetAccountTtl(
                 ttl=ttl,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def set_alarm(
-        self, seconds: Double, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def set_alarm(self, seconds: Double, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Succeeds after a specified amount of time has passed. Can be called before initialization
 
@@ -18350,17 +15563,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetAlarm.construct if skip_validation else SetAlarm
-
         return await self.client.request(
-            _constructor(
+            SetAlarm(
                 seconds=seconds,
             ),
             request_id=request_id,
@@ -18368,12 +15577,7 @@ class API:
         )
 
     async def set_archive_chat_list_settings(
-        self,
-        settings: ArchiveChatListSettings,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, settings: ArchiveChatListSettings, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes settings for automatic moving of chats to and from the Archive chat lists
@@ -18384,17 +15588,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetArchiveChatListSettings.construct if skip_validation else SetArchiveChatListSettings
-
         return await self.client.request(
-            _constructor(
+            SetArchiveChatListSettings(
                 settings=settings,
             ),
             request_id=request_id,
@@ -18402,12 +15602,7 @@ class API:
         )
 
     async def set_authentication_email_address(
-        self,
-        email_address: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, email_address: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Sets the email address of the user and sends an authentication code to the email address. Works only when the current authorization state is authorizationStateWaitEmailAddress
@@ -18418,17 +15613,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetAuthenticationEmailAddress.construct if skip_validation else SetAuthenticationEmailAddress
-
         return await self.client.request(
-            _constructor(
+            SetAuthenticationEmailAddress(
                 email_address=email_address,
             ),
             request_id=request_id,
@@ -18441,8 +15632,7 @@ class API:
         settings: typing.Optional[PhoneNumberAuthenticationSettings] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
@@ -18455,17 +15645,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetAuthenticationPhoneNumber.construct if skip_validation else SetAuthenticationPhoneNumber
-
         return await self.client.request(
-            _constructor(
+            SetAuthenticationPhoneNumber(
                 phone_number=phone_number,
                 settings=settings,
             ),
@@ -18474,13 +15660,7 @@ class API:
         )
 
     async def set_auto_download_settings(
-        self,
-        settings: AutoDownloadSettings,
-        type_: NetworkType,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, settings: AutoDownloadSettings, type_: NetworkType, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Sets auto-download settings
@@ -18493,17 +15673,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetAutoDownloadSettings.construct if skip_validation else SetAutoDownloadSettings
-
         return await self.client.request(
-            _constructor(
+            SetAutoDownloadSettings(
                 settings=settings,
                 type=type_,
             ),
@@ -18517,8 +15693,7 @@ class API:
         settings: typing.Optional[ScopeAutosaveSettings] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings
@@ -18531,17 +15706,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetAutosaveSettings.construct if skip_validation else SetAutosaveSettings
-
         return await self.client.request(
-            _constructor(
+            SetAutosaveSettings(
                 scope=scope,
                 settings=settings,
             ),
@@ -18556,8 +15727,7 @@ class API:
         type_: typing.Optional[BackgroundType] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Background:
         """
         Changes the background selected by the user; adds background to the list of installed backgrounds
@@ -18572,17 +15742,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Background`
         """
 
-        _constructor = SetBackground.construct if skip_validation else SetBackground
-
         return await self.client.request(
-            _constructor(
+            SetBackground(
                 for_dark_theme=for_dark_theme,
                 background=background,
                 type=type_,
@@ -18591,9 +15757,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def set_bio(
-        self, bio: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def set_bio(self, bio: String, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Changes the bio of the current user
 
@@ -18603,17 +15767,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetBio.construct if skip_validation else SetBio
-
         return await self.client.request(
-            _constructor(
+            SetBio(
                 bio=bio,
             ),
             request_id=request_id,
@@ -18627,8 +15787,7 @@ class API:
         description: String,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
@@ -18643,17 +15802,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetBotInfoDescription.construct if skip_validation else SetBotInfoDescription
-
         return await self.client.request(
-            _constructor(
+            SetBotInfoDescription(
                 bot_user_id=bot_user_id,
                 language_code=language_code,
                 description=description,
@@ -18669,8 +15824,7 @@ class API:
         short_description: String,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
@@ -18685,17 +15839,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetBotInfoShortDescription.construct if skip_validation else SetBotInfoShortDescription
-
         return await self.client.request(
-            _constructor(
+            SetBotInfoShortDescription(
                 bot_user_id=bot_user_id,
                 language_code=language_code,
                 short_description=short_description,
@@ -18711,8 +15861,7 @@ class API:
         name: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
@@ -18727,17 +15876,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetBotName.construct if skip_validation else SetBotName
-
         return await self.client.request(
-            _constructor(
+            SetBotName(
                 bot_user_id=bot_user_id,
                 language_code=language_code,
                 name=name,
@@ -18752,8 +15897,7 @@ class API:
         photo: typing.Optional[InputChatPhoto] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes a profile photo for a bot
@@ -18766,17 +15910,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetBotProfilePhoto.construct if skip_validation else SetBotProfilePhoto
-
         return await self.client.request(
-            _constructor(
+            SetBotProfilePhoto(
                 bot_user_id=bot_user_id,
                 photo=photo,
             ),
@@ -18785,13 +15925,7 @@ class API:
         )
 
     async def set_bot_updates_status(
-        self,
-        pending_update_count: Int32,
-        error_message: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, pending_update_count: Int32, error_message: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only
@@ -18804,17 +15938,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetBotUpdatesStatus.construct if skip_validation else SetBotUpdatesStatus
-
         return await self.client.request(
-            _constructor(
+            SetBotUpdatesStatus(
                 pending_update_count=pending_update_count,
                 error_message=error_message,
             ),
@@ -18823,13 +15953,7 @@ class API:
         )
 
     async def set_chat_active_stories_list(
-        self,
-        chat_id: Int53,
-        story_list: StoryList,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, story_list: StoryList, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes story list in which stories from the chat are shown
@@ -18842,17 +15966,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatActiveStoriesList.construct if skip_validation else SetChatActiveStoriesList
-
         return await self.client.request(
-            _constructor(
+            SetChatActiveStoriesList(
                 chat_id=chat_id,
                 story_list=story_list,
             ),
@@ -18866,8 +15986,7 @@ class API:
         available_reactions: ChatAvailableReactions,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
@@ -18880,17 +15999,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatAvailableReactions.construct if skip_validation else SetChatAvailableReactions
-
         return await self.client.request(
-            _constructor(
+            SetChatAvailableReactions(
                 chat_id=chat_id,
                 available_reactions=available_reactions,
             ),
@@ -18906,8 +16021,7 @@ class API:
         type_: typing.Optional[BackgroundType] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the background in a specific chat. Supported only in private and secret chats with non-deleted users
@@ -18924,17 +16038,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatBackground.construct if skip_validation else SetChatBackground
-
         return await self.client.request(
-            _constructor(
+            SetChatBackground(
                 chat_id=chat_id,
                 dark_theme_dimming=dark_theme_dimming,
                 background=background,
@@ -18945,13 +16055,7 @@ class API:
         )
 
     async def set_chat_client_data(
-        self,
-        chat_id: Int53,
-        client_data: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, client_data: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes application-specific data associated with a chat
@@ -18964,17 +16068,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatClientData.construct if skip_validation else SetChatClientData
-
         return await self.client.request(
-            _constructor(
+            SetChatClientData(
                 chat_id=chat_id,
                 client_data=client_data,
             ),
@@ -18983,13 +16083,7 @@ class API:
         )
 
     async def set_chat_description(
-        self,
-        chat_id: Int53,
-        description: String = "",
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, description: String = "", *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
@@ -19002,17 +16096,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatDescription.construct if skip_validation else SetChatDescription
-
         return await self.client.request(
-            _constructor(
+            SetChatDescription(
                 chat_id=chat_id,
                 description=description,
             ),
@@ -19021,13 +16111,7 @@ class API:
         )
 
     async def set_chat_discussion_group(
-        self,
-        chat_id: Int53,
-        discussion_chat_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, discussion_chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
@@ -19040,17 +16124,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatDiscussionGroup.construct if skip_validation else SetChatDiscussionGroup
-
         return await self.client.request(
-            _constructor(
+            SetChatDiscussionGroup(
                 chat_id=chat_id,
                 discussion_chat_id=discussion_chat_id,
             ),
@@ -19065,8 +16145,7 @@ class API:
         draft_message: typing.Optional[DraftMessage] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the draft message in a chat
@@ -19081,17 +16160,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatDraftMessage.construct if skip_validation else SetChatDraftMessage
-
         return await self.client.request(
-            _constructor(
+            SetChatDraftMessage(
                 chat_id=chat_id,
                 message_thread_id=message_thread_id,
                 draft_message=draft_message,
@@ -19101,13 +16176,7 @@ class API:
         )
 
     async def set_chat_location(
-        self,
-        chat_id: Int53,
-        location: ChatLocation,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, location: ChatLocation, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use
@@ -19120,17 +16189,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatLocation.construct if skip_validation else SetChatLocation
-
         return await self.client.request(
-            _constructor(
+            SetChatLocation(
                 chat_id=chat_id,
                 location=location,
             ),
@@ -19145,8 +16210,7 @@ class API:
         status: ChatMemberStatus,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
@@ -19161,17 +16225,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatMemberStatus.construct if skip_validation else SetChatMemberStatus
-
         return await self.client.request(
-            _constructor(
+            SetChatMemberStatus(
                 chat_id=chat_id,
                 member_id=member_id,
                 status=status,
@@ -19186,8 +16246,7 @@ class API:
         message_auto_delete_time: Int32 = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels Message auto-delete time can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
@@ -19200,17 +16259,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatMessageAutoDeleteTime.construct if skip_validation else SetChatMessageAutoDeleteTime
-
         return await self.client.request(
-            _constructor(
+            SetChatMessageAutoDeleteTime(
                 chat_id=chat_id,
                 message_auto_delete_time=message_auto_delete_time,
             ),
@@ -19219,13 +16274,7 @@ class API:
         )
 
     async def set_chat_message_sender(
-        self,
-        chat_id: Int53,
-        message_sender_id: MessageSender,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_sender_id: MessageSender, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Selects a message sender to send messages in a chat
@@ -19238,17 +16287,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatMessageSender.construct if skip_validation else SetChatMessageSender
-
         return await self.client.request(
-            _constructor(
+            SetChatMessageSender(
                 chat_id=chat_id,
                 message_sender_id=message_sender_id,
             ),
@@ -19262,8 +16307,7 @@ class API:
         notification_settings: ChatNotificationSettings,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed
@@ -19276,17 +16320,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatNotificationSettings.construct if skip_validation else SetChatNotificationSettings
-
         return await self.client.request(
-            _constructor(
+            SetChatNotificationSettings(
                 chat_id=chat_id,
                 notification_settings=notification_settings,
             ),
@@ -19295,13 +16335,7 @@ class API:
         )
 
     async def set_chat_permissions(
-        self,
-        chat_id: Int53,
-        permissions: ChatPermissions,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, permissions: ChatPermissions, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
@@ -19314,17 +16348,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatPermissions.construct if skip_validation else SetChatPermissions
-
         return await self.client.request(
-            _constructor(
+            SetChatPermissions(
                 chat_id=chat_id,
                 permissions=permissions,
             ),
@@ -19338,8 +16368,7 @@ class API:
         photo: typing.Optional[InputChatPhoto] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
@@ -19352,17 +16381,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatPhoto.construct if skip_validation else SetChatPhoto
-
         return await self.client.request(
-            _constructor(
+            SetChatPhoto(
                 chat_id=chat_id,
                 photo=photo,
             ),
@@ -19371,13 +16396,7 @@ class API:
         )
 
     async def set_chat_slow_mode_delay(
-        self,
-        chat_id: Int53,
-        slow_mode_delay: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, slow_mode_delay: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights
@@ -19390,17 +16409,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatSlowModeDelay.construct if skip_validation else SetChatSlowModeDelay
-
         return await self.client.request(
-            _constructor(
+            SetChatSlowModeDelay(
                 chat_id=chat_id,
                 slow_mode_delay=slow_mode_delay,
             ),
@@ -19409,13 +16424,7 @@ class API:
         )
 
     async def set_chat_theme(
-        self,
-        chat_id: Int53,
-        theme_name: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, theme_name: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the chat theme. Supported only in private and secret chats
@@ -19428,17 +16437,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatTheme.construct if skip_validation else SetChatTheme
-
         return await self.client.request(
-            _constructor(
+            SetChatTheme(
                 chat_id=chat_id,
                 theme_name=theme_name,
             ),
@@ -19447,13 +16452,7 @@ class API:
         )
 
     async def set_chat_title(
-        self,
-        chat_id: Int53,
-        title: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, title: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
@@ -19466,17 +16465,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetChatTitle.construct if skip_validation else SetChatTitle
-
         return await self.client.request(
-            _constructor(
+            SetChatTitle(
                 chat_id=chat_id,
                 title=title,
             ),
@@ -19485,12 +16480,7 @@ class API:
         )
 
     async def set_close_friends(
-        self,
-        user_ids: Vector[Int53],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, user_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the list of close friends of the current user
@@ -19501,17 +16491,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetCloseFriends.construct if skip_validation else SetCloseFriends
-
         return await self.client.request(
-            _constructor(
+            SetCloseFriends(
                 user_ids=user_ids,
             ),
             request_id=request_id,
@@ -19525,8 +16511,7 @@ class API:
         scope: typing.Optional[BotCommandScope] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets the list of commands supported by the bot for the given user scope and language; for bots only
@@ -19541,17 +16526,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetCommands.construct if skip_validation else SetCommands
-
         return await self.client.request(
-            _constructor(
+            SetCommands(
                 language_code=language_code,
                 commands=commands,
                 scope=scope,
@@ -19561,13 +16542,7 @@ class API:
         )
 
     async def set_custom_emoji_sticker_set_thumbnail(
-        self,
-        name: String,
-        custom_emoji_id: Int64,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, name: String, custom_emoji_id: Int64, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Sets a custom emoji sticker set thumbnail; for bots only
@@ -19580,19 +16555,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            SetCustomEmojiStickerSetThumbnail.construct if skip_validation else SetCustomEmojiStickerSetThumbnail
-        )
-
         return await self.client.request(
-            _constructor(
+            SetCustomEmojiStickerSetThumbnail(
                 name=name,
                 custom_emoji_id=custom_emoji_id,
             ),
@@ -19606,8 +16575,7 @@ class API:
         strings: Vector[LanguagePackString],
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Adds or changes a custom local language pack to the current localization target
@@ -19620,17 +16588,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetCustomLanguagePack.construct if skip_validation else SetCustomLanguagePack
-
         return await self.client.request(
-            _constructor(
+            SetCustomLanguagePack(
                 info=info,
                 strings=strings,
             ),
@@ -19644,8 +16608,7 @@ class API:
         new_string: LanguagePackString,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Adds, edits or deletes a string in a custom local language pack. Can be called before authorization
@@ -19658,17 +16621,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetCustomLanguagePackString.construct if skip_validation else SetCustomLanguagePackString
-
         return await self.client.request(
-            _constructor(
+            SetCustomLanguagePackString(
                 language_pack_id=language_pack_id,
                 new_string=new_string,
             ),
@@ -19677,12 +16636,7 @@ class API:
         )
 
     async def set_database_encryption_key(
-        self,
-        new_encryption_key: Bytes,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, new_encryption_key: Bytes, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain
@@ -19693,17 +16647,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetDatabaseEncryptionKey.construct if skip_validation else SetDatabaseEncryptionKey
-
         return await self.client.request(
-            _constructor(
+            SetDatabaseEncryptionKey(
                 new_encryption_key=new_encryption_key,
             ),
             request_id=request_id,
@@ -19715,8 +16665,7 @@ class API:
         default_channel_administrator_rights: typing.Optional[ChatAdministratorRights] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets default administrator rights for adding the bot to channel chats; for bots only
@@ -19727,19 +16676,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            SetDefaultChannelAdministratorRights.construct if skip_validation else SetDefaultChannelAdministratorRights
-        )
-
         return await self.client.request(
-            _constructor(
+            SetDefaultChannelAdministratorRights(
                 default_channel_administrator_rights=default_channel_administrator_rights,
             ),
             request_id=request_id,
@@ -19751,8 +16694,7 @@ class API:
         default_group_administrator_rights: typing.Optional[ChatAdministratorRights] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
@@ -19763,19 +16705,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            SetDefaultGroupAdministratorRights.construct if skip_validation else SetDefaultGroupAdministratorRights
-        )
-
         return await self.client.request(
-            _constructor(
+            SetDefaultGroupAdministratorRights(
                 default_group_administrator_rights=default_group_administrator_rights,
             ),
             request_id=request_id,
@@ -19787,8 +16723,7 @@ class API:
         message_auto_delete_time: MessageAutoDeleteTime = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the default message auto-delete time for new chats
@@ -19799,17 +16734,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetDefaultMessageAutoDeleteTime.construct if skip_validation else SetDefaultMessageAutoDeleteTime
-
         return await self.client.request(
-            _constructor(
+            SetDefaultMessageAutoDeleteTime(
                 message_auto_delete_time=message_auto_delete_time,
             ),
             request_id=request_id,
@@ -19817,12 +16748,7 @@ class API:
         )
 
     async def set_default_reaction_type(
-        self,
-        reaction_type: ReactionType,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, reaction_type: ReactionType, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes type of default reaction for the current user
@@ -19833,17 +16759,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetDefaultReactionType.construct if skip_validation else SetDefaultReactionType
-
         return await self.client.request(
-            _constructor(
+            SetDefaultReactionType(
                 reaction_type=reaction_type,
             ),
             request_id=request_id,
@@ -19851,12 +16773,7 @@ class API:
         )
 
     async def set_emoji_status(
-        self,
-        emoji_status: typing.Optional[EmojiStatus] = None,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, emoji_status: typing.Optional[EmojiStatus] = None, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the emoji status of the current user; for Telegram Premium users only
@@ -19867,17 +16784,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetEmojiStatus.construct if skip_validation else SetEmojiStatus
-
         return await self.client.request(
-            _constructor(
+            SetEmojiStatus(
                 emoji_status=emoji_status,
             ),
             request_id=request_id,
@@ -19891,8 +16804,7 @@ class API:
         expected_size: typing.Optional[Int53] = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Informs TDLib on a file generation progress
@@ -19907,17 +16819,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetFileGenerationProgress.construct if skip_validation else SetFileGenerationProgress
-
         return await self.client.request(
-            _constructor(
+            SetFileGenerationProgress(
                 generation_id=generation_id,
                 local_prefix_size=local_prefix_size,
                 expected_size=expected_size,
@@ -19933,8 +16841,7 @@ class API:
         notification_settings: ChatNotificationSettings,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the notification settings of a forum topic
@@ -19949,19 +16856,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            SetForumTopicNotificationSettings.construct if skip_validation else SetForumTopicNotificationSettings
-        )
-
         return await self.client.request(
-            _constructor(
+            SetForumTopicNotificationSettings(
                 chat_id=chat_id,
                 message_thread_id=message_thread_id,
                 notification_settings=notification_settings,
@@ -19980,8 +16881,7 @@ class API:
         force: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Message:
         """
         Updates the game score of the specified user in the game; for bots only
@@ -20002,17 +16902,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Message`
         """
 
-        _constructor = SetGameScore.construct if skip_validation else SetGameScore
-
         return await self.client.request(
-            _constructor(
+            SetGameScore(
                 chat_id=chat_id,
                 message_id=message_id,
                 user_id=user_id,
@@ -20031,8 +16927,7 @@ class API:
         is_speaking: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Informs TDLib that speaking state of a participant of an active group has changed
@@ -20047,19 +16942,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            SetGroupCallParticipantIsSpeaking.construct if skip_validation else SetGroupCallParticipantIsSpeaking
-        )
-
         return await self.client.request(
-            _constructor(
+            SetGroupCallParticipantIsSpeaking(
                 group_call_id=group_call_id,
                 audio_source=audio_source,
                 is_speaking=is_speaking,
@@ -20075,8 +16964,7 @@ class API:
         volume_level: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with the default volume level
@@ -20091,19 +16979,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            SetGroupCallParticipantVolumeLevel.construct if skip_validation else SetGroupCallParticipantVolumeLevel
-        )
-
         return await self.client.request(
-            _constructor(
+            SetGroupCallParticipantVolumeLevel(
                 group_call_id=group_call_id,
                 participant_id=participant_id,
                 volume_level=volume_level,
@@ -20113,13 +16995,7 @@ class API:
         )
 
     async def set_group_call_title(
-        self,
-        group_call_id: Int32,
-        title: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, group_call_id: Int32, title: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Sets group call title. Requires groupCall.can_be_managed group call flag
@@ -20132,17 +17008,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetGroupCallTitle.construct if skip_validation else SetGroupCallTitle
-
         return await self.client.request(
-            _constructor(
+            SetGroupCallTitle(
                 group_call_id=group_call_id,
                 title=title,
             ),
@@ -20151,12 +17023,7 @@ class API:
         )
 
     async def set_inactive_session_ttl(
-        self,
-        inactive_session_ttl_days: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, inactive_session_ttl_days: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the period of inactivity after which sessions will automatically be terminated
@@ -20167,17 +17034,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetInactiveSessionTtl.construct if skip_validation else SetInactiveSessionTtl
-
         return await self.client.request(
-            _constructor(
+            SetInactiveSessionTtl(
                 inactive_session_ttl_days=inactive_session_ttl_days,
             ),
             request_id=request_id,
@@ -20193,8 +17056,7 @@ class API:
         force: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Updates the game score of the specified user in a game; for bots only
@@ -20213,17 +17075,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetInlineGameScore.construct if skip_validation else SetInlineGameScore
-
         return await self.client.request(
-            _constructor(
+            SetInlineGameScore(
                 inline_message_id=inline_message_id,
                 user_id=user_id,
                 score=score,
@@ -20234,9 +17092,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def set_location(
-        self, location: Location, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def set_location(self, location: Location, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer
 
@@ -20246,31 +17102,20 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetLocation.construct if skip_validation else SetLocation
-
         return await self.client.request(
-            _constructor(
+            SetLocation(
                 location=location,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def set_log_stream(
-        self,
-        log_stream: LogStream,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
-    ) -> Ok:
+    async def set_log_stream(self, log_stream: LogStream, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Sets new log stream for internal logging of TDLib. Can be called synchronously
 
@@ -20280,17 +17125,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetLogStream.construct if skip_validation else SetLogStream
-
         return await self.client.request(
-            _constructor(
+            SetLogStream(
                 log_stream=log_stream,
             ),
             request_id=request_id,
@@ -20298,13 +17139,7 @@ class API:
         )
 
     async def set_log_tag_verbosity_level(
-        self,
-        tag: String,
-        new_verbosity_level: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, tag: String, new_verbosity_level: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Sets the verbosity level for a specified TDLib internal log tag. Can be called synchronously
@@ -20317,17 +17152,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetLogTagVerbosityLevel.construct if skip_validation else SetLogTagVerbosityLevel
-
         return await self.client.request(
-            _constructor(
+            SetLogTagVerbosityLevel(
                 tag=tag,
                 new_verbosity_level=new_verbosity_level,
             ),
@@ -20336,12 +17167,7 @@ class API:
         )
 
     async def set_log_verbosity_level(
-        self,
-        new_verbosity_level: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, new_verbosity_level: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Sets the verbosity level of the internal logging of TDLib. Can be called synchronously
@@ -20352,17 +17178,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetLogVerbosityLevel.construct if skip_validation else SetLogVerbosityLevel
-
         return await self.client.request(
-            _constructor(
+            SetLogVerbosityLevel(
                 new_verbosity_level=new_verbosity_level,
             ),
             request_id=request_id,
@@ -20370,12 +17192,7 @@ class API:
         )
 
     async def set_login_email_address(
-        self,
-        new_login_email_address: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, new_login_email_address: String, *, request_id: str = None, request_timeout: int = None
     ) -> EmailAddressAuthenticationCodeInfo:
         """
         Changes the login email address of the user. The email address can be changed only if the current user already has login email and passwordState.login_email_address_pattern is non-empty. The change will not be applied until the new login email address is confirmed with checkLoginEmailAddressCode. To use Apple ID/Google ID instead of a email address, call checkLoginEmailAddressCode directly
@@ -20386,17 +17203,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.EmailAddressAuthenticationCodeInfo`
         """
 
-        _constructor = SetLoginEmailAddress.construct if skip_validation else SetLoginEmailAddress
-
         return await self.client.request(
-            _constructor(
+            SetLoginEmailAddress(
                 new_login_email_address=new_login_email_address,
             ),
             request_id=request_id,
@@ -20404,13 +17217,7 @@ class API:
         )
 
     async def set_menu_button(
-        self,
-        user_id: Int53,
-        menu_button: BotMenuButton,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, user_id: Int53, menu_button: BotMenuButton, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Sets menu button for the given user or for all users; for bots only
@@ -20423,17 +17230,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetMenuButton.construct if skip_validation else SetMenuButton
-
         return await self.client.request(
-            _constructor(
+            SetMenuButton(
                 user_id=user_id,
                 menu_button=menu_button,
             ),
@@ -20447,8 +17250,7 @@ class API:
         block_list: typing.Optional[BlockList] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked
@@ -20461,17 +17263,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetMessageSenderBlockList.construct if skip_validation else SetMessageSenderBlockList
-
         return await self.client.request(
-            _constructor(
+            SetMessageSenderBlockList(
                 sender_id=sender_id,
                 block_list=block_list,
             ),
@@ -20480,13 +17278,7 @@ class API:
         )
 
     async def set_name(
-        self,
-        first_name: String,
-        last_name: String = "",
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, first_name: String, last_name: String = "", *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the first and last name of the current user
@@ -20499,17 +17291,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetName.construct if skip_validation else SetName
-
         return await self.client.request(
-            _constructor(
+            SetName(
                 first_name=first_name,
                 last_name=last_name,
             ),
@@ -20518,12 +17306,7 @@ class API:
         )
 
     async def set_network_type(
-        self,
-        type_: typing.Optional[NetworkType] = None,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, type_: typing.Optional[NetworkType] = None, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Sets the current network type. Can be called before authorization. Calling this method forces all network connections to reopen, mitigating the delay in switching between different networks, so it must be called whenever the network is changed, even if the network type remains the same. Network type is used to check whether the library can use the network at all and also for collecting detailed network data usage statistics
@@ -20534,17 +17317,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetNetworkType.construct if skip_validation else SetNetworkType
-
         return await self.client.request(
-            _constructor(
+            SetNetworkType(
                 type=type_,
             ),
             request_id=request_id,
@@ -20557,8 +17336,7 @@ class API:
         value: typing.Optional[OptionValue] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization
@@ -20571,17 +17349,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetOption.construct if skip_validation else SetOption
-
         return await self.client.request(
-            _constructor(
+            SetOption(
                 name=name,
                 value=value,
             ),
@@ -20590,13 +17364,7 @@ class API:
         )
 
     async def set_passport_element(
-        self,
-        element: InputPassportElement,
-        password: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, element: InputPassportElement, password: String, *, request_id: str = None, request_timeout: int = None
     ) -> PassportElement:
         """
         Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
@@ -20609,17 +17377,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PassportElement`
         """
 
-        _constructor = SetPassportElement.construct if skip_validation else SetPassportElement
-
         return await self.client.request(
-            _constructor(
+            SetPassportElement(
                 element=element,
                 password=password,
             ),
@@ -20633,8 +17397,7 @@ class API:
         errors: Vector[InputPassportElementError],
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
@@ -20647,17 +17410,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetPassportElementErrors.construct if skip_validation else SetPassportElementErrors
-
         return await self.client.request(
-            _constructor(
+            SetPassportElementErrors(
                 user_id=user_id,
                 errors=errors,
             ),
@@ -20674,8 +17433,7 @@ class API:
         new_recovery_email_address: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> PasswordState:
         """
         Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
@@ -20694,17 +17452,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PasswordState`
         """
 
-        _constructor = SetPassword.construct if skip_validation else SetPassword
-
         return await self.client.request(
-            _constructor(
+            SetPassword(
                 old_password=old_password,
                 new_password=new_password,
                 new_hint=new_hint,
@@ -20716,13 +17470,7 @@ class API:
         )
 
     async def set_pinned_chats(
-        self,
-        chat_list: ChatList,
-        chat_ids: Vector[Int53],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_list: ChatList, chat_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the order of pinned chats
@@ -20735,17 +17483,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetPinnedChats.construct if skip_validation else SetPinnedChats
-
         return await self.client.request(
-            _constructor(
+            SetPinnedChats(
                 chat_list=chat_list,
                 chat_ids=chat_ids,
             ),
@@ -20754,13 +17498,7 @@ class API:
         )
 
     async def set_pinned_forum_topics(
-        self,
-        chat_id: Int53,
-        message_thread_ids: Vector[Int53],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_thread_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the order of pinned forum topics
@@ -20773,17 +17511,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetPinnedForumTopics.construct if skip_validation else SetPinnedForumTopics
-
         return await self.client.request(
-            _constructor(
+            SetPinnedForumTopics(
                 chat_id=chat_id,
                 message_thread_ids=message_thread_ids,
             ),
@@ -20798,8 +17532,7 @@ class API:
         option_ids: Vector[Int32],
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the user answer to a poll. A poll in quiz mode can be answered only once
@@ -20814,17 +17547,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetPollAnswer.construct if skip_validation else SetPollAnswer
-
         return await self.client.request(
-            _constructor(
+            SetPollAnswer(
                 chat_id=chat_id,
                 message_id=message_id,
                 option_ids=option_ids,
@@ -20834,13 +17563,7 @@ class API:
         )
 
     async def set_profile_photo(
-        self,
-        photo: InputChatPhoto,
-        is_public: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, photo: InputChatPhoto, is_public: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes a profile photo for the current user
@@ -20853,17 +17576,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetProfilePhoto.construct if skip_validation else SetProfilePhoto
-
         return await self.client.request(
-            _constructor(
+            SetProfilePhoto(
                 photo=photo,
                 is_public=is_public,
             ),
@@ -20877,8 +17596,7 @@ class API:
         new_recovery_email_address: String,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> PasswordState:
         """
         Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed. If new_recovery_email_address is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation
@@ -20891,17 +17609,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.PasswordState`
         """
 
-        _constructor = SetRecoveryEmailAddress.construct if skip_validation else SetRecoveryEmailAddress
-
         return await self.client.request(
-            _constructor(
+            SetRecoveryEmailAddress(
                 password=password,
                 new_recovery_email_address=new_recovery_email_address,
             ),
@@ -20915,8 +17629,7 @@ class API:
         notification_settings: ScopeNotificationSettings,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes notification settings for chats of a given type
@@ -20929,17 +17642,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetScopeNotificationSettings.construct if skip_validation else SetScopeNotificationSettings
-
         return await self.client.request(
-            _constructor(
+            SetScopeNotificationSettings(
                 scope=scope,
                 notification_settings=notification_settings,
             ),
@@ -20948,13 +17657,7 @@ class API:
         )
 
     async def set_sticker_emojis(
-        self,
-        sticker: InputFile,
-        emojis: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, sticker: InputFile, emojis: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
@@ -20967,17 +17670,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetStickerEmojis.construct if skip_validation else SetStickerEmojis
-
         return await self.client.request(
-            _constructor(
+            SetStickerEmojis(
                 sticker=sticker,
                 emojis=emojis,
             ),
@@ -20986,13 +17685,7 @@ class API:
         )
 
     async def set_sticker_keywords(
-        self,
-        sticker: InputFile,
-        keywords: Vector[String],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, sticker: InputFile, keywords: Vector[String], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
@@ -21005,17 +17698,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetStickerKeywords.construct if skip_validation else SetStickerKeywords
-
         return await self.client.request(
-            _constructor(
+            SetStickerKeywords(
                 sticker=sticker,
                 keywords=keywords,
             ),
@@ -21029,8 +17718,7 @@ class API:
         mask_position: typing.Optional[MaskPosition] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot
@@ -21043,17 +17731,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetStickerMaskPosition.construct if skip_validation else SetStickerMaskPosition
-
         return await self.client.request(
-            _constructor(
+            SetStickerMaskPosition(
                 sticker=sticker,
                 mask_position=mask_position,
             ),
@@ -21062,13 +17746,7 @@ class API:
         )
 
     async def set_sticker_position_in_set(
-        self,
-        sticker: InputFile,
-        position: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, sticker: InputFile, position: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
@@ -21081,17 +17759,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetStickerPositionInSet.construct if skip_validation else SetStickerPositionInSet
-
         return await self.client.request(
-            _constructor(
+            SetStickerPositionInSet(
                 sticker=sticker,
                 position=position,
             ),
@@ -21106,8 +17780,7 @@ class API:
         thumbnail: typing.Optional[InputFile] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets a sticker set thumbnail; for bots only
@@ -21122,17 +17795,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetStickerSetThumbnail.construct if skip_validation else SetStickerSetThumbnail
-
         return await self.client.request(
-            _constructor(
+            SetStickerSetThumbnail(
                 user_id=user_id,
                 name=name,
                 thumbnail=thumbnail,
@@ -21142,13 +17811,7 @@ class API:
         )
 
     async def set_sticker_set_title(
-        self,
-        name: String,
-        title: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, name: String, title: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Sets a sticker set title; for bots only
@@ -21161,17 +17824,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetStickerSetTitle.construct if skip_validation else SetStickerSetTitle
-
         return await self.client.request(
-            _constructor(
+            SetStickerSetTitle(
                 name=name,
                 title=title,
             ),
@@ -21185,8 +17844,7 @@ class API:
         privacy_settings: StoryPrivacySettings,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes privacy settings of a previously sent story
@@ -21199,17 +17857,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetStoryPrivacySettings.construct if skip_validation else SetStoryPrivacySettings
-
         return await self.client.request(
-            _constructor(
+            SetStoryPrivacySettings(
                 story_id=story_id,
                 privacy_settings=privacy_settings,
             ),
@@ -21225,8 +17879,7 @@ class API:
         reaction_type: typing.Optional[ReactionType] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes chosen reaction on a story
@@ -21243,17 +17896,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetStoryReaction.construct if skip_validation else SetStoryReaction
-
         return await self.client.request(
-            _constructor(
+            SetStoryReaction(
                 story_sender_chat_id=story_sender_chat_id,
                 story_id=story_id,
                 update_recent_reactions=update_recent_reactions,
@@ -21264,13 +17913,7 @@ class API:
         )
 
     async def set_supergroup_sticker_set(
-        self,
-        supergroup_id: Int53,
-        sticker_set_id: Int64,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, sticker_set_id: Int64, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the sticker set of a supergroup; requires can_change_info administrator right
@@ -21283,17 +17926,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetSupergroupStickerSet.construct if skip_validation else SetSupergroupStickerSet
-
         return await self.client.request(
-            _constructor(
+            SetSupergroupStickerSet(
                 supergroup_id=supergroup_id,
                 sticker_set_id=sticker_set_id,
             ),
@@ -21302,13 +17941,7 @@ class API:
         )
 
     async def set_supergroup_username(
-        self,
-        supergroup_id: Int53,
-        username: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, username: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the editable username of a supergroup or channel, requires owner privileges in the supergroup or channel
@@ -21321,17 +17954,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetSupergroupUsername.construct if skip_validation else SetSupergroupUsername
-
         return await self.client.request(
-            _constructor(
+            SetSupergroupUsername(
                 supergroup_id=supergroup_id,
                 username=username,
             ),
@@ -21359,8 +17988,7 @@ class API:
         ignore_file_names: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
@@ -21401,17 +18029,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetTdlibParameters.construct if skip_validation else SetTdlibParameters
-
         return await self.client.request(
-            _constructor(
+            SetTdlibParameters(
                 database_directory=database_directory,
                 files_directory=files_directory,
                 database_encryption_key=database_encryption_key,
@@ -21439,8 +18063,7 @@ class API:
         photo: typing.Optional[InputChatPhoto] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes a personal profile photo of a contact user
@@ -21453,17 +18076,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetUserPersonalProfilePhoto.construct if skip_validation else SetUserPersonalProfilePhoto
-
         return await self.client.request(
-            _constructor(
+            SetUserPersonalProfilePhoto(
                 user_id=user_id,
                 photo=photo,
             ),
@@ -21477,8 +18096,7 @@ class API:
         rules: UserPrivacySettingRules,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes user privacy settings
@@ -21491,17 +18109,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetUserPrivacySettingRules.construct if skip_validation else SetUserPrivacySettingRules
-
         return await self.client.request(
-            _constructor(
+            SetUserPrivacySettingRules(
                 setting=setting,
                 rules=rules,
             ),
@@ -21510,13 +18124,7 @@ class API:
         )
 
     async def set_user_support_info(
-        self,
-        user_id: Int53,
-        message: FormattedText,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, user_id: Int53, message: FormattedText, *, request_id: str = None, request_timeout: int = None
     ) -> UserSupportInfo:
         """
         Sets support information for the given user; for Telegram support only
@@ -21529,17 +18137,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.UserSupportInfo`
         """
 
-        _constructor = SetUserSupportInfo.construct if skip_validation else SetUserSupportInfo
-
         return await self.client.request(
-            _constructor(
+            SetUserSupportInfo(
                 user_id=user_id,
                 message=message,
             ),
@@ -21547,9 +18151,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def set_username(
-        self, username: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def set_username(self, username: String, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Changes the editable username of the current user
 
@@ -21559,17 +18161,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetUsername.construct if skip_validation else SetUsername
-
         return await self.client.request(
-            _constructor(
+            SetUsername(
                 username=username,
             ),
             request_id=request_id,
@@ -21582,8 +18180,7 @@ class API:
         default_participant_id: MessageSender,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes default participant identifier, on whose behalf a video chat in the chat will be joined
@@ -21596,17 +18193,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SetVideoChatDefaultParticipant.construct if skip_validation else SetVideoChatDefaultParticipant
-
         return await self.client.request(
-            _constructor(
+            SetVideoChatDefaultParticipant(
                 chat_id=chat_id,
                 default_participant_id=default_participant_id,
             ),
@@ -21623,8 +18216,7 @@ class API:
         only_check: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
@@ -21643,17 +18235,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ShareChatWithBot.construct if skip_validation else ShareChatWithBot
-
         return await self.client.request(
-            _constructor(
+            ShareChatWithBot(
                 chat_id=chat_id,
                 message_id=message_id,
                 button_id=button_id,
@@ -21664,9 +18252,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def share_phone_number(
-        self, user_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def share_phone_number(self, user_id: Int53, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber
 
@@ -21676,17 +18262,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SharePhoneNumber.construct if skip_validation else SharePhoneNumber
-
         return await self.client.request(
-            _constructor(
+            SharePhoneNumber(
                 user_id=user_id,
             ),
             request_id=request_id,
@@ -21702,8 +18284,7 @@ class API:
         only_check: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Shares a user after pressing a keyboardButtonTypeRequestUser button with the bot
@@ -21722,17 +18303,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ShareUserWithBot.construct if skip_validation else ShareUserWithBot
-
         return await self.client.request(
-            _constructor(
+            ShareUserWithBot(
                 chat_id=chat_id,
                 message_id=message_id,
                 button_id=button_id,
@@ -21751,8 +18328,7 @@ class API:
         use_portrait_orientation: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Starts recording of an active group call. Requires groupCall.can_be_managed group call flag
@@ -21769,17 +18345,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = StartGroupCallRecording.construct if skip_validation else StartGroupCallRecording
-
         return await self.client.request(
-            _constructor(
+            StartGroupCallRecording(
                 group_call_id=group_call_id,
                 title=title,
                 record_video=record_video,
@@ -21796,8 +18368,7 @@ class API:
         payload: String,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Text:
         """
         Starts screen sharing in a joined group call. Returns join response payload for tgcalls
@@ -21812,17 +18383,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Text`
         """
 
-        _constructor = StartGroupCallScreenSharing.construct if skip_validation else StartGroupCallScreenSharing
-
         return await self.client.request(
-            _constructor(
+            StartGroupCallScreenSharing(
                 group_call_id=group_call_id,
                 audio_source_id=audio_source_id,
                 payload=payload,
@@ -21832,12 +18399,7 @@ class API:
         )
 
     async def start_scheduled_group_call(
-        self,
-        group_call_id: Int32,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, group_call_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Starts a scheduled group call
@@ -21848,17 +18410,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = StartScheduledGroupCall.construct if skip_validation else StartScheduledGroupCall
-
         return await self.client.request(
-            _constructor(
+            StartScheduledGroupCall(
                 group_call_id=group_call_id,
             ),
             request_id=request_id,
@@ -21872,8 +18430,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set
@@ -21888,17 +18445,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = StopPoll.construct if skip_validation else StopPoll
-
         return await self.client.request(
-            _constructor(
+            StopPoll(
                 chat_id=chat_id,
                 message_id=message_id,
                 reply_markup=reply_markup,
@@ -21908,13 +18461,7 @@ class API:
         )
 
     async def suggest_user_profile_photo(
-        self,
-        user_id: Int53,
-        photo: InputChatPhoto,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, user_id: Int53, photo: InputChatPhoto, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Suggests a profile photo to another regular user with common messages
@@ -21927,17 +18474,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SuggestUserProfilePhoto.construct if skip_validation else SuggestUserProfilePhoto
-
         return await self.client.request(
-            _constructor(
+            SuggestUserProfilePhoto(
                 user_id=user_id,
                 photo=photo,
             ),
@@ -21946,12 +18489,7 @@ class API:
         )
 
     async def synchronize_language_pack(
-        self,
-        language_pack_id: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, language_pack_id: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called explicitly for the current used/base language packs. Can be called before authorization
@@ -21962,17 +18500,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = SynchronizeLanguagePack.construct if skip_validation else SynchronizeLanguagePack
-
         return await self.client.request(
-            _constructor(
+            SynchronizeLanguagePack(
                 language_pack_id=language_pack_id,
             ),
             request_id=request_id,
@@ -21990,9 +18524,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def terminate_session(
-        self, session_id: Int64, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Ok:
+    async def terminate_session(self, session_id: Int64, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Terminates a session of the current user
 
@@ -22002,26 +18534,20 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = TerminateSession.construct if skip_validation else TerminateSession
-
         return await self.client.request(
-            _constructor(
+            TerminateSession(
                 session_id=session_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def test_call_bytes(
-        self, x: Bytes, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> TestBytes:
+    async def test_call_bytes(self, x: Bytes, *, request_id: str = None, request_timeout: int = None) -> TestBytes:
         """
         Returns the received bytes; for testing only. This is an offline method. Can be called before authorization
 
@@ -22031,17 +18557,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.TestBytes`
         """
 
-        _constructor = TestCallBytes.construct if skip_validation else TestCallBytes
-
         return await self.client.request(
-            _constructor(
+            TestCallBytes(
                 x=x,
             ),
             request_id=request_id,
@@ -22059,9 +18581,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def test_call_string(
-        self, x: String, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> TestString:
+    async def test_call_string(self, x: String, *, request_id: str = None, request_timeout: int = None) -> TestString:
         """
         Returns the received string; for testing only. This is an offline method. Can be called before authorization
 
@@ -22071,17 +18591,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.TestString`
         """
 
-        _constructor = TestCallString.construct if skip_validation else TestCallString
-
         return await self.client.request(
-            _constructor(
+            TestCallString(
                 x=x,
             ),
             request_id=request_id,
@@ -22089,7 +18605,7 @@ class API:
         )
 
     async def test_call_vector_int(
-        self, x: Vector[Int32], *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, x: Vector[Int32], *, request_id: str = None, request_timeout: int = None
     ) -> TestVectorInt:
         """
         Returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization
@@ -22100,17 +18616,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.TestVectorInt`
         """
 
-        _constructor = TestCallVectorInt.construct if skip_validation else TestCallVectorInt
-
         return await self.client.request(
-            _constructor(
+            TestCallVectorInt(
                 x=x,
             ),
             request_id=request_id,
@@ -22118,7 +18630,7 @@ class API:
         )
 
     async def test_call_vector_int_object(
-        self, x: Vector[TestInt], *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, x: Vector[TestInt], *, request_id: str = None, request_timeout: int = None
     ) -> TestVectorIntObject:
         """
         Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization
@@ -22129,17 +18641,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.TestVectorIntObject`
         """
 
-        _constructor = TestCallVectorIntObject.construct if skip_validation else TestCallVectorIntObject
-
         return await self.client.request(
-            _constructor(
+            TestCallVectorIntObject(
                 x=x,
             ),
             request_id=request_id,
@@ -22147,7 +18655,7 @@ class API:
         )
 
     async def test_call_vector_string(
-        self, x: Vector[String], *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, x: Vector[String], *, request_id: str = None, request_timeout: int = None
     ) -> TestVectorString:
         """
         Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization
@@ -22158,17 +18666,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.TestVectorString`
         """
 
-        _constructor = TestCallVectorString.construct if skip_validation else TestCallVectorString
-
         return await self.client.request(
-            _constructor(
+            TestCallVectorString(
                 x=x,
             ),
             request_id=request_id,
@@ -22176,12 +18680,7 @@ class API:
         )
 
     async def test_call_vector_string_object(
-        self,
-        x: Vector[TestString],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, x: Vector[TestString], *, request_id: str = None, request_timeout: int = None
     ) -> TestVectorStringObject:
         """
         Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization
@@ -22192,17 +18691,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.TestVectorStringObject`
         """
 
-        _constructor = TestCallVectorStringObject.construct if skip_validation else TestCallVectorStringObject
-
         return await self.client.request(
-            _constructor(
+            TestCallVectorStringObject(
                 x=x,
             ),
             request_id=request_id,
@@ -22240,8 +18735,7 @@ class API:
         timeout: Double,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
@@ -22260,17 +18754,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = TestProxy.construct if skip_validation else TestProxy
-
         return await self.client.request(
-            _constructor(
+            TestProxy(
                 server=server,
                 port=port,
                 type=type_,
@@ -22281,9 +18771,7 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def test_return_error(
-        self, error: Error, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> Error:
+    async def test_return_error(self, error: Error, *, request_id: str = None, request_timeout: int = None) -> Error:
         """
         Returns the specified error and ensures that the Error object is used; for testing only. Can be called synchronously
 
@@ -22293,26 +18781,20 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Error`
         """
 
-        _constructor = TestReturnError.construct if skip_validation else TestReturnError
-
         return await self.client.request(
-            _constructor(
+            TestReturnError(
                 error=error,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def test_square_int(
-        self, x: Int32, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
-    ) -> TestInt:
+    async def test_square_int(self, x: Int32, *, request_id: str = None, request_timeout: int = None) -> TestInt:
         """
         Returns the squared received number; for testing only. This is an offline method. Can be called before authorization
 
@@ -22322,17 +18804,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.TestInt`
         """
 
-        _constructor = TestSquareInt.construct if skip_validation else TestSquareInt
-
         return await self.client.request(
-            _constructor(
+            TestSquareInt(
                 x=x,
             ),
             request_id=request_id,
@@ -22351,12 +18829,7 @@ class API:
         )
 
     async def toggle_all_downloads_are_paused(
-        self,
-        are_paused: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, are_paused: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes pause state of all files in the file download list
@@ -22367,17 +18840,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleAllDownloadsArePaused.construct if skip_validation else ToggleAllDownloadsArePaused
-
         return await self.client.request(
-            _constructor(
+            ToggleAllDownloadsArePaused(
                 are_paused=are_paused,
             ),
             request_id=request_id,
@@ -22391,8 +18860,7 @@ class API:
         allow_write_access: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
@@ -22407,19 +18875,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ToggleBotIsAddedToAttachmentMenu.construct if skip_validation else ToggleBotIsAddedToAttachmentMenu
-        )
-
         return await self.client.request(
-            _constructor(
+            ToggleBotIsAddedToAttachmentMenu(
                 bot_user_id=bot_user_id,
                 is_added=is_added,
                 allow_write_access=allow_write_access,
@@ -22435,8 +18897,7 @@ class API:
         is_active: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes active state for a username of a bot. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true
@@ -22451,17 +18912,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleBotUsernameIsActive.construct if skip_validation else ToggleBotUsernameIsActive
-
         return await self.client.request(
-            _constructor(
+            ToggleBotUsernameIsActive(
                 bot_user_id=bot_user_id,
                 username=username,
                 is_active=is_active,
@@ -22471,13 +18928,7 @@ class API:
         )
 
     async def toggle_chat_default_disable_notification(
-        self,
-        chat_id: Int53,
-        default_disable_notification: Bool,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, default_disable_notification: Bool, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the value of the default disable_notification parameter, used when a message is sent to a chat
@@ -22490,19 +18941,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ToggleChatDefaultDisableNotification.construct if skip_validation else ToggleChatDefaultDisableNotification
-        )
-
         return await self.client.request(
-            _constructor(
+            ToggleChatDefaultDisableNotification(
                 chat_id=chat_id,
                 default_disable_notification=default_disable_notification,
             ),
@@ -22511,13 +18956,7 @@ class API:
         )
 
     async def toggle_chat_has_protected_content(
-        self,
-        chat_id: Int53,
-        has_protected_content: Bool,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, has_protected_content: Bool, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the ability of users to save, forward, or copy chat content. Supported only for basic groups, supergroups and channels. Requires owner privileges
@@ -22530,17 +18969,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleChatHasProtectedContent.construct if skip_validation else ToggleChatHasProtectedContent
-
         return await self.client.request(
-            _constructor(
+            ToggleChatHasProtectedContent(
                 chat_id=chat_id,
                 has_protected_content=has_protected_content,
             ),
@@ -22549,13 +18984,7 @@ class API:
         )
 
     async def toggle_chat_is_marked_as_unread(
-        self,
-        chat_id: Int53,
-        is_marked_as_unread: Bool,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, is_marked_as_unread: Bool, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the marked as unread state of a chat
@@ -22568,17 +18997,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleChatIsMarkedAsUnread.construct if skip_validation else ToggleChatIsMarkedAsUnread
-
         return await self.client.request(
-            _constructor(
+            ToggleChatIsMarkedAsUnread(
                 chat_id=chat_id,
                 is_marked_as_unread=is_marked_as_unread,
             ),
@@ -22593,8 +19018,7 @@ class API:
         is_pinned: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
@@ -22609,17 +19033,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleChatIsPinned.construct if skip_validation else ToggleChatIsPinned
-
         return await self.client.request(
-            _constructor(
+            ToggleChatIsPinned(
                 chat_list=chat_list,
                 chat_id=chat_id,
                 is_pinned=is_pinned,
@@ -22629,13 +19049,7 @@ class API:
         )
 
     async def toggle_chat_is_translatable(
-        self,
-        chat_id: Int53,
-        is_translatable: Bool,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, is_translatable: Bool, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the translatable state of a chat; for Telegram Premium users only
@@ -22648,17 +19062,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleChatIsTranslatable.construct if skip_validation else ToggleChatIsTranslatable
-
         return await self.client.request(
-            _constructor(
+            ToggleChatIsTranslatable(
                 chat_id=chat_id,
                 is_translatable=is_translatable,
             ),
@@ -22667,13 +19077,7 @@ class API:
         )
 
     async def toggle_download_is_paused(
-        self,
-        file_id: Int32,
-        is_paused: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, file_id: Int32, is_paused: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes pause state of a file in the file download list
@@ -22686,17 +19090,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleDownloadIsPaused.construct if skip_validation else ToggleDownloadIsPaused
-
         return await self.client.request(
-            _constructor(
+            ToggleDownloadIsPaused(
                 file_id=file_id,
                 is_paused=is_paused,
             ),
@@ -22711,8 +19111,7 @@ class API:
         is_closed: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
@@ -22727,17 +19126,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleForumTopicIsClosed.construct if skip_validation else ToggleForumTopicIsClosed
-
         return await self.client.request(
-            _constructor(
+            ToggleForumTopicIsClosed(
                 chat_id=chat_id,
                 message_thread_id=message_thread_id,
                 is_closed=is_closed,
@@ -22753,8 +19148,7 @@ class API:
         is_pinned: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
@@ -22769,17 +19163,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleForumTopicIsPinned.construct if skip_validation else ToggleForumTopicIsPinned
-
         return await self.client.request(
-            _constructor(
+            ToggleForumTopicIsPinned(
                 chat_id=chat_id,
                 message_thread_id=message_thread_id,
                 is_pinned=is_pinned,
@@ -22789,13 +19179,7 @@ class API:
         )
 
     async def toggle_general_forum_topic_is_hidden(
-        self,
-        chat_id: Int53,
-        is_hidden: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, is_hidden: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
@@ -22808,17 +19192,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleGeneralForumTopicIsHidden.construct if skip_validation else ToggleGeneralForumTopicIsHidden
-
         return await self.client.request(
-            _constructor(
+            ToggleGeneralForumTopicIsHidden(
                 chat_id=chat_id,
                 is_hidden=is_hidden,
             ),
@@ -22832,8 +19212,7 @@ class API:
         enabled_start_notification: Bool,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only
@@ -22846,21 +19225,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ToggleGroupCallEnabledStartNotification.construct
-            if skip_validation
-            else ToggleGroupCallEnabledStartNotification
-        )
-
         return await self.client.request(
-            _constructor(
+            ToggleGroupCallEnabledStartNotification(
                 group_call_id=group_call_id,
                 enabled_start_notification=enabled_start_notification,
             ),
@@ -22874,8 +19245,7 @@ class API:
         is_my_video_enabled: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether current user's video is enabled
@@ -22888,17 +19258,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleGroupCallIsMyVideoEnabled.construct if skip_validation else ToggleGroupCallIsMyVideoEnabled
-
         return await self.client.request(
-            _constructor(
+            ToggleGroupCallIsMyVideoEnabled(
                 group_call_id=group_call_id,
                 is_my_video_enabled=is_my_video_enabled,
             ),
@@ -22912,8 +19278,7 @@ class API:
         is_my_video_paused: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether current user's video is paused
@@ -22926,17 +19291,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleGroupCallIsMyVideoPaused.construct if skip_validation else ToggleGroupCallIsMyVideoPaused
-
         return await self.client.request(
-            _constructor(
+            ToggleGroupCallIsMyVideoPaused(
                 group_call_id=group_call_id,
                 is_my_video_paused=is_my_video_paused,
             ),
@@ -22945,13 +19306,7 @@ class API:
         )
 
     async def toggle_group_call_mute_new_participants(
-        self,
-        group_call_id: Int32,
-        mute_new_participants: Bool,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, group_call_id: Int32, mute_new_participants: Bool, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether new participants of a group call can be unmuted only by administrators of the group call. Requires groupCall.can_toggle_mute_new_participants group call flag
@@ -22964,19 +19319,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ToggleGroupCallMuteNewParticipants.construct if skip_validation else ToggleGroupCallMuteNewParticipants
-        )
-
         return await self.client.request(
-            _constructor(
+            ToggleGroupCallMuteNewParticipants(
                 group_call_id=group_call_id,
                 mute_new_participants=mute_new_participants,
             ),
@@ -22991,8 +19340,7 @@ class API:
         is_hand_raised: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether a group call participant hand is rased
@@ -23007,21 +19355,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ToggleGroupCallParticipantIsHandRaised.construct
-            if skip_validation
-            else ToggleGroupCallParticipantIsHandRaised
-        )
-
         return await self.client.request(
-            _constructor(
+            ToggleGroupCallParticipantIsHandRaised(
                 group_call_id=group_call_id,
                 participant_id=participant_id,
                 is_hand_raised=is_hand_raised,
@@ -23037,8 +19377,7 @@ class API:
         is_muted: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
@@ -23053,19 +19392,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ToggleGroupCallParticipantIsMuted.construct if skip_validation else ToggleGroupCallParticipantIsMuted
-        )
-
         return await self.client.request(
-            _constructor(
+            ToggleGroupCallParticipantIsMuted(
                 group_call_id=group_call_id,
                 participant_id=participant_id,
                 is_muted=is_muted,
@@ -23075,13 +19408,7 @@ class API:
         )
 
     async def toggle_group_call_screen_sharing_is_paused(
-        self,
-        group_call_id: Int32,
-        is_paused: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, group_call_id: Int32, is_paused: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Pauses or unpauses screen sharing in a joined group call
@@ -23094,19 +19421,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ToggleGroupCallScreenSharingIsPaused.construct if skip_validation else ToggleGroupCallScreenSharingIsPaused
-        )
-
         return await self.client.request(
-            _constructor(
+            ToggleGroupCallScreenSharingIsPaused(
                 group_call_id=group_call_id,
                 is_paused=is_paused,
             ),
@@ -23115,13 +19436,7 @@ class API:
         )
 
     async def toggle_session_can_accept_calls(
-        self,
-        session_id: Int64,
-        can_accept_calls: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, session_id: Int64, can_accept_calls: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether a session can accept incoming calls
@@ -23134,17 +19449,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleSessionCanAcceptCalls.construct if skip_validation else ToggleSessionCanAcceptCalls
-
         return await self.client.request(
-            _constructor(
+            ToggleSessionCanAcceptCalls(
                 session_id=session_id,
                 can_accept_calls=can_accept_calls,
             ),
@@ -23158,8 +19469,7 @@ class API:
         can_accept_secret_chats: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether a session can accept incoming secret chats
@@ -23172,19 +19482,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ToggleSessionCanAcceptSecretChats.construct if skip_validation else ToggleSessionCanAcceptSecretChats
-        )
-
         return await self.client.request(
-            _constructor(
+            ToggleSessionCanAcceptSecretChats(
                 session_id=session_id,
                 can_accept_secret_chats=can_accept_secret_chats,
             ),
@@ -23193,13 +19497,7 @@ class API:
         )
 
     async def toggle_story_is_pinned(
-        self,
-        story_id: Int32,
-        is_pinned: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, story_id: Int32, is_pinned: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether a story is accessible after expiration
@@ -23212,17 +19510,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleStoryIsPinned.construct if skip_validation else ToggleStoryIsPinned
-
         return await self.client.request(
-            _constructor(
+            ToggleStoryIsPinned(
                 story_id=story_id,
                 is_pinned=is_pinned,
             ),
@@ -23236,8 +19530,7 @@ class API:
         has_aggressive_anti_spam_enabled: Bool,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether aggressive anti-spam checks are enabled in the supergroup. Can be called only if supergroupFullInfo.can_toggle_aggressive_anti_spam == true
@@ -23250,21 +19543,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ToggleSupergroupHasAggressiveAntiSpamEnabled.construct
-            if skip_validation
-            else ToggleSupergroupHasAggressiveAntiSpamEnabled
-        )
-
         return await self.client.request(
-            _constructor(
+            ToggleSupergroupHasAggressiveAntiSpamEnabled(
                 supergroup_id=supergroup_id,
                 has_aggressive_anti_spam_enabled=has_aggressive_anti_spam_enabled,
             ),
@@ -23273,13 +19558,7 @@ class API:
         )
 
     async def toggle_supergroup_has_hidden_members(
-        self,
-        supergroup_id: Int53,
-        has_hidden_members: Bool,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, has_hidden_members: Bool, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers. Can be called only if supergroupFullInfo.can_hide_members == true
@@ -23292,19 +19571,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ToggleSupergroupHasHiddenMembers.construct if skip_validation else ToggleSupergroupHasHiddenMembers
-        )
-
         return await self.client.request(
-            _constructor(
+            ToggleSupergroupHasHiddenMembers(
                 supergroup_id=supergroup_id,
                 has_hidden_members=has_hidden_members,
             ),
@@ -23318,8 +19591,7 @@ class API:
         is_all_history_available: Bool,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right
@@ -23332,21 +19604,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ToggleSupergroupIsAllHistoryAvailable.construct
-            if skip_validation
-            else ToggleSupergroupIsAllHistoryAvailable
-        )
-
         return await self.client.request(
-            _constructor(
+            ToggleSupergroupIsAllHistoryAvailable(
                 supergroup_id=supergroup_id,
                 is_all_history_available=is_all_history_available,
             ),
@@ -23355,12 +19619,7 @@ class API:
         )
 
     async def toggle_supergroup_is_broadcast_group(
-        self,
-        supergroup_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Upgrades supergroup to a broadcast group; requires owner privileges in the supergroup
@@ -23371,19 +19630,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ToggleSupergroupIsBroadcastGroup.construct if skip_validation else ToggleSupergroupIsBroadcastGroup
-        )
-
         return await self.client.request(
-            _constructor(
+            ToggleSupergroupIsBroadcastGroup(
                 supergroup_id=supergroup_id,
             ),
             request_id=request_id,
@@ -23391,13 +19644,7 @@ class API:
         )
 
     async def toggle_supergroup_is_forum(
-        self,
-        supergroup_id: Int53,
-        is_forum: Bool,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, is_forum: Bool, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether the supergroup is a forum; requires owner privileges in the supergroup. Discussion supergroups can't be converted to forums
@@ -23410,17 +19657,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleSupergroupIsForum.construct if skip_validation else ToggleSupergroupIsForum
-
         return await self.client.request(
-            _constructor(
+            ToggleSupergroupIsForum(
                 supergroup_id=supergroup_id,
                 is_forum=is_forum,
             ),
@@ -23429,13 +19672,7 @@ class API:
         )
 
     async def toggle_supergroup_join_by_request(
-        self,
-        supergroup_id: Int53,
-        join_by_request: Bool,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, join_by_request: Bool, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
@@ -23448,17 +19685,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleSupergroupJoinByRequest.construct if skip_validation else ToggleSupergroupJoinByRequest
-
         return await self.client.request(
-            _constructor(
+            ToggleSupergroupJoinByRequest(
                 supergroup_id=supergroup_id,
                 join_by_request=join_by_request,
             ),
@@ -23467,13 +19700,7 @@ class API:
         )
 
     async def toggle_supergroup_join_to_send_messages(
-        self,
-        supergroup_id: Int53,
-        join_to_send_messages: Bool,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, join_to_send_messages: Bool, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
@@ -23486,19 +19713,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ToggleSupergroupJoinToSendMessages.construct if skip_validation else ToggleSupergroupJoinToSendMessages
-        )
-
         return await self.client.request(
-            _constructor(
+            ToggleSupergroupJoinToSendMessages(
                 supergroup_id=supergroup_id,
                 join_to_send_messages=join_to_send_messages,
             ),
@@ -23507,13 +19728,7 @@ class API:
         )
 
     async def toggle_supergroup_sign_messages(
-        self,
-        supergroup_id: Int53,
-        sign_messages: Bool,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, supergroup_id: Int53, sign_messages: Bool, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
@@ -23526,17 +19741,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleSupergroupSignMessages.construct if skip_validation else ToggleSupergroupSignMessages
-
         return await self.client.request(
-            _constructor(
+            ToggleSupergroupSignMessages(
                 supergroup_id=supergroup_id,
                 sign_messages=sign_messages,
             ),
@@ -23551,8 +19762,7 @@ class API:
         is_active: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
@@ -23567,19 +19777,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = (
-            ToggleSupergroupUsernameIsActive.construct if skip_validation else ToggleSupergroupUsernameIsActive
-        )
-
         return await self.client.request(
-            _constructor(
+            ToggleSupergroupUsernameIsActive(
                 supergroup_id=supergroup_id,
                 username=username,
                 is_active=is_active,
@@ -23589,13 +19793,7 @@ class API:
         )
 
     async def toggle_username_is_active(
-        self,
-        username: String,
-        is_active: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, username: String, is_active: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes active state for a username of the current user. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
@@ -23608,17 +19806,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ToggleUsernameIsActive.construct if skip_validation else ToggleUsernameIsActive
-
         return await self.client.request(
-            _constructor(
+            ToggleUsernameIsActive(
                 username=username,
                 is_active=is_active,
             ),
@@ -23627,14 +19821,7 @@ class API:
         )
 
     async def transfer_chat_ownership(
-        self,
-        chat_id: Int53,
-        user_id: Int53,
-        password: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, user_id: Int53, password: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
@@ -23649,17 +19836,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = TransferChatOwnership.construct if skip_validation else TransferChatOwnership
-
         return await self.client.request(
-            _constructor(
+            TransferChatOwnership(
                 chat_id=chat_id,
                 user_id=user_id,
                 password=password,
@@ -23675,8 +19858,7 @@ class API:
         to_language_code: String,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> FormattedText:
         """
         Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
@@ -23691,17 +19873,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FormattedText`
         """
 
-        _constructor = TranslateMessageText.construct if skip_validation else TranslateMessageText
-
         return await self.client.request(
-            _constructor(
+            TranslateMessageText(
                 chat_id=chat_id,
                 message_id=message_id,
                 to_language_code=to_language_code,
@@ -23711,13 +19889,7 @@ class API:
         )
 
     async def translate_text(
-        self,
-        text: FormattedText,
-        to_language_code: String,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, text: FormattedText, to_language_code: String, *, request_id: str = None, request_timeout: int = None
     ) -> FormattedText:
         """
         Translates a text to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
@@ -23730,17 +19902,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.FormattedText`
         """
 
-        _constructor = TranslateText.construct if skip_validation else TranslateText
-
         return await self.client.request(
-            _constructor(
+            TranslateText(
                 text=text,
                 to_language_code=to_language_code,
             ),
@@ -23749,7 +19917,7 @@ class API:
         )
 
     async def unpin_all_chat_messages(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
@@ -23760,17 +19928,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = UnpinAllChatMessages.construct if skip_validation else UnpinAllChatMessages
-
         return await self.client.request(
-            _constructor(
+            UnpinAllChatMessages(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -23778,13 +19942,7 @@ class API:
         )
 
     async def unpin_all_message_thread_messages(
-        self,
-        chat_id: Int53,
-        message_thread_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_thread_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
@@ -23797,17 +19955,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = UnpinAllMessageThreadMessages.construct if skip_validation else UnpinAllMessageThreadMessages
-
         return await self.client.request(
-            _constructor(
+            UnpinAllMessageThreadMessages(
                 chat_id=chat_id,
                 message_thread_id=message_thread_id,
             ),
@@ -23816,13 +19970,7 @@ class API:
         )
 
     async def unpin_chat_message(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Removes a pinned message from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
@@ -23835,17 +19983,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = UnpinChatMessage.construct if skip_validation else UnpinChatMessage
-
         return await self.client.request(
-            _constructor(
+            UnpinChatMessage(
                 chat_id=chat_id,
                 message_id=message_id,
             ),
@@ -23854,7 +19998,7 @@ class API:
         )
 
     async def upgrade_basic_group_chat_to_supergroup_chat(
-        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None, skip_validation: bool = False
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Chat:
         """
         Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group
@@ -23865,21 +20009,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Chat`
         """
 
-        _constructor = (
-            UpgradeBasicGroupChatToSupergroupChat.construct
-            if skip_validation
-            else UpgradeBasicGroupChatToSupergroupChat
-        )
-
         return await self.client.request(
-            _constructor(
+            UpgradeBasicGroupChatToSupergroupChat(
                 chat_id=chat_id,
             ),
             request_id=request_id,
@@ -23893,8 +20029,7 @@ class API:
         sticker: InputFile,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> File:
         """
         Uploads a file with a sticker; returns the uploaded file
@@ -23909,17 +20044,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.File`
         """
 
-        _constructor = UploadStickerFile.construct if skip_validation else UploadStickerFile
-
         return await self.client.request(
-            _constructor(
+            UploadStickerFile(
                 user_id=user_id,
                 sticker_format=sticker_format,
                 sticker=sticker,
@@ -23935,8 +20066,7 @@ class API:
         order_info: typing.Optional[OrderInfo] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> ValidatedOrderInfo:
         """
         Validates the order information provided by a user and returns the available shipping options for a flexible invoice
@@ -23951,17 +20081,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.ValidatedOrderInfo`
         """
 
-        _constructor = ValidateOrderInfo.construct if skip_validation else ValidateOrderInfo
-
         return await self.client.request(
-            _constructor(
+            ValidateOrderInfo(
                 input_invoice=input_invoice,
                 allow_save=allow_save,
                 order_info=order_info,
@@ -23978,8 +20104,7 @@ class API:
         source: typing.Optional[MessageSource] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        request_timeout: int = None
     ) -> Ok:
         """
         Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button). Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
@@ -23996,17 +20121,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ViewMessages.construct if skip_validation else ViewMessages
-
         return await self.client.request(
-            _constructor(
+            ViewMessages(
                 chat_id=chat_id,
                 message_ids=message_ids,
                 force_read=force_read,
@@ -24017,12 +20138,7 @@ class API:
         )
 
     async def view_premium_feature(
-        self,
-        feature: PremiumFeature,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, feature: PremiumFeature, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Informs TDLib that the user viewed detailed information about a Premium feature on the Premium features screen
@@ -24033,17 +20149,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ViewPremiumFeature.construct if skip_validation else ViewPremiumFeature
-
         return await self.client.request(
-            _constructor(
+            ViewPremiumFeature(
                 feature=feature,
             ),
             request_id=request_id,
@@ -24051,12 +20163,7 @@ class API:
         )
 
     async def view_trending_sticker_sets(
-        self,
-        sticker_set_ids: Vector[Int64],
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, sticker_set_ids: Vector[Int64], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Informs the server that some trending sticker sets have been viewed by the user
@@ -24067,17 +20174,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = ViewTrendingStickerSets.construct if skip_validation else ViewTrendingStickerSets
-
         return await self.client.request(
-            _constructor(
+            ViewTrendingStickerSets(
                 sticker_set_ids=sticker_set_ids,
             ),
             request_id=request_id,
@@ -24085,14 +20188,7 @@ class API:
         )
 
     async def write_generated_file_part(
-        self,
-        generation_id: Int64,
-        offset: Int53,
-        data: Bytes,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-        skip_validation: bool = False
+        self, generation_id: Int64, offset: Int53, data: Bytes, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
         Writes a part of a generated file. This method is intended to be used only if the application has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file
@@ -24107,17 +20203,13 @@ class API:
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
-        :param skip_validation: when set to `True` request would be send to TDLib unvalidated, defaults to False
-        :type skip_validation: :class:`bool`
 
         :return: response from TDLib
         :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
-        _constructor = WriteGeneratedFilePart.construct if skip_validation else WriteGeneratedFilePart
-
         return await self.client.request(
-            _constructor(
+            WriteGeneratedFilePart(
                 generation_id=generation_id,
                 offset=offset,
                 data=data,

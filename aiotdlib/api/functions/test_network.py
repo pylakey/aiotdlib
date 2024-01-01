@@ -17,4 +17,4 @@ class TestNetwork(BaseObject):
     Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization
     """
 
-    ID: typing.Literal["testNetwork"] = "testNetwork"
+    ID: typing.Literal["testNetwork"] = Field("testNetwork", validation_alias="@type", alias="@type")

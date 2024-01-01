@@ -17,4 +17,4 @@ class GetAccountTtl(BaseObject):
     Returns the period of inactivity after which the account of the current user will automatically be deleted
     """
 
-    ID: typing.Literal["getAccountTtl"] = "getAccountTtl"
+    ID: typing.Literal["getAccountTtl"] = Field("getAccountTtl", validation_alias="@type", alias="@type")

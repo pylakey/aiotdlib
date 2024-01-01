@@ -22,6 +22,6 @@ class SetGroupCallTitle(BaseObject):
     :type title: :class:`String`
     """
 
-    ID: typing.Literal["setGroupCallTitle"] = "setGroupCallTitle"
+    ID: typing.Literal["setGroupCallTitle"] = Field("setGroupCallTitle", validation_alias="@type", alias="@type")
     group_call_id: Int32
     title: String = Field(..., min_length=1, max_length=64)

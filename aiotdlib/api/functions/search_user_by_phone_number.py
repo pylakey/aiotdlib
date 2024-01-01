@@ -20,5 +20,7 @@ class SearchUserByPhoneNumber(BaseObject):
     :type phone_number: :class:`String`
     """
 
-    ID: typing.Literal["searchUserByPhoneNumber"] = "searchUserByPhoneNumber"
+    ID: typing.Literal["searchUserByPhoneNumber"] = Field(
+        "searchUserByPhoneNumber", validation_alias="@type", alias="@type"
+    )
     phone_number: String

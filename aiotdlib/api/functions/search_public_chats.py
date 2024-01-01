@@ -20,5 +20,5 @@ class SearchPublicChats(BaseObject):
     :type query: :class:`String`
     """
 
-    ID: typing.Literal["searchPublicChats"] = "searchPublicChats"
+    ID: typing.Literal["searchPublicChats"] = Field("searchPublicChats", validation_alias="@type", alias="@type")
     query: String

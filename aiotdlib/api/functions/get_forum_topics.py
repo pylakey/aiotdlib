@@ -30,7 +30,7 @@ class GetForumTopics(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["getForumTopics"] = "getForumTopics"
+    ID: typing.Literal["getForumTopics"] = Field("getForumTopics", validation_alias="@type", alias="@type")
     chat_id: Int53
     query: String
     offset_date: Int32

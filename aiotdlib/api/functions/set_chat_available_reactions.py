@@ -26,6 +26,8 @@ class SetChatAvailableReactions(BaseObject):
     :type available_reactions: :class:`ChatAvailableReactions`
     """
 
-    ID: typing.Literal["setChatAvailableReactions"] = "setChatAvailableReactions"
+    ID: typing.Literal["setChatAvailableReactions"] = Field(
+        "setChatAvailableReactions", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     available_reactions: ChatAvailableReactions

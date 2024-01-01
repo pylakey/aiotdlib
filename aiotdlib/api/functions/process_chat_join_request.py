@@ -24,7 +24,9 @@ class ProcessChatJoinRequest(BaseObject):
     :type approve: :class:`Bool`
     """
 
-    ID: typing.Literal["processChatJoinRequest"] = "processChatJoinRequest"
+    ID: typing.Literal["processChatJoinRequest"] = Field(
+        "processChatJoinRequest", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     user_id: Int53
     approve: Bool = False

@@ -31,7 +31,7 @@ class EditMessageText(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["editMessageText"] = "editMessageText"
+    ID: typing.Literal["editMessageText"] = Field("editMessageText", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     input_message_content: InputMessageContent

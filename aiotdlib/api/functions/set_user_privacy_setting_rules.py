@@ -27,6 +27,8 @@ class SetUserPrivacySettingRules(BaseObject):
     :type rules: :class:`UserPrivacySettingRules`
     """
 
-    ID: typing.Literal["setUserPrivacySettingRules"] = "setUserPrivacySettingRules"
+    ID: typing.Literal["setUserPrivacySettingRules"] = Field(
+        "setUserPrivacySettingRules", validation_alias="@type", alias="@type"
+    )
     setting: UserPrivacySetting
     rules: UserPrivacySettingRules

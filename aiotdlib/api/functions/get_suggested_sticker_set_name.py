@@ -20,5 +20,7 @@ class GetSuggestedStickerSetName(BaseObject):
     :type title: :class:`String`
     """
 
-    ID: typing.Literal["getSuggestedStickerSetName"] = "getSuggestedStickerSetName"
+    ID: typing.Literal["getSuggestedStickerSetName"] = Field(
+        "getSuggestedStickerSetName", validation_alias="@type", alias="@type"
+    )
     title: String = Field(..., min_length=1, max_length=64)

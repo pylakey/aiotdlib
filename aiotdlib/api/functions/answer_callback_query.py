@@ -28,7 +28,7 @@ class AnswerCallbackQuery(BaseObject):
     :type show_alert: :class:`Bool`
     """
 
-    ID: typing.Literal["answerCallbackQuery"] = "answerCallbackQuery"
+    ID: typing.Literal["answerCallbackQuery"] = Field("answerCallbackQuery", validation_alias="@type", alias="@type")
     callback_query_id: Int64
     text: String
     url: String

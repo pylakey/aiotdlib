@@ -28,7 +28,9 @@ class SetStickerSetThumbnail(BaseObject):
     :type thumbnail: :class:`InputFile`, optional
     """
 
-    ID: typing.Literal["setStickerSetThumbnail"] = "setStickerSetThumbnail"
+    ID: typing.Literal["setStickerSetThumbnail"] = Field(
+        "setStickerSetThumbnail", validation_alias="@type", alias="@type"
+    )
     user_id: Int53
     name: String
     thumbnail: typing.Optional[InputFile] = None

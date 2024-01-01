@@ -24,5 +24,7 @@ class EditCustomLanguagePackInfo(BaseObject):
     :type info: :class:`LanguagePackInfo`
     """
 
-    ID: typing.Literal["editCustomLanguagePackInfo"] = "editCustomLanguagePackInfo"
+    ID: typing.Literal["editCustomLanguagePackInfo"] = Field(
+        "editCustomLanguagePackInfo", validation_alias="@type", alias="@type"
+    )
     info: LanguagePackInfo

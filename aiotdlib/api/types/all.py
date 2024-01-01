@@ -20,7 +20,7 @@ class AccountTtl(BaseObject):
     :type days: :class:`Int32`
     """
 
-    ID: typing.Literal["accountTtl"] = "accountTtl"
+    ID: typing.Literal["accountTtl"] = Field("accountTtl", validation_alias="@type", alias="@type")
     days: Int32
 
 
@@ -36,7 +36,7 @@ class AddedReaction(BaseObject):
     :type date: :class:`Int32`
     """
 
-    ID: typing.Literal["addedReaction"] = "addedReaction"
+    ID: typing.Literal["addedReaction"] = Field("addedReaction", validation_alias="@type", alias="@type")
     type_: ReactionType = Field(..., alias="type")
     sender_id: MessageSender
     date: Int32
@@ -54,7 +54,7 @@ class AddedReactions(BaseObject):
     :type next_offset: :class:`String`
     """
 
-    ID: typing.Literal["addedReactions"] = "addedReactions"
+    ID: typing.Literal["addedReactions"] = Field("addedReactions", validation_alias="@type", alias="@type")
     total_count: Int32
     reactions: Vector[AddedReaction]
     next_offset: String
@@ -78,7 +78,7 @@ class Address(BaseObject):
     :type postal_code: :class:`String`
     """
 
-    ID: typing.Literal["address"] = "address"
+    ID: typing.Literal["address"] = Field("address", validation_alias="@type", alias="@type")
     country_code: String
     state: String
     city: String
@@ -99,7 +99,7 @@ class AnimatedChatPhoto(BaseObject):
     :type main_frame_timestamp: :class:`Double`
     """
 
-    ID: typing.Literal["animatedChatPhoto"] = "animatedChatPhoto"
+    ID: typing.Literal["animatedChatPhoto"] = Field("animatedChatPhoto", validation_alias="@type", alias="@type")
     length: Int32
     file: File
     main_frame_timestamp: Double
@@ -121,7 +121,7 @@ class AnimatedEmoji(BaseObject):
     :type fitzpatrick_type: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["animatedEmoji"] = "animatedEmoji"
+    ID: typing.Literal["animatedEmoji"] = Field("animatedEmoji", validation_alias="@type", alias="@type")
     sticker_width: Int32
     sticker_height: Int32
     sticker: typing.Optional[Sticker] = None
@@ -153,7 +153,7 @@ class Animation(BaseObject):
     :type has_stickers: :class:`Bool`
     """
 
-    ID: typing.Literal["animation"] = "animation"
+    ID: typing.Literal["animation"] = Field("animation", validation_alias="@type", alias="@type")
     duration: Int32
     width: Int32
     height: Int32
@@ -173,7 +173,7 @@ class Animations(BaseObject):
     :type animations: :class:`Vector[Animation]`
     """
 
-    ID: typing.Literal["animations"] = "animations"
+    ID: typing.Literal["animations"] = Field("animations", validation_alias="@type", alias="@type")
     animations: Vector[Animation]
 
 
@@ -189,7 +189,9 @@ class ArchiveChatListSettings(BaseObject):
     :type keep_chats_from_folders_archived: :class:`Bool`
     """
 
-    ID: typing.Literal["archiveChatListSettings"] = "archiveChatListSettings"
+    ID: typing.Literal["archiveChatListSettings"] = Field(
+        "archiveChatListSettings", validation_alias="@type", alias="@type"
+    )
     archive_and_mute_new_chats_from_unknown_users: Bool = False
     keep_unmuted_chats_archived: Bool = False
     keep_chats_from_folders_archived: Bool = False
@@ -249,7 +251,7 @@ class AttachmentMenuBot(BaseObject):
     :type show_disclaimer_in_side_menu: :class:`Bool`
     """
 
-    ID: typing.Literal["attachmentMenuBot"] = "attachmentMenuBot"
+    ID: typing.Literal["attachmentMenuBot"] = Field("attachmentMenuBot", validation_alias="@type", alias="@type")
     bot_user_id: Int53
     name: String
     name_color: typing.Optional[AttachmentMenuBotColor] = None
@@ -286,7 +288,9 @@ class AttachmentMenuBotColor(BaseObject):
     :type dark_color: :class:`Int32`
     """
 
-    ID: typing.Literal["attachmentMenuBotColor"] = "attachmentMenuBotColor"
+    ID: typing.Literal["attachmentMenuBotColor"] = Field(
+        "attachmentMenuBotColor", validation_alias="@type", alias="@type"
+    )
     light_color: Int32
     dark_color: Int32
 
@@ -315,7 +319,7 @@ class Audio(BaseObject):
     :type album_cover_thumbnail: :class:`Thumbnail`, optional
     """
 
-    ID: typing.Literal["audio"] = "audio"
+    ID: typing.Literal["audio"] = Field("audio", validation_alias="@type", alias="@type")
     duration: Int32
     title: String
     performer: String
@@ -341,7 +345,9 @@ class AuthenticationCodeInfo(BaseObject):
     :type next_type: :class:`AuthenticationCodeType`, optional
     """
 
-    ID: typing.Literal["authenticationCodeInfo"] = "authenticationCodeInfo"
+    ID: typing.Literal["authenticationCodeInfo"] = Field(
+        "authenticationCodeInfo", validation_alias="@type", alias="@type"
+    )
     phone_number: String
     type_: AuthenticationCodeType = Field(..., alias="type")
     timeout: Int32
@@ -356,7 +362,9 @@ class AuthenticationCodeTypeCall(BaseObject):
     :type length: :class:`Int32`
     """
 
-    ID: typing.Literal["authenticationCodeTypeCall"] = "authenticationCodeTypeCall"
+    ID: typing.Literal["authenticationCodeTypeCall"] = Field(
+        "authenticationCodeTypeCall", validation_alias="@type", alias="@type"
+    )
     length: Int32
 
 
@@ -370,7 +378,9 @@ class AuthenticationCodeTypeFirebaseAndroid(BaseObject):
     :type length: :class:`Int32`
     """
 
-    ID: typing.Literal["authenticationCodeTypeFirebaseAndroid"] = "authenticationCodeTypeFirebaseAndroid"
+    ID: typing.Literal["authenticationCodeTypeFirebaseAndroid"] = Field(
+        "authenticationCodeTypeFirebaseAndroid", validation_alias="@type", alias="@type"
+    )
     nonce: Bytes
     length: Int32
 
@@ -387,7 +397,9 @@ class AuthenticationCodeTypeFirebaseIos(BaseObject):
     :type length: :class:`Int32`
     """
 
-    ID: typing.Literal["authenticationCodeTypeFirebaseIos"] = "authenticationCodeTypeFirebaseIos"
+    ID: typing.Literal["authenticationCodeTypeFirebaseIos"] = Field(
+        "authenticationCodeTypeFirebaseIos", validation_alias="@type", alias="@type"
+    )
     receipt: String
     push_timeout: Int32
     length: Int32
@@ -401,7 +413,9 @@ class AuthenticationCodeTypeFlashCall(BaseObject):
     :type pattern: :class:`String`
     """
 
-    ID: typing.Literal["authenticationCodeTypeFlashCall"] = "authenticationCodeTypeFlashCall"
+    ID: typing.Literal["authenticationCodeTypeFlashCall"] = Field(
+        "authenticationCodeTypeFlashCall", validation_alias="@type", alias="@type"
+    )
     pattern: String
 
 
@@ -415,7 +429,9 @@ class AuthenticationCodeTypeFragment(BaseObject):
     :type length: :class:`Int32`
     """
 
-    ID: typing.Literal["authenticationCodeTypeFragment"] = "authenticationCodeTypeFragment"
+    ID: typing.Literal["authenticationCodeTypeFragment"] = Field(
+        "authenticationCodeTypeFragment", validation_alias="@type", alias="@type"
+    )
     url: String
     length: Int32
 
@@ -430,7 +446,9 @@ class AuthenticationCodeTypeMissedCall(BaseObject):
     :type length: :class:`Int32`
     """
 
-    ID: typing.Literal["authenticationCodeTypeMissedCall"] = "authenticationCodeTypeMissedCall"
+    ID: typing.Literal["authenticationCodeTypeMissedCall"] = Field(
+        "authenticationCodeTypeMissedCall", validation_alias="@type", alias="@type"
+    )
     phone_number_prefix: String
     length: Int32
 
@@ -443,7 +461,9 @@ class AuthenticationCodeTypeSms(BaseObject):
     :type length: :class:`Int32`
     """
 
-    ID: typing.Literal["authenticationCodeTypeSms"] = "authenticationCodeTypeSms"
+    ID: typing.Literal["authenticationCodeTypeSms"] = Field(
+        "authenticationCodeTypeSms", validation_alias="@type", alias="@type"
+    )
     length: Int32
 
 
@@ -455,7 +475,9 @@ class AuthenticationCodeTypeTelegramMessage(BaseObject):
     :type length: :class:`Int32`
     """
 
-    ID: typing.Literal["authenticationCodeTypeTelegramMessage"] = "authenticationCodeTypeTelegramMessage"
+    ID: typing.Literal["authenticationCodeTypeTelegramMessage"] = Field(
+        "authenticationCodeTypeTelegramMessage", validation_alias="@type", alias="@type"
+    )
     length: Int32
 
 
@@ -476,7 +498,9 @@ class AuthorizationStateClosed(BaseObject):
     TDLib client is in its final state. All databases are closed and all resources are released. No other updates will be received after this. All queries will be responded to with error code 500. To continue working, one must create a new instance of the TDLib client
     """
 
-    ID: typing.Literal["authorizationStateClosed"] = "authorizationStateClosed"
+    ID: typing.Literal["authorizationStateClosed"] = Field(
+        "authorizationStateClosed", validation_alias="@type", alias="@type"
+    )
 
 
 class AuthorizationStateClosing(BaseObject):
@@ -484,7 +508,9 @@ class AuthorizationStateClosing(BaseObject):
     TDLib is closing, all subsequent queries will be answered with the error 500. Note that closing TDLib can take a while. All resources will be freed only after authorizationStateClosed has been received
     """
 
-    ID: typing.Literal["authorizationStateClosing"] = "authorizationStateClosing"
+    ID: typing.Literal["authorizationStateClosing"] = Field(
+        "authorizationStateClosing", validation_alias="@type", alias="@type"
+    )
 
 
 class AuthorizationStateLoggingOut(BaseObject):
@@ -492,7 +518,9 @@ class AuthorizationStateLoggingOut(BaseObject):
     The user is currently logging out
     """
 
-    ID: typing.Literal["authorizationStateLoggingOut"] = "authorizationStateLoggingOut"
+    ID: typing.Literal["authorizationStateLoggingOut"] = Field(
+        "authorizationStateLoggingOut", validation_alias="@type", alias="@type"
+    )
 
 
 class AuthorizationStateReady(BaseObject):
@@ -500,7 +528,9 @@ class AuthorizationStateReady(BaseObject):
     The user has been successfully authorized. TDLib is now ready to answer general requests
     """
 
-    ID: typing.Literal["authorizationStateReady"] = "authorizationStateReady"
+    ID: typing.Literal["authorizationStateReady"] = Field(
+        "authorizationStateReady", validation_alias="@type", alias="@type"
+    )
 
 
 class AuthorizationStateWaitCode(BaseObject):
@@ -511,7 +541,9 @@ class AuthorizationStateWaitCode(BaseObject):
     :type code_info: :class:`AuthenticationCodeInfo`
     """
 
-    ID: typing.Literal["authorizationStateWaitCode"] = "authorizationStateWaitCode"
+    ID: typing.Literal["authorizationStateWaitCode"] = Field(
+        "authorizationStateWaitCode", validation_alias="@type", alias="@type"
+    )
     code_info: AuthenticationCodeInfo
 
 
@@ -525,7 +557,9 @@ class AuthorizationStateWaitEmailAddress(BaseObject):
     :type allow_google_id: :class:`Bool`
     """
 
-    ID: typing.Literal["authorizationStateWaitEmailAddress"] = "authorizationStateWaitEmailAddress"
+    ID: typing.Literal["authorizationStateWaitEmailAddress"] = Field(
+        "authorizationStateWaitEmailAddress", validation_alias="@type", alias="@type"
+    )
     allow_apple_id: Bool = False
     allow_google_id: Bool = False
 
@@ -544,7 +578,9 @@ class AuthorizationStateWaitEmailCode(BaseObject):
     :type allow_google_id: :class:`Bool`
     """
 
-    ID: typing.Literal["authorizationStateWaitEmailCode"] = "authorizationStateWaitEmailCode"
+    ID: typing.Literal["authorizationStateWaitEmailCode"] = Field(
+        "authorizationStateWaitEmailCode", validation_alias="@type", alias="@type"
+    )
     code_info: EmailAddressAuthenticationCodeInfo
     email_address_reset_state: typing.Optional[EmailAddressResetState] = None
     allow_apple_id: Bool = False
@@ -559,9 +595,9 @@ class AuthorizationStateWaitOtherDeviceConfirmation(BaseObject):
     :type link: :class:`String`
     """
 
-    ID: typing.Literal[
-        "authorizationStateWaitOtherDeviceConfirmation"
-    ] = "authorizationStateWaitOtherDeviceConfirmation"
+    ID: typing.Literal["authorizationStateWaitOtherDeviceConfirmation"] = Field(
+        "authorizationStateWaitOtherDeviceConfirmation", validation_alias="@type", alias="@type"
+    )
     link: String
 
 
@@ -579,7 +615,9 @@ class AuthorizationStateWaitPassword(BaseObject):
     :type has_passport_data: :class:`Bool`
     """
 
-    ID: typing.Literal["authorizationStateWaitPassword"] = "authorizationStateWaitPassword"
+    ID: typing.Literal["authorizationStateWaitPassword"] = Field(
+        "authorizationStateWaitPassword", validation_alias="@type", alias="@type"
+    )
     recovery_email_address_pattern: String
     password_hint: String = ""
     has_recovery_email_address: Bool = False
@@ -591,7 +629,9 @@ class AuthorizationStateWaitPhoneNumber(BaseObject):
     TDLib needs the user's phone number to authorize. Call setAuthenticationPhoneNumber to provide the phone number, or use requestQrCodeAuthentication or checkAuthenticationBotToken for other authentication options
     """
 
-    ID: typing.Literal["authorizationStateWaitPhoneNumber"] = "authorizationStateWaitPhoneNumber"
+    ID: typing.Literal["authorizationStateWaitPhoneNumber"] = Field(
+        "authorizationStateWaitPhoneNumber", validation_alias="@type", alias="@type"
+    )
 
 
 class AuthorizationStateWaitRegistration(BaseObject):
@@ -602,7 +642,9 @@ class AuthorizationStateWaitRegistration(BaseObject):
     :type terms_of_service: :class:`TermsOfService`
     """
 
-    ID: typing.Literal["authorizationStateWaitRegistration"] = "authorizationStateWaitRegistration"
+    ID: typing.Literal["authorizationStateWaitRegistration"] = Field(
+        "authorizationStateWaitRegistration", validation_alias="@type", alias="@type"
+    )
     terms_of_service: TermsOfService
 
 
@@ -611,7 +653,9 @@ class AuthorizationStateWaitTdlibParameters(BaseObject):
     Initialization parameters are needed. Call setTdlibParameters to provide them
     """
 
-    ID: typing.Literal["authorizationStateWaitTdlibParameters"] = "authorizationStateWaitTdlibParameters"
+    ID: typing.Literal["authorizationStateWaitTdlibParameters"] = Field(
+        "authorizationStateWaitTdlibParameters", validation_alias="@type", alias="@type"
+    )
 
 
 AuthorizationState = typing.Union[
@@ -654,7 +698,7 @@ class AutoDownloadSettings(BaseObject):
     :type use_less_data_for_calls: :class:`Bool`
     """
 
-    ID: typing.Literal["autoDownloadSettings"] = "autoDownloadSettings"
+    ID: typing.Literal["autoDownloadSettings"] = Field("autoDownloadSettings", validation_alias="@type", alias="@type")
     max_photo_file_size: Int32
     max_video_file_size: Int53
     max_other_file_size: Int53
@@ -678,7 +722,9 @@ class AutoDownloadSettingsPresets(BaseObject):
     :type high: :class:`AutoDownloadSettings`
     """
 
-    ID: typing.Literal["autoDownloadSettingsPresets"] = "autoDownloadSettingsPresets"
+    ID: typing.Literal["autoDownloadSettingsPresets"] = Field(
+        "autoDownloadSettingsPresets", validation_alias="@type", alias="@type"
+    )
     low: AutoDownloadSettings
     medium: AutoDownloadSettings
     high: AutoDownloadSettings
@@ -698,7 +744,7 @@ class AutosaveSettings(BaseObject):
     :type exceptions: :class:`Vector[AutosaveSettingsException]`
     """
 
-    ID: typing.Literal["autosaveSettings"] = "autosaveSettings"
+    ID: typing.Literal["autosaveSettings"] = Field("autosaveSettings", validation_alias="@type", alias="@type")
     private_chat_settings: ScopeAutosaveSettings
     group_settings: ScopeAutosaveSettings
     channel_settings: ScopeAutosaveSettings
@@ -715,7 +761,9 @@ class AutosaveSettingsException(BaseObject):
     :type settings: :class:`ScopeAutosaveSettings`
     """
 
-    ID: typing.Literal["autosaveSettingsException"] = "autosaveSettingsException"
+    ID: typing.Literal["autosaveSettingsException"] = Field(
+        "autosaveSettingsException", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     settings: ScopeAutosaveSettings
 
@@ -725,7 +773,9 @@ class AutosaveSettingsScopeChannelChats(BaseObject):
     Autosave settings applied to all channel chats without chat-specific settings
     """
 
-    ID: typing.Literal["autosaveSettingsScopeChannelChats"] = "autosaveSettingsScopeChannelChats"
+    ID: typing.Literal["autosaveSettingsScopeChannelChats"] = Field(
+        "autosaveSettingsScopeChannelChats", validation_alias="@type", alias="@type"
+    )
 
 
 class AutosaveSettingsScopeChat(BaseObject):
@@ -736,7 +786,9 @@ class AutosaveSettingsScopeChat(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["autosaveSettingsScopeChat"] = "autosaveSettingsScopeChat"
+    ID: typing.Literal["autosaveSettingsScopeChat"] = Field(
+        "autosaveSettingsScopeChat", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
 
 
@@ -745,7 +797,9 @@ class AutosaveSettingsScopeGroupChats(BaseObject):
     Autosave settings applied to all basic group and supergroup chats without chat-specific settings
     """
 
-    ID: typing.Literal["autosaveSettingsScopeGroupChats"] = "autosaveSettingsScopeGroupChats"
+    ID: typing.Literal["autosaveSettingsScopeGroupChats"] = Field(
+        "autosaveSettingsScopeGroupChats", validation_alias="@type", alias="@type"
+    )
 
 
 class AutosaveSettingsScopePrivateChats(BaseObject):
@@ -753,7 +807,9 @@ class AutosaveSettingsScopePrivateChats(BaseObject):
     Autosave settings applied to all private chats without chat-specific settings
     """
 
-    ID: typing.Literal["autosaveSettingsScopePrivateChats"] = "autosaveSettingsScopePrivateChats"
+    ID: typing.Literal["autosaveSettingsScopePrivateChats"] = Field(
+        "autosaveSettingsScopePrivateChats", validation_alias="@type", alias="@type"
+    )
 
 
 AutosaveSettingsScope = typing.Union[
@@ -774,7 +830,7 @@ class AvailableReaction(BaseObject):
     :type needs_premium: :class:`Bool`
     """
 
-    ID: typing.Literal["availableReaction"] = "availableReaction"
+    ID: typing.Literal["availableReaction"] = Field("availableReaction", validation_alias="@type", alias="@type")
     type_: ReactionType = Field(..., alias="type")
     needs_premium: Bool = False
 
@@ -793,7 +849,7 @@ class AvailableReactions(BaseObject):
     :type allow_custom_emoji: :class:`Bool`
     """
 
-    ID: typing.Literal["availableReactions"] = "availableReactions"
+    ID: typing.Literal["availableReactions"] = Field("availableReactions", validation_alias="@type", alias="@type")
     top_reactions: Vector[AvailableReaction]
     recent_reactions: Vector[AvailableReaction]
     popular_reactions: Vector[AvailableReaction]
@@ -818,7 +874,7 @@ class Background(BaseObject):
     :type is_dark: :class:`Bool`
     """
 
-    ID: typing.Literal["background"] = "background"
+    ID: typing.Literal["background"] = Field("background", validation_alias="@type", alias="@type")
     id: Int64
     name: String
     type_: BackgroundType = Field(..., alias="type")
@@ -835,7 +891,9 @@ class BackgroundFillFreeformGradient(BaseObject):
     :type colors: :class:`Vector[Int32]`
     """
 
-    ID: typing.Literal["backgroundFillFreeformGradient"] = "backgroundFillFreeformGradient"
+    ID: typing.Literal["backgroundFillFreeformGradient"] = Field(
+        "backgroundFillFreeformGradient", validation_alias="@type", alias="@type"
+    )
     colors: Vector[Int32]
 
 
@@ -851,7 +909,9 @@ class BackgroundFillGradient(BaseObject):
     :type rotation_angle: :class:`Int32`
     """
 
-    ID: typing.Literal["backgroundFillGradient"] = "backgroundFillGradient"
+    ID: typing.Literal["backgroundFillGradient"] = Field(
+        "backgroundFillGradient", validation_alias="@type", alias="@type"
+    )
     top_color: Int32
     bottom_color: Int32
     rotation_angle: Int32
@@ -865,7 +925,7 @@ class BackgroundFillSolid(BaseObject):
     :type color: :class:`Int32`
     """
 
-    ID: typing.Literal["backgroundFillSolid"] = "backgroundFillSolid"
+    ID: typing.Literal["backgroundFillSolid"] = Field("backgroundFillSolid", validation_alias="@type", alias="@type")
     color: Int32
 
 
@@ -884,7 +944,7 @@ class BackgroundTypeFill(BaseObject):
     :type fill: :class:`BackgroundFill`
     """
 
-    ID: typing.Literal["backgroundTypeFill"] = "backgroundTypeFill"
+    ID: typing.Literal["backgroundTypeFill"] = Field("backgroundTypeFill", validation_alias="@type", alias="@type")
     fill: BackgroundFill
 
 
@@ -902,7 +962,9 @@ class BackgroundTypePattern(BaseObject):
     :type is_moving: :class:`Bool`
     """
 
-    ID: typing.Literal["backgroundTypePattern"] = "backgroundTypePattern"
+    ID: typing.Literal["backgroundTypePattern"] = Field(
+        "backgroundTypePattern", validation_alias="@type", alias="@type"
+    )
     fill: BackgroundFill
     intensity: Int32
     is_inverted: Bool = False
@@ -919,7 +981,9 @@ class BackgroundTypeWallpaper(BaseObject):
     :type is_moving: :class:`Bool`
     """
 
-    ID: typing.Literal["backgroundTypeWallpaper"] = "backgroundTypeWallpaper"
+    ID: typing.Literal["backgroundTypeWallpaper"] = Field(
+        "backgroundTypeWallpaper", validation_alias="@type", alias="@type"
+    )
     is_blurred: Bool = False
     is_moving: Bool = False
 
@@ -939,7 +1003,7 @@ class Backgrounds(BaseObject):
     :type backgrounds: :class:`Vector[Background]`
     """
 
-    ID: typing.Literal["backgrounds"] = "backgrounds"
+    ID: typing.Literal["backgrounds"] = Field("backgrounds", validation_alias="@type", alias="@type")
     backgrounds: Vector[Background]
 
 
@@ -953,7 +1017,9 @@ class BankCardActionOpenUrl(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["bankCardActionOpenUrl"] = "bankCardActionOpenUrl"
+    ID: typing.Literal["bankCardActionOpenUrl"] = Field(
+        "bankCardActionOpenUrl", validation_alias="@type", alias="@type"
+    )
     text: String
     url: String
 
@@ -968,7 +1034,7 @@ class BankCardInfo(BaseObject):
     :type actions: :class:`Vector[BankCardActionOpenUrl]`
     """
 
-    ID: typing.Literal["bankCardInfo"] = "bankCardInfo"
+    ID: typing.Literal["bankCardInfo"] = Field("bankCardInfo", validation_alias="@type", alias="@type")
     title: String
     actions: Vector[BankCardActionOpenUrl]
 
@@ -989,7 +1055,7 @@ class BasicGroup(BaseObject):
     :type upgraded_to_supergroup_id: :class:`Int53`, optional
     """
 
-    ID: typing.Literal["basicGroup"] = "basicGroup"
+    ID: typing.Literal["basicGroup"] = Field("basicGroup", validation_alias="@type", alias="@type")
     id: Int53
     member_count: Int32
     status: ChatMemberStatus
@@ -1019,7 +1085,7 @@ class BasicGroupFullInfo(BaseObject):
     :type creator_user_id: :class:`Int53`, optional
     """
 
-    ID: typing.Literal["basicGroupFullInfo"] = "basicGroupFullInfo"
+    ID: typing.Literal["basicGroupFullInfo"] = Field("basicGroupFullInfo", validation_alias="@type", alias="@type")
     description: String
     members: Vector[ChatMember]
     bot_commands: Vector[BotCommands]
@@ -1035,7 +1101,7 @@ class BlockListMain(BaseObject):
     The main block list that disallows writing messages to the current user, receiving their status and photo, viewing of stories, and some other actions
     """
 
-    ID: typing.Literal["blockListMain"] = "blockListMain"
+    ID: typing.Literal["blockListMain"] = Field("blockListMain", validation_alias="@type", alias="@type")
 
 
 class BlockListStories(BaseObject):
@@ -1043,7 +1109,7 @@ class BlockListStories(BaseObject):
     The block list that disallows viewing of stories of the current user
     """
 
-    ID: typing.Literal["blockListStories"] = "blockListStories"
+    ID: typing.Literal["blockListStories"] = Field("blockListStories", validation_alias="@type", alias="@type")
 
 
 BlockList = typing.Union[
@@ -1062,7 +1128,7 @@ class BotCommand(BaseObject):
     :type description: :class:`String`
     """
 
-    ID: typing.Literal["botCommand"] = "botCommand"
+    ID: typing.Literal["botCommand"] = Field("botCommand", validation_alias="@type", alias="@type")
     command: String
     description: String
 
@@ -1072,7 +1138,9 @@ class BotCommandScopeAllChatAdministrators(BaseObject):
     A scope covering all group and supergroup chat administrators
     """
 
-    ID: typing.Literal["botCommandScopeAllChatAdministrators"] = "botCommandScopeAllChatAdministrators"
+    ID: typing.Literal["botCommandScopeAllChatAdministrators"] = Field(
+        "botCommandScopeAllChatAdministrators", validation_alias="@type", alias="@type"
+    )
 
 
 class BotCommandScopeAllGroupChats(BaseObject):
@@ -1080,7 +1148,9 @@ class BotCommandScopeAllGroupChats(BaseObject):
     A scope covering all group and supergroup chats
     """
 
-    ID: typing.Literal["botCommandScopeAllGroupChats"] = "botCommandScopeAllGroupChats"
+    ID: typing.Literal["botCommandScopeAllGroupChats"] = Field(
+        "botCommandScopeAllGroupChats", validation_alias="@type", alias="@type"
+    )
 
 
 class BotCommandScopeAllPrivateChats(BaseObject):
@@ -1088,7 +1158,9 @@ class BotCommandScopeAllPrivateChats(BaseObject):
     A scope covering all private chats
     """
 
-    ID: typing.Literal["botCommandScopeAllPrivateChats"] = "botCommandScopeAllPrivateChats"
+    ID: typing.Literal["botCommandScopeAllPrivateChats"] = Field(
+        "botCommandScopeAllPrivateChats", validation_alias="@type", alias="@type"
+    )
 
 
 class BotCommandScopeChat(BaseObject):
@@ -1099,7 +1171,7 @@ class BotCommandScopeChat(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["botCommandScopeChat"] = "botCommandScopeChat"
+    ID: typing.Literal["botCommandScopeChat"] = Field("botCommandScopeChat", validation_alias="@type", alias="@type")
     chat_id: Int53
 
 
@@ -1111,7 +1183,9 @@ class BotCommandScopeChatAdministrators(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["botCommandScopeChatAdministrators"] = "botCommandScopeChatAdministrators"
+    ID: typing.Literal["botCommandScopeChatAdministrators"] = Field(
+        "botCommandScopeChatAdministrators", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
 
 
@@ -1125,7 +1199,9 @@ class BotCommandScopeChatMember(BaseObject):
     :type user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["botCommandScopeChatMember"] = "botCommandScopeChatMember"
+    ID: typing.Literal["botCommandScopeChatMember"] = Field(
+        "botCommandScopeChatMember", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     user_id: Int53
 
@@ -1135,7 +1211,9 @@ class BotCommandScopeDefault(BaseObject):
     A scope covering all users
     """
 
-    ID: typing.Literal["botCommandScopeDefault"] = "botCommandScopeDefault"
+    ID: typing.Literal["botCommandScopeDefault"] = Field(
+        "botCommandScopeDefault", validation_alias="@type", alias="@type"
+    )
 
 
 BotCommandScope = typing.Union[
@@ -1159,7 +1237,7 @@ class BotCommands(BaseObject):
     :type commands: :class:`Vector[BotCommand]`
     """
 
-    ID: typing.Literal["botCommands"] = "botCommands"
+    ID: typing.Literal["botCommands"] = Field("botCommands", validation_alias="@type", alias="@type")
     bot_user_id: Int53
     commands: Vector[BotCommand]
 
@@ -1194,7 +1272,7 @@ class BotInfo(BaseObject):
     :type edit_settings_link: :class:`InternalLinkType`, optional
     """
 
-    ID: typing.Literal["botInfo"] = "botInfo"
+    ID: typing.Literal["botInfo"] = Field("botInfo", validation_alias="@type", alias="@type")
     short_description: String
     description: String
     commands: Vector[BotCommand]
@@ -1219,7 +1297,7 @@ class BotMenuButton(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["botMenuButton"] = "botMenuButton"
+    ID: typing.Literal["botMenuButton"] = Field("botMenuButton", validation_alias="@type", alias="@type")
     text: String
     url: String
 
@@ -1240,7 +1318,7 @@ class Call(BaseObject):
     :type is_video: :class:`Bool`
     """
 
-    ID: typing.Literal["call"] = "call"
+    ID: typing.Literal["call"] = Field("call", validation_alias="@type", alias="@type")
     id: Int32
     user_id: Int53
     state: CallState
@@ -1253,7 +1331,9 @@ class CallDiscardReasonDeclined(BaseObject):
     The call was ended before the conversation started. It was declined by the other party
     """
 
-    ID: typing.Literal["callDiscardReasonDeclined"] = "callDiscardReasonDeclined"
+    ID: typing.Literal["callDiscardReasonDeclined"] = Field(
+        "callDiscardReasonDeclined", validation_alias="@type", alias="@type"
+    )
 
 
 class CallDiscardReasonDisconnected(BaseObject):
@@ -1261,7 +1341,9 @@ class CallDiscardReasonDisconnected(BaseObject):
     The call was ended during the conversation because the users were disconnected
     """
 
-    ID: typing.Literal["callDiscardReasonDisconnected"] = "callDiscardReasonDisconnected"
+    ID: typing.Literal["callDiscardReasonDisconnected"] = Field(
+        "callDiscardReasonDisconnected", validation_alias="@type", alias="@type"
+    )
 
 
 class CallDiscardReasonEmpty(BaseObject):
@@ -1269,7 +1351,9 @@ class CallDiscardReasonEmpty(BaseObject):
     The call wasn't discarded, or the reason is unknown
     """
 
-    ID: typing.Literal["callDiscardReasonEmpty"] = "callDiscardReasonEmpty"
+    ID: typing.Literal["callDiscardReasonEmpty"] = Field(
+        "callDiscardReasonEmpty", validation_alias="@type", alias="@type"
+    )
 
 
 class CallDiscardReasonHungUp(BaseObject):
@@ -1277,7 +1361,9 @@ class CallDiscardReasonHungUp(BaseObject):
     The call was ended because one of the parties hung up
     """
 
-    ID: typing.Literal["callDiscardReasonHungUp"] = "callDiscardReasonHungUp"
+    ID: typing.Literal["callDiscardReasonHungUp"] = Field(
+        "callDiscardReasonHungUp", validation_alias="@type", alias="@type"
+    )
 
 
 class CallDiscardReasonMissed(BaseObject):
@@ -1285,7 +1371,9 @@ class CallDiscardReasonMissed(BaseObject):
     The call was ended before the conversation started. It was canceled by the caller or missed by the other party
     """
 
-    ID: typing.Literal["callDiscardReasonMissed"] = "callDiscardReasonMissed"
+    ID: typing.Literal["callDiscardReasonMissed"] = Field(
+        "callDiscardReasonMissed", validation_alias="@type", alias="@type"
+    )
 
 
 CallDiscardReason = typing.Union[
@@ -1305,7 +1393,7 @@ class CallId(BaseObject):
     :type id: :class:`Int32`
     """
 
-    ID: typing.Literal["callId"] = "callId"
+    ID: typing.Literal["callId"] = Field("callId", validation_alias="@type", alias="@type")
     id: Int32
 
 
@@ -1314,7 +1402,9 @@ class CallProblemDistortedSpeech(BaseObject):
     The speech was distorted
     """
 
-    ID: typing.Literal["callProblemDistortedSpeech"] = "callProblemDistortedSpeech"
+    ID: typing.Literal["callProblemDistortedSpeech"] = Field(
+        "callProblemDistortedSpeech", validation_alias="@type", alias="@type"
+    )
 
 
 class CallProblemDistortedVideo(BaseObject):
@@ -1322,7 +1412,9 @@ class CallProblemDistortedVideo(BaseObject):
     The video was distorted
     """
 
-    ID: typing.Literal["callProblemDistortedVideo"] = "callProblemDistortedVideo"
+    ID: typing.Literal["callProblemDistortedVideo"] = Field(
+        "callProblemDistortedVideo", validation_alias="@type", alias="@type"
+    )
 
 
 class CallProblemDropped(BaseObject):
@@ -1330,7 +1422,7 @@ class CallProblemDropped(BaseObject):
     The call ended unexpectedly
     """
 
-    ID: typing.Literal["callProblemDropped"] = "callProblemDropped"
+    ID: typing.Literal["callProblemDropped"] = Field("callProblemDropped", validation_alias="@type", alias="@type")
 
 
 class CallProblemEcho(BaseObject):
@@ -1338,7 +1430,7 @@ class CallProblemEcho(BaseObject):
     The user heard their own voice
     """
 
-    ID: typing.Literal["callProblemEcho"] = "callProblemEcho"
+    ID: typing.Literal["callProblemEcho"] = Field("callProblemEcho", validation_alias="@type", alias="@type")
 
 
 class CallProblemInterruptions(BaseObject):
@@ -1346,7 +1438,9 @@ class CallProblemInterruptions(BaseObject):
     The other side kept disappearing
     """
 
-    ID: typing.Literal["callProblemInterruptions"] = "callProblemInterruptions"
+    ID: typing.Literal["callProblemInterruptions"] = Field(
+        "callProblemInterruptions", validation_alias="@type", alias="@type"
+    )
 
 
 class CallProblemNoise(BaseObject):
@@ -1354,7 +1448,7 @@ class CallProblemNoise(BaseObject):
     The user heard background noise
     """
 
-    ID: typing.Literal["callProblemNoise"] = "callProblemNoise"
+    ID: typing.Literal["callProblemNoise"] = Field("callProblemNoise", validation_alias="@type", alias="@type")
 
 
 class CallProblemPixelatedVideo(BaseObject):
@@ -1362,7 +1456,9 @@ class CallProblemPixelatedVideo(BaseObject):
     The video was pixelated
     """
 
-    ID: typing.Literal["callProblemPixelatedVideo"] = "callProblemPixelatedVideo"
+    ID: typing.Literal["callProblemPixelatedVideo"] = Field(
+        "callProblemPixelatedVideo", validation_alias="@type", alias="@type"
+    )
 
 
 class CallProblemSilentLocal(BaseObject):
@@ -1370,7 +1466,9 @@ class CallProblemSilentLocal(BaseObject):
     The user couldn't hear the other side
     """
 
-    ID: typing.Literal["callProblemSilentLocal"] = "callProblemSilentLocal"
+    ID: typing.Literal["callProblemSilentLocal"] = Field(
+        "callProblemSilentLocal", validation_alias="@type", alias="@type"
+    )
 
 
 class CallProblemSilentRemote(BaseObject):
@@ -1378,7 +1476,9 @@ class CallProblemSilentRemote(BaseObject):
     The other side couldn't hear the user
     """
 
-    ID: typing.Literal["callProblemSilentRemote"] = "callProblemSilentRemote"
+    ID: typing.Literal["callProblemSilentRemote"] = Field(
+        "callProblemSilentRemote", validation_alias="@type", alias="@type"
+    )
 
 
 CallProblem = typing.Union[
@@ -1410,7 +1510,7 @@ class CallProtocol(BaseObject):
     :type udp_reflector: :class:`Bool`
     """
 
-    ID: typing.Literal["callProtocol"] = "callProtocol"
+    ID: typing.Literal["callProtocol"] = Field("callProtocol", validation_alias="@type", alias="@type")
     min_layer: Int32
     max_layer: Int32
     library_versions: Vector[String]
@@ -1434,7 +1534,7 @@ class CallServer(BaseObject):
     :type type_: :class:`CallServerType`
     """
 
-    ID: typing.Literal["callServer"] = "callServer"
+    ID: typing.Literal["callServer"] = Field("callServer", validation_alias="@type", alias="@type")
     id: Int64
     ip_address: String
     ipv6_address: String
@@ -1452,7 +1552,9 @@ class CallServerTypeTelegramReflector(BaseObject):
     :type is_tcp: :class:`Bool`
     """
 
-    ID: typing.Literal["callServerTypeTelegramReflector"] = "callServerTypeTelegramReflector"
+    ID: typing.Literal["callServerTypeTelegramReflector"] = Field(
+        "callServerTypeTelegramReflector", validation_alias="@type", alias="@type"
+    )
     peer_tag: Bytes
     is_tcp: Bool = False
 
@@ -1471,7 +1573,7 @@ class CallServerTypeWebrtc(BaseObject):
     :type supports_stun: :class:`Bool`
     """
 
-    ID: typing.Literal["callServerTypeWebrtc"] = "callServerTypeWebrtc"
+    ID: typing.Literal["callServerTypeWebrtc"] = Field("callServerTypeWebrtc", validation_alias="@type", alias="@type")
     username: String
     password: String
     supports_turn: Bool = False
@@ -1498,7 +1600,7 @@ class CallStateDiscarded(BaseObject):
     :type need_log: :class:`Bool`
     """
 
-    ID: typing.Literal["callStateDiscarded"] = "callStateDiscarded"
+    ID: typing.Literal["callStateDiscarded"] = Field("callStateDiscarded", validation_alias="@type", alias="@type")
     reason: CallDiscardReason
     need_rating: Bool = False
     need_debug_information: Bool = False
@@ -1513,7 +1615,7 @@ class CallStateError(BaseObject):
     :type error: :class:`Error`
     """
 
-    ID: typing.Literal["callStateError"] = "callStateError"
+    ID: typing.Literal["callStateError"] = Field("callStateError", validation_alias="@type", alias="@type")
     error: Error
 
 
@@ -1522,7 +1624,9 @@ class CallStateExchangingKeys(BaseObject):
     The call has been answered and encryption keys are being exchanged
     """
 
-    ID: typing.Literal["callStateExchangingKeys"] = "callStateExchangingKeys"
+    ID: typing.Literal["callStateExchangingKeys"] = Field(
+        "callStateExchangingKeys", validation_alias="@type", alias="@type"
+    )
 
 
 class CallStateHangingUp(BaseObject):
@@ -1530,7 +1634,7 @@ class CallStateHangingUp(BaseObject):
     The call is hanging up after discardCall has been called
     """
 
-    ID: typing.Literal["callStateHangingUp"] = "callStateHangingUp"
+    ID: typing.Literal["callStateHangingUp"] = Field("callStateHangingUp", validation_alias="@type", alias="@type")
 
 
 class CallStatePending(BaseObject):
@@ -1543,7 +1647,7 @@ class CallStatePending(BaseObject):
     :type is_received: :class:`Bool`
     """
 
-    ID: typing.Literal["callStatePending"] = "callStatePending"
+    ID: typing.Literal["callStatePending"] = Field("callStatePending", validation_alias="@type", alias="@type")
     is_created: Bool = False
     is_received: Bool = False
 
@@ -1566,7 +1670,7 @@ class CallStateReady(BaseObject):
     :type allow_p2p: :class:`Bool`
     """
 
-    ID: typing.Literal["callStateReady"] = "callStateReady"
+    ID: typing.Literal["callStateReady"] = Field("callStateReady", validation_alias="@type", alias="@type")
     protocol: CallProtocol
     servers: Vector[CallServer]
     config: String
@@ -1597,7 +1701,7 @@ class CallbackQueryAnswer(BaseObject):
     :type show_alert: :class:`Bool`
     """
 
-    ID: typing.Literal["callbackQueryAnswer"] = "callbackQueryAnswer"
+    ID: typing.Literal["callbackQueryAnswer"] = Field("callbackQueryAnswer", validation_alias="@type", alias="@type")
     text: String
     url: String
     show_alert: Bool = False
@@ -1611,7 +1715,9 @@ class CallbackQueryPayloadData(BaseObject):
     :type data: :class:`Bytes`
     """
 
-    ID: typing.Literal["callbackQueryPayloadData"] = "callbackQueryPayloadData"
+    ID: typing.Literal["callbackQueryPayloadData"] = Field(
+        "callbackQueryPayloadData", validation_alias="@type", alias="@type"
+    )
     data: Bytes
 
 
@@ -1625,7 +1731,9 @@ class CallbackQueryPayloadDataWithPassword(BaseObject):
     :type data: :class:`Bytes`
     """
 
-    ID: typing.Literal["callbackQueryPayloadDataWithPassword"] = "callbackQueryPayloadDataWithPassword"
+    ID: typing.Literal["callbackQueryPayloadDataWithPassword"] = Field(
+        "callbackQueryPayloadDataWithPassword", validation_alias="@type", alias="@type"
+    )
     password: String
     data: Bytes
 
@@ -1638,7 +1746,9 @@ class CallbackQueryPayloadGame(BaseObject):
     :type game_short_name: :class:`String`
     """
 
-    ID: typing.Literal["callbackQueryPayloadGame"] = "callbackQueryPayloadGame"
+    ID: typing.Literal["callbackQueryPayloadGame"] = Field(
+        "callbackQueryPayloadGame", validation_alias="@type", alias="@type"
+    )
     game_short_name: String
 
 
@@ -1654,7 +1764,9 @@ class CanSendStoryResultActiveStoryLimitExceeded(BaseObject):
     The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire
     """
 
-    ID: typing.Literal["canSendStoryResultActiveStoryLimitExceeded"] = "canSendStoryResultActiveStoryLimitExceeded"
+    ID: typing.Literal["canSendStoryResultActiveStoryLimitExceeded"] = Field(
+        "canSendStoryResultActiveStoryLimitExceeded", validation_alias="@type", alias="@type"
+    )
 
 
 class CanSendStoryResultMonthlyLimitExceeded(BaseObject):
@@ -1665,7 +1777,9 @@ class CanSendStoryResultMonthlyLimitExceeded(BaseObject):
     :type retry_after: :class:`Int32`
     """
 
-    ID: typing.Literal["canSendStoryResultMonthlyLimitExceeded"] = "canSendStoryResultMonthlyLimitExceeded"
+    ID: typing.Literal["canSendStoryResultMonthlyLimitExceeded"] = Field(
+        "canSendStoryResultMonthlyLimitExceeded", validation_alias="@type", alias="@type"
+    )
     retry_after: Int32
 
 
@@ -1674,7 +1788,7 @@ class CanSendStoryResultOk(BaseObject):
     A story can be sent
     """
 
-    ID: typing.Literal["canSendStoryResultOk"] = "canSendStoryResultOk"
+    ID: typing.Literal["canSendStoryResultOk"] = Field("canSendStoryResultOk", validation_alias="@type", alias="@type")
 
 
 class CanSendStoryResultPremiumNeeded(BaseObject):
@@ -1682,7 +1796,9 @@ class CanSendStoryResultPremiumNeeded(BaseObject):
     The user must subscribe to Telegram Premium to be able to post stories
     """
 
-    ID: typing.Literal["canSendStoryResultPremiumNeeded"] = "canSendStoryResultPremiumNeeded"
+    ID: typing.Literal["canSendStoryResultPremiumNeeded"] = Field(
+        "canSendStoryResultPremiumNeeded", validation_alias="@type", alias="@type"
+    )
 
 
 class CanSendStoryResultWeeklyLimitExceeded(BaseObject):
@@ -1693,7 +1809,9 @@ class CanSendStoryResultWeeklyLimitExceeded(BaseObject):
     :type retry_after: :class:`Int32`
     """
 
-    ID: typing.Literal["canSendStoryResultWeeklyLimitExceeded"] = "canSendStoryResultWeeklyLimitExceeded"
+    ID: typing.Literal["canSendStoryResultWeeklyLimitExceeded"] = Field(
+        "canSendStoryResultWeeklyLimitExceeded", validation_alias="@type", alias="@type"
+    )
     retry_after: Int32
 
 
@@ -1711,7 +1829,9 @@ class CanTransferOwnershipResultOk(BaseObject):
     The session can be used
     """
 
-    ID: typing.Literal["canTransferOwnershipResultOk"] = "canTransferOwnershipResultOk"
+    ID: typing.Literal["canTransferOwnershipResultOk"] = Field(
+        "canTransferOwnershipResultOk", validation_alias="@type", alias="@type"
+    )
 
 
 class CanTransferOwnershipResultPasswordNeeded(BaseObject):
@@ -1719,7 +1839,9 @@ class CanTransferOwnershipResultPasswordNeeded(BaseObject):
     The 2-step verification needs to be enabled first
     """
 
-    ID: typing.Literal["canTransferOwnershipResultPasswordNeeded"] = "canTransferOwnershipResultPasswordNeeded"
+    ID: typing.Literal["canTransferOwnershipResultPasswordNeeded"] = Field(
+        "canTransferOwnershipResultPasswordNeeded", validation_alias="@type", alias="@type"
+    )
 
 
 class CanTransferOwnershipResultPasswordTooFresh(BaseObject):
@@ -1730,7 +1852,9 @@ class CanTransferOwnershipResultPasswordTooFresh(BaseObject):
     :type retry_after: :class:`Int32`
     """
 
-    ID: typing.Literal["canTransferOwnershipResultPasswordTooFresh"] = "canTransferOwnershipResultPasswordTooFresh"
+    ID: typing.Literal["canTransferOwnershipResultPasswordTooFresh"] = Field(
+        "canTransferOwnershipResultPasswordTooFresh", validation_alias="@type", alias="@type"
+    )
     retry_after: Int32
 
 
@@ -1742,7 +1866,9 @@ class CanTransferOwnershipResultSessionTooFresh(BaseObject):
     :type retry_after: :class:`Int32`
     """
 
-    ID: typing.Literal["canTransferOwnershipResultSessionTooFresh"] = "canTransferOwnershipResultSessionTooFresh"
+    ID: typing.Literal["canTransferOwnershipResultSessionTooFresh"] = Field(
+        "canTransferOwnershipResultSessionTooFresh", validation_alias="@type", alias="@type"
+    )
     retry_after: Int32
 
 
@@ -1826,7 +1952,7 @@ class Chat(BaseObject):
     :type can_be_reported: :class:`Bool`
     """
 
-    ID: typing.Literal["chat"] = "chat"
+    ID: typing.Literal["chat"] = Field("chat", validation_alias="@type", alias="@type")
     id: Int53
     type_: ChatType = Field(..., alias="type")
     title: String
@@ -1867,7 +1993,7 @@ class ChatActionCancel(BaseObject):
     The user has canceled the previous action
     """
 
-    ID: typing.Literal["chatActionCancel"] = "chatActionCancel"
+    ID: typing.Literal["chatActionCancel"] = Field("chatActionCancel", validation_alias="@type", alias="@type")
 
 
 class ChatActionChoosingContact(BaseObject):
@@ -1875,7 +2001,9 @@ class ChatActionChoosingContact(BaseObject):
     The user is picking a contact to send
     """
 
-    ID: typing.Literal["chatActionChoosingContact"] = "chatActionChoosingContact"
+    ID: typing.Literal["chatActionChoosingContact"] = Field(
+        "chatActionChoosingContact", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatActionChoosingLocation(BaseObject):
@@ -1883,7 +2011,9 @@ class ChatActionChoosingLocation(BaseObject):
     The user is picking a location or venue to send
     """
 
-    ID: typing.Literal["chatActionChoosingLocation"] = "chatActionChoosingLocation"
+    ID: typing.Literal["chatActionChoosingLocation"] = Field(
+        "chatActionChoosingLocation", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatActionChoosingSticker(BaseObject):
@@ -1891,7 +2021,9 @@ class ChatActionChoosingSticker(BaseObject):
     The user is picking a sticker to send
     """
 
-    ID: typing.Literal["chatActionChoosingSticker"] = "chatActionChoosingSticker"
+    ID: typing.Literal["chatActionChoosingSticker"] = Field(
+        "chatActionChoosingSticker", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatActionRecordingVideo(BaseObject):
@@ -1899,7 +2031,9 @@ class ChatActionRecordingVideo(BaseObject):
     The user is recording a video
     """
 
-    ID: typing.Literal["chatActionRecordingVideo"] = "chatActionRecordingVideo"
+    ID: typing.Literal["chatActionRecordingVideo"] = Field(
+        "chatActionRecordingVideo", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatActionRecordingVideoNote(BaseObject):
@@ -1907,7 +2041,9 @@ class ChatActionRecordingVideoNote(BaseObject):
     The user is recording a video note
     """
 
-    ID: typing.Literal["chatActionRecordingVideoNote"] = "chatActionRecordingVideoNote"
+    ID: typing.Literal["chatActionRecordingVideoNote"] = Field(
+        "chatActionRecordingVideoNote", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatActionRecordingVoiceNote(BaseObject):
@@ -1915,7 +2051,9 @@ class ChatActionRecordingVoiceNote(BaseObject):
     The user is recording a voice note
     """
 
-    ID: typing.Literal["chatActionRecordingVoiceNote"] = "chatActionRecordingVoiceNote"
+    ID: typing.Literal["chatActionRecordingVoiceNote"] = Field(
+        "chatActionRecordingVoiceNote", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatActionStartPlayingGame(BaseObject):
@@ -1923,7 +2061,9 @@ class ChatActionStartPlayingGame(BaseObject):
     The user has started to play a game
     """
 
-    ID: typing.Literal["chatActionStartPlayingGame"] = "chatActionStartPlayingGame"
+    ID: typing.Literal["chatActionStartPlayingGame"] = Field(
+        "chatActionStartPlayingGame", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatActionTyping(BaseObject):
@@ -1931,7 +2071,7 @@ class ChatActionTyping(BaseObject):
     The user is typing a message
     """
 
-    ID: typing.Literal["chatActionTyping"] = "chatActionTyping"
+    ID: typing.Literal["chatActionTyping"] = Field("chatActionTyping", validation_alias="@type", alias="@type")
 
 
 class ChatActionUploadingDocument(BaseObject):
@@ -1942,7 +2082,9 @@ class ChatActionUploadingDocument(BaseObject):
     :type progress: :class:`Int32`
     """
 
-    ID: typing.Literal["chatActionUploadingDocument"] = "chatActionUploadingDocument"
+    ID: typing.Literal["chatActionUploadingDocument"] = Field(
+        "chatActionUploadingDocument", validation_alias="@type", alias="@type"
+    )
     progress: Int32
 
 
@@ -1954,7 +2096,9 @@ class ChatActionUploadingPhoto(BaseObject):
     :type progress: :class:`Int32`
     """
 
-    ID: typing.Literal["chatActionUploadingPhoto"] = "chatActionUploadingPhoto"
+    ID: typing.Literal["chatActionUploadingPhoto"] = Field(
+        "chatActionUploadingPhoto", validation_alias="@type", alias="@type"
+    )
     progress: Int32
 
 
@@ -1966,7 +2110,9 @@ class ChatActionUploadingVideo(BaseObject):
     :type progress: :class:`Int32`
     """
 
-    ID: typing.Literal["chatActionUploadingVideo"] = "chatActionUploadingVideo"
+    ID: typing.Literal["chatActionUploadingVideo"] = Field(
+        "chatActionUploadingVideo", validation_alias="@type", alias="@type"
+    )
     progress: Int32
 
 
@@ -1978,7 +2124,9 @@ class ChatActionUploadingVideoNote(BaseObject):
     :type progress: :class:`Int32`
     """
 
-    ID: typing.Literal["chatActionUploadingVideoNote"] = "chatActionUploadingVideoNote"
+    ID: typing.Literal["chatActionUploadingVideoNote"] = Field(
+        "chatActionUploadingVideoNote", validation_alias="@type", alias="@type"
+    )
     progress: Int32
 
 
@@ -1990,7 +2138,9 @@ class ChatActionUploadingVoiceNote(BaseObject):
     :type progress: :class:`Int32`
     """
 
-    ID: typing.Literal["chatActionUploadingVoiceNote"] = "chatActionUploadingVoiceNote"
+    ID: typing.Literal["chatActionUploadingVoiceNote"] = Field(
+        "chatActionUploadingVoiceNote", validation_alias="@type", alias="@type"
+    )
     progress: Int32
 
 
@@ -2002,7 +2152,9 @@ class ChatActionWatchingAnimations(BaseObject):
     :type emoji: :class:`String`
     """
 
-    ID: typing.Literal["chatActionWatchingAnimations"] = "chatActionWatchingAnimations"
+    ID: typing.Literal["chatActionWatchingAnimations"] = Field(
+        "chatActionWatchingAnimations", validation_alias="@type", alias="@type"
+    )
     emoji: String
 
 
@@ -2030,7 +2182,9 @@ class ChatActionBarAddContact(BaseObject):
     The chat is a private or secret chat and the other user can be added to the contact list using the method addContact
     """
 
-    ID: typing.Literal["chatActionBarAddContact"] = "chatActionBarAddContact"
+    ID: typing.Literal["chatActionBarAddContact"] = Field(
+        "chatActionBarAddContact", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatActionBarInviteMembers(BaseObject):
@@ -2038,7 +2192,9 @@ class ChatActionBarInviteMembers(BaseObject):
     The chat is a recently created group chat to which new members can be invited
     """
 
-    ID: typing.Literal["chatActionBarInviteMembers"] = "chatActionBarInviteMembers"
+    ID: typing.Literal["chatActionBarInviteMembers"] = Field(
+        "chatActionBarInviteMembers", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatActionBarJoinRequest(BaseObject):
@@ -2053,7 +2209,9 @@ class ChatActionBarJoinRequest(BaseObject):
     :type is_channel: :class:`Bool`
     """
 
-    ID: typing.Literal["chatActionBarJoinRequest"] = "chatActionBarJoinRequest"
+    ID: typing.Literal["chatActionBarJoinRequest"] = Field(
+        "chatActionBarJoinRequest", validation_alias="@type", alias="@type"
+    )
     title: String
     request_date: Int32
     is_channel: Bool = False
@@ -2069,7 +2227,9 @@ class ChatActionBarReportAddBlock(BaseObject):
     :type distance: :class:`Int32`
     """
 
-    ID: typing.Literal["chatActionBarReportAddBlock"] = "chatActionBarReportAddBlock"
+    ID: typing.Literal["chatActionBarReportAddBlock"] = Field(
+        "chatActionBarReportAddBlock", validation_alias="@type", alias="@type"
+    )
     can_unarchive: Bool
     distance: Int32
 
@@ -2082,7 +2242,9 @@ class ChatActionBarReportSpam(BaseObject):
     :type can_unarchive: :class:`Bool`
     """
 
-    ID: typing.Literal["chatActionBarReportSpam"] = "chatActionBarReportSpam"
+    ID: typing.Literal["chatActionBarReportSpam"] = Field(
+        "chatActionBarReportSpam", validation_alias="@type", alias="@type"
+    )
     can_unarchive: Bool
 
 
@@ -2091,7 +2253,9 @@ class ChatActionBarReportUnrelatedLocation(BaseObject):
     The chat is a location-based supergroup, which can be reported as having unrelated location using the method reportChat with the reason reportReasonUnrelatedLocation
     """
 
-    ID: typing.Literal["chatActionBarReportUnrelatedLocation"] = "chatActionBarReportUnrelatedLocation"
+    ID: typing.Literal["chatActionBarReportUnrelatedLocation"] = Field(
+        "chatActionBarReportUnrelatedLocation", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatActionBarSharePhoneNumber(BaseObject):
@@ -2099,7 +2263,9 @@ class ChatActionBarSharePhoneNumber(BaseObject):
     The chat is a private or secret chat with a mutual contact and the user's phone number can be shared with the other user using the method sharePhoneNumber
     """
 
-    ID: typing.Literal["chatActionBarSharePhoneNumber"] = "chatActionBarSharePhoneNumber"
+    ID: typing.Literal["chatActionBarSharePhoneNumber"] = Field(
+        "chatActionBarSharePhoneNumber", validation_alias="@type", alias="@type"
+    )
 
 
 ChatActionBar = typing.Union[
@@ -2129,7 +2295,7 @@ class ChatActiveStories(BaseObject):
     :type list: :class:`StoryList`, optional
     """
 
-    ID: typing.Literal["chatActiveStories"] = "chatActiveStories"
+    ID: typing.Literal["chatActiveStories"] = Field("chatActiveStories", validation_alias="@type", alias="@type")
     chat_id: Int53
     order: Int53
     max_read_story_id: Int32
@@ -2149,7 +2315,7 @@ class ChatAdministrator(BaseObject):
     :type is_owner: :class:`Bool`
     """
 
-    ID: typing.Literal["chatAdministrator"] = "chatAdministrator"
+    ID: typing.Literal["chatAdministrator"] = Field("chatAdministrator", validation_alias="@type", alias="@type")
     user_id: Int53
     custom_title: String
     is_owner: Bool = False
@@ -2185,7 +2351,9 @@ class ChatAdministratorRights(BaseObject):
     :type is_anonymous: :class:`Bool`
     """
 
-    ID: typing.Literal["chatAdministratorRights"] = "chatAdministratorRights"
+    ID: typing.Literal["chatAdministratorRights"] = Field(
+        "chatAdministratorRights", validation_alias="@type", alias="@type"
+    )
     can_manage_chat: Bool = False
     can_change_info: Bool = False
     can_post_messages: Bool = False
@@ -2208,7 +2376,7 @@ class ChatAdministrators(BaseObject):
     :type administrators: :class:`Vector[ChatAdministrator]`
     """
 
-    ID: typing.Literal["chatAdministrators"] = "chatAdministrators"
+    ID: typing.Literal["chatAdministrators"] = Field("chatAdministrators", validation_alias="@type", alias="@type")
     administrators: Vector[ChatAdministrator]
 
 
@@ -2217,7 +2385,9 @@ class ChatAvailableReactionsAll(BaseObject):
     All reactions are available in the chat
     """
 
-    ID: typing.Literal["chatAvailableReactionsAll"] = "chatAvailableReactionsAll"
+    ID: typing.Literal["chatAvailableReactionsAll"] = Field(
+        "chatAvailableReactionsAll", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatAvailableReactionsSome(BaseObject):
@@ -2228,7 +2398,9 @@ class ChatAvailableReactionsSome(BaseObject):
     :type reactions: :class:`Vector[ReactionType]`
     """
 
-    ID: typing.Literal["chatAvailableReactionsSome"] = "chatAvailableReactionsSome"
+    ID: typing.Literal["chatAvailableReactionsSome"] = Field(
+        "chatAvailableReactionsSome", validation_alias="@type", alias="@type"
+    )
     reactions: Vector[ReactionType]
 
 
@@ -2248,7 +2420,7 @@ class ChatBackground(BaseObject):
     :type dark_theme_dimming: :class:`Int32`
     """
 
-    ID: typing.Literal["chatBackground"] = "chatBackground"
+    ID: typing.Literal["chatBackground"] = Field("chatBackground", validation_alias="@type", alias="@type")
     background: Background
     dark_theme_dimming: Int32
 
@@ -2267,7 +2439,7 @@ class ChatEvent(BaseObject):
     :type action: :class:`ChatEventAction`
     """
 
-    ID: typing.Literal["chatEvent"] = "chatEvent"
+    ID: typing.Literal["chatEvent"] = Field("chatEvent", validation_alias="@type", alias="@type")
     id: Int64
     date: Int32
     member_id: MessageSender
@@ -2284,7 +2456,9 @@ class ChatEventActiveUsernamesChanged(BaseObject):
     :type new_usernames: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["chatEventActiveUsernamesChanged"] = "chatEventActiveUsernamesChanged"
+    ID: typing.Literal["chatEventActiveUsernamesChanged"] = Field(
+        "chatEventActiveUsernamesChanged", validation_alias="@type", alias="@type"
+    )
     old_usernames: Vector[String]
     new_usernames: Vector[String]
 
@@ -2299,7 +2473,9 @@ class ChatEventAvailableReactionsChanged(BaseObject):
     :type new_available_reactions: :class:`ChatAvailableReactions`
     """
 
-    ID: typing.Literal["chatEventAvailableReactionsChanged"] = "chatEventAvailableReactionsChanged"
+    ID: typing.Literal["chatEventAvailableReactionsChanged"] = Field(
+        "chatEventAvailableReactionsChanged", validation_alias="@type", alias="@type"
+    )
     old_available_reactions: ChatAvailableReactions
     new_available_reactions: ChatAvailableReactions
 
@@ -2314,7 +2490,9 @@ class ChatEventDescriptionChanged(BaseObject):
     :type new_description: :class:`String`
     """
 
-    ID: typing.Literal["chatEventDescriptionChanged"] = "chatEventDescriptionChanged"
+    ID: typing.Literal["chatEventDescriptionChanged"] = Field(
+        "chatEventDescriptionChanged", validation_alias="@type", alias="@type"
+    )
     old_description: String
     new_description: String
 
@@ -2327,7 +2505,9 @@ class ChatEventForumTopicCreated(BaseObject):
     :type topic_info: :class:`ForumTopicInfo`
     """
 
-    ID: typing.Literal["chatEventForumTopicCreated"] = "chatEventForumTopicCreated"
+    ID: typing.Literal["chatEventForumTopicCreated"] = Field(
+        "chatEventForumTopicCreated", validation_alias="@type", alias="@type"
+    )
     topic_info: ForumTopicInfo
 
 
@@ -2339,7 +2519,9 @@ class ChatEventForumTopicDeleted(BaseObject):
     :type topic_info: :class:`ForumTopicInfo`
     """
 
-    ID: typing.Literal["chatEventForumTopicDeleted"] = "chatEventForumTopicDeleted"
+    ID: typing.Literal["chatEventForumTopicDeleted"] = Field(
+        "chatEventForumTopicDeleted", validation_alias="@type", alias="@type"
+    )
     topic_info: ForumTopicInfo
 
 
@@ -2353,7 +2535,9 @@ class ChatEventForumTopicEdited(BaseObject):
     :type new_topic_info: :class:`ForumTopicInfo`
     """
 
-    ID: typing.Literal["chatEventForumTopicEdited"] = "chatEventForumTopicEdited"
+    ID: typing.Literal["chatEventForumTopicEdited"] = Field(
+        "chatEventForumTopicEdited", validation_alias="@type", alias="@type"
+    )
     old_topic_info: ForumTopicInfo
     new_topic_info: ForumTopicInfo
 
@@ -2368,7 +2552,9 @@ class ChatEventForumTopicPinned(BaseObject):
     :type new_topic_info: :class:`ForumTopicInfo`, optional
     """
 
-    ID: typing.Literal["chatEventForumTopicPinned"] = "chatEventForumTopicPinned"
+    ID: typing.Literal["chatEventForumTopicPinned"] = Field(
+        "chatEventForumTopicPinned", validation_alias="@type", alias="@type"
+    )
     old_topic_info: typing.Optional[ForumTopicInfo] = None
     new_topic_info: typing.Optional[ForumTopicInfo] = None
 
@@ -2381,7 +2567,9 @@ class ChatEventForumTopicToggleIsClosed(BaseObject):
     :type topic_info: :class:`ForumTopicInfo`
     """
 
-    ID: typing.Literal["chatEventForumTopicToggleIsClosed"] = "chatEventForumTopicToggleIsClosed"
+    ID: typing.Literal["chatEventForumTopicToggleIsClosed"] = Field(
+        "chatEventForumTopicToggleIsClosed", validation_alias="@type", alias="@type"
+    )
     topic_info: ForumTopicInfo
 
 
@@ -2393,7 +2581,9 @@ class ChatEventForumTopicToggleIsHidden(BaseObject):
     :type topic_info: :class:`ForumTopicInfo`
     """
 
-    ID: typing.Literal["chatEventForumTopicToggleIsHidden"] = "chatEventForumTopicToggleIsHidden"
+    ID: typing.Literal["chatEventForumTopicToggleIsHidden"] = Field(
+        "chatEventForumTopicToggleIsHidden", validation_alias="@type", alias="@type"
+    )
     topic_info: ForumTopicInfo
 
 
@@ -2405,7 +2595,9 @@ class ChatEventHasAggressiveAntiSpamEnabledToggled(BaseObject):
     :type has_aggressive_anti_spam_enabled: :class:`Bool`
     """
 
-    ID: typing.Literal["chatEventHasAggressiveAntiSpamEnabledToggled"] = "chatEventHasAggressiveAntiSpamEnabledToggled"
+    ID: typing.Literal["chatEventHasAggressiveAntiSpamEnabledToggled"] = Field(
+        "chatEventHasAggressiveAntiSpamEnabledToggled", validation_alias="@type", alias="@type"
+    )
     has_aggressive_anti_spam_enabled: Bool
 
 
@@ -2417,7 +2609,9 @@ class ChatEventHasProtectedContentToggled(BaseObject):
     :type has_protected_content: :class:`Bool`
     """
 
-    ID: typing.Literal["chatEventHasProtectedContentToggled"] = "chatEventHasProtectedContentToggled"
+    ID: typing.Literal["chatEventHasProtectedContentToggled"] = Field(
+        "chatEventHasProtectedContentToggled", validation_alias="@type", alias="@type"
+    )
     has_protected_content: Bool
 
 
@@ -2429,7 +2623,9 @@ class ChatEventInviteLinkDeleted(BaseObject):
     :type invite_link: :class:`ChatInviteLink`
     """
 
-    ID: typing.Literal["chatEventInviteLinkDeleted"] = "chatEventInviteLinkDeleted"
+    ID: typing.Literal["chatEventInviteLinkDeleted"] = Field(
+        "chatEventInviteLinkDeleted", validation_alias="@type", alias="@type"
+    )
     invite_link: ChatInviteLink
 
 
@@ -2443,7 +2639,9 @@ class ChatEventInviteLinkEdited(BaseObject):
     :type new_invite_link: :class:`ChatInviteLink`
     """
 
-    ID: typing.Literal["chatEventInviteLinkEdited"] = "chatEventInviteLinkEdited"
+    ID: typing.Literal["chatEventInviteLinkEdited"] = Field(
+        "chatEventInviteLinkEdited", validation_alias="@type", alias="@type"
+    )
     old_invite_link: ChatInviteLink
     new_invite_link: ChatInviteLink
 
@@ -2456,7 +2654,9 @@ class ChatEventInviteLinkRevoked(BaseObject):
     :type invite_link: :class:`ChatInviteLink`
     """
 
-    ID: typing.Literal["chatEventInviteLinkRevoked"] = "chatEventInviteLinkRevoked"
+    ID: typing.Literal["chatEventInviteLinkRevoked"] = Field(
+        "chatEventInviteLinkRevoked", validation_alias="@type", alias="@type"
+    )
     invite_link: ChatInviteLink
 
 
@@ -2468,7 +2668,9 @@ class ChatEventInvitesToggled(BaseObject):
     :type can_invite_users: :class:`Bool`
     """
 
-    ID: typing.Literal["chatEventInvitesToggled"] = "chatEventInvitesToggled"
+    ID: typing.Literal["chatEventInvitesToggled"] = Field(
+        "chatEventInvitesToggled", validation_alias="@type", alias="@type"
+    )
     can_invite_users: Bool
 
 
@@ -2480,7 +2682,9 @@ class ChatEventIsAllHistoryAvailableToggled(BaseObject):
     :type is_all_history_available: :class:`Bool`
     """
 
-    ID: typing.Literal["chatEventIsAllHistoryAvailableToggled"] = "chatEventIsAllHistoryAvailableToggled"
+    ID: typing.Literal["chatEventIsAllHistoryAvailableToggled"] = Field(
+        "chatEventIsAllHistoryAvailableToggled", validation_alias="@type", alias="@type"
+    )
     is_all_history_available: Bool
 
 
@@ -2492,7 +2696,9 @@ class ChatEventIsForumToggled(BaseObject):
     :type is_forum: :class:`Bool`
     """
 
-    ID: typing.Literal["chatEventIsForumToggled"] = "chatEventIsForumToggled"
+    ID: typing.Literal["chatEventIsForumToggled"] = Field(
+        "chatEventIsForumToggled", validation_alias="@type", alias="@type"
+    )
     is_forum: Bool
 
 
@@ -2506,7 +2712,9 @@ class ChatEventLinkedChatChanged(BaseObject):
     :type new_linked_chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["chatEventLinkedChatChanged"] = "chatEventLinkedChatChanged"
+    ID: typing.Literal["chatEventLinkedChatChanged"] = Field(
+        "chatEventLinkedChatChanged", validation_alias="@type", alias="@type"
+    )
     old_linked_chat_id: Int53
     new_linked_chat_id: Int53
 
@@ -2521,7 +2729,9 @@ class ChatEventLocationChanged(BaseObject):
     :type new_location: :class:`ChatLocation`, optional
     """
 
-    ID: typing.Literal["chatEventLocationChanged"] = "chatEventLocationChanged"
+    ID: typing.Literal["chatEventLocationChanged"] = Field(
+        "chatEventLocationChanged", validation_alias="@type", alias="@type"
+    )
     old_location: typing.Optional[ChatLocation] = None
     new_location: typing.Optional[ChatLocation] = None
 
@@ -2536,7 +2746,9 @@ class ChatEventMemberInvited(BaseObject):
     :type status: :class:`ChatMemberStatus`
     """
 
-    ID: typing.Literal["chatEventMemberInvited"] = "chatEventMemberInvited"
+    ID: typing.Literal["chatEventMemberInvited"] = Field(
+        "chatEventMemberInvited", validation_alias="@type", alias="@type"
+    )
     user_id: Int53
     status: ChatMemberStatus
 
@@ -2546,7 +2758,9 @@ class ChatEventMemberJoined(BaseObject):
     A new member joined the chat
     """
 
-    ID: typing.Literal["chatEventMemberJoined"] = "chatEventMemberJoined"
+    ID: typing.Literal["chatEventMemberJoined"] = Field(
+        "chatEventMemberJoined", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatEventMemberJoinedByInviteLink(BaseObject):
@@ -2559,7 +2773,9 @@ class ChatEventMemberJoinedByInviteLink(BaseObject):
     :type via_chat_folder_invite_link: :class:`Bool`
     """
 
-    ID: typing.Literal["chatEventMemberJoinedByInviteLink"] = "chatEventMemberJoinedByInviteLink"
+    ID: typing.Literal["chatEventMemberJoinedByInviteLink"] = Field(
+        "chatEventMemberJoinedByInviteLink", validation_alias="@type", alias="@type"
+    )
     invite_link: ChatInviteLink
     via_chat_folder_invite_link: Bool = False
 
@@ -2574,7 +2790,9 @@ class ChatEventMemberJoinedByRequest(BaseObject):
     :type invite_link: :class:`ChatInviteLink`, optional
     """
 
-    ID: typing.Literal["chatEventMemberJoinedByRequest"] = "chatEventMemberJoinedByRequest"
+    ID: typing.Literal["chatEventMemberJoinedByRequest"] = Field(
+        "chatEventMemberJoinedByRequest", validation_alias="@type", alias="@type"
+    )
     approver_user_id: Int53
     invite_link: typing.Optional[ChatInviteLink] = None
 
@@ -2584,7 +2802,7 @@ class ChatEventMemberLeft(BaseObject):
     A member left the chat
     """
 
-    ID: typing.Literal["chatEventMemberLeft"] = "chatEventMemberLeft"
+    ID: typing.Literal["chatEventMemberLeft"] = Field("chatEventMemberLeft", validation_alias="@type", alias="@type")
 
 
 class ChatEventMemberPromoted(BaseObject):
@@ -2599,7 +2817,9 @@ class ChatEventMemberPromoted(BaseObject):
     :type new_status: :class:`ChatMemberStatus`
     """
 
-    ID: typing.Literal["chatEventMemberPromoted"] = "chatEventMemberPromoted"
+    ID: typing.Literal["chatEventMemberPromoted"] = Field(
+        "chatEventMemberPromoted", validation_alias="@type", alias="@type"
+    )
     user_id: Int53
     old_status: ChatMemberStatus
     new_status: ChatMemberStatus
@@ -2617,7 +2837,9 @@ class ChatEventMemberRestricted(BaseObject):
     :type new_status: :class:`ChatMemberStatus`
     """
 
-    ID: typing.Literal["chatEventMemberRestricted"] = "chatEventMemberRestricted"
+    ID: typing.Literal["chatEventMemberRestricted"] = Field(
+        "chatEventMemberRestricted", validation_alias="@type", alias="@type"
+    )
     member_id: MessageSender
     old_status: ChatMemberStatus
     new_status: ChatMemberStatus
@@ -2633,7 +2855,9 @@ class ChatEventMessageAutoDeleteTimeChanged(BaseObject):
     :type new_message_auto_delete_time: :class:`Int32`
     """
 
-    ID: typing.Literal["chatEventMessageAutoDeleteTimeChanged"] = "chatEventMessageAutoDeleteTimeChanged"
+    ID: typing.Literal["chatEventMessageAutoDeleteTimeChanged"] = Field(
+        "chatEventMessageAutoDeleteTimeChanged", validation_alias="@type", alias="@type"
+    )
     old_message_auto_delete_time: Int32
     new_message_auto_delete_time: Int32
 
@@ -2648,7 +2872,9 @@ class ChatEventMessageDeleted(BaseObject):
     :type can_report_anti_spam_false_positive: :class:`Bool`
     """
 
-    ID: typing.Literal["chatEventMessageDeleted"] = "chatEventMessageDeleted"
+    ID: typing.Literal["chatEventMessageDeleted"] = Field(
+        "chatEventMessageDeleted", validation_alias="@type", alias="@type"
+    )
     message: Message
     can_report_anti_spam_false_positive: Bool = False
 
@@ -2663,7 +2889,9 @@ class ChatEventMessageEdited(BaseObject):
     :type new_message: :class:`Message`
     """
 
-    ID: typing.Literal["chatEventMessageEdited"] = "chatEventMessageEdited"
+    ID: typing.Literal["chatEventMessageEdited"] = Field(
+        "chatEventMessageEdited", validation_alias="@type", alias="@type"
+    )
     old_message: Message
     new_message: Message
 
@@ -2676,7 +2904,9 @@ class ChatEventMessagePinned(BaseObject):
     :type message: :class:`Message`
     """
 
-    ID: typing.Literal["chatEventMessagePinned"] = "chatEventMessagePinned"
+    ID: typing.Literal["chatEventMessagePinned"] = Field(
+        "chatEventMessagePinned", validation_alias="@type", alias="@type"
+    )
     message: Message
 
 
@@ -2688,7 +2918,9 @@ class ChatEventMessageUnpinned(BaseObject):
     :type message: :class:`Message`
     """
 
-    ID: typing.Literal["chatEventMessageUnpinned"] = "chatEventMessageUnpinned"
+    ID: typing.Literal["chatEventMessageUnpinned"] = Field(
+        "chatEventMessageUnpinned", validation_alias="@type", alias="@type"
+    )
     message: Message
 
 
@@ -2702,7 +2934,9 @@ class ChatEventPermissionsChanged(BaseObject):
     :type new_permissions: :class:`ChatPermissions`
     """
 
-    ID: typing.Literal["chatEventPermissionsChanged"] = "chatEventPermissionsChanged"
+    ID: typing.Literal["chatEventPermissionsChanged"] = Field(
+        "chatEventPermissionsChanged", validation_alias="@type", alias="@type"
+    )
     old_permissions: ChatPermissions
     new_permissions: ChatPermissions
 
@@ -2717,7 +2951,9 @@ class ChatEventPhotoChanged(BaseObject):
     :type new_photo: :class:`ChatPhoto`, optional
     """
 
-    ID: typing.Literal["chatEventPhotoChanged"] = "chatEventPhotoChanged"
+    ID: typing.Literal["chatEventPhotoChanged"] = Field(
+        "chatEventPhotoChanged", validation_alias="@type", alias="@type"
+    )
     old_photo: typing.Optional[ChatPhoto] = None
     new_photo: typing.Optional[ChatPhoto] = None
 
@@ -2730,7 +2966,7 @@ class ChatEventPollStopped(BaseObject):
     :type message: :class:`Message`
     """
 
-    ID: typing.Literal["chatEventPollStopped"] = "chatEventPollStopped"
+    ID: typing.Literal["chatEventPollStopped"] = Field("chatEventPollStopped", validation_alias="@type", alias="@type")
     message: Message
 
 
@@ -2742,7 +2978,9 @@ class ChatEventSignMessagesToggled(BaseObject):
     :type sign_messages: :class:`Bool`
     """
 
-    ID: typing.Literal["chatEventSignMessagesToggled"] = "chatEventSignMessagesToggled"
+    ID: typing.Literal["chatEventSignMessagesToggled"] = Field(
+        "chatEventSignMessagesToggled", validation_alias="@type", alias="@type"
+    )
     sign_messages: Bool
 
 
@@ -2756,7 +2994,9 @@ class ChatEventSlowModeDelayChanged(BaseObject):
     :type new_slow_mode_delay: :class:`Int32`
     """
 
-    ID: typing.Literal["chatEventSlowModeDelayChanged"] = "chatEventSlowModeDelayChanged"
+    ID: typing.Literal["chatEventSlowModeDelayChanged"] = Field(
+        "chatEventSlowModeDelayChanged", validation_alias="@type", alias="@type"
+    )
     old_slow_mode_delay: Int32
     new_slow_mode_delay: Int32
 
@@ -2771,7 +3011,9 @@ class ChatEventStickerSetChanged(BaseObject):
     :type new_sticker_set_id: :class:`Int64`, optional
     """
 
-    ID: typing.Literal["chatEventStickerSetChanged"] = "chatEventStickerSetChanged"
+    ID: typing.Literal["chatEventStickerSetChanged"] = Field(
+        "chatEventStickerSetChanged", validation_alias="@type", alias="@type"
+    )
     old_sticker_set_id: typing.Optional[Int64] = 0
     new_sticker_set_id: typing.Optional[Int64] = 0
 
@@ -2786,7 +3028,9 @@ class ChatEventTitleChanged(BaseObject):
     :type new_title: :class:`String`
     """
 
-    ID: typing.Literal["chatEventTitleChanged"] = "chatEventTitleChanged"
+    ID: typing.Literal["chatEventTitleChanged"] = Field(
+        "chatEventTitleChanged", validation_alias="@type", alias="@type"
+    )
     old_title: String
     new_title: String
 
@@ -2801,7 +3045,9 @@ class ChatEventUsernameChanged(BaseObject):
     :type new_username: :class:`String`
     """
 
-    ID: typing.Literal["chatEventUsernameChanged"] = "chatEventUsernameChanged"
+    ID: typing.Literal["chatEventUsernameChanged"] = Field(
+        "chatEventUsernameChanged", validation_alias="@type", alias="@type"
+    )
     old_username: String
     new_username: String
 
@@ -2814,7 +3060,9 @@ class ChatEventVideoChatCreated(BaseObject):
     :type group_call_id: :class:`Int32`
     """
 
-    ID: typing.Literal["chatEventVideoChatCreated"] = "chatEventVideoChatCreated"
+    ID: typing.Literal["chatEventVideoChatCreated"] = Field(
+        "chatEventVideoChatCreated", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
 
 
@@ -2826,7 +3074,9 @@ class ChatEventVideoChatEnded(BaseObject):
     :type group_call_id: :class:`Int32`
     """
 
-    ID: typing.Literal["chatEventVideoChatEnded"] = "chatEventVideoChatEnded"
+    ID: typing.Literal["chatEventVideoChatEnded"] = Field(
+        "chatEventVideoChatEnded", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
 
 
@@ -2838,7 +3088,9 @@ class ChatEventVideoChatMuteNewParticipantsToggled(BaseObject):
     :type mute_new_participants: :class:`Bool`
     """
 
-    ID: typing.Literal["chatEventVideoChatMuteNewParticipantsToggled"] = "chatEventVideoChatMuteNewParticipantsToggled"
+    ID: typing.Literal["chatEventVideoChatMuteNewParticipantsToggled"] = Field(
+        "chatEventVideoChatMuteNewParticipantsToggled", validation_alias="@type", alias="@type"
+    )
     mute_new_participants: Bool
 
 
@@ -2852,7 +3104,9 @@ class ChatEventVideoChatParticipantIsMutedToggled(BaseObject):
     :type is_muted: :class:`Bool`
     """
 
-    ID: typing.Literal["chatEventVideoChatParticipantIsMutedToggled"] = "chatEventVideoChatParticipantIsMutedToggled"
+    ID: typing.Literal["chatEventVideoChatParticipantIsMutedToggled"] = Field(
+        "chatEventVideoChatParticipantIsMutedToggled", validation_alias="@type", alias="@type"
+    )
     participant_id: MessageSender
     is_muted: Bool
 
@@ -2867,9 +3121,9 @@ class ChatEventVideoChatParticipantVolumeLevelChanged(BaseObject):
     :type volume_level: :class:`Int32`
     """
 
-    ID: typing.Literal[
-        "chatEventVideoChatParticipantVolumeLevelChanged"
-    ] = "chatEventVideoChatParticipantVolumeLevelChanged"
+    ID: typing.Literal["chatEventVideoChatParticipantVolumeLevelChanged"] = Field(
+        "chatEventVideoChatParticipantVolumeLevelChanged", validation_alias="@type", alias="@type"
+    )
     participant_id: MessageSender
     volume_level: Int32
 
@@ -2954,7 +3208,7 @@ class ChatEventLogFilters(BaseObject):
     :type forum_changes: :class:`Bool`
     """
 
-    ID: typing.Literal["chatEventLogFilters"] = "chatEventLogFilters"
+    ID: typing.Literal["chatEventLogFilters"] = Field("chatEventLogFilters", validation_alias="@type", alias="@type")
     message_edits: Bool = False
     message_deletions: Bool = False
     message_pins: Bool = False
@@ -2978,7 +3232,7 @@ class ChatEvents(BaseObject):
     :type events: :class:`Vector[ChatEvent]`
     """
 
-    ID: typing.Literal["chatEvents"] = "chatEvents"
+    ID: typing.Literal["chatEvents"] = Field("chatEvents", validation_alias="@type", alias="@type")
     events: Vector[ChatEvent]
 
 
@@ -3016,7 +3270,7 @@ class ChatFolder(BaseObject):
     :type include_channels: :class:`Bool`
     """
 
-    ID: typing.Literal["chatFolder"] = "chatFolder"
+    ID: typing.Literal["chatFolder"] = Field("chatFolder", validation_alias="@type", alias="@type")
     title: String = Field(..., min_length=1, max_length=12)
     pinned_chat_ids: Vector[Int53]
     included_chat_ids: Vector[Int53]
@@ -3041,7 +3295,7 @@ class ChatFolderIcon(BaseObject):
     :type name: :class:`String`
     """
 
-    ID: typing.Literal["chatFolderIcon"] = "chatFolderIcon"
+    ID: typing.Literal["chatFolderIcon"] = Field("chatFolderIcon", validation_alias="@type", alias="@type")
     name: String
 
 
@@ -3061,7 +3315,7 @@ class ChatFolderInfo(BaseObject):
     :type has_my_invite_links: :class:`Bool`
     """
 
-    ID: typing.Literal["chatFolderInfo"] = "chatFolderInfo"
+    ID: typing.Literal["chatFolderInfo"] = Field("chatFolderInfo", validation_alias="@type", alias="@type")
     id: Int32
     title: String = Field(..., min_length=1, max_length=12)
     icon: ChatFolderIcon
@@ -3081,7 +3335,7 @@ class ChatFolderInviteLink(BaseObject):
     :type chat_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["chatFolderInviteLink"] = "chatFolderInviteLink"
+    ID: typing.Literal["chatFolderInviteLink"] = Field("chatFolderInviteLink", validation_alias="@type", alias="@type")
     invite_link: String
     name: String
     chat_ids: Vector[Int53]
@@ -3099,7 +3353,9 @@ class ChatFolderInviteLinkInfo(BaseObject):
     :type added_chat_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["chatFolderInviteLinkInfo"] = "chatFolderInviteLinkInfo"
+    ID: typing.Literal["chatFolderInviteLinkInfo"] = Field(
+        "chatFolderInviteLinkInfo", validation_alias="@type", alias="@type"
+    )
     chat_folder_info: ChatFolderInfo
     missing_chat_ids: Vector[Int53]
     added_chat_ids: Vector[Int53]
@@ -3113,7 +3369,9 @@ class ChatFolderInviteLinks(BaseObject):
     :type invite_links: :class:`Vector[ChatFolderInviteLink]`
     """
 
-    ID: typing.Literal["chatFolderInviteLinks"] = "chatFolderInviteLinks"
+    ID: typing.Literal["chatFolderInviteLinks"] = Field(
+        "chatFolderInviteLinks", validation_alias="@type", alias="@type"
+    )
     invite_links: Vector[ChatFolderInviteLink]
 
 
@@ -3147,7 +3405,7 @@ class ChatInviteLink(BaseObject):
     :type is_revoked: :class:`Bool`
     """
 
-    ID: typing.Literal["chatInviteLink"] = "chatInviteLink"
+    ID: typing.Literal["chatInviteLink"] = Field("chatInviteLink", validation_alias="@type", alias="@type")
     invite_link: String
     name: String
     creator_user_id: Int53
@@ -3174,7 +3432,7 @@ class ChatInviteLinkCount(BaseObject):
     :type revoked_invite_link_count: :class:`Int32`
     """
 
-    ID: typing.Literal["chatInviteLinkCount"] = "chatInviteLinkCount"
+    ID: typing.Literal["chatInviteLinkCount"] = Field("chatInviteLinkCount", validation_alias="@type", alias="@type")
     user_id: Int53
     invite_link_count: Int32
     revoked_invite_link_count: Int32
@@ -3188,7 +3446,7 @@ class ChatInviteLinkCounts(BaseObject):
     :type invite_link_counts: :class:`Vector[ChatInviteLinkCount]`
     """
 
-    ID: typing.Literal["chatInviteLinkCounts"] = "chatInviteLinkCounts"
+    ID: typing.Literal["chatInviteLinkCounts"] = Field("chatInviteLinkCounts", validation_alias="@type", alias="@type")
     invite_link_counts: Vector[ChatInviteLinkCount]
 
 
@@ -3224,7 +3482,7 @@ class ChatInviteLinkInfo(BaseObject):
     :type is_fake: :class:`Bool`
     """
 
-    ID: typing.Literal["chatInviteLinkInfo"] = "chatInviteLinkInfo"
+    ID: typing.Literal["chatInviteLinkInfo"] = Field("chatInviteLinkInfo", validation_alias="@type", alias="@type")
     chat_id: Int53
     accessible_for: Int32
     type_: InviteLinkChatType = Field(..., alias="type")
@@ -3254,7 +3512,7 @@ class ChatInviteLinkMember(BaseObject):
     :type via_chat_folder_invite_link: :class:`Bool`
     """
 
-    ID: typing.Literal["chatInviteLinkMember"] = "chatInviteLinkMember"
+    ID: typing.Literal["chatInviteLinkMember"] = Field("chatInviteLinkMember", validation_alias="@type", alias="@type")
     user_id: Int53
     joined_chat_date: Int32
     approver_user_id: Int53
@@ -3271,7 +3529,9 @@ class ChatInviteLinkMembers(BaseObject):
     :type members: :class:`Vector[ChatInviteLinkMember]`
     """
 
-    ID: typing.Literal["chatInviteLinkMembers"] = "chatInviteLinkMembers"
+    ID: typing.Literal["chatInviteLinkMembers"] = Field(
+        "chatInviteLinkMembers", validation_alias="@type", alias="@type"
+    )
     total_count: Int32
     members: Vector[ChatInviteLinkMember]
 
@@ -3286,7 +3546,7 @@ class ChatInviteLinks(BaseObject):
     :type invite_links: :class:`Vector[ChatInviteLink]`
     """
 
-    ID: typing.Literal["chatInviteLinks"] = "chatInviteLinks"
+    ID: typing.Literal["chatInviteLinks"] = Field("chatInviteLinks", validation_alias="@type", alias="@type")
     total_count: Int32
     invite_links: Vector[ChatInviteLink]
 
@@ -3303,7 +3563,7 @@ class ChatJoinRequest(BaseObject):
     :type bio: :class:`String`
     """
 
-    ID: typing.Literal["chatJoinRequest"] = "chatJoinRequest"
+    ID: typing.Literal["chatJoinRequest"] = Field("chatJoinRequest", validation_alias="@type", alias="@type")
     user_id: Int53
     date: Int32
     bio: String
@@ -3319,7 +3579,7 @@ class ChatJoinRequests(BaseObject):
     :type requests: :class:`Vector[ChatJoinRequest]`
     """
 
-    ID: typing.Literal["chatJoinRequests"] = "chatJoinRequests"
+    ID: typing.Literal["chatJoinRequests"] = Field("chatJoinRequests", validation_alias="@type", alias="@type")
     total_count: Int32
     requests: Vector[ChatJoinRequest]
 
@@ -3334,7 +3594,7 @@ class ChatJoinRequestsInfo(BaseObject):
     :type user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["chatJoinRequestsInfo"] = "chatJoinRequestsInfo"
+    ID: typing.Literal["chatJoinRequestsInfo"] = Field("chatJoinRequestsInfo", validation_alias="@type", alias="@type")
     total_count: Int32
     user_ids: Vector[Int53]
 
@@ -3344,7 +3604,7 @@ class ChatListArchive(BaseObject):
     A list of chats usually located at the top of the main chat list. Unmuted chats are automatically moved from the Archive to the Main chat list when a new message arrives
     """
 
-    ID: typing.Literal["chatListArchive"] = "chatListArchive"
+    ID: typing.Literal["chatListArchive"] = Field("chatListArchive", validation_alias="@type", alias="@type")
 
 
 class ChatListFolder(BaseObject):
@@ -3355,7 +3615,7 @@ class ChatListFolder(BaseObject):
     :type chat_folder_id: :class:`Int32`
     """
 
-    ID: typing.Literal["chatListFolder"] = "chatListFolder"
+    ID: typing.Literal["chatListFolder"] = Field("chatListFolder", validation_alias="@type", alias="@type")
     chat_folder_id: Int32
 
 
@@ -3364,7 +3624,7 @@ class ChatListMain(BaseObject):
     A main list of chats
     """
 
-    ID: typing.Literal["chatListMain"] = "chatListMain"
+    ID: typing.Literal["chatListMain"] = Field("chatListMain", validation_alias="@type", alias="@type")
 
 
 ChatList = typing.Union[
@@ -3382,7 +3642,7 @@ class ChatLists(BaseObject):
     :type chat_lists: :class:`Vector[ChatList]`
     """
 
-    ID: typing.Literal["chatLists"] = "chatLists"
+    ID: typing.Literal["chatLists"] = Field("chatLists", validation_alias="@type", alias="@type")
     chat_lists: Vector[ChatList]
 
 
@@ -3396,7 +3656,7 @@ class ChatLocation(BaseObject):
     :type address: :class:`String`
     """
 
-    ID: typing.Literal["chatLocation"] = "chatLocation"
+    ID: typing.Literal["chatLocation"] = Field("chatLocation", validation_alias="@type", alias="@type")
     location: Location
     address: String = Field(..., min_length=1, max_length=64)
 
@@ -3415,7 +3675,7 @@ class ChatMember(BaseObject):
     :type inviter_user_id: :class:`Int53`, optional
     """
 
-    ID: typing.Literal["chatMember"] = "chatMember"
+    ID: typing.Literal["chatMember"] = Field("chatMember", validation_alias="@type", alias="@type")
     member_id: MessageSender
     joined_chat_date: Int32
     status: ChatMemberStatus
@@ -3434,7 +3694,9 @@ class ChatMemberStatusAdministrator(BaseObject):
     :type can_be_edited: :class:`Bool`
     """
 
-    ID: typing.Literal["chatMemberStatusAdministrator"] = "chatMemberStatusAdministrator"
+    ID: typing.Literal["chatMemberStatusAdministrator"] = Field(
+        "chatMemberStatusAdministrator", validation_alias="@type", alias="@type"
+    )
     rights: ChatAdministratorRights
     custom_title: String = Field("", max_length=16)
     can_be_edited: Bool = False
@@ -3448,7 +3710,9 @@ class ChatMemberStatusBanned(BaseObject):
     :type banned_until_date: :class:`Int32`
     """
 
-    ID: typing.Literal["chatMemberStatusBanned"] = "chatMemberStatusBanned"
+    ID: typing.Literal["chatMemberStatusBanned"] = Field(
+        "chatMemberStatusBanned", validation_alias="@type", alias="@type"
+    )
     banned_until_date: Int32
 
 
@@ -3464,7 +3728,9 @@ class ChatMemberStatusCreator(BaseObject):
     :type is_member: :class:`Bool`
     """
 
-    ID: typing.Literal["chatMemberStatusCreator"] = "chatMemberStatusCreator"
+    ID: typing.Literal["chatMemberStatusCreator"] = Field(
+        "chatMemberStatusCreator", validation_alias="@type", alias="@type"
+    )
     custom_title: String = Field("", max_length=16)
     is_anonymous: Bool = False
     is_member: Bool = False
@@ -3475,7 +3741,7 @@ class ChatMemberStatusLeft(BaseObject):
     The user or the chat is not a chat member
     """
 
-    ID: typing.Literal["chatMemberStatusLeft"] = "chatMemberStatusLeft"
+    ID: typing.Literal["chatMemberStatusLeft"] = Field("chatMemberStatusLeft", validation_alias="@type", alias="@type")
 
 
 class ChatMemberStatusMember(BaseObject):
@@ -3483,7 +3749,9 @@ class ChatMemberStatusMember(BaseObject):
     The user is a member of the chat, without any additional privileges or restrictions
     """
 
-    ID: typing.Literal["chatMemberStatusMember"] = "chatMemberStatusMember"
+    ID: typing.Literal["chatMemberStatusMember"] = Field(
+        "chatMemberStatusMember", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatMemberStatusRestricted(BaseObject):
@@ -3498,7 +3766,9 @@ class ChatMemberStatusRestricted(BaseObject):
     :type is_member: :class:`Bool`
     """
 
-    ID: typing.Literal["chatMemberStatusRestricted"] = "chatMemberStatusRestricted"
+    ID: typing.Literal["chatMemberStatusRestricted"] = Field(
+        "chatMemberStatusRestricted", validation_alias="@type", alias="@type"
+    )
     restricted_until_date: Int32
     permissions: ChatPermissions
     is_member: Bool = False
@@ -3524,7 +3794,7 @@ class ChatMembers(BaseObject):
     :type members: :class:`Vector[ChatMember]`
     """
 
-    ID: typing.Literal["chatMembers"] = "chatMembers"
+    ID: typing.Literal["chatMembers"] = Field("chatMembers", validation_alias="@type", alias="@type")
     total_count: Int32
     members: Vector[ChatMember]
 
@@ -3534,7 +3804,9 @@ class ChatMembersFilterAdministrators(BaseObject):
     Returns the owner and administrators
     """
 
-    ID: typing.Literal["chatMembersFilterAdministrators"] = "chatMembersFilterAdministrators"
+    ID: typing.Literal["chatMembersFilterAdministrators"] = Field(
+        "chatMembersFilterAdministrators", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatMembersFilterBanned(BaseObject):
@@ -3542,7 +3814,9 @@ class ChatMembersFilterBanned(BaseObject):
     Returns users banned from the chat; can be used only by administrators in a supergroup or in a channel
     """
 
-    ID: typing.Literal["chatMembersFilterBanned"] = "chatMembersFilterBanned"
+    ID: typing.Literal["chatMembersFilterBanned"] = Field(
+        "chatMembersFilterBanned", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatMembersFilterBots(BaseObject):
@@ -3550,7 +3824,9 @@ class ChatMembersFilterBots(BaseObject):
     Returns bot members of the chat
     """
 
-    ID: typing.Literal["chatMembersFilterBots"] = "chatMembersFilterBots"
+    ID: typing.Literal["chatMembersFilterBots"] = Field(
+        "chatMembersFilterBots", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatMembersFilterContacts(BaseObject):
@@ -3558,7 +3834,9 @@ class ChatMembersFilterContacts(BaseObject):
     Returns contacts of the user
     """
 
-    ID: typing.Literal["chatMembersFilterContacts"] = "chatMembersFilterContacts"
+    ID: typing.Literal["chatMembersFilterContacts"] = Field(
+        "chatMembersFilterContacts", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatMembersFilterMembers(BaseObject):
@@ -3566,7 +3844,9 @@ class ChatMembersFilterMembers(BaseObject):
     Returns all chat members, including restricted chat members
     """
 
-    ID: typing.Literal["chatMembersFilterMembers"] = "chatMembersFilterMembers"
+    ID: typing.Literal["chatMembersFilterMembers"] = Field(
+        "chatMembersFilterMembers", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatMembersFilterMention(BaseObject):
@@ -3577,7 +3857,9 @@ class ChatMembersFilterMention(BaseObject):
     :type message_thread_id: :class:`Int53`
     """
 
-    ID: typing.Literal["chatMembersFilterMention"] = "chatMembersFilterMention"
+    ID: typing.Literal["chatMembersFilterMention"] = Field(
+        "chatMembersFilterMention", validation_alias="@type", alias="@type"
+    )
     message_thread_id: Int53
 
 
@@ -3586,7 +3868,9 @@ class ChatMembersFilterRestricted(BaseObject):
     Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup
     """
 
-    ID: typing.Literal["chatMembersFilterRestricted"] = "chatMembersFilterRestricted"
+    ID: typing.Literal["chatMembersFilterRestricted"] = Field(
+        "chatMembersFilterRestricted", validation_alias="@type", alias="@type"
+    )
 
 
 ChatMembersFilter = typing.Union[
@@ -3610,7 +3894,7 @@ class ChatMessageSender(BaseObject):
     :type needs_premium: :class:`Bool`
     """
 
-    ID: typing.Literal["chatMessageSender"] = "chatMessageSender"
+    ID: typing.Literal["chatMessageSender"] = Field("chatMessageSender", validation_alias="@type", alias="@type")
     sender: MessageSender
     needs_premium: Bool = False
 
@@ -3623,7 +3907,7 @@ class ChatMessageSenders(BaseObject):
     :type senders: :class:`Vector[ChatMessageSender]`
     """
 
-    ID: typing.Literal["chatMessageSenders"] = "chatMessageSenders"
+    ID: typing.Literal["chatMessageSenders"] = Field("chatMessageSenders", validation_alias="@type", alias="@type")
     senders: Vector[ChatMessageSender]
 
 
@@ -3637,7 +3921,7 @@ class ChatNearby(BaseObject):
     :type distance: :class:`Int32`
     """
 
-    ID: typing.Literal["chatNearby"] = "chatNearby"
+    ID: typing.Literal["chatNearby"] = Field("chatNearby", validation_alias="@type", alias="@type")
     chat_id: Int53
     distance: Int32
 
@@ -3680,7 +3964,9 @@ class ChatNotificationSettings(BaseObject):
     :type show_story_sender: :class:`Bool`
     """
 
-    ID: typing.Literal["chatNotificationSettings"] = "chatNotificationSettings"
+    ID: typing.Literal["chatNotificationSettings"] = Field(
+        "chatNotificationSettings", validation_alias="@type", alias="@type"
+    )
     use_default_mute_for: Bool
     mute_for: Int32
     use_default_sound: Bool
@@ -3733,7 +4019,7 @@ class ChatPermissions(BaseObject):
     :type can_manage_topics: :class:`Bool`
     """
 
-    ID: typing.Literal["chatPermissions"] = "chatPermissions"
+    ID: typing.Literal["chatPermissions"] = Field("chatPermissions", validation_alias="@type", alias="@type")
     can_send_basic_messages: Bool = False
     can_send_audios: Bool = False
     can_send_documents: Bool = False
@@ -3770,7 +4056,7 @@ class ChatPhoto(BaseObject):
     :type sticker: :class:`ChatPhotoSticker`, optional
     """
 
-    ID: typing.Literal["chatPhoto"] = "chatPhoto"
+    ID: typing.Literal["chatPhoto"] = Field("chatPhoto", validation_alias="@type", alias="@type")
     id: Int64
     added_date: Int32
     sizes: Vector[PhotoSize]
@@ -3796,7 +4082,7 @@ class ChatPhotoInfo(BaseObject):
     :type is_personal: :class:`Bool`
     """
 
-    ID: typing.Literal["chatPhotoInfo"] = "chatPhotoInfo"
+    ID: typing.Literal["chatPhotoInfo"] = Field("chatPhotoInfo", validation_alias="@type", alias="@type")
     small: File
     big: File
     minithumbnail: typing.Optional[Minithumbnail] = None
@@ -3814,7 +4100,7 @@ class ChatPhotoSticker(BaseObject):
     :type background_fill: :class:`BackgroundFill`
     """
 
-    ID: typing.Literal["chatPhotoSticker"] = "chatPhotoSticker"
+    ID: typing.Literal["chatPhotoSticker"] = Field("chatPhotoSticker", validation_alias="@type", alias="@type")
     type_: ChatPhotoStickerType = Field(..., alias="type")
     background_fill: BackgroundFill
 
@@ -3827,7 +4113,9 @@ class ChatPhotoStickerTypeCustomEmoji(BaseObject):
     :type custom_emoji_id: :class:`Int64`
     """
 
-    ID: typing.Literal["chatPhotoStickerTypeCustomEmoji"] = "chatPhotoStickerTypeCustomEmoji"
+    ID: typing.Literal["chatPhotoStickerTypeCustomEmoji"] = Field(
+        "chatPhotoStickerTypeCustomEmoji", validation_alias="@type", alias="@type"
+    )
     custom_emoji_id: Int64
 
 
@@ -3841,7 +4129,9 @@ class ChatPhotoStickerTypeRegularOrMask(BaseObject):
     :type sticker_id: :class:`Int64`
     """
 
-    ID: typing.Literal["chatPhotoStickerTypeRegularOrMask"] = "chatPhotoStickerTypeRegularOrMask"
+    ID: typing.Literal["chatPhotoStickerTypeRegularOrMask"] = Field(
+        "chatPhotoStickerTypeRegularOrMask", validation_alias="@type", alias="@type"
+    )
     sticker_set_id: Int64
     sticker_id: Int64
 
@@ -3862,7 +4152,7 @@ class ChatPhotos(BaseObject):
     :type photos: :class:`Vector[ChatPhoto]`
     """
 
-    ID: typing.Literal["chatPhotos"] = "chatPhotos"
+    ID: typing.Literal["chatPhotos"] = Field("chatPhotos", validation_alias="@type", alias="@type")
     total_count: Int32
     photos: Vector[ChatPhoto]
 
@@ -3881,7 +4171,7 @@ class ChatPosition(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["chatPosition"] = "chatPosition"
+    ID: typing.Literal["chatPosition"] = Field("chatPosition", validation_alias="@type", alias="@type")
     list: ChatList
     order: Int64
     source: typing.Optional[ChatSource] = None
@@ -3893,7 +4183,9 @@ class ChatSourceMtprotoProxy(BaseObject):
     The chat is sponsored by the user's MTProxy server
     """
 
-    ID: typing.Literal["chatSourceMtprotoProxy"] = "chatSourceMtprotoProxy"
+    ID: typing.Literal["chatSourceMtprotoProxy"] = Field(
+        "chatSourceMtprotoProxy", validation_alias="@type", alias="@type"
+    )
 
 
 class ChatSourcePublicServiceAnnouncement(BaseObject):
@@ -3906,7 +4198,9 @@ class ChatSourcePublicServiceAnnouncement(BaseObject):
     :type text: :class:`String`
     """
 
-    ID: typing.Literal["chatSourcePublicServiceAnnouncement"] = "chatSourcePublicServiceAnnouncement"
+    ID: typing.Literal["chatSourcePublicServiceAnnouncement"] = Field(
+        "chatSourcePublicServiceAnnouncement", validation_alias="@type", alias="@type"
+    )
     type_: String = Field(..., alias="type")
     text: String
 
@@ -3953,7 +4247,9 @@ class ChatStatisticsChannel(BaseObject):
     :type recent_message_interactions: :class:`Vector[ChatStatisticsMessageInteractionInfo]`
     """
 
-    ID: typing.Literal["chatStatisticsChannel"] = "chatStatisticsChannel"
+    ID: typing.Literal["chatStatisticsChannel"] = Field(
+        "chatStatisticsChannel", validation_alias="@type", alias="@type"
+    )
     period: DateRange
     member_count: StatisticalValue
     mean_view_count: StatisticalValue
@@ -4009,7 +4305,9 @@ class ChatStatisticsSupergroup(BaseObject):
     :type top_inviters: :class:`Vector[ChatStatisticsInviterInfo]`
     """
 
-    ID: typing.Literal["chatStatisticsSupergroup"] = "chatStatisticsSupergroup"
+    ID: typing.Literal["chatStatisticsSupergroup"] = Field(
+        "chatStatisticsSupergroup", validation_alias="@type", alias="@type"
+    )
     period: DateRange
     member_count: StatisticalValue
     message_count: StatisticalValue
@@ -4048,7 +4346,9 @@ class ChatStatisticsAdministratorActionsInfo(BaseObject):
     :type restricted_user_count: :class:`Int32`
     """
 
-    ID: typing.Literal["chatStatisticsAdministratorActionsInfo"] = "chatStatisticsAdministratorActionsInfo"
+    ID: typing.Literal["chatStatisticsAdministratorActionsInfo"] = Field(
+        "chatStatisticsAdministratorActionsInfo", validation_alias="@type", alias="@type"
+    )
     user_id: Int53
     deleted_message_count: Int32
     banned_user_count: Int32
@@ -4065,7 +4365,9 @@ class ChatStatisticsInviterInfo(BaseObject):
     :type added_member_count: :class:`Int32`
     """
 
-    ID: typing.Literal["chatStatisticsInviterInfo"] = "chatStatisticsInviterInfo"
+    ID: typing.Literal["chatStatisticsInviterInfo"] = Field(
+        "chatStatisticsInviterInfo", validation_alias="@type", alias="@type"
+    )
     user_id: Int53
     added_member_count: Int32
 
@@ -4082,7 +4384,9 @@ class ChatStatisticsMessageInteractionInfo(BaseObject):
     :type forward_count: :class:`Int32`
     """
 
-    ID: typing.Literal["chatStatisticsMessageInteractionInfo"] = "chatStatisticsMessageInteractionInfo"
+    ID: typing.Literal["chatStatisticsMessageInteractionInfo"] = Field(
+        "chatStatisticsMessageInteractionInfo", validation_alias="@type", alias="@type"
+    )
     message_id: Int53
     view_count: Int32
     forward_count: Int32
@@ -4100,7 +4404,9 @@ class ChatStatisticsMessageSenderInfo(BaseObject):
     :type average_character_count: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["chatStatisticsMessageSenderInfo"] = "chatStatisticsMessageSenderInfo"
+    ID: typing.Literal["chatStatisticsMessageSenderInfo"] = Field(
+        "chatStatisticsMessageSenderInfo", validation_alias="@type", alias="@type"
+    )
     user_id: Int53
     sent_message_count: Int32
     average_character_count: typing.Optional[Int32] = 0
@@ -4118,7 +4424,7 @@ class ChatTheme(BaseObject):
     :type dark_settings: :class:`ThemeSettings`
     """
 
-    ID: typing.Literal["chatTheme"] = "chatTheme"
+    ID: typing.Literal["chatTheme"] = Field("chatTheme", validation_alias="@type", alias="@type")
     name: String
     light_settings: ThemeSettings
     dark_settings: ThemeSettings
@@ -4132,7 +4438,7 @@ class ChatTypeBasicGroup(BaseObject):
     :type basic_group_id: :class:`Int53`
     """
 
-    ID: typing.Literal["chatTypeBasicGroup"] = "chatTypeBasicGroup"
+    ID: typing.Literal["chatTypeBasicGroup"] = Field("chatTypeBasicGroup", validation_alias="@type", alias="@type")
     basic_group_id: Int53
 
 
@@ -4144,7 +4450,7 @@ class ChatTypePrivate(BaseObject):
     :type user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["chatTypePrivate"] = "chatTypePrivate"
+    ID: typing.Literal["chatTypePrivate"] = Field("chatTypePrivate", validation_alias="@type", alias="@type")
     user_id: Int53
 
 
@@ -4158,7 +4464,7 @@ class ChatTypeSecret(BaseObject):
     :type user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["chatTypeSecret"] = "chatTypeSecret"
+    ID: typing.Literal["chatTypeSecret"] = Field("chatTypeSecret", validation_alias="@type", alias="@type")
     secret_chat_id: Int32
     user_id: Int53
 
@@ -4173,7 +4479,7 @@ class ChatTypeSupergroup(BaseObject):
     :type is_channel: :class:`Bool`
     """
 
-    ID: typing.Literal["chatTypeSupergroup"] = "chatTypeSupergroup"
+    ID: typing.Literal["chatTypeSupergroup"] = Field("chatTypeSupergroup", validation_alias="@type", alias="@type")
     supergroup_id: Int53
     is_channel: Bool = False
 
@@ -4196,7 +4502,7 @@ class Chats(BaseObject):
     :type chat_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["chats"] = "chats"
+    ID: typing.Literal["chats"] = Field("chats", validation_alias="@type", alias="@type")
     total_count: Int32
     chat_ids: Vector[Int53]
 
@@ -4211,7 +4517,7 @@ class ChatsNearby(BaseObject):
     :type supergroups_nearby: :class:`Vector[ChatNearby]`
     """
 
-    ID: typing.Literal["chatsNearby"] = "chatsNearby"
+    ID: typing.Literal["chatsNearby"] = Field("chatsNearby", validation_alias="@type", alias="@type")
     users_nearby: Vector[ChatNearby]
     supergroups_nearby: Vector[ChatNearby]
 
@@ -4221,7 +4527,9 @@ class CheckChatUsernameResultOk(BaseObject):
     The username can be set
     """
 
-    ID: typing.Literal["checkChatUsernameResultOk"] = "checkChatUsernameResultOk"
+    ID: typing.Literal["checkChatUsernameResultOk"] = Field(
+        "checkChatUsernameResultOk", validation_alias="@type", alias="@type"
+    )
 
 
 class CheckChatUsernameResultPublicChatsTooMany(BaseObject):
@@ -4229,7 +4537,9 @@ class CheckChatUsernameResultPublicChatsTooMany(BaseObject):
     The user has too many chats with username, one of them must be made private first
     """
 
-    ID: typing.Literal["checkChatUsernameResultPublicChatsTooMany"] = "checkChatUsernameResultPublicChatsTooMany"
+    ID: typing.Literal["checkChatUsernameResultPublicChatsTooMany"] = Field(
+        "checkChatUsernameResultPublicChatsTooMany", validation_alias="@type", alias="@type"
+    )
 
 
 class CheckChatUsernameResultPublicGroupsUnavailable(BaseObject):
@@ -4237,9 +4547,9 @@ class CheckChatUsernameResultPublicGroupsUnavailable(BaseObject):
     The user can't be a member of a public supergroup
     """
 
-    ID: typing.Literal[
-        "checkChatUsernameResultPublicGroupsUnavailable"
-    ] = "checkChatUsernameResultPublicGroupsUnavailable"
+    ID: typing.Literal["checkChatUsernameResultPublicGroupsUnavailable"] = Field(
+        "checkChatUsernameResultPublicGroupsUnavailable", validation_alias="@type", alias="@type"
+    )
 
 
 class CheckChatUsernameResultUsernameInvalid(BaseObject):
@@ -4247,7 +4557,9 @@ class CheckChatUsernameResultUsernameInvalid(BaseObject):
     The username is invalid
     """
 
-    ID: typing.Literal["checkChatUsernameResultUsernameInvalid"] = "checkChatUsernameResultUsernameInvalid"
+    ID: typing.Literal["checkChatUsernameResultUsernameInvalid"] = Field(
+        "checkChatUsernameResultUsernameInvalid", validation_alias="@type", alias="@type"
+    )
 
 
 class CheckChatUsernameResultUsernameOccupied(BaseObject):
@@ -4255,7 +4567,9 @@ class CheckChatUsernameResultUsernameOccupied(BaseObject):
     The username is occupied
     """
 
-    ID: typing.Literal["checkChatUsernameResultUsernameOccupied"] = "checkChatUsernameResultUsernameOccupied"
+    ID: typing.Literal["checkChatUsernameResultUsernameOccupied"] = Field(
+        "checkChatUsernameResultUsernameOccupied", validation_alias="@type", alias="@type"
+    )
 
 
 class CheckChatUsernameResultUsernamePurchasable(BaseObject):
@@ -4263,7 +4577,9 @@ class CheckChatUsernameResultUsernamePurchasable(BaseObject):
     The username can be purchased at fragment.com
     """
 
-    ID: typing.Literal["checkChatUsernameResultUsernamePurchasable"] = "checkChatUsernameResultUsernamePurchasable"
+    ID: typing.Literal["checkChatUsernameResultUsernamePurchasable"] = Field(
+        "checkChatUsernameResultUsernamePurchasable", validation_alias="@type", alias="@type"
+    )
 
 
 CheckChatUsernameResult = typing.Union[
@@ -4281,7 +4597,9 @@ class CheckStickerSetNameResultNameInvalid(BaseObject):
     The name is invalid
     """
 
-    ID: typing.Literal["checkStickerSetNameResultNameInvalid"] = "checkStickerSetNameResultNameInvalid"
+    ID: typing.Literal["checkStickerSetNameResultNameInvalid"] = Field(
+        "checkStickerSetNameResultNameInvalid", validation_alias="@type", alias="@type"
+    )
 
 
 class CheckStickerSetNameResultNameOccupied(BaseObject):
@@ -4289,7 +4607,9 @@ class CheckStickerSetNameResultNameOccupied(BaseObject):
     The name is occupied
     """
 
-    ID: typing.Literal["checkStickerSetNameResultNameOccupied"] = "checkStickerSetNameResultNameOccupied"
+    ID: typing.Literal["checkStickerSetNameResultNameOccupied"] = Field(
+        "checkStickerSetNameResultNameOccupied", validation_alias="@type", alias="@type"
+    )
 
 
 class CheckStickerSetNameResultOk(BaseObject):
@@ -4297,7 +4617,9 @@ class CheckStickerSetNameResultOk(BaseObject):
     The name can be set
     """
 
-    ID: typing.Literal["checkStickerSetNameResultOk"] = "checkStickerSetNameResultOk"
+    ID: typing.Literal["checkStickerSetNameResultOk"] = Field(
+        "checkStickerSetNameResultOk", validation_alias="@type", alias="@type"
+    )
 
 
 CheckStickerSetNameResult = typing.Union[
@@ -4315,7 +4637,7 @@ class ClosedVectorPath(BaseObject):
     :type commands: :class:`Vector[VectorPathCommand]`
     """
 
-    ID: typing.Literal["closedVectorPath"] = "closedVectorPath"
+    ID: typing.Literal["closedVectorPath"] = Field("closedVectorPath", validation_alias="@type", alias="@type")
     commands: Vector[VectorPathCommand]
 
 
@@ -4343,7 +4665,7 @@ class ConnectedWebsite(BaseObject):
     :type location: :class:`String`
     """
 
-    ID: typing.Literal["connectedWebsite"] = "connectedWebsite"
+    ID: typing.Literal["connectedWebsite"] = Field("connectedWebsite", validation_alias="@type", alias="@type")
     id: Int64
     domain_name: String
     bot_user_id: Int53
@@ -4363,7 +4685,7 @@ class ConnectedWebsites(BaseObject):
     :type websites: :class:`Vector[ConnectedWebsite]`
     """
 
-    ID: typing.Literal["connectedWebsites"] = "connectedWebsites"
+    ID: typing.Literal["connectedWebsites"] = Field("connectedWebsites", validation_alias="@type", alias="@type")
     websites: Vector[ConnectedWebsite]
 
 
@@ -4372,7 +4694,9 @@ class ConnectionStateConnecting(BaseObject):
     Currently establishing a connection to the Telegram servers
     """
 
-    ID: typing.Literal["connectionStateConnecting"] = "connectionStateConnecting"
+    ID: typing.Literal["connectionStateConnecting"] = Field(
+        "connectionStateConnecting", validation_alias="@type", alias="@type"
+    )
 
 
 class ConnectionStateConnectingToProxy(BaseObject):
@@ -4380,7 +4704,9 @@ class ConnectionStateConnectingToProxy(BaseObject):
     Currently establishing a connection with a proxy server
     """
 
-    ID: typing.Literal["connectionStateConnectingToProxy"] = "connectionStateConnectingToProxy"
+    ID: typing.Literal["connectionStateConnectingToProxy"] = Field(
+        "connectionStateConnectingToProxy", validation_alias="@type", alias="@type"
+    )
 
 
 class ConnectionStateReady(BaseObject):
@@ -4388,7 +4714,7 @@ class ConnectionStateReady(BaseObject):
     There is a working connection to the Telegram servers
     """
 
-    ID: typing.Literal["connectionStateReady"] = "connectionStateReady"
+    ID: typing.Literal["connectionStateReady"] = Field("connectionStateReady", validation_alias="@type", alias="@type")
 
 
 class ConnectionStateUpdating(BaseObject):
@@ -4396,7 +4722,9 @@ class ConnectionStateUpdating(BaseObject):
     Downloading data received while the application was offline
     """
 
-    ID: typing.Literal["connectionStateUpdating"] = "connectionStateUpdating"
+    ID: typing.Literal["connectionStateUpdating"] = Field(
+        "connectionStateUpdating", validation_alias="@type", alias="@type"
+    )
 
 
 class ConnectionStateWaitingForNetwork(BaseObject):
@@ -4404,7 +4732,9 @@ class ConnectionStateWaitingForNetwork(BaseObject):
     Currently waiting for the network to become available. Use setNetworkType to change the available network type
     """
 
-    ID: typing.Literal["connectionStateWaitingForNetwork"] = "connectionStateWaitingForNetwork"
+    ID: typing.Literal["connectionStateWaitingForNetwork"] = Field(
+        "connectionStateWaitingForNetwork", validation_alias="@type", alias="@type"
+    )
 
 
 ConnectionState = typing.Union[
@@ -4432,7 +4762,7 @@ class Contact(BaseObject):
     :type user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["contact"] = "contact"
+    ID: typing.Literal["contact"] = Field("contact", validation_alias="@type", alias="@type")
     phone_number: String
     first_name: String = Field(..., min_length=1, max_length=255)
     last_name: String
@@ -4448,7 +4778,7 @@ class Count(BaseObject):
     :type count: :class:`Int32`
     """
 
-    ID: typing.Literal["count"] = "count"
+    ID: typing.Literal["count"] = Field("count", validation_alias="@type", alias="@type")
     count: Int32
 
 
@@ -4460,7 +4790,7 @@ class Countries(BaseObject):
     :type countries: :class:`Vector[CountryInfo]`
     """
 
-    ID: typing.Literal["countries"] = "countries"
+    ID: typing.Literal["countries"] = Field("countries", validation_alias="@type", alias="@type")
     countries: Vector[CountryInfo]
 
 
@@ -4480,7 +4810,7 @@ class CountryInfo(BaseObject):
     :type is_hidden: :class:`Bool`
     """
 
-    ID: typing.Literal["countryInfo"] = "countryInfo"
+    ID: typing.Literal["countryInfo"] = Field("countryInfo", validation_alias="@type", alias="@type")
     country_code: String
     name: String
     english_name: String
@@ -4496,7 +4826,7 @@ class CustomRequestResult(BaseObject):
     :type result: :class:`String`
     """
 
-    ID: typing.Literal["customRequestResult"] = "customRequestResult"
+    ID: typing.Literal["customRequestResult"] = Field("customRequestResult", validation_alias="@type", alias="@type")
     result: String
 
 
@@ -4508,7 +4838,7 @@ class DatabaseStatistics(BaseObject):
     :type statistics: :class:`String`
     """
 
-    ID: typing.Literal["databaseStatistics"] = "databaseStatistics"
+    ID: typing.Literal["databaseStatistics"] = Field("databaseStatistics", validation_alias="@type", alias="@type")
     statistics: String
 
 
@@ -4524,7 +4854,7 @@ class Date(BaseObject):
     :type year: :class:`Int32`
     """
 
-    ID: typing.Literal["date"] = "date"
+    ID: typing.Literal["date"] = Field("date", validation_alias="@type", alias="@type")
     day: Int32
     month: Int32
     year: Int32
@@ -4540,7 +4870,7 @@ class DateRange(BaseObject):
     :type end_date: :class:`Int32`
     """
 
-    ID: typing.Literal["dateRange"] = "dateRange"
+    ID: typing.Literal["dateRange"] = Field("dateRange", validation_alias="@type", alias="@type")
     start_date: Int32
     end_date: Int32
 
@@ -4555,7 +4885,7 @@ class DatedFile(BaseObject):
     :type date: :class:`Int32`
     """
 
-    ID: typing.Literal["datedFile"] = "datedFile"
+    ID: typing.Literal["datedFile"] = Field("datedFile", validation_alias="@type", alias="@type")
     file: File
     date: Int32
 
@@ -4570,7 +4900,7 @@ class DeepLinkInfo(BaseObject):
     :type need_update_application: :class:`Bool`
     """
 
-    ID: typing.Literal["deepLinkInfo"] = "deepLinkInfo"
+    ID: typing.Literal["deepLinkInfo"] = Field("deepLinkInfo", validation_alias="@type", alias="@type")
     text: FormattedText
     need_update_application: Bool = False
 
@@ -4585,7 +4915,7 @@ class DeviceTokenApplePush(BaseObject):
     :type is_app_sandbox: :class:`Bool`
     """
 
-    ID: typing.Literal["deviceTokenApplePush"] = "deviceTokenApplePush"
+    ID: typing.Literal["deviceTokenApplePush"] = Field("deviceTokenApplePush", validation_alias="@type", alias="@type")
     device_token: String = ""
     is_app_sandbox: Bool = False
 
@@ -4602,7 +4932,9 @@ class DeviceTokenApplePushVoIP(BaseObject):
     :type encrypt: :class:`Bool`
     """
 
-    ID: typing.Literal["deviceTokenApplePushVoIP"] = "deviceTokenApplePushVoIP"
+    ID: typing.Literal["deviceTokenApplePushVoIP"] = Field(
+        "deviceTokenApplePushVoIP", validation_alias="@type", alias="@type"
+    )
     device_token: String = ""
     is_app_sandbox: Bool = False
     encrypt: Bool = False
@@ -4616,7 +4948,9 @@ class DeviceTokenBlackBerryPush(BaseObject):
     :type token: :class:`String`
     """
 
-    ID: typing.Literal["deviceTokenBlackBerryPush"] = "deviceTokenBlackBerryPush"
+    ID: typing.Literal["deviceTokenBlackBerryPush"] = Field(
+        "deviceTokenBlackBerryPush", validation_alias="@type", alias="@type"
+    )
     token: String = ""
 
 
@@ -4630,7 +4964,9 @@ class DeviceTokenFirebaseCloudMessaging(BaseObject):
     :type encrypt: :class:`Bool`
     """
 
-    ID: typing.Literal["deviceTokenFirebaseCloudMessaging"] = "deviceTokenFirebaseCloudMessaging"
+    ID: typing.Literal["deviceTokenFirebaseCloudMessaging"] = Field(
+        "deviceTokenFirebaseCloudMessaging", validation_alias="@type", alias="@type"
+    )
     token: String = ""
     encrypt: Bool = False
 
@@ -4645,7 +4981,9 @@ class DeviceTokenHuaweiPush(BaseObject):
     :type encrypt: :class:`Bool`
     """
 
-    ID: typing.Literal["deviceTokenHuaweiPush"] = "deviceTokenHuaweiPush"
+    ID: typing.Literal["deviceTokenHuaweiPush"] = Field(
+        "deviceTokenHuaweiPush", validation_alias="@type", alias="@type"
+    )
     token: String = ""
     encrypt: Bool = False
 
@@ -4658,7 +4996,9 @@ class DeviceTokenMicrosoftPush(BaseObject):
     :type channel_uri: :class:`String`
     """
 
-    ID: typing.Literal["deviceTokenMicrosoftPush"] = "deviceTokenMicrosoftPush"
+    ID: typing.Literal["deviceTokenMicrosoftPush"] = Field(
+        "deviceTokenMicrosoftPush", validation_alias="@type", alias="@type"
+    )
     channel_uri: String = ""
 
 
@@ -4670,7 +5010,9 @@ class DeviceTokenMicrosoftPushVoIP(BaseObject):
     :type channel_uri: :class:`String`
     """
 
-    ID: typing.Literal["deviceTokenMicrosoftPushVoIP"] = "deviceTokenMicrosoftPushVoIP"
+    ID: typing.Literal["deviceTokenMicrosoftPushVoIP"] = Field(
+        "deviceTokenMicrosoftPushVoIP", validation_alias="@type", alias="@type"
+    )
     channel_uri: String = ""
 
 
@@ -4682,7 +5024,9 @@ class DeviceTokenSimplePush(BaseObject):
     :type endpoint: :class:`String`
     """
 
-    ID: typing.Literal["deviceTokenSimplePush"] = "deviceTokenSimplePush"
+    ID: typing.Literal["deviceTokenSimplePush"] = Field(
+        "deviceTokenSimplePush", validation_alias="@type", alias="@type"
+    )
     endpoint: String = ""
 
 
@@ -4694,7 +5038,7 @@ class DeviceTokenTizenPush(BaseObject):
     :type reg_id: :class:`String`
     """
 
-    ID: typing.Literal["deviceTokenTizenPush"] = "deviceTokenTizenPush"
+    ID: typing.Literal["deviceTokenTizenPush"] = Field("deviceTokenTizenPush", validation_alias="@type", alias="@type")
     reg_id: String = ""
 
 
@@ -4706,7 +5050,9 @@ class DeviceTokenUbuntuPush(BaseObject):
     :type token: :class:`String`
     """
 
-    ID: typing.Literal["deviceTokenUbuntuPush"] = "deviceTokenUbuntuPush"
+    ID: typing.Literal["deviceTokenUbuntuPush"] = Field(
+        "deviceTokenUbuntuPush", validation_alias="@type", alias="@type"
+    )
     token: String = ""
 
 
@@ -4722,7 +5068,7 @@ class DeviceTokenWebPush(BaseObject):
     :type endpoint: :class:`String`
     """
 
-    ID: typing.Literal["deviceTokenWebPush"] = "deviceTokenWebPush"
+    ID: typing.Literal["deviceTokenWebPush"] = Field("deviceTokenWebPush", validation_alias="@type", alias="@type")
     p256dh_base64url: String
     auth_base64url: String
     endpoint: String = ""
@@ -4736,7 +5082,9 @@ class DeviceTokenWindowsPush(BaseObject):
     :type access_token: :class:`String`
     """
 
-    ID: typing.Literal["deviceTokenWindowsPush"] = "deviceTokenWindowsPush"
+    ID: typing.Literal["deviceTokenWindowsPush"] = Field(
+        "deviceTokenWindowsPush", validation_alias="@type", alias="@type"
+    )
     access_token: String = ""
 
 
@@ -4764,7 +5112,7 @@ class DiceStickersRegular(BaseObject):
     :type sticker: :class:`Sticker`
     """
 
-    ID: typing.Literal["diceStickersRegular"] = "diceStickersRegular"
+    ID: typing.Literal["diceStickersRegular"] = Field("diceStickersRegular", validation_alias="@type", alias="@type")
     sticker: Sticker
 
 
@@ -4784,7 +5132,9 @@ class DiceStickersSlotMachine(BaseObject):
     :type right_reel: :class:`Sticker`
     """
 
-    ID: typing.Literal["diceStickersSlotMachine"] = "diceStickersSlotMachine"
+    ID: typing.Literal["diceStickersSlotMachine"] = Field(
+        "diceStickersSlotMachine", validation_alias="@type", alias="@type"
+    )
     background: Sticker
     lever: Sticker
     left_reel: Sticker
@@ -4814,7 +5164,7 @@ class Document(BaseObject):
     :type thumbnail: :class:`Thumbnail`, optional
     """
 
-    ID: typing.Literal["document"] = "document"
+    ID: typing.Literal["document"] = Field("document", validation_alias="@type", alias="@type")
     file_name: String
     mime_type: String
     document: File
@@ -4834,7 +5184,7 @@ class DownloadedFileCounts(BaseObject):
     :type completed_count: :class:`Int32`
     """
 
-    ID: typing.Literal["downloadedFileCounts"] = "downloadedFileCounts"
+    ID: typing.Literal["downloadedFileCounts"] = Field("downloadedFileCounts", validation_alias="@type", alias="@type")
     active_count: Int32
     paused_count: Int32
     completed_count: Int32
@@ -4852,7 +5202,7 @@ class DraftMessage(BaseObject):
     :type reply_to_message_id: :class:`Int53`, optional
     """
 
-    ID: typing.Literal["draftMessage"] = "draftMessage"
+    ID: typing.Literal["draftMessage"] = Field("draftMessage", validation_alias="@type", alias="@type")
     date: Int32
     input_message_text: InputMessageContent
     reply_to_message_id: typing.Optional[Int53] = 0
@@ -4866,7 +5216,9 @@ class EmailAddressAuthenticationAppleId(BaseObject):
     :type token: :class:`String`
     """
 
-    ID: typing.Literal["emailAddressAuthenticationAppleId"] = "emailAddressAuthenticationAppleId"
+    ID: typing.Literal["emailAddressAuthenticationAppleId"] = Field(
+        "emailAddressAuthenticationAppleId", validation_alias="@type", alias="@type"
+    )
     token: String
 
 
@@ -4878,7 +5230,9 @@ class EmailAddressAuthenticationCode(BaseObject):
     :type code: :class:`String`
     """
 
-    ID: typing.Literal["emailAddressAuthenticationCode"] = "emailAddressAuthenticationCode"
+    ID: typing.Literal["emailAddressAuthenticationCode"] = Field(
+        "emailAddressAuthenticationCode", validation_alias="@type", alias="@type"
+    )
     code: String
 
 
@@ -4890,7 +5244,9 @@ class EmailAddressAuthenticationGoogleId(BaseObject):
     :type token: :class:`String`
     """
 
-    ID: typing.Literal["emailAddressAuthenticationGoogleId"] = "emailAddressAuthenticationGoogleId"
+    ID: typing.Literal["emailAddressAuthenticationGoogleId"] = Field(
+        "emailAddressAuthenticationGoogleId", validation_alias="@type", alias="@type"
+    )
     token: String
 
 
@@ -4911,7 +5267,9 @@ class EmailAddressAuthenticationCodeInfo(BaseObject):
     :type length: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["emailAddressAuthenticationCodeInfo"] = "emailAddressAuthenticationCodeInfo"
+    ID: typing.Literal["emailAddressAuthenticationCodeInfo"] = Field(
+        "emailAddressAuthenticationCodeInfo", validation_alias="@type", alias="@type"
+    )
     email_address_pattern: String
     length: typing.Optional[Int32] = 0
 
@@ -4924,7 +5282,9 @@ class EmailAddressResetStateAvailable(BaseObject):
     :type wait_period: :class:`Int32`
     """
 
-    ID: typing.Literal["emailAddressResetStateAvailable"] = "emailAddressResetStateAvailable"
+    ID: typing.Literal["emailAddressResetStateAvailable"] = Field(
+        "emailAddressResetStateAvailable", validation_alias="@type", alias="@type"
+    )
     wait_period: Int32
 
 
@@ -4936,7 +5296,9 @@ class EmailAddressResetStatePending(BaseObject):
     :type reset_in: :class:`Int32`
     """
 
-    ID: typing.Literal["emailAddressResetStatePending"] = "emailAddressResetStatePending"
+    ID: typing.Literal["emailAddressResetStatePending"] = Field(
+        "emailAddressResetStatePending", validation_alias="@type", alias="@type"
+    )
     reset_in: Int32
 
 
@@ -4954,7 +5316,7 @@ class EmojiCategories(BaseObject):
     :type categories: :class:`Vector[EmojiCategory]`
     """
 
-    ID: typing.Literal["emojiCategories"] = "emojiCategories"
+    ID: typing.Literal["emojiCategories"] = Field("emojiCategories", validation_alias="@type", alias="@type")
     categories: Vector[EmojiCategory]
 
 
@@ -4970,7 +5332,7 @@ class EmojiCategory(BaseObject):
     :type emojis: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["emojiCategory"] = "emojiCategory"
+    ID: typing.Literal["emojiCategory"] = Field("emojiCategory", validation_alias="@type", alias="@type")
     name: String
     icon: Sticker
     emojis: Vector[String]
@@ -4981,7 +5343,9 @@ class EmojiCategoryTypeChatPhoto(BaseObject):
     The category must be used for chat photo emoji selection
     """
 
-    ID: typing.Literal["emojiCategoryTypeChatPhoto"] = "emojiCategoryTypeChatPhoto"
+    ID: typing.Literal["emojiCategoryTypeChatPhoto"] = Field(
+        "emojiCategoryTypeChatPhoto", validation_alias="@type", alias="@type"
+    )
 
 
 class EmojiCategoryTypeDefault(BaseObject):
@@ -4989,7 +5353,9 @@ class EmojiCategoryTypeDefault(BaseObject):
     The category must be used by default
     """
 
-    ID: typing.Literal["emojiCategoryTypeDefault"] = "emojiCategoryTypeDefault"
+    ID: typing.Literal["emojiCategoryTypeDefault"] = Field(
+        "emojiCategoryTypeDefault", validation_alias="@type", alias="@type"
+    )
 
 
 class EmojiCategoryTypeEmojiStatus(BaseObject):
@@ -4997,7 +5363,9 @@ class EmojiCategoryTypeEmojiStatus(BaseObject):
     The category must be used for emoji status selection
     """
 
-    ID: typing.Literal["emojiCategoryTypeEmojiStatus"] = "emojiCategoryTypeEmojiStatus"
+    ID: typing.Literal["emojiCategoryTypeEmojiStatus"] = Field(
+        "emojiCategoryTypeEmojiStatus", validation_alias="@type", alias="@type"
+    )
 
 
 EmojiCategoryType = typing.Union[
@@ -5033,7 +5401,7 @@ class EmojiReaction(BaseObject):
     :type is_active: :class:`Bool`
     """
 
-    ID: typing.Literal["emojiReaction"] = "emojiReaction"
+    ID: typing.Literal["emojiReaction"] = Field("emojiReaction", validation_alias="@type", alias="@type")
     emoji: String
     title: String
     static_icon: Sticker
@@ -5056,7 +5424,7 @@ class EmojiStatus(BaseObject):
     :type expiration_date: :class:`Int32`
     """
 
-    ID: typing.Literal["emojiStatus"] = "emojiStatus"
+    ID: typing.Literal["emojiStatus"] = Field("emojiStatus", validation_alias="@type", alias="@type")
     custom_emoji_id: Int64
     expiration_date: Int32
 
@@ -5069,7 +5437,7 @@ class EmojiStatuses(BaseObject):
     :type custom_emoji_ids: :class:`Vector[Int64]`
     """
 
-    ID: typing.Literal["emojiStatuses"] = "emojiStatuses"
+    ID: typing.Literal["emojiStatuses"] = Field("emojiStatuses", validation_alias="@type", alias="@type")
     custom_emoji_ids: Vector[Int64]
 
 
@@ -5081,7 +5449,7 @@ class Emojis(BaseObject):
     :type emojis: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["emojis"] = "emojis"
+    ID: typing.Literal["emojis"] = Field("emojis", validation_alias="@type", alias="@type")
     emojis: Vector[String]
 
 
@@ -5097,7 +5465,7 @@ class EncryptedCredentials(BaseObject):
     :type secret: :class:`Bytes`
     """
 
-    ID: typing.Literal["encryptedCredentials"] = "encryptedCredentials"
+    ID: typing.Literal["encryptedCredentials"] = Field("encryptedCredentials", validation_alias="@type", alias="@type")
     data: Bytes
     hash_: Bytes = Field(..., alias="hash")
     secret: Bytes
@@ -5127,7 +5495,9 @@ class EncryptedPassportElement(BaseObject):
     :type selfie: :class:`DatedFile`, optional
     """
 
-    ID: typing.Literal["encryptedPassportElement"] = "encryptedPassportElement"
+    ID: typing.Literal["encryptedPassportElement"] = Field(
+        "encryptedPassportElement", validation_alias="@type", alias="@type"
+    )
     type_: PassportElementType = Field(..., alias="type")
     data: Bytes
     front_side: DatedFile
@@ -5149,7 +5519,7 @@ class Error(BaseObject):
     :type message: :class:`String`
     """
 
-    ID: typing.Literal["error"] = "error"
+    ID: typing.Literal["error"] = Field("error", validation_alias="@type", alias="@type")
     code: Int32
     message: String
 
@@ -5170,7 +5540,7 @@ class File(BaseObject):
     :type size: :class:`Int53`, optional
     """
 
-    ID: typing.Literal["file"] = "file"
+    ID: typing.Literal["file"] = Field("file", validation_alias="@type", alias="@type")
     id: Int32
     expected_size: Int53
     local: LocalFile
@@ -5194,7 +5564,7 @@ class FileDownload(BaseObject):
     :type is_paused: :class:`Bool`
     """
 
-    ID: typing.Literal["fileDownload"] = "fileDownload"
+    ID: typing.Literal["fileDownload"] = Field("fileDownload", validation_alias="@type", alias="@type")
     file_id: Int32
     message: Message
     add_date: Int32
@@ -5210,7 +5580,9 @@ class FileDownloadedPrefixSize(BaseObject):
     :type size: :class:`Int53`
     """
 
-    ID: typing.Literal["fileDownloadedPrefixSize"] = "fileDownloadedPrefixSize"
+    ID: typing.Literal["fileDownloadedPrefixSize"] = Field(
+        "fileDownloadedPrefixSize", validation_alias="@type", alias="@type"
+    )
     size: Int53
 
 
@@ -5222,7 +5594,7 @@ class FilePart(BaseObject):
     :type data: :class:`Bytes`
     """
 
-    ID: typing.Literal["filePart"] = "filePart"
+    ID: typing.Literal["filePart"] = Field("filePart", validation_alias="@type", alias="@type")
     data: Bytes
 
 
@@ -5231,7 +5603,7 @@ class FileTypeAnimation(BaseObject):
     The file is an animation
     """
 
-    ID: typing.Literal["fileTypeAnimation"] = "fileTypeAnimation"
+    ID: typing.Literal["fileTypeAnimation"] = Field("fileTypeAnimation", validation_alias="@type", alias="@type")
 
 
 class FileTypeAudio(BaseObject):
@@ -5239,7 +5611,7 @@ class FileTypeAudio(BaseObject):
     The file is an audio file
     """
 
-    ID: typing.Literal["fileTypeAudio"] = "fileTypeAudio"
+    ID: typing.Literal["fileTypeAudio"] = Field("fileTypeAudio", validation_alias="@type", alias="@type")
 
 
 class FileTypeDocument(BaseObject):
@@ -5247,7 +5619,7 @@ class FileTypeDocument(BaseObject):
     The file is a document
     """
 
-    ID: typing.Literal["fileTypeDocument"] = "fileTypeDocument"
+    ID: typing.Literal["fileTypeDocument"] = Field("fileTypeDocument", validation_alias="@type", alias="@type")
 
 
 class FileTypeNone(BaseObject):
@@ -5255,7 +5627,7 @@ class FileTypeNone(BaseObject):
     The data is not a file
     """
 
-    ID: typing.Literal["fileTypeNone"] = "fileTypeNone"
+    ID: typing.Literal["fileTypeNone"] = Field("fileTypeNone", validation_alias="@type", alias="@type")
 
 
 class FileTypeNotificationSound(BaseObject):
@@ -5263,7 +5635,9 @@ class FileTypeNotificationSound(BaseObject):
     The file is a notification sound
     """
 
-    ID: typing.Literal["fileTypeNotificationSound"] = "fileTypeNotificationSound"
+    ID: typing.Literal["fileTypeNotificationSound"] = Field(
+        "fileTypeNotificationSound", validation_alias="@type", alias="@type"
+    )
 
 
 class FileTypePhoto(BaseObject):
@@ -5271,7 +5645,7 @@ class FileTypePhoto(BaseObject):
     The file is a photo
     """
 
-    ID: typing.Literal["fileTypePhoto"] = "fileTypePhoto"
+    ID: typing.Literal["fileTypePhoto"] = Field("fileTypePhoto", validation_alias="@type", alias="@type")
 
 
 class FileTypePhotoStory(BaseObject):
@@ -5279,7 +5653,7 @@ class FileTypePhotoStory(BaseObject):
     The file is a photo published as a story
     """
 
-    ID: typing.Literal["fileTypePhotoStory"] = "fileTypePhotoStory"
+    ID: typing.Literal["fileTypePhotoStory"] = Field("fileTypePhotoStory", validation_alias="@type", alias="@type")
 
 
 class FileTypeProfilePhoto(BaseObject):
@@ -5287,7 +5661,7 @@ class FileTypeProfilePhoto(BaseObject):
     The file is a profile photo
     """
 
-    ID: typing.Literal["fileTypeProfilePhoto"] = "fileTypeProfilePhoto"
+    ID: typing.Literal["fileTypeProfilePhoto"] = Field("fileTypeProfilePhoto", validation_alias="@type", alias="@type")
 
 
 class FileTypeSecret(BaseObject):
@@ -5295,7 +5669,7 @@ class FileTypeSecret(BaseObject):
     The file was sent to a secret chat (the file type is not known to the server)
     """
 
-    ID: typing.Literal["fileTypeSecret"] = "fileTypeSecret"
+    ID: typing.Literal["fileTypeSecret"] = Field("fileTypeSecret", validation_alias="@type", alias="@type")
 
 
 class FileTypeSecretThumbnail(BaseObject):
@@ -5303,7 +5677,9 @@ class FileTypeSecretThumbnail(BaseObject):
     The file is a thumbnail of a file from a secret chat
     """
 
-    ID: typing.Literal["fileTypeSecretThumbnail"] = "fileTypeSecretThumbnail"
+    ID: typing.Literal["fileTypeSecretThumbnail"] = Field(
+        "fileTypeSecretThumbnail", validation_alias="@type", alias="@type"
+    )
 
 
 class FileTypeSecure(BaseObject):
@@ -5311,7 +5687,7 @@ class FileTypeSecure(BaseObject):
     The file is a file from Secure storage used for storing Telegram Passport files
     """
 
-    ID: typing.Literal["fileTypeSecure"] = "fileTypeSecure"
+    ID: typing.Literal["fileTypeSecure"] = Field("fileTypeSecure", validation_alias="@type", alias="@type")
 
 
 class FileTypeSticker(BaseObject):
@@ -5319,7 +5695,7 @@ class FileTypeSticker(BaseObject):
     The file is a sticker
     """
 
-    ID: typing.Literal["fileTypeSticker"] = "fileTypeSticker"
+    ID: typing.Literal["fileTypeSticker"] = Field("fileTypeSticker", validation_alias="@type", alias="@type")
 
 
 class FileTypeThumbnail(BaseObject):
@@ -5327,7 +5703,7 @@ class FileTypeThumbnail(BaseObject):
     The file is a thumbnail of another file
     """
 
-    ID: typing.Literal["fileTypeThumbnail"] = "fileTypeThumbnail"
+    ID: typing.Literal["fileTypeThumbnail"] = Field("fileTypeThumbnail", validation_alias="@type", alias="@type")
 
 
 class FileTypeUnknown(BaseObject):
@@ -5335,7 +5711,7 @@ class FileTypeUnknown(BaseObject):
     The file type is not yet known
     """
 
-    ID: typing.Literal["fileTypeUnknown"] = "fileTypeUnknown"
+    ID: typing.Literal["fileTypeUnknown"] = Field("fileTypeUnknown", validation_alias="@type", alias="@type")
 
 
 class FileTypeVideo(BaseObject):
@@ -5343,7 +5719,7 @@ class FileTypeVideo(BaseObject):
     The file is a video
     """
 
-    ID: typing.Literal["fileTypeVideo"] = "fileTypeVideo"
+    ID: typing.Literal["fileTypeVideo"] = Field("fileTypeVideo", validation_alias="@type", alias="@type")
 
 
 class FileTypeVideoNote(BaseObject):
@@ -5351,7 +5727,7 @@ class FileTypeVideoNote(BaseObject):
     The file is a video note
     """
 
-    ID: typing.Literal["fileTypeVideoNote"] = "fileTypeVideoNote"
+    ID: typing.Literal["fileTypeVideoNote"] = Field("fileTypeVideoNote", validation_alias="@type", alias="@type")
 
 
 class FileTypeVideoStory(BaseObject):
@@ -5359,7 +5735,7 @@ class FileTypeVideoStory(BaseObject):
     The file is a video published as a story
     """
 
-    ID: typing.Literal["fileTypeVideoStory"] = "fileTypeVideoStory"
+    ID: typing.Literal["fileTypeVideoStory"] = Field("fileTypeVideoStory", validation_alias="@type", alias="@type")
 
 
 class FileTypeVoiceNote(BaseObject):
@@ -5367,7 +5743,7 @@ class FileTypeVoiceNote(BaseObject):
     The file is a voice note
     """
 
-    ID: typing.Literal["fileTypeVoiceNote"] = "fileTypeVoiceNote"
+    ID: typing.Literal["fileTypeVoiceNote"] = Field("fileTypeVoiceNote", validation_alias="@type", alias="@type")
 
 
 class FileTypeWallpaper(BaseObject):
@@ -5375,7 +5751,7 @@ class FileTypeWallpaper(BaseObject):
     The file is a wallpaper or a background pattern
     """
 
-    ID: typing.Literal["fileTypeWallpaper"] = "fileTypeWallpaper"
+    ID: typing.Literal["fileTypeWallpaper"] = Field("fileTypeWallpaper", validation_alias="@type", alias="@type")
 
 
 FileType = typing.Union[
@@ -5406,7 +5782,9 @@ class FirebaseAuthenticationSettingsAndroid(BaseObject):
     Settings for Firebase Authentication in the official Android application
     """
 
-    ID: typing.Literal["firebaseAuthenticationSettingsAndroid"] = "firebaseAuthenticationSettingsAndroid"
+    ID: typing.Literal["firebaseAuthenticationSettingsAndroid"] = Field(
+        "firebaseAuthenticationSettingsAndroid", validation_alias="@type", alias="@type"
+    )
 
 
 class FirebaseAuthenticationSettingsIos(BaseObject):
@@ -5419,7 +5797,9 @@ class FirebaseAuthenticationSettingsIos(BaseObject):
     :type is_app_sandbox: :class:`Bool`
     """
 
-    ID: typing.Literal["firebaseAuthenticationSettingsIos"] = "firebaseAuthenticationSettingsIos"
+    ID: typing.Literal["firebaseAuthenticationSettingsIos"] = Field(
+        "firebaseAuthenticationSettingsIos", validation_alias="@type", alias="@type"
+    )
     device_token: String
     is_app_sandbox: Bool = False
 
@@ -5440,7 +5820,7 @@ class FormattedText(BaseObject):
     :type entities: :class:`Vector[TextEntity]`
     """
 
-    ID: typing.Literal["formattedText"] = "formattedText"
+    ID: typing.Literal["formattedText"] = Field("formattedText", validation_alias="@type", alias="@type")
     text: String
     entities: Vector[TextEntity]
 
@@ -5471,7 +5851,7 @@ class ForumTopic(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["forumTopic"] = "forumTopic"
+    ID: typing.Literal["forumTopic"] = Field("forumTopic", validation_alias="@type", alias="@type")
     info: ForumTopicInfo
     unread_count: Int32
     last_read_inbox_message_id: Int53
@@ -5494,7 +5874,7 @@ class ForumTopicIcon(BaseObject):
     :type custom_emoji_id: :class:`Int64`, optional
     """
 
-    ID: typing.Literal["forumTopicIcon"] = "forumTopicIcon"
+    ID: typing.Literal["forumTopicIcon"] = Field("forumTopicIcon", validation_alias="@type", alias="@type")
     color: Int32
     custom_emoji_id: typing.Optional[Int64] = 0
 
@@ -5523,7 +5903,7 @@ class ForumTopicInfo(BaseObject):
     :type is_hidden: :class:`Bool`
     """
 
-    ID: typing.Literal["forumTopicInfo"] = "forumTopicInfo"
+    ID: typing.Literal["forumTopicInfo"] = Field("forumTopicInfo", validation_alias="@type", alias="@type")
     message_thread_id: Int53
     name: String
     icon: ForumTopicIcon
@@ -5551,7 +5931,7 @@ class ForumTopics(BaseObject):
     :type next_offset_message_thread_id: :class:`Int53`
     """
 
-    ID: typing.Literal["forumTopics"] = "forumTopics"
+    ID: typing.Literal["forumTopics"] = Field("forumTopics", validation_alias="@type", alias="@type")
     total_count: Int32
     topics: Vector[ForumTopic]
     next_offset_date: Int32
@@ -5571,7 +5951,7 @@ class FoundChatMessages(BaseObject):
     :type next_from_message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["foundChatMessages"] = "foundChatMessages"
+    ID: typing.Literal["foundChatMessages"] = Field("foundChatMessages", validation_alias="@type", alias="@type")
     total_count: Int32
     messages: Vector[Message]
     next_from_message_id: Int53 = 0
@@ -5589,7 +5969,7 @@ class FoundFileDownloads(BaseObject):
     :type next_offset: :class:`String`
     """
 
-    ID: typing.Literal["foundFileDownloads"] = "foundFileDownloads"
+    ID: typing.Literal["foundFileDownloads"] = Field("foundFileDownloads", validation_alias="@type", alias="@type")
     total_counts: DownloadedFileCounts
     files: Vector[FileDownload]
     next_offset: String
@@ -5607,7 +5987,7 @@ class FoundMessages(BaseObject):
     :type next_offset: :class:`String`
     """
 
-    ID: typing.Literal["foundMessages"] = "foundMessages"
+    ID: typing.Literal["foundMessages"] = Field("foundMessages", validation_alias="@type", alias="@type")
     total_count: Int32
     messages: Vector[Message]
     next_offset: String
@@ -5623,7 +6003,7 @@ class FoundPositions(BaseObject):
     :type positions: :class:`Vector[Int32]`
     """
 
-    ID: typing.Literal["foundPositions"] = "foundPositions"
+    ID: typing.Literal["foundPositions"] = Field("foundPositions", validation_alias="@type", alias="@type")
     total_count: Int32
     positions: Vector[Int32]
 
@@ -5642,7 +6022,7 @@ class FoundWebApp(BaseObject):
     :type skip_confirmation: :class:`Bool`
     """
 
-    ID: typing.Literal["foundWebApp"] = "foundWebApp"
+    ID: typing.Literal["foundWebApp"] = Field("foundWebApp", validation_alias="@type", alias="@type")
     web_app: WebApp
     supports_settings: Bool = False
     request_write_access: Bool = False
@@ -5669,7 +6049,7 @@ class Game(BaseObject):
     :type animation: :class:`Animation`, optional
     """
 
-    ID: typing.Literal["game"] = "game"
+    ID: typing.Literal["game"] = Field("game", validation_alias="@type", alias="@type")
     id: Int64
     short_name: String
     title: String
@@ -5691,7 +6071,7 @@ class GameHighScore(BaseObject):
     :type score: :class:`Int32`
     """
 
-    ID: typing.Literal["gameHighScore"] = "gameHighScore"
+    ID: typing.Literal["gameHighScore"] = Field("gameHighScore", validation_alias="@type", alias="@type")
     position: Int32
     user_id: Int53
     score: Int32
@@ -5705,7 +6085,7 @@ class GameHighScores(BaseObject):
     :type scores: :class:`Vector[GameHighScore]`
     """
 
-    ID: typing.Literal["gameHighScores"] = "gameHighScores"
+    ID: typing.Literal["gameHighScores"] = Field("gameHighScores", validation_alias="@type", alias="@type")
     scores: Vector[GameHighScore]
 
 
@@ -5757,7 +6137,7 @@ class GroupCall(BaseObject):
     :type record_duration: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["groupCall"] = "groupCall"
+    ID: typing.Literal["groupCall"] = Field("groupCall", validation_alias="@type", alias="@type")
     id: Int32
     title: String
     scheduled_start_date: Int32
@@ -5789,7 +6169,7 @@ class GroupCallId(BaseObject):
     :type id: :class:`Int32`
     """
 
-    ID: typing.Literal["groupCallId"] = "groupCallId"
+    ID: typing.Literal["groupCallId"] = Field("groupCallId", validation_alias="@type", alias="@type")
     id: Int32
 
 
@@ -5835,7 +6215,7 @@ class GroupCallParticipant(BaseObject):
     :type can_unmute_self: :class:`Bool`
     """
 
-    ID: typing.Literal["groupCallParticipant"] = "groupCallParticipant"
+    ID: typing.Literal["groupCallParticipant"] = Field("groupCallParticipant", validation_alias="@type", alias="@type")
     participant_id: MessageSender
     audio_source_id: Int32
     screen_sharing_audio_source_id: Int32
@@ -5868,7 +6248,9 @@ class GroupCallParticipantVideoInfo(BaseObject):
     :type is_paused: :class:`Bool`
     """
 
-    ID: typing.Literal["groupCallParticipantVideoInfo"] = "groupCallParticipantVideoInfo"
+    ID: typing.Literal["groupCallParticipantVideoInfo"] = Field(
+        "groupCallParticipantVideoInfo", validation_alias="@type", alias="@type"
+    )
     source_groups: Vector[GroupCallVideoSourceGroup]
     endpoint_id: String
     is_paused: Bool = False
@@ -5884,7 +6266,9 @@ class GroupCallRecentSpeaker(BaseObject):
     :type is_speaking: :class:`Bool`
     """
 
-    ID: typing.Literal["groupCallRecentSpeaker"] = "groupCallRecentSpeaker"
+    ID: typing.Literal["groupCallRecentSpeaker"] = Field(
+        "groupCallRecentSpeaker", validation_alias="@type", alias="@type"
+    )
     participant_id: MessageSender
     is_speaking: Bool
 
@@ -5901,7 +6285,7 @@ class GroupCallStream(BaseObject):
     :type time_offset: :class:`Int53`
     """
 
-    ID: typing.Literal["groupCallStream"] = "groupCallStream"
+    ID: typing.Literal["groupCallStream"] = Field("groupCallStream", validation_alias="@type", alias="@type")
     channel_id: Int32
     scale: Int32
     time_offset: Int53
@@ -5915,7 +6299,7 @@ class GroupCallStreams(BaseObject):
     :type streams: :class:`Vector[GroupCallStream]`
     """
 
-    ID: typing.Literal["groupCallStreams"] = "groupCallStreams"
+    ID: typing.Literal["groupCallStreams"] = Field("groupCallStreams", validation_alias="@type", alias="@type")
     streams: Vector[GroupCallStream]
 
 
@@ -5924,7 +6308,9 @@ class GroupCallVideoQualityFull(BaseObject):
     The best available video quality
     """
 
-    ID: typing.Literal["groupCallVideoQualityFull"] = "groupCallVideoQualityFull"
+    ID: typing.Literal["groupCallVideoQualityFull"] = Field(
+        "groupCallVideoQualityFull", validation_alias="@type", alias="@type"
+    )
 
 
 class GroupCallVideoQualityMedium(BaseObject):
@@ -5932,7 +6318,9 @@ class GroupCallVideoQualityMedium(BaseObject):
     The medium video quality
     """
 
-    ID: typing.Literal["groupCallVideoQualityMedium"] = "groupCallVideoQualityMedium"
+    ID: typing.Literal["groupCallVideoQualityMedium"] = Field(
+        "groupCallVideoQualityMedium", validation_alias="@type", alias="@type"
+    )
 
 
 class GroupCallVideoQualityThumbnail(BaseObject):
@@ -5940,7 +6328,9 @@ class GroupCallVideoQualityThumbnail(BaseObject):
     The worst available video quality
     """
 
-    ID: typing.Literal["groupCallVideoQualityThumbnail"] = "groupCallVideoQualityThumbnail"
+    ID: typing.Literal["groupCallVideoQualityThumbnail"] = Field(
+        "groupCallVideoQualityThumbnail", validation_alias="@type", alias="@type"
+    )
 
 
 GroupCallVideoQuality = typing.Union[
@@ -5960,7 +6350,9 @@ class GroupCallVideoSourceGroup(BaseObject):
     :type source_ids: :class:`Vector[Int32]`
     """
 
-    ID: typing.Literal["groupCallVideoSourceGroup"] = "groupCallVideoSourceGroup"
+    ID: typing.Literal["groupCallVideoSourceGroup"] = Field(
+        "groupCallVideoSourceGroup", validation_alias="@type", alias="@type"
+    )
     semantics: String
     source_ids: Vector[Int32]
 
@@ -5973,7 +6365,7 @@ class Hashtags(BaseObject):
     :type hashtags: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["hashtags"] = "hashtags"
+    ID: typing.Literal["hashtags"] = Field("hashtags", validation_alias="@type", alias="@type")
     hashtags: Vector[String]
 
 
@@ -5985,7 +6377,7 @@ class HttpUrl(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["httpUrl"] = "httpUrl"
+    ID: typing.Literal["httpUrl"] = Field("httpUrl", validation_alias="@type", alias="@type")
     url: String
 
 
@@ -6007,7 +6399,7 @@ class IdentityDocument(BaseObject):
     :type selfie: :class:`DatedFile`, optional
     """
 
-    ID: typing.Literal["identityDocument"] = "identityDocument"
+    ID: typing.Literal["identityDocument"] = Field("identityDocument", validation_alias="@type", alias="@type")
     number: String = Field(..., min_length=1, max_length=24)
     front_side: DatedFile
     translation: Vector[DatedFile]
@@ -6026,7 +6418,7 @@ class ImportedContacts(BaseObject):
     :type importer_count: :class:`Vector[Int32]`
     """
 
-    ID: typing.Literal["importedContacts"] = "importedContacts"
+    ID: typing.Literal["importedContacts"] = Field("importedContacts", validation_alias="@type", alias="@type")
     user_ids: Vector[Int53]
     importer_count: Vector[Int32]
 
@@ -6041,7 +6433,7 @@ class InlineKeyboardButton(BaseObject):
     :type type_: :class:`InlineKeyboardButtonType`
     """
 
-    ID: typing.Literal["inlineKeyboardButton"] = "inlineKeyboardButton"
+    ID: typing.Literal["inlineKeyboardButton"] = Field("inlineKeyboardButton", validation_alias="@type", alias="@type")
     text: String
     type_: InlineKeyboardButtonType = Field(..., alias="type")
 
@@ -6051,7 +6443,9 @@ class InlineKeyboardButtonTypeBuy(BaseObject):
     A button to buy something. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageInvoice
     """
 
-    ID: typing.Literal["inlineKeyboardButtonTypeBuy"] = "inlineKeyboardButtonTypeBuy"
+    ID: typing.Literal["inlineKeyboardButtonTypeBuy"] = Field(
+        "inlineKeyboardButtonTypeBuy", validation_alias="@type", alias="@type"
+    )
 
 
 class InlineKeyboardButtonTypeCallback(BaseObject):
@@ -6062,7 +6456,9 @@ class InlineKeyboardButtonTypeCallback(BaseObject):
     :type data: :class:`Bytes`
     """
 
-    ID: typing.Literal["inlineKeyboardButtonTypeCallback"] = "inlineKeyboardButtonTypeCallback"
+    ID: typing.Literal["inlineKeyboardButtonTypeCallback"] = Field(
+        "inlineKeyboardButtonTypeCallback", validation_alias="@type", alias="@type"
+    )
     data: Bytes
 
 
@@ -6071,7 +6467,9 @@ class InlineKeyboardButtonTypeCallbackGame(BaseObject):
     A button with a game that sends a callback query to a bot. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageGame
     """
 
-    ID: typing.Literal["inlineKeyboardButtonTypeCallbackGame"] = "inlineKeyboardButtonTypeCallbackGame"
+    ID: typing.Literal["inlineKeyboardButtonTypeCallbackGame"] = Field(
+        "inlineKeyboardButtonTypeCallbackGame", validation_alias="@type", alias="@type"
+    )
 
 
 class InlineKeyboardButtonTypeCallbackWithPassword(BaseObject):
@@ -6082,7 +6480,9 @@ class InlineKeyboardButtonTypeCallbackWithPassword(BaseObject):
     :type data: :class:`Bytes`
     """
 
-    ID: typing.Literal["inlineKeyboardButtonTypeCallbackWithPassword"] = "inlineKeyboardButtonTypeCallbackWithPassword"
+    ID: typing.Literal["inlineKeyboardButtonTypeCallbackWithPassword"] = Field(
+        "inlineKeyboardButtonTypeCallbackWithPassword", validation_alias="@type", alias="@type"
+    )
     data: Bytes
 
 
@@ -6098,7 +6498,9 @@ class InlineKeyboardButtonTypeLoginUrl(BaseObject):
     :type forward_text: :class:`String`
     """
 
-    ID: typing.Literal["inlineKeyboardButtonTypeLoginUrl"] = "inlineKeyboardButtonTypeLoginUrl"
+    ID: typing.Literal["inlineKeyboardButtonTypeLoginUrl"] = Field(
+        "inlineKeyboardButtonTypeLoginUrl", validation_alias="@type", alias="@type"
+    )
     url: String
     id: Int53
     forward_text: String
@@ -6114,7 +6516,9 @@ class InlineKeyboardButtonTypeSwitchInline(BaseObject):
     :type target_chat: :class:`TargetChat`
     """
 
-    ID: typing.Literal["inlineKeyboardButtonTypeSwitchInline"] = "inlineKeyboardButtonTypeSwitchInline"
+    ID: typing.Literal["inlineKeyboardButtonTypeSwitchInline"] = Field(
+        "inlineKeyboardButtonTypeSwitchInline", validation_alias="@type", alias="@type"
+    )
     query: String
     target_chat: TargetChat
 
@@ -6127,7 +6531,9 @@ class InlineKeyboardButtonTypeUrl(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["inlineKeyboardButtonTypeUrl"] = "inlineKeyboardButtonTypeUrl"
+    ID: typing.Literal["inlineKeyboardButtonTypeUrl"] = Field(
+        "inlineKeyboardButtonTypeUrl", validation_alias="@type", alias="@type"
+    )
     url: String
 
 
@@ -6139,7 +6545,9 @@ class InlineKeyboardButtonTypeUser(BaseObject):
     :type user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["inlineKeyboardButtonTypeUser"] = "inlineKeyboardButtonTypeUser"
+    ID: typing.Literal["inlineKeyboardButtonTypeUser"] = Field(
+        "inlineKeyboardButtonTypeUser", validation_alias="@type", alias="@type"
+    )
     user_id: Int53
 
 
@@ -6151,7 +6559,9 @@ class InlineKeyboardButtonTypeWebApp(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["inlineKeyboardButtonTypeWebApp"] = "inlineKeyboardButtonTypeWebApp"
+    ID: typing.Literal["inlineKeyboardButtonTypeWebApp"] = Field(
+        "inlineKeyboardButtonTypeWebApp", validation_alias="@type", alias="@type"
+    )
     url: String
 
 
@@ -6180,7 +6590,9 @@ class InlineQueryResultAnimation(BaseObject):
     :type title: :class:`String`
     """
 
-    ID: typing.Literal["inlineQueryResultAnimation"] = "inlineQueryResultAnimation"
+    ID: typing.Literal["inlineQueryResultAnimation"] = Field(
+        "inlineQueryResultAnimation", validation_alias="@type", alias="@type"
+    )
     id: String
     animation: Animation
     title: String
@@ -6204,7 +6616,9 @@ class InlineQueryResultArticle(BaseObject):
     :type hide_url: :class:`Bool`
     """
 
-    ID: typing.Literal["inlineQueryResultArticle"] = "inlineQueryResultArticle"
+    ID: typing.Literal["inlineQueryResultArticle"] = Field(
+        "inlineQueryResultArticle", validation_alias="@type", alias="@type"
+    )
     id: String
     url: String
     title: String
@@ -6223,7 +6637,9 @@ class InlineQueryResultAudio(BaseObject):
     :type audio: :class:`Audio`
     """
 
-    ID: typing.Literal["inlineQueryResultAudio"] = "inlineQueryResultAudio"
+    ID: typing.Literal["inlineQueryResultAudio"] = Field(
+        "inlineQueryResultAudio", validation_alias="@type", alias="@type"
+    )
     id: String
     audio: Audio
 
@@ -6240,7 +6656,9 @@ class InlineQueryResultContact(BaseObject):
     :type thumbnail: :class:`Thumbnail`, optional
     """
 
-    ID: typing.Literal["inlineQueryResultContact"] = "inlineQueryResultContact"
+    ID: typing.Literal["inlineQueryResultContact"] = Field(
+        "inlineQueryResultContact", validation_alias="@type", alias="@type"
+    )
     id: String
     contact: Contact
     thumbnail: typing.Optional[Thumbnail] = None
@@ -6260,7 +6678,9 @@ class InlineQueryResultDocument(BaseObject):
     :type description: :class:`String`
     """
 
-    ID: typing.Literal["inlineQueryResultDocument"] = "inlineQueryResultDocument"
+    ID: typing.Literal["inlineQueryResultDocument"] = Field(
+        "inlineQueryResultDocument", validation_alias="@type", alias="@type"
+    )
     id: String
     document: Document
     title: String
@@ -6277,7 +6697,9 @@ class InlineQueryResultGame(BaseObject):
     :type game: :class:`Game`
     """
 
-    ID: typing.Literal["inlineQueryResultGame"] = "inlineQueryResultGame"
+    ID: typing.Literal["inlineQueryResultGame"] = Field(
+        "inlineQueryResultGame", validation_alias="@type", alias="@type"
+    )
     id: String
     game: Game
 
@@ -6296,7 +6718,9 @@ class InlineQueryResultLocation(BaseObject):
     :type thumbnail: :class:`Thumbnail`, optional
     """
 
-    ID: typing.Literal["inlineQueryResultLocation"] = "inlineQueryResultLocation"
+    ID: typing.Literal["inlineQueryResultLocation"] = Field(
+        "inlineQueryResultLocation", validation_alias="@type", alias="@type"
+    )
     id: String
     location: Location
     title: String
@@ -6317,7 +6741,9 @@ class InlineQueryResultPhoto(BaseObject):
     :type description: :class:`String`
     """
 
-    ID: typing.Literal["inlineQueryResultPhoto"] = "inlineQueryResultPhoto"
+    ID: typing.Literal["inlineQueryResultPhoto"] = Field(
+        "inlineQueryResultPhoto", validation_alias="@type", alias="@type"
+    )
     id: String
     photo: Photo
     title: String
@@ -6334,7 +6760,9 @@ class InlineQueryResultSticker(BaseObject):
     :type sticker: :class:`Sticker`
     """
 
-    ID: typing.Literal["inlineQueryResultSticker"] = "inlineQueryResultSticker"
+    ID: typing.Literal["inlineQueryResultSticker"] = Field(
+        "inlineQueryResultSticker", validation_alias="@type", alias="@type"
+    )
     id: String
     sticker: Sticker
 
@@ -6351,7 +6779,9 @@ class InlineQueryResultVenue(BaseObject):
     :type thumbnail: :class:`Thumbnail`, optional
     """
 
-    ID: typing.Literal["inlineQueryResultVenue"] = "inlineQueryResultVenue"
+    ID: typing.Literal["inlineQueryResultVenue"] = Field(
+        "inlineQueryResultVenue", validation_alias="@type", alias="@type"
+    )
     id: String
     venue: Venue
     thumbnail: typing.Optional[Thumbnail] = None
@@ -6371,7 +6801,9 @@ class InlineQueryResultVideo(BaseObject):
     :type description: :class:`String`
     """
 
-    ID: typing.Literal["inlineQueryResultVideo"] = "inlineQueryResultVideo"
+    ID: typing.Literal["inlineQueryResultVideo"] = Field(
+        "inlineQueryResultVideo", validation_alias="@type", alias="@type"
+    )
     id: String
     video: Video
     title: String
@@ -6390,7 +6822,9 @@ class InlineQueryResultVoiceNote(BaseObject):
     :type title: :class:`String`
     """
 
-    ID: typing.Literal["inlineQueryResultVoiceNote"] = "inlineQueryResultVoiceNote"
+    ID: typing.Literal["inlineQueryResultVoiceNote"] = Field(
+        "inlineQueryResultVoiceNote", validation_alias="@type", alias="@type"
+    )
     id: String
     voice_note: VoiceNote
     title: String
@@ -6426,7 +6860,7 @@ class InlineQueryResults(BaseObject):
     :type button: :class:`InlineQueryResultsButton`, optional
     """
 
-    ID: typing.Literal["inlineQueryResults"] = "inlineQueryResults"
+    ID: typing.Literal["inlineQueryResults"] = Field("inlineQueryResults", validation_alias="@type", alias="@type")
     inline_query_id: Int64
     results: Vector[InlineQueryResult]
     next_offset: String
@@ -6443,7 +6877,9 @@ class InlineQueryResultsButton(BaseObject):
     :type type_: :class:`InlineQueryResultsButtonType`
     """
 
-    ID: typing.Literal["inlineQueryResultsButton"] = "inlineQueryResultsButton"
+    ID: typing.Literal["inlineQueryResultsButton"] = Field(
+        "inlineQueryResultsButton", validation_alias="@type", alias="@type"
+    )
     text: String
     type_: InlineQueryResultsButtonType = Field(..., alias="type")
 
@@ -6456,7 +6892,9 @@ class InlineQueryResultsButtonTypeStartBot(BaseObject):
     :type parameter: :class:`String`
     """
 
-    ID: typing.Literal["inlineQueryResultsButtonTypeStartBot"] = "inlineQueryResultsButtonTypeStartBot"
+    ID: typing.Literal["inlineQueryResultsButtonTypeStartBot"] = Field(
+        "inlineQueryResultsButtonTypeStartBot", validation_alias="@type", alias="@type"
+    )
     parameter: String
 
 
@@ -6468,7 +6906,9 @@ class InlineQueryResultsButtonTypeWebApp(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["inlineQueryResultsButtonTypeWebApp"] = "inlineQueryResultsButtonTypeWebApp"
+    ID: typing.Literal["inlineQueryResultsButtonTypeWebApp"] = Field(
+        "inlineQueryResultsButtonTypeWebApp", validation_alias="@type", alias="@type"
+    )
     url: String
 
 
@@ -6486,7 +6926,7 @@ class InputBackgroundLocal(BaseObject):
     :type background: :class:`InputFile`
     """
 
-    ID: typing.Literal["inputBackgroundLocal"] = "inputBackgroundLocal"
+    ID: typing.Literal["inputBackgroundLocal"] = Field("inputBackgroundLocal", validation_alias="@type", alias="@type")
     background: InputFile
 
 
@@ -6498,7 +6938,9 @@ class InputBackgroundPrevious(BaseObject):
     :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["inputBackgroundPrevious"] = "inputBackgroundPrevious"
+    ID: typing.Literal["inputBackgroundPrevious"] = Field(
+        "inputBackgroundPrevious", validation_alias="@type", alias="@type"
+    )
     message_id: Int53
 
 
@@ -6510,7 +6952,9 @@ class InputBackgroundRemote(BaseObject):
     :type background_id: :class:`Int64`
     """
 
-    ID: typing.Literal["inputBackgroundRemote"] = "inputBackgroundRemote"
+    ID: typing.Literal["inputBackgroundRemote"] = Field(
+        "inputBackgroundRemote", validation_alias="@type", alias="@type"
+    )
     background_id: Int64
 
 
@@ -6531,7 +6975,9 @@ class InputChatPhotoAnimation(BaseObject):
     :type main_frame_timestamp: :class:`Double`
     """
 
-    ID: typing.Literal["inputChatPhotoAnimation"] = "inputChatPhotoAnimation"
+    ID: typing.Literal["inputChatPhotoAnimation"] = Field(
+        "inputChatPhotoAnimation", validation_alias="@type", alias="@type"
+    )
     animation: InputFile
     main_frame_timestamp: Double
 
@@ -6544,7 +6990,9 @@ class InputChatPhotoPrevious(BaseObject):
     :type chat_photo_id: :class:`Int64`
     """
 
-    ID: typing.Literal["inputChatPhotoPrevious"] = "inputChatPhotoPrevious"
+    ID: typing.Literal["inputChatPhotoPrevious"] = Field(
+        "inputChatPhotoPrevious", validation_alias="@type", alias="@type"
+    )
     chat_photo_id: Int64
 
 
@@ -6556,7 +7004,7 @@ class InputChatPhotoStatic(BaseObject):
     :type photo: :class:`InputFile`
     """
 
-    ID: typing.Literal["inputChatPhotoStatic"] = "inputChatPhotoStatic"
+    ID: typing.Literal["inputChatPhotoStatic"] = Field("inputChatPhotoStatic", validation_alias="@type", alias="@type")
     photo: InputFile
 
 
@@ -6568,7 +7016,9 @@ class InputChatPhotoSticker(BaseObject):
     :type sticker: :class:`ChatPhotoSticker`
     """
 
-    ID: typing.Literal["inputChatPhotoSticker"] = "inputChatPhotoSticker"
+    ID: typing.Literal["inputChatPhotoSticker"] = Field(
+        "inputChatPhotoSticker", validation_alias="@type", alias="@type"
+    )
     sticker: ChatPhotoSticker
 
 
@@ -6588,7 +7038,9 @@ class InputCredentialsApplePay(BaseObject):
     :type data: :class:`String`
     """
 
-    ID: typing.Literal["inputCredentialsApplePay"] = "inputCredentialsApplePay"
+    ID: typing.Literal["inputCredentialsApplePay"] = Field(
+        "inputCredentialsApplePay", validation_alias="@type", alias="@type"
+    )
     data: String
 
 
@@ -6600,7 +7052,9 @@ class InputCredentialsGooglePay(BaseObject):
     :type data: :class:`String`
     """
 
-    ID: typing.Literal["inputCredentialsGooglePay"] = "inputCredentialsGooglePay"
+    ID: typing.Literal["inputCredentialsGooglePay"] = Field(
+        "inputCredentialsGooglePay", validation_alias="@type", alias="@type"
+    )
     data: String
 
 
@@ -6614,7 +7068,7 @@ class InputCredentialsNew(BaseObject):
     :type allow_save: :class:`Bool`
     """
 
-    ID: typing.Literal["inputCredentialsNew"] = "inputCredentialsNew"
+    ID: typing.Literal["inputCredentialsNew"] = Field("inputCredentialsNew", validation_alias="@type", alias="@type")
     data: String
     allow_save: Bool = False
 
@@ -6627,7 +7081,9 @@ class InputCredentialsSaved(BaseObject):
     :type saved_credentials_id: :class:`String`
     """
 
-    ID: typing.Literal["inputCredentialsSaved"] = "inputCredentialsSaved"
+    ID: typing.Literal["inputCredentialsSaved"] = Field(
+        "inputCredentialsSaved", validation_alias="@type", alias="@type"
+    )
     saved_credentials_id: String
 
 
@@ -6651,7 +7107,7 @@ class InputFileGenerated(BaseObject):
     :type expected_size: :class:`Int53`, optional
     """
 
-    ID: typing.Literal["inputFileGenerated"] = "inputFileGenerated"
+    ID: typing.Literal["inputFileGenerated"] = Field("inputFileGenerated", validation_alias="@type", alias="@type")
     conversion: String
     original_path: String = ""
     expected_size: typing.Optional[Int53] = 0
@@ -6665,7 +7121,7 @@ class InputFileId(BaseObject):
     :type id: :class:`Int32`
     """
 
-    ID: typing.Literal["inputFileId"] = "inputFileId"
+    ID: typing.Literal["inputFileId"] = Field("inputFileId", validation_alias="@type", alias="@type")
     id: Int32
 
 
@@ -6677,7 +7133,7 @@ class InputFileLocal(BaseObject):
     :type path: :class:`String`
     """
 
-    ID: typing.Literal["inputFileLocal"] = "inputFileLocal"
+    ID: typing.Literal["inputFileLocal"] = Field("inputFileLocal", validation_alias="@type", alias="@type")
     path: String
 
 
@@ -6689,7 +7145,7 @@ class InputFileRemote(BaseObject):
     :type id: :class:`String`
     """
 
-    ID: typing.Literal["inputFileRemote"] = "inputFileRemote"
+    ID: typing.Literal["inputFileRemote"] = Field("inputFileRemote", validation_alias="@type", alias="@type")
     id: String
 
 
@@ -6719,7 +7175,9 @@ class InputIdentityDocument(BaseObject):
     :type selfie: :class:`InputFile`, optional
     """
 
-    ID: typing.Literal["inputIdentityDocument"] = "inputIdentityDocument"
+    ID: typing.Literal["inputIdentityDocument"] = Field(
+        "inputIdentityDocument", validation_alias="@type", alias="@type"
+    )
     number: String = Field(..., min_length=1, max_length=24)
     front_side: InputFile
     translation: Vector[InputFile]
@@ -6756,7 +7214,9 @@ class InputInlineQueryResultAnimation(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["inputInlineQueryResultAnimation"] = "inputInlineQueryResultAnimation"
+    ID: typing.Literal["inputInlineQueryResultAnimation"] = Field(
+        "inputInlineQueryResultAnimation", validation_alias="@type", alias="@type"
+    )
     id: String
     title: String
     thumbnail_url: String
@@ -6796,7 +7256,9 @@ class InputInlineQueryResultArticle(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["inputInlineQueryResultArticle"] = "inputInlineQueryResultArticle"
+    ID: typing.Literal["inputInlineQueryResultArticle"] = Field(
+        "inputInlineQueryResultArticle", validation_alias="@type", alias="@type"
+    )
     id: String
     url: String
     title: String
@@ -6829,7 +7291,9 @@ class InputInlineQueryResultAudio(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["inputInlineQueryResultAudio"] = "inputInlineQueryResultAudio"
+    ID: typing.Literal["inputInlineQueryResultAudio"] = Field(
+        "inputInlineQueryResultAudio", validation_alias="@type", alias="@type"
+    )
     id: String
     title: String
     performer: String
@@ -6859,7 +7323,9 @@ class InputInlineQueryResultContact(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["inputInlineQueryResultContact"] = "inputInlineQueryResultContact"
+    ID: typing.Literal["inputInlineQueryResultContact"] = Field(
+        "inputInlineQueryResultContact", validation_alias="@type", alias="@type"
+    )
     id: String
     contact: Contact
     thumbnail_url: String
@@ -6895,7 +7361,9 @@ class InputInlineQueryResultDocument(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["inputInlineQueryResultDocument"] = "inputInlineQueryResultDocument"
+    ID: typing.Literal["inputInlineQueryResultDocument"] = Field(
+        "inputInlineQueryResultDocument", validation_alias="@type", alias="@type"
+    )
     id: String
     title: String
     description: String
@@ -6920,7 +7388,9 @@ class InputInlineQueryResultGame(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["inputInlineQueryResultGame"] = "inputInlineQueryResultGame"
+    ID: typing.Literal["inputInlineQueryResultGame"] = Field(
+        "inputInlineQueryResultGame", validation_alias="@type", alias="@type"
+    )
     id: String
     game_short_name: String
     reply_markup: typing.Optional[ReplyMarkup] = None
@@ -6950,7 +7420,9 @@ class InputInlineQueryResultLocation(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["inputInlineQueryResultLocation"] = "inputInlineQueryResultLocation"
+    ID: typing.Literal["inputInlineQueryResultLocation"] = Field(
+        "inputInlineQueryResultLocation", validation_alias="@type", alias="@type"
+    )
     id: String
     location: Location
     live_period: Int32
@@ -6986,7 +7458,9 @@ class InputInlineQueryResultPhoto(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["inputInlineQueryResultPhoto"] = "inputInlineQueryResultPhoto"
+    ID: typing.Literal["inputInlineQueryResultPhoto"] = Field(
+        "inputInlineQueryResultPhoto", validation_alias="@type", alias="@type"
+    )
     id: String
     title: String
     description: String
@@ -7018,7 +7492,9 @@ class InputInlineQueryResultSticker(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["inputInlineQueryResultSticker"] = "inputInlineQueryResultSticker"
+    ID: typing.Literal["inputInlineQueryResultSticker"] = Field(
+        "inputInlineQueryResultSticker", validation_alias="@type", alias="@type"
+    )
     id: String
     thumbnail_url: String
     sticker_url: String
@@ -7048,7 +7524,9 @@ class InputInlineQueryResultVenue(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["inputInlineQueryResultVenue"] = "inputInlineQueryResultVenue"
+    ID: typing.Literal["inputInlineQueryResultVenue"] = Field(
+        "inputInlineQueryResultVenue", validation_alias="@type", alias="@type"
+    )
     id: String
     venue: Venue
     thumbnail_url: String
@@ -7086,7 +7564,9 @@ class InputInlineQueryResultVideo(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["inputInlineQueryResultVideo"] = "inputInlineQueryResultVideo"
+    ID: typing.Literal["inputInlineQueryResultVideo"] = Field(
+        "inputInlineQueryResultVideo", validation_alias="@type", alias="@type"
+    )
     id: String
     title: String
     description: String
@@ -7118,7 +7598,9 @@ class InputInlineQueryResultVoiceNote(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["inputInlineQueryResultVoiceNote"] = "inputInlineQueryResultVoiceNote"
+    ID: typing.Literal["inputInlineQueryResultVoiceNote"] = Field(
+        "inputInlineQueryResultVoiceNote", validation_alias="@type", alias="@type"
+    )
     id: String
     title: String
     voice_note_url: String
@@ -7153,7 +7635,7 @@ class InputInvoiceMessage(BaseObject):
     :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["inputInvoiceMessage"] = "inputInvoiceMessage"
+    ID: typing.Literal["inputInvoiceMessage"] = Field("inputInvoiceMessage", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
 
@@ -7166,7 +7648,7 @@ class InputInvoiceName(BaseObject):
     :type name: :class:`String`
     """
 
-    ID: typing.Literal["inputInvoiceName"] = "inputInvoiceName"
+    ID: typing.Literal["inputInvoiceName"] = Field("inputInvoiceName", validation_alias="@type", alias="@type")
     name: String
 
 
@@ -7198,7 +7680,9 @@ class InputMessageAnimation(BaseObject):
     :type caption: :class:`FormattedText`, optional
     """
 
-    ID: typing.Literal["inputMessageAnimation"] = "inputMessageAnimation"
+    ID: typing.Literal["inputMessageAnimation"] = Field(
+        "inputMessageAnimation", validation_alias="@type", alias="@type"
+    )
     animation: InputFile
     added_sticker_file_ids: Vector[Int32]
     duration: Int32
@@ -7227,7 +7711,7 @@ class InputMessageAudio(BaseObject):
     :type caption: :class:`FormattedText`, optional
     """
 
-    ID: typing.Literal["inputMessageAudio"] = "inputMessageAudio"
+    ID: typing.Literal["inputMessageAudio"] = Field("inputMessageAudio", validation_alias="@type", alias="@type")
     audio: InputFile
     duration: Int32
     title: String = Field("", max_length=64)
@@ -7244,7 +7728,7 @@ class InputMessageContact(BaseObject):
     :type contact: :class:`Contact`
     """
 
-    ID: typing.Literal["inputMessageContact"] = "inputMessageContact"
+    ID: typing.Literal["inputMessageContact"] = Field("inputMessageContact", validation_alias="@type", alias="@type")
     contact: Contact
 
 
@@ -7258,7 +7742,7 @@ class InputMessageDice(BaseObject):
     :type clear_draft: :class:`Bool`
     """
 
-    ID: typing.Literal["inputMessageDice"] = "inputMessageDice"
+    ID: typing.Literal["inputMessageDice"] = Field("inputMessageDice", validation_alias="@type", alias="@type")
     emoji: String
     clear_draft: Bool = False
 
@@ -7277,7 +7761,7 @@ class InputMessageDocument(BaseObject):
     :type caption: :class:`FormattedText`, optional
     """
 
-    ID: typing.Literal["inputMessageDocument"] = "inputMessageDocument"
+    ID: typing.Literal["inputMessageDocument"] = Field("inputMessageDocument", validation_alias="@type", alias="@type")
     document: InputFile
     disable_content_type_detection: Bool
     thumbnail: typing.Optional[InputThumbnail] = None
@@ -7298,7 +7782,9 @@ class InputMessageForwarded(BaseObject):
     :type copy_options: :class:`MessageCopyOptions`, optional
     """
 
-    ID: typing.Literal["inputMessageForwarded"] = "inputMessageForwarded"
+    ID: typing.Literal["inputMessageForwarded"] = Field(
+        "inputMessageForwarded", validation_alias="@type", alias="@type"
+    )
     from_chat_id: Int53
     message_id: Int53
     in_game_share: Bool = False
@@ -7315,7 +7801,7 @@ class InputMessageGame(BaseObject):
     :type game_short_name: :class:`String`
     """
 
-    ID: typing.Literal["inputMessageGame"] = "inputMessageGame"
+    ID: typing.Literal["inputMessageGame"] = Field("inputMessageGame", validation_alias="@type", alias="@type")
     bot_user_id: Int53
     game_short_name: String
 
@@ -7350,7 +7836,7 @@ class InputMessageInvoice(BaseObject):
     :type description: :class:`String`
     """
 
-    ID: typing.Literal["inputMessageInvoice"] = "inputMessageInvoice"
+    ID: typing.Literal["inputMessageInvoice"] = Field("inputMessageInvoice", validation_alias="@type", alias="@type")
     invoice: Invoice
     title: String = Field(..., min_length=1, max_length=32)
     photo_url: String
@@ -7379,7 +7865,7 @@ class InputMessageLocation(BaseObject):
     :type proximity_alert_radius: :class:`Int32`
     """
 
-    ID: typing.Literal["inputMessageLocation"] = "inputMessageLocation"
+    ID: typing.Literal["inputMessageLocation"] = Field("inputMessageLocation", validation_alias="@type", alias="@type")
     location: Location
     live_period: Int32
     heading: Int32 = 0
@@ -7408,7 +7894,7 @@ class InputMessagePhoto(BaseObject):
     :type self_destruct_type: :class:`MessageSelfDestructType`, optional
     """
 
-    ID: typing.Literal["inputMessagePhoto"] = "inputMessagePhoto"
+    ID: typing.Literal["inputMessagePhoto"] = Field("inputMessagePhoto", validation_alias="@type", alias="@type")
     photo: InputFile
     added_sticker_file_ids: Vector[Int32]
     width: Int32
@@ -7439,7 +7925,7 @@ class InputMessagePoll(BaseObject):
     :type is_closed: :class:`Bool`
     """
 
-    ID: typing.Literal["inputMessagePoll"] = "inputMessagePoll"
+    ID: typing.Literal["inputMessagePoll"] = Field("inputMessagePoll", validation_alias="@type", alias="@type")
     question: String = Field(..., min_length=1, max_length=255)
     options: Vector[String]
     type_: PollType = Field(..., alias="type")
@@ -7465,7 +7951,7 @@ class InputMessageSticker(BaseObject):
     :type thumbnail: :class:`InputThumbnail`, optional
     """
 
-    ID: typing.Literal["inputMessageSticker"] = "inputMessageSticker"
+    ID: typing.Literal["inputMessageSticker"] = Field("inputMessageSticker", validation_alias="@type", alias="@type")
     sticker: InputFile
     width: Int32
     height: Int32
@@ -7483,7 +7969,7 @@ class InputMessageStory(BaseObject):
     :type story_id: :class:`Int32`
     """
 
-    ID: typing.Literal["inputMessageStory"] = "inputMessageStory"
+    ID: typing.Literal["inputMessageStory"] = Field("inputMessageStory", validation_alias="@type", alias="@type")
     story_sender_chat_id: Int53
     story_id: Int32
 
@@ -7500,7 +7986,7 @@ class InputMessageText(BaseObject):
     :type clear_draft: :class:`Bool`
     """
 
-    ID: typing.Literal["inputMessageText"] = "inputMessageText"
+    ID: typing.Literal["inputMessageText"] = Field("inputMessageText", validation_alias="@type", alias="@type")
     text: FormattedText
     disable_web_page_preview: Bool = False
     clear_draft: Bool = False
@@ -7514,7 +8000,7 @@ class InputMessageVenue(BaseObject):
     :type venue: :class:`Venue`
     """
 
-    ID: typing.Literal["inputMessageVenue"] = "inputMessageVenue"
+    ID: typing.Literal["inputMessageVenue"] = Field("inputMessageVenue", validation_alias="@type", alias="@type")
     venue: Venue
 
 
@@ -7544,7 +8030,7 @@ class InputMessageVideo(BaseObject):
     :type self_destruct_type: :class:`MessageSelfDestructType`, optional
     """
 
-    ID: typing.Literal["inputMessageVideo"] = "inputMessageVideo"
+    ID: typing.Literal["inputMessageVideo"] = Field("inputMessageVideo", validation_alias="@type", alias="@type")
     video: InputFile
     added_sticker_file_ids: Vector[Int32]
     duration: Int32
@@ -7571,7 +8057,9 @@ class InputMessageVideoNote(BaseObject):
     :type thumbnail: :class:`InputThumbnail`, optional
     """
 
-    ID: typing.Literal["inputMessageVideoNote"] = "inputMessageVideoNote"
+    ID: typing.Literal["inputMessageVideoNote"] = Field(
+        "inputMessageVideoNote", validation_alias="@type", alias="@type"
+    )
     video_note: InputFile
     duration: Int32
     length: Int32
@@ -7592,7 +8080,9 @@ class InputMessageVoiceNote(BaseObject):
     :type caption: :class:`FormattedText`, optional
     """
 
-    ID: typing.Literal["inputMessageVoiceNote"] = "inputMessageVoiceNote"
+    ID: typing.Literal["inputMessageVoiceNote"] = Field(
+        "inputMessageVoiceNote", validation_alias="@type", alias="@type"
+    )
     voice_note: InputFile
     duration: Int32
     waveform: Bytes
@@ -7629,7 +8119,9 @@ class InputPassportElementAddress(BaseObject):
     :type address: :class:`Address`
     """
 
-    ID: typing.Literal["inputPassportElementAddress"] = "inputPassportElementAddress"
+    ID: typing.Literal["inputPassportElementAddress"] = Field(
+        "inputPassportElementAddress", validation_alias="@type", alias="@type"
+    )
     address: Address
 
 
@@ -7641,7 +8133,9 @@ class InputPassportElementBankStatement(BaseObject):
     :type bank_statement: :class:`InputPersonalDocument`
     """
 
-    ID: typing.Literal["inputPassportElementBankStatement"] = "inputPassportElementBankStatement"
+    ID: typing.Literal["inputPassportElementBankStatement"] = Field(
+        "inputPassportElementBankStatement", validation_alias="@type", alias="@type"
+    )
     bank_statement: InputPersonalDocument
 
 
@@ -7653,7 +8147,9 @@ class InputPassportElementDriverLicense(BaseObject):
     :type driver_license: :class:`InputIdentityDocument`
     """
 
-    ID: typing.Literal["inputPassportElementDriverLicense"] = "inputPassportElementDriverLicense"
+    ID: typing.Literal["inputPassportElementDriverLicense"] = Field(
+        "inputPassportElementDriverLicense", validation_alias="@type", alias="@type"
+    )
     driver_license: InputIdentityDocument
 
 
@@ -7665,7 +8161,9 @@ class InputPassportElementEmailAddress(BaseObject):
     :type email_address: :class:`String`
     """
 
-    ID: typing.Literal["inputPassportElementEmailAddress"] = "inputPassportElementEmailAddress"
+    ID: typing.Literal["inputPassportElementEmailAddress"] = Field(
+        "inputPassportElementEmailAddress", validation_alias="@type", alias="@type"
+    )
     email_address: String
 
 
@@ -7677,7 +8175,9 @@ class InputPassportElementIdentityCard(BaseObject):
     :type identity_card: :class:`InputIdentityDocument`
     """
 
-    ID: typing.Literal["inputPassportElementIdentityCard"] = "inputPassportElementIdentityCard"
+    ID: typing.Literal["inputPassportElementIdentityCard"] = Field(
+        "inputPassportElementIdentityCard", validation_alias="@type", alias="@type"
+    )
     identity_card: InputIdentityDocument
 
 
@@ -7689,7 +8189,9 @@ class InputPassportElementInternalPassport(BaseObject):
     :type internal_passport: :class:`InputIdentityDocument`
     """
 
-    ID: typing.Literal["inputPassportElementInternalPassport"] = "inputPassportElementInternalPassport"
+    ID: typing.Literal["inputPassportElementInternalPassport"] = Field(
+        "inputPassportElementInternalPassport", validation_alias="@type", alias="@type"
+    )
     internal_passport: InputIdentityDocument
 
 
@@ -7701,7 +8203,9 @@ class InputPassportElementPassport(BaseObject):
     :type passport: :class:`InputIdentityDocument`
     """
 
-    ID: typing.Literal["inputPassportElementPassport"] = "inputPassportElementPassport"
+    ID: typing.Literal["inputPassportElementPassport"] = Field(
+        "inputPassportElementPassport", validation_alias="@type", alias="@type"
+    )
     passport: InputIdentityDocument
 
 
@@ -7713,7 +8217,9 @@ class InputPassportElementPassportRegistration(BaseObject):
     :type passport_registration: :class:`InputPersonalDocument`
     """
 
-    ID: typing.Literal["inputPassportElementPassportRegistration"] = "inputPassportElementPassportRegistration"
+    ID: typing.Literal["inputPassportElementPassportRegistration"] = Field(
+        "inputPassportElementPassportRegistration", validation_alias="@type", alias="@type"
+    )
     passport_registration: InputPersonalDocument
 
 
@@ -7725,7 +8231,9 @@ class InputPassportElementPersonalDetails(BaseObject):
     :type personal_details: :class:`PersonalDetails`
     """
 
-    ID: typing.Literal["inputPassportElementPersonalDetails"] = "inputPassportElementPersonalDetails"
+    ID: typing.Literal["inputPassportElementPersonalDetails"] = Field(
+        "inputPassportElementPersonalDetails", validation_alias="@type", alias="@type"
+    )
     personal_details: PersonalDetails
 
 
@@ -7737,7 +8245,9 @@ class InputPassportElementPhoneNumber(BaseObject):
     :type phone_number: :class:`String`
     """
 
-    ID: typing.Literal["inputPassportElementPhoneNumber"] = "inputPassportElementPhoneNumber"
+    ID: typing.Literal["inputPassportElementPhoneNumber"] = Field(
+        "inputPassportElementPhoneNumber", validation_alias="@type", alias="@type"
+    )
     phone_number: String
 
 
@@ -7749,7 +8259,9 @@ class InputPassportElementRentalAgreement(BaseObject):
     :type rental_agreement: :class:`InputPersonalDocument`
     """
 
-    ID: typing.Literal["inputPassportElementRentalAgreement"] = "inputPassportElementRentalAgreement"
+    ID: typing.Literal["inputPassportElementRentalAgreement"] = Field(
+        "inputPassportElementRentalAgreement", validation_alias="@type", alias="@type"
+    )
     rental_agreement: InputPersonalDocument
 
 
@@ -7761,7 +8273,9 @@ class InputPassportElementTemporaryRegistration(BaseObject):
     :type temporary_registration: :class:`InputPersonalDocument`
     """
 
-    ID: typing.Literal["inputPassportElementTemporaryRegistration"] = "inputPassportElementTemporaryRegistration"
+    ID: typing.Literal["inputPassportElementTemporaryRegistration"] = Field(
+        "inputPassportElementTemporaryRegistration", validation_alias="@type", alias="@type"
+    )
     temporary_registration: InputPersonalDocument
 
 
@@ -7773,7 +8287,9 @@ class InputPassportElementUtilityBill(BaseObject):
     :type utility_bill: :class:`InputPersonalDocument`
     """
 
-    ID: typing.Literal["inputPassportElementUtilityBill"] = "inputPassportElementUtilityBill"
+    ID: typing.Literal["inputPassportElementUtilityBill"] = Field(
+        "inputPassportElementUtilityBill", validation_alias="@type", alias="@type"
+    )
     utility_bill: InputPersonalDocument
 
 
@@ -7806,7 +8322,9 @@ class InputPassportElementError(BaseObject):
     :type source: :class:`InputPassportElementErrorSource`
     """
 
-    ID: typing.Literal["inputPassportElementError"] = "inputPassportElementError"
+    ID: typing.Literal["inputPassportElementError"] = Field(
+        "inputPassportElementError", validation_alias="@type", alias="@type"
+    )
     type_: PassportElementType = Field(..., alias="type")
     message: String
     source: InputPassportElementErrorSource
@@ -7822,7 +8340,9 @@ class InputPassportElementErrorSourceDataField(BaseObject):
     :type data_hash: :class:`Bytes`
     """
 
-    ID: typing.Literal["inputPassportElementErrorSourceDataField"] = "inputPassportElementErrorSourceDataField"
+    ID: typing.Literal["inputPassportElementErrorSourceDataField"] = Field(
+        "inputPassportElementErrorSourceDataField", validation_alias="@type", alias="@type"
+    )
     field_name: String
     data_hash: Bytes
 
@@ -7835,7 +8355,9 @@ class InputPassportElementErrorSourceFile(BaseObject):
     :type file_hash: :class:`Bytes`
     """
 
-    ID: typing.Literal["inputPassportElementErrorSourceFile"] = "inputPassportElementErrorSourceFile"
+    ID: typing.Literal["inputPassportElementErrorSourceFile"] = Field(
+        "inputPassportElementErrorSourceFile", validation_alias="@type", alias="@type"
+    )
     file_hash: Bytes
 
 
@@ -7847,7 +8369,9 @@ class InputPassportElementErrorSourceFiles(BaseObject):
     :type file_hashes: :class:`Vector[Bytes]`
     """
 
-    ID: typing.Literal["inputPassportElementErrorSourceFiles"] = "inputPassportElementErrorSourceFiles"
+    ID: typing.Literal["inputPassportElementErrorSourceFiles"] = Field(
+        "inputPassportElementErrorSourceFiles", validation_alias="@type", alias="@type"
+    )
     file_hashes: Vector[Bytes]
 
 
@@ -7859,7 +8383,9 @@ class InputPassportElementErrorSourceFrontSide(BaseObject):
     :type file_hash: :class:`Bytes`
     """
 
-    ID: typing.Literal["inputPassportElementErrorSourceFrontSide"] = "inputPassportElementErrorSourceFrontSide"
+    ID: typing.Literal["inputPassportElementErrorSourceFrontSide"] = Field(
+        "inputPassportElementErrorSourceFrontSide", validation_alias="@type", alias="@type"
+    )
     file_hash: Bytes
 
 
@@ -7871,7 +8397,9 @@ class InputPassportElementErrorSourceReverseSide(BaseObject):
     :type file_hash: :class:`Bytes`
     """
 
-    ID: typing.Literal["inputPassportElementErrorSourceReverseSide"] = "inputPassportElementErrorSourceReverseSide"
+    ID: typing.Literal["inputPassportElementErrorSourceReverseSide"] = Field(
+        "inputPassportElementErrorSourceReverseSide", validation_alias="@type", alias="@type"
+    )
     file_hash: Bytes
 
 
@@ -7883,7 +8411,9 @@ class InputPassportElementErrorSourceSelfie(BaseObject):
     :type file_hash: :class:`Bytes`
     """
 
-    ID: typing.Literal["inputPassportElementErrorSourceSelfie"] = "inputPassportElementErrorSourceSelfie"
+    ID: typing.Literal["inputPassportElementErrorSourceSelfie"] = Field(
+        "inputPassportElementErrorSourceSelfie", validation_alias="@type", alias="@type"
+    )
     file_hash: Bytes
 
 
@@ -7895,9 +8425,9 @@ class InputPassportElementErrorSourceTranslationFile(BaseObject):
     :type file_hash: :class:`Bytes`
     """
 
-    ID: typing.Literal[
-        "inputPassportElementErrorSourceTranslationFile"
-    ] = "inputPassportElementErrorSourceTranslationFile"
+    ID: typing.Literal["inputPassportElementErrorSourceTranslationFile"] = Field(
+        "inputPassportElementErrorSourceTranslationFile", validation_alias="@type", alias="@type"
+    )
     file_hash: Bytes
 
 
@@ -7909,9 +8439,9 @@ class InputPassportElementErrorSourceTranslationFiles(BaseObject):
     :type file_hashes: :class:`Vector[Bytes]`
     """
 
-    ID: typing.Literal[
-        "inputPassportElementErrorSourceTranslationFiles"
-    ] = "inputPassportElementErrorSourceTranslationFiles"
+    ID: typing.Literal["inputPassportElementErrorSourceTranslationFiles"] = Field(
+        "inputPassportElementErrorSourceTranslationFiles", validation_alias="@type", alias="@type"
+    )
     file_hashes: Vector[Bytes]
 
 
@@ -7923,7 +8453,9 @@ class InputPassportElementErrorSourceUnspecified(BaseObject):
     :type element_hash: :class:`Bytes`
     """
 
-    ID: typing.Literal["inputPassportElementErrorSourceUnspecified"] = "inputPassportElementErrorSourceUnspecified"
+    ID: typing.Literal["inputPassportElementErrorSourceUnspecified"] = Field(
+        "inputPassportElementErrorSourceUnspecified", validation_alias="@type", alias="@type"
+    )
     element_hash: Bytes
 
 
@@ -7950,7 +8482,9 @@ class InputPersonalDocument(BaseObject):
     :type translation: :class:`Vector[InputFile]`
     """
 
-    ID: typing.Literal["inputPersonalDocument"] = "inputPersonalDocument"
+    ID: typing.Literal["inputPersonalDocument"] = Field(
+        "inputPersonalDocument", validation_alias="@type", alias="@type"
+    )
     files: Vector[InputFile]
     translation: Vector[InputFile]
 
@@ -7969,7 +8503,7 @@ class InputSticker(BaseObject):
     :type mask_position: :class:`MaskPosition`, optional
     """
 
-    ID: typing.Literal["inputSticker"] = "inputSticker"
+    ID: typing.Literal["inputSticker"] = Field("inputSticker", validation_alias="@type", alias="@type")
     sticker: InputFile
     emojis: String
     keywords: Vector[String]
@@ -7986,7 +8520,7 @@ class InputStoryArea(BaseObject):
     :type type_: :class:`InputStoryAreaType`
     """
 
-    ID: typing.Literal["inputStoryArea"] = "inputStoryArea"
+    ID: typing.Literal["inputStoryArea"] = Field("inputStoryArea", validation_alias="@type", alias="@type")
     position: StoryAreaPosition
     type_: InputStoryAreaType = Field(..., alias="type")
 
@@ -8001,7 +8535,9 @@ class InputStoryAreaTypeFoundVenue(BaseObject):
     :type result_id: :class:`String`
     """
 
-    ID: typing.Literal["inputStoryAreaTypeFoundVenue"] = "inputStoryAreaTypeFoundVenue"
+    ID: typing.Literal["inputStoryAreaTypeFoundVenue"] = Field(
+        "inputStoryAreaTypeFoundVenue", validation_alias="@type", alias="@type"
+    )
     query_id: Int64
     result_id: String
 
@@ -8014,7 +8550,9 @@ class InputStoryAreaTypeLocation(BaseObject):
     :type location: :class:`Location`
     """
 
-    ID: typing.Literal["inputStoryAreaTypeLocation"] = "inputStoryAreaTypeLocation"
+    ID: typing.Literal["inputStoryAreaTypeLocation"] = Field(
+        "inputStoryAreaTypeLocation", validation_alias="@type", alias="@type"
+    )
     location: Location
 
 
@@ -8028,7 +8566,9 @@ class InputStoryAreaTypePreviousVenue(BaseObject):
     :type venue_id: :class:`String`
     """
 
-    ID: typing.Literal["inputStoryAreaTypePreviousVenue"] = "inputStoryAreaTypePreviousVenue"
+    ID: typing.Literal["inputStoryAreaTypePreviousVenue"] = Field(
+        "inputStoryAreaTypePreviousVenue", validation_alias="@type", alias="@type"
+    )
     venue_provider: String
     venue_id: String
 
@@ -8048,7 +8588,7 @@ class InputStoryAreas(BaseObject):
     :type areas: :class:`Vector[InputStoryArea]`
     """
 
-    ID: typing.Literal["inputStoryAreas"] = "inputStoryAreas"
+    ID: typing.Literal["inputStoryAreas"] = Field("inputStoryAreas", validation_alias="@type", alias="@type")
     areas: Vector[InputStoryArea]
 
 
@@ -8062,7 +8602,9 @@ class InputStoryContentPhoto(BaseObject):
     :type added_sticker_file_ids: :class:`Vector[Int32]`
     """
 
-    ID: typing.Literal["inputStoryContentPhoto"] = "inputStoryContentPhoto"
+    ID: typing.Literal["inputStoryContentPhoto"] = Field(
+        "inputStoryContentPhoto", validation_alias="@type", alias="@type"
+    )
     photo: InputFile
     added_sticker_file_ids: Vector[Int32]
 
@@ -8081,7 +8623,9 @@ class InputStoryContentVideo(BaseObject):
     :type is_animation: :class:`Bool`
     """
 
-    ID: typing.Literal["inputStoryContentVideo"] = "inputStoryContentVideo"
+    ID: typing.Literal["inputStoryContentVideo"] = Field(
+        "inputStoryContentVideo", validation_alias="@type", alias="@type"
+    )
     video: InputFile
     added_sticker_file_ids: Vector[Int32]
     duration: Double
@@ -8106,7 +8650,7 @@ class InputThumbnail(BaseObject):
     :type height: :class:`Int32`
     """
 
-    ID: typing.Literal["inputThumbnail"] = "inputThumbnail"
+    ID: typing.Literal["inputThumbnail"] = Field("inputThumbnail", validation_alias="@type", alias="@type")
     thumbnail: InputFile
     width: Int32
     height: Int32
@@ -8117,7 +8661,9 @@ class InternalLinkTypeActiveSessions(BaseObject):
     The link is a link to the active sessions section of the application. Use getActiveSessions to handle the link
     """
 
-    ID: typing.Literal["internalLinkTypeActiveSessions"] = "internalLinkTypeActiveSessions"
+    ID: typing.Literal["internalLinkTypeActiveSessions"] = Field(
+        "internalLinkTypeActiveSessions", validation_alias="@type", alias="@type"
+    )
 
 
 class InternalLinkTypeAttachmentMenuBot(BaseObject):
@@ -8132,7 +8678,9 @@ class InternalLinkTypeAttachmentMenuBot(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeAttachmentMenuBot"] = "internalLinkTypeAttachmentMenuBot"
+    ID: typing.Literal["internalLinkTypeAttachmentMenuBot"] = Field(
+        "internalLinkTypeAttachmentMenuBot", validation_alias="@type", alias="@type"
+    )
     target_chat: TargetChat
     bot_username: String
     url: String
@@ -8146,7 +8694,9 @@ class InternalLinkTypeAuthenticationCode(BaseObject):
     :type code: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeAuthenticationCode"] = "internalLinkTypeAuthenticationCode"
+    ID: typing.Literal["internalLinkTypeAuthenticationCode"] = Field(
+        "internalLinkTypeAuthenticationCode", validation_alias="@type", alias="@type"
+    )
     code: String
 
 
@@ -8158,7 +8708,9 @@ class InternalLinkTypeBackground(BaseObject):
     :type background_name: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeBackground"] = "internalLinkTypeBackground"
+    ID: typing.Literal["internalLinkTypeBackground"] = Field(
+        "internalLinkTypeBackground", validation_alias="@type", alias="@type"
+    )
     background_name: String
 
 
@@ -8172,7 +8724,9 @@ class InternalLinkTypeBotAddToChannel(BaseObject):
     :type administrator_rights: :class:`ChatAdministratorRights`
     """
 
-    ID: typing.Literal["internalLinkTypeBotAddToChannel"] = "internalLinkTypeBotAddToChannel"
+    ID: typing.Literal["internalLinkTypeBotAddToChannel"] = Field(
+        "internalLinkTypeBotAddToChannel", validation_alias="@type", alias="@type"
+    )
     bot_username: String
     administrator_rights: ChatAdministratorRights
 
@@ -8189,7 +8743,9 @@ class InternalLinkTypeBotStart(BaseObject):
     :type autostart: :class:`Bool`
     """
 
-    ID: typing.Literal["internalLinkTypeBotStart"] = "internalLinkTypeBotStart"
+    ID: typing.Literal["internalLinkTypeBotStart"] = Field(
+        "internalLinkTypeBotStart", validation_alias="@type", alias="@type"
+    )
     bot_username: String
     start_parameter: String
     autostart: Bool = False
@@ -8207,7 +8763,9 @@ class InternalLinkTypeBotStartInGroup(BaseObject):
     :type administrator_rights: :class:`ChatAdministratorRights`, optional
     """
 
-    ID: typing.Literal["internalLinkTypeBotStartInGroup"] = "internalLinkTypeBotStartInGroup"
+    ID: typing.Literal["internalLinkTypeBotStartInGroup"] = Field(
+        "internalLinkTypeBotStartInGroup", validation_alias="@type", alias="@type"
+    )
     bot_username: String
     start_parameter: String
     administrator_rights: typing.Optional[ChatAdministratorRights] = None
@@ -8218,7 +8776,9 @@ class InternalLinkTypeChangePhoneNumber(BaseObject):
     The link is a link to the change phone number section of the app
     """
 
-    ID: typing.Literal["internalLinkTypeChangePhoneNumber"] = "internalLinkTypeChangePhoneNumber"
+    ID: typing.Literal["internalLinkTypeChangePhoneNumber"] = Field(
+        "internalLinkTypeChangePhoneNumber", validation_alias="@type", alias="@type"
+    )
 
 
 class InternalLinkTypeChatFolderInvite(BaseObject):
@@ -8229,7 +8789,9 @@ class InternalLinkTypeChatFolderInvite(BaseObject):
     :type invite_link: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeChatFolderInvite"] = "internalLinkTypeChatFolderInvite"
+    ID: typing.Literal["internalLinkTypeChatFolderInvite"] = Field(
+        "internalLinkTypeChatFolderInvite", validation_alias="@type", alias="@type"
+    )
     invite_link: String
 
 
@@ -8238,7 +8800,9 @@ class InternalLinkTypeChatFolderSettings(BaseObject):
     The link is a link to the folder section of the app settings
     """
 
-    ID: typing.Literal["internalLinkTypeChatFolderSettings"] = "internalLinkTypeChatFolderSettings"
+    ID: typing.Literal["internalLinkTypeChatFolderSettings"] = Field(
+        "internalLinkTypeChatFolderSettings", validation_alias="@type", alias="@type"
+    )
 
 
 class InternalLinkTypeChatInvite(BaseObject):
@@ -8249,7 +8813,9 @@ class InternalLinkTypeChatInvite(BaseObject):
     :type invite_link: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeChatInvite"] = "internalLinkTypeChatInvite"
+    ID: typing.Literal["internalLinkTypeChatInvite"] = Field(
+        "internalLinkTypeChatInvite", validation_alias="@type", alias="@type"
+    )
     invite_link: String
 
 
@@ -8258,9 +8824,9 @@ class InternalLinkTypeDefaultMessageAutoDeleteTimerSettings(BaseObject):
     The link is a link to the default message auto-delete timer settings section of the app settings
     """
 
-    ID: typing.Literal[
-        "internalLinkTypeDefaultMessageAutoDeleteTimerSettings"
-    ] = "internalLinkTypeDefaultMessageAutoDeleteTimerSettings"
+    ID: typing.Literal["internalLinkTypeDefaultMessageAutoDeleteTimerSettings"] = Field(
+        "internalLinkTypeDefaultMessageAutoDeleteTimerSettings", validation_alias="@type", alias="@type"
+    )
 
 
 class InternalLinkTypeEditProfileSettings(BaseObject):
@@ -8268,7 +8834,9 @@ class InternalLinkTypeEditProfileSettings(BaseObject):
     The link is a link to the edit profile section of the app settings
     """
 
-    ID: typing.Literal["internalLinkTypeEditProfileSettings"] = "internalLinkTypeEditProfileSettings"
+    ID: typing.Literal["internalLinkTypeEditProfileSettings"] = Field(
+        "internalLinkTypeEditProfileSettings", validation_alias="@type", alias="@type"
+    )
 
 
 class InternalLinkTypeGame(BaseObject):
@@ -8281,7 +8849,7 @@ class InternalLinkTypeGame(BaseObject):
     :type game_short_name: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeGame"] = "internalLinkTypeGame"
+    ID: typing.Literal["internalLinkTypeGame"] = Field("internalLinkTypeGame", validation_alias="@type", alias="@type")
     bot_username: String
     game_short_name: String
 
@@ -8296,7 +8864,9 @@ class InternalLinkTypeInstantView(BaseObject):
     :type fallback_url: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeInstantView"] = "internalLinkTypeInstantView"
+    ID: typing.Literal["internalLinkTypeInstantView"] = Field(
+        "internalLinkTypeInstantView", validation_alias="@type", alias="@type"
+    )
     url: String
     fallback_url: String
 
@@ -8309,7 +8879,9 @@ class InternalLinkTypeInvoice(BaseObject):
     :type invoice_name: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeInvoice"] = "internalLinkTypeInvoice"
+    ID: typing.Literal["internalLinkTypeInvoice"] = Field(
+        "internalLinkTypeInvoice", validation_alias="@type", alias="@type"
+    )
     invoice_name: String
 
 
@@ -8321,7 +8893,9 @@ class InternalLinkTypeLanguagePack(BaseObject):
     :type language_pack_id: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeLanguagePack"] = "internalLinkTypeLanguagePack"
+    ID: typing.Literal["internalLinkTypeLanguagePack"] = Field(
+        "internalLinkTypeLanguagePack", validation_alias="@type", alias="@type"
+    )
     language_pack_id: String
 
 
@@ -8330,7 +8904,9 @@ class InternalLinkTypeLanguageSettings(BaseObject):
     The link is a link to the language section of the app settings
     """
 
-    ID: typing.Literal["internalLinkTypeLanguageSettings"] = "internalLinkTypeLanguageSettings"
+    ID: typing.Literal["internalLinkTypeLanguageSettings"] = Field(
+        "internalLinkTypeLanguageSettings", validation_alias="@type", alias="@type"
+    )
 
 
 class InternalLinkTypeMessage(BaseObject):
@@ -8341,7 +8917,9 @@ class InternalLinkTypeMessage(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeMessage"] = "internalLinkTypeMessage"
+    ID: typing.Literal["internalLinkTypeMessage"] = Field(
+        "internalLinkTypeMessage", validation_alias="@type", alias="@type"
+    )
     url: String
 
 
@@ -8355,7 +8933,9 @@ class InternalLinkTypeMessageDraft(BaseObject):
     :type contains_link: :class:`Bool`
     """
 
-    ID: typing.Literal["internalLinkTypeMessageDraft"] = "internalLinkTypeMessageDraft"
+    ID: typing.Literal["internalLinkTypeMessageDraft"] = Field(
+        "internalLinkTypeMessageDraft", validation_alias="@type", alias="@type"
+    )
     text: FormattedText
     contains_link: Bool = False
 
@@ -8376,7 +8956,9 @@ class InternalLinkTypePassportDataRequest(BaseObject):
     :type callback_url: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypePassportDataRequest"] = "internalLinkTypePassportDataRequest"
+    ID: typing.Literal["internalLinkTypePassportDataRequest"] = Field(
+        "internalLinkTypePassportDataRequest", validation_alias="@type", alias="@type"
+    )
     bot_user_id: Int53
     scope: String
     public_key: String
@@ -8394,7 +8976,9 @@ class InternalLinkTypePhoneNumberConfirmation(BaseObject):
     :type phone_number: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypePhoneNumberConfirmation"] = "internalLinkTypePhoneNumberConfirmation"
+    ID: typing.Literal["internalLinkTypePhoneNumberConfirmation"] = Field(
+        "internalLinkTypePhoneNumberConfirmation", validation_alias="@type", alias="@type"
+    )
     hash_: String = Field(..., alias="hash")
     phone_number: String
 
@@ -8407,7 +8991,9 @@ class InternalLinkTypePremiumFeatures(BaseObject):
     :type referrer: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypePremiumFeatures"] = "internalLinkTypePremiumFeatures"
+    ID: typing.Literal["internalLinkTypePremiumFeatures"] = Field(
+        "internalLinkTypePremiumFeatures", validation_alias="@type", alias="@type"
+    )
     referrer: String
 
 
@@ -8416,7 +9002,9 @@ class InternalLinkTypePrivacyAndSecuritySettings(BaseObject):
     The link is a link to the privacy and security section of the app settings
     """
 
-    ID: typing.Literal["internalLinkTypePrivacyAndSecuritySettings"] = "internalLinkTypePrivacyAndSecuritySettings"
+    ID: typing.Literal["internalLinkTypePrivacyAndSecuritySettings"] = Field(
+        "internalLinkTypePrivacyAndSecuritySettings", validation_alias="@type", alias="@type"
+    )
 
 
 class InternalLinkTypeProxy(BaseObject):
@@ -8431,7 +9019,9 @@ class InternalLinkTypeProxy(BaseObject):
     :type type_: :class:`ProxyType`
     """
 
-    ID: typing.Literal["internalLinkTypeProxy"] = "internalLinkTypeProxy"
+    ID: typing.Literal["internalLinkTypeProxy"] = Field(
+        "internalLinkTypeProxy", validation_alias="@type", alias="@type"
+    )
     server: String
     port: Int32
     type_: ProxyType = Field(..., alias="type")
@@ -8445,7 +9035,9 @@ class InternalLinkTypePublicChat(BaseObject):
     :type chat_username: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypePublicChat"] = "internalLinkTypePublicChat"
+    ID: typing.Literal["internalLinkTypePublicChat"] = Field(
+        "internalLinkTypePublicChat", validation_alias="@type", alias="@type"
+    )
     chat_username: String
 
 
@@ -8454,7 +9046,9 @@ class InternalLinkTypeQrCodeAuthentication(BaseObject):
     The link can be used to login the current user on another device, but it must be scanned from QR-code using in-app camera. An alert similar to "This code can be used to allow someone to log in to your Telegram account. To confirm Telegram login, please go to Settings > Devices > Scan QR and scan the code" needs to be shown
     """
 
-    ID: typing.Literal["internalLinkTypeQrCodeAuthentication"] = "internalLinkTypeQrCodeAuthentication"
+    ID: typing.Literal["internalLinkTypeQrCodeAuthentication"] = Field(
+        "internalLinkTypeQrCodeAuthentication", validation_alias="@type", alias="@type"
+    )
 
 
 class InternalLinkTypeRestorePurchases(BaseObject):
@@ -8462,7 +9056,9 @@ class InternalLinkTypeRestorePurchases(BaseObject):
     The link forces restore of App Store purchases when opened. For official iOS application only
     """
 
-    ID: typing.Literal["internalLinkTypeRestorePurchases"] = "internalLinkTypeRestorePurchases"
+    ID: typing.Literal["internalLinkTypeRestorePurchases"] = Field(
+        "internalLinkTypeRestorePurchases", validation_alias="@type", alias="@type"
+    )
 
 
 class InternalLinkTypeSettings(BaseObject):
@@ -8470,7 +9066,9 @@ class InternalLinkTypeSettings(BaseObject):
     The link is a link to application settings
     """
 
-    ID: typing.Literal["internalLinkTypeSettings"] = "internalLinkTypeSettings"
+    ID: typing.Literal["internalLinkTypeSettings"] = Field(
+        "internalLinkTypeSettings", validation_alias="@type", alias="@type"
+    )
 
 
 class InternalLinkTypeSideMenuBot(BaseObject):
@@ -8483,7 +9081,9 @@ class InternalLinkTypeSideMenuBot(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeSideMenuBot"] = "internalLinkTypeSideMenuBot"
+    ID: typing.Literal["internalLinkTypeSideMenuBot"] = Field(
+        "internalLinkTypeSideMenuBot", validation_alias="@type", alias="@type"
+    )
     bot_username: String
     url: String
 
@@ -8498,7 +9098,9 @@ class InternalLinkTypeStickerSet(BaseObject):
     :type expect_custom_emoji: :class:`Bool`
     """
 
-    ID: typing.Literal["internalLinkTypeStickerSet"] = "internalLinkTypeStickerSet"
+    ID: typing.Literal["internalLinkTypeStickerSet"] = Field(
+        "internalLinkTypeStickerSet", validation_alias="@type", alias="@type"
+    )
     sticker_set_name: String
     expect_custom_emoji: Bool = False
 
@@ -8513,7 +9115,9 @@ class InternalLinkTypeStory(BaseObject):
     :type story_id: :class:`Int32`
     """
 
-    ID: typing.Literal["internalLinkTypeStory"] = "internalLinkTypeStory"
+    ID: typing.Literal["internalLinkTypeStory"] = Field(
+        "internalLinkTypeStory", validation_alias="@type", alias="@type"
+    )
     story_sender_username: String
     story_id: Int32
 
@@ -8526,7 +9130,9 @@ class InternalLinkTypeTheme(BaseObject):
     :type theme_name: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeTheme"] = "internalLinkTypeTheme"
+    ID: typing.Literal["internalLinkTypeTheme"] = Field(
+        "internalLinkTypeTheme", validation_alias="@type", alias="@type"
+    )
     theme_name: String
 
 
@@ -8535,7 +9141,9 @@ class InternalLinkTypeThemeSettings(BaseObject):
     The link is a link to the theme section of the app settings
     """
 
-    ID: typing.Literal["internalLinkTypeThemeSettings"] = "internalLinkTypeThemeSettings"
+    ID: typing.Literal["internalLinkTypeThemeSettings"] = Field(
+        "internalLinkTypeThemeSettings", validation_alias="@type", alias="@type"
+    )
 
 
 class InternalLinkTypeUnknownDeepLink(BaseObject):
@@ -8546,7 +9154,9 @@ class InternalLinkTypeUnknownDeepLink(BaseObject):
     :type link: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeUnknownDeepLink"] = "internalLinkTypeUnknownDeepLink"
+    ID: typing.Literal["internalLinkTypeUnknownDeepLink"] = Field(
+        "internalLinkTypeUnknownDeepLink", validation_alias="@type", alias="@type"
+    )
     link: String
 
 
@@ -8555,7 +9165,9 @@ class InternalLinkTypeUnsupportedProxy(BaseObject):
     The link is a link to an unsupported proxy. An alert can be shown to the user
     """
 
-    ID: typing.Literal["internalLinkTypeUnsupportedProxy"] = "internalLinkTypeUnsupportedProxy"
+    ID: typing.Literal["internalLinkTypeUnsupportedProxy"] = Field(
+        "internalLinkTypeUnsupportedProxy", validation_alias="@type", alias="@type"
+    )
 
 
 class InternalLinkTypeUserPhoneNumber(BaseObject):
@@ -8566,7 +9178,9 @@ class InternalLinkTypeUserPhoneNumber(BaseObject):
     :type phone_number: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeUserPhoneNumber"] = "internalLinkTypeUserPhoneNumber"
+    ID: typing.Literal["internalLinkTypeUserPhoneNumber"] = Field(
+        "internalLinkTypeUserPhoneNumber", validation_alias="@type", alias="@type"
+    )
     phone_number: String
 
 
@@ -8578,7 +9192,9 @@ class InternalLinkTypeUserToken(BaseObject):
     :type token: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeUserToken"] = "internalLinkTypeUserToken"
+    ID: typing.Literal["internalLinkTypeUserToken"] = Field(
+        "internalLinkTypeUserToken", validation_alias="@type", alias="@type"
+    )
     token: String
 
 
@@ -8594,7 +9210,9 @@ class InternalLinkTypeVideoChat(BaseObject):
     :type is_live_stream: :class:`Bool`
     """
 
-    ID: typing.Literal["internalLinkTypeVideoChat"] = "internalLinkTypeVideoChat"
+    ID: typing.Literal["internalLinkTypeVideoChat"] = Field(
+        "internalLinkTypeVideoChat", validation_alias="@type", alias="@type"
+    )
     chat_username: String
     invite_hash: String
     is_live_stream: Bool = False
@@ -8612,7 +9230,9 @@ class InternalLinkTypeWebApp(BaseObject):
     :type start_parameter: :class:`String`
     """
 
-    ID: typing.Literal["internalLinkTypeWebApp"] = "internalLinkTypeWebApp"
+    ID: typing.Literal["internalLinkTypeWebApp"] = Field(
+        "internalLinkTypeWebApp", validation_alias="@type", alias="@type"
+    )
     bot_username: String
     web_app_short_name: String
     start_parameter: String
@@ -8667,7 +9287,9 @@ class InviteLinkChatTypeBasicGroup(BaseObject):
     The link is an invite link for a basic group
     """
 
-    ID: typing.Literal["inviteLinkChatTypeBasicGroup"] = "inviteLinkChatTypeBasicGroup"
+    ID: typing.Literal["inviteLinkChatTypeBasicGroup"] = Field(
+        "inviteLinkChatTypeBasicGroup", validation_alias="@type", alias="@type"
+    )
 
 
 class InviteLinkChatTypeChannel(BaseObject):
@@ -8675,7 +9297,9 @@ class InviteLinkChatTypeChannel(BaseObject):
     The link is an invite link for a channel
     """
 
-    ID: typing.Literal["inviteLinkChatTypeChannel"] = "inviteLinkChatTypeChannel"
+    ID: typing.Literal["inviteLinkChatTypeChannel"] = Field(
+        "inviteLinkChatTypeChannel", validation_alias="@type", alias="@type"
+    )
 
 
 class InviteLinkChatTypeSupergroup(BaseObject):
@@ -8683,7 +9307,9 @@ class InviteLinkChatTypeSupergroup(BaseObject):
     The link is an invite link for a supergroup
     """
 
-    ID: typing.Literal["inviteLinkChatTypeSupergroup"] = "inviteLinkChatTypeSupergroup"
+    ID: typing.Literal["inviteLinkChatTypeSupergroup"] = Field(
+        "inviteLinkChatTypeSupergroup", validation_alias="@type", alias="@type"
+    )
 
 
 InviteLinkChatType = typing.Union[
@@ -8725,7 +9351,7 @@ class Invoice(BaseObject):
     :type is_flexible: :class:`Bool`
     """
 
-    ID: typing.Literal["invoice"] = "invoice"
+    ID: typing.Literal["invoice"] = Field("invoice", validation_alias="@type", alias="@type")
     currency: String
     price_parts: Vector[LabeledPricePart]
     max_tip_amount: Int53
@@ -8749,7 +9375,7 @@ class JsonValueArray(BaseObject):
     :type values: :class:`Vector[JsonValue]`
     """
 
-    ID: typing.Literal["jsonValueArray"] = "jsonValueArray"
+    ID: typing.Literal["jsonValueArray"] = Field("jsonValueArray", validation_alias="@type", alias="@type")
     values: Vector[JsonValue]
 
 
@@ -8761,7 +9387,7 @@ class JsonValueBoolean(BaseObject):
     :type value: :class:`Bool`
     """
 
-    ID: typing.Literal["jsonValueBoolean"] = "jsonValueBoolean"
+    ID: typing.Literal["jsonValueBoolean"] = Field("jsonValueBoolean", validation_alias="@type", alias="@type")
     value: Bool
 
 
@@ -8770,7 +9396,7 @@ class JsonValueNull(BaseObject):
     Represents a null JSON value
     """
 
-    ID: typing.Literal["jsonValueNull"] = "jsonValueNull"
+    ID: typing.Literal["jsonValueNull"] = Field("jsonValueNull", validation_alias="@type", alias="@type")
 
 
 class JsonValueNumber(BaseObject):
@@ -8781,7 +9407,7 @@ class JsonValueNumber(BaseObject):
     :type value: :class:`Double`
     """
 
-    ID: typing.Literal["jsonValueNumber"] = "jsonValueNumber"
+    ID: typing.Literal["jsonValueNumber"] = Field("jsonValueNumber", validation_alias="@type", alias="@type")
     value: Double
 
 
@@ -8793,7 +9419,7 @@ class JsonValueObject(BaseObject):
     :type members: :class:`Vector[JsonObjectMember]`
     """
 
-    ID: typing.Literal["jsonValueObject"] = "jsonValueObject"
+    ID: typing.Literal["jsonValueObject"] = Field("jsonValueObject", validation_alias="@type", alias="@type")
     members: Vector[JsonObjectMember]
 
 
@@ -8805,7 +9431,7 @@ class JsonValueString(BaseObject):
     :type value: :class:`String`
     """
 
-    ID: typing.Literal["jsonValueString"] = "jsonValueString"
+    ID: typing.Literal["jsonValueString"] = Field("jsonValueString", validation_alias="@type", alias="@type")
     value: String
 
 
@@ -8829,7 +9455,7 @@ class JsonObjectMember(BaseObject):
     :type value: :class:`JsonValue`
     """
 
-    ID: typing.Literal["jsonObjectMember"] = "jsonObjectMember"
+    ID: typing.Literal["jsonObjectMember"] = Field("jsonObjectMember", validation_alias="@type", alias="@type")
     key: String
     value: JsonValue
 
@@ -8844,7 +9470,7 @@ class KeyboardButton(BaseObject):
     :type type_: :class:`KeyboardButtonType`
     """
 
-    ID: typing.Literal["keyboardButton"] = "keyboardButton"
+    ID: typing.Literal["keyboardButton"] = Field("keyboardButton", validation_alias="@type", alias="@type")
     text: String
     type_: KeyboardButtonType = Field(..., alias="type")
 
@@ -8875,7 +9501,9 @@ class KeyboardButtonTypeRequestChat(BaseObject):
     :type bot_is_member: :class:`Bool`
     """
 
-    ID: typing.Literal["keyboardButtonTypeRequestChat"] = "keyboardButtonTypeRequestChat"
+    ID: typing.Literal["keyboardButtonTypeRequestChat"] = Field(
+        "keyboardButtonTypeRequestChat", validation_alias="@type", alias="@type"
+    )
     id: Int32
     user_administrator_rights: typing.Optional[ChatAdministratorRights] = None
     bot_administrator_rights: typing.Optional[ChatAdministratorRights] = None
@@ -8893,7 +9521,9 @@ class KeyboardButtonTypeRequestLocation(BaseObject):
     A button that sends the user's location when pressed; available only in private chats
     """
 
-    ID: typing.Literal["keyboardButtonTypeRequestLocation"] = "keyboardButtonTypeRequestLocation"
+    ID: typing.Literal["keyboardButtonTypeRequestLocation"] = Field(
+        "keyboardButtonTypeRequestLocation", validation_alias="@type", alias="@type"
+    )
 
 
 class KeyboardButtonTypeRequestPhoneNumber(BaseObject):
@@ -8901,7 +9531,9 @@ class KeyboardButtonTypeRequestPhoneNumber(BaseObject):
     A button that sends the user's phone number when pressed; available only in private chats
     """
 
-    ID: typing.Literal["keyboardButtonTypeRequestPhoneNumber"] = "keyboardButtonTypeRequestPhoneNumber"
+    ID: typing.Literal["keyboardButtonTypeRequestPhoneNumber"] = Field(
+        "keyboardButtonTypeRequestPhoneNumber", validation_alias="@type", alias="@type"
+    )
 
 
 class KeyboardButtonTypeRequestPoll(BaseObject):
@@ -8914,7 +9546,9 @@ class KeyboardButtonTypeRequestPoll(BaseObject):
     :type force_quiz: :class:`Bool`
     """
 
-    ID: typing.Literal["keyboardButtonTypeRequestPoll"] = "keyboardButtonTypeRequestPoll"
+    ID: typing.Literal["keyboardButtonTypeRequestPoll"] = Field(
+        "keyboardButtonTypeRequestPoll", validation_alias="@type", alias="@type"
+    )
     force_regular: Bool
     force_quiz: Bool
 
@@ -8935,7 +9569,9 @@ class KeyboardButtonTypeRequestUser(BaseObject):
     :type user_is_premium: :class:`Bool`
     """
 
-    ID: typing.Literal["keyboardButtonTypeRequestUser"] = "keyboardButtonTypeRequestUser"
+    ID: typing.Literal["keyboardButtonTypeRequestUser"] = Field(
+        "keyboardButtonTypeRequestUser", validation_alias="@type", alias="@type"
+    )
     id: Int32
     restrict_user_is_bot: Bool = False
     user_is_bot: Bool = False
@@ -8948,7 +9584,9 @@ class KeyboardButtonTypeText(BaseObject):
     A simple button, with text that must be sent when the button is pressed
     """
 
-    ID: typing.Literal["keyboardButtonTypeText"] = "keyboardButtonTypeText"
+    ID: typing.Literal["keyboardButtonTypeText"] = Field(
+        "keyboardButtonTypeText", validation_alias="@type", alias="@type"
+    )
 
 
 class KeyboardButtonTypeWebApp(BaseObject):
@@ -8959,7 +9597,9 @@ class KeyboardButtonTypeWebApp(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["keyboardButtonTypeWebApp"] = "keyboardButtonTypeWebApp"
+    ID: typing.Literal["keyboardButtonTypeWebApp"] = Field(
+        "keyboardButtonTypeWebApp", validation_alias="@type", alias="@type"
+    )
     url: String
 
 
@@ -8984,7 +9624,7 @@ class LabeledPricePart(BaseObject):
     :type amount: :class:`Int53`
     """
 
-    ID: typing.Literal["labeledPricePart"] = "labeledPricePart"
+    ID: typing.Literal["labeledPricePart"] = Field("labeledPricePart", validation_alias="@type", alias="@type")
     label: String
     amount: Int53
 
@@ -9021,7 +9661,7 @@ class LanguagePackInfo(BaseObject):
     :type is_installed: :class:`Bool`
     """
 
-    ID: typing.Literal["languagePackInfo"] = "languagePackInfo"
+    ID: typing.Literal["languagePackInfo"] = Field("languagePackInfo", validation_alias="@type", alias="@type")
     id: String
     name: String
     native_name: String
@@ -9047,7 +9687,7 @@ class LanguagePackString(BaseObject):
     :type value: :class:`LanguagePackStringValue`, optional
     """
 
-    ID: typing.Literal["languagePackString"] = "languagePackString"
+    ID: typing.Literal["languagePackString"] = Field("languagePackString", validation_alias="@type", alias="@type")
     key: String
     value: typing.Optional[LanguagePackStringValue] = None
 
@@ -9057,7 +9697,9 @@ class LanguagePackStringValueDeleted(BaseObject):
     A deleted language pack string, the value must be taken from the built-in English language pack
     """
 
-    ID: typing.Literal["languagePackStringValueDeleted"] = "languagePackStringValueDeleted"
+    ID: typing.Literal["languagePackStringValueDeleted"] = Field(
+        "languagePackStringValueDeleted", validation_alias="@type", alias="@type"
+    )
 
 
 class LanguagePackStringValueOrdinary(BaseObject):
@@ -9068,7 +9710,9 @@ class LanguagePackStringValueOrdinary(BaseObject):
     :type value: :class:`String`
     """
 
-    ID: typing.Literal["languagePackStringValueOrdinary"] = "languagePackStringValueOrdinary"
+    ID: typing.Literal["languagePackStringValueOrdinary"] = Field(
+        "languagePackStringValueOrdinary", validation_alias="@type", alias="@type"
+    )
     value: String
 
 
@@ -9090,7 +9734,9 @@ class LanguagePackStringValuePluralized(BaseObject):
     :type other_value: :class:`String`
     """
 
-    ID: typing.Literal["languagePackStringValuePluralized"] = "languagePackStringValuePluralized"
+    ID: typing.Literal["languagePackStringValuePluralized"] = Field(
+        "languagePackStringValuePluralized", validation_alias="@type", alias="@type"
+    )
     zero_value: String
     one_value: String
     two_value: String
@@ -9114,7 +9760,7 @@ class LanguagePackStrings(BaseObject):
     :type strings: :class:`Vector[LanguagePackString]`
     """
 
-    ID: typing.Literal["languagePackStrings"] = "languagePackStrings"
+    ID: typing.Literal["languagePackStrings"] = Field("languagePackStrings", validation_alias="@type", alias="@type")
     strings: Vector[LanguagePackString]
 
 
@@ -9140,7 +9786,7 @@ class LocalFile(BaseObject):
     :type is_downloading_completed: :class:`Bool`
     """
 
-    ID: typing.Literal["localFile"] = "localFile"
+    ID: typing.Literal["localFile"] = Field("localFile", validation_alias="@type", alias="@type")
     download_offset: Int53
     downloaded_prefix_size: Int53
     downloaded_size: Int53
@@ -9159,7 +9805,9 @@ class LocalizationTargetInfo(BaseObject):
     :type language_packs: :class:`Vector[LanguagePackInfo]`
     """
 
-    ID: typing.Literal["localizationTargetInfo"] = "localizationTargetInfo"
+    ID: typing.Literal["localizationTargetInfo"] = Field(
+        "localizationTargetInfo", validation_alias="@type", alias="@type"
+    )
     language_packs: Vector[LanguagePackInfo]
 
 
@@ -9175,7 +9823,7 @@ class Location(BaseObject):
     :type horizontal_accuracy: :class:`Double`
     """
 
-    ID: typing.Literal["location"] = "location"
+    ID: typing.Literal["location"] = Field("location", validation_alias="@type", alias="@type")
     latitude: Double
     longitude: Double
     horizontal_accuracy: Double
@@ -9186,7 +9834,7 @@ class LogStreamDefault(BaseObject):
     The log is written to stderr or an OS specific log
     """
 
-    ID: typing.Literal["logStreamDefault"] = "logStreamDefault"
+    ID: typing.Literal["logStreamDefault"] = Field("logStreamDefault", validation_alias="@type", alias="@type")
 
 
 class LogStreamEmpty(BaseObject):
@@ -9194,7 +9842,7 @@ class LogStreamEmpty(BaseObject):
     The log is written nowhere
     """
 
-    ID: typing.Literal["logStreamEmpty"] = "logStreamEmpty"
+    ID: typing.Literal["logStreamEmpty"] = Field("logStreamEmpty", validation_alias="@type", alias="@type")
 
 
 class LogStreamFile(BaseObject):
@@ -9209,7 +9857,7 @@ class LogStreamFile(BaseObject):
     :type redirect_stderr: :class:`Bool`
     """
 
-    ID: typing.Literal["logStreamFile"] = "logStreamFile"
+    ID: typing.Literal["logStreamFile"] = Field("logStreamFile", validation_alias="@type", alias="@type")
     path: String
     max_file_size: Int53
     redirect_stderr: Bool = False
@@ -9230,7 +9878,7 @@ class LogTags(BaseObject):
     :type tags: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["logTags"] = "logTags"
+    ID: typing.Literal["logTags"] = Field("logTags", validation_alias="@type", alias="@type")
     tags: Vector[String]
 
 
@@ -9242,7 +9890,7 @@ class LogVerbosityLevel(BaseObject):
     :type verbosity_level: :class:`Int32`
     """
 
-    ID: typing.Literal["logVerbosityLevel"] = "logVerbosityLevel"
+    ID: typing.Literal["logVerbosityLevel"] = Field("logVerbosityLevel", validation_alias="@type", alias="@type")
     verbosity_level: Int32
 
 
@@ -9256,7 +9904,7 @@ class LoginUrlInfoOpen(BaseObject):
     :type skip_confirmation: :class:`Bool`
     """
 
-    ID: typing.Literal["loginUrlInfoOpen"] = "loginUrlInfoOpen"
+    ID: typing.Literal["loginUrlInfoOpen"] = Field("loginUrlInfoOpen", validation_alias="@type", alias="@type")
     url: String
     skip_confirmation: Bool = False
 
@@ -9275,7 +9923,9 @@ class LoginUrlInfoRequestConfirmation(BaseObject):
     :type request_write_access: :class:`Bool`
     """
 
-    ID: typing.Literal["loginUrlInfoRequestConfirmation"] = "loginUrlInfoRequestConfirmation"
+    ID: typing.Literal["loginUrlInfoRequestConfirmation"] = Field(
+        "loginUrlInfoRequestConfirmation", validation_alias="@type", alias="@type"
+    )
     url: String
     domain: String
     bot_user_id: Int53
@@ -9293,7 +9943,7 @@ class MaskPointChin(BaseObject):
     The mask is placed relatively to the chin
     """
 
-    ID: typing.Literal["maskPointChin"] = "maskPointChin"
+    ID: typing.Literal["maskPointChin"] = Field("maskPointChin", validation_alias="@type", alias="@type")
 
 
 class MaskPointEyes(BaseObject):
@@ -9301,7 +9951,7 @@ class MaskPointEyes(BaseObject):
     The mask is placed relatively to the eyes
     """
 
-    ID: typing.Literal["maskPointEyes"] = "maskPointEyes"
+    ID: typing.Literal["maskPointEyes"] = Field("maskPointEyes", validation_alias="@type", alias="@type")
 
 
 class MaskPointForehead(BaseObject):
@@ -9309,7 +9959,7 @@ class MaskPointForehead(BaseObject):
     The mask is placed relatively to the forehead
     """
 
-    ID: typing.Literal["maskPointForehead"] = "maskPointForehead"
+    ID: typing.Literal["maskPointForehead"] = Field("maskPointForehead", validation_alias="@type", alias="@type")
 
 
 class MaskPointMouth(BaseObject):
@@ -9317,7 +9967,7 @@ class MaskPointMouth(BaseObject):
     The mask is placed relatively to the mouth
     """
 
-    ID: typing.Literal["maskPointMouth"] = "maskPointMouth"
+    ID: typing.Literal["maskPointMouth"] = Field("maskPointMouth", validation_alias="@type", alias="@type")
 
 
 MaskPoint = typing.Union[
@@ -9342,7 +9992,7 @@ class MaskPosition(BaseObject):
     :type scale: :class:`Double`
     """
 
-    ID: typing.Literal["maskPosition"] = "maskPosition"
+    ID: typing.Literal["maskPosition"] = Field("maskPosition", validation_alias="@type", alias="@type")
     point: MaskPoint
     x_shift: Double
     y_shift: Double
@@ -9431,7 +10081,7 @@ class Message(BaseObject):
     :type contains_unread_mention: :class:`Bool`
     """
 
-    ID: typing.Literal["message"] = "message"
+    ID: typing.Literal["message"] = Field("message", validation_alias="@type", alias="@type")
     id: Int53
     sender_id: MessageSender
     chat_id: Int53
@@ -9480,7 +10130,9 @@ class MessageAutoDeleteTime(BaseObject):
     :type time: :class:`Int32`
     """
 
-    ID: typing.Literal["messageAutoDeleteTime"] = "messageAutoDeleteTime"
+    ID: typing.Literal["messageAutoDeleteTime"] = Field(
+        "messageAutoDeleteTime", validation_alias="@type", alias="@type"
+    )
     time: Int32 = 0
 
 
@@ -9494,7 +10146,7 @@ class MessageCalendar(BaseObject):
     :type days: :class:`Vector[MessageCalendarDay]`
     """
 
-    ID: typing.Literal["messageCalendar"] = "messageCalendar"
+    ID: typing.Literal["messageCalendar"] = Field("messageCalendar", validation_alias="@type", alias="@type")
     total_count: Int32
     days: Vector[MessageCalendarDay]
 
@@ -9509,7 +10161,7 @@ class MessageCalendarDay(BaseObject):
     :type message: :class:`Message`
     """
 
-    ID: typing.Literal["messageCalendarDay"] = "messageCalendarDay"
+    ID: typing.Literal["messageCalendarDay"] = Field("messageCalendarDay", validation_alias="@type", alias="@type")
     total_count: Int32
     message: Message
 
@@ -9524,7 +10176,7 @@ class MessageAnimatedEmoji(BaseObject):
     :type emoji: :class:`String`
     """
 
-    ID: typing.Literal["messageAnimatedEmoji"] = "messageAnimatedEmoji"
+    ID: typing.Literal["messageAnimatedEmoji"] = Field("messageAnimatedEmoji", validation_alias="@type", alias="@type")
     animated_emoji: AnimatedEmoji
     emoji: String
 
@@ -9543,7 +10195,7 @@ class MessageAnimation(BaseObject):
     :type is_secret: :class:`Bool`
     """
 
-    ID: typing.Literal["messageAnimation"] = "messageAnimation"
+    ID: typing.Literal["messageAnimation"] = Field("messageAnimation", validation_alias="@type", alias="@type")
     animation: Animation
     caption: FormattedText
     has_spoiler: Bool = False
@@ -9560,7 +10212,7 @@ class MessageAudio(BaseObject):
     :type caption: :class:`FormattedText`
     """
 
-    ID: typing.Literal["messageAudio"] = "messageAudio"
+    ID: typing.Literal["messageAudio"] = Field("messageAudio", validation_alias="@type", alias="@type")
     audio: Audio
     caption: FormattedText
 
@@ -9575,7 +10227,9 @@ class MessageBasicGroupChatCreate(BaseObject):
     :type member_user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["messageBasicGroupChatCreate"] = "messageBasicGroupChatCreate"
+    ID: typing.Literal["messageBasicGroupChatCreate"] = Field(
+        "messageBasicGroupChatCreate", validation_alias="@type", alias="@type"
+    )
     title: String
     member_user_ids: Vector[Int53]
 
@@ -9590,7 +10244,9 @@ class MessageBotWriteAccessAllowed(BaseObject):
     :type by_request: :class:`Bool`
     """
 
-    ID: typing.Literal["messageBotWriteAccessAllowed"] = "messageBotWriteAccessAllowed"
+    ID: typing.Literal["messageBotWriteAccessAllowed"] = Field(
+        "messageBotWriteAccessAllowed", validation_alias="@type", alias="@type"
+    )
     web_app: typing.Optional[WebApp] = None
     by_request: Bool = False
 
@@ -9607,7 +10263,7 @@ class MessageCall(BaseObject):
     :type is_video: :class:`Bool`
     """
 
-    ID: typing.Literal["messageCall"] = "messageCall"
+    ID: typing.Literal["messageCall"] = Field("messageCall", validation_alias="@type", alias="@type")
     discard_reason: CallDiscardReason
     duration: Int32
     is_video: Bool = False
@@ -9621,7 +10277,9 @@ class MessageChatAddMembers(BaseObject):
     :type member_user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["messageChatAddMembers"] = "messageChatAddMembers"
+    ID: typing.Literal["messageChatAddMembers"] = Field(
+        "messageChatAddMembers", validation_alias="@type", alias="@type"
+    )
     member_user_ids: Vector[Int53]
 
 
@@ -9633,7 +10291,9 @@ class MessageChatChangePhoto(BaseObject):
     :type photo: :class:`ChatPhoto`
     """
 
-    ID: typing.Literal["messageChatChangePhoto"] = "messageChatChangePhoto"
+    ID: typing.Literal["messageChatChangePhoto"] = Field(
+        "messageChatChangePhoto", validation_alias="@type", alias="@type"
+    )
     photo: ChatPhoto
 
 
@@ -9645,7 +10305,9 @@ class MessageChatChangeTitle(BaseObject):
     :type title: :class:`String`
     """
 
-    ID: typing.Literal["messageChatChangeTitle"] = "messageChatChangeTitle"
+    ID: typing.Literal["messageChatChangeTitle"] = Field(
+        "messageChatChangeTitle", validation_alias="@type", alias="@type"
+    )
     title: String
 
 
@@ -9657,7 +10319,9 @@ class MessageChatDeleteMember(BaseObject):
     :type user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["messageChatDeleteMember"] = "messageChatDeleteMember"
+    ID: typing.Literal["messageChatDeleteMember"] = Field(
+        "messageChatDeleteMember", validation_alias="@type", alias="@type"
+    )
     user_id: Int53
 
 
@@ -9666,7 +10330,9 @@ class MessageChatDeletePhoto(BaseObject):
     A deleted chat photo
     """
 
-    ID: typing.Literal["messageChatDeletePhoto"] = "messageChatDeletePhoto"
+    ID: typing.Literal["messageChatDeletePhoto"] = Field(
+        "messageChatDeletePhoto", validation_alias="@type", alias="@type"
+    )
 
 
 class MessageChatJoinByLink(BaseObject):
@@ -9674,7 +10340,9 @@ class MessageChatJoinByLink(BaseObject):
     A new member joined the chat via an invite link
     """
 
-    ID: typing.Literal["messageChatJoinByLink"] = "messageChatJoinByLink"
+    ID: typing.Literal["messageChatJoinByLink"] = Field(
+        "messageChatJoinByLink", validation_alias="@type", alias="@type"
+    )
 
 
 class MessageChatJoinByRequest(BaseObject):
@@ -9682,7 +10350,9 @@ class MessageChatJoinByRequest(BaseObject):
     A new member was accepted to the chat by an administrator
     """
 
-    ID: typing.Literal["messageChatJoinByRequest"] = "messageChatJoinByRequest"
+    ID: typing.Literal["messageChatJoinByRequest"] = Field(
+        "messageChatJoinByRequest", validation_alias="@type", alias="@type"
+    )
 
 
 class MessageChatSetBackground(BaseObject):
@@ -9695,7 +10365,9 @@ class MessageChatSetBackground(BaseObject):
     :type old_background_message_id: :class:`Int53`, optional
     """
 
-    ID: typing.Literal["messageChatSetBackground"] = "messageChatSetBackground"
+    ID: typing.Literal["messageChatSetBackground"] = Field(
+        "messageChatSetBackground", validation_alias="@type", alias="@type"
+    )
     background: ChatBackground
     old_background_message_id: typing.Optional[Int53] = 0
 
@@ -9710,7 +10382,9 @@ class MessageChatSetMessageAutoDeleteTime(BaseObject):
     :type from_user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["messageChatSetMessageAutoDeleteTime"] = "messageChatSetMessageAutoDeleteTime"
+    ID: typing.Literal["messageChatSetMessageAutoDeleteTime"] = Field(
+        "messageChatSetMessageAutoDeleteTime", validation_alias="@type", alias="@type"
+    )
     message_auto_delete_time: Int32
     from_user_id: Int53 = 0
 
@@ -9723,7 +10397,7 @@ class MessageChatSetTheme(BaseObject):
     :type theme_name: :class:`String`
     """
 
-    ID: typing.Literal["messageChatSetTheme"] = "messageChatSetTheme"
+    ID: typing.Literal["messageChatSetTheme"] = Field("messageChatSetTheme", validation_alias="@type", alias="@type")
     theme_name: String
 
 
@@ -9737,7 +10411,7 @@ class MessageChatShared(BaseObject):
     :type button_id: :class:`Int32`
     """
 
-    ID: typing.Literal["messageChatShared"] = "messageChatShared"
+    ID: typing.Literal["messageChatShared"] = Field("messageChatShared", validation_alias="@type", alias="@type")
     chat_id: Int53
     button_id: Int32
 
@@ -9752,7 +10426,9 @@ class MessageChatUpgradeFrom(BaseObject):
     :type basic_group_id: :class:`Int53`
     """
 
-    ID: typing.Literal["messageChatUpgradeFrom"] = "messageChatUpgradeFrom"
+    ID: typing.Literal["messageChatUpgradeFrom"] = Field(
+        "messageChatUpgradeFrom", validation_alias="@type", alias="@type"
+    )
     title: String
     basic_group_id: Int53
 
@@ -9765,7 +10441,7 @@ class MessageChatUpgradeTo(BaseObject):
     :type supergroup_id: :class:`Int53`
     """
 
-    ID: typing.Literal["messageChatUpgradeTo"] = "messageChatUpgradeTo"
+    ID: typing.Literal["messageChatUpgradeTo"] = Field("messageChatUpgradeTo", validation_alias="@type", alias="@type")
     supergroup_id: Int53
 
 
@@ -9777,7 +10453,7 @@ class MessageContact(BaseObject):
     :type contact: :class:`Contact`
     """
 
-    ID: typing.Literal["messageContact"] = "messageContact"
+    ID: typing.Literal["messageContact"] = Field("messageContact", validation_alias="@type", alias="@type")
     contact: Contact
 
 
@@ -9786,7 +10462,9 @@ class MessageContactRegistered(BaseObject):
     A contact has registered with Telegram
     """
 
-    ID: typing.Literal["messageContactRegistered"] = "messageContactRegistered"
+    ID: typing.Literal["messageContactRegistered"] = Field(
+        "messageContactRegistered", validation_alias="@type", alias="@type"
+    )
 
 
 class MessageCustomServiceAction(BaseObject):
@@ -9797,7 +10475,9 @@ class MessageCustomServiceAction(BaseObject):
     :type text: :class:`String`
     """
 
-    ID: typing.Literal["messageCustomServiceAction"] = "messageCustomServiceAction"
+    ID: typing.Literal["messageCustomServiceAction"] = Field(
+        "messageCustomServiceAction", validation_alias="@type", alias="@type"
+    )
     text: String
 
 
@@ -9817,7 +10497,7 @@ class MessageDice(BaseObject):
     :type final_state: :class:`DiceStickers`, optional
     """
 
-    ID: typing.Literal["messageDice"] = "messageDice"
+    ID: typing.Literal["messageDice"] = Field("messageDice", validation_alias="@type", alias="@type")
     emoji: String
     value: Int32
     success_animation_frame_number: Int32
@@ -9835,7 +10515,7 @@ class MessageDocument(BaseObject):
     :type caption: :class:`FormattedText`
     """
 
-    ID: typing.Literal["messageDocument"] = "messageDocument"
+    ID: typing.Literal["messageDocument"] = Field("messageDocument", validation_alias="@type", alias="@type")
     document: Document
     caption: FormattedText
 
@@ -9845,7 +10525,7 @@ class MessageExpiredPhoto(BaseObject):
     A self-destructed photo message
     """
 
-    ID: typing.Literal["messageExpiredPhoto"] = "messageExpiredPhoto"
+    ID: typing.Literal["messageExpiredPhoto"] = Field("messageExpiredPhoto", validation_alias="@type", alias="@type")
 
 
 class MessageExpiredVideo(BaseObject):
@@ -9853,7 +10533,7 @@ class MessageExpiredVideo(BaseObject):
     A self-destructed video message
     """
 
-    ID: typing.Literal["messageExpiredVideo"] = "messageExpiredVideo"
+    ID: typing.Literal["messageExpiredVideo"] = Field("messageExpiredVideo", validation_alias="@type", alias="@type")
 
 
 class MessageForumTopicCreated(BaseObject):
@@ -9866,7 +10546,9 @@ class MessageForumTopicCreated(BaseObject):
     :type icon: :class:`ForumTopicIcon`
     """
 
-    ID: typing.Literal["messageForumTopicCreated"] = "messageForumTopicCreated"
+    ID: typing.Literal["messageForumTopicCreated"] = Field(
+        "messageForumTopicCreated", validation_alias="@type", alias="@type"
+    )
     name: String
     icon: ForumTopicIcon
 
@@ -9883,7 +10565,9 @@ class MessageForumTopicEdited(BaseObject):
     :type icon_custom_emoji_id: :class:`Int64`, optional
     """
 
-    ID: typing.Literal["messageForumTopicEdited"] = "messageForumTopicEdited"
+    ID: typing.Literal["messageForumTopicEdited"] = Field(
+        "messageForumTopicEdited", validation_alias="@type", alias="@type"
+    )
     name: String
     edit_icon_custom_emoji_id: Bool = False
     icon_custom_emoji_id: typing.Optional[Int64] = 0
@@ -9897,7 +10581,9 @@ class MessageForumTopicIsClosedToggled(BaseObject):
     :type is_closed: :class:`Bool`
     """
 
-    ID: typing.Literal["messageForumTopicIsClosedToggled"] = "messageForumTopicIsClosedToggled"
+    ID: typing.Literal["messageForumTopicIsClosedToggled"] = Field(
+        "messageForumTopicIsClosedToggled", validation_alias="@type", alias="@type"
+    )
     is_closed: Bool = False
 
 
@@ -9909,7 +10595,9 @@ class MessageForumTopicIsHiddenToggled(BaseObject):
     :type is_hidden: :class:`Bool`
     """
 
-    ID: typing.Literal["messageForumTopicIsHiddenToggled"] = "messageForumTopicIsHiddenToggled"
+    ID: typing.Literal["messageForumTopicIsHiddenToggled"] = Field(
+        "messageForumTopicIsHiddenToggled", validation_alias="@type", alias="@type"
+    )
     is_hidden: Bool = False
 
 
@@ -9921,7 +10609,7 @@ class MessageGame(BaseObject):
     :type game: :class:`Game`
     """
 
-    ID: typing.Literal["messageGame"] = "messageGame"
+    ID: typing.Literal["messageGame"] = Field("messageGame", validation_alias="@type", alias="@type")
     game: Game
 
 
@@ -9937,7 +10625,7 @@ class MessageGameScore(BaseObject):
     :type score: :class:`Int32`
     """
 
-    ID: typing.Literal["messageGameScore"] = "messageGameScore"
+    ID: typing.Literal["messageGameScore"] = Field("messageGameScore", validation_alias="@type", alias="@type")
     game_message_id: Int53
     game_id: Int64
     score: Int32
@@ -9963,7 +10651,7 @@ class MessageGiftedPremium(BaseObject):
     :type cryptocurrency: :class:`String`
     """
 
-    ID: typing.Literal["messageGiftedPremium"] = "messageGiftedPremium"
+    ID: typing.Literal["messageGiftedPremium"] = Field("messageGiftedPremium", validation_alias="@type", alias="@type")
     gifter_user_id: Int53
     currency: String
     amount: Int53
@@ -9983,7 +10671,9 @@ class MessageInviteVideoChatParticipants(BaseObject):
     :type user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["messageInviteVideoChatParticipants"] = "messageInviteVideoChatParticipants"
+    ID: typing.Literal["messageInviteVideoChatParticipants"] = Field(
+        "messageInviteVideoChatParticipants", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     user_ids: Vector[Int53]
 
@@ -10014,7 +10704,7 @@ class MessageInvoice(BaseObject):
     :type need_shipping_address: :class:`Bool`
     """
 
-    ID: typing.Literal["messageInvoice"] = "messageInvoice"
+    ID: typing.Literal["messageInvoice"] = Field("messageInvoice", validation_alias="@type", alias="@type")
     title: String
     description: FormattedText
     currency: String
@@ -10043,7 +10733,7 @@ class MessageLocation(BaseObject):
     :type heading: :class:`Int32`
     """
 
-    ID: typing.Literal["messageLocation"] = "messageLocation"
+    ID: typing.Literal["messageLocation"] = Field("messageLocation", validation_alias="@type", alias="@type")
     location: Location
     live_period: Int32
     expires_in: Int32
@@ -10061,7 +10751,9 @@ class MessagePassportDataReceived(BaseObject):
     :type credentials: :class:`EncryptedCredentials`
     """
 
-    ID: typing.Literal["messagePassportDataReceived"] = "messagePassportDataReceived"
+    ID: typing.Literal["messagePassportDataReceived"] = Field(
+        "messagePassportDataReceived", validation_alias="@type", alias="@type"
+    )
     elements: Vector[EncryptedPassportElement]
     credentials: EncryptedCredentials
 
@@ -10074,7 +10766,9 @@ class MessagePassportDataSent(BaseObject):
     :type types: :class:`Vector[PassportElementType]`
     """
 
-    ID: typing.Literal["messagePassportDataSent"] = "messagePassportDataSent"
+    ID: typing.Literal["messagePassportDataSent"] = Field(
+        "messagePassportDataSent", validation_alias="@type", alias="@type"
+    )
     types: Vector[PassportElementType]
 
 
@@ -10098,7 +10792,9 @@ class MessagePaymentSuccessful(BaseObject):
     :type invoice_name: :class:`String`
     """
 
-    ID: typing.Literal["messagePaymentSuccessful"] = "messagePaymentSuccessful"
+    ID: typing.Literal["messagePaymentSuccessful"] = Field(
+        "messagePaymentSuccessful", validation_alias="@type", alias="@type"
+    )
     invoice_chat_id: Int53
     invoice_message_id: Int53
     currency: String
@@ -10132,7 +10828,9 @@ class MessagePaymentSuccessfulBot(BaseObject):
     :type shipping_option_id: :class:`String`
     """
 
-    ID: typing.Literal["messagePaymentSuccessfulBot"] = "messagePaymentSuccessfulBot"
+    ID: typing.Literal["messagePaymentSuccessfulBot"] = Field(
+        "messagePaymentSuccessfulBot", validation_alias="@type", alias="@type"
+    )
     currency: String
     total_amount: Int53
     invoice_payload: Bytes
@@ -10158,7 +10856,7 @@ class MessagePhoto(BaseObject):
     :type is_secret: :class:`Bool`
     """
 
-    ID: typing.Literal["messagePhoto"] = "messagePhoto"
+    ID: typing.Literal["messagePhoto"] = Field("messagePhoto", validation_alias="@type", alias="@type")
     photo: Photo
     caption: FormattedText
     has_spoiler: Bool = False
@@ -10173,7 +10871,7 @@ class MessagePinMessage(BaseObject):
     :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["messagePinMessage"] = "messagePinMessage"
+    ID: typing.Literal["messagePinMessage"] = Field("messagePinMessage", validation_alias="@type", alias="@type")
     message_id: Int53
 
 
@@ -10185,7 +10883,7 @@ class MessagePoll(BaseObject):
     :type poll: :class:`Poll`
     """
 
-    ID: typing.Literal["messagePoll"] = "messagePoll"
+    ID: typing.Literal["messagePoll"] = Field("messagePoll", validation_alias="@type", alias="@type")
     poll: Poll
 
 
@@ -10201,7 +10899,9 @@ class MessageProximityAlertTriggered(BaseObject):
     :type distance: :class:`Int32`
     """
 
-    ID: typing.Literal["messageProximityAlertTriggered"] = "messageProximityAlertTriggered"
+    ID: typing.Literal["messageProximityAlertTriggered"] = Field(
+        "messageProximityAlertTriggered", validation_alias="@type", alias="@type"
+    )
     traveler_id: MessageSender
     watcher_id: MessageSender
     distance: Int32
@@ -10212,7 +10912,9 @@ class MessageScreenshotTaken(BaseObject):
     A screenshot of a message in the chat has been taken
     """
 
-    ID: typing.Literal["messageScreenshotTaken"] = "messageScreenshotTaken"
+    ID: typing.Literal["messageScreenshotTaken"] = Field(
+        "messageScreenshotTaken", validation_alias="@type", alias="@type"
+    )
 
 
 class MessageSticker(BaseObject):
@@ -10225,7 +10927,7 @@ class MessageSticker(BaseObject):
     :type is_premium: :class:`Bool`
     """
 
-    ID: typing.Literal["messageSticker"] = "messageSticker"
+    ID: typing.Literal["messageSticker"] = Field("messageSticker", validation_alias="@type", alias="@type")
     sticker: Sticker
     is_premium: Bool = False
 
@@ -10242,7 +10944,7 @@ class MessageStory(BaseObject):
     :type via_mention: :class:`Bool`
     """
 
-    ID: typing.Literal["messageStory"] = "messageStory"
+    ID: typing.Literal["messageStory"] = Field("messageStory", validation_alias="@type", alias="@type")
     story_sender_chat_id: Int53
     story_id: Int32
     via_mention: Bool = False
@@ -10256,7 +10958,9 @@ class MessageSuggestProfilePhoto(BaseObject):
     :type photo: :class:`ChatPhoto`
     """
 
-    ID: typing.Literal["messageSuggestProfilePhoto"] = "messageSuggestProfilePhoto"
+    ID: typing.Literal["messageSuggestProfilePhoto"] = Field(
+        "messageSuggestProfilePhoto", validation_alias="@type", alias="@type"
+    )
     photo: ChatPhoto
 
 
@@ -10268,7 +10972,9 @@ class MessageSupergroupChatCreate(BaseObject):
     :type title: :class:`String`
     """
 
-    ID: typing.Literal["messageSupergroupChatCreate"] = "messageSupergroupChatCreate"
+    ID: typing.Literal["messageSupergroupChatCreate"] = Field(
+        "messageSupergroupChatCreate", validation_alias="@type", alias="@type"
+    )
     title: String
 
 
@@ -10282,7 +10988,7 @@ class MessageText(BaseObject):
     :type web_page: :class:`WebPage`, optional
     """
 
-    ID: typing.Literal["messageText"] = "messageText"
+    ID: typing.Literal["messageText"] = Field("messageText", validation_alias="@type", alias="@type")
     text: FormattedText
     web_page: typing.Optional[WebPage] = None
 
@@ -10292,7 +10998,7 @@ class MessageUnsupported(BaseObject):
     A message content that is not supported in the current TDLib version
     """
 
-    ID: typing.Literal["messageUnsupported"] = "messageUnsupported"
+    ID: typing.Literal["messageUnsupported"] = Field("messageUnsupported", validation_alias="@type", alias="@type")
 
 
 class MessageUserShared(BaseObject):
@@ -10305,7 +11011,7 @@ class MessageUserShared(BaseObject):
     :type button_id: :class:`Int32`
     """
 
-    ID: typing.Literal["messageUserShared"] = "messageUserShared"
+    ID: typing.Literal["messageUserShared"] = Field("messageUserShared", validation_alias="@type", alias="@type")
     user_id: Int53
     button_id: Int32
 
@@ -10318,7 +11024,7 @@ class MessageVenue(BaseObject):
     :type venue: :class:`Venue`
     """
 
-    ID: typing.Literal["messageVenue"] = "messageVenue"
+    ID: typing.Literal["messageVenue"] = Field("messageVenue", validation_alias="@type", alias="@type")
     venue: Venue
 
 
@@ -10336,7 +11042,7 @@ class MessageVideo(BaseObject):
     :type is_secret: :class:`Bool`
     """
 
-    ID: typing.Literal["messageVideo"] = "messageVideo"
+    ID: typing.Literal["messageVideo"] = Field("messageVideo", validation_alias="@type", alias="@type")
     video: Video
     caption: FormattedText
     has_spoiler: Bool = False
@@ -10351,7 +11057,9 @@ class MessageVideoChatEnded(BaseObject):
     :type duration: :class:`Int32`
     """
 
-    ID: typing.Literal["messageVideoChatEnded"] = "messageVideoChatEnded"
+    ID: typing.Literal["messageVideoChatEnded"] = Field(
+        "messageVideoChatEnded", validation_alias="@type", alias="@type"
+    )
     duration: Int32
 
 
@@ -10365,7 +11073,9 @@ class MessageVideoChatScheduled(BaseObject):
     :type start_date: :class:`Int32`
     """
 
-    ID: typing.Literal["messageVideoChatScheduled"] = "messageVideoChatScheduled"
+    ID: typing.Literal["messageVideoChatScheduled"] = Field(
+        "messageVideoChatScheduled", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     start_date: Int32
 
@@ -10378,7 +11088,9 @@ class MessageVideoChatStarted(BaseObject):
     :type group_call_id: :class:`Int32`
     """
 
-    ID: typing.Literal["messageVideoChatStarted"] = "messageVideoChatStarted"
+    ID: typing.Literal["messageVideoChatStarted"] = Field(
+        "messageVideoChatStarted", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
 
 
@@ -10394,7 +11106,7 @@ class MessageVideoNote(BaseObject):
     :type is_secret: :class:`Bool`
     """
 
-    ID: typing.Literal["messageVideoNote"] = "messageVideoNote"
+    ID: typing.Literal["messageVideoNote"] = Field("messageVideoNote", validation_alias="@type", alias="@type")
     video_note: VideoNote
     is_viewed: Bool = False
     is_secret: Bool = False
@@ -10412,7 +11124,7 @@ class MessageVoiceNote(BaseObject):
     :type is_listened: :class:`Bool`
     """
 
-    ID: typing.Literal["messageVoiceNote"] = "messageVoiceNote"
+    ID: typing.Literal["messageVoiceNote"] = Field("messageVoiceNote", validation_alias="@type", alias="@type")
     voice_note: VoiceNote
     caption: FormattedText
     is_listened: Bool = False
@@ -10428,7 +11140,9 @@ class MessageWebAppDataReceived(BaseObject):
     :type data: :class:`String`
     """
 
-    ID: typing.Literal["messageWebAppDataReceived"] = "messageWebAppDataReceived"
+    ID: typing.Literal["messageWebAppDataReceived"] = Field(
+        "messageWebAppDataReceived", validation_alias="@type", alias="@type"
+    )
     button_text: String
     data: String
 
@@ -10441,7 +11155,9 @@ class MessageWebAppDataSent(BaseObject):
     :type button_text: :class:`String`
     """
 
-    ID: typing.Literal["messageWebAppDataSent"] = "messageWebAppDataSent"
+    ID: typing.Literal["messageWebAppDataSent"] = Field(
+        "messageWebAppDataSent", validation_alias="@type", alias="@type"
+    )
     button_text: String
 
 
@@ -10453,7 +11169,9 @@ class MessageWebsiteConnected(BaseObject):
     :type domain_name: :class:`String`
     """
 
-    ID: typing.Literal["messageWebsiteConnected"] = "messageWebsiteConnected"
+    ID: typing.Literal["messageWebsiteConnected"] = Field(
+        "messageWebsiteConnected", validation_alias="@type", alias="@type"
+    )
     domain_name: String
 
 
@@ -10535,7 +11253,7 @@ class MessageCopyOptions(BaseObject):
     :type new_caption: :class:`FormattedText`, optional
     """
 
-    ID: typing.Literal["messageCopyOptions"] = "messageCopyOptions"
+    ID: typing.Literal["messageCopyOptions"] = Field("messageCopyOptions", validation_alias="@type", alias="@type")
     send_copy: Bool = False
     replace_caption: Bool = False
     new_caption: typing.Optional[FormattedText] = None
@@ -10551,7 +11269,9 @@ class MessageExtendedMediaPhoto(BaseObject):
     :type caption: :class:`FormattedText`
     """
 
-    ID: typing.Literal["messageExtendedMediaPhoto"] = "messageExtendedMediaPhoto"
+    ID: typing.Literal["messageExtendedMediaPhoto"] = Field(
+        "messageExtendedMediaPhoto", validation_alias="@type", alias="@type"
+    )
     photo: Photo
     caption: FormattedText
 
@@ -10572,7 +11292,9 @@ class MessageExtendedMediaPreview(BaseObject):
     :type duration: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["messageExtendedMediaPreview"] = "messageExtendedMediaPreview"
+    ID: typing.Literal["messageExtendedMediaPreview"] = Field(
+        "messageExtendedMediaPreview", validation_alias="@type", alias="@type"
+    )
     caption: FormattedText
     minithumbnail: typing.Optional[Minithumbnail] = None
     width: typing.Optional[Int32] = 0
@@ -10588,7 +11310,9 @@ class MessageExtendedMediaUnsupported(BaseObject):
     :type caption: :class:`FormattedText`
     """
 
-    ID: typing.Literal["messageExtendedMediaUnsupported"] = "messageExtendedMediaUnsupported"
+    ID: typing.Literal["messageExtendedMediaUnsupported"] = Field(
+        "messageExtendedMediaUnsupported", validation_alias="@type", alias="@type"
+    )
     caption: FormattedText
 
 
@@ -10602,7 +11326,9 @@ class MessageExtendedMediaVideo(BaseObject):
     :type caption: :class:`FormattedText`
     """
 
-    ID: typing.Literal["messageExtendedMediaVideo"] = "messageExtendedMediaVideo"
+    ID: typing.Literal["messageExtendedMediaVideo"] = Field(
+        "messageExtendedMediaVideo", validation_alias="@type", alias="@type"
+    )
     video: Video
     caption: FormattedText
 
@@ -10623,7 +11349,7 @@ class MessageFileTypeGroup(BaseObject):
     :type title: :class:`String`
     """
 
-    ID: typing.Literal["messageFileTypeGroup"] = "messageFileTypeGroup"
+    ID: typing.Literal["messageFileTypeGroup"] = Field("messageFileTypeGroup", validation_alias="@type", alias="@type")
     title: String = ""
 
 
@@ -10635,7 +11361,9 @@ class MessageFileTypePrivate(BaseObject):
     :type name: :class:`String`
     """
 
-    ID: typing.Literal["messageFileTypePrivate"] = "messageFileTypePrivate"
+    ID: typing.Literal["messageFileTypePrivate"] = Field(
+        "messageFileTypePrivate", validation_alias="@type", alias="@type"
+    )
     name: String = ""
 
 
@@ -10644,7 +11372,9 @@ class MessageFileTypeUnknown(BaseObject):
     The messages was exported from a chat of unknown type
     """
 
-    ID: typing.Literal["messageFileTypeUnknown"] = "messageFileTypeUnknown"
+    ID: typing.Literal["messageFileTypeUnknown"] = Field(
+        "messageFileTypeUnknown", validation_alias="@type", alias="@type"
+    )
 
 
 MessageFileType = typing.Union[
@@ -10670,7 +11400,7 @@ class MessageForwardInfo(BaseObject):
     :type from_message_id: :class:`Int53`, optional
     """
 
-    ID: typing.Literal["messageForwardInfo"] = "messageForwardInfo"
+    ID: typing.Literal["messageForwardInfo"] = Field("messageForwardInfo", validation_alias="@type", alias="@type")
     origin: MessageForwardOrigin
     date: Int32
     public_service_announcement_type: String
@@ -10690,7 +11420,9 @@ class MessageForwardOriginChannel(BaseObject):
     :type author_signature: :class:`String`
     """
 
-    ID: typing.Literal["messageForwardOriginChannel"] = "messageForwardOriginChannel"
+    ID: typing.Literal["messageForwardOriginChannel"] = Field(
+        "messageForwardOriginChannel", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     author_signature: String
@@ -10706,7 +11438,9 @@ class MessageForwardOriginChat(BaseObject):
     :type author_signature: :class:`String`
     """
 
-    ID: typing.Literal["messageForwardOriginChat"] = "messageForwardOriginChat"
+    ID: typing.Literal["messageForwardOriginChat"] = Field(
+        "messageForwardOriginChat", validation_alias="@type", alias="@type"
+    )
     sender_chat_id: Int53
     author_signature: String
 
@@ -10719,7 +11453,9 @@ class MessageForwardOriginHiddenUser(BaseObject):
     :type sender_name: :class:`String`
     """
 
-    ID: typing.Literal["messageForwardOriginHiddenUser"] = "messageForwardOriginHiddenUser"
+    ID: typing.Literal["messageForwardOriginHiddenUser"] = Field(
+        "messageForwardOriginHiddenUser", validation_alias="@type", alias="@type"
+    )
     sender_name: String
 
 
@@ -10731,7 +11467,9 @@ class MessageForwardOriginMessageImport(BaseObject):
     :type sender_name: :class:`String`
     """
 
-    ID: typing.Literal["messageForwardOriginMessageImport"] = "messageForwardOriginMessageImport"
+    ID: typing.Literal["messageForwardOriginMessageImport"] = Field(
+        "messageForwardOriginMessageImport", validation_alias="@type", alias="@type"
+    )
     sender_name: String
 
 
@@ -10743,7 +11481,9 @@ class MessageForwardOriginUser(BaseObject):
     :type sender_user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["messageForwardOriginUser"] = "messageForwardOriginUser"
+    ID: typing.Literal["messageForwardOriginUser"] = Field(
+        "messageForwardOriginUser", validation_alias="@type", alias="@type"
+    )
     sender_user_id: Int53
 
 
@@ -10770,7 +11510,9 @@ class MessageInteractionInfo(BaseObject):
     :type reply_info: :class:`MessageReplyInfo`, optional
     """
 
-    ID: typing.Literal["messageInteractionInfo"] = "messageInteractionInfo"
+    ID: typing.Literal["messageInteractionInfo"] = Field(
+        "messageInteractionInfo", validation_alias="@type", alias="@type"
+    )
     view_count: Int32
     forward_count: Int32
     reactions: Vector[MessageReaction]
@@ -10787,7 +11529,7 @@ class MessageLink(BaseObject):
     :type is_public: :class:`Bool`
     """
 
-    ID: typing.Literal["messageLink"] = "messageLink"
+    ID: typing.Literal["messageLink"] = Field("messageLink", validation_alias="@type", alias="@type")
     link: String
     is_public: Bool = False
 
@@ -10810,7 +11552,7 @@ class MessageLinkInfo(BaseObject):
     :type for_album: :class:`Bool`
     """
 
-    ID: typing.Literal["messageLinkInfo"] = "messageLinkInfo"
+    ID: typing.Literal["messageLinkInfo"] = Field("messageLinkInfo", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_thread_id: Int53
     media_timestamp: Int32
@@ -10831,7 +11573,7 @@ class MessagePosition(BaseObject):
     :type date: :class:`Int32`
     """
 
-    ID: typing.Literal["messagePosition"] = "messagePosition"
+    ID: typing.Literal["messagePosition"] = Field("messagePosition", validation_alias="@type", alias="@type")
     position: Int32
     message_id: Int53
     date: Int32
@@ -10847,7 +11589,7 @@ class MessagePositions(BaseObject):
     :type positions: :class:`Vector[MessagePosition]`
     """
 
-    ID: typing.Literal["messagePositions"] = "messagePositions"
+    ID: typing.Literal["messagePositions"] = Field("messagePositions", validation_alias="@type", alias="@type")
     total_count: Int32
     positions: Vector[MessagePosition]
 
@@ -10866,7 +11608,7 @@ class MessageReaction(BaseObject):
     :type is_chosen: :class:`Bool`
     """
 
-    ID: typing.Literal["messageReaction"] = "messageReaction"
+    ID: typing.Literal["messageReaction"] = Field("messageReaction", validation_alias="@type", alias="@type")
     type_: ReactionType = Field(..., alias="type")
     total_count: Int32
     recent_sender_ids: Vector[MessageSender]
@@ -10889,7 +11631,7 @@ class MessageReplyInfo(BaseObject):
     :type last_message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["messageReplyInfo"] = "messageReplyInfo"
+    ID: typing.Literal["messageReplyInfo"] = Field("messageReplyInfo", validation_alias="@type", alias="@type")
     reply_count: Int32
     recent_replier_ids: Vector[MessageSender]
     last_read_inbox_message_id: Int53
@@ -10907,7 +11649,9 @@ class MessageReplyToMessage(BaseObject):
     :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["messageReplyToMessage"] = "messageReplyToMessage"
+    ID: typing.Literal["messageReplyToMessage"] = Field(
+        "messageReplyToMessage", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
 
@@ -10922,7 +11666,7 @@ class MessageReplyToStory(BaseObject):
     :type story_id: :class:`Int32`
     """
 
-    ID: typing.Literal["messageReplyToStory"] = "messageReplyToStory"
+    ID: typing.Literal["messageReplyToStory"] = Field("messageReplyToStory", validation_alias="@type", alias="@type")
     story_sender_chat_id: Int53
     story_id: Int32
 
@@ -10941,7 +11685,9 @@ class MessageSchedulingStateSendAtDate(BaseObject):
     :type send_date: :class:`Int32`
     """
 
-    ID: typing.Literal["messageSchedulingStateSendAtDate"] = "messageSchedulingStateSendAtDate"
+    ID: typing.Literal["messageSchedulingStateSendAtDate"] = Field(
+        "messageSchedulingStateSendAtDate", validation_alias="@type", alias="@type"
+    )
     send_date: Int32
 
 
@@ -10950,7 +11696,9 @@ class MessageSchedulingStateSendWhenOnline(BaseObject):
     The message will be sent when the peer will be online. Applicable to private chats only and when the exact online status of the peer is known
     """
 
-    ID: typing.Literal["messageSchedulingStateSendWhenOnline"] = "messageSchedulingStateSendWhenOnline"
+    ID: typing.Literal["messageSchedulingStateSendWhenOnline"] = Field(
+        "messageSchedulingStateSendWhenOnline", validation_alias="@type", alias="@type"
+    )
 
 
 MessageSchedulingState = typing.Union[
@@ -10964,7 +11712,9 @@ class MessageSelfDestructTypeImmediately(BaseObject):
     The message can be opened only once and will be self-destructed once closed
     """
 
-    ID: typing.Literal["messageSelfDestructTypeImmediately"] = "messageSelfDestructTypeImmediately"
+    ID: typing.Literal["messageSelfDestructTypeImmediately"] = Field(
+        "messageSelfDestructTypeImmediately", validation_alias="@type", alias="@type"
+    )
 
 
 class MessageSelfDestructTypeTimer(BaseObject):
@@ -10975,7 +11725,9 @@ class MessageSelfDestructTypeTimer(BaseObject):
     :type self_destruct_time: :class:`Int32`
     """
 
-    ID: typing.Literal["messageSelfDestructTypeTimer"] = "messageSelfDestructTypeTimer"
+    ID: typing.Literal["messageSelfDestructTypeTimer"] = Field(
+        "messageSelfDestructTypeTimer", validation_alias="@type", alias="@type"
+    )
     self_destruct_time: Int32
 
 
@@ -11003,7 +11755,7 @@ class MessageSendOptions(BaseObject):
     :type scheduling_state: :class:`MessageSchedulingState`, optional
     """
 
-    ID: typing.Literal["messageSendOptions"] = "messageSendOptions"
+    ID: typing.Literal["messageSendOptions"] = Field("messageSendOptions", validation_alias="@type", alias="@type")
     sending_id: Int32
     disable_notification: Bool = False
     from_background: Bool = False
@@ -11020,7 +11772,7 @@ class MessageSenderChat(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["messageSenderChat"] = "messageSenderChat"
+    ID: typing.Literal["messageSenderChat"] = Field("messageSenderChat", validation_alias="@type", alias="@type")
     chat_id: Int53
 
 
@@ -11032,7 +11784,7 @@ class MessageSenderUser(BaseObject):
     :type user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["messageSenderUser"] = "messageSenderUser"
+    ID: typing.Literal["messageSenderUser"] = Field("messageSenderUser", validation_alias="@type", alias="@type")
     user_id: Int53
 
 
@@ -11052,7 +11804,7 @@ class MessageSenders(BaseObject):
     :type senders: :class:`Vector[MessageSender]`
     """
 
-    ID: typing.Literal["messageSenders"] = "messageSenders"
+    ID: typing.Literal["messageSenders"] = Field("messageSenders", validation_alias="@type", alias="@type")
     total_count: Int32
     senders: Vector[MessageSender]
 
@@ -11073,7 +11825,9 @@ class MessageSendingStateFailed(BaseObject):
     :type error_code: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["messageSendingStateFailed"] = "messageSendingStateFailed"
+    ID: typing.Literal["messageSendingStateFailed"] = Field(
+        "messageSendingStateFailed", validation_alias="@type", alias="@type"
+    )
     error_message: String
     retry_after: Double
     can_retry: Bool = False
@@ -11089,7 +11843,9 @@ class MessageSendingStatePending(BaseObject):
     :type sending_id: :class:`Int32`
     """
 
-    ID: typing.Literal["messageSendingStatePending"] = "messageSendingStatePending"
+    ID: typing.Literal["messageSendingStatePending"] = Field(
+        "messageSendingStatePending", validation_alias="@type", alias="@type"
+    )
     sending_id: Int32
 
 
@@ -11104,7 +11860,9 @@ class MessageSourceChatEventLog(BaseObject):
     The message is from a chat event log
     """
 
-    ID: typing.Literal["messageSourceChatEventLog"] = "messageSourceChatEventLog"
+    ID: typing.Literal["messageSourceChatEventLog"] = Field(
+        "messageSourceChatEventLog", validation_alias="@type", alias="@type"
+    )
 
 
 class MessageSourceChatHistory(BaseObject):
@@ -11112,7 +11870,9 @@ class MessageSourceChatHistory(BaseObject):
     The message is from a chat history
     """
 
-    ID: typing.Literal["messageSourceChatHistory"] = "messageSourceChatHistory"
+    ID: typing.Literal["messageSourceChatHistory"] = Field(
+        "messageSourceChatHistory", validation_alias="@type", alias="@type"
+    )
 
 
 class MessageSourceChatList(BaseObject):
@@ -11120,7 +11880,9 @@ class MessageSourceChatList(BaseObject):
     The message is from a chat list or a forum topic list
     """
 
-    ID: typing.Literal["messageSourceChatList"] = "messageSourceChatList"
+    ID: typing.Literal["messageSourceChatList"] = Field(
+        "messageSourceChatList", validation_alias="@type", alias="@type"
+    )
 
 
 class MessageSourceForumTopicHistory(BaseObject):
@@ -11128,7 +11890,9 @@ class MessageSourceForumTopicHistory(BaseObject):
     The message is from a forum topic history
     """
 
-    ID: typing.Literal["messageSourceForumTopicHistory"] = "messageSourceForumTopicHistory"
+    ID: typing.Literal["messageSourceForumTopicHistory"] = Field(
+        "messageSourceForumTopicHistory", validation_alias="@type", alias="@type"
+    )
 
 
 class MessageSourceHistoryPreview(BaseObject):
@@ -11136,7 +11900,9 @@ class MessageSourceHistoryPreview(BaseObject):
     The message is from chat, message thread or forum topic history preview
     """
 
-    ID: typing.Literal["messageSourceHistoryPreview"] = "messageSourceHistoryPreview"
+    ID: typing.Literal["messageSourceHistoryPreview"] = Field(
+        "messageSourceHistoryPreview", validation_alias="@type", alias="@type"
+    )
 
 
 class MessageSourceMessageThreadHistory(BaseObject):
@@ -11144,7 +11910,9 @@ class MessageSourceMessageThreadHistory(BaseObject):
     The message is from a message thread history
     """
 
-    ID: typing.Literal["messageSourceMessageThreadHistory"] = "messageSourceMessageThreadHistory"
+    ID: typing.Literal["messageSourceMessageThreadHistory"] = Field(
+        "messageSourceMessageThreadHistory", validation_alias="@type", alias="@type"
+    )
 
 
 class MessageSourceNotification(BaseObject):
@@ -11152,7 +11920,9 @@ class MessageSourceNotification(BaseObject):
     The message is from a notification
     """
 
-    ID: typing.Literal["messageSourceNotification"] = "messageSourceNotification"
+    ID: typing.Literal["messageSourceNotification"] = Field(
+        "messageSourceNotification", validation_alias="@type", alias="@type"
+    )
 
 
 class MessageSourceOther(BaseObject):
@@ -11160,7 +11930,7 @@ class MessageSourceOther(BaseObject):
     The message is from some other source
     """
 
-    ID: typing.Literal["messageSourceOther"] = "messageSourceOther"
+    ID: typing.Literal["messageSourceOther"] = Field("messageSourceOther", validation_alias="@type", alias="@type")
 
 
 class MessageSourceScreenshot(BaseObject):
@@ -11168,7 +11938,9 @@ class MessageSourceScreenshot(BaseObject):
     The message was screenshotted; the source must be used only if the message content was visible during the screenshot
     """
 
-    ID: typing.Literal["messageSourceScreenshot"] = "messageSourceScreenshot"
+    ID: typing.Literal["messageSourceScreenshot"] = Field(
+        "messageSourceScreenshot", validation_alias="@type", alias="@type"
+    )
 
 
 class MessageSourceSearch(BaseObject):
@@ -11176,7 +11948,7 @@ class MessageSourceSearch(BaseObject):
     The message is from search results, including file downloads, local file list, outgoing document messages, calendar
     """
 
-    ID: typing.Literal["messageSourceSearch"] = "messageSourceSearch"
+    ID: typing.Literal["messageSourceSearch"] = Field("messageSourceSearch", validation_alias="@type", alias="@type")
 
 
 MessageSource = typing.Union[
@@ -11205,7 +11977,7 @@ class MessageSponsor(BaseObject):
     :type photo: :class:`ChatPhotoInfo`, optional
     """
 
-    ID: typing.Literal["messageSponsor"] = "messageSponsor"
+    ID: typing.Literal["messageSponsor"] = Field("messageSponsor", validation_alias="@type", alias="@type")
     type_: MessageSponsorType = Field(..., alias="type")
     info: String
     photo: typing.Optional[ChatPhotoInfo] = None
@@ -11221,7 +11993,9 @@ class MessageSponsorTypeBot(BaseObject):
     :type link: :class:`InternalLinkType`
     """
 
-    ID: typing.Literal["messageSponsorTypeBot"] = "messageSponsorTypeBot"
+    ID: typing.Literal["messageSponsorTypeBot"] = Field(
+        "messageSponsorTypeBot", validation_alias="@type", alias="@type"
+    )
     bot_user_id: Int53
     link: InternalLinkType
 
@@ -11236,7 +12010,9 @@ class MessageSponsorTypePrivateChannel(BaseObject):
     :type invite_link: :class:`String`
     """
 
-    ID: typing.Literal["messageSponsorTypePrivateChannel"] = "messageSponsorTypePrivateChannel"
+    ID: typing.Literal["messageSponsorTypePrivateChannel"] = Field(
+        "messageSponsorTypePrivateChannel", validation_alias="@type", alias="@type"
+    )
     title: String
     invite_link: String
 
@@ -11251,7 +12027,9 @@ class MessageSponsorTypePublicChannel(BaseObject):
     :type link: :class:`InternalLinkType`, optional
     """
 
-    ID: typing.Literal["messageSponsorTypePublicChannel"] = "messageSponsorTypePublicChannel"
+    ID: typing.Literal["messageSponsorTypePublicChannel"] = Field(
+        "messageSponsorTypePublicChannel", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     link: typing.Optional[InternalLinkType] = None
 
@@ -11266,7 +12044,9 @@ class MessageSponsorTypeWebsite(BaseObject):
     :type name: :class:`String`
     """
 
-    ID: typing.Literal["messageSponsorTypeWebsite"] = "messageSponsorTypeWebsite"
+    ID: typing.Literal["messageSponsorTypeWebsite"] = Field(
+        "messageSponsorTypeWebsite", validation_alias="@type", alias="@type"
+    )
     url: String
     name: String
 
@@ -11287,7 +12067,7 @@ class MessageStatistics(BaseObject):
     :type message_interaction_graph: :class:`StatisticalGraph`
     """
 
-    ID: typing.Literal["messageStatistics"] = "messageStatistics"
+    ID: typing.Literal["messageStatistics"] = Field("messageStatistics", validation_alias="@type", alias="@type")
     message_interaction_graph: StatisticalGraph
 
 
@@ -11309,7 +12089,7 @@ class MessageThreadInfo(BaseObject):
     :type draft_message: :class:`DraftMessage`, optional
     """
 
-    ID: typing.Literal["messageThreadInfo"] = "messageThreadInfo"
+    ID: typing.Literal["messageThreadInfo"] = Field("messageThreadInfo", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_thread_id: Int53
     unread_message_count: Int32
@@ -11328,7 +12108,7 @@ class MessageViewer(BaseObject):
     :type view_date: :class:`Int32`
     """
 
-    ID: typing.Literal["messageViewer"] = "messageViewer"
+    ID: typing.Literal["messageViewer"] = Field("messageViewer", validation_alias="@type", alias="@type")
     user_id: Int53
     view_date: Int32
 
@@ -11341,7 +12121,7 @@ class MessageViewers(BaseObject):
     :type viewers: :class:`Vector[MessageViewer]`
     """
 
-    ID: typing.Literal["messageViewers"] = "messageViewers"
+    ID: typing.Literal["messageViewers"] = Field("messageViewers", validation_alias="@type", alias="@type")
     viewers: Vector[MessageViewer]
 
 
@@ -11355,7 +12135,7 @@ class Messages(BaseObject):
     :type messages: :class:`Vector[Message]`, optional
     """
 
-    ID: typing.Literal["messages"] = "messages"
+    ID: typing.Literal["messages"] = Field("messages", validation_alias="@type", alias="@type")
     total_count: Int32
     messages: Vector[typing.Optional[Message]] = None
 
@@ -11372,7 +12152,7 @@ class Minithumbnail(BaseObject):
     :type data: :class:`Bytes`
     """
 
-    ID: typing.Literal["minithumbnail"] = "minithumbnail"
+    ID: typing.Literal["minithumbnail"] = Field("minithumbnail", validation_alias="@type", alias="@type")
     width: Int32
     height: Int32
     data: Bytes
@@ -11388,7 +12168,7 @@ class NetworkStatistics(BaseObject):
     :type entries: :class:`Vector[NetworkStatisticsEntry]`
     """
 
-    ID: typing.Literal["networkStatistics"] = "networkStatistics"
+    ID: typing.Literal["networkStatistics"] = Field("networkStatistics", validation_alias="@type", alias="@type")
     since_date: Int32
     entries: Vector[NetworkStatisticsEntry]
 
@@ -11407,7 +12187,9 @@ class NetworkStatisticsEntryCall(BaseObject):
     :type duration: :class:`Double`
     """
 
-    ID: typing.Literal["networkStatisticsEntryCall"] = "networkStatisticsEntryCall"
+    ID: typing.Literal["networkStatisticsEntryCall"] = Field(
+        "networkStatisticsEntryCall", validation_alias="@type", alias="@type"
+    )
     network_type: NetworkType
     sent_bytes: Int53
     received_bytes: Int53
@@ -11428,7 +12210,9 @@ class NetworkStatisticsEntryFile(BaseObject):
     :type file_type: :class:`FileType`, optional
     """
 
-    ID: typing.Literal["networkStatisticsEntryFile"] = "networkStatisticsEntryFile"
+    ID: typing.Literal["networkStatisticsEntryFile"] = Field(
+        "networkStatisticsEntryFile", validation_alias="@type", alias="@type"
+    )
     network_type: NetworkType
     sent_bytes: Int53
     received_bytes: Int53
@@ -11446,7 +12230,7 @@ class NetworkTypeMobile(BaseObject):
     A mobile network
     """
 
-    ID: typing.Literal["networkTypeMobile"] = "networkTypeMobile"
+    ID: typing.Literal["networkTypeMobile"] = Field("networkTypeMobile", validation_alias="@type", alias="@type")
 
 
 class NetworkTypeMobileRoaming(BaseObject):
@@ -11454,7 +12238,9 @@ class NetworkTypeMobileRoaming(BaseObject):
     A mobile roaming network
     """
 
-    ID: typing.Literal["networkTypeMobileRoaming"] = "networkTypeMobileRoaming"
+    ID: typing.Literal["networkTypeMobileRoaming"] = Field(
+        "networkTypeMobileRoaming", validation_alias="@type", alias="@type"
+    )
 
 
 class NetworkTypeNone(BaseObject):
@@ -11462,7 +12248,7 @@ class NetworkTypeNone(BaseObject):
     The network is not available
     """
 
-    ID: typing.Literal["networkTypeNone"] = "networkTypeNone"
+    ID: typing.Literal["networkTypeNone"] = Field("networkTypeNone", validation_alias="@type", alias="@type")
 
 
 class NetworkTypeOther(BaseObject):
@@ -11470,7 +12256,7 @@ class NetworkTypeOther(BaseObject):
     A different network type (e.g., Ethernet network)
     """
 
-    ID: typing.Literal["networkTypeOther"] = "networkTypeOther"
+    ID: typing.Literal["networkTypeOther"] = Field("networkTypeOther", validation_alias="@type", alias="@type")
 
 
 class NetworkTypeWiFi(BaseObject):
@@ -11478,7 +12264,7 @@ class NetworkTypeWiFi(BaseObject):
     A Wi-Fi network
     """
 
-    ID: typing.Literal["networkTypeWiFi"] = "networkTypeWiFi"
+    ID: typing.Literal["networkTypeWiFi"] = Field("networkTypeWiFi", validation_alias="@type", alias="@type")
 
 
 NetworkType = typing.Union[
@@ -11504,7 +12290,7 @@ class Notification(BaseObject):
     :type is_silent: :class:`Bool`
     """
 
-    ID: typing.Literal["notification"] = "notification"
+    ID: typing.Literal["notification"] = Field("notification", validation_alias="@type", alias="@type")
     id: Int32
     date: Int32
     type_: NotificationType = Field(..., alias="type")
@@ -11527,7 +12313,7 @@ class NotificationGroup(BaseObject):
     :type notifications: :class:`Vector[Notification]`
     """
 
-    ID: typing.Literal["notificationGroup"] = "notificationGroup"
+    ID: typing.Literal["notificationGroup"] = Field("notificationGroup", validation_alias="@type", alias="@type")
     id: Int32
     type_: NotificationGroupType = Field(..., alias="type")
     chat_id: Int53
@@ -11540,7 +12326,9 @@ class NotificationGroupTypeCalls(BaseObject):
     A group containing notifications of type notificationTypeNewCall
     """
 
-    ID: typing.Literal["notificationGroupTypeCalls"] = "notificationGroupTypeCalls"
+    ID: typing.Literal["notificationGroupTypeCalls"] = Field(
+        "notificationGroupTypeCalls", validation_alias="@type", alias="@type"
+    )
 
 
 class NotificationGroupTypeMentions(BaseObject):
@@ -11548,7 +12336,9 @@ class NotificationGroupTypeMentions(BaseObject):
     A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with unread mentions of the current user, replies to their messages, or a pinned message
     """
 
-    ID: typing.Literal["notificationGroupTypeMentions"] = "notificationGroupTypeMentions"
+    ID: typing.Literal["notificationGroupTypeMentions"] = Field(
+        "notificationGroupTypeMentions", validation_alias="@type", alias="@type"
+    )
 
 
 class NotificationGroupTypeMessages(BaseObject):
@@ -11556,7 +12346,9 @@ class NotificationGroupTypeMessages(BaseObject):
     A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages
     """
 
-    ID: typing.Literal["notificationGroupTypeMessages"] = "notificationGroupTypeMessages"
+    ID: typing.Literal["notificationGroupTypeMessages"] = Field(
+        "notificationGroupTypeMessages", validation_alias="@type", alias="@type"
+    )
 
 
 class NotificationGroupTypeSecretChat(BaseObject):
@@ -11564,7 +12356,9 @@ class NotificationGroupTypeSecretChat(BaseObject):
     A group containing a notification of type notificationTypeNewSecretChat
     """
 
-    ID: typing.Literal["notificationGroupTypeSecretChat"] = "notificationGroupTypeSecretChat"
+    ID: typing.Literal["notificationGroupTypeSecretChat"] = Field(
+        "notificationGroupTypeSecretChat", validation_alias="@type", alias="@type"
+    )
 
 
 NotificationGroupType = typing.Union[
@@ -11580,7 +12374,9 @@ class NotificationSettingsScopeChannelChats(BaseObject):
     Notification settings applied to all channel chats when the corresponding chat setting has a default value
     """
 
-    ID: typing.Literal["notificationSettingsScopeChannelChats"] = "notificationSettingsScopeChannelChats"
+    ID: typing.Literal["notificationSettingsScopeChannelChats"] = Field(
+        "notificationSettingsScopeChannelChats", validation_alias="@type", alias="@type"
+    )
 
 
 class NotificationSettingsScopeGroupChats(BaseObject):
@@ -11588,7 +12384,9 @@ class NotificationSettingsScopeGroupChats(BaseObject):
     Notification settings applied to all basic group and supergroup chats when the corresponding chat setting has a default value
     """
 
-    ID: typing.Literal["notificationSettingsScopeGroupChats"] = "notificationSettingsScopeGroupChats"
+    ID: typing.Literal["notificationSettingsScopeGroupChats"] = Field(
+        "notificationSettingsScopeGroupChats", validation_alias="@type", alias="@type"
+    )
 
 
 class NotificationSettingsScopePrivateChats(BaseObject):
@@ -11596,7 +12394,9 @@ class NotificationSettingsScopePrivateChats(BaseObject):
     Notification settings applied to all private and secret chats when the corresponding chat setting has a default value
     """
 
-    ID: typing.Literal["notificationSettingsScopePrivateChats"] = "notificationSettingsScopePrivateChats"
+    ID: typing.Literal["notificationSettingsScopePrivateChats"] = Field(
+        "notificationSettingsScopePrivateChats", validation_alias="@type", alias="@type"
+    )
 
 
 NotificationSettingsScope = typing.Union[
@@ -11624,7 +12424,7 @@ class NotificationSound(BaseObject):
     :type sound: :class:`File`
     """
 
-    ID: typing.Literal["notificationSound"] = "notificationSound"
+    ID: typing.Literal["notificationSound"] = Field("notificationSound", validation_alias="@type", alias="@type")
     id: Int64
     duration: Int32
     date: Int32
@@ -11641,7 +12441,7 @@ class NotificationSounds(BaseObject):
     :type notification_sounds: :class:`Vector[NotificationSound]`
     """
 
-    ID: typing.Literal["notificationSounds"] = "notificationSounds"
+    ID: typing.Literal["notificationSounds"] = Field("notificationSounds", validation_alias="@type", alias="@type")
     notification_sounds: Vector[NotificationSound]
 
 
@@ -11653,7 +12453,9 @@ class NotificationTypeNewCall(BaseObject):
     :type call_id: :class:`Int32`
     """
 
-    ID: typing.Literal["notificationTypeNewCall"] = "notificationTypeNewCall"
+    ID: typing.Literal["notificationTypeNewCall"] = Field(
+        "notificationTypeNewCall", validation_alias="@type", alias="@type"
+    )
     call_id: Int32
 
 
@@ -11667,7 +12469,9 @@ class NotificationTypeNewMessage(BaseObject):
     :type show_preview: :class:`Bool`
     """
 
-    ID: typing.Literal["notificationTypeNewMessage"] = "notificationTypeNewMessage"
+    ID: typing.Literal["notificationTypeNewMessage"] = Field(
+        "notificationTypeNewMessage", validation_alias="@type", alias="@type"
+    )
     message: Message
     show_preview: Bool = False
 
@@ -11688,7 +12492,9 @@ class NotificationTypeNewPushMessage(BaseObject):
     :type is_outgoing: :class:`Bool`
     """
 
-    ID: typing.Literal["notificationTypeNewPushMessage"] = "notificationTypeNewPushMessage"
+    ID: typing.Literal["notificationTypeNewPushMessage"] = Field(
+        "notificationTypeNewPushMessage", validation_alias="@type", alias="@type"
+    )
     message_id: Int53
     sender_id: MessageSender
     sender_name: String
@@ -11701,7 +12507,9 @@ class NotificationTypeNewSecretChat(BaseObject):
     New secret chat was created
     """
 
-    ID: typing.Literal["notificationTypeNewSecretChat"] = "notificationTypeNewSecretChat"
+    ID: typing.Literal["notificationTypeNewSecretChat"] = Field(
+        "notificationTypeNewSecretChat", validation_alias="@type", alias="@type"
+    )
 
 
 NotificationType = typing.Union[
@@ -11717,7 +12525,7 @@ class Ok(BaseObject):
     An object of this type is returned on a successful function call for certain functions
     """
 
-    ID: typing.Literal["ok"] = "ok"
+    ID: typing.Literal["ok"] = Field("ok", validation_alias="@type", alias="@type")
 
 
 class OptionValueBoolean(BaseObject):
@@ -11728,7 +12536,7 @@ class OptionValueBoolean(BaseObject):
     :type value: :class:`Bool`
     """
 
-    ID: typing.Literal["optionValueBoolean"] = "optionValueBoolean"
+    ID: typing.Literal["optionValueBoolean"] = Field("optionValueBoolean", validation_alias="@type", alias="@type")
     value: Bool
 
 
@@ -11737,7 +12545,7 @@ class OptionValueEmpty(BaseObject):
     Represents an unknown option or an option which has a default value
     """
 
-    ID: typing.Literal["optionValueEmpty"] = "optionValueEmpty"
+    ID: typing.Literal["optionValueEmpty"] = Field("optionValueEmpty", validation_alias="@type", alias="@type")
 
 
 class OptionValueInteger(BaseObject):
@@ -11748,7 +12556,7 @@ class OptionValueInteger(BaseObject):
     :type value: :class:`Int64`
     """
 
-    ID: typing.Literal["optionValueInteger"] = "optionValueInteger"
+    ID: typing.Literal["optionValueInteger"] = Field("optionValueInteger", validation_alias="@type", alias="@type")
     value: Int64
 
 
@@ -11760,7 +12568,7 @@ class OptionValueString(BaseObject):
     :type value: :class:`String`
     """
 
-    ID: typing.Literal["optionValueString"] = "optionValueString"
+    ID: typing.Literal["optionValueString"] = Field("optionValueString", validation_alias="@type", alias="@type")
     value: String
 
 
@@ -11786,7 +12594,7 @@ class OrderInfo(BaseObject):
     :type shipping_address: :class:`Address`, optional
     """
 
-    ID: typing.Literal["orderInfo"] = "orderInfo"
+    ID: typing.Literal["orderInfo"] = Field("orderInfo", validation_alias="@type", alias="@type")
     name: String
     phone_number: String
     email_address: String
@@ -11801,7 +12609,7 @@ class PageBlockAnchor(BaseObject):
     :type name: :class:`String`
     """
 
-    ID: typing.Literal["pageBlockAnchor"] = "pageBlockAnchor"
+    ID: typing.Literal["pageBlockAnchor"] = Field("pageBlockAnchor", validation_alias="@type", alias="@type")
     name: String
 
 
@@ -11817,7 +12625,7 @@ class PageBlockAnimation(BaseObject):
     :type need_autoplay: :class:`Bool`
     """
 
-    ID: typing.Literal["pageBlockAnimation"] = "pageBlockAnimation"
+    ID: typing.Literal["pageBlockAnimation"] = Field("pageBlockAnimation", validation_alias="@type", alias="@type")
     caption: PageBlockCaption
     animation: typing.Optional[Animation] = None
     need_autoplay: Bool = False
@@ -11833,7 +12641,7 @@ class PageBlockAudio(BaseObject):
     :type audio: :class:`Audio`, optional
     """
 
-    ID: typing.Literal["pageBlockAudio"] = "pageBlockAudio"
+    ID: typing.Literal["pageBlockAudio"] = Field("pageBlockAudio", validation_alias="@type", alias="@type")
     caption: PageBlockCaption
     audio: typing.Optional[Audio] = None
 
@@ -11848,7 +12656,7 @@ class PageBlockAuthorDate(BaseObject):
     :type publish_date: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["pageBlockAuthorDate"] = "pageBlockAuthorDate"
+    ID: typing.Literal["pageBlockAuthorDate"] = Field("pageBlockAuthorDate", validation_alias="@type", alias="@type")
     author: RichText
     publish_date: typing.Optional[Int32] = 0
 
@@ -11863,7 +12671,7 @@ class PageBlockBlockQuote(BaseObject):
     :type credit: :class:`RichText`
     """
 
-    ID: typing.Literal["pageBlockBlockQuote"] = "pageBlockBlockQuote"
+    ID: typing.Literal["pageBlockBlockQuote"] = Field("pageBlockBlockQuote", validation_alias="@type", alias="@type")
     text: RichText
     credit: RichText
 
@@ -11880,7 +12688,7 @@ class PageBlockChatLink(BaseObject):
     :type photo: :class:`ChatPhotoInfo`, optional
     """
 
-    ID: typing.Literal["pageBlockChatLink"] = "pageBlockChatLink"
+    ID: typing.Literal["pageBlockChatLink"] = Field("pageBlockChatLink", validation_alias="@type", alias="@type")
     title: String
     username: String
     photo: typing.Optional[ChatPhotoInfo] = None
@@ -11896,7 +12704,7 @@ class PageBlockCollage(BaseObject):
     :type caption: :class:`PageBlockCaption`
     """
 
-    ID: typing.Literal["pageBlockCollage"] = "pageBlockCollage"
+    ID: typing.Literal["pageBlockCollage"] = Field("pageBlockCollage", validation_alias="@type", alias="@type")
     page_blocks: Vector[PageBlock]
     caption: PageBlockCaption
 
@@ -11909,7 +12717,7 @@ class PageBlockCover(BaseObject):
     :type cover: :class:`PageBlock`
     """
 
-    ID: typing.Literal["pageBlockCover"] = "pageBlockCover"
+    ID: typing.Literal["pageBlockCover"] = Field("pageBlockCover", validation_alias="@type", alias="@type")
     cover: PageBlock
 
 
@@ -11925,7 +12733,7 @@ class PageBlockDetails(BaseObject):
     :type is_open: :class:`Bool`
     """
 
-    ID: typing.Literal["pageBlockDetails"] = "pageBlockDetails"
+    ID: typing.Literal["pageBlockDetails"] = Field("pageBlockDetails", validation_alias="@type", alias="@type")
     header: RichText
     page_blocks: Vector[PageBlock]
     is_open: Bool = False
@@ -11936,7 +12744,7 @@ class PageBlockDivider(BaseObject):
     An empty block separating a page
     """
 
-    ID: typing.Literal["pageBlockDivider"] = "pageBlockDivider"
+    ID: typing.Literal["pageBlockDivider"] = Field("pageBlockDivider", validation_alias="@type", alias="@type")
 
 
 class PageBlockEmbedded(BaseObject):
@@ -11961,7 +12769,7 @@ class PageBlockEmbedded(BaseObject):
     :type height: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["pageBlockEmbedded"] = "pageBlockEmbedded"
+    ID: typing.Literal["pageBlockEmbedded"] = Field("pageBlockEmbedded", validation_alias="@type", alias="@type")
     url: String
     html: String
     caption: PageBlockCaption
@@ -11990,7 +12798,9 @@ class PageBlockEmbeddedPost(BaseObject):
     :type date: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["pageBlockEmbeddedPost"] = "pageBlockEmbeddedPost"
+    ID: typing.Literal["pageBlockEmbeddedPost"] = Field(
+        "pageBlockEmbeddedPost", validation_alias="@type", alias="@type"
+    )
     url: String
     author: String
     page_blocks: Vector[PageBlock]
@@ -12007,7 +12817,7 @@ class PageBlockFooter(BaseObject):
     :type footer: :class:`RichText`
     """
 
-    ID: typing.Literal["pageBlockFooter"] = "pageBlockFooter"
+    ID: typing.Literal["pageBlockFooter"] = Field("pageBlockFooter", validation_alias="@type", alias="@type")
     footer: RichText
 
 
@@ -12019,7 +12829,7 @@ class PageBlockHeader(BaseObject):
     :type header: :class:`RichText`
     """
 
-    ID: typing.Literal["pageBlockHeader"] = "pageBlockHeader"
+    ID: typing.Literal["pageBlockHeader"] = Field("pageBlockHeader", validation_alias="@type", alias="@type")
     header: RichText
 
 
@@ -12031,7 +12841,7 @@ class PageBlockKicker(BaseObject):
     :type kicker: :class:`RichText`
     """
 
-    ID: typing.Literal["pageBlockKicker"] = "pageBlockKicker"
+    ID: typing.Literal["pageBlockKicker"] = Field("pageBlockKicker", validation_alias="@type", alias="@type")
     kicker: RichText
 
 
@@ -12043,7 +12853,7 @@ class PageBlockList(BaseObject):
     :type items: :class:`Vector[PageBlockListItem]`
     """
 
-    ID: typing.Literal["pageBlockList"] = "pageBlockList"
+    ID: typing.Literal["pageBlockList"] = Field("pageBlockList", validation_alias="@type", alias="@type")
     items: Vector[PageBlockListItem]
 
 
@@ -12063,7 +12873,7 @@ class PageBlockMap(BaseObject):
     :type caption: :class:`PageBlockCaption`
     """
 
-    ID: typing.Literal["pageBlockMap"] = "pageBlockMap"
+    ID: typing.Literal["pageBlockMap"] = Field("pageBlockMap", validation_alias="@type", alias="@type")
     location: Location
     zoom: Int32
     width: Int32
@@ -12079,7 +12889,7 @@ class PageBlockParagraph(BaseObject):
     :type text: :class:`RichText`
     """
 
-    ID: typing.Literal["pageBlockParagraph"] = "pageBlockParagraph"
+    ID: typing.Literal["pageBlockParagraph"] = Field("pageBlockParagraph", validation_alias="@type", alias="@type")
     text: RichText
 
 
@@ -12095,7 +12905,7 @@ class PageBlockPhoto(BaseObject):
     :type photo: :class:`Photo`, optional
     """
 
-    ID: typing.Literal["pageBlockPhoto"] = "pageBlockPhoto"
+    ID: typing.Literal["pageBlockPhoto"] = Field("pageBlockPhoto", validation_alias="@type", alias="@type")
     caption: PageBlockCaption
     url: String
     photo: typing.Optional[Photo] = None
@@ -12111,7 +12921,9 @@ class PageBlockPreformatted(BaseObject):
     :type language: :class:`String`
     """
 
-    ID: typing.Literal["pageBlockPreformatted"] = "pageBlockPreformatted"
+    ID: typing.Literal["pageBlockPreformatted"] = Field(
+        "pageBlockPreformatted", validation_alias="@type", alias="@type"
+    )
     text: RichText
     language: String
 
@@ -12126,7 +12938,7 @@ class PageBlockPullQuote(BaseObject):
     :type credit: :class:`RichText`
     """
 
-    ID: typing.Literal["pageBlockPullQuote"] = "pageBlockPullQuote"
+    ID: typing.Literal["pageBlockPullQuote"] = Field("pageBlockPullQuote", validation_alias="@type", alias="@type")
     text: RichText
     credit: RichText
 
@@ -12141,7 +12953,9 @@ class PageBlockRelatedArticles(BaseObject):
     :type articles: :class:`Vector[PageBlockRelatedArticle]`
     """
 
-    ID: typing.Literal["pageBlockRelatedArticles"] = "pageBlockRelatedArticles"
+    ID: typing.Literal["pageBlockRelatedArticles"] = Field(
+        "pageBlockRelatedArticles", validation_alias="@type", alias="@type"
+    )
     header: RichText
     articles: Vector[PageBlockRelatedArticle]
 
@@ -12156,7 +12970,7 @@ class PageBlockSlideshow(BaseObject):
     :type caption: :class:`PageBlockCaption`
     """
 
-    ID: typing.Literal["pageBlockSlideshow"] = "pageBlockSlideshow"
+    ID: typing.Literal["pageBlockSlideshow"] = Field("pageBlockSlideshow", validation_alias="@type", alias="@type")
     page_blocks: Vector[PageBlock]
     caption: PageBlockCaption
 
@@ -12169,7 +12983,7 @@ class PageBlockSubheader(BaseObject):
     :type subheader: :class:`RichText`
     """
 
-    ID: typing.Literal["pageBlockSubheader"] = "pageBlockSubheader"
+    ID: typing.Literal["pageBlockSubheader"] = Field("pageBlockSubheader", validation_alias="@type", alias="@type")
     subheader: RichText
 
 
@@ -12181,7 +12995,7 @@ class PageBlockSubtitle(BaseObject):
     :type subtitle: :class:`RichText`
     """
 
-    ID: typing.Literal["pageBlockSubtitle"] = "pageBlockSubtitle"
+    ID: typing.Literal["pageBlockSubtitle"] = Field("pageBlockSubtitle", validation_alias="@type", alias="@type")
     subtitle: RichText
 
 
@@ -12199,7 +13013,7 @@ class PageBlockTable(BaseObject):
     :type is_striped: :class:`Bool`
     """
 
-    ID: typing.Literal["pageBlockTable"] = "pageBlockTable"
+    ID: typing.Literal["pageBlockTable"] = Field("pageBlockTable", validation_alias="@type", alias="@type")
     caption: RichText
     cells: Vector[Vector[PageBlockTableCell]]
     is_bordered: Bool = False
@@ -12214,7 +13028,7 @@ class PageBlockTitle(BaseObject):
     :type title: :class:`RichText`
     """
 
-    ID: typing.Literal["pageBlockTitle"] = "pageBlockTitle"
+    ID: typing.Literal["pageBlockTitle"] = Field("pageBlockTitle", validation_alias="@type", alias="@type")
     title: RichText
 
 
@@ -12232,7 +13046,7 @@ class PageBlockVideo(BaseObject):
     :type is_looped: :class:`Bool`
     """
 
-    ID: typing.Literal["pageBlockVideo"] = "pageBlockVideo"
+    ID: typing.Literal["pageBlockVideo"] = Field("pageBlockVideo", validation_alias="@type", alias="@type")
     caption: PageBlockCaption
     video: typing.Optional[Video] = None
     need_autoplay: Bool = False
@@ -12249,7 +13063,7 @@ class PageBlockVoiceNote(BaseObject):
     :type voice_note: :class:`VoiceNote`, optional
     """
 
-    ID: typing.Literal["pageBlockVoiceNote"] = "pageBlockVoiceNote"
+    ID: typing.Literal["pageBlockVoiceNote"] = Field("pageBlockVoiceNote", validation_alias="@type", alias="@type")
     caption: PageBlockCaption
     voice_note: typing.Optional[VoiceNote] = None
 
@@ -12297,7 +13111,7 @@ class PageBlockListItem(BaseObject):
     :type page_blocks: :class:`Vector[PageBlock]`
     """
 
-    ID: typing.Literal["pageBlockListItem"] = "pageBlockListItem"
+    ID: typing.Literal["pageBlockListItem"] = Field("pageBlockListItem", validation_alias="@type", alias="@type")
     label: String
     page_blocks: Vector[PageBlock]
 
@@ -12312,7 +13126,7 @@ class PageBlockCaption(BaseObject):
     :type credit: :class:`RichText`
     """
 
-    ID: typing.Literal["pageBlockCaption"] = "pageBlockCaption"
+    ID: typing.Literal["pageBlockCaption"] = Field("pageBlockCaption", validation_alias="@type", alias="@type")
     text: RichText
     credit: RichText
 
@@ -12322,7 +13136,9 @@ class PageBlockHorizontalAlignmentCenter(BaseObject):
     The content must be center-aligned
     """
 
-    ID: typing.Literal["pageBlockHorizontalAlignmentCenter"] = "pageBlockHorizontalAlignmentCenter"
+    ID: typing.Literal["pageBlockHorizontalAlignmentCenter"] = Field(
+        "pageBlockHorizontalAlignmentCenter", validation_alias="@type", alias="@type"
+    )
 
 
 class PageBlockHorizontalAlignmentLeft(BaseObject):
@@ -12330,7 +13146,9 @@ class PageBlockHorizontalAlignmentLeft(BaseObject):
     The content must be left-aligned
     """
 
-    ID: typing.Literal["pageBlockHorizontalAlignmentLeft"] = "pageBlockHorizontalAlignmentLeft"
+    ID: typing.Literal["pageBlockHorizontalAlignmentLeft"] = Field(
+        "pageBlockHorizontalAlignmentLeft", validation_alias="@type", alias="@type"
+    )
 
 
 class PageBlockHorizontalAlignmentRight(BaseObject):
@@ -12338,7 +13156,9 @@ class PageBlockHorizontalAlignmentRight(BaseObject):
     The content must be right-aligned
     """
 
-    ID: typing.Literal["pageBlockHorizontalAlignmentRight"] = "pageBlockHorizontalAlignmentRight"
+    ID: typing.Literal["pageBlockHorizontalAlignmentRight"] = Field(
+        "pageBlockHorizontalAlignmentRight", validation_alias="@type", alias="@type"
+    )
 
 
 PageBlockHorizontalAlignment = typing.Union[
@@ -12366,7 +13186,9 @@ class PageBlockRelatedArticle(BaseObject):
     :type publish_date: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["pageBlockRelatedArticle"] = "pageBlockRelatedArticle"
+    ID: typing.Literal["pageBlockRelatedArticle"] = Field(
+        "pageBlockRelatedArticle", validation_alias="@type", alias="@type"
+    )
     url: String
     photo: typing.Optional[Photo] = None
     title: String = ""
@@ -12393,7 +13215,7 @@ class PageBlockTableCell(BaseObject):
     :type is_header: :class:`Bool`
     """
 
-    ID: typing.Literal["pageBlockTableCell"] = "pageBlockTableCell"
+    ID: typing.Literal["pageBlockTableCell"] = Field("pageBlockTableCell", validation_alias="@type", alias="@type")
     colspan: Int32
     rowspan: Int32
     align: PageBlockHorizontalAlignment
@@ -12407,7 +13229,9 @@ class PageBlockVerticalAlignmentBottom(BaseObject):
     The content must be bottom-aligned
     """
 
-    ID: typing.Literal["pageBlockVerticalAlignmentBottom"] = "pageBlockVerticalAlignmentBottom"
+    ID: typing.Literal["pageBlockVerticalAlignmentBottom"] = Field(
+        "pageBlockVerticalAlignmentBottom", validation_alias="@type", alias="@type"
+    )
 
 
 class PageBlockVerticalAlignmentMiddle(BaseObject):
@@ -12415,7 +13239,9 @@ class PageBlockVerticalAlignmentMiddle(BaseObject):
     The content must be middle-aligned
     """
 
-    ID: typing.Literal["pageBlockVerticalAlignmentMiddle"] = "pageBlockVerticalAlignmentMiddle"
+    ID: typing.Literal["pageBlockVerticalAlignmentMiddle"] = Field(
+        "pageBlockVerticalAlignmentMiddle", validation_alias="@type", alias="@type"
+    )
 
 
 class PageBlockVerticalAlignmentTop(BaseObject):
@@ -12423,7 +13249,9 @@ class PageBlockVerticalAlignmentTop(BaseObject):
     The content must be top-aligned
     """
 
-    ID: typing.Literal["pageBlockVerticalAlignmentTop"] = "pageBlockVerticalAlignmentTop"
+    ID: typing.Literal["pageBlockVerticalAlignmentTop"] = Field(
+        "pageBlockVerticalAlignmentTop", validation_alias="@type", alias="@type"
+    )
 
 
 PageBlockVerticalAlignment = typing.Union[
@@ -12445,7 +13273,9 @@ class PassportAuthorizationForm(BaseObject):
     :type privacy_policy_url: :class:`String`
     """
 
-    ID: typing.Literal["passportAuthorizationForm"] = "passportAuthorizationForm"
+    ID: typing.Literal["passportAuthorizationForm"] = Field(
+        "passportAuthorizationForm", validation_alias="@type", alias="@type"
+    )
     id: Int32
     required_elements: Vector[PassportRequiredElement]
     privacy_policy_url: String = ""
@@ -12459,7 +13289,9 @@ class PassportElementAddress(BaseObject):
     :type address: :class:`Address`
     """
 
-    ID: typing.Literal["passportElementAddress"] = "passportElementAddress"
+    ID: typing.Literal["passportElementAddress"] = Field(
+        "passportElementAddress", validation_alias="@type", alias="@type"
+    )
     address: Address
 
 
@@ -12471,7 +13303,9 @@ class PassportElementBankStatement(BaseObject):
     :type bank_statement: :class:`PersonalDocument`
     """
 
-    ID: typing.Literal["passportElementBankStatement"] = "passportElementBankStatement"
+    ID: typing.Literal["passportElementBankStatement"] = Field(
+        "passportElementBankStatement", validation_alias="@type", alias="@type"
+    )
     bank_statement: PersonalDocument
 
 
@@ -12483,7 +13317,9 @@ class PassportElementDriverLicense(BaseObject):
     :type driver_license: :class:`IdentityDocument`
     """
 
-    ID: typing.Literal["passportElementDriverLicense"] = "passportElementDriverLicense"
+    ID: typing.Literal["passportElementDriverLicense"] = Field(
+        "passportElementDriverLicense", validation_alias="@type", alias="@type"
+    )
     driver_license: IdentityDocument
 
 
@@ -12495,7 +13331,9 @@ class PassportElementEmailAddress(BaseObject):
     :type email_address: :class:`String`
     """
 
-    ID: typing.Literal["passportElementEmailAddress"] = "passportElementEmailAddress"
+    ID: typing.Literal["passportElementEmailAddress"] = Field(
+        "passportElementEmailAddress", validation_alias="@type", alias="@type"
+    )
     email_address: String
 
 
@@ -12507,7 +13345,9 @@ class PassportElementIdentityCard(BaseObject):
     :type identity_card: :class:`IdentityDocument`
     """
 
-    ID: typing.Literal["passportElementIdentityCard"] = "passportElementIdentityCard"
+    ID: typing.Literal["passportElementIdentityCard"] = Field(
+        "passportElementIdentityCard", validation_alias="@type", alias="@type"
+    )
     identity_card: IdentityDocument
 
 
@@ -12519,7 +13359,9 @@ class PassportElementInternalPassport(BaseObject):
     :type internal_passport: :class:`IdentityDocument`
     """
 
-    ID: typing.Literal["passportElementInternalPassport"] = "passportElementInternalPassport"
+    ID: typing.Literal["passportElementInternalPassport"] = Field(
+        "passportElementInternalPassport", validation_alias="@type", alias="@type"
+    )
     internal_passport: IdentityDocument
 
 
@@ -12531,7 +13373,9 @@ class PassportElementPassport(BaseObject):
     :type passport: :class:`IdentityDocument`
     """
 
-    ID: typing.Literal["passportElementPassport"] = "passportElementPassport"
+    ID: typing.Literal["passportElementPassport"] = Field(
+        "passportElementPassport", validation_alias="@type", alias="@type"
+    )
     passport: IdentityDocument
 
 
@@ -12543,7 +13387,9 @@ class PassportElementPassportRegistration(BaseObject):
     :type passport_registration: :class:`PersonalDocument`
     """
 
-    ID: typing.Literal["passportElementPassportRegistration"] = "passportElementPassportRegistration"
+    ID: typing.Literal["passportElementPassportRegistration"] = Field(
+        "passportElementPassportRegistration", validation_alias="@type", alias="@type"
+    )
     passport_registration: PersonalDocument
 
 
@@ -12555,7 +13401,9 @@ class PassportElementPersonalDetails(BaseObject):
     :type personal_details: :class:`PersonalDetails`
     """
 
-    ID: typing.Literal["passportElementPersonalDetails"] = "passportElementPersonalDetails"
+    ID: typing.Literal["passportElementPersonalDetails"] = Field(
+        "passportElementPersonalDetails", validation_alias="@type", alias="@type"
+    )
     personal_details: PersonalDetails
 
 
@@ -12567,7 +13415,9 @@ class PassportElementPhoneNumber(BaseObject):
     :type phone_number: :class:`String`
     """
 
-    ID: typing.Literal["passportElementPhoneNumber"] = "passportElementPhoneNumber"
+    ID: typing.Literal["passportElementPhoneNumber"] = Field(
+        "passportElementPhoneNumber", validation_alias="@type", alias="@type"
+    )
     phone_number: String
 
 
@@ -12579,7 +13429,9 @@ class PassportElementRentalAgreement(BaseObject):
     :type rental_agreement: :class:`PersonalDocument`
     """
 
-    ID: typing.Literal["passportElementRentalAgreement"] = "passportElementRentalAgreement"
+    ID: typing.Literal["passportElementRentalAgreement"] = Field(
+        "passportElementRentalAgreement", validation_alias="@type", alias="@type"
+    )
     rental_agreement: PersonalDocument
 
 
@@ -12591,7 +13443,9 @@ class PassportElementTemporaryRegistration(BaseObject):
     :type temporary_registration: :class:`PersonalDocument`
     """
 
-    ID: typing.Literal["passportElementTemporaryRegistration"] = "passportElementTemporaryRegistration"
+    ID: typing.Literal["passportElementTemporaryRegistration"] = Field(
+        "passportElementTemporaryRegistration", validation_alias="@type", alias="@type"
+    )
     temporary_registration: PersonalDocument
 
 
@@ -12603,7 +13457,9 @@ class PassportElementUtilityBill(BaseObject):
     :type utility_bill: :class:`PersonalDocument`
     """
 
-    ID: typing.Literal["passportElementUtilityBill"] = "passportElementUtilityBill"
+    ID: typing.Literal["passportElementUtilityBill"] = Field(
+        "passportElementUtilityBill", validation_alias="@type", alias="@type"
+    )
     utility_bill: PersonalDocument
 
 
@@ -12636,7 +13492,7 @@ class PassportElementError(BaseObject):
     :type source: :class:`PassportElementErrorSource`
     """
 
-    ID: typing.Literal["passportElementError"] = "passportElementError"
+    ID: typing.Literal["passportElementError"] = Field("passportElementError", validation_alias="@type", alias="@type")
     type_: PassportElementType = Field(..., alias="type")
     message: String
     source: PassportElementErrorSource
@@ -12650,7 +13506,9 @@ class PassportElementErrorSourceDataField(BaseObject):
     :type field_name: :class:`String`
     """
 
-    ID: typing.Literal["passportElementErrorSourceDataField"] = "passportElementErrorSourceDataField"
+    ID: typing.Literal["passportElementErrorSourceDataField"] = Field(
+        "passportElementErrorSourceDataField", validation_alias="@type", alias="@type"
+    )
     field_name: String
 
 
@@ -12662,7 +13520,9 @@ class PassportElementErrorSourceFile(BaseObject):
     :type file_index: :class:`Int32`
     """
 
-    ID: typing.Literal["passportElementErrorSourceFile"] = "passportElementErrorSourceFile"
+    ID: typing.Literal["passportElementErrorSourceFile"] = Field(
+        "passportElementErrorSourceFile", validation_alias="@type", alias="@type"
+    )
     file_index: Int32
 
 
@@ -12671,7 +13531,9 @@ class PassportElementErrorSourceFiles(BaseObject):
     The list of attached files contains an error. The error will be considered resolved when the list of files changes
     """
 
-    ID: typing.Literal["passportElementErrorSourceFiles"] = "passportElementErrorSourceFiles"
+    ID: typing.Literal["passportElementErrorSourceFiles"] = Field(
+        "passportElementErrorSourceFiles", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementErrorSourceFrontSide(BaseObject):
@@ -12679,7 +13541,9 @@ class PassportElementErrorSourceFrontSide(BaseObject):
     The front side of the document contains an error. The error will be considered resolved when the file with the front side changes
     """
 
-    ID: typing.Literal["passportElementErrorSourceFrontSide"] = "passportElementErrorSourceFrontSide"
+    ID: typing.Literal["passportElementErrorSourceFrontSide"] = Field(
+        "passportElementErrorSourceFrontSide", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementErrorSourceReverseSide(BaseObject):
@@ -12687,7 +13551,9 @@ class PassportElementErrorSourceReverseSide(BaseObject):
     The reverse side of the document contains an error. The error will be considered resolved when the file with the reverse side changes
     """
 
-    ID: typing.Literal["passportElementErrorSourceReverseSide"] = "passportElementErrorSourceReverseSide"
+    ID: typing.Literal["passportElementErrorSourceReverseSide"] = Field(
+        "passportElementErrorSourceReverseSide", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementErrorSourceSelfie(BaseObject):
@@ -12695,7 +13561,9 @@ class PassportElementErrorSourceSelfie(BaseObject):
     The selfie with the document contains an error. The error will be considered resolved when the file with the selfie changes
     """
 
-    ID: typing.Literal["passportElementErrorSourceSelfie"] = "passportElementErrorSourceSelfie"
+    ID: typing.Literal["passportElementErrorSourceSelfie"] = Field(
+        "passportElementErrorSourceSelfie", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementErrorSourceTranslationFile(BaseObject):
@@ -12706,7 +13574,9 @@ class PassportElementErrorSourceTranslationFile(BaseObject):
     :type file_index: :class:`Int32`
     """
 
-    ID: typing.Literal["passportElementErrorSourceTranslationFile"] = "passportElementErrorSourceTranslationFile"
+    ID: typing.Literal["passportElementErrorSourceTranslationFile"] = Field(
+        "passportElementErrorSourceTranslationFile", validation_alias="@type", alias="@type"
+    )
     file_index: Int32
 
 
@@ -12715,7 +13585,9 @@ class PassportElementErrorSourceTranslationFiles(BaseObject):
     The translation of the document contains an error. The error will be considered resolved when the list of translation files changes
     """
 
-    ID: typing.Literal["passportElementErrorSourceTranslationFiles"] = "passportElementErrorSourceTranslationFiles"
+    ID: typing.Literal["passportElementErrorSourceTranslationFiles"] = Field(
+        "passportElementErrorSourceTranslationFiles", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementErrorSourceUnspecified(BaseObject):
@@ -12723,7 +13595,9 @@ class PassportElementErrorSourceUnspecified(BaseObject):
     The element contains an error in an unspecified place. The error will be considered resolved when new data is added
     """
 
-    ID: typing.Literal["passportElementErrorSourceUnspecified"] = "passportElementErrorSourceUnspecified"
+    ID: typing.Literal["passportElementErrorSourceUnspecified"] = Field(
+        "passportElementErrorSourceUnspecified", validation_alias="@type", alias="@type"
+    )
 
 
 PassportElementErrorSource = typing.Union[
@@ -12744,7 +13618,9 @@ class PassportElementTypeAddress(BaseObject):
     A Telegram Passport element containing the user's address
     """
 
-    ID: typing.Literal["passportElementTypeAddress"] = "passportElementTypeAddress"
+    ID: typing.Literal["passportElementTypeAddress"] = Field(
+        "passportElementTypeAddress", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementTypeBankStatement(BaseObject):
@@ -12752,7 +13628,9 @@ class PassportElementTypeBankStatement(BaseObject):
     A Telegram Passport element containing the user's bank statement
     """
 
-    ID: typing.Literal["passportElementTypeBankStatement"] = "passportElementTypeBankStatement"
+    ID: typing.Literal["passportElementTypeBankStatement"] = Field(
+        "passportElementTypeBankStatement", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementTypeDriverLicense(BaseObject):
@@ -12760,7 +13638,9 @@ class PassportElementTypeDriverLicense(BaseObject):
     A Telegram Passport element containing the user's driver license
     """
 
-    ID: typing.Literal["passportElementTypeDriverLicense"] = "passportElementTypeDriverLicense"
+    ID: typing.Literal["passportElementTypeDriverLicense"] = Field(
+        "passportElementTypeDriverLicense", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementTypeEmailAddress(BaseObject):
@@ -12768,7 +13648,9 @@ class PassportElementTypeEmailAddress(BaseObject):
     A Telegram Passport element containing the user's email address
     """
 
-    ID: typing.Literal["passportElementTypeEmailAddress"] = "passportElementTypeEmailAddress"
+    ID: typing.Literal["passportElementTypeEmailAddress"] = Field(
+        "passportElementTypeEmailAddress", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementTypeIdentityCard(BaseObject):
@@ -12776,7 +13658,9 @@ class PassportElementTypeIdentityCard(BaseObject):
     A Telegram Passport element containing the user's identity card
     """
 
-    ID: typing.Literal["passportElementTypeIdentityCard"] = "passportElementTypeIdentityCard"
+    ID: typing.Literal["passportElementTypeIdentityCard"] = Field(
+        "passportElementTypeIdentityCard", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementTypeInternalPassport(BaseObject):
@@ -12784,7 +13668,9 @@ class PassportElementTypeInternalPassport(BaseObject):
     A Telegram Passport element containing the user's internal passport
     """
 
-    ID: typing.Literal["passportElementTypeInternalPassport"] = "passportElementTypeInternalPassport"
+    ID: typing.Literal["passportElementTypeInternalPassport"] = Field(
+        "passportElementTypeInternalPassport", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementTypePassport(BaseObject):
@@ -12792,7 +13678,9 @@ class PassportElementTypePassport(BaseObject):
     A Telegram Passport element containing the user's passport
     """
 
-    ID: typing.Literal["passportElementTypePassport"] = "passportElementTypePassport"
+    ID: typing.Literal["passportElementTypePassport"] = Field(
+        "passportElementTypePassport", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementTypePassportRegistration(BaseObject):
@@ -12800,7 +13688,9 @@ class PassportElementTypePassportRegistration(BaseObject):
     A Telegram Passport element containing the registration page of the user's passport
     """
 
-    ID: typing.Literal["passportElementTypePassportRegistration"] = "passportElementTypePassportRegistration"
+    ID: typing.Literal["passportElementTypePassportRegistration"] = Field(
+        "passportElementTypePassportRegistration", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementTypePersonalDetails(BaseObject):
@@ -12808,7 +13698,9 @@ class PassportElementTypePersonalDetails(BaseObject):
     A Telegram Passport element containing the user's personal details
     """
 
-    ID: typing.Literal["passportElementTypePersonalDetails"] = "passportElementTypePersonalDetails"
+    ID: typing.Literal["passportElementTypePersonalDetails"] = Field(
+        "passportElementTypePersonalDetails", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementTypePhoneNumber(BaseObject):
@@ -12816,7 +13708,9 @@ class PassportElementTypePhoneNumber(BaseObject):
     A Telegram Passport element containing the user's phone number
     """
 
-    ID: typing.Literal["passportElementTypePhoneNumber"] = "passportElementTypePhoneNumber"
+    ID: typing.Literal["passportElementTypePhoneNumber"] = Field(
+        "passportElementTypePhoneNumber", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementTypeRentalAgreement(BaseObject):
@@ -12824,7 +13718,9 @@ class PassportElementTypeRentalAgreement(BaseObject):
     A Telegram Passport element containing the user's rental agreement
     """
 
-    ID: typing.Literal["passportElementTypeRentalAgreement"] = "passportElementTypeRentalAgreement"
+    ID: typing.Literal["passportElementTypeRentalAgreement"] = Field(
+        "passportElementTypeRentalAgreement", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementTypeTemporaryRegistration(BaseObject):
@@ -12832,7 +13728,9 @@ class PassportElementTypeTemporaryRegistration(BaseObject):
     A Telegram Passport element containing the user's temporary registration
     """
 
-    ID: typing.Literal["passportElementTypeTemporaryRegistration"] = "passportElementTypeTemporaryRegistration"
+    ID: typing.Literal["passportElementTypeTemporaryRegistration"] = Field(
+        "passportElementTypeTemporaryRegistration", validation_alias="@type", alias="@type"
+    )
 
 
 class PassportElementTypeUtilityBill(BaseObject):
@@ -12840,7 +13738,9 @@ class PassportElementTypeUtilityBill(BaseObject):
     A Telegram Passport element containing the user's utility bill
     """
 
-    ID: typing.Literal["passportElementTypeUtilityBill"] = "passportElementTypeUtilityBill"
+    ID: typing.Literal["passportElementTypeUtilityBill"] = Field(
+        "passportElementTypeUtilityBill", validation_alias="@type", alias="@type"
+    )
 
 
 PassportElementType = typing.Union[
@@ -12868,7 +13768,7 @@ class PassportElements(BaseObject):
     :type elements: :class:`Vector[PassportElement]`
     """
 
-    ID: typing.Literal["passportElements"] = "passportElements"
+    ID: typing.Literal["passportElements"] = Field("passportElements", validation_alias="@type", alias="@type")
     elements: Vector[PassportElement]
 
 
@@ -12882,7 +13782,9 @@ class PassportElementsWithErrors(BaseObject):
     :type errors: :class:`Vector[PassportElementError]`
     """
 
-    ID: typing.Literal["passportElementsWithErrors"] = "passportElementsWithErrors"
+    ID: typing.Literal["passportElementsWithErrors"] = Field(
+        "passportElementsWithErrors", validation_alias="@type", alias="@type"
+    )
     elements: Vector[PassportElement]
     errors: Vector[PassportElementError]
 
@@ -12895,7 +13797,9 @@ class PassportRequiredElement(BaseObject):
     :type suitable_elements: :class:`Vector[PassportSuitableElement]`
     """
 
-    ID: typing.Literal["passportRequiredElement"] = "passportRequiredElement"
+    ID: typing.Literal["passportRequiredElement"] = Field(
+        "passportRequiredElement", validation_alias="@type", alias="@type"
+    )
     suitable_elements: Vector[PassportSuitableElement]
 
 
@@ -12913,7 +13817,9 @@ class PassportSuitableElement(BaseObject):
     :type is_native_name_required: :class:`Bool`
     """
 
-    ID: typing.Literal["passportSuitableElement"] = "passportSuitableElement"
+    ID: typing.Literal["passportSuitableElement"] = Field(
+        "passportSuitableElement", validation_alias="@type", alias="@type"
+    )
     type_: PassportElementType = Field(..., alias="type")
     is_selfie_required: Bool = False
     is_translation_required: Bool = False
@@ -12940,7 +13846,7 @@ class PasswordState(BaseObject):
     :type pending_reset_date: :class:`Int32`
     """
 
-    ID: typing.Literal["passwordState"] = "passwordState"
+    ID: typing.Literal["passwordState"] = Field("passwordState", validation_alias="@type", alias="@type")
     login_email_address_pattern: String
     recovery_email_address_code_info: typing.Optional[EmailAddressAuthenticationCodeInfo] = None
     has_password: Bool = False
@@ -12982,7 +13888,7 @@ class PaymentForm(BaseObject):
     :type need_password: :class:`Bool`
     """
 
-    ID: typing.Literal["paymentForm"] = "paymentForm"
+    ID: typing.Literal["paymentForm"] = Field("paymentForm", validation_alias="@type", alias="@type")
     id: Int64
     invoice: Invoice
     seller_bot_user_id: Int53
@@ -13008,7 +13914,7 @@ class PaymentOption(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["paymentOption"] = "paymentOption"
+    ID: typing.Literal["paymentOption"] = Field("paymentOption", validation_alias="@type", alias="@type")
     title: String
     url: String
 
@@ -13021,7 +13927,7 @@ class PaymentProviderOther(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["paymentProviderOther"] = "paymentProviderOther"
+    ID: typing.Literal["paymentProviderOther"] = Field("paymentProviderOther", validation_alias="@type", alias="@type")
     url: String
 
 
@@ -13033,7 +13939,9 @@ class PaymentProviderSmartGlocal(BaseObject):
     :type public_token: :class:`String`
     """
 
-    ID: typing.Literal["paymentProviderSmartGlocal"] = "paymentProviderSmartGlocal"
+    ID: typing.Literal["paymentProviderSmartGlocal"] = Field(
+        "paymentProviderSmartGlocal", validation_alias="@type", alias="@type"
+    )
     public_token: String
 
 
@@ -13051,7 +13959,9 @@ class PaymentProviderStripe(BaseObject):
     :type need_cardholder_name: :class:`Bool`
     """
 
-    ID: typing.Literal["paymentProviderStripe"] = "paymentProviderStripe"
+    ID: typing.Literal["paymentProviderStripe"] = Field(
+        "paymentProviderStripe", validation_alias="@type", alias="@type"
+    )
     publishable_key: String
     need_country: Bool = False
     need_postal_code: Bool = False
@@ -13093,7 +14003,7 @@ class PaymentReceipt(BaseObject):
     :type shipping_option: :class:`ShippingOption`, optional
     """
 
-    ID: typing.Literal["paymentReceipt"] = "paymentReceipt"
+    ID: typing.Literal["paymentReceipt"] = Field("paymentReceipt", validation_alias="@type", alias="@type")
     title: String
     description: FormattedText
     date: Int32
@@ -13117,7 +14027,7 @@ class PaymentResult(BaseObject):
     :type success: :class:`Bool`
     """
 
-    ID: typing.Literal["paymentResult"] = "paymentResult"
+    ID: typing.Literal["paymentResult"] = Field("paymentResult", validation_alias="@type", alias="@type")
     verification_url: String
     success: Bool = False
 
@@ -13148,7 +14058,7 @@ class PersonalDetails(BaseObject):
     :type native_middle_name: :class:`String`
     """
 
-    ID: typing.Literal["personalDetails"] = "personalDetails"
+    ID: typing.Literal["personalDetails"] = Field("personalDetails", validation_alias="@type", alias="@type")
     first_name: String = Field(..., min_length=1, max_length=255)
     last_name: String = Field(..., min_length=1, max_length=255)
     native_first_name: String = Field(..., min_length=1, max_length=255)
@@ -13171,7 +14081,7 @@ class PersonalDocument(BaseObject):
     :type translation: :class:`Vector[DatedFile]`
     """
 
-    ID: typing.Literal["personalDocument"] = "personalDocument"
+    ID: typing.Literal["personalDocument"] = Field("personalDocument", validation_alias="@type", alias="@type")
     files: Vector[DatedFile]
     translation: Vector[DatedFile]
 
@@ -13194,7 +14104,9 @@ class PhoneNumberAuthenticationSettings(BaseObject):
     :type firebase_authentication_settings: :class:`FirebaseAuthenticationSettings`, optional
     """
 
-    ID: typing.Literal["phoneNumberAuthenticationSettings"] = "phoneNumberAuthenticationSettings"
+    ID: typing.Literal["phoneNumberAuthenticationSettings"] = Field(
+        "phoneNumberAuthenticationSettings", validation_alias="@type", alias="@type"
+    )
     authentication_tokens: Vector[String]
     allow_flash_call: Bool = False
     allow_missed_call: Bool = False
@@ -13217,7 +14129,7 @@ class PhoneNumberInfo(BaseObject):
     :type is_anonymous: :class:`Bool`
     """
 
-    ID: typing.Literal["phoneNumberInfo"] = "phoneNumberInfo"
+    ID: typing.Literal["phoneNumberInfo"] = Field("phoneNumberInfo", validation_alias="@type", alias="@type")
     country_calling_code: String
     formatted_phone_number: String
     country: typing.Optional[CountryInfo] = None
@@ -13236,7 +14148,7 @@ class Photo(BaseObject):
     :type has_stickers: :class:`Bool`
     """
 
-    ID: typing.Literal["photo"] = "photo"
+    ID: typing.Literal["photo"] = Field("photo", validation_alias="@type", alias="@type")
     sizes: Vector[PhotoSize]
     minithumbnail: typing.Optional[Minithumbnail] = None
     has_stickers: Bool = False
@@ -13258,7 +14170,7 @@ class PhotoSize(BaseObject):
     :type progressive_sizes: :class:`Vector[Int32]`
     """
 
-    ID: typing.Literal["photoSize"] = "photoSize"
+    ID: typing.Literal["photoSize"] = Field("photoSize", validation_alias="@type", alias="@type")
     type_: String = Field(..., alias="type")
     photo: File
     width: Int32
@@ -13276,7 +14188,7 @@ class Point(BaseObject):
     :type y: :class:`Double`
     """
 
-    ID: typing.Literal["point"] = "point"
+    ID: typing.Literal["point"] = Field("point", validation_alias="@type", alias="@type")
     x: Double
     y: Double
 
@@ -13307,7 +14219,7 @@ class Poll(BaseObject):
     :type is_closed: :class:`Bool`
     """
 
-    ID: typing.Literal["poll"] = "poll"
+    ID: typing.Literal["poll"] = Field("poll", validation_alias="@type", alias="@type")
     id: Int64
     question: String = Field(..., min_length=1, max_length=300)
     options: Vector[PollOption]
@@ -13336,7 +14248,7 @@ class PollOption(BaseObject):
     :type is_being_chosen: :class:`Bool`
     """
 
-    ID: typing.Literal["pollOption"] = "pollOption"
+    ID: typing.Literal["pollOption"] = Field("pollOption", validation_alias="@type", alias="@type")
     text: String = Field(..., min_length=1, max_length=100)
     voter_count: Int32
     vote_percentage: Int32
@@ -13354,7 +14266,7 @@ class PollTypeQuiz(BaseObject):
     :type explanation: :class:`FormattedText`
     """
 
-    ID: typing.Literal["pollTypeQuiz"] = "pollTypeQuiz"
+    ID: typing.Literal["pollTypeQuiz"] = Field("pollTypeQuiz", validation_alias="@type", alias="@type")
     correct_option_id: Int32
     explanation: FormattedText = ""
 
@@ -13367,7 +14279,7 @@ class PollTypeRegular(BaseObject):
     :type allow_multiple_answers: :class:`Bool`
     """
 
-    ID: typing.Literal["pollTypeRegular"] = "pollTypeRegular"
+    ID: typing.Literal["pollTypeRegular"] = Field("pollTypeRegular", validation_alias="@type", alias="@type")
     allow_multiple_answers: Bool = False
 
 
@@ -13382,7 +14294,9 @@ class PremiumFeatureAdvancedChatManagement(BaseObject):
     Ability to change position of the main chat list, archive and mute all new chats from non-contacts, and completely disable notifications about the user's contacts joined Telegram
     """
 
-    ID: typing.Literal["premiumFeatureAdvancedChatManagement"] = "premiumFeatureAdvancedChatManagement"
+    ID: typing.Literal["premiumFeatureAdvancedChatManagement"] = Field(
+        "premiumFeatureAdvancedChatManagement", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureAnimatedProfilePhoto(BaseObject):
@@ -13390,7 +14304,9 @@ class PremiumFeatureAnimatedProfilePhoto(BaseObject):
     Profile photo animation on message and chat screens
     """
 
-    ID: typing.Literal["premiumFeatureAnimatedProfilePhoto"] = "premiumFeatureAnimatedProfilePhoto"
+    ID: typing.Literal["premiumFeatureAnimatedProfilePhoto"] = Field(
+        "premiumFeatureAnimatedProfilePhoto", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureAppIcons(BaseObject):
@@ -13398,7 +14314,9 @@ class PremiumFeatureAppIcons(BaseObject):
     Allowed to set a premium application icons
     """
 
-    ID: typing.Literal["premiumFeatureAppIcons"] = "premiumFeatureAppIcons"
+    ID: typing.Literal["premiumFeatureAppIcons"] = Field(
+        "premiumFeatureAppIcons", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureCustomEmoji(BaseObject):
@@ -13406,7 +14324,9 @@ class PremiumFeatureCustomEmoji(BaseObject):
     Allowed to use custom emoji stickers in message texts and captions
     """
 
-    ID: typing.Literal["premiumFeatureCustomEmoji"] = "premiumFeatureCustomEmoji"
+    ID: typing.Literal["premiumFeatureCustomEmoji"] = Field(
+        "premiumFeatureCustomEmoji", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureDisabledAds(BaseObject):
@@ -13414,7 +14334,9 @@ class PremiumFeatureDisabledAds(BaseObject):
     Disabled ads
     """
 
-    ID: typing.Literal["premiumFeatureDisabledAds"] = "premiumFeatureDisabledAds"
+    ID: typing.Literal["premiumFeatureDisabledAds"] = Field(
+        "premiumFeatureDisabledAds", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureEmojiStatus(BaseObject):
@@ -13422,7 +14344,9 @@ class PremiumFeatureEmojiStatus(BaseObject):
     An emoji status shown along with the user's name
     """
 
-    ID: typing.Literal["premiumFeatureEmojiStatus"] = "premiumFeatureEmojiStatus"
+    ID: typing.Literal["premiumFeatureEmojiStatus"] = Field(
+        "premiumFeatureEmojiStatus", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureForumTopicIcon(BaseObject):
@@ -13430,7 +14354,9 @@ class PremiumFeatureForumTopicIcon(BaseObject):
     The ability to set a custom emoji as a forum topic icon
     """
 
-    ID: typing.Literal["premiumFeatureForumTopicIcon"] = "premiumFeatureForumTopicIcon"
+    ID: typing.Literal["premiumFeatureForumTopicIcon"] = Field(
+        "premiumFeatureForumTopicIcon", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureImprovedDownloadSpeed(BaseObject):
@@ -13438,7 +14364,9 @@ class PremiumFeatureImprovedDownloadSpeed(BaseObject):
     Improved download speed
     """
 
-    ID: typing.Literal["premiumFeatureImprovedDownloadSpeed"] = "premiumFeatureImprovedDownloadSpeed"
+    ID: typing.Literal["premiumFeatureImprovedDownloadSpeed"] = Field(
+        "premiumFeatureImprovedDownloadSpeed", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureIncreasedLimits(BaseObject):
@@ -13446,7 +14374,9 @@ class PremiumFeatureIncreasedLimits(BaseObject):
     Increased limits
     """
 
-    ID: typing.Literal["premiumFeatureIncreasedLimits"] = "premiumFeatureIncreasedLimits"
+    ID: typing.Literal["premiumFeatureIncreasedLimits"] = Field(
+        "premiumFeatureIncreasedLimits", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureIncreasedUploadFileSize(BaseObject):
@@ -13454,7 +14384,9 @@ class PremiumFeatureIncreasedUploadFileSize(BaseObject):
     Increased maximum upload file size
     """
 
-    ID: typing.Literal["premiumFeatureIncreasedUploadFileSize"] = "premiumFeatureIncreasedUploadFileSize"
+    ID: typing.Literal["premiumFeatureIncreasedUploadFileSize"] = Field(
+        "premiumFeatureIncreasedUploadFileSize", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureProfileBadge(BaseObject):
@@ -13462,7 +14394,9 @@ class PremiumFeatureProfileBadge(BaseObject):
     A badge in the user's profile
     """
 
-    ID: typing.Literal["premiumFeatureProfileBadge"] = "premiumFeatureProfileBadge"
+    ID: typing.Literal["premiumFeatureProfileBadge"] = Field(
+        "premiumFeatureProfileBadge", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureRealTimeChatTranslation(BaseObject):
@@ -13470,7 +14404,9 @@ class PremiumFeatureRealTimeChatTranslation(BaseObject):
     Allowed to translate chat messages real-time
     """
 
-    ID: typing.Literal["premiumFeatureRealTimeChatTranslation"] = "premiumFeatureRealTimeChatTranslation"
+    ID: typing.Literal["premiumFeatureRealTimeChatTranslation"] = Field(
+        "premiumFeatureRealTimeChatTranslation", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureUniqueReactions(BaseObject):
@@ -13478,7 +14414,9 @@ class PremiumFeatureUniqueReactions(BaseObject):
     Allowed to use more reactions
     """
 
-    ID: typing.Literal["premiumFeatureUniqueReactions"] = "premiumFeatureUniqueReactions"
+    ID: typing.Literal["premiumFeatureUniqueReactions"] = Field(
+        "premiumFeatureUniqueReactions", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureUniqueStickers(BaseObject):
@@ -13486,7 +14424,9 @@ class PremiumFeatureUniqueStickers(BaseObject):
     Allowed to use premium stickers with unique effects
     """
 
-    ID: typing.Literal["premiumFeatureUniqueStickers"] = "premiumFeatureUniqueStickers"
+    ID: typing.Literal["premiumFeatureUniqueStickers"] = Field(
+        "premiumFeatureUniqueStickers", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureUpgradedStories(BaseObject):
@@ -13494,7 +14434,9 @@ class PremiumFeatureUpgradedStories(BaseObject):
     Allowed to use many additional features for stories
     """
 
-    ID: typing.Literal["premiumFeatureUpgradedStories"] = "premiumFeatureUpgradedStories"
+    ID: typing.Literal["premiumFeatureUpgradedStories"] = Field(
+        "premiumFeatureUpgradedStories", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumFeatureVoiceRecognition(BaseObject):
@@ -13502,7 +14444,9 @@ class PremiumFeatureVoiceRecognition(BaseObject):
     The ability to convert voice notes to text
     """
 
-    ID: typing.Literal["premiumFeatureVoiceRecognition"] = "premiumFeatureVoiceRecognition"
+    ID: typing.Literal["premiumFeatureVoiceRecognition"] = Field(
+        "premiumFeatureVoiceRecognition", validation_alias="@type", alias="@type"
+    )
 
 
 PremiumFeature = typing.Union[
@@ -13535,7 +14479,9 @@ class PremiumFeaturePromotionAnimation(BaseObject):
     :type animation: :class:`Animation`
     """
 
-    ID: typing.Literal["premiumFeaturePromotionAnimation"] = "premiumFeaturePromotionAnimation"
+    ID: typing.Literal["premiumFeaturePromotionAnimation"] = Field(
+        "premiumFeaturePromotionAnimation", validation_alias="@type", alias="@type"
+    )
     feature: PremiumFeature
     animation: Animation
 
@@ -13552,7 +14498,7 @@ class PremiumFeatures(BaseObject):
     :type payment_link: :class:`InternalLinkType`, optional
     """
 
-    ID: typing.Literal["premiumFeatures"] = "premiumFeatures"
+    ID: typing.Literal["premiumFeatures"] = Field("premiumFeatures", validation_alias="@type", alias="@type")
     features: Vector[PremiumFeature]
     limits: Vector[PremiumLimit]
     payment_link: typing.Optional[InternalLinkType] = None
@@ -13570,7 +14516,7 @@ class PremiumLimit(BaseObject):
     :type premium_value: :class:`Int32`
     """
 
-    ID: typing.Literal["premiumLimit"] = "premiumLimit"
+    ID: typing.Literal["premiumLimit"] = Field("premiumLimit", validation_alias="@type", alias="@type")
     type_: PremiumLimitType = Field(..., alias="type")
     default_value: Int32
     premium_value: Int32
@@ -13581,7 +14527,9 @@ class PremiumLimitTypeActiveStoryCount(BaseObject):
     The maximum number of active stories
     """
 
-    ID: typing.Literal["premiumLimitTypeActiveStoryCount"] = "premiumLimitTypeActiveStoryCount"
+    ID: typing.Literal["premiumLimitTypeActiveStoryCount"] = Field(
+        "premiumLimitTypeActiveStoryCount", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypeBioLength(BaseObject):
@@ -13589,7 +14537,9 @@ class PremiumLimitTypeBioLength(BaseObject):
     The maximum length of the user's bio
     """
 
-    ID: typing.Literal["premiumLimitTypeBioLength"] = "premiumLimitTypeBioLength"
+    ID: typing.Literal["premiumLimitTypeBioLength"] = Field(
+        "premiumLimitTypeBioLength", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypeCaptionLength(BaseObject):
@@ -13597,7 +14547,9 @@ class PremiumLimitTypeCaptionLength(BaseObject):
     The maximum length of sent media caption
     """
 
-    ID: typing.Literal["premiumLimitTypeCaptionLength"] = "premiumLimitTypeCaptionLength"
+    ID: typing.Literal["premiumLimitTypeCaptionLength"] = Field(
+        "premiumLimitTypeCaptionLength", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypeChatFolderChosenChatCount(BaseObject):
@@ -13605,7 +14557,9 @@ class PremiumLimitTypeChatFolderChosenChatCount(BaseObject):
     The maximum number of pinned and always included, or always excluded chats in a chat folder
     """
 
-    ID: typing.Literal["premiumLimitTypeChatFolderChosenChatCount"] = "premiumLimitTypeChatFolderChosenChatCount"
+    ID: typing.Literal["premiumLimitTypeChatFolderChosenChatCount"] = Field(
+        "premiumLimitTypeChatFolderChosenChatCount", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypeChatFolderCount(BaseObject):
@@ -13613,7 +14567,9 @@ class PremiumLimitTypeChatFolderCount(BaseObject):
     The maximum number of chat folders
     """
 
-    ID: typing.Literal["premiumLimitTypeChatFolderCount"] = "premiumLimitTypeChatFolderCount"
+    ID: typing.Literal["premiumLimitTypeChatFolderCount"] = Field(
+        "premiumLimitTypeChatFolderCount", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypeChatFolderInviteLinkCount(BaseObject):
@@ -13621,7 +14577,9 @@ class PremiumLimitTypeChatFolderInviteLinkCount(BaseObject):
     The maximum number of invite links for a chat folder
     """
 
-    ID: typing.Literal["premiumLimitTypeChatFolderInviteLinkCount"] = "premiumLimitTypeChatFolderInviteLinkCount"
+    ID: typing.Literal["premiumLimitTypeChatFolderInviteLinkCount"] = Field(
+        "premiumLimitTypeChatFolderInviteLinkCount", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypeCreatedPublicChatCount(BaseObject):
@@ -13629,7 +14587,9 @@ class PremiumLimitTypeCreatedPublicChatCount(BaseObject):
     The maximum number of created public chats
     """
 
-    ID: typing.Literal["premiumLimitTypeCreatedPublicChatCount"] = "premiumLimitTypeCreatedPublicChatCount"
+    ID: typing.Literal["premiumLimitTypeCreatedPublicChatCount"] = Field(
+        "premiumLimitTypeCreatedPublicChatCount", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypeFavoriteStickerCount(BaseObject):
@@ -13637,7 +14597,9 @@ class PremiumLimitTypeFavoriteStickerCount(BaseObject):
     The maximum number of favorite stickers
     """
 
-    ID: typing.Literal["premiumLimitTypeFavoriteStickerCount"] = "premiumLimitTypeFavoriteStickerCount"
+    ID: typing.Literal["premiumLimitTypeFavoriteStickerCount"] = Field(
+        "premiumLimitTypeFavoriteStickerCount", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypeMonthlySentStoryCount(BaseObject):
@@ -13645,7 +14607,9 @@ class PremiumLimitTypeMonthlySentStoryCount(BaseObject):
     The maximum number of stories sent per month
     """
 
-    ID: typing.Literal["premiumLimitTypeMonthlySentStoryCount"] = "premiumLimitTypeMonthlySentStoryCount"
+    ID: typing.Literal["premiumLimitTypeMonthlySentStoryCount"] = Field(
+        "premiumLimitTypeMonthlySentStoryCount", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypePinnedArchivedChatCount(BaseObject):
@@ -13653,7 +14617,9 @@ class PremiumLimitTypePinnedArchivedChatCount(BaseObject):
     The maximum number of pinned chats in the archive chat list
     """
 
-    ID: typing.Literal["premiumLimitTypePinnedArchivedChatCount"] = "premiumLimitTypePinnedArchivedChatCount"
+    ID: typing.Literal["premiumLimitTypePinnedArchivedChatCount"] = Field(
+        "premiumLimitTypePinnedArchivedChatCount", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypePinnedChatCount(BaseObject):
@@ -13661,7 +14627,9 @@ class PremiumLimitTypePinnedChatCount(BaseObject):
     The maximum number of pinned chats in the main chat list
     """
 
-    ID: typing.Literal["premiumLimitTypePinnedChatCount"] = "premiumLimitTypePinnedChatCount"
+    ID: typing.Literal["premiumLimitTypePinnedChatCount"] = Field(
+        "premiumLimitTypePinnedChatCount", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypeSavedAnimationCount(BaseObject):
@@ -13669,7 +14637,9 @@ class PremiumLimitTypeSavedAnimationCount(BaseObject):
     The maximum number of saved animations
     """
 
-    ID: typing.Literal["premiumLimitTypeSavedAnimationCount"] = "premiumLimitTypeSavedAnimationCount"
+    ID: typing.Literal["premiumLimitTypeSavedAnimationCount"] = Field(
+        "premiumLimitTypeSavedAnimationCount", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypeShareableChatFolderCount(BaseObject):
@@ -13677,7 +14647,9 @@ class PremiumLimitTypeShareableChatFolderCount(BaseObject):
     The maximum number of added shareable chat folders
     """
 
-    ID: typing.Literal["premiumLimitTypeShareableChatFolderCount"] = "premiumLimitTypeShareableChatFolderCount"
+    ID: typing.Literal["premiumLimitTypeShareableChatFolderCount"] = Field(
+        "premiumLimitTypeShareableChatFolderCount", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypeStoryCaptionLength(BaseObject):
@@ -13685,7 +14657,9 @@ class PremiumLimitTypeStoryCaptionLength(BaseObject):
     The maximum length of captions of sent stories
     """
 
-    ID: typing.Literal["premiumLimitTypeStoryCaptionLength"] = "premiumLimitTypeStoryCaptionLength"
+    ID: typing.Literal["premiumLimitTypeStoryCaptionLength"] = Field(
+        "premiumLimitTypeStoryCaptionLength", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypeSupergroupCount(BaseObject):
@@ -13693,7 +14667,9 @@ class PremiumLimitTypeSupergroupCount(BaseObject):
     The maximum number of joined supergroups and channels
     """
 
-    ID: typing.Literal["premiumLimitTypeSupergroupCount"] = "premiumLimitTypeSupergroupCount"
+    ID: typing.Literal["premiumLimitTypeSupergroupCount"] = Field(
+        "premiumLimitTypeSupergroupCount", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumLimitTypeWeeklySentStoryCount(BaseObject):
@@ -13701,7 +14677,9 @@ class PremiumLimitTypeWeeklySentStoryCount(BaseObject):
     The maximum number of stories sent per week
     """
 
-    ID: typing.Literal["premiumLimitTypeWeeklySentStoryCount"] = "premiumLimitTypeWeeklySentStoryCount"
+    ID: typing.Literal["premiumLimitTypeWeeklySentStoryCount"] = Field(
+        "premiumLimitTypeWeeklySentStoryCount", validation_alias="@type", alias="@type"
+    )
 
 
 PremiumLimitType = typing.Union[
@@ -13742,7 +14720,7 @@ class PremiumPaymentOption(BaseObject):
     :type payment_link: :class:`InternalLinkType`, optional
     """
 
-    ID: typing.Literal["premiumPaymentOption"] = "premiumPaymentOption"
+    ID: typing.Literal["premiumPaymentOption"] = Field("premiumPaymentOption", validation_alias="@type", alias="@type")
     currency: String
     amount: Int53
     discount_percentage: Int32
@@ -13759,7 +14737,7 @@ class PremiumSourceFeature(BaseObject):
     :type feature: :class:`PremiumFeature`
     """
 
-    ID: typing.Literal["premiumSourceFeature"] = "premiumSourceFeature"
+    ID: typing.Literal["premiumSourceFeature"] = Field("premiumSourceFeature", validation_alias="@type", alias="@type")
     feature: PremiumFeature
 
 
@@ -13771,7 +14749,9 @@ class PremiumSourceLimitExceeded(BaseObject):
     :type limit_type: :class:`PremiumLimitType`
     """
 
-    ID: typing.Literal["premiumSourceLimitExceeded"] = "premiumSourceLimitExceeded"
+    ID: typing.Literal["premiumSourceLimitExceeded"] = Field(
+        "premiumSourceLimitExceeded", validation_alias="@type", alias="@type"
+    )
     limit_type: PremiumLimitType
 
 
@@ -13783,7 +14763,7 @@ class PremiumSourceLink(BaseObject):
     :type referrer: :class:`String`
     """
 
-    ID: typing.Literal["premiumSourceLink"] = "premiumSourceLink"
+    ID: typing.Literal["premiumSourceLink"] = Field("premiumSourceLink", validation_alias="@type", alias="@type")
     referrer: String
 
 
@@ -13792,7 +14772,9 @@ class PremiumSourceSettings(BaseObject):
     A user opened the Premium features screen from settings
     """
 
-    ID: typing.Literal["premiumSourceSettings"] = "premiumSourceSettings"
+    ID: typing.Literal["premiumSourceSettings"] = Field(
+        "premiumSourceSettings", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumSourceStoryFeature(BaseObject):
@@ -13803,7 +14785,9 @@ class PremiumSourceStoryFeature(BaseObject):
     :type feature: :class:`PremiumStoryFeature`
     """
 
-    ID: typing.Literal["premiumSourceStoryFeature"] = "premiumSourceStoryFeature"
+    ID: typing.Literal["premiumSourceStoryFeature"] = Field(
+        "premiumSourceStoryFeature", validation_alias="@type", alias="@type"
+    )
     feature: PremiumStoryFeature
 
 
@@ -13828,7 +14812,7 @@ class PremiumState(BaseObject):
     :type animations: :class:`Vector[PremiumFeaturePromotionAnimation]`
     """
 
-    ID: typing.Literal["premiumState"] = "premiumState"
+    ID: typing.Literal["premiumState"] = Field("premiumState", validation_alias="@type", alias="@type")
     state: FormattedText
     payment_options: Vector[PremiumStatePaymentOption]
     animations: Vector[PremiumFeaturePromotionAnimation]
@@ -13848,7 +14832,9 @@ class PremiumStatePaymentOption(BaseObject):
     :type is_upgrade: :class:`Bool`
     """
 
-    ID: typing.Literal["premiumStatePaymentOption"] = "premiumStatePaymentOption"
+    ID: typing.Literal["premiumStatePaymentOption"] = Field(
+        "premiumStatePaymentOption", validation_alias="@type", alias="@type"
+    )
     payment_option: PremiumPaymentOption
     last_transaction_id: String
     is_current: Bool = False
@@ -13860,7 +14846,9 @@ class PremiumStoryFeatureCustomExpirationDuration(BaseObject):
     The ability to set custom expiration duration for stories
     """
 
-    ID: typing.Literal["premiumStoryFeatureCustomExpirationDuration"] = "premiumStoryFeatureCustomExpirationDuration"
+    ID: typing.Literal["premiumStoryFeatureCustomExpirationDuration"] = Field(
+        "premiumStoryFeatureCustomExpirationDuration", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumStoryFeatureLinksAndFormatting(BaseObject):
@@ -13868,7 +14856,9 @@ class PremiumStoryFeatureLinksAndFormatting(BaseObject):
     The ability to use links and formatting in story caption
     """
 
-    ID: typing.Literal["premiumStoryFeatureLinksAndFormatting"] = "premiumStoryFeatureLinksAndFormatting"
+    ID: typing.Literal["premiumStoryFeatureLinksAndFormatting"] = Field(
+        "premiumStoryFeatureLinksAndFormatting", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumStoryFeaturePermanentViewsHistory(BaseObject):
@@ -13876,7 +14866,9 @@ class PremiumStoryFeaturePermanentViewsHistory(BaseObject):
     The ability to check who opened the current user's stories after they expire
     """
 
-    ID: typing.Literal["premiumStoryFeaturePermanentViewsHistory"] = "premiumStoryFeaturePermanentViewsHistory"
+    ID: typing.Literal["premiumStoryFeaturePermanentViewsHistory"] = Field(
+        "premiumStoryFeaturePermanentViewsHistory", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumStoryFeaturePriorityOrder(BaseObject):
@@ -13884,7 +14876,9 @@ class PremiumStoryFeaturePriorityOrder(BaseObject):
     User stories are displayed before stories of non-premium contacts
     """
 
-    ID: typing.Literal["premiumStoryFeaturePriorityOrder"] = "premiumStoryFeaturePriorityOrder"
+    ID: typing.Literal["premiumStoryFeaturePriorityOrder"] = Field(
+        "premiumStoryFeaturePriorityOrder", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumStoryFeatureSaveStories(BaseObject):
@@ -13892,7 +14886,9 @@ class PremiumStoryFeatureSaveStories(BaseObject):
     The ability to save other's unprotected stories
     """
 
-    ID: typing.Literal["premiumStoryFeatureSaveStories"] = "premiumStoryFeatureSaveStories"
+    ID: typing.Literal["premiumStoryFeatureSaveStories"] = Field(
+        "premiumStoryFeatureSaveStories", validation_alias="@type", alias="@type"
+    )
 
 
 class PremiumStoryFeatureStealthMode(BaseObject):
@@ -13900,7 +14896,9 @@ class PremiumStoryFeatureStealthMode(BaseObject):
     The ability to hide the fact that the user viewed other's stories
     """
 
-    ID: typing.Literal["premiumStoryFeatureStealthMode"] = "premiumStoryFeatureStealthMode"
+    ID: typing.Literal["premiumStoryFeatureStealthMode"] = Field(
+        "premiumStoryFeatureStealthMode", validation_alias="@type", alias="@type"
+    )
 
 
 PremiumStoryFeature = typing.Union[
@@ -13931,7 +14929,7 @@ class ProfilePhoto(BaseObject):
     :type is_personal: :class:`Bool`
     """
 
-    ID: typing.Literal["profilePhoto"] = "profilePhoto"
+    ID: typing.Literal["profilePhoto"] = Field("profilePhoto", validation_alias="@type", alias="@type")
     id: Int64
     small: File
     big: File
@@ -13948,7 +14946,7 @@ class Proxies(BaseObject):
     :type proxies: :class:`Vector[Proxy]`
     """
 
-    ID: typing.Literal["proxies"] = "proxies"
+    ID: typing.Literal["proxies"] = Field("proxies", validation_alias="@type", alias="@type")
     proxies: Vector[Proxy]
 
 
@@ -13970,7 +14968,7 @@ class Proxy(BaseObject):
     :type is_enabled: :class:`Bool`
     """
 
-    ID: typing.Literal["proxy"] = "proxy"
+    ID: typing.Literal["proxy"] = Field("proxy", validation_alias="@type", alias="@type")
     id: Int32
     server: String
     port: Int32
@@ -13991,7 +14989,7 @@ class ProxyTypeHttp(BaseObject):
     :type http_only: :class:`Bool`
     """
 
-    ID: typing.Literal["proxyTypeHttp"] = "proxyTypeHttp"
+    ID: typing.Literal["proxyTypeHttp"] = Field("proxyTypeHttp", validation_alias="@type", alias="@type")
     username: String = ""
     password: String = ""
     http_only: Bool = False
@@ -14005,7 +15003,7 @@ class ProxyTypeMtproto(BaseObject):
     :type secret: :class:`String`
     """
 
-    ID: typing.Literal["proxyTypeMtproto"] = "proxyTypeMtproto"
+    ID: typing.Literal["proxyTypeMtproto"] = Field("proxyTypeMtproto", validation_alias="@type", alias="@type")
     secret: String
 
 
@@ -14019,7 +15017,7 @@ class ProxyTypeSocks5(BaseObject):
     :type password: :class:`String`
     """
 
-    ID: typing.Literal["proxyTypeSocks5"] = "proxyTypeSocks5"
+    ID: typing.Literal["proxyTypeSocks5"] = Field("proxyTypeSocks5", validation_alias="@type", alias="@type")
     username: String = ""
     password: String = ""
 
@@ -14036,7 +15034,9 @@ class PublicChatTypeHasUsername(BaseObject):
     The chat is public, because it has an active username
     """
 
-    ID: typing.Literal["publicChatTypeHasUsername"] = "publicChatTypeHasUsername"
+    ID: typing.Literal["publicChatTypeHasUsername"] = Field(
+        "publicChatTypeHasUsername", validation_alias="@type", alias="@type"
+    )
 
 
 class PublicChatTypeIsLocationBased(BaseObject):
@@ -14044,7 +15044,9 @@ class PublicChatTypeIsLocationBased(BaseObject):
     The chat is public, because it is a location-based supergroup
     """
 
-    ID: typing.Literal["publicChatTypeIsLocationBased"] = "publicChatTypeIsLocationBased"
+    ID: typing.Literal["publicChatTypeIsLocationBased"] = Field(
+        "publicChatTypeIsLocationBased", validation_alias="@type", alias="@type"
+    )
 
 
 PublicChatType = typing.Union[
@@ -14065,7 +15067,9 @@ class PushMessageContentAnimation(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentAnimation"] = "pushMessageContentAnimation"
+    ID: typing.Literal["pushMessageContentAnimation"] = Field(
+        "pushMessageContentAnimation", validation_alias="@type", alias="@type"
+    )
     caption: String
     animation: typing.Optional[Animation] = None
     is_pinned: Bool = False
@@ -14081,7 +15085,9 @@ class PushMessageContentAudio(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentAudio"] = "pushMessageContentAudio"
+    ID: typing.Literal["pushMessageContentAudio"] = Field(
+        "pushMessageContentAudio", validation_alias="@type", alias="@type"
+    )
     audio: typing.Optional[Audio] = None
     is_pinned: Bool = False
 
@@ -14091,7 +15097,9 @@ class PushMessageContentBasicGroupChatCreate(BaseObject):
     A newly created basic group
     """
 
-    ID: typing.Literal["pushMessageContentBasicGroupChatCreate"] = "pushMessageContentBasicGroupChatCreate"
+    ID: typing.Literal["pushMessageContentBasicGroupChatCreate"] = Field(
+        "pushMessageContentBasicGroupChatCreate", validation_alias="@type", alias="@type"
+    )
 
 
 class PushMessageContentChatAddMembers(BaseObject):
@@ -14106,7 +15114,9 @@ class PushMessageContentChatAddMembers(BaseObject):
     :type is_returned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentChatAddMembers"] = "pushMessageContentChatAddMembers"
+    ID: typing.Literal["pushMessageContentChatAddMembers"] = Field(
+        "pushMessageContentChatAddMembers", validation_alias="@type", alias="@type"
+    )
     member_name: String
     is_current_user: Bool = False
     is_returned: Bool = False
@@ -14117,7 +15127,9 @@ class PushMessageContentChatChangePhoto(BaseObject):
     A chat photo was edited
     """
 
-    ID: typing.Literal["pushMessageContentChatChangePhoto"] = "pushMessageContentChatChangePhoto"
+    ID: typing.Literal["pushMessageContentChatChangePhoto"] = Field(
+        "pushMessageContentChatChangePhoto", validation_alias="@type", alias="@type"
+    )
 
 
 class PushMessageContentChatChangeTitle(BaseObject):
@@ -14128,7 +15140,9 @@ class PushMessageContentChatChangeTitle(BaseObject):
     :type title: :class:`String`
     """
 
-    ID: typing.Literal["pushMessageContentChatChangeTitle"] = "pushMessageContentChatChangeTitle"
+    ID: typing.Literal["pushMessageContentChatChangeTitle"] = Field(
+        "pushMessageContentChatChangeTitle", validation_alias="@type", alias="@type"
+    )
     title: String
 
 
@@ -14144,7 +15158,9 @@ class PushMessageContentChatDeleteMember(BaseObject):
     :type is_left: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentChatDeleteMember"] = "pushMessageContentChatDeleteMember"
+    ID: typing.Literal["pushMessageContentChatDeleteMember"] = Field(
+        "pushMessageContentChatDeleteMember", validation_alias="@type", alias="@type"
+    )
     member_name: String
     is_current_user: Bool = False
     is_left: Bool = False
@@ -14155,7 +15171,9 @@ class PushMessageContentChatJoinByLink(BaseObject):
     A new member joined the chat via an invite link
     """
 
-    ID: typing.Literal["pushMessageContentChatJoinByLink"] = "pushMessageContentChatJoinByLink"
+    ID: typing.Literal["pushMessageContentChatJoinByLink"] = Field(
+        "pushMessageContentChatJoinByLink", validation_alias="@type", alias="@type"
+    )
 
 
 class PushMessageContentChatJoinByRequest(BaseObject):
@@ -14163,7 +15181,9 @@ class PushMessageContentChatJoinByRequest(BaseObject):
     A new member was accepted to the chat by an administrator
     """
 
-    ID: typing.Literal["pushMessageContentChatJoinByRequest"] = "pushMessageContentChatJoinByRequest"
+    ID: typing.Literal["pushMessageContentChatJoinByRequest"] = Field(
+        "pushMessageContentChatJoinByRequest", validation_alias="@type", alias="@type"
+    )
 
 
 class PushMessageContentChatSetBackground(BaseObject):
@@ -14174,7 +15194,9 @@ class PushMessageContentChatSetBackground(BaseObject):
     :type is_same: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentChatSetBackground"] = "pushMessageContentChatSetBackground"
+    ID: typing.Literal["pushMessageContentChatSetBackground"] = Field(
+        "pushMessageContentChatSetBackground", validation_alias="@type", alias="@type"
+    )
     is_same: Bool = False
 
 
@@ -14186,7 +15208,9 @@ class PushMessageContentChatSetTheme(BaseObject):
     :type theme_name: :class:`String`
     """
 
-    ID: typing.Literal["pushMessageContentChatSetTheme"] = "pushMessageContentChatSetTheme"
+    ID: typing.Literal["pushMessageContentChatSetTheme"] = Field(
+        "pushMessageContentChatSetTheme", validation_alias="@type", alias="@type"
+    )
     theme_name: String
 
 
@@ -14200,7 +15224,9 @@ class PushMessageContentContact(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentContact"] = "pushMessageContentContact"
+    ID: typing.Literal["pushMessageContentContact"] = Field(
+        "pushMessageContentContact", validation_alias="@type", alias="@type"
+    )
     name: String
     is_pinned: Bool = False
 
@@ -14210,7 +15236,9 @@ class PushMessageContentContactRegistered(BaseObject):
     A contact has registered with Telegram
     """
 
-    ID: typing.Literal["pushMessageContentContactRegistered"] = "pushMessageContentContactRegistered"
+    ID: typing.Literal["pushMessageContentContactRegistered"] = Field(
+        "pushMessageContentContactRegistered", validation_alias="@type", alias="@type"
+    )
 
 
 class PushMessageContentDocument(BaseObject):
@@ -14223,7 +15251,9 @@ class PushMessageContentDocument(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentDocument"] = "pushMessageContentDocument"
+    ID: typing.Literal["pushMessageContentDocument"] = Field(
+        "pushMessageContentDocument", validation_alias="@type", alias="@type"
+    )
     document: typing.Optional[Document] = None
     is_pinned: Bool = False
 
@@ -14238,7 +15268,9 @@ class PushMessageContentGame(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentGame"] = "pushMessageContentGame"
+    ID: typing.Literal["pushMessageContentGame"] = Field(
+        "pushMessageContentGame", validation_alias="@type", alias="@type"
+    )
     title: String
     is_pinned: Bool = False
 
@@ -14255,7 +15287,9 @@ class PushMessageContentGameScore(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentGameScore"] = "pushMessageContentGameScore"
+    ID: typing.Literal["pushMessageContentGameScore"] = Field(
+        "pushMessageContentGameScore", validation_alias="@type", alias="@type"
+    )
     title: String
     score: Int32
     is_pinned: Bool = False
@@ -14269,7 +15303,9 @@ class PushMessageContentHidden(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentHidden"] = "pushMessageContentHidden"
+    ID: typing.Literal["pushMessageContentHidden"] = Field(
+        "pushMessageContentHidden", validation_alias="@type", alias="@type"
+    )
     is_pinned: Bool = False
 
 
@@ -14283,7 +15319,9 @@ class PushMessageContentInvoice(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentInvoice"] = "pushMessageContentInvoice"
+    ID: typing.Literal["pushMessageContentInvoice"] = Field(
+        "pushMessageContentInvoice", validation_alias="@type", alias="@type"
+    )
     price: String
     is_pinned: Bool = False
 
@@ -14298,7 +15336,9 @@ class PushMessageContentLocation(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentLocation"] = "pushMessageContentLocation"
+    ID: typing.Literal["pushMessageContentLocation"] = Field(
+        "pushMessageContentLocation", validation_alias="@type", alias="@type"
+    )
     is_live: Bool = False
     is_pinned: Bool = False
 
@@ -14319,7 +15359,9 @@ class PushMessageContentMediaAlbum(BaseObject):
     :type has_documents: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentMediaAlbum"] = "pushMessageContentMediaAlbum"
+    ID: typing.Literal["pushMessageContentMediaAlbum"] = Field(
+        "pushMessageContentMediaAlbum", validation_alias="@type", alias="@type"
+    )
     total_count: Int32
     has_photos: Bool = False
     has_videos: Bool = False
@@ -14335,7 +15377,9 @@ class PushMessageContentMessageForwards(BaseObject):
     :type total_count: :class:`Int32`
     """
 
-    ID: typing.Literal["pushMessageContentMessageForwards"] = "pushMessageContentMessageForwards"
+    ID: typing.Literal["pushMessageContentMessageForwards"] = Field(
+        "pushMessageContentMessageForwards", validation_alias="@type", alias="@type"
+    )
     total_count: Int32
 
 
@@ -14353,7 +15397,9 @@ class PushMessageContentPhoto(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentPhoto"] = "pushMessageContentPhoto"
+    ID: typing.Literal["pushMessageContentPhoto"] = Field(
+        "pushMessageContentPhoto", validation_alias="@type", alias="@type"
+    )
     caption: String
     photo: typing.Optional[Photo] = None
     is_secret: Bool = False
@@ -14372,7 +15418,9 @@ class PushMessageContentPoll(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentPoll"] = "pushMessageContentPoll"
+    ID: typing.Literal["pushMessageContentPoll"] = Field(
+        "pushMessageContentPoll", validation_alias="@type", alias="@type"
+    )
     question: String
     is_regular: Bool = False
     is_pinned: Bool = False
@@ -14386,7 +15434,9 @@ class PushMessageContentRecurringPayment(BaseObject):
     :type amount: :class:`String`
     """
 
-    ID: typing.Literal["pushMessageContentRecurringPayment"] = "pushMessageContentRecurringPayment"
+    ID: typing.Literal["pushMessageContentRecurringPayment"] = Field(
+        "pushMessageContentRecurringPayment", validation_alias="@type", alias="@type"
+    )
     amount: String
 
 
@@ -14395,7 +15445,9 @@ class PushMessageContentScreenshotTaken(BaseObject):
     A screenshot of a message in the chat has been taken
     """
 
-    ID: typing.Literal["pushMessageContentScreenshotTaken"] = "pushMessageContentScreenshotTaken"
+    ID: typing.Literal["pushMessageContentScreenshotTaken"] = Field(
+        "pushMessageContentScreenshotTaken", validation_alias="@type", alias="@type"
+    )
 
 
 class PushMessageContentSticker(BaseObject):
@@ -14410,7 +15462,9 @@ class PushMessageContentSticker(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentSticker"] = "pushMessageContentSticker"
+    ID: typing.Literal["pushMessageContentSticker"] = Field(
+        "pushMessageContentSticker", validation_alias="@type", alias="@type"
+    )
     sticker: typing.Optional[Sticker] = None
     emoji: String = ""
     is_pinned: Bool = False
@@ -14424,7 +15478,9 @@ class PushMessageContentStory(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentStory"] = "pushMessageContentStory"
+    ID: typing.Literal["pushMessageContentStory"] = Field(
+        "pushMessageContentStory", validation_alias="@type", alias="@type"
+    )
     is_pinned: Bool = False
 
 
@@ -14433,7 +15489,9 @@ class PushMessageContentSuggestProfilePhoto(BaseObject):
     A profile photo was suggested to the user
     """
 
-    ID: typing.Literal["pushMessageContentSuggestProfilePhoto"] = "pushMessageContentSuggestProfilePhoto"
+    ID: typing.Literal["pushMessageContentSuggestProfilePhoto"] = Field(
+        "pushMessageContentSuggestProfilePhoto", validation_alias="@type", alias="@type"
+    )
 
 
 class PushMessageContentText(BaseObject):
@@ -14446,7 +15504,9 @@ class PushMessageContentText(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentText"] = "pushMessageContentText"
+    ID: typing.Literal["pushMessageContentText"] = Field(
+        "pushMessageContentText", validation_alias="@type", alias="@type"
+    )
     text: String
     is_pinned: Bool = False
 
@@ -14465,7 +15525,9 @@ class PushMessageContentVideo(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentVideo"] = "pushMessageContentVideo"
+    ID: typing.Literal["pushMessageContentVideo"] = Field(
+        "pushMessageContentVideo", validation_alias="@type", alias="@type"
+    )
     caption: String
     video: typing.Optional[Video] = None
     is_secret: Bool = False
@@ -14482,7 +15544,9 @@ class PushMessageContentVideoNote(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentVideoNote"] = "pushMessageContentVideoNote"
+    ID: typing.Literal["pushMessageContentVideoNote"] = Field(
+        "pushMessageContentVideoNote", validation_alias="@type", alias="@type"
+    )
     video_note: typing.Optional[VideoNote] = None
     is_pinned: Bool = False
 
@@ -14497,7 +15561,9 @@ class PushMessageContentVoiceNote(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["pushMessageContentVoiceNote"] = "pushMessageContentVoiceNote"
+    ID: typing.Literal["pushMessageContentVoiceNote"] = Field(
+        "pushMessageContentVoiceNote", validation_alias="@type", alias="@type"
+    )
     voice_note: typing.Optional[VoiceNote] = None
     is_pinned: Bool = False
 
@@ -14546,7 +15612,7 @@ class PushReceiverId(BaseObject):
     :type id: :class:`Int64`
     """
 
-    ID: typing.Literal["pushReceiverId"] = "pushReceiverId"
+    ID: typing.Literal["pushReceiverId"] = Field("pushReceiverId", validation_alias="@type", alias="@type")
     id: Int64
 
 
@@ -14558,7 +15624,9 @@ class ReactionTypeCustomEmoji(BaseObject):
     :type custom_emoji_id: :class:`Int64`
     """
 
-    ID: typing.Literal["reactionTypeCustomEmoji"] = "reactionTypeCustomEmoji"
+    ID: typing.Literal["reactionTypeCustomEmoji"] = Field(
+        "reactionTypeCustomEmoji", validation_alias="@type", alias="@type"
+    )
     custom_emoji_id: Int64
 
 
@@ -14570,7 +15638,7 @@ class ReactionTypeEmoji(BaseObject):
     :type emoji: :class:`String`
     """
 
-    ID: typing.Literal["reactionTypeEmoji"] = "reactionTypeEmoji"
+    ID: typing.Literal["reactionTypeEmoji"] = Field("reactionTypeEmoji", validation_alias="@type", alias="@type")
     emoji: String
 
 
@@ -14590,7 +15658,9 @@ class RecommendedChatFolder(BaseObject):
     :type description: :class:`String`
     """
 
-    ID: typing.Literal["recommendedChatFolder"] = "recommendedChatFolder"
+    ID: typing.Literal["recommendedChatFolder"] = Field(
+        "recommendedChatFolder", validation_alias="@type", alias="@type"
+    )
     folder: ChatFolder
     description: String
 
@@ -14603,7 +15673,9 @@ class RecommendedChatFolders(BaseObject):
     :type chat_folders: :class:`Vector[RecommendedChatFolder]`
     """
 
-    ID: typing.Literal["recommendedChatFolders"] = "recommendedChatFolders"
+    ID: typing.Literal["recommendedChatFolders"] = Field(
+        "recommendedChatFolders", validation_alias="@type", alias="@type"
+    )
     chat_folders: Vector[RecommendedChatFolder]
 
 
@@ -14615,7 +15687,7 @@ class RecoveryEmailAddress(BaseObject):
     :type recovery_email_address: :class:`String`
     """
 
-    ID: typing.Literal["recoveryEmailAddress"] = "recoveryEmailAddress"
+    ID: typing.Literal["recoveryEmailAddress"] = Field("recoveryEmailAddress", validation_alias="@type", alias="@type")
     recovery_email_address: String
 
 
@@ -14635,7 +15707,7 @@ class RemoteFile(BaseObject):
     :type uploaded_size: :class:`Int53`, optional
     """
 
-    ID: typing.Literal["remoteFile"] = "remoteFile"
+    ID: typing.Literal["remoteFile"] = Field("remoteFile", validation_alias="@type", alias="@type")
     id: String = ""
     unique_id: String = ""
     is_uploading_active: Bool = False
@@ -14653,7 +15725,9 @@ class ReplyMarkupForceReply(BaseObject):
     :type input_field_placeholder: :class:`String`
     """
 
-    ID: typing.Literal["replyMarkupForceReply"] = "replyMarkupForceReply"
+    ID: typing.Literal["replyMarkupForceReply"] = Field(
+        "replyMarkupForceReply", validation_alias="@type", alias="@type"
+    )
     is_personal: Bool = False
     input_field_placeholder: String = Field("", max_length=64)
 
@@ -14666,7 +15740,9 @@ class ReplyMarkupInlineKeyboard(BaseObject):
     :type rows: :class:`Vector[Vector[InlineKeyboardButton]]`
     """
 
-    ID: typing.Literal["replyMarkupInlineKeyboard"] = "replyMarkupInlineKeyboard"
+    ID: typing.Literal["replyMarkupInlineKeyboard"] = Field(
+        "replyMarkupInlineKeyboard", validation_alias="@type", alias="@type"
+    )
     rows: Vector[Vector[InlineKeyboardButton]]
 
 
@@ -14678,7 +15754,9 @@ class ReplyMarkupRemoveKeyboard(BaseObject):
     :type is_personal: :class:`Bool`
     """
 
-    ID: typing.Literal["replyMarkupRemoveKeyboard"] = "replyMarkupRemoveKeyboard"
+    ID: typing.Literal["replyMarkupRemoveKeyboard"] = Field(
+        "replyMarkupRemoveKeyboard", validation_alias="@type", alias="@type"
+    )
     is_personal: Bool = False
 
 
@@ -14700,7 +15778,9 @@ class ReplyMarkupShowKeyboard(BaseObject):
     :type input_field_placeholder: :class:`String`
     """
 
-    ID: typing.Literal["replyMarkupShowKeyboard"] = "replyMarkupShowKeyboard"
+    ID: typing.Literal["replyMarkupShowKeyboard"] = Field(
+        "replyMarkupShowKeyboard", validation_alias="@type", alias="@type"
+    )
     rows: Vector[Vector[KeyboardButton]]
     is_persistent: Bool = False
     resize_keyboard: Bool = False
@@ -14722,7 +15802,9 @@ class ReportReasonChildAbuse(BaseObject):
     The chat has child abuse related content
     """
 
-    ID: typing.Literal["reportReasonChildAbuse"] = "reportReasonChildAbuse"
+    ID: typing.Literal["reportReasonChildAbuse"] = Field(
+        "reportReasonChildAbuse", validation_alias="@type", alias="@type"
+    )
 
 
 class ReportReasonCopyright(BaseObject):
@@ -14730,7 +15812,9 @@ class ReportReasonCopyright(BaseObject):
     The chat contains copyrighted content
     """
 
-    ID: typing.Literal["reportReasonCopyright"] = "reportReasonCopyright"
+    ID: typing.Literal["reportReasonCopyright"] = Field(
+        "reportReasonCopyright", validation_alias="@type", alias="@type"
+    )
 
 
 class ReportReasonCustom(BaseObject):
@@ -14738,7 +15822,7 @@ class ReportReasonCustom(BaseObject):
     A custom reason provided by the user
     """
 
-    ID: typing.Literal["reportReasonCustom"] = "reportReasonCustom"
+    ID: typing.Literal["reportReasonCustom"] = Field("reportReasonCustom", validation_alias="@type", alias="@type")
 
 
 class ReportReasonFake(BaseObject):
@@ -14746,7 +15830,7 @@ class ReportReasonFake(BaseObject):
     The chat represents a fake account
     """
 
-    ID: typing.Literal["reportReasonFake"] = "reportReasonFake"
+    ID: typing.Literal["reportReasonFake"] = Field("reportReasonFake", validation_alias="@type", alias="@type")
 
 
 class ReportReasonIllegalDrugs(BaseObject):
@@ -14754,7 +15838,9 @@ class ReportReasonIllegalDrugs(BaseObject):
     The chat has illegal drugs related content
     """
 
-    ID: typing.Literal["reportReasonIllegalDrugs"] = "reportReasonIllegalDrugs"
+    ID: typing.Literal["reportReasonIllegalDrugs"] = Field(
+        "reportReasonIllegalDrugs", validation_alias="@type", alias="@type"
+    )
 
 
 class ReportReasonPersonalDetails(BaseObject):
@@ -14762,7 +15848,9 @@ class ReportReasonPersonalDetails(BaseObject):
     The chat contains messages with personal details
     """
 
-    ID: typing.Literal["reportReasonPersonalDetails"] = "reportReasonPersonalDetails"
+    ID: typing.Literal["reportReasonPersonalDetails"] = Field(
+        "reportReasonPersonalDetails", validation_alias="@type", alias="@type"
+    )
 
 
 class ReportReasonPornography(BaseObject):
@@ -14770,7 +15858,9 @@ class ReportReasonPornography(BaseObject):
     The chat contains pornographic messages
     """
 
-    ID: typing.Literal["reportReasonPornography"] = "reportReasonPornography"
+    ID: typing.Literal["reportReasonPornography"] = Field(
+        "reportReasonPornography", validation_alias="@type", alias="@type"
+    )
 
 
 class ReportReasonSpam(BaseObject):
@@ -14778,7 +15868,7 @@ class ReportReasonSpam(BaseObject):
     The chat contains spam messages
     """
 
-    ID: typing.Literal["reportReasonSpam"] = "reportReasonSpam"
+    ID: typing.Literal["reportReasonSpam"] = Field("reportReasonSpam", validation_alias="@type", alias="@type")
 
 
 class ReportReasonUnrelatedLocation(BaseObject):
@@ -14786,7 +15876,9 @@ class ReportReasonUnrelatedLocation(BaseObject):
     The location-based chat is unrelated to its stated location
     """
 
-    ID: typing.Literal["reportReasonUnrelatedLocation"] = "reportReasonUnrelatedLocation"
+    ID: typing.Literal["reportReasonUnrelatedLocation"] = Field(
+        "reportReasonUnrelatedLocation", validation_alias="@type", alias="@type"
+    )
 
 
 class ReportReasonViolence(BaseObject):
@@ -14794,7 +15886,7 @@ class ReportReasonViolence(BaseObject):
     The chat promotes violence
     """
 
-    ID: typing.Literal["reportReasonViolence"] = "reportReasonViolence"
+    ID: typing.Literal["reportReasonViolence"] = Field("reportReasonViolence", validation_alias="@type", alias="@type")
 
 
 ReportReason = typing.Union[
@@ -14819,7 +15911,9 @@ class ResetPasswordResultDeclined(BaseObject):
     :type retry_date: :class:`Int32`
     """
 
-    ID: typing.Literal["resetPasswordResultDeclined"] = "resetPasswordResultDeclined"
+    ID: typing.Literal["resetPasswordResultDeclined"] = Field(
+        "resetPasswordResultDeclined", validation_alias="@type", alias="@type"
+    )
     retry_date: Int32
 
 
@@ -14828,7 +15922,9 @@ class ResetPasswordResultOk(BaseObject):
     The password was reset
     """
 
-    ID: typing.Literal["resetPasswordResultOk"] = "resetPasswordResultOk"
+    ID: typing.Literal["resetPasswordResultOk"] = Field(
+        "resetPasswordResultOk", validation_alias="@type", alias="@type"
+    )
 
 
 class ResetPasswordResultPending(BaseObject):
@@ -14839,7 +15935,9 @@ class ResetPasswordResultPending(BaseObject):
     :type pending_reset_date: :class:`Int32`
     """
 
-    ID: typing.Literal["resetPasswordResultPending"] = "resetPasswordResultPending"
+    ID: typing.Literal["resetPasswordResultPending"] = Field(
+        "resetPasswordResultPending", validation_alias="@type", alias="@type"
+    )
     pending_reset_date: Int32
 
 
@@ -14858,7 +15956,7 @@ class RichTextAnchor(BaseObject):
     :type name: :class:`String`
     """
 
-    ID: typing.Literal["richTextAnchor"] = "richTextAnchor"
+    ID: typing.Literal["richTextAnchor"] = Field("richTextAnchor", validation_alias="@type", alias="@type")
     name: String
 
 
@@ -14874,7 +15972,7 @@ class RichTextAnchorLink(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["richTextAnchorLink"] = "richTextAnchorLink"
+    ID: typing.Literal["richTextAnchorLink"] = Field("richTextAnchorLink", validation_alias="@type", alias="@type")
     text: RichText
     anchor_name: String
     url: String
@@ -14888,7 +15986,7 @@ class RichTextBold(BaseObject):
     :type text: :class:`RichText`
     """
 
-    ID: typing.Literal["richTextBold"] = "richTextBold"
+    ID: typing.Literal["richTextBold"] = Field("richTextBold", validation_alias="@type", alias="@type")
     text: RichText
 
 
@@ -14902,7 +16000,7 @@ class RichTextEmailAddress(BaseObject):
     :type email_address: :class:`String`
     """
 
-    ID: typing.Literal["richTextEmailAddress"] = "richTextEmailAddress"
+    ID: typing.Literal["richTextEmailAddress"] = Field("richTextEmailAddress", validation_alias="@type", alias="@type")
     text: RichText
     email_address: String
 
@@ -14915,7 +16013,7 @@ class RichTextFixed(BaseObject):
     :type text: :class:`RichText`
     """
 
-    ID: typing.Literal["richTextFixed"] = "richTextFixed"
+    ID: typing.Literal["richTextFixed"] = Field("richTextFixed", validation_alias="@type", alias="@type")
     text: RichText
 
 
@@ -14931,7 +16029,7 @@ class RichTextIcon(BaseObject):
     :type height: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["richTextIcon"] = "richTextIcon"
+    ID: typing.Literal["richTextIcon"] = Field("richTextIcon", validation_alias="@type", alias="@type")
     document: Document
     width: typing.Optional[Int32] = 0
     height: typing.Optional[Int32] = 0
@@ -14945,7 +16043,7 @@ class RichTextItalic(BaseObject):
     :type text: :class:`RichText`
     """
 
-    ID: typing.Literal["richTextItalic"] = "richTextItalic"
+    ID: typing.Literal["richTextItalic"] = Field("richTextItalic", validation_alias="@type", alias="@type")
     text: RichText
 
 
@@ -14957,7 +16055,7 @@ class RichTextMarked(BaseObject):
     :type text: :class:`RichText`
     """
 
-    ID: typing.Literal["richTextMarked"] = "richTextMarked"
+    ID: typing.Literal["richTextMarked"] = Field("richTextMarked", validation_alias="@type", alias="@type")
     text: RichText
 
 
@@ -14971,7 +16069,7 @@ class RichTextPhoneNumber(BaseObject):
     :type phone_number: :class:`String`
     """
 
-    ID: typing.Literal["richTextPhoneNumber"] = "richTextPhoneNumber"
+    ID: typing.Literal["richTextPhoneNumber"] = Field("richTextPhoneNumber", validation_alias="@type", alias="@type")
     text: RichText
     phone_number: String
 
@@ -14984,7 +16082,7 @@ class RichTextPlain(BaseObject):
     :type text: :class:`String`
     """
 
-    ID: typing.Literal["richTextPlain"] = "richTextPlain"
+    ID: typing.Literal["richTextPlain"] = Field("richTextPlain", validation_alias="@type", alias="@type")
     text: String
 
 
@@ -15000,7 +16098,7 @@ class RichTextReference(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["richTextReference"] = "richTextReference"
+    ID: typing.Literal["richTextReference"] = Field("richTextReference", validation_alias="@type", alias="@type")
     text: RichText
     anchor_name: String
     url: String
@@ -15014,7 +16112,9 @@ class RichTextStrikethrough(BaseObject):
     :type text: :class:`RichText`
     """
 
-    ID: typing.Literal["richTextStrikethrough"] = "richTextStrikethrough"
+    ID: typing.Literal["richTextStrikethrough"] = Field(
+        "richTextStrikethrough", validation_alias="@type", alias="@type"
+    )
     text: RichText
 
 
@@ -15026,7 +16126,7 @@ class RichTextSubscript(BaseObject):
     :type text: :class:`RichText`
     """
 
-    ID: typing.Literal["richTextSubscript"] = "richTextSubscript"
+    ID: typing.Literal["richTextSubscript"] = Field("richTextSubscript", validation_alias="@type", alias="@type")
     text: RichText
 
 
@@ -15038,7 +16138,7 @@ class RichTextSuperscript(BaseObject):
     :type text: :class:`RichText`
     """
 
-    ID: typing.Literal["richTextSuperscript"] = "richTextSuperscript"
+    ID: typing.Literal["richTextSuperscript"] = Field("richTextSuperscript", validation_alias="@type", alias="@type")
     text: RichText
 
 
@@ -15050,7 +16150,7 @@ class RichTextUnderline(BaseObject):
     :type text: :class:`RichText`
     """
 
-    ID: typing.Literal["richTextUnderline"] = "richTextUnderline"
+    ID: typing.Literal["richTextUnderline"] = Field("richTextUnderline", validation_alias="@type", alias="@type")
     text: RichText
 
 
@@ -15066,7 +16166,7 @@ class RichTextUrl(BaseObject):
     :type is_cached: :class:`Bool`
     """
 
-    ID: typing.Literal["richTextUrl"] = "richTextUrl"
+    ID: typing.Literal["richTextUrl"] = Field("richTextUrl", validation_alias="@type", alias="@type")
     text: RichText
     url: String
     is_cached: Bool = False
@@ -15080,7 +16180,7 @@ class RichTexts(BaseObject):
     :type texts: :class:`Vector[RichText]`
     """
 
-    ID: typing.Literal["richTexts"] = "richTexts"
+    ID: typing.Literal["richTexts"] = Field("richTexts", validation_alias="@type", alias="@type")
     texts: Vector[RichText]
 
 
@@ -15115,7 +16215,7 @@ class RtmpUrl(BaseObject):
     :type stream_key: :class:`String`
     """
 
-    ID: typing.Literal["rtmpUrl"] = "rtmpUrl"
+    ID: typing.Literal["rtmpUrl"] = Field("rtmpUrl", validation_alias="@type", alias="@type")
     url: String
     stream_key: String
 
@@ -15130,7 +16230,7 @@ class SavedCredentials(BaseObject):
     :type title: :class:`String`
     """
 
-    ID: typing.Literal["savedCredentials"] = "savedCredentials"
+    ID: typing.Literal["savedCredentials"] = Field("savedCredentials", validation_alias="@type", alias="@type")
     id: String
     title: String
 
@@ -15147,7 +16247,9 @@ class ScopeAutosaveSettings(BaseObject):
     :type autosave_videos: :class:`Bool`
     """
 
-    ID: typing.Literal["scopeAutosaveSettings"] = "scopeAutosaveSettings"
+    ID: typing.Literal["scopeAutosaveSettings"] = Field(
+        "scopeAutosaveSettings", validation_alias="@type", alias="@type"
+    )
     max_video_file_size: Int53
     autosave_photos: Bool = False
     autosave_videos: Bool = False
@@ -15177,7 +16279,9 @@ class ScopeNotificationSettings(BaseObject):
     :type disable_mention_notifications: :class:`Bool`
     """
 
-    ID: typing.Literal["scopeNotificationSettings"] = "scopeNotificationSettings"
+    ID: typing.Literal["scopeNotificationSettings"] = Field(
+        "scopeNotificationSettings", validation_alias="@type", alias="@type"
+    )
     mute_for: Int32
     sound_id: Int64
     use_default_mute_stories: Bool
@@ -15194,7 +16298,9 @@ class SearchMessagesFilterAnimation(BaseObject):
     Returns only animation messages
     """
 
-    ID: typing.Literal["searchMessagesFilterAnimation"] = "searchMessagesFilterAnimation"
+    ID: typing.Literal["searchMessagesFilterAnimation"] = Field(
+        "searchMessagesFilterAnimation", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterAudio(BaseObject):
@@ -15202,7 +16308,9 @@ class SearchMessagesFilterAudio(BaseObject):
     Returns only audio messages
     """
 
-    ID: typing.Literal["searchMessagesFilterAudio"] = "searchMessagesFilterAudio"
+    ID: typing.Literal["searchMessagesFilterAudio"] = Field(
+        "searchMessagesFilterAudio", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterChatPhoto(BaseObject):
@@ -15210,7 +16318,9 @@ class SearchMessagesFilterChatPhoto(BaseObject):
     Returns only messages containing chat photos
     """
 
-    ID: typing.Literal["searchMessagesFilterChatPhoto"] = "searchMessagesFilterChatPhoto"
+    ID: typing.Literal["searchMessagesFilterChatPhoto"] = Field(
+        "searchMessagesFilterChatPhoto", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterDocument(BaseObject):
@@ -15218,7 +16328,9 @@ class SearchMessagesFilterDocument(BaseObject):
     Returns only document messages
     """
 
-    ID: typing.Literal["searchMessagesFilterDocument"] = "searchMessagesFilterDocument"
+    ID: typing.Literal["searchMessagesFilterDocument"] = Field(
+        "searchMessagesFilterDocument", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterEmpty(BaseObject):
@@ -15226,7 +16338,9 @@ class SearchMessagesFilterEmpty(BaseObject):
     Returns all found messages, no filter is applied
     """
 
-    ID: typing.Literal["searchMessagesFilterEmpty"] = "searchMessagesFilterEmpty"
+    ID: typing.Literal["searchMessagesFilterEmpty"] = Field(
+        "searchMessagesFilterEmpty", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterFailedToSend(BaseObject):
@@ -15234,7 +16348,9 @@ class SearchMessagesFilterFailedToSend(BaseObject):
     Returns only failed to send messages. This filter can be used only if the message database is used
     """
 
-    ID: typing.Literal["searchMessagesFilterFailedToSend"] = "searchMessagesFilterFailedToSend"
+    ID: typing.Literal["searchMessagesFilterFailedToSend"] = Field(
+        "searchMessagesFilterFailedToSend", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterMention(BaseObject):
@@ -15242,7 +16358,9 @@ class SearchMessagesFilterMention(BaseObject):
     Returns only messages with mentions of the current user, or messages that are replies to their messages
     """
 
-    ID: typing.Literal["searchMessagesFilterMention"] = "searchMessagesFilterMention"
+    ID: typing.Literal["searchMessagesFilterMention"] = Field(
+        "searchMessagesFilterMention", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterPhoto(BaseObject):
@@ -15250,7 +16368,9 @@ class SearchMessagesFilterPhoto(BaseObject):
     Returns only photo messages
     """
 
-    ID: typing.Literal["searchMessagesFilterPhoto"] = "searchMessagesFilterPhoto"
+    ID: typing.Literal["searchMessagesFilterPhoto"] = Field(
+        "searchMessagesFilterPhoto", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterPhotoAndVideo(BaseObject):
@@ -15258,7 +16378,9 @@ class SearchMessagesFilterPhotoAndVideo(BaseObject):
     Returns only photo and video messages
     """
 
-    ID: typing.Literal["searchMessagesFilterPhotoAndVideo"] = "searchMessagesFilterPhotoAndVideo"
+    ID: typing.Literal["searchMessagesFilterPhotoAndVideo"] = Field(
+        "searchMessagesFilterPhotoAndVideo", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterPinned(BaseObject):
@@ -15266,7 +16388,9 @@ class SearchMessagesFilterPinned(BaseObject):
     Returns only pinned messages
     """
 
-    ID: typing.Literal["searchMessagesFilterPinned"] = "searchMessagesFilterPinned"
+    ID: typing.Literal["searchMessagesFilterPinned"] = Field(
+        "searchMessagesFilterPinned", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterUnreadMention(BaseObject):
@@ -15274,7 +16398,9 @@ class SearchMessagesFilterUnreadMention(BaseObject):
     Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user
     """
 
-    ID: typing.Literal["searchMessagesFilterUnreadMention"] = "searchMessagesFilterUnreadMention"
+    ID: typing.Literal["searchMessagesFilterUnreadMention"] = Field(
+        "searchMessagesFilterUnreadMention", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterUnreadReaction(BaseObject):
@@ -15282,7 +16408,9 @@ class SearchMessagesFilterUnreadReaction(BaseObject):
     Returns only messages with unread reactions for the current user. When using this filter the results can't be additionally filtered by a query, a message thread or by the sending user
     """
 
-    ID: typing.Literal["searchMessagesFilterUnreadReaction"] = "searchMessagesFilterUnreadReaction"
+    ID: typing.Literal["searchMessagesFilterUnreadReaction"] = Field(
+        "searchMessagesFilterUnreadReaction", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterUrl(BaseObject):
@@ -15290,7 +16418,9 @@ class SearchMessagesFilterUrl(BaseObject):
     Returns only messages containing URLs
     """
 
-    ID: typing.Literal["searchMessagesFilterUrl"] = "searchMessagesFilterUrl"
+    ID: typing.Literal["searchMessagesFilterUrl"] = Field(
+        "searchMessagesFilterUrl", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterVideo(BaseObject):
@@ -15298,7 +16428,9 @@ class SearchMessagesFilterVideo(BaseObject):
     Returns only video messages
     """
 
-    ID: typing.Literal["searchMessagesFilterVideo"] = "searchMessagesFilterVideo"
+    ID: typing.Literal["searchMessagesFilterVideo"] = Field(
+        "searchMessagesFilterVideo", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterVideoNote(BaseObject):
@@ -15306,7 +16438,9 @@ class SearchMessagesFilterVideoNote(BaseObject):
     Returns only video note messages
     """
 
-    ID: typing.Literal["searchMessagesFilterVideoNote"] = "searchMessagesFilterVideoNote"
+    ID: typing.Literal["searchMessagesFilterVideoNote"] = Field(
+        "searchMessagesFilterVideoNote", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterVoiceAndVideoNote(BaseObject):
@@ -15314,7 +16448,9 @@ class SearchMessagesFilterVoiceAndVideoNote(BaseObject):
     Returns only voice and video note messages
     """
 
-    ID: typing.Literal["searchMessagesFilterVoiceAndVideoNote"] = "searchMessagesFilterVoiceAndVideoNote"
+    ID: typing.Literal["searchMessagesFilterVoiceAndVideoNote"] = Field(
+        "searchMessagesFilterVoiceAndVideoNote", validation_alias="@type", alias="@type"
+    )
 
 
 class SearchMessagesFilterVoiceNote(BaseObject):
@@ -15322,7 +16458,9 @@ class SearchMessagesFilterVoiceNote(BaseObject):
     Returns only voice note messages
     """
 
-    ID: typing.Literal["searchMessagesFilterVoiceNote"] = "searchMessagesFilterVoiceNote"
+    ID: typing.Literal["searchMessagesFilterVoiceNote"] = Field(
+        "searchMessagesFilterVoiceNote", validation_alias="@type", alias="@type"
+    )
 
 
 SearchMessagesFilter = typing.Union[
@@ -15354,7 +16492,7 @@ class Seconds(BaseObject):
     :type seconds: :class:`Double`
     """
 
-    ID: typing.Literal["seconds"] = "seconds"
+    ID: typing.Literal["seconds"] = Field("seconds", validation_alias="@type", alias="@type")
     seconds: Double
 
 
@@ -15376,7 +16514,7 @@ class SecretChat(BaseObject):
     :type is_outbound: :class:`Bool`
     """
 
-    ID: typing.Literal["secretChat"] = "secretChat"
+    ID: typing.Literal["secretChat"] = Field("secretChat", validation_alias="@type", alias="@type")
     id: Int32
     user_id: Int53
     state: SecretChatState
@@ -15390,7 +16528,9 @@ class SecretChatStateClosed(BaseObject):
     The secret chat is closed
     """
 
-    ID: typing.Literal["secretChatStateClosed"] = "secretChatStateClosed"
+    ID: typing.Literal["secretChatStateClosed"] = Field(
+        "secretChatStateClosed", validation_alias="@type", alias="@type"
+    )
 
 
 class SecretChatStatePending(BaseObject):
@@ -15398,7 +16538,9 @@ class SecretChatStatePending(BaseObject):
     The secret chat is not yet created; waiting for the other user to get online
     """
 
-    ID: typing.Literal["secretChatStatePending"] = "secretChatStatePending"
+    ID: typing.Literal["secretChatStatePending"] = Field(
+        "secretChatStatePending", validation_alias="@type", alias="@type"
+    )
 
 
 class SecretChatStateReady(BaseObject):
@@ -15406,7 +16548,7 @@ class SecretChatStateReady(BaseObject):
     The secret chat is ready to use
     """
 
-    ID: typing.Literal["secretChatStateReady"] = "secretChatStateReady"
+    ID: typing.Literal["secretChatStateReady"] = Field("secretChatStateReady", validation_alias="@type", alias="@type")
 
 
 SecretChatState = typing.Union[
@@ -15424,7 +16566,7 @@ class SentWebAppMessage(BaseObject):
     :type inline_message_id: :class:`String`
     """
 
-    ID: typing.Literal["sentWebAppMessage"] = "sentWebAppMessage"
+    ID: typing.Literal["sentWebAppMessage"] = Field("sentWebAppMessage", validation_alias="@type", alias="@type")
     inline_message_id: String
 
 
@@ -15470,7 +16612,7 @@ class Session(BaseObject):
     :type is_official_application: :class:`Bool`
     """
 
-    ID: typing.Literal["session"] = "session"
+    ID: typing.Literal["session"] = Field("session", validation_alias="@type", alias="@type")
     id: Int64
     type_: SessionType = Field(..., alias="type")
     api_id: Int32
@@ -15496,7 +16638,7 @@ class SessionTypeAndroid(BaseObject):
     The session is running on an Android device
     """
 
-    ID: typing.Literal["sessionTypeAndroid"] = "sessionTypeAndroid"
+    ID: typing.Literal["sessionTypeAndroid"] = Field("sessionTypeAndroid", validation_alias="@type", alias="@type")
 
 
 class SessionTypeApple(BaseObject):
@@ -15504,7 +16646,7 @@ class SessionTypeApple(BaseObject):
     The session is running on a generic Apple device
     """
 
-    ID: typing.Literal["sessionTypeApple"] = "sessionTypeApple"
+    ID: typing.Literal["sessionTypeApple"] = Field("sessionTypeApple", validation_alias="@type", alias="@type")
 
 
 class SessionTypeBrave(BaseObject):
@@ -15512,7 +16654,7 @@ class SessionTypeBrave(BaseObject):
     The session is running on the Brave browser
     """
 
-    ID: typing.Literal["sessionTypeBrave"] = "sessionTypeBrave"
+    ID: typing.Literal["sessionTypeBrave"] = Field("sessionTypeBrave", validation_alias="@type", alias="@type")
 
 
 class SessionTypeChrome(BaseObject):
@@ -15520,7 +16662,7 @@ class SessionTypeChrome(BaseObject):
     The session is running on the Chrome browser
     """
 
-    ID: typing.Literal["sessionTypeChrome"] = "sessionTypeChrome"
+    ID: typing.Literal["sessionTypeChrome"] = Field("sessionTypeChrome", validation_alias="@type", alias="@type")
 
 
 class SessionTypeEdge(BaseObject):
@@ -15528,7 +16670,7 @@ class SessionTypeEdge(BaseObject):
     The session is running on the Edge browser
     """
 
-    ID: typing.Literal["sessionTypeEdge"] = "sessionTypeEdge"
+    ID: typing.Literal["sessionTypeEdge"] = Field("sessionTypeEdge", validation_alias="@type", alias="@type")
 
 
 class SessionTypeFirefox(BaseObject):
@@ -15536,7 +16678,7 @@ class SessionTypeFirefox(BaseObject):
     The session is running on the Firefox browser
     """
 
-    ID: typing.Literal["sessionTypeFirefox"] = "sessionTypeFirefox"
+    ID: typing.Literal["sessionTypeFirefox"] = Field("sessionTypeFirefox", validation_alias="@type", alias="@type")
 
 
 class SessionTypeIpad(BaseObject):
@@ -15544,7 +16686,7 @@ class SessionTypeIpad(BaseObject):
     The session is running on an iPad device
     """
 
-    ID: typing.Literal["sessionTypeIpad"] = "sessionTypeIpad"
+    ID: typing.Literal["sessionTypeIpad"] = Field("sessionTypeIpad", validation_alias="@type", alias="@type")
 
 
 class SessionTypeIphone(BaseObject):
@@ -15552,7 +16694,7 @@ class SessionTypeIphone(BaseObject):
     The session is running on an iPhone device
     """
 
-    ID: typing.Literal["sessionTypeIphone"] = "sessionTypeIphone"
+    ID: typing.Literal["sessionTypeIphone"] = Field("sessionTypeIphone", validation_alias="@type", alias="@type")
 
 
 class SessionTypeLinux(BaseObject):
@@ -15560,7 +16702,7 @@ class SessionTypeLinux(BaseObject):
     The session is running on a Linux device
     """
 
-    ID: typing.Literal["sessionTypeLinux"] = "sessionTypeLinux"
+    ID: typing.Literal["sessionTypeLinux"] = Field("sessionTypeLinux", validation_alias="@type", alias="@type")
 
 
 class SessionTypeMac(BaseObject):
@@ -15568,7 +16710,7 @@ class SessionTypeMac(BaseObject):
     The session is running on a Mac device
     """
 
-    ID: typing.Literal["sessionTypeMac"] = "sessionTypeMac"
+    ID: typing.Literal["sessionTypeMac"] = Field("sessionTypeMac", validation_alias="@type", alias="@type")
 
 
 class SessionTypeOpera(BaseObject):
@@ -15576,7 +16718,7 @@ class SessionTypeOpera(BaseObject):
     The session is running on the Opera browser
     """
 
-    ID: typing.Literal["sessionTypeOpera"] = "sessionTypeOpera"
+    ID: typing.Literal["sessionTypeOpera"] = Field("sessionTypeOpera", validation_alias="@type", alias="@type")
 
 
 class SessionTypeSafari(BaseObject):
@@ -15584,7 +16726,7 @@ class SessionTypeSafari(BaseObject):
     The session is running on the Safari browser
     """
 
-    ID: typing.Literal["sessionTypeSafari"] = "sessionTypeSafari"
+    ID: typing.Literal["sessionTypeSafari"] = Field("sessionTypeSafari", validation_alias="@type", alias="@type")
 
 
 class SessionTypeUbuntu(BaseObject):
@@ -15592,7 +16734,7 @@ class SessionTypeUbuntu(BaseObject):
     The session is running on an Ubuntu device
     """
 
-    ID: typing.Literal["sessionTypeUbuntu"] = "sessionTypeUbuntu"
+    ID: typing.Literal["sessionTypeUbuntu"] = Field("sessionTypeUbuntu", validation_alias="@type", alias="@type")
 
 
 class SessionTypeUnknown(BaseObject):
@@ -15600,7 +16742,7 @@ class SessionTypeUnknown(BaseObject):
     The session is running on an unknown type of device
     """
 
-    ID: typing.Literal["sessionTypeUnknown"] = "sessionTypeUnknown"
+    ID: typing.Literal["sessionTypeUnknown"] = Field("sessionTypeUnknown", validation_alias="@type", alias="@type")
 
 
 class SessionTypeVivaldi(BaseObject):
@@ -15608,7 +16750,7 @@ class SessionTypeVivaldi(BaseObject):
     The session is running on the Vivaldi browser
     """
 
-    ID: typing.Literal["sessionTypeVivaldi"] = "sessionTypeVivaldi"
+    ID: typing.Literal["sessionTypeVivaldi"] = Field("sessionTypeVivaldi", validation_alias="@type", alias="@type")
 
 
 class SessionTypeWindows(BaseObject):
@@ -15616,7 +16758,7 @@ class SessionTypeWindows(BaseObject):
     The session is running on a Windows device
     """
 
-    ID: typing.Literal["sessionTypeWindows"] = "sessionTypeWindows"
+    ID: typing.Literal["sessionTypeWindows"] = Field("sessionTypeWindows", validation_alias="@type", alias="@type")
 
 
 class SessionTypeXbox(BaseObject):
@@ -15624,7 +16766,7 @@ class SessionTypeXbox(BaseObject):
     The session is running on an Xbox console
     """
 
-    ID: typing.Literal["sessionTypeXbox"] = "sessionTypeXbox"
+    ID: typing.Literal["sessionTypeXbox"] = Field("sessionTypeXbox", validation_alias="@type", alias="@type")
 
 
 SessionType = typing.Union[
@@ -15658,7 +16800,7 @@ class Sessions(BaseObject):
     :type inactive_session_ttl_days: :class:`Int32`
     """
 
-    ID: typing.Literal["sessions"] = "sessions"
+    ID: typing.Literal["sessions"] = Field("sessions", validation_alias="@type", alias="@type")
     sessions: Vector[Session]
     inactive_session_ttl_days: Int32
 
@@ -15675,7 +16817,7 @@ class ShippingOption(BaseObject):
     :type price_parts: :class:`Vector[LabeledPricePart]`
     """
 
-    ID: typing.Literal["shippingOption"] = "shippingOption"
+    ID: typing.Literal["shippingOption"] = Field("shippingOption", validation_alias="@type", alias="@type")
     id: String
     title: String
     price_parts: Vector[LabeledPricePart]
@@ -15689,7 +16831,9 @@ class SpeechRecognitionResultError(BaseObject):
     :type error: :class:`Error`
     """
 
-    ID: typing.Literal["speechRecognitionResultError"] = "speechRecognitionResultError"
+    ID: typing.Literal["speechRecognitionResultError"] = Field(
+        "speechRecognitionResultError", validation_alias="@type", alias="@type"
+    )
     error: Error
 
 
@@ -15701,7 +16845,9 @@ class SpeechRecognitionResultPending(BaseObject):
     :type partial_text: :class:`String`
     """
 
-    ID: typing.Literal["speechRecognitionResultPending"] = "speechRecognitionResultPending"
+    ID: typing.Literal["speechRecognitionResultPending"] = Field(
+        "speechRecognitionResultPending", validation_alias="@type", alias="@type"
+    )
     partial_text: String
 
 
@@ -15713,7 +16859,9 @@ class SpeechRecognitionResultText(BaseObject):
     :type text: :class:`String`
     """
 
-    ID: typing.Literal["speechRecognitionResultText"] = "speechRecognitionResultText"
+    ID: typing.Literal["speechRecognitionResultText"] = Field(
+        "speechRecognitionResultText", validation_alias="@type", alias="@type"
+    )
     text: String
 
 
@@ -15740,7 +16888,7 @@ class SponsoredMessage(BaseObject):
     :type is_recommended: :class:`Bool`
     """
 
-    ID: typing.Literal["sponsoredMessage"] = "sponsoredMessage"
+    ID: typing.Literal["sponsoredMessage"] = Field("sponsoredMessage", validation_alias="@type", alias="@type")
     message_id: Int53
     content: MessageContent
     sponsor: MessageSponsor
@@ -15758,7 +16906,7 @@ class SponsoredMessages(BaseObject):
     :type messages_between: :class:`Int32`
     """
 
-    ID: typing.Literal["sponsoredMessages"] = "sponsoredMessages"
+    ID: typing.Literal["sponsoredMessages"] = Field("sponsoredMessages", validation_alias="@type", alias="@type")
     messages: Vector[SponsoredMessage]
     messages_between: Int32
 
@@ -15771,7 +16919,9 @@ class StatisticalGraphAsync(BaseObject):
     :type token: :class:`String`
     """
 
-    ID: typing.Literal["statisticalGraphAsync"] = "statisticalGraphAsync"
+    ID: typing.Literal["statisticalGraphAsync"] = Field(
+        "statisticalGraphAsync", validation_alias="@type", alias="@type"
+    )
     token: String
 
 
@@ -15785,7 +16935,7 @@ class StatisticalGraphData(BaseObject):
     :type zoom_token: :class:`String`
     """
 
-    ID: typing.Literal["statisticalGraphData"] = "statisticalGraphData"
+    ID: typing.Literal["statisticalGraphData"] = Field("statisticalGraphData", validation_alias="@type", alias="@type")
     json_data: String
     zoom_token: String
 
@@ -15798,7 +16948,9 @@ class StatisticalGraphError(BaseObject):
     :type error_message: :class:`String`
     """
 
-    ID: typing.Literal["statisticalGraphError"] = "statisticalGraphError"
+    ID: typing.Literal["statisticalGraphError"] = Field(
+        "statisticalGraphError", validation_alias="@type", alias="@type"
+    )
     error_message: String
 
 
@@ -15821,7 +16973,7 @@ class StatisticalValue(BaseObject):
     :type growth_rate_percentage: :class:`Double`
     """
 
-    ID: typing.Literal["statisticalValue"] = "statisticalValue"
+    ID: typing.Literal["statisticalValue"] = Field("statisticalValue", validation_alias="@type", alias="@type")
     value: Double
     previous_value: Double
     growth_rate_percentage: Double
@@ -15853,7 +17005,7 @@ class Sticker(BaseObject):
     :type set_id: :class:`Int64`, optional
     """
 
-    ID: typing.Literal["sticker"] = "sticker"
+    ID: typing.Literal["sticker"] = Field("sticker", validation_alias="@type", alias="@type")
     width: Int32
     height: Int32
     emoji: String
@@ -15871,7 +17023,7 @@ class StickerFormatTgs(BaseObject):
     The sticker is an animation in TGS format
     """
 
-    ID: typing.Literal["stickerFormatTgs"] = "stickerFormatTgs"
+    ID: typing.Literal["stickerFormatTgs"] = Field("stickerFormatTgs", validation_alias="@type", alias="@type")
 
 
 class StickerFormatWebm(BaseObject):
@@ -15879,7 +17031,7 @@ class StickerFormatWebm(BaseObject):
     The sticker is a video in WEBM format
     """
 
-    ID: typing.Literal["stickerFormatWebm"] = "stickerFormatWebm"
+    ID: typing.Literal["stickerFormatWebm"] = Field("stickerFormatWebm", validation_alias="@type", alias="@type")
 
 
 class StickerFormatWebp(BaseObject):
@@ -15887,7 +17039,7 @@ class StickerFormatWebp(BaseObject):
     The sticker is an image in WEBP format
     """
 
-    ID: typing.Literal["stickerFormatWebp"] = "stickerFormatWebp"
+    ID: typing.Literal["stickerFormatWebp"] = Field("stickerFormatWebp", validation_alias="@type", alias="@type")
 
 
 StickerFormat = typing.Union[
@@ -15907,7 +17059,9 @@ class StickerFullTypeCustomEmoji(BaseObject):
     :type needs_repainting: :class:`Bool`
     """
 
-    ID: typing.Literal["stickerFullTypeCustomEmoji"] = "stickerFullTypeCustomEmoji"
+    ID: typing.Literal["stickerFullTypeCustomEmoji"] = Field(
+        "stickerFullTypeCustomEmoji", validation_alias="@type", alias="@type"
+    )
     custom_emoji_id: Int64
     needs_repainting: Bool = False
 
@@ -15920,7 +17074,7 @@ class StickerFullTypeMask(BaseObject):
     :type mask_position: :class:`MaskPosition`, optional
     """
 
-    ID: typing.Literal["stickerFullTypeMask"] = "stickerFullTypeMask"
+    ID: typing.Literal["stickerFullTypeMask"] = Field("stickerFullTypeMask", validation_alias="@type", alias="@type")
     mask_position: typing.Optional[MaskPosition] = None
 
 
@@ -15932,7 +17086,9 @@ class StickerFullTypeRegular(BaseObject):
     :type premium_animation: :class:`File`, optional
     """
 
-    ID: typing.Literal["stickerFullTypeRegular"] = "stickerFullTypeRegular"
+    ID: typing.Literal["stickerFullTypeRegular"] = Field(
+        "stickerFullTypeRegular", validation_alias="@type", alias="@type"
+    )
     premium_animation: typing.Optional[File] = None
 
 
@@ -15975,7 +17131,7 @@ class StickerSet(BaseObject):
     :type is_official: :class:`Bool`
     """
 
-    ID: typing.Literal["stickerSet"] = "stickerSet"
+    ID: typing.Literal["stickerSet"] = Field("stickerSet", validation_alias="@type", alias="@type")
     id: Int64
     title: String
     name: String
@@ -16023,7 +17179,7 @@ class StickerSetInfo(BaseObject):
     :type is_official: :class:`Bool`
     """
 
-    ID: typing.Literal["stickerSetInfo"] = "stickerSetInfo"
+    ID: typing.Literal["stickerSetInfo"] = Field("stickerSetInfo", validation_alias="@type", alias="@type")
     id: Int64
     title: String
     name: String
@@ -16049,7 +17205,7 @@ class StickerSets(BaseObject):
     :type sets: :class:`Vector[StickerSetInfo]`
     """
 
-    ID: typing.Literal["stickerSets"] = "stickerSets"
+    ID: typing.Literal["stickerSets"] = Field("stickerSets", validation_alias="@type", alias="@type")
     total_count: Int32
     sets: Vector[StickerSetInfo]
 
@@ -16059,7 +17215,9 @@ class StickerTypeCustomEmoji(BaseObject):
     The sticker is a custom emoji to be used inside message text and caption
     """
 
-    ID: typing.Literal["stickerTypeCustomEmoji"] = "stickerTypeCustomEmoji"
+    ID: typing.Literal["stickerTypeCustomEmoji"] = Field(
+        "stickerTypeCustomEmoji", validation_alias="@type", alias="@type"
+    )
 
 
 class StickerTypeMask(BaseObject):
@@ -16067,7 +17225,7 @@ class StickerTypeMask(BaseObject):
     The sticker is a mask in WEBP format to be placed on photos or videos
     """
 
-    ID: typing.Literal["stickerTypeMask"] = "stickerTypeMask"
+    ID: typing.Literal["stickerTypeMask"] = Field("stickerTypeMask", validation_alias="@type", alias="@type")
 
 
 class StickerTypeRegular(BaseObject):
@@ -16075,7 +17233,7 @@ class StickerTypeRegular(BaseObject):
     The sticker is a regular sticker
     """
 
-    ID: typing.Literal["stickerTypeRegular"] = "stickerTypeRegular"
+    ID: typing.Literal["stickerTypeRegular"] = Field("stickerTypeRegular", validation_alias="@type", alias="@type")
 
 
 StickerType = typing.Union[
@@ -16093,7 +17251,7 @@ class Stickers(BaseObject):
     :type stickers: :class:`Vector[Sticker]`
     """
 
-    ID: typing.Literal["stickers"] = "stickers"
+    ID: typing.Literal["stickers"] = Field("stickers", validation_alias="@type", alias="@type")
     stickers: Vector[Sticker]
 
 
@@ -16109,7 +17267,7 @@ class StorageStatistics(BaseObject):
     :type by_chat: :class:`Vector[StorageStatisticsByChat]`
     """
 
-    ID: typing.Literal["storageStatistics"] = "storageStatistics"
+    ID: typing.Literal["storageStatistics"] = Field("storageStatistics", validation_alias="@type", alias="@type")
     size: Int53
     count: Int32
     by_chat: Vector[StorageStatisticsByChat]
@@ -16129,7 +17287,9 @@ class StorageStatisticsByChat(BaseObject):
     :type chat_id: :class:`Int53`, optional
     """
 
-    ID: typing.Literal["storageStatisticsByChat"] = "storageStatisticsByChat"
+    ID: typing.Literal["storageStatisticsByChat"] = Field(
+        "storageStatisticsByChat", validation_alias="@type", alias="@type"
+    )
     size: Int53
     count: Int32
     by_file_type: Vector[StorageStatisticsByFileType]
@@ -16148,7 +17308,9 @@ class StorageStatisticsByFileType(BaseObject):
     :type count: :class:`Int32`
     """
 
-    ID: typing.Literal["storageStatisticsByFileType"] = "storageStatisticsByFileType"
+    ID: typing.Literal["storageStatisticsByFileType"] = Field(
+        "storageStatisticsByFileType", validation_alias="@type", alias="@type"
+    )
     file_type: FileType
     size: Int53
     count: Int32
@@ -16170,7 +17332,9 @@ class StorageStatisticsFast(BaseObject):
     :type log_size: :class:`Int53`
     """
 
-    ID: typing.Literal["storageStatisticsFast"] = "storageStatisticsFast"
+    ID: typing.Literal["storageStatisticsFast"] = Field(
+        "storageStatisticsFast", validation_alias="@type", alias="@type"
+    )
     files_size: Int53
     file_count: Int32
     database_size: Int53
@@ -16190,7 +17354,9 @@ class StorePaymentPurposeGiftedPremium(BaseObject):
     :type amount: :class:`Int53`
     """
 
-    ID: typing.Literal["storePaymentPurposeGiftedPremium"] = "storePaymentPurposeGiftedPremium"
+    ID: typing.Literal["storePaymentPurposeGiftedPremium"] = Field(
+        "storePaymentPurposeGiftedPremium", validation_alias="@type", alias="@type"
+    )
     user_id: Int53
     currency: String
     amount: Int53
@@ -16206,7 +17372,9 @@ class StorePaymentPurposePremiumSubscription(BaseObject):
     :type is_upgrade: :class:`Bool`
     """
 
-    ID: typing.Literal["storePaymentPurposePremiumSubscription"] = "storePaymentPurposePremiumSubscription"
+    ID: typing.Literal["storePaymentPurposePremiumSubscription"] = Field(
+        "storePaymentPurposePremiumSubscription", validation_alias="@type", alias="@type"
+    )
     is_restore: Bool = False
     is_upgrade: Bool = False
 
@@ -16227,7 +17395,7 @@ class Stories(BaseObject):
     :type stories: :class:`Vector[Story]`
     """
 
-    ID: typing.Literal["stories"] = "stories"
+    ID: typing.Literal["stories"] = Field("stories", validation_alias="@type", alias="@type")
     total_count: Int32
     stories: Vector[Story]
 
@@ -16274,7 +17442,7 @@ class Story(BaseObject):
     :type has_expired_viewers: :class:`Bool`
     """
 
-    ID: typing.Literal["story"] = "story"
+    ID: typing.Literal["story"] = Field("story", validation_alias="@type", alias="@type")
     id: Int32
     sender_chat_id: Int53
     date: Int32
@@ -16305,7 +17473,7 @@ class StoryArea(BaseObject):
     :type type_: :class:`StoryAreaType`
     """
 
-    ID: typing.Literal["storyArea"] = "storyArea"
+    ID: typing.Literal["storyArea"] = Field("storyArea", validation_alias="@type", alias="@type")
     position: StoryAreaPosition
     type_: StoryAreaType = Field(..., alias="type")
 
@@ -16326,7 +17494,7 @@ class StoryAreaPosition(BaseObject):
     :type rotation_angle: :class:`Double`
     """
 
-    ID: typing.Literal["storyAreaPosition"] = "storyAreaPosition"
+    ID: typing.Literal["storyAreaPosition"] = Field("storyAreaPosition", validation_alias="@type", alias="@type")
     x_percentage: Double
     y_percentage: Double
     width_percentage: Double
@@ -16342,7 +17510,9 @@ class StoryAreaTypeLocation(BaseObject):
     :type location: :class:`Location`
     """
 
-    ID: typing.Literal["storyAreaTypeLocation"] = "storyAreaTypeLocation"
+    ID: typing.Literal["storyAreaTypeLocation"] = Field(
+        "storyAreaTypeLocation", validation_alias="@type", alias="@type"
+    )
     location: Location
 
 
@@ -16354,7 +17524,7 @@ class StoryAreaTypeVenue(BaseObject):
     :type venue: :class:`Venue`
     """
 
-    ID: typing.Literal["storyAreaTypeVenue"] = "storyAreaTypeVenue"
+    ID: typing.Literal["storyAreaTypeVenue"] = Field("storyAreaTypeVenue", validation_alias="@type", alias="@type")
     venue: Venue
 
 
@@ -16372,7 +17542,7 @@ class StoryContentPhoto(BaseObject):
     :type photo: :class:`Photo`
     """
 
-    ID: typing.Literal["storyContentPhoto"] = "storyContentPhoto"
+    ID: typing.Literal["storyContentPhoto"] = Field("storyContentPhoto", validation_alias="@type", alias="@type")
     photo: Photo
 
 
@@ -16381,7 +17551,9 @@ class StoryContentUnsupported(BaseObject):
     A story content that is not supported in the current TDLib version
     """
 
-    ID: typing.Literal["storyContentUnsupported"] = "storyContentUnsupported"
+    ID: typing.Literal["storyContentUnsupported"] = Field(
+        "storyContentUnsupported", validation_alias="@type", alias="@type"
+    )
 
 
 class StoryContentVideo(BaseObject):
@@ -16394,7 +17566,7 @@ class StoryContentVideo(BaseObject):
     :type alternative_video: :class:`StoryVideo`, optional
     """
 
-    ID: typing.Literal["storyContentVideo"] = "storyContentVideo"
+    ID: typing.Literal["storyContentVideo"] = Field("storyContentVideo", validation_alias="@type", alias="@type")
     video: StoryVideo
     alternative_video: typing.Optional[StoryVideo] = None
 
@@ -16418,7 +17590,7 @@ class StoryInfo(BaseObject):
     :type is_for_close_friends: :class:`Bool`
     """
 
-    ID: typing.Literal["storyInfo"] = "storyInfo"
+    ID: typing.Literal["storyInfo"] = Field("storyInfo", validation_alias="@type", alias="@type")
     story_id: Int32
     date: Int32
     is_for_close_friends: Bool = False
@@ -16436,7 +17608,7 @@ class StoryInteractionInfo(BaseObject):
     :type recent_viewer_user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["storyInteractionInfo"] = "storyInteractionInfo"
+    ID: typing.Literal["storyInteractionInfo"] = Field("storyInteractionInfo", validation_alias="@type", alias="@type")
     view_count: Int32
     reaction_count: Int32
     recent_viewer_user_ids: Vector[Int53]
@@ -16447,7 +17619,7 @@ class StoryListArchive(BaseObject):
     The list of stories, shown in the Arvhive chat list
     """
 
-    ID: typing.Literal["storyListArchive"] = "storyListArchive"
+    ID: typing.Literal["storyListArchive"] = Field("storyListArchive", validation_alias="@type", alias="@type")
 
 
 class StoryListMain(BaseObject):
@@ -16455,7 +17627,7 @@ class StoryListMain(BaseObject):
     The list of stories, shown in the main chat list and folder chat lists
     """
 
-    ID: typing.Literal["storyListMain"] = "storyListMain"
+    ID: typing.Literal["storyListMain"] = Field("storyListMain", validation_alias="@type", alias="@type")
 
 
 StoryList = typing.Union[
@@ -16469,7 +17641,9 @@ class StoryPrivacySettingsCloseFriends(BaseObject):
     The story can be viewed by all close friends
     """
 
-    ID: typing.Literal["storyPrivacySettingsCloseFriends"] = "storyPrivacySettingsCloseFriends"
+    ID: typing.Literal["storyPrivacySettingsCloseFriends"] = Field(
+        "storyPrivacySettingsCloseFriends", validation_alias="@type", alias="@type"
+    )
 
 
 class StoryPrivacySettingsContacts(BaseObject):
@@ -16480,7 +17654,9 @@ class StoryPrivacySettingsContacts(BaseObject):
     :type except_user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["storyPrivacySettingsContacts"] = "storyPrivacySettingsContacts"
+    ID: typing.Literal["storyPrivacySettingsContacts"] = Field(
+        "storyPrivacySettingsContacts", validation_alias="@type", alias="@type"
+    )
     except_user_ids: Vector[Int53]
 
 
@@ -16492,7 +17668,9 @@ class StoryPrivacySettingsEveryone(BaseObject):
     :type except_user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["storyPrivacySettingsEveryone"] = "storyPrivacySettingsEveryone"
+    ID: typing.Literal["storyPrivacySettingsEveryone"] = Field(
+        "storyPrivacySettingsEveryone", validation_alias="@type", alias="@type"
+    )
     except_user_ids: Vector[Int53]
 
 
@@ -16504,7 +17682,9 @@ class StoryPrivacySettingsSelectedUsers(BaseObject):
     :type user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["storyPrivacySettingsSelectedUsers"] = "storyPrivacySettingsSelectedUsers"
+    ID: typing.Literal["storyPrivacySettingsSelectedUsers"] = Field(
+        "storyPrivacySettingsSelectedUsers", validation_alias="@type", alias="@type"
+    )
     user_ids: Vector[Int53]
 
 
@@ -16540,7 +17720,7 @@ class StoryVideo(BaseObject):
     :type is_animation: :class:`Bool`
     """
 
-    ID: typing.Literal["storyVideo"] = "storyVideo"
+    ID: typing.Literal["storyVideo"] = Field("storyVideo", validation_alias="@type", alias="@type")
     duration: Double
     width: Int32
     height: Int32
@@ -16566,7 +17746,7 @@ class StoryViewer(BaseObject):
     :type chosen_reaction_type: :class:`ReactionType`, optional
     """
 
-    ID: typing.Literal["storyViewer"] = "storyViewer"
+    ID: typing.Literal["storyViewer"] = Field("storyViewer", validation_alias="@type", alias="@type")
     user_id: Int53
     view_date: Int32
     block_list: typing.Optional[BlockList] = None
@@ -16587,7 +17767,7 @@ class StoryViewers(BaseObject):
     :type next_offset: :class:`String`
     """
 
-    ID: typing.Literal["storyViewers"] = "storyViewers"
+    ID: typing.Literal["storyViewers"] = Field("storyViewers", validation_alias="@type", alias="@type")
     total_count: Int32
     total_reaction_count: Int32
     viewers: Vector[StoryViewer]
@@ -16599,7 +17779,9 @@ class SuggestedActionCheckPassword(BaseObject):
     Suggests the user to check whether they still remember their 2-step verification password
     """
 
-    ID: typing.Literal["suggestedActionCheckPassword"] = "suggestedActionCheckPassword"
+    ID: typing.Literal["suggestedActionCheckPassword"] = Field(
+        "suggestedActionCheckPassword", validation_alias="@type", alias="@type"
+    )
 
 
 class SuggestedActionCheckPhoneNumber(BaseObject):
@@ -16607,7 +17789,9 @@ class SuggestedActionCheckPhoneNumber(BaseObject):
     Suggests the user to check whether authorization phone number is correct and change the phone number if it is inaccessible
     """
 
-    ID: typing.Literal["suggestedActionCheckPhoneNumber"] = "suggestedActionCheckPhoneNumber"
+    ID: typing.Literal["suggestedActionCheckPhoneNumber"] = Field(
+        "suggestedActionCheckPhoneNumber", validation_alias="@type", alias="@type"
+    )
 
 
 class SuggestedActionConvertToBroadcastGroup(BaseObject):
@@ -16618,7 +17802,9 @@ class SuggestedActionConvertToBroadcastGroup(BaseObject):
     :type supergroup_id: :class:`Int53`
     """
 
-    ID: typing.Literal["suggestedActionConvertToBroadcastGroup"] = "suggestedActionConvertToBroadcastGroup"
+    ID: typing.Literal["suggestedActionConvertToBroadcastGroup"] = Field(
+        "suggestedActionConvertToBroadcastGroup", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53
 
 
@@ -16627,7 +17813,9 @@ class SuggestedActionEnableArchiveAndMuteNewChats(BaseObject):
     Suggests the user to enable archive_and_mute_new_chats_from_unknown_users setting in archiveChatListSettings
     """
 
-    ID: typing.Literal["suggestedActionEnableArchiveAndMuteNewChats"] = "suggestedActionEnableArchiveAndMuteNewChats"
+    ID: typing.Literal["suggestedActionEnableArchiveAndMuteNewChats"] = Field(
+        "suggestedActionEnableArchiveAndMuteNewChats", validation_alias="@type", alias="@type"
+    )
 
 
 class SuggestedActionRestorePremium(BaseObject):
@@ -16635,7 +17823,9 @@ class SuggestedActionRestorePremium(BaseObject):
     Suggests the user to restore a recently expired Premium subscription
     """
 
-    ID: typing.Literal["suggestedActionRestorePremium"] = "suggestedActionRestorePremium"
+    ID: typing.Literal["suggestedActionRestorePremium"] = Field(
+        "suggestedActionRestorePremium", validation_alias="@type", alias="@type"
+    )
 
 
 class SuggestedActionSetPassword(BaseObject):
@@ -16646,7 +17836,9 @@ class SuggestedActionSetPassword(BaseObject):
     :type authorization_delay: :class:`Int32`
     """
 
-    ID: typing.Literal["suggestedActionSetPassword"] = "suggestedActionSetPassword"
+    ID: typing.Literal["suggestedActionSetPassword"] = Field(
+        "suggestedActionSetPassword", validation_alias="@type", alias="@type"
+    )
     authorization_delay: Int32 = 0
 
 
@@ -16655,7 +17847,9 @@ class SuggestedActionSubscribeToAnnualPremium(BaseObject):
     Suggests the user to subscribe to the Premium subscription with annual payments
     """
 
-    ID: typing.Literal["suggestedActionSubscribeToAnnualPremium"] = "suggestedActionSubscribeToAnnualPremium"
+    ID: typing.Literal["suggestedActionSubscribeToAnnualPremium"] = Field(
+        "suggestedActionSubscribeToAnnualPremium", validation_alias="@type", alias="@type"
+    )
 
 
 class SuggestedActionUpgradePremium(BaseObject):
@@ -16663,7 +17857,9 @@ class SuggestedActionUpgradePremium(BaseObject):
     Suggests the user to upgrade the Premium subscription from monthly payments to annual payments
     """
 
-    ID: typing.Literal["suggestedActionUpgradePremium"] = "suggestedActionUpgradePremium"
+    ID: typing.Literal["suggestedActionUpgradePremium"] = Field(
+        "suggestedActionUpgradePremium", validation_alias="@type", alias="@type"
+    )
 
 
 class SuggestedActionViewChecksHint(BaseObject):
@@ -16671,7 +17867,9 @@ class SuggestedActionViewChecksHint(BaseObject):
     Suggests the user to view a hint about the meaning of one and two check marks on sent messages
     """
 
-    ID: typing.Literal["suggestedActionViewChecksHint"] = "suggestedActionViewChecksHint"
+    ID: typing.Literal["suggestedActionViewChecksHint"] = Field(
+        "suggestedActionViewChecksHint", validation_alias="@type", alias="@type"
+    )
 
 
 SuggestedAction = typing.Union[
@@ -16729,7 +17927,7 @@ class Supergroup(BaseObject):
     :type member_count: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["supergroup"] = "supergroup"
+    ID: typing.Literal["supergroup"] = Field("supergroup", validation_alias="@type", alias="@type")
     id: Int53
     date: Int32
     status: ChatMemberStatus
@@ -16804,7 +18002,7 @@ class SupergroupFullInfo(BaseObject):
     :type upgraded_from_max_message_id: :class:`Int53`, optional
     """
 
-    ID: typing.Literal["supergroupFullInfo"] = "supergroupFullInfo"
+    ID: typing.Literal["supergroupFullInfo"] = Field("supergroupFullInfo", validation_alias="@type", alias="@type")
     description: String
     slow_mode_delay: Int32
     slow_mode_delay_expires_in: Double
@@ -16836,7 +18034,9 @@ class SupergroupMembersFilterAdministrators(BaseObject):
     Returns the owner and administrators
     """
 
-    ID: typing.Literal["supergroupMembersFilterAdministrators"] = "supergroupMembersFilterAdministrators"
+    ID: typing.Literal["supergroupMembersFilterAdministrators"] = Field(
+        "supergroupMembersFilterAdministrators", validation_alias="@type", alias="@type"
+    )
 
 
 class SupergroupMembersFilterBanned(BaseObject):
@@ -16847,7 +18047,9 @@ class SupergroupMembersFilterBanned(BaseObject):
     :type query: :class:`String`
     """
 
-    ID: typing.Literal["supergroupMembersFilterBanned"] = "supergroupMembersFilterBanned"
+    ID: typing.Literal["supergroupMembersFilterBanned"] = Field(
+        "supergroupMembersFilterBanned", validation_alias="@type", alias="@type"
+    )
     query: String
 
 
@@ -16856,7 +18058,9 @@ class SupergroupMembersFilterBots(BaseObject):
     Returns bot members of the supergroup or channel
     """
 
-    ID: typing.Literal["supergroupMembersFilterBots"] = "supergroupMembersFilterBots"
+    ID: typing.Literal["supergroupMembersFilterBots"] = Field(
+        "supergroupMembersFilterBots", validation_alias="@type", alias="@type"
+    )
 
 
 class SupergroupMembersFilterContacts(BaseObject):
@@ -16867,7 +18071,9 @@ class SupergroupMembersFilterContacts(BaseObject):
     :type query: :class:`String`
     """
 
-    ID: typing.Literal["supergroupMembersFilterContacts"] = "supergroupMembersFilterContacts"
+    ID: typing.Literal["supergroupMembersFilterContacts"] = Field(
+        "supergroupMembersFilterContacts", validation_alias="@type", alias="@type"
+    )
     query: String
 
 
@@ -16881,7 +18087,9 @@ class SupergroupMembersFilterMention(BaseObject):
     :type message_thread_id: :class:`Int53`
     """
 
-    ID: typing.Literal["supergroupMembersFilterMention"] = "supergroupMembersFilterMention"
+    ID: typing.Literal["supergroupMembersFilterMention"] = Field(
+        "supergroupMembersFilterMention", validation_alias="@type", alias="@type"
+    )
     query: String
     message_thread_id: Int53
 
@@ -16891,7 +18099,9 @@ class SupergroupMembersFilterRecent(BaseObject):
     Returns recently active users in reverse chronological order
     """
 
-    ID: typing.Literal["supergroupMembersFilterRecent"] = "supergroupMembersFilterRecent"
+    ID: typing.Literal["supergroupMembersFilterRecent"] = Field(
+        "supergroupMembersFilterRecent", validation_alias="@type", alias="@type"
+    )
 
 
 class SupergroupMembersFilterRestricted(BaseObject):
@@ -16902,7 +18112,9 @@ class SupergroupMembersFilterRestricted(BaseObject):
     :type query: :class:`String`
     """
 
-    ID: typing.Literal["supergroupMembersFilterRestricted"] = "supergroupMembersFilterRestricted"
+    ID: typing.Literal["supergroupMembersFilterRestricted"] = Field(
+        "supergroupMembersFilterRestricted", validation_alias="@type", alias="@type"
+    )
     query: String
 
 
@@ -16914,7 +18126,9 @@ class SupergroupMembersFilterSearch(BaseObject):
     :type query: :class:`String`
     """
 
-    ID: typing.Literal["supergroupMembersFilterSearch"] = "supergroupMembersFilterSearch"
+    ID: typing.Literal["supergroupMembersFilterSearch"] = Field(
+        "supergroupMembersFilterSearch", validation_alias="@type", alias="@type"
+    )
     query: String
 
 
@@ -16940,7 +18154,7 @@ class TMeUrl(BaseObject):
     :type type_: :class:`TMeUrlType`
     """
 
-    ID: typing.Literal["tMeUrl"] = "tMeUrl"
+    ID: typing.Literal["tMeUrl"] = Field("tMeUrl", validation_alias="@type", alias="@type")
     url: String
     type_: TMeUrlType = Field(..., alias="type")
 
@@ -16953,7 +18167,7 @@ class TMeUrlTypeChatInvite(BaseObject):
     :type info: :class:`ChatInviteLinkInfo`
     """
 
-    ID: typing.Literal["tMeUrlTypeChatInvite"] = "tMeUrlTypeChatInvite"
+    ID: typing.Literal["tMeUrlTypeChatInvite"] = Field("tMeUrlTypeChatInvite", validation_alias="@type", alias="@type")
     info: ChatInviteLinkInfo
 
 
@@ -16965,7 +18179,7 @@ class TMeUrlTypeStickerSet(BaseObject):
     :type sticker_set_id: :class:`Int64`
     """
 
-    ID: typing.Literal["tMeUrlTypeStickerSet"] = "tMeUrlTypeStickerSet"
+    ID: typing.Literal["tMeUrlTypeStickerSet"] = Field("tMeUrlTypeStickerSet", validation_alias="@type", alias="@type")
     sticker_set_id: Int64
 
 
@@ -16977,7 +18191,7 @@ class TMeUrlTypeSupergroup(BaseObject):
     :type supergroup_id: :class:`Int53`
     """
 
-    ID: typing.Literal["tMeUrlTypeSupergroup"] = "tMeUrlTypeSupergroup"
+    ID: typing.Literal["tMeUrlTypeSupergroup"] = Field("tMeUrlTypeSupergroup", validation_alias="@type", alias="@type")
     supergroup_id: Int53
 
 
@@ -16989,7 +18203,7 @@ class TMeUrlTypeUser(BaseObject):
     :type user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["tMeUrlTypeUser"] = "tMeUrlTypeUser"
+    ID: typing.Literal["tMeUrlTypeUser"] = Field("tMeUrlTypeUser", validation_alias="@type", alias="@type")
     user_id: Int53
 
 
@@ -17009,7 +18223,7 @@ class TMeUrls(BaseObject):
     :type urls: :class:`Vector[TMeUrl]`
     """
 
-    ID: typing.Literal["tMeUrls"] = "tMeUrls"
+    ID: typing.Literal["tMeUrls"] = Field("tMeUrls", validation_alias="@type", alias="@type")
     urls: Vector[TMeUrl]
 
 
@@ -17027,7 +18241,7 @@ class TargetChatChosen(BaseObject):
     :type allow_channel_chats: :class:`Bool`
     """
 
-    ID: typing.Literal["targetChatChosen"] = "targetChatChosen"
+    ID: typing.Literal["targetChatChosen"] = Field("targetChatChosen", validation_alias="@type", alias="@type")
     allow_user_chats: Bool = False
     allow_bot_chats: Bool = False
     allow_group_chats: Bool = False
@@ -17039,7 +18253,7 @@ class TargetChatCurrent(BaseObject):
     The currently opened chat needs to be kept
     """
 
-    ID: typing.Literal["targetChatCurrent"] = "targetChatCurrent"
+    ID: typing.Literal["targetChatCurrent"] = Field("targetChatCurrent", validation_alias="@type", alias="@type")
 
 
 class TargetChatInternalLink(BaseObject):
@@ -17050,7 +18264,9 @@ class TargetChatInternalLink(BaseObject):
     :type link: :class:`InternalLinkType`
     """
 
-    ID: typing.Literal["targetChatInternalLink"] = "targetChatInternalLink"
+    ID: typing.Literal["targetChatInternalLink"] = Field(
+        "targetChatInternalLink", validation_alias="@type", alias="@type"
+    )
     link: InternalLinkType
 
 
@@ -17071,7 +18287,9 @@ class TemporaryPasswordState(BaseObject):
     :type has_password: :class:`Bool`
     """
 
-    ID: typing.Literal["temporaryPasswordState"] = "temporaryPasswordState"
+    ID: typing.Literal["temporaryPasswordState"] = Field(
+        "temporaryPasswordState", validation_alias="@type", alias="@type"
+    )
     valid_for: Int32
     has_password: Bool = False
 
@@ -17088,7 +18306,7 @@ class TermsOfService(BaseObject):
     :type show_popup: :class:`Bool`
     """
 
-    ID: typing.Literal["termsOfService"] = "termsOfService"
+    ID: typing.Literal["termsOfService"] = Field("termsOfService", validation_alias="@type", alias="@type")
     text: FormattedText
     min_user_age: Int32
     show_popup: Bool = False
@@ -17102,7 +18320,7 @@ class TestBytes(BaseObject):
     :type value: :class:`Bytes`
     """
 
-    ID: typing.Literal["testBytes"] = "testBytes"
+    ID: typing.Literal["testBytes"] = Field("testBytes", validation_alias="@type", alias="@type")
     value: Bytes
 
 
@@ -17114,7 +18332,7 @@ class TestInt(BaseObject):
     :type value: :class:`Int32`
     """
 
-    ID: typing.Literal["testInt"] = "testInt"
+    ID: typing.Literal["testInt"] = Field("testInt", validation_alias="@type", alias="@type")
     value: Int32
 
 
@@ -17126,7 +18344,7 @@ class TestString(BaseObject):
     :type value: :class:`String`
     """
 
-    ID: typing.Literal["testString"] = "testString"
+    ID: typing.Literal["testString"] = Field("testString", validation_alias="@type", alias="@type")
     value: String
 
 
@@ -17138,7 +18356,7 @@ class TestVectorInt(BaseObject):
     :type value: :class:`Vector[Int32]`
     """
 
-    ID: typing.Literal["testVectorInt"] = "testVectorInt"
+    ID: typing.Literal["testVectorInt"] = Field("testVectorInt", validation_alias="@type", alias="@type")
     value: Vector[Int32]
 
 
@@ -17150,7 +18368,7 @@ class TestVectorIntObject(BaseObject):
     :type value: :class:`Vector[TestInt]`
     """
 
-    ID: typing.Literal["testVectorIntObject"] = "testVectorIntObject"
+    ID: typing.Literal["testVectorIntObject"] = Field("testVectorIntObject", validation_alias="@type", alias="@type")
     value: Vector[TestInt]
 
 
@@ -17162,7 +18380,7 @@ class TestVectorString(BaseObject):
     :type value: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["testVectorString"] = "testVectorString"
+    ID: typing.Literal["testVectorString"] = Field("testVectorString", validation_alias="@type", alias="@type")
     value: Vector[String]
 
 
@@ -17174,7 +18392,9 @@ class TestVectorStringObject(BaseObject):
     :type value: :class:`Vector[TestString]`
     """
 
-    ID: typing.Literal["testVectorStringObject"] = "testVectorStringObject"
+    ID: typing.Literal["testVectorStringObject"] = Field(
+        "testVectorStringObject", validation_alias="@type", alias="@type"
+    )
     value: Vector[TestString]
 
 
@@ -17186,7 +18406,7 @@ class Text(BaseObject):
     :type text: :class:`String`
     """
 
-    ID: typing.Literal["text"] = "text"
+    ID: typing.Literal["text"] = Field("text", validation_alias="@type", alias="@type")
     text: String
 
 
@@ -17198,7 +18418,7 @@ class TextEntities(BaseObject):
     :type entities: :class:`Vector[TextEntity]`
     """
 
-    ID: typing.Literal["textEntities"] = "textEntities"
+    ID: typing.Literal["textEntities"] = Field("textEntities", validation_alias="@type", alias="@type")
     entities: Vector[TextEntity]
 
 
@@ -17214,7 +18434,7 @@ class TextEntity(BaseObject):
     :type type_: :class:`TextEntityType`
     """
 
-    ID: typing.Literal["textEntity"] = "textEntity"
+    ID: typing.Literal["textEntity"] = Field("textEntity", validation_alias="@type", alias="@type")
     offset: Int32
     length: Int32
     type_: TextEntityType = Field(..., alias="type")
@@ -17225,7 +18445,9 @@ class TextEntityTypeBankCardNumber(BaseObject):
     A bank card number. The getBankCardInfo method can be used to get information about the bank card
     """
 
-    ID: typing.Literal["textEntityTypeBankCardNumber"] = "textEntityTypeBankCardNumber"
+    ID: typing.Literal["textEntityTypeBankCardNumber"] = Field(
+        "textEntityTypeBankCardNumber", validation_alias="@type", alias="@type"
+    )
 
 
 class TextEntityTypeBold(BaseObject):
@@ -17233,7 +18455,7 @@ class TextEntityTypeBold(BaseObject):
     A bold text
     """
 
-    ID: typing.Literal["textEntityTypeBold"] = "textEntityTypeBold"
+    ID: typing.Literal["textEntityTypeBold"] = Field("textEntityTypeBold", validation_alias="@type", alias="@type")
 
 
 class TextEntityTypeBotCommand(BaseObject):
@@ -17241,7 +18463,9 @@ class TextEntityTypeBotCommand(BaseObject):
     A bot command, beginning with "/"
     """
 
-    ID: typing.Literal["textEntityTypeBotCommand"] = "textEntityTypeBotCommand"
+    ID: typing.Literal["textEntityTypeBotCommand"] = Field(
+        "textEntityTypeBotCommand", validation_alias="@type", alias="@type"
+    )
 
 
 class TextEntityTypeCashtag(BaseObject):
@@ -17249,7 +18473,9 @@ class TextEntityTypeCashtag(BaseObject):
     A cashtag text, beginning with "$" and consisting of capital English letters (e.g., "$USD")
     """
 
-    ID: typing.Literal["textEntityTypeCashtag"] = "textEntityTypeCashtag"
+    ID: typing.Literal["textEntityTypeCashtag"] = Field(
+        "textEntityTypeCashtag", validation_alias="@type", alias="@type"
+    )
 
 
 class TextEntityTypeCode(BaseObject):
@@ -17257,7 +18483,7 @@ class TextEntityTypeCode(BaseObject):
     Text that must be formatted as if inside a code HTML tag
     """
 
-    ID: typing.Literal["textEntityTypeCode"] = "textEntityTypeCode"
+    ID: typing.Literal["textEntityTypeCode"] = Field("textEntityTypeCode", validation_alias="@type", alias="@type")
 
 
 class TextEntityTypeCustomEmoji(BaseObject):
@@ -17268,7 +18494,9 @@ class TextEntityTypeCustomEmoji(BaseObject):
     :type custom_emoji_id: :class:`Int64`
     """
 
-    ID: typing.Literal["textEntityTypeCustomEmoji"] = "textEntityTypeCustomEmoji"
+    ID: typing.Literal["textEntityTypeCustomEmoji"] = Field(
+        "textEntityTypeCustomEmoji", validation_alias="@type", alias="@type"
+    )
     custom_emoji_id: Int64
 
 
@@ -17277,7 +18505,9 @@ class TextEntityTypeEmailAddress(BaseObject):
     An email address
     """
 
-    ID: typing.Literal["textEntityTypeEmailAddress"] = "textEntityTypeEmailAddress"
+    ID: typing.Literal["textEntityTypeEmailAddress"] = Field(
+        "textEntityTypeEmailAddress", validation_alias="@type", alias="@type"
+    )
 
 
 class TextEntityTypeHashtag(BaseObject):
@@ -17285,7 +18515,9 @@ class TextEntityTypeHashtag(BaseObject):
     A hashtag text, beginning with "#"
     """
 
-    ID: typing.Literal["textEntityTypeHashtag"] = "textEntityTypeHashtag"
+    ID: typing.Literal["textEntityTypeHashtag"] = Field(
+        "textEntityTypeHashtag", validation_alias="@type", alias="@type"
+    )
 
 
 class TextEntityTypeItalic(BaseObject):
@@ -17293,7 +18525,7 @@ class TextEntityTypeItalic(BaseObject):
     An italic text
     """
 
-    ID: typing.Literal["textEntityTypeItalic"] = "textEntityTypeItalic"
+    ID: typing.Literal["textEntityTypeItalic"] = Field("textEntityTypeItalic", validation_alias="@type", alias="@type")
 
 
 class TextEntityTypeMediaTimestamp(BaseObject):
@@ -17304,7 +18536,9 @@ class TextEntityTypeMediaTimestamp(BaseObject):
     :type media_timestamp: :class:`Int32`
     """
 
-    ID: typing.Literal["textEntityTypeMediaTimestamp"] = "textEntityTypeMediaTimestamp"
+    ID: typing.Literal["textEntityTypeMediaTimestamp"] = Field(
+        "textEntityTypeMediaTimestamp", validation_alias="@type", alias="@type"
+    )
     media_timestamp: Int32
 
 
@@ -17313,7 +18547,9 @@ class TextEntityTypeMention(BaseObject):
     A mention of a user, a supergroup, or a channel by their username
     """
 
-    ID: typing.Literal["textEntityTypeMention"] = "textEntityTypeMention"
+    ID: typing.Literal["textEntityTypeMention"] = Field(
+        "textEntityTypeMention", validation_alias="@type", alias="@type"
+    )
 
 
 class TextEntityTypeMentionName(BaseObject):
@@ -17324,7 +18560,9 @@ class TextEntityTypeMentionName(BaseObject):
     :type user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["textEntityTypeMentionName"] = "textEntityTypeMentionName"
+    ID: typing.Literal["textEntityTypeMentionName"] = Field(
+        "textEntityTypeMentionName", validation_alias="@type", alias="@type"
+    )
     user_id: Int53
 
 
@@ -17333,7 +18571,9 @@ class TextEntityTypePhoneNumber(BaseObject):
     A phone number
     """
 
-    ID: typing.Literal["textEntityTypePhoneNumber"] = "textEntityTypePhoneNumber"
+    ID: typing.Literal["textEntityTypePhoneNumber"] = Field(
+        "textEntityTypePhoneNumber", validation_alias="@type", alias="@type"
+    )
 
 
 class TextEntityTypePre(BaseObject):
@@ -17341,7 +18581,7 @@ class TextEntityTypePre(BaseObject):
     Text that must be formatted as if inside a pre HTML tag
     """
 
-    ID: typing.Literal["textEntityTypePre"] = "textEntityTypePre"
+    ID: typing.Literal["textEntityTypePre"] = Field("textEntityTypePre", validation_alias="@type", alias="@type")
 
 
 class TextEntityTypePreCode(BaseObject):
@@ -17352,7 +18592,9 @@ class TextEntityTypePreCode(BaseObject):
     :type language: :class:`String`
     """
 
-    ID: typing.Literal["textEntityTypePreCode"] = "textEntityTypePreCode"
+    ID: typing.Literal["textEntityTypePreCode"] = Field(
+        "textEntityTypePreCode", validation_alias="@type", alias="@type"
+    )
     language: String
 
 
@@ -17361,7 +18603,9 @@ class TextEntityTypeSpoiler(BaseObject):
     A spoiler text
     """
 
-    ID: typing.Literal["textEntityTypeSpoiler"] = "textEntityTypeSpoiler"
+    ID: typing.Literal["textEntityTypeSpoiler"] = Field(
+        "textEntityTypeSpoiler", validation_alias="@type", alias="@type"
+    )
 
 
 class TextEntityTypeStrikethrough(BaseObject):
@@ -17369,7 +18613,9 @@ class TextEntityTypeStrikethrough(BaseObject):
     A strikethrough text
     """
 
-    ID: typing.Literal["textEntityTypeStrikethrough"] = "textEntityTypeStrikethrough"
+    ID: typing.Literal["textEntityTypeStrikethrough"] = Field(
+        "textEntityTypeStrikethrough", validation_alias="@type", alias="@type"
+    )
 
 
 class TextEntityTypeTextUrl(BaseObject):
@@ -17380,7 +18626,9 @@ class TextEntityTypeTextUrl(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["textEntityTypeTextUrl"] = "textEntityTypeTextUrl"
+    ID: typing.Literal["textEntityTypeTextUrl"] = Field(
+        "textEntityTypeTextUrl", validation_alias="@type", alias="@type"
+    )
     url: String
 
 
@@ -17389,7 +18637,9 @@ class TextEntityTypeUnderline(BaseObject):
     An underlined text
     """
 
-    ID: typing.Literal["textEntityTypeUnderline"] = "textEntityTypeUnderline"
+    ID: typing.Literal["textEntityTypeUnderline"] = Field(
+        "textEntityTypeUnderline", validation_alias="@type", alias="@type"
+    )
 
 
 class TextEntityTypeUrl(BaseObject):
@@ -17397,7 +18647,7 @@ class TextEntityTypeUrl(BaseObject):
     An HTTP URL
     """
 
-    ID: typing.Literal["textEntityTypeUrl"] = "textEntityTypeUrl"
+    ID: typing.Literal["textEntityTypeUrl"] = Field("textEntityTypeUrl", validation_alias="@type", alias="@type")
 
 
 TextEntityType = typing.Union[
@@ -17429,7 +18679,7 @@ class TextParseModeHTML(BaseObject):
     The text uses HTML-style formatting. The same as Telegram Bot API "HTML" parse mode
     """
 
-    ID: typing.Literal["textParseModeHTML"] = "textParseModeHTML"
+    ID: typing.Literal["textParseModeHTML"] = Field("textParseModeHTML", validation_alias="@type", alias="@type")
 
 
 class TextParseModeMarkdown(BaseObject):
@@ -17440,7 +18690,9 @@ class TextParseModeMarkdown(BaseObject):
     :type version: :class:`Int32`
     """
 
-    ID: typing.Literal["textParseModeMarkdown"] = "textParseModeMarkdown"
+    ID: typing.Literal["textParseModeMarkdown"] = Field(
+        "textParseModeMarkdown", validation_alias="@type", alias="@type"
+    )
     version: Int32
 
 
@@ -17470,7 +18722,7 @@ class ThemeParameters(BaseObject):
     :type button_text_color: :class:`Int32`
     """
 
-    ID: typing.Literal["themeParameters"] = "themeParameters"
+    ID: typing.Literal["themeParameters"] = Field("themeParameters", validation_alias="@type", alias="@type")
     background_color: Int32
     secondary_background_color: Int32
     text_color: Int32
@@ -17496,7 +18748,7 @@ class ThemeSettings(BaseObject):
     :type background: :class:`Background`, optional
     """
 
-    ID: typing.Literal["themeSettings"] = "themeSettings"
+    ID: typing.Literal["themeSettings"] = Field("themeSettings", validation_alias="@type", alias="@type")
     accent_color: Int32
     outgoing_message_fill: BackgroundFill
     animate_outgoing_message_fill: Bool
@@ -17518,7 +18770,7 @@ class Thumbnail(BaseObject):
     :type file: :class:`File`
     """
 
-    ID: typing.Literal["thumbnail"] = "thumbnail"
+    ID: typing.Literal["thumbnail"] = Field("thumbnail", validation_alias="@type", alias="@type")
     format: ThumbnailFormat
     width: Int32
     height: Int32
@@ -17530,7 +18782,7 @@ class ThumbnailFormatGif(BaseObject):
     The thumbnail is in static GIF format. It will be used only for some bot inline query results
     """
 
-    ID: typing.Literal["thumbnailFormatGif"] = "thumbnailFormatGif"
+    ID: typing.Literal["thumbnailFormatGif"] = Field("thumbnailFormatGif", validation_alias="@type", alias="@type")
 
 
 class ThumbnailFormatJpeg(BaseObject):
@@ -17538,7 +18790,7 @@ class ThumbnailFormatJpeg(BaseObject):
     The thumbnail is in JPEG format
     """
 
-    ID: typing.Literal["thumbnailFormatJpeg"] = "thumbnailFormatJpeg"
+    ID: typing.Literal["thumbnailFormatJpeg"] = Field("thumbnailFormatJpeg", validation_alias="@type", alias="@type")
 
 
 class ThumbnailFormatMpeg4(BaseObject):
@@ -17546,7 +18798,7 @@ class ThumbnailFormatMpeg4(BaseObject):
     The thumbnail is in MPEG4 format. It will be used only for some animations and videos
     """
 
-    ID: typing.Literal["thumbnailFormatMpeg4"] = "thumbnailFormatMpeg4"
+    ID: typing.Literal["thumbnailFormatMpeg4"] = Field("thumbnailFormatMpeg4", validation_alias="@type", alias="@type")
 
 
 class ThumbnailFormatPng(BaseObject):
@@ -17554,7 +18806,7 @@ class ThumbnailFormatPng(BaseObject):
     The thumbnail is in PNG format. It will be used only for background patterns
     """
 
-    ID: typing.Literal["thumbnailFormatPng"] = "thumbnailFormatPng"
+    ID: typing.Literal["thumbnailFormatPng"] = Field("thumbnailFormatPng", validation_alias="@type", alias="@type")
 
 
 class ThumbnailFormatTgs(BaseObject):
@@ -17562,7 +18814,7 @@ class ThumbnailFormatTgs(BaseObject):
     The thumbnail is in TGS format. It will be used only for TGS sticker sets
     """
 
-    ID: typing.Literal["thumbnailFormatTgs"] = "thumbnailFormatTgs"
+    ID: typing.Literal["thumbnailFormatTgs"] = Field("thumbnailFormatTgs", validation_alias="@type", alias="@type")
 
 
 class ThumbnailFormatWebm(BaseObject):
@@ -17570,7 +18822,7 @@ class ThumbnailFormatWebm(BaseObject):
     The thumbnail is in WEBM format. It will be used only for WEBM sticker sets
     """
 
-    ID: typing.Literal["thumbnailFormatWebm"] = "thumbnailFormatWebm"
+    ID: typing.Literal["thumbnailFormatWebm"] = Field("thumbnailFormatWebm", validation_alias="@type", alias="@type")
 
 
 class ThumbnailFormatWebp(BaseObject):
@@ -17578,7 +18830,7 @@ class ThumbnailFormatWebp(BaseObject):
     The thumbnail is in WEBP format. It will be used only for some stickers
     """
 
-    ID: typing.Literal["thumbnailFormatWebp"] = "thumbnailFormatWebp"
+    ID: typing.Literal["thumbnailFormatWebp"] = Field("thumbnailFormatWebp", validation_alias="@type", alias="@type")
 
 
 ThumbnailFormat = typing.Union[
@@ -17597,7 +18849,7 @@ class TopChatCategoryBots(BaseObject):
     A category containing frequently used private chats with bot users
     """
 
-    ID: typing.Literal["topChatCategoryBots"] = "topChatCategoryBots"
+    ID: typing.Literal["topChatCategoryBots"] = Field("topChatCategoryBots", validation_alias="@type", alias="@type")
 
 
 class TopChatCategoryCalls(BaseObject):
@@ -17605,7 +18857,7 @@ class TopChatCategoryCalls(BaseObject):
     A category containing frequently used chats used for calls
     """
 
-    ID: typing.Literal["topChatCategoryCalls"] = "topChatCategoryCalls"
+    ID: typing.Literal["topChatCategoryCalls"] = Field("topChatCategoryCalls", validation_alias="@type", alias="@type")
 
 
 class TopChatCategoryChannels(BaseObject):
@@ -17613,7 +18865,9 @@ class TopChatCategoryChannels(BaseObject):
     A category containing frequently used channels
     """
 
-    ID: typing.Literal["topChatCategoryChannels"] = "topChatCategoryChannels"
+    ID: typing.Literal["topChatCategoryChannels"] = Field(
+        "topChatCategoryChannels", validation_alias="@type", alias="@type"
+    )
 
 
 class TopChatCategoryForwardChats(BaseObject):
@@ -17621,7 +18875,9 @@ class TopChatCategoryForwardChats(BaseObject):
     A category containing frequently used chats used to forward messages
     """
 
-    ID: typing.Literal["topChatCategoryForwardChats"] = "topChatCategoryForwardChats"
+    ID: typing.Literal["topChatCategoryForwardChats"] = Field(
+        "topChatCategoryForwardChats", validation_alias="@type", alias="@type"
+    )
 
 
 class TopChatCategoryGroups(BaseObject):
@@ -17629,7 +18885,9 @@ class TopChatCategoryGroups(BaseObject):
     A category containing frequently used basic groups and supergroups
     """
 
-    ID: typing.Literal["topChatCategoryGroups"] = "topChatCategoryGroups"
+    ID: typing.Literal["topChatCategoryGroups"] = Field(
+        "topChatCategoryGroups", validation_alias="@type", alias="@type"
+    )
 
 
 class TopChatCategoryInlineBots(BaseObject):
@@ -17637,7 +18895,9 @@ class TopChatCategoryInlineBots(BaseObject):
     A category containing frequently used chats with inline bots sorted by their usage in inline mode
     """
 
-    ID: typing.Literal["topChatCategoryInlineBots"] = "topChatCategoryInlineBots"
+    ID: typing.Literal["topChatCategoryInlineBots"] = Field(
+        "topChatCategoryInlineBots", validation_alias="@type", alias="@type"
+    )
 
 
 class TopChatCategoryUsers(BaseObject):
@@ -17645,7 +18905,7 @@ class TopChatCategoryUsers(BaseObject):
     A category containing frequently used private chats with non-bot users
     """
 
-    ID: typing.Literal["topChatCategoryUsers"] = "topChatCategoryUsers"
+    ID: typing.Literal["topChatCategoryUsers"] = Field("topChatCategoryUsers", validation_alias="@type", alias="@type")
 
 
 TopChatCategory = typing.Union[
@@ -17671,7 +18931,7 @@ class TrendingStickerSets(BaseObject):
     :type is_premium: :class:`Bool`
     """
 
-    ID: typing.Literal["trendingStickerSets"] = "trendingStickerSets"
+    ID: typing.Literal["trendingStickerSets"] = Field("trendingStickerSets", validation_alias="@type", alias="@type")
     total_count: Int32
     sets: Vector[StickerSetInfo]
     is_premium: Bool = False
@@ -17691,7 +18951,7 @@ class UnconfirmedSession(BaseObject):
     :type location: :class:`String`
     """
 
-    ID: typing.Literal["unconfirmedSession"] = "unconfirmedSession"
+    ID: typing.Literal["unconfirmedSession"] = Field("unconfirmedSession", validation_alias="@type", alias="@type")
     id: Int64
     log_in_date: Int32
     device_model: String
@@ -17710,7 +18970,7 @@ class UnreadReaction(BaseObject):
     :type is_big: :class:`Bool`
     """
 
-    ID: typing.Literal["unreadReaction"] = "unreadReaction"
+    ID: typing.Literal["unreadReaction"] = Field("unreadReaction", validation_alias="@type", alias="@type")
     type_: ReactionType = Field(..., alias="type")
     sender_id: MessageSender
     is_big: Bool = False
@@ -17724,7 +18984,9 @@ class UpdateActiveEmojiReactions(BaseObject):
     :type emojis: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["updateActiveEmojiReactions"] = "updateActiveEmojiReactions"
+    ID: typing.Literal["updateActiveEmojiReactions"] = Field(
+        "updateActiveEmojiReactions", validation_alias="@type", alias="@type"
+    )
     emojis: Vector[String]
 
 
@@ -17736,7 +18998,9 @@ class UpdateActiveNotifications(BaseObject):
     :type groups: :class:`Vector[NotificationGroup]`
     """
 
-    ID: typing.Literal["updateActiveNotifications"] = "updateActiveNotifications"
+    ID: typing.Literal["updateActiveNotifications"] = Field(
+        "updateActiveNotifications", validation_alias="@type", alias="@type"
+    )
     groups: Vector[NotificationGroup]
 
 
@@ -17750,7 +19014,9 @@ class UpdateAddChatMembersPrivacyForbidden(BaseObject):
     :type user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["updateAddChatMembersPrivacyForbidden"] = "updateAddChatMembersPrivacyForbidden"
+    ID: typing.Literal["updateAddChatMembersPrivacyForbidden"] = Field(
+        "updateAddChatMembersPrivacyForbidden", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     user_ids: Vector[Int53]
 
@@ -17767,7 +19033,9 @@ class UpdateAnimatedEmojiMessageClicked(BaseObject):
     :type sticker: :class:`Sticker`
     """
 
-    ID: typing.Literal["updateAnimatedEmojiMessageClicked"] = "updateAnimatedEmojiMessageClicked"
+    ID: typing.Literal["updateAnimatedEmojiMessageClicked"] = Field(
+        "updateAnimatedEmojiMessageClicked", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     sticker: Sticker
@@ -17783,7 +19051,9 @@ class UpdateAnimationSearchParameters(BaseObject):
     :type emojis: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["updateAnimationSearchParameters"] = "updateAnimationSearchParameters"
+    ID: typing.Literal["updateAnimationSearchParameters"] = Field(
+        "updateAnimationSearchParameters", validation_alias="@type", alias="@type"
+    )
     provider: String
     emojis: Vector[String]
 
@@ -17796,7 +19066,9 @@ class UpdateAttachmentMenuBots(BaseObject):
     :type bots: :class:`Vector[AttachmentMenuBot]`
     """
 
-    ID: typing.Literal["updateAttachmentMenuBots"] = "updateAttachmentMenuBots"
+    ID: typing.Literal["updateAttachmentMenuBots"] = Field(
+        "updateAttachmentMenuBots", validation_alias="@type", alias="@type"
+    )
     bots: Vector[AttachmentMenuBot]
 
 
@@ -17808,7 +19080,9 @@ class UpdateAuthorizationState(BaseObject):
     :type authorization_state: :class:`AuthorizationState`
     """
 
-    ID: typing.Literal["updateAuthorizationState"] = "updateAuthorizationState"
+    ID: typing.Literal["updateAuthorizationState"] = Field(
+        "updateAuthorizationState", validation_alias="@type", alias="@type"
+    )
     authorization_state: AuthorizationState
 
 
@@ -17822,7 +19096,9 @@ class UpdateAutosaveSettings(BaseObject):
     :type settings: :class:`ScopeAutosaveSettings`, optional
     """
 
-    ID: typing.Literal["updateAutosaveSettings"] = "updateAutosaveSettings"
+    ID: typing.Literal["updateAutosaveSettings"] = Field(
+        "updateAutosaveSettings", validation_alias="@type", alias="@type"
+    )
     scope: AutosaveSettingsScope
     settings: typing.Optional[ScopeAutosaveSettings] = None
 
@@ -17835,7 +19111,7 @@ class UpdateBasicGroup(BaseObject):
     :type basic_group: :class:`BasicGroup`
     """
 
-    ID: typing.Literal["updateBasicGroup"] = "updateBasicGroup"
+    ID: typing.Literal["updateBasicGroup"] = Field("updateBasicGroup", validation_alias="@type", alias="@type")
     basic_group: BasicGroup
 
 
@@ -17849,7 +19125,9 @@ class UpdateBasicGroupFullInfo(BaseObject):
     :type basic_group_full_info: :class:`BasicGroupFullInfo`
     """
 
-    ID: typing.Literal["updateBasicGroupFullInfo"] = "updateBasicGroupFullInfo"
+    ID: typing.Literal["updateBasicGroupFullInfo"] = Field(
+        "updateBasicGroupFullInfo", validation_alias="@type", alias="@type"
+    )
     basic_group_id: Int53
     basic_group_full_info: BasicGroupFullInfo
 
@@ -17862,7 +19140,7 @@ class UpdateCall(BaseObject):
     :type call: :class:`Call`
     """
 
-    ID: typing.Literal["updateCall"] = "updateCall"
+    ID: typing.Literal["updateCall"] = Field("updateCall", validation_alias="@type", alias="@type")
     call: Call
 
 
@@ -17880,7 +19158,7 @@ class UpdateChatAction(BaseObject):
     :type message_thread_id: :class:`Int53`
     """
 
-    ID: typing.Literal["updateChatAction"] = "updateChatAction"
+    ID: typing.Literal["updateChatAction"] = Field("updateChatAction", validation_alias="@type", alias="@type")
     chat_id: Int53
     sender_id: MessageSender
     action: ChatAction
@@ -17897,7 +19175,7 @@ class UpdateChatActionBar(BaseObject):
     :type action_bar: :class:`ChatActionBar`, optional
     """
 
-    ID: typing.Literal["updateChatActionBar"] = "updateChatActionBar"
+    ID: typing.Literal["updateChatActionBar"] = Field("updateChatActionBar", validation_alias="@type", alias="@type")
     chat_id: Int53
     action_bar: typing.Optional[ChatActionBar] = None
 
@@ -17910,7 +19188,9 @@ class UpdateChatActiveStories(BaseObject):
     :type active_stories: :class:`ChatActiveStories`
     """
 
-    ID: typing.Literal["updateChatActiveStories"] = "updateChatActiveStories"
+    ID: typing.Literal["updateChatActiveStories"] = Field(
+        "updateChatActiveStories", validation_alias="@type", alias="@type"
+    )
     active_stories: ChatActiveStories
 
 
@@ -17924,7 +19204,9 @@ class UpdateChatAvailableReactions(BaseObject):
     :type available_reactions: :class:`ChatAvailableReactions`
     """
 
-    ID: typing.Literal["updateChatAvailableReactions"] = "updateChatAvailableReactions"
+    ID: typing.Literal["updateChatAvailableReactions"] = Field(
+        "updateChatAvailableReactions", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     available_reactions: ChatAvailableReactions
 
@@ -17939,7 +19221,7 @@ class UpdateChatBackground(BaseObject):
     :type background: :class:`ChatBackground`, optional
     """
 
-    ID: typing.Literal["updateChatBackground"] = "updateChatBackground"
+    ID: typing.Literal["updateChatBackground"] = Field("updateChatBackground", validation_alias="@type", alias="@type")
     chat_id: Int53
     background: typing.Optional[ChatBackground] = None
 
@@ -17954,7 +19236,7 @@ class UpdateChatBlockList(BaseObject):
     :type block_list: :class:`BlockList`, optional
     """
 
-    ID: typing.Literal["updateChatBlockList"] = "updateChatBlockList"
+    ID: typing.Literal["updateChatBlockList"] = Field("updateChatBlockList", validation_alias="@type", alias="@type")
     chat_id: Int53
     block_list: typing.Optional[BlockList] = None
 
@@ -17969,7 +19251,9 @@ class UpdateChatDefaultDisableNotification(BaseObject):
     :type default_disable_notification: :class:`Bool`
     """
 
-    ID: typing.Literal["updateChatDefaultDisableNotification"] = "updateChatDefaultDisableNotification"
+    ID: typing.Literal["updateChatDefaultDisableNotification"] = Field(
+        "updateChatDefaultDisableNotification", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     default_disable_notification: Bool
 
@@ -17986,7 +19270,9 @@ class UpdateChatDraftMessage(BaseObject):
     :type draft_message: :class:`DraftMessage`, optional
     """
 
-    ID: typing.Literal["updateChatDraftMessage"] = "updateChatDraftMessage"
+    ID: typing.Literal["updateChatDraftMessage"] = Field(
+        "updateChatDraftMessage", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     positions: Vector[ChatPosition]
     draft_message: typing.Optional[DraftMessage] = None
@@ -18002,7 +19288,7 @@ class UpdateChatFolders(BaseObject):
     :type main_chat_list_position: :class:`Int32`
     """
 
-    ID: typing.Literal["updateChatFolders"] = "updateChatFolders"
+    ID: typing.Literal["updateChatFolders"] = Field("updateChatFolders", validation_alias="@type", alias="@type")
     chat_folders: Vector[ChatFolderInfo]
     main_chat_list_position: Int32
 
@@ -18017,7 +19303,9 @@ class UpdateChatHasProtectedContent(BaseObject):
     :type has_protected_content: :class:`Bool`
     """
 
-    ID: typing.Literal["updateChatHasProtectedContent"] = "updateChatHasProtectedContent"
+    ID: typing.Literal["updateChatHasProtectedContent"] = Field(
+        "updateChatHasProtectedContent", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     has_protected_content: Bool
 
@@ -18032,7 +19320,9 @@ class UpdateChatHasScheduledMessages(BaseObject):
     :type has_scheduled_messages: :class:`Bool`
     """
 
-    ID: typing.Literal["updateChatHasScheduledMessages"] = "updateChatHasScheduledMessages"
+    ID: typing.Literal["updateChatHasScheduledMessages"] = Field(
+        "updateChatHasScheduledMessages", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     has_scheduled_messages: Bool
 
@@ -18047,7 +19337,9 @@ class UpdateChatIsMarkedAsUnread(BaseObject):
     :type is_marked_as_unread: :class:`Bool`
     """
 
-    ID: typing.Literal["updateChatIsMarkedAsUnread"] = "updateChatIsMarkedAsUnread"
+    ID: typing.Literal["updateChatIsMarkedAsUnread"] = Field(
+        "updateChatIsMarkedAsUnread", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     is_marked_as_unread: Bool
 
@@ -18062,7 +19354,9 @@ class UpdateChatIsTranslatable(BaseObject):
     :type is_translatable: :class:`Bool`
     """
 
-    ID: typing.Literal["updateChatIsTranslatable"] = "updateChatIsTranslatable"
+    ID: typing.Literal["updateChatIsTranslatable"] = Field(
+        "updateChatIsTranslatable", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     is_translatable: Bool
 
@@ -18079,7 +19373,9 @@ class UpdateChatLastMessage(BaseObject):
     :type last_message: :class:`Message`, optional
     """
 
-    ID: typing.Literal["updateChatLastMessage"] = "updateChatLastMessage"
+    ID: typing.Literal["updateChatLastMessage"] = Field(
+        "updateChatLastMessage", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     positions: Vector[ChatPosition]
     last_message: typing.Optional[Message] = None
@@ -18105,7 +19401,7 @@ class UpdateChatMember(BaseObject):
     :type via_chat_folder_invite_link: :class:`Bool`
     """
 
-    ID: typing.Literal["updateChatMember"] = "updateChatMember"
+    ID: typing.Literal["updateChatMember"] = Field("updateChatMember", validation_alias="@type", alias="@type")
     chat_id: Int53
     actor_user_id: Int53
     date: Int32
@@ -18125,7 +19421,9 @@ class UpdateChatMessageAutoDeleteTime(BaseObject):
     :type message_auto_delete_time: :class:`Int32`
     """
 
-    ID: typing.Literal["updateChatMessageAutoDeleteTime"] = "updateChatMessageAutoDeleteTime"
+    ID: typing.Literal["updateChatMessageAutoDeleteTime"] = Field(
+        "updateChatMessageAutoDeleteTime", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_auto_delete_time: Int32
 
@@ -18140,7 +19438,9 @@ class UpdateChatMessageSender(BaseObject):
     :type message_sender_id: :class:`MessageSender`, optional
     """
 
-    ID: typing.Literal["updateChatMessageSender"] = "updateChatMessageSender"
+    ID: typing.Literal["updateChatMessageSender"] = Field(
+        "updateChatMessageSender", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_sender_id: typing.Optional[MessageSender] = None
 
@@ -18155,7 +19455,9 @@ class UpdateChatNotificationSettings(BaseObject):
     :type notification_settings: :class:`ChatNotificationSettings`
     """
 
-    ID: typing.Literal["updateChatNotificationSettings"] = "updateChatNotificationSettings"
+    ID: typing.Literal["updateChatNotificationSettings"] = Field(
+        "updateChatNotificationSettings", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     notification_settings: ChatNotificationSettings
 
@@ -18170,7 +19472,9 @@ class UpdateChatOnlineMemberCount(BaseObject):
     :type online_member_count: :class:`Int32`
     """
 
-    ID: typing.Literal["updateChatOnlineMemberCount"] = "updateChatOnlineMemberCount"
+    ID: typing.Literal["updateChatOnlineMemberCount"] = Field(
+        "updateChatOnlineMemberCount", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     online_member_count: Int32
 
@@ -18185,7 +19489,9 @@ class UpdateChatPendingJoinRequests(BaseObject):
     :type pending_join_requests: :class:`ChatJoinRequestsInfo`, optional
     """
 
-    ID: typing.Literal["updateChatPendingJoinRequests"] = "updateChatPendingJoinRequests"
+    ID: typing.Literal["updateChatPendingJoinRequests"] = Field(
+        "updateChatPendingJoinRequests", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     pending_join_requests: typing.Optional[ChatJoinRequestsInfo] = None
 
@@ -18200,7 +19506,9 @@ class UpdateChatPermissions(BaseObject):
     :type permissions: :class:`ChatPermissions`
     """
 
-    ID: typing.Literal["updateChatPermissions"] = "updateChatPermissions"
+    ID: typing.Literal["updateChatPermissions"] = Field(
+        "updateChatPermissions", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     permissions: ChatPermissions
 
@@ -18215,7 +19523,7 @@ class UpdateChatPhoto(BaseObject):
     :type photo: :class:`ChatPhotoInfo`, optional
     """
 
-    ID: typing.Literal["updateChatPhoto"] = "updateChatPhoto"
+    ID: typing.Literal["updateChatPhoto"] = Field("updateChatPhoto", validation_alias="@type", alias="@type")
     chat_id: Int53
     photo: typing.Optional[ChatPhotoInfo] = None
 
@@ -18230,7 +19538,7 @@ class UpdateChatPosition(BaseObject):
     :type position: :class:`ChatPosition`
     """
 
-    ID: typing.Literal["updateChatPosition"] = "updateChatPosition"
+    ID: typing.Literal["updateChatPosition"] = Field("updateChatPosition", validation_alias="@type", alias="@type")
     chat_id: Int53
     position: ChatPosition
 
@@ -18247,7 +19555,7 @@ class UpdateChatReadInbox(BaseObject):
     :type unread_count: :class:`Int32`
     """
 
-    ID: typing.Literal["updateChatReadInbox"] = "updateChatReadInbox"
+    ID: typing.Literal["updateChatReadInbox"] = Field("updateChatReadInbox", validation_alias="@type", alias="@type")
     chat_id: Int53
     last_read_inbox_message_id: Int53
     unread_count: Int32
@@ -18263,7 +19571,7 @@ class UpdateChatReadOutbox(BaseObject):
     :type last_read_outbox_message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["updateChatReadOutbox"] = "updateChatReadOutbox"
+    ID: typing.Literal["updateChatReadOutbox"] = Field("updateChatReadOutbox", validation_alias="@type", alias="@type")
     chat_id: Int53
     last_read_outbox_message_id: Int53
 
@@ -18278,7 +19586,9 @@ class UpdateChatReplyMarkup(BaseObject):
     :type reply_markup_message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["updateChatReplyMarkup"] = "updateChatReplyMarkup"
+    ID: typing.Literal["updateChatReplyMarkup"] = Field(
+        "updateChatReplyMarkup", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     reply_markup_message_id: Int53
 
@@ -18293,7 +19603,7 @@ class UpdateChatTheme(BaseObject):
     :type theme_name: :class:`String`
     """
 
-    ID: typing.Literal["updateChatTheme"] = "updateChatTheme"
+    ID: typing.Literal["updateChatTheme"] = Field("updateChatTheme", validation_alias="@type", alias="@type")
     chat_id: Int53
     theme_name: String = ""
 
@@ -18306,7 +19616,7 @@ class UpdateChatThemes(BaseObject):
     :type chat_themes: :class:`Vector[ChatTheme]`
     """
 
-    ID: typing.Literal["updateChatThemes"] = "updateChatThemes"
+    ID: typing.Literal["updateChatThemes"] = Field("updateChatThemes", validation_alias="@type", alias="@type")
     chat_themes: Vector[ChatTheme]
 
 
@@ -18320,7 +19630,7 @@ class UpdateChatTitle(BaseObject):
     :type title: :class:`String`
     """
 
-    ID: typing.Literal["updateChatTitle"] = "updateChatTitle"
+    ID: typing.Literal["updateChatTitle"] = Field("updateChatTitle", validation_alias="@type", alias="@type")
     chat_id: Int53
     title: String
 
@@ -18335,7 +19645,9 @@ class UpdateChatUnreadMentionCount(BaseObject):
     :type unread_mention_count: :class:`Int32`
     """
 
-    ID: typing.Literal["updateChatUnreadMentionCount"] = "updateChatUnreadMentionCount"
+    ID: typing.Literal["updateChatUnreadMentionCount"] = Field(
+        "updateChatUnreadMentionCount", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     unread_mention_count: Int32
 
@@ -18350,7 +19662,9 @@ class UpdateChatUnreadReactionCount(BaseObject):
     :type unread_reaction_count: :class:`Int32`
     """
 
-    ID: typing.Literal["updateChatUnreadReactionCount"] = "updateChatUnreadReactionCount"
+    ID: typing.Literal["updateChatUnreadReactionCount"] = Field(
+        "updateChatUnreadReactionCount", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     unread_reaction_count: Int32
 
@@ -18365,7 +19679,7 @@ class UpdateChatVideoChat(BaseObject):
     :type video_chat: :class:`VideoChat`
     """
 
-    ID: typing.Literal["updateChatVideoChat"] = "updateChatVideoChat"
+    ID: typing.Literal["updateChatVideoChat"] = Field("updateChatVideoChat", validation_alias="@type", alias="@type")
     chat_id: Int53
     video_chat: VideoChat
 
@@ -18378,7 +19692,9 @@ class UpdateConnectionState(BaseObject):
     :type state: :class:`ConnectionState`
     """
 
-    ID: typing.Literal["updateConnectionState"] = "updateConnectionState"
+    ID: typing.Literal["updateConnectionState"] = Field(
+        "updateConnectionState", validation_alias="@type", alias="@type"
+    )
     state: ConnectionState
 
 
@@ -18390,7 +19706,9 @@ class UpdateDefaultReactionType(BaseObject):
     :type reaction_type: :class:`ReactionType`
     """
 
-    ID: typing.Literal["updateDefaultReactionType"] = "updateDefaultReactionType"
+    ID: typing.Literal["updateDefaultReactionType"] = Field(
+        "updateDefaultReactionType", validation_alias="@type", alias="@type"
+    )
     reaction_type: ReactionType
 
 
@@ -18408,7 +19726,7 @@ class UpdateDeleteMessages(BaseObject):
     :type from_cache: :class:`Bool`
     """
 
-    ID: typing.Literal["updateDeleteMessages"] = "updateDeleteMessages"
+    ID: typing.Literal["updateDeleteMessages"] = Field("updateDeleteMessages", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_ids: Vector[Int53]
     is_permanent: Bool = False
@@ -18423,7 +19741,7 @@ class UpdateDiceEmojis(BaseObject):
     :type emojis: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["updateDiceEmojis"] = "updateDiceEmojis"
+    ID: typing.Literal["updateDiceEmojis"] = Field("updateDiceEmojis", validation_alias="@type", alias="@type")
     emojis: Vector[String]
 
 
@@ -18435,7 +19753,9 @@ class UpdateFavoriteStickers(BaseObject):
     :type sticker_ids: :class:`Vector[Int32]`
     """
 
-    ID: typing.Literal["updateFavoriteStickers"] = "updateFavoriteStickers"
+    ID: typing.Literal["updateFavoriteStickers"] = Field(
+        "updateFavoriteStickers", validation_alias="@type", alias="@type"
+    )
     sticker_ids: Vector[Int32]
 
 
@@ -18447,7 +19767,7 @@ class UpdateFile(BaseObject):
     :type file: :class:`File`
     """
 
-    ID: typing.Literal["updateFile"] = "updateFile"
+    ID: typing.Literal["updateFile"] = Field("updateFile", validation_alias="@type", alias="@type")
     file: File
 
 
@@ -18461,7 +19781,9 @@ class UpdateFileAddedToDownloads(BaseObject):
     :type counts: :class:`DownloadedFileCounts`
     """
 
-    ID: typing.Literal["updateFileAddedToDownloads"] = "updateFileAddedToDownloads"
+    ID: typing.Literal["updateFileAddedToDownloads"] = Field(
+        "updateFileAddedToDownloads", validation_alias="@type", alias="@type"
+    )
     file_download: FileDownload
     counts: DownloadedFileCounts
 
@@ -18480,7 +19802,7 @@ class UpdateFileDownload(BaseObject):
     :type is_paused: :class:`Bool`
     """
 
-    ID: typing.Literal["updateFileDownload"] = "updateFileDownload"
+    ID: typing.Literal["updateFileDownload"] = Field("updateFileDownload", validation_alias="@type", alias="@type")
     file_id: Int32
     complete_date: Int32
     counts: DownloadedFileCounts
@@ -18499,7 +19821,7 @@ class UpdateFileDownloads(BaseObject):
     :type downloaded_size: :class:`Int53`
     """
 
-    ID: typing.Literal["updateFileDownloads"] = "updateFileDownloads"
+    ID: typing.Literal["updateFileDownloads"] = Field("updateFileDownloads", validation_alias="@type", alias="@type")
     total_size: Int53
     total_count: Int32
     downloaded_size: Int53
@@ -18519,7 +19841,9 @@ class UpdateFileGenerationStart(BaseObject):
     :type original_path: :class:`String`
     """
 
-    ID: typing.Literal["updateFileGenerationStart"] = "updateFileGenerationStart"
+    ID: typing.Literal["updateFileGenerationStart"] = Field(
+        "updateFileGenerationStart", validation_alias="@type", alias="@type"
+    )
     generation_id: Int64
     destination_path: String
     conversion: String
@@ -18534,7 +19858,9 @@ class UpdateFileGenerationStop(BaseObject):
     :type generation_id: :class:`Int64`
     """
 
-    ID: typing.Literal["updateFileGenerationStop"] = "updateFileGenerationStop"
+    ID: typing.Literal["updateFileGenerationStop"] = Field(
+        "updateFileGenerationStop", validation_alias="@type", alias="@type"
+    )
     generation_id: Int64
 
 
@@ -18548,7 +19874,9 @@ class UpdateFileRemovedFromDownloads(BaseObject):
     :type counts: :class:`DownloadedFileCounts`
     """
 
-    ID: typing.Literal["updateFileRemovedFromDownloads"] = "updateFileRemovedFromDownloads"
+    ID: typing.Literal["updateFileRemovedFromDownloads"] = Field(
+        "updateFileRemovedFromDownloads", validation_alias="@type", alias="@type"
+    )
     file_id: Int32
     counts: DownloadedFileCounts
 
@@ -18563,7 +19891,7 @@ class UpdateForumTopicInfo(BaseObject):
     :type info: :class:`ForumTopicInfo`
     """
 
-    ID: typing.Literal["updateForumTopicInfo"] = "updateForumTopicInfo"
+    ID: typing.Literal["updateForumTopicInfo"] = Field("updateForumTopicInfo", validation_alias="@type", alias="@type")
     chat_id: Int53
     info: ForumTopicInfo
 
@@ -18576,7 +19904,7 @@ class UpdateGroupCall(BaseObject):
     :type group_call: :class:`GroupCall`
     """
 
-    ID: typing.Literal["updateGroupCall"] = "updateGroupCall"
+    ID: typing.Literal["updateGroupCall"] = Field("updateGroupCall", validation_alias="@type", alias="@type")
     group_call: GroupCall
 
 
@@ -18590,7 +19918,9 @@ class UpdateGroupCallParticipant(BaseObject):
     :type participant: :class:`GroupCallParticipant`
     """
 
-    ID: typing.Literal["updateGroupCallParticipant"] = "updateGroupCallParticipant"
+    ID: typing.Literal["updateGroupCallParticipant"] = Field(
+        "updateGroupCallParticipant", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     participant: GroupCallParticipant
 
@@ -18605,7 +19935,9 @@ class UpdateHavePendingNotifications(BaseObject):
     :type have_unreceived_notifications: :class:`Bool`
     """
 
-    ID: typing.Literal["updateHavePendingNotifications"] = "updateHavePendingNotifications"
+    ID: typing.Literal["updateHavePendingNotifications"] = Field(
+        "updateHavePendingNotifications", validation_alias="@type", alias="@type"
+    )
     have_delayed_notifications: Bool = False
     have_unreceived_notifications: Bool = False
 
@@ -18620,7 +19952,9 @@ class UpdateInstalledStickerSets(BaseObject):
     :type sticker_set_ids: :class:`Vector[Int64]`
     """
 
-    ID: typing.Literal["updateInstalledStickerSets"] = "updateInstalledStickerSets"
+    ID: typing.Literal["updateInstalledStickerSets"] = Field(
+        "updateInstalledStickerSets", validation_alias="@type", alias="@type"
+    )
     sticker_type: StickerType
     sticker_set_ids: Vector[Int64]
 
@@ -18637,7 +19971,9 @@ class UpdateLanguagePackStrings(BaseObject):
     :type strings: :class:`Vector[LanguagePackString]`
     """
 
-    ID: typing.Literal["updateLanguagePackStrings"] = "updateLanguagePackStrings"
+    ID: typing.Literal["updateLanguagePackStrings"] = Field(
+        "updateLanguagePackStrings", validation_alias="@type", alias="@type"
+    )
     localization_target: String
     language_pack_id: String
     strings: Vector[LanguagePackString]
@@ -18655,7 +19991,7 @@ class UpdateMessageContent(BaseObject):
     :type new_content: :class:`MessageContent`
     """
 
-    ID: typing.Literal["updateMessageContent"] = "updateMessageContent"
+    ID: typing.Literal["updateMessageContent"] = Field("updateMessageContent", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     new_content: MessageContent
@@ -18671,7 +20007,9 @@ class UpdateMessageContentOpened(BaseObject):
     :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["updateMessageContentOpened"] = "updateMessageContentOpened"
+    ID: typing.Literal["updateMessageContentOpened"] = Field(
+        "updateMessageContentOpened", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
 
@@ -18690,7 +20028,7 @@ class UpdateMessageEdited(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["updateMessageEdited"] = "updateMessageEdited"
+    ID: typing.Literal["updateMessageEdited"] = Field("updateMessageEdited", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     edit_date: Int32
@@ -18709,7 +20047,9 @@ class UpdateMessageInteractionInfo(BaseObject):
     :type interaction_info: :class:`MessageInteractionInfo`, optional
     """
 
-    ID: typing.Literal["updateMessageInteractionInfo"] = "updateMessageInteractionInfo"
+    ID: typing.Literal["updateMessageInteractionInfo"] = Field(
+        "updateMessageInteractionInfo", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     interaction_info: typing.Optional[MessageInteractionInfo] = None
@@ -18727,7 +20067,9 @@ class UpdateMessageIsPinned(BaseObject):
     :type is_pinned: :class:`Bool`
     """
 
-    ID: typing.Literal["updateMessageIsPinned"] = "updateMessageIsPinned"
+    ID: typing.Literal["updateMessageIsPinned"] = Field(
+        "updateMessageIsPinned", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     is_pinned: Bool = False
@@ -18743,7 +20085,9 @@ class UpdateMessageLiveLocationViewed(BaseObject):
     :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["updateMessageLiveLocationViewed"] = "updateMessageLiveLocationViewed"
+    ID: typing.Literal["updateMessageLiveLocationViewed"] = Field(
+        "updateMessageLiveLocationViewed", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
 
@@ -18760,7 +20104,9 @@ class UpdateMessageMentionRead(BaseObject):
     :type unread_mention_count: :class:`Int32`
     """
 
-    ID: typing.Literal["updateMessageMentionRead"] = "updateMessageMentionRead"
+    ID: typing.Literal["updateMessageMentionRead"] = Field(
+        "updateMessageMentionRead", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     unread_mention_count: Int32
@@ -18776,7 +20122,9 @@ class UpdateMessageSendAcknowledged(BaseObject):
     :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["updateMessageSendAcknowledged"] = "updateMessageSendAcknowledged"
+    ID: typing.Literal["updateMessageSendAcknowledged"] = Field(
+        "updateMessageSendAcknowledged", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
 
@@ -18795,7 +20143,9 @@ class UpdateMessageSendFailed(BaseObject):
     :type error_message: :class:`String`
     """
 
-    ID: typing.Literal["updateMessageSendFailed"] = "updateMessageSendFailed"
+    ID: typing.Literal["updateMessageSendFailed"] = Field(
+        "updateMessageSendFailed", validation_alias="@type", alias="@type"
+    )
     message: Message
     old_message_id: Int53
     error_code: Int32
@@ -18812,7 +20162,9 @@ class UpdateMessageSendSucceeded(BaseObject):
     :type old_message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["updateMessageSendSucceeded"] = "updateMessageSendSucceeded"
+    ID: typing.Literal["updateMessageSendSucceeded"] = Field(
+        "updateMessageSendSucceeded", validation_alias="@type", alias="@type"
+    )
     message: Message
     old_message_id: Int53
 
@@ -18831,7 +20183,9 @@ class UpdateMessageUnreadReactions(BaseObject):
     :type unread_reaction_count: :class:`Int32`
     """
 
-    ID: typing.Literal["updateMessageUnreadReactions"] = "updateMessageUnreadReactions"
+    ID: typing.Literal["updateMessageUnreadReactions"] = Field(
+        "updateMessageUnreadReactions", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     unread_reactions: Vector[UnreadReaction]
@@ -18848,7 +20202,9 @@ class UpdateNewCallSignalingData(BaseObject):
     :type data: :class:`Bytes`
     """
 
-    ID: typing.Literal["updateNewCallSignalingData"] = "updateNewCallSignalingData"
+    ID: typing.Literal["updateNewCallSignalingData"] = Field(
+        "updateNewCallSignalingData", validation_alias="@type", alias="@type"
+    )
     call_id: Int32
     data: Bytes
 
@@ -18871,7 +20227,9 @@ class UpdateNewCallbackQuery(BaseObject):
     :type payload: :class:`CallbackQueryPayload`
     """
 
-    ID: typing.Literal["updateNewCallbackQuery"] = "updateNewCallbackQuery"
+    ID: typing.Literal["updateNewCallbackQuery"] = Field(
+        "updateNewCallbackQuery", validation_alias="@type", alias="@type"
+    )
     id: Int64
     sender_user_id: Int53
     chat_id: Int53
@@ -18888,7 +20246,7 @@ class UpdateNewChat(BaseObject):
     :type chat: :class:`Chat`
     """
 
-    ID: typing.Literal["updateNewChat"] = "updateNewChat"
+    ID: typing.Literal["updateNewChat"] = Field("updateNewChat", validation_alias="@type", alias="@type")
     chat: Chat
 
 
@@ -18906,7 +20264,9 @@ class UpdateNewChatJoinRequest(BaseObject):
     :type invite_link: :class:`ChatInviteLink`, optional
     """
 
-    ID: typing.Literal["updateNewChatJoinRequest"] = "updateNewChatJoinRequest"
+    ID: typing.Literal["updateNewChatJoinRequest"] = Field(
+        "updateNewChatJoinRequest", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     request: ChatJoinRequest
     user_chat_id: Int53
@@ -18929,7 +20289,9 @@ class UpdateNewChosenInlineResult(BaseObject):
     :type user_location: :class:`Location`, optional
     """
 
-    ID: typing.Literal["updateNewChosenInlineResult"] = "updateNewChosenInlineResult"
+    ID: typing.Literal["updateNewChosenInlineResult"] = Field(
+        "updateNewChosenInlineResult", validation_alias="@type", alias="@type"
+    )
     sender_user_id: Int53
     query: String
     result_id: String
@@ -18945,7 +20307,7 @@ class UpdateNewCustomEvent(BaseObject):
     :type event: :class:`String`
     """
 
-    ID: typing.Literal["updateNewCustomEvent"] = "updateNewCustomEvent"
+    ID: typing.Literal["updateNewCustomEvent"] = Field("updateNewCustomEvent", validation_alias="@type", alias="@type")
     event: String
 
 
@@ -18961,7 +20323,7 @@ class UpdateNewCustomQuery(BaseObject):
     :type timeout: :class:`Int32`
     """
 
-    ID: typing.Literal["updateNewCustomQuery"] = "updateNewCustomQuery"
+    ID: typing.Literal["updateNewCustomQuery"] = Field("updateNewCustomQuery", validation_alias="@type", alias="@type")
     id: Int64
     data: String
     timeout: Int32
@@ -18983,7 +20345,9 @@ class UpdateNewInlineCallbackQuery(BaseObject):
     :type payload: :class:`CallbackQueryPayload`
     """
 
-    ID: typing.Literal["updateNewInlineCallbackQuery"] = "updateNewInlineCallbackQuery"
+    ID: typing.Literal["updateNewInlineCallbackQuery"] = Field(
+        "updateNewInlineCallbackQuery", validation_alias="@type", alias="@type"
+    )
     id: Int64
     sender_user_id: Int53
     inline_message_id: String
@@ -19009,7 +20373,7 @@ class UpdateNewInlineQuery(BaseObject):
     :type chat_type: :class:`ChatType`, optional
     """
 
-    ID: typing.Literal["updateNewInlineQuery"] = "updateNewInlineQuery"
+    ID: typing.Literal["updateNewInlineQuery"] = Field("updateNewInlineQuery", validation_alias="@type", alias="@type")
     id: Int64
     sender_user_id: Int53
     query: String
@@ -19026,7 +20390,7 @@ class UpdateNewMessage(BaseObject):
     :type message: :class:`Message`
     """
 
-    ID: typing.Literal["updateNewMessage"] = "updateNewMessage"
+    ID: typing.Literal["updateNewMessage"] = Field("updateNewMessage", validation_alias="@type", alias="@type")
     message: Message
 
 
@@ -19050,7 +20414,9 @@ class UpdateNewPreCheckoutQuery(BaseObject):
     :type shipping_option_id: :class:`String`
     """
 
-    ID: typing.Literal["updateNewPreCheckoutQuery"] = "updateNewPreCheckoutQuery"
+    ID: typing.Literal["updateNewPreCheckoutQuery"] = Field(
+        "updateNewPreCheckoutQuery", validation_alias="@type", alias="@type"
+    )
     id: Int64
     sender_user_id: Int53
     currency: String
@@ -19074,7 +20440,9 @@ class UpdateNewShippingQuery(BaseObject):
     :type shipping_address: :class:`Address`
     """
 
-    ID: typing.Literal["updateNewShippingQuery"] = "updateNewShippingQuery"
+    ID: typing.Literal["updateNewShippingQuery"] = Field(
+        "updateNewShippingQuery", validation_alias="@type", alias="@type"
+    )
     id: Int64
     sender_user_id: Int53
     invoice_payload: String
@@ -19091,7 +20459,7 @@ class UpdateNotification(BaseObject):
     :type notification: :class:`Notification`
     """
 
-    ID: typing.Literal["updateNotification"] = "updateNotification"
+    ID: typing.Literal["updateNotification"] = Field("updateNotification", validation_alias="@type", alias="@type")
     notification_group_id: Int32
     notification: Notification
 
@@ -19118,7 +20486,9 @@ class UpdateNotificationGroup(BaseObject):
     :type removed_notification_ids: :class:`Vector[Int32]`
     """
 
-    ID: typing.Literal["updateNotificationGroup"] = "updateNotificationGroup"
+    ID: typing.Literal["updateNotificationGroup"] = Field(
+        "updateNotificationGroup", validation_alias="@type", alias="@type"
+    )
     notification_group_id: Int32
     type_: NotificationGroupType = Field(..., alias="type")
     chat_id: Int53
@@ -19139,7 +20509,7 @@ class UpdateOption(BaseObject):
     :type value: :class:`OptionValue`
     """
 
-    ID: typing.Literal["updateOption"] = "updateOption"
+    ID: typing.Literal["updateOption"] = Field("updateOption", validation_alias="@type", alias="@type")
     name: String
     value: OptionValue
 
@@ -19152,7 +20522,7 @@ class UpdatePoll(BaseObject):
     :type poll: :class:`Poll`
     """
 
-    ID: typing.Literal["updatePoll"] = "updatePoll"
+    ID: typing.Literal["updatePoll"] = Field("updatePoll", validation_alias="@type", alias="@type")
     poll: Poll
 
 
@@ -19168,7 +20538,7 @@ class UpdatePollAnswer(BaseObject):
     :type option_ids: :class:`Vector[Int32]`
     """
 
-    ID: typing.Literal["updatePollAnswer"] = "updatePollAnswer"
+    ID: typing.Literal["updatePollAnswer"] = Field("updatePollAnswer", validation_alias="@type", alias="@type")
     poll_id: Int64
     voter_id: MessageSender
     option_ids: Vector[Int32]
@@ -19184,7 +20554,7 @@ class UpdateRecentStickers(BaseObject):
     :type is_attached: :class:`Bool`
     """
 
-    ID: typing.Literal["updateRecentStickers"] = "updateRecentStickers"
+    ID: typing.Literal["updateRecentStickers"] = Field("updateRecentStickers", validation_alias="@type", alias="@type")
     sticker_ids: Vector[Int32]
     is_attached: Bool = False
 
@@ -19197,7 +20567,9 @@ class UpdateSavedAnimations(BaseObject):
     :type animation_ids: :class:`Vector[Int32]`
     """
 
-    ID: typing.Literal["updateSavedAnimations"] = "updateSavedAnimations"
+    ID: typing.Literal["updateSavedAnimations"] = Field(
+        "updateSavedAnimations", validation_alias="@type", alias="@type"
+    )
     animation_ids: Vector[Int32]
 
 
@@ -19209,7 +20581,9 @@ class UpdateSavedNotificationSounds(BaseObject):
     :type notification_sound_ids: :class:`Vector[Int64]`
     """
 
-    ID: typing.Literal["updateSavedNotificationSounds"] = "updateSavedNotificationSounds"
+    ID: typing.Literal["updateSavedNotificationSounds"] = Field(
+        "updateSavedNotificationSounds", validation_alias="@type", alias="@type"
+    )
     notification_sound_ids: Vector[Int64]
 
 
@@ -19223,7 +20597,9 @@ class UpdateScopeNotificationSettings(BaseObject):
     :type notification_settings: :class:`ScopeNotificationSettings`
     """
 
-    ID: typing.Literal["updateScopeNotificationSettings"] = "updateScopeNotificationSettings"
+    ID: typing.Literal["updateScopeNotificationSettings"] = Field(
+        "updateScopeNotificationSettings", validation_alias="@type", alias="@type"
+    )
     scope: NotificationSettingsScope
     notification_settings: ScopeNotificationSettings
 
@@ -19236,7 +20612,7 @@ class UpdateSecretChat(BaseObject):
     :type secret_chat: :class:`SecretChat`
     """
 
-    ID: typing.Literal["updateSecretChat"] = "updateSecretChat"
+    ID: typing.Literal["updateSecretChat"] = Field("updateSecretChat", validation_alias="@type", alias="@type")
     secret_chat: SecretChat
 
 
@@ -19250,7 +20626,9 @@ class UpdateSelectedBackground(BaseObject):
     :type for_dark_theme: :class:`Bool`
     """
 
-    ID: typing.Literal["updateSelectedBackground"] = "updateSelectedBackground"
+    ID: typing.Literal["updateSelectedBackground"] = Field(
+        "updateSelectedBackground", validation_alias="@type", alias="@type"
+    )
     background: typing.Optional[Background] = None
     for_dark_theme: Bool = False
 
@@ -19265,7 +20643,9 @@ class UpdateServiceNotification(BaseObject):
     :type content: :class:`MessageContent`
     """
 
-    ID: typing.Literal["updateServiceNotification"] = "updateServiceNotification"
+    ID: typing.Literal["updateServiceNotification"] = Field(
+        "updateServiceNotification", validation_alias="@type", alias="@type"
+    )
     type_: String = Field(..., alias="type")
     content: MessageContent
 
@@ -19278,7 +20658,7 @@ class UpdateStickerSet(BaseObject):
     :type sticker_set: :class:`StickerSet`
     """
 
-    ID: typing.Literal["updateStickerSet"] = "updateStickerSet"
+    ID: typing.Literal["updateStickerSet"] = Field("updateStickerSet", validation_alias="@type", alias="@type")
     sticker_set: StickerSet
 
 
@@ -19290,7 +20670,7 @@ class UpdateStory(BaseObject):
     :type story: :class:`Story`
     """
 
-    ID: typing.Literal["updateStory"] = "updateStory"
+    ID: typing.Literal["updateStory"] = Field("updateStory", validation_alias="@type", alias="@type")
     story: Story
 
 
@@ -19304,7 +20684,7 @@ class UpdateStoryDeleted(BaseObject):
     :type story_id: :class:`Int32`
     """
 
-    ID: typing.Literal["updateStoryDeleted"] = "updateStoryDeleted"
+    ID: typing.Literal["updateStoryDeleted"] = Field("updateStoryDeleted", validation_alias="@type", alias="@type")
     story_sender_chat_id: Int53
     story_id: Int32
 
@@ -19319,7 +20699,9 @@ class UpdateStoryListChatCount(BaseObject):
     :type chat_count: :class:`Int32`
     """
 
-    ID: typing.Literal["updateStoryListChatCount"] = "updateStoryListChatCount"
+    ID: typing.Literal["updateStoryListChatCount"] = Field(
+        "updateStoryListChatCount", validation_alias="@type", alias="@type"
+    )
     story_list: StoryList
     chat_count: Int32
 
@@ -19338,7 +20720,9 @@ class UpdateStorySendFailed(BaseObject):
     :type error: :class:`CanSendStoryResult`, optional
     """
 
-    ID: typing.Literal["updateStorySendFailed"] = "updateStorySendFailed"
+    ID: typing.Literal["updateStorySendFailed"] = Field(
+        "updateStorySendFailed", validation_alias="@type", alias="@type"
+    )
     story: Story
     error_code: Int32
     error_message: String
@@ -19355,7 +20739,9 @@ class UpdateStorySendSucceeded(BaseObject):
     :type old_story_id: :class:`Int32`
     """
 
-    ID: typing.Literal["updateStorySendSucceeded"] = "updateStorySendSucceeded"
+    ID: typing.Literal["updateStorySendSucceeded"] = Field(
+        "updateStorySendSucceeded", validation_alias="@type", alias="@type"
+    )
     story: Story
     old_story_id: Int32
 
@@ -19370,7 +20756,9 @@ class UpdateStoryStealthMode(BaseObject):
     :type cooldown_until_date: :class:`Int32`
     """
 
-    ID: typing.Literal["updateStoryStealthMode"] = "updateStoryStealthMode"
+    ID: typing.Literal["updateStoryStealthMode"] = Field(
+        "updateStoryStealthMode", validation_alias="@type", alias="@type"
+    )
     active_until_date: Int32
     cooldown_until_date: Int32
 
@@ -19385,7 +20773,9 @@ class UpdateSuggestedActions(BaseObject):
     :type removed_actions: :class:`Vector[SuggestedAction]`
     """
 
-    ID: typing.Literal["updateSuggestedActions"] = "updateSuggestedActions"
+    ID: typing.Literal["updateSuggestedActions"] = Field(
+        "updateSuggestedActions", validation_alias="@type", alias="@type"
+    )
     added_actions: Vector[SuggestedAction]
     removed_actions: Vector[SuggestedAction]
 
@@ -19398,7 +20788,7 @@ class UpdateSupergroup(BaseObject):
     :type supergroup: :class:`Supergroup`
     """
 
-    ID: typing.Literal["updateSupergroup"] = "updateSupergroup"
+    ID: typing.Literal["updateSupergroup"] = Field("updateSupergroup", validation_alias="@type", alias="@type")
     supergroup: Supergroup
 
 
@@ -19412,7 +20802,9 @@ class UpdateSupergroupFullInfo(BaseObject):
     :type supergroup_full_info: :class:`SupergroupFullInfo`
     """
 
-    ID: typing.Literal["updateSupergroupFullInfo"] = "updateSupergroupFullInfo"
+    ID: typing.Literal["updateSupergroupFullInfo"] = Field(
+        "updateSupergroupFullInfo", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53
     supergroup_full_info: SupergroupFullInfo
 
@@ -19427,7 +20819,7 @@ class UpdateTermsOfService(BaseObject):
     :type terms_of_service: :class:`TermsOfService`
     """
 
-    ID: typing.Literal["updateTermsOfService"] = "updateTermsOfService"
+    ID: typing.Literal["updateTermsOfService"] = Field("updateTermsOfService", validation_alias="@type", alias="@type")
     terms_of_service_id: String
     terms_of_service: TermsOfService
 
@@ -19442,7 +20834,9 @@ class UpdateTrendingStickerSets(BaseObject):
     :type sticker_sets: :class:`TrendingStickerSets`
     """
 
-    ID: typing.Literal["updateTrendingStickerSets"] = "updateTrendingStickerSets"
+    ID: typing.Literal["updateTrendingStickerSets"] = Field(
+        "updateTrendingStickerSets", validation_alias="@type", alias="@type"
+    )
     sticker_type: StickerType
     sticker_sets: TrendingStickerSets
 
@@ -19455,7 +20849,9 @@ class UpdateUnconfirmedSession(BaseObject):
     :type session: :class:`UnconfirmedSession`, optional
     """
 
-    ID: typing.Literal["updateUnconfirmedSession"] = "updateUnconfirmedSession"
+    ID: typing.Literal["updateUnconfirmedSession"] = Field(
+        "updateUnconfirmedSession", validation_alias="@type", alias="@type"
+    )
     session: typing.Optional[UnconfirmedSession] = None
 
 
@@ -19477,7 +20873,9 @@ class UpdateUnreadChatCount(BaseObject):
     :type marked_as_unread_unmuted_count: :class:`Int32`
     """
 
-    ID: typing.Literal["updateUnreadChatCount"] = "updateUnreadChatCount"
+    ID: typing.Literal["updateUnreadChatCount"] = Field(
+        "updateUnreadChatCount", validation_alias="@type", alias="@type"
+    )
     chat_list: ChatList
     total_count: Int32
     unread_count: Int32
@@ -19498,7 +20896,9 @@ class UpdateUnreadMessageCount(BaseObject):
     :type unread_unmuted_count: :class:`Int32`
     """
 
-    ID: typing.Literal["updateUnreadMessageCount"] = "updateUnreadMessageCount"
+    ID: typing.Literal["updateUnreadMessageCount"] = Field(
+        "updateUnreadMessageCount", validation_alias="@type", alias="@type"
+    )
     chat_list: ChatList
     unread_count: Int32
     unread_unmuted_count: Int32
@@ -19512,7 +20912,7 @@ class UpdateUser(BaseObject):
     :type user: :class:`User`
     """
 
-    ID: typing.Literal["updateUser"] = "updateUser"
+    ID: typing.Literal["updateUser"] = Field("updateUser", validation_alias="@type", alias="@type")
     user: User
 
 
@@ -19526,7 +20926,7 @@ class UpdateUserFullInfo(BaseObject):
     :type user_full_info: :class:`UserFullInfo`
     """
 
-    ID: typing.Literal["updateUserFullInfo"] = "updateUserFullInfo"
+    ID: typing.Literal["updateUserFullInfo"] = Field("updateUserFullInfo", validation_alias="@type", alias="@type")
     user_id: Int53
     user_full_info: UserFullInfo
 
@@ -19541,7 +20941,9 @@ class UpdateUserPrivacySettingRules(BaseObject):
     :type rules: :class:`UserPrivacySettingRules`
     """
 
-    ID: typing.Literal["updateUserPrivacySettingRules"] = "updateUserPrivacySettingRules"
+    ID: typing.Literal["updateUserPrivacySettingRules"] = Field(
+        "updateUserPrivacySettingRules", validation_alias="@type", alias="@type"
+    )
     setting: UserPrivacySetting
     rules: UserPrivacySettingRules
 
@@ -19556,7 +20958,7 @@ class UpdateUserStatus(BaseObject):
     :type status: :class:`UserStatus`
     """
 
-    ID: typing.Literal["updateUserStatus"] = "updateUserStatus"
+    ID: typing.Literal["updateUserStatus"] = Field("updateUserStatus", validation_alias="@type", alias="@type")
     user_id: Int53
     status: UserStatus
 
@@ -19569,7 +20971,7 @@ class UpdateUsersNearby(BaseObject):
     :type users_nearby: :class:`Vector[ChatNearby]`
     """
 
-    ID: typing.Literal["updateUsersNearby"] = "updateUsersNearby"
+    ID: typing.Literal["updateUsersNearby"] = Field("updateUsersNearby", validation_alias="@type", alias="@type")
     users_nearby: Vector[ChatNearby]
 
 
@@ -19581,7 +20983,9 @@ class UpdateWebAppMessageSent(BaseObject):
     :type web_app_launch_id: :class:`Int64`
     """
 
-    ID: typing.Literal["updateWebAppMessageSent"] = "updateWebAppMessageSent"
+    ID: typing.Literal["updateWebAppMessageSent"] = Field(
+        "updateWebAppMessageSent", validation_alias="@type", alias="@type"
+    )
     web_app_launch_id: Int64
 
 
@@ -19714,7 +21118,7 @@ class Updates(BaseObject):
     :type updates: :class:`Vector[Update]`
     """
 
-    ID: typing.Literal["updates"] = "updates"
+    ID: typing.Literal["updates"] = Field("updates", validation_alias="@type", alias="@type")
     updates: Vector[Update]
 
 
@@ -19770,7 +21174,7 @@ class User(BaseObject):
     :type added_to_attachment_menu: :class:`Bool`
     """
 
-    ID: typing.Literal["user"] = "user"
+    ID: typing.Literal["user"] = Field("user", validation_alias="@type", alias="@type")
     id: Int53
     first_name: String
     last_name: String
@@ -19832,7 +21236,7 @@ class UserFullInfo(BaseObject):
     :type need_phone_number_privacy_exception: :class:`Bool`
     """
 
-    ID: typing.Literal["userFullInfo"] = "userFullInfo"
+    ID: typing.Literal["userFullInfo"] = Field("userFullInfo", validation_alias="@type", alias="@type")
     premium_gift_options: Vector[PremiumPaymentOption]
     group_in_common_count: Int32
     personal_photo: typing.Optional[ChatPhoto] = None
@@ -19860,7 +21264,7 @@ class UserLink(BaseObject):
     :type expires_in: :class:`Int32`
     """
 
-    ID: typing.Literal["userLink"] = "userLink"
+    ID: typing.Literal["userLink"] = Field("userLink", validation_alias="@type", alias="@type")
     url: String
     expires_in: Int32
 
@@ -19870,7 +21274,9 @@ class UserPrivacySettingAllowCalls(BaseObject):
     A privacy setting for managing whether the user can be called
     """
 
-    ID: typing.Literal["userPrivacySettingAllowCalls"] = "userPrivacySettingAllowCalls"
+    ID: typing.Literal["userPrivacySettingAllowCalls"] = Field(
+        "userPrivacySettingAllowCalls", validation_alias="@type", alias="@type"
+    )
 
 
 class UserPrivacySettingAllowChatInvites(BaseObject):
@@ -19878,7 +21284,9 @@ class UserPrivacySettingAllowChatInvites(BaseObject):
     A privacy setting for managing whether the user can be invited to chats
     """
 
-    ID: typing.Literal["userPrivacySettingAllowChatInvites"] = "userPrivacySettingAllowChatInvites"
+    ID: typing.Literal["userPrivacySettingAllowChatInvites"] = Field(
+        "userPrivacySettingAllowChatInvites", validation_alias="@type", alias="@type"
+    )
 
 
 class UserPrivacySettingAllowFindingByPhoneNumber(BaseObject):
@@ -19886,7 +21294,9 @@ class UserPrivacySettingAllowFindingByPhoneNumber(BaseObject):
     A privacy setting for managing whether the user can be found by their phone number. Checked only if the phone number is not known to the other user. Can be set only to "Allow contacts" or "Allow all"
     """
 
-    ID: typing.Literal["userPrivacySettingAllowFindingByPhoneNumber"] = "userPrivacySettingAllowFindingByPhoneNumber"
+    ID: typing.Literal["userPrivacySettingAllowFindingByPhoneNumber"] = Field(
+        "userPrivacySettingAllowFindingByPhoneNumber", validation_alias="@type", alias="@type"
+    )
 
 
 class UserPrivacySettingAllowPeerToPeerCalls(BaseObject):
@@ -19894,7 +21304,9 @@ class UserPrivacySettingAllowPeerToPeerCalls(BaseObject):
     A privacy setting for managing whether peer-to-peer connections can be used for calls
     """
 
-    ID: typing.Literal["userPrivacySettingAllowPeerToPeerCalls"] = "userPrivacySettingAllowPeerToPeerCalls"
+    ID: typing.Literal["userPrivacySettingAllowPeerToPeerCalls"] = Field(
+        "userPrivacySettingAllowPeerToPeerCalls", validation_alias="@type", alias="@type"
+    )
 
 
 class UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages(BaseObject):
@@ -19902,9 +21314,9 @@ class UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages(BaseObject):
     A privacy setting for managing whether the user can receive voice and video messages in private chats
     """
 
-    ID: typing.Literal[
-        "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
-    ] = "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
+    ID: typing.Literal["userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"] = Field(
+        "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages", validation_alias="@type", alias="@type"
+    )
 
 
 class UserPrivacySettingShowBio(BaseObject):
@@ -19912,7 +21324,9 @@ class UserPrivacySettingShowBio(BaseObject):
     A privacy setting for managing whether the user's bio is visible
     """
 
-    ID: typing.Literal["userPrivacySettingShowBio"] = "userPrivacySettingShowBio"
+    ID: typing.Literal["userPrivacySettingShowBio"] = Field(
+        "userPrivacySettingShowBio", validation_alias="@type", alias="@type"
+    )
 
 
 class UserPrivacySettingShowLinkInForwardedMessages(BaseObject):
@@ -19920,9 +21334,9 @@ class UserPrivacySettingShowLinkInForwardedMessages(BaseObject):
     A privacy setting for managing whether a link to the user's account is included in forwarded messages
     """
 
-    ID: typing.Literal[
-        "userPrivacySettingShowLinkInForwardedMessages"
-    ] = "userPrivacySettingShowLinkInForwardedMessages"
+    ID: typing.Literal["userPrivacySettingShowLinkInForwardedMessages"] = Field(
+        "userPrivacySettingShowLinkInForwardedMessages", validation_alias="@type", alias="@type"
+    )
 
 
 class UserPrivacySettingShowPhoneNumber(BaseObject):
@@ -19930,7 +21344,9 @@ class UserPrivacySettingShowPhoneNumber(BaseObject):
     A privacy setting for managing whether the user's phone number is visible
     """
 
-    ID: typing.Literal["userPrivacySettingShowPhoneNumber"] = "userPrivacySettingShowPhoneNumber"
+    ID: typing.Literal["userPrivacySettingShowPhoneNumber"] = Field(
+        "userPrivacySettingShowPhoneNumber", validation_alias="@type", alias="@type"
+    )
 
 
 class UserPrivacySettingShowProfilePhoto(BaseObject):
@@ -19938,7 +21354,9 @@ class UserPrivacySettingShowProfilePhoto(BaseObject):
     A privacy setting for managing whether the user's profile photo is visible
     """
 
-    ID: typing.Literal["userPrivacySettingShowProfilePhoto"] = "userPrivacySettingShowProfilePhoto"
+    ID: typing.Literal["userPrivacySettingShowProfilePhoto"] = Field(
+        "userPrivacySettingShowProfilePhoto", validation_alias="@type", alias="@type"
+    )
 
 
 class UserPrivacySettingShowStatus(BaseObject):
@@ -19946,7 +21364,9 @@ class UserPrivacySettingShowStatus(BaseObject):
     A privacy setting for managing whether the user's online status is visible
     """
 
-    ID: typing.Literal["userPrivacySettingShowStatus"] = "userPrivacySettingShowStatus"
+    ID: typing.Literal["userPrivacySettingShowStatus"] = Field(
+        "userPrivacySettingShowStatus", validation_alias="@type", alias="@type"
+    )
 
 
 UserPrivacySetting = typing.Union[
@@ -19968,7 +21388,9 @@ class UserPrivacySettingRuleAllowAll(BaseObject):
     A rule to allow all users to do something
     """
 
-    ID: typing.Literal["userPrivacySettingRuleAllowAll"] = "userPrivacySettingRuleAllowAll"
+    ID: typing.Literal["userPrivacySettingRuleAllowAll"] = Field(
+        "userPrivacySettingRuleAllowAll", validation_alias="@type", alias="@type"
+    )
 
 
 class UserPrivacySettingRuleAllowChatMembers(BaseObject):
@@ -19979,7 +21401,9 @@ class UserPrivacySettingRuleAllowChatMembers(BaseObject):
     :type chat_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["userPrivacySettingRuleAllowChatMembers"] = "userPrivacySettingRuleAllowChatMembers"
+    ID: typing.Literal["userPrivacySettingRuleAllowChatMembers"] = Field(
+        "userPrivacySettingRuleAllowChatMembers", validation_alias="@type", alias="@type"
+    )
     chat_ids: Vector[Int53]
 
 
@@ -19988,7 +21412,9 @@ class UserPrivacySettingRuleAllowContacts(BaseObject):
     A rule to allow all contacts of the user to do something
     """
 
-    ID: typing.Literal["userPrivacySettingRuleAllowContacts"] = "userPrivacySettingRuleAllowContacts"
+    ID: typing.Literal["userPrivacySettingRuleAllowContacts"] = Field(
+        "userPrivacySettingRuleAllowContacts", validation_alias="@type", alias="@type"
+    )
 
 
 class UserPrivacySettingRuleAllowUsers(BaseObject):
@@ -19999,7 +21425,9 @@ class UserPrivacySettingRuleAllowUsers(BaseObject):
     :type user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["userPrivacySettingRuleAllowUsers"] = "userPrivacySettingRuleAllowUsers"
+    ID: typing.Literal["userPrivacySettingRuleAllowUsers"] = Field(
+        "userPrivacySettingRuleAllowUsers", validation_alias="@type", alias="@type"
+    )
     user_ids: Vector[Int53]
 
 
@@ -20008,7 +21436,9 @@ class UserPrivacySettingRuleRestrictAll(BaseObject):
     A rule to restrict all users from doing something
     """
 
-    ID: typing.Literal["userPrivacySettingRuleRestrictAll"] = "userPrivacySettingRuleRestrictAll"
+    ID: typing.Literal["userPrivacySettingRuleRestrictAll"] = Field(
+        "userPrivacySettingRuleRestrictAll", validation_alias="@type", alias="@type"
+    )
 
 
 class UserPrivacySettingRuleRestrictChatMembers(BaseObject):
@@ -20019,7 +21449,9 @@ class UserPrivacySettingRuleRestrictChatMembers(BaseObject):
     :type chat_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["userPrivacySettingRuleRestrictChatMembers"] = "userPrivacySettingRuleRestrictChatMembers"
+    ID: typing.Literal["userPrivacySettingRuleRestrictChatMembers"] = Field(
+        "userPrivacySettingRuleRestrictChatMembers", validation_alias="@type", alias="@type"
+    )
     chat_ids: Vector[Int53]
 
 
@@ -20028,7 +21460,9 @@ class UserPrivacySettingRuleRestrictContacts(BaseObject):
     A rule to restrict all contacts of the user from doing something
     """
 
-    ID: typing.Literal["userPrivacySettingRuleRestrictContacts"] = "userPrivacySettingRuleRestrictContacts"
+    ID: typing.Literal["userPrivacySettingRuleRestrictContacts"] = Field(
+        "userPrivacySettingRuleRestrictContacts", validation_alias="@type", alias="@type"
+    )
 
 
 class UserPrivacySettingRuleRestrictUsers(BaseObject):
@@ -20039,7 +21473,9 @@ class UserPrivacySettingRuleRestrictUsers(BaseObject):
     :type user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["userPrivacySettingRuleRestrictUsers"] = "userPrivacySettingRuleRestrictUsers"
+    ID: typing.Literal["userPrivacySettingRuleRestrictUsers"] = Field(
+        "userPrivacySettingRuleRestrictUsers", validation_alias="@type", alias="@type"
+    )
     user_ids: Vector[Int53]
 
 
@@ -20063,7 +21499,9 @@ class UserPrivacySettingRules(BaseObject):
     :type rules: :class:`Vector[UserPrivacySettingRule]`
     """
 
-    ID: typing.Literal["userPrivacySettingRules"] = "userPrivacySettingRules"
+    ID: typing.Literal["userPrivacySettingRules"] = Field(
+        "userPrivacySettingRules", validation_alias="@type", alias="@type"
+    )
     rules: Vector[UserPrivacySettingRule]
 
 
@@ -20072,7 +21510,7 @@ class UserStatusEmpty(BaseObject):
     The user status was never changed
     """
 
-    ID: typing.Literal["userStatusEmpty"] = "userStatusEmpty"
+    ID: typing.Literal["userStatusEmpty"] = Field("userStatusEmpty", validation_alias="@type", alias="@type")
 
 
 class UserStatusLastMonth(BaseObject):
@@ -20080,7 +21518,7 @@ class UserStatusLastMonth(BaseObject):
     The user is offline, but was online last month
     """
 
-    ID: typing.Literal["userStatusLastMonth"] = "userStatusLastMonth"
+    ID: typing.Literal["userStatusLastMonth"] = Field("userStatusLastMonth", validation_alias="@type", alias="@type")
 
 
 class UserStatusLastWeek(BaseObject):
@@ -20088,7 +21526,7 @@ class UserStatusLastWeek(BaseObject):
     The user is offline, but was online last week
     """
 
-    ID: typing.Literal["userStatusLastWeek"] = "userStatusLastWeek"
+    ID: typing.Literal["userStatusLastWeek"] = Field("userStatusLastWeek", validation_alias="@type", alias="@type")
 
 
 class UserStatusOffline(BaseObject):
@@ -20099,7 +21537,7 @@ class UserStatusOffline(BaseObject):
     :type was_online: :class:`Int32`
     """
 
-    ID: typing.Literal["userStatusOffline"] = "userStatusOffline"
+    ID: typing.Literal["userStatusOffline"] = Field("userStatusOffline", validation_alias="@type", alias="@type")
     was_online: Int32
 
 
@@ -20111,7 +21549,7 @@ class UserStatusOnline(BaseObject):
     :type expires: :class:`Int32`
     """
 
-    ID: typing.Literal["userStatusOnline"] = "userStatusOnline"
+    ID: typing.Literal["userStatusOnline"] = Field("userStatusOnline", validation_alias="@type", alias="@type")
     expires: Int32
 
 
@@ -20120,7 +21558,7 @@ class UserStatusRecently(BaseObject):
     The user was online recently
     """
 
-    ID: typing.Literal["userStatusRecently"] = "userStatusRecently"
+    ID: typing.Literal["userStatusRecently"] = Field("userStatusRecently", validation_alias="@type", alias="@type")
 
 
 UserStatus = typing.Union[
@@ -20145,7 +21583,7 @@ class UserSupportInfo(BaseObject):
     :type date: :class:`Int32`
     """
 
-    ID: typing.Literal["userSupportInfo"] = "userSupportInfo"
+    ID: typing.Literal["userSupportInfo"] = Field("userSupportInfo", validation_alias="@type", alias="@type")
     message: FormattedText
     author: String
     date: Int32
@@ -20171,7 +21609,7 @@ class UserTypeBot(BaseObject):
     :type can_be_added_to_attachment_menu: :class:`Bool`
     """
 
-    ID: typing.Literal["userTypeBot"] = "userTypeBot"
+    ID: typing.Literal["userTypeBot"] = Field("userTypeBot", validation_alias="@type", alias="@type")
     inline_query_placeholder: String
     can_be_edited: Bool = False
     can_join_groups: Bool = False
@@ -20186,7 +21624,7 @@ class UserTypeDeleted(BaseObject):
     A deleted user or deleted bot. No information on the user besides the user identifier is available. It is not possible to perform any active actions on this type of user
     """
 
-    ID: typing.Literal["userTypeDeleted"] = "userTypeDeleted"
+    ID: typing.Literal["userTypeDeleted"] = Field("userTypeDeleted", validation_alias="@type", alias="@type")
 
 
 class UserTypeRegular(BaseObject):
@@ -20194,7 +21632,7 @@ class UserTypeRegular(BaseObject):
     A regular user
     """
 
-    ID: typing.Literal["userTypeRegular"] = "userTypeRegular"
+    ID: typing.Literal["userTypeRegular"] = Field("userTypeRegular", validation_alias="@type", alias="@type")
 
 
 class UserTypeUnknown(BaseObject):
@@ -20202,7 +21640,7 @@ class UserTypeUnknown(BaseObject):
     No information on the user besides the user identifier is available, yet this user has not been deleted. This object is extremely rare and must be handled like a deleted user. It is not possible to perform any actions on users of this type
     """
 
-    ID: typing.Literal["userTypeUnknown"] = "userTypeUnknown"
+    ID: typing.Literal["userTypeUnknown"] = Field("userTypeUnknown", validation_alias="@type", alias="@type")
 
 
 UserType = typing.Union[
@@ -20225,7 +21663,7 @@ class Usernames(BaseObject):
     :type editable_username: :class:`String`
     """
 
-    ID: typing.Literal["usernames"] = "usernames"
+    ID: typing.Literal["usernames"] = Field("usernames", validation_alias="@type", alias="@type")
     active_usernames: Vector[String]
     disabled_usernames: Vector[String]
     editable_username: String
@@ -20241,7 +21679,7 @@ class Users(BaseObject):
     :type user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["users"] = "users"
+    ID: typing.Literal["users"] = Field("users", validation_alias="@type", alias="@type")
     total_count: Int32
     user_ids: Vector[Int53]
 
@@ -20256,7 +21694,7 @@ class ValidatedOrderInfo(BaseObject):
     :type shipping_options: :class:`Vector[ShippingOption]`
     """
 
-    ID: typing.Literal["validatedOrderInfo"] = "validatedOrderInfo"
+    ID: typing.Literal["validatedOrderInfo"] = Field("validatedOrderInfo", validation_alias="@type", alias="@type")
     order_info_id: String
     shipping_options: Vector[ShippingOption]
 
@@ -20273,7 +21711,9 @@ class VectorPathCommandCubicBezierCurve(BaseObject):
     :type end_point: :class:`Point`
     """
 
-    ID: typing.Literal["vectorPathCommandCubicBezierCurve"] = "vectorPathCommandCubicBezierCurve"
+    ID: typing.Literal["vectorPathCommandCubicBezierCurve"] = Field(
+        "vectorPathCommandCubicBezierCurve", validation_alias="@type", alias="@type"
+    )
     start_control_point: Point
     end_control_point: Point
     end_point: Point
@@ -20287,7 +21727,9 @@ class VectorPathCommandLine(BaseObject):
     :type end_point: :class:`Point`
     """
 
-    ID: typing.Literal["vectorPathCommandLine"] = "vectorPathCommandLine"
+    ID: typing.Literal["vectorPathCommandLine"] = Field(
+        "vectorPathCommandLine", validation_alias="@type", alias="@type"
+    )
     end_point: Point
 
 
@@ -20315,7 +21757,7 @@ class Venue(BaseObject):
     :type type_: :class:`String`
     """
 
-    ID: typing.Literal["venue"] = "venue"
+    ID: typing.Literal["venue"] = Field("venue", validation_alias="@type", alias="@type")
     location: Location
     title: String
     address: String
@@ -20350,7 +21792,7 @@ class Video(BaseObject):
     :type supports_streaming: :class:`Bool`
     """
 
-    ID: typing.Literal["video"] = "video"
+    ID: typing.Literal["video"] = Field("video", validation_alias="@type", alias="@type")
     duration: Int32
     width: Int32
     height: Int32
@@ -20375,7 +21817,7 @@ class VideoChat(BaseObject):
     :type group_call_id: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["videoChat"] = "videoChat"
+    ID: typing.Literal["videoChat"] = Field("videoChat", validation_alias="@type", alias="@type")
     default_participant_id: typing.Optional[MessageSender] = None
     has_participants: Bool = False
     group_call_id: typing.Optional[Int32] = 0
@@ -20401,7 +21843,7 @@ class VideoNote(BaseObject):
     :type waveform: :class:`Bytes`
     """
 
-    ID: typing.Literal["videoNote"] = "videoNote"
+    ID: typing.Literal["videoNote"] = Field("videoNote", validation_alias="@type", alias="@type")
     duration: Int32
     length: Int32
     video: File
@@ -20427,7 +21869,7 @@ class VoiceNote(BaseObject):
     :type speech_recognition_result: :class:`SpeechRecognitionResult`, optional
     """
 
-    ID: typing.Literal["voiceNote"] = "voiceNote"
+    ID: typing.Literal["voiceNote"] = Field("voiceNote", validation_alias="@type", alias="@type")
     duration: Int32
     waveform: Bytes
     mime_type: String
@@ -20451,7 +21893,7 @@ class WebApp(BaseObject):
     :type animation: :class:`Animation`, optional
     """
 
-    ID: typing.Literal["webApp"] = "webApp"
+    ID: typing.Literal["webApp"] = Field("webApp", validation_alias="@type", alias="@type")
     short_name: String
     title: String
     description: String
@@ -20469,7 +21911,7 @@ class WebAppInfo(BaseObject):
     :type url: :class:`String`
     """
 
-    ID: typing.Literal["webAppInfo"] = "webAppInfo"
+    ID: typing.Literal["webAppInfo"] = Field("webAppInfo", validation_alias="@type", alias="@type")
     launch_id: Int64
     url: String
 
@@ -20526,7 +21968,7 @@ class WebPage(BaseObject):
     :type instant_view_version: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["webPage"] = "webPage"
+    ID: typing.Literal["webPage"] = Field("webPage", validation_alias="@type", alias="@type")
     url: String
     display_url: String
     type_: String = Field(..., alias="type")
@@ -20570,7 +22012,7 @@ class WebPageInstantView(BaseObject):
     :type view_count: :class:`Int32`, optional
     """
 
-    ID: typing.Literal["webPageInstantView"] = "webPageInstantView"
+    ID: typing.Literal["webPageInstantView"] = Field("webPageInstantView", validation_alias="@type", alias="@type")
     page_blocks: Vector[PageBlock]
     version: Int32
     feedback_link: InternalLinkType

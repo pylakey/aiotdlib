@@ -20,5 +20,5 @@ class SetAlarm(BaseObject):
     :type seconds: :class:`Double`
     """
 
-    ID: typing.Literal["setAlarm"] = "setAlarm"
+    ID: typing.Literal["setAlarm"] = Field("setAlarm", validation_alias="@type", alias="@type")
     seconds: Double

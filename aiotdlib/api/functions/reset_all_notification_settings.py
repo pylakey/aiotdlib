@@ -17,4 +17,6 @@ class ResetAllNotificationSettings(BaseObject):
     Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown
     """
 
-    ID: typing.Literal["resetAllNotificationSettings"] = "resetAllNotificationSettings"
+    ID: typing.Literal["resetAllNotificationSettings"] = Field(
+        "resetAllNotificationSettings", validation_alias="@type", alias="@type"
+    )

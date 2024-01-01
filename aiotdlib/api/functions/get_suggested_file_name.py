@@ -22,6 +22,6 @@ class GetSuggestedFileName(BaseObject):
     :type directory: :class:`String`
     """
 
-    ID: typing.Literal["getSuggestedFileName"] = "getSuggestedFileName"
+    ID: typing.Literal["getSuggestedFileName"] = Field("getSuggestedFileName", validation_alias="@type", alias="@type")
     file_id: Int32
     directory: String

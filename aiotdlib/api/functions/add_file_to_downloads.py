@@ -26,7 +26,7 @@ class AddFileToDownloads(BaseObject):
     :type priority: :class:`Int32`
     """
 
-    ID: typing.Literal["addFileToDownloads"] = "addFileToDownloads"
+    ID: typing.Literal["addFileToDownloads"] = Field("addFileToDownloads", validation_alias="@type", alias="@type")
     file_id: Int32
     chat_id: Int53
     message_id: Int53

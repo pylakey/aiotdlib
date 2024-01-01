@@ -24,5 +24,7 @@ class SetDefaultChannelAdministratorRights(BaseObject):
     :type default_channel_administrator_rights: :class:`ChatAdministratorRights`, optional
     """
 
-    ID: typing.Literal["setDefaultChannelAdministratorRights"] = "setDefaultChannelAdministratorRights"
+    ID: typing.Literal["setDefaultChannelAdministratorRights"] = Field(
+        "setDefaultChannelAdministratorRights", validation_alias="@type", alias="@type"
+    )
     default_channel_administrator_rights: typing.Optional[ChatAdministratorRights] = None

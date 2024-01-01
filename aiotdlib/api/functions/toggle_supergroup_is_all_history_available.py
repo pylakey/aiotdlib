@@ -22,6 +22,8 @@ class ToggleSupergroupIsAllHistoryAvailable(BaseObject):
     :type is_all_history_available: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleSupergroupIsAllHistoryAvailable"] = "toggleSupergroupIsAllHistoryAvailable"
+    ID: typing.Literal["toggleSupergroupIsAllHistoryAvailable"] = Field(
+        "toggleSupergroupIsAllHistoryAvailable", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53
     is_all_history_available: Bool

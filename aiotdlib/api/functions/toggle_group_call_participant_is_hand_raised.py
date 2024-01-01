@@ -28,7 +28,9 @@ class ToggleGroupCallParticipantIsHandRaised(BaseObject):
     :type is_hand_raised: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleGroupCallParticipantIsHandRaised"] = "toggleGroupCallParticipantIsHandRaised"
+    ID: typing.Literal["toggleGroupCallParticipantIsHandRaised"] = Field(
+        "toggleGroupCallParticipantIsHandRaised", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     participant_id: MessageSender
     is_hand_raised: Bool = False

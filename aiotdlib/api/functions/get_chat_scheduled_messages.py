@@ -20,5 +20,7 @@ class GetChatScheduledMessages(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getChatScheduledMessages"] = "getChatScheduledMessages"
+    ID: typing.Literal["getChatScheduledMessages"] = Field(
+        "getChatScheduledMessages", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53

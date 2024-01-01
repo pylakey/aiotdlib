@@ -17,4 +17,6 @@ class GetAuthorizationState(BaseObject):
     Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
     """
 
-    ID: typing.Literal["getAuthorizationState"] = "getAuthorizationState"
+    ID: typing.Literal["getAuthorizationState"] = Field(
+        "getAuthorizationState", validation_alias="@type", alias="@type"
+    )

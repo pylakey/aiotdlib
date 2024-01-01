@@ -24,7 +24,7 @@ class SearchCallMessages(BaseObject):
     :type only_missed: :class:`Bool`
     """
 
-    ID: typing.Literal["searchCallMessages"] = "searchCallMessages"
+    ID: typing.Literal["searchCallMessages"] = Field("searchCallMessages", validation_alias="@type", alias="@type")
     offset: String
     limit: Int32
     only_missed: Bool = False

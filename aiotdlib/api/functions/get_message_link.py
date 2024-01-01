@@ -28,7 +28,7 @@ class GetMessageLink(BaseObject):
     :type in_message_thread: :class:`Bool`
     """
 
-    ID: typing.Literal["getMessageLink"] = "getMessageLink"
+    ID: typing.Literal["getMessageLink"] = Field("getMessageLink", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     media_timestamp: Int32 = 0

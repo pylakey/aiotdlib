@@ -26,6 +26,8 @@ class DeleteChatMessagesBySender(BaseObject):
     :type sender_id: :class:`MessageSender`
     """
 
-    ID: typing.Literal["deleteChatMessagesBySender"] = "deleteChatMessagesBySender"
+    ID: typing.Literal["deleteChatMessagesBySender"] = Field(
+        "deleteChatMessagesBySender", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     sender_id: MessageSender

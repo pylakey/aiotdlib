@@ -26,6 +26,6 @@ class FinishFileGeneration(BaseObject):
     :type error: :class:`Error`, optional
     """
 
-    ID: typing.Literal["finishFileGeneration"] = "finishFileGeneration"
+    ID: typing.Literal["finishFileGeneration"] = Field("finishFileGeneration", validation_alias="@type", alias="@type")
     generation_id: Int64
     error: typing.Optional[Error] = None

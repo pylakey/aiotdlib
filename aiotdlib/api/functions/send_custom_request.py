@@ -22,6 +22,6 @@ class SendCustomRequest(BaseObject):
     :type parameters: :class:`String`
     """
 
-    ID: typing.Literal["sendCustomRequest"] = "sendCustomRequest"
+    ID: typing.Literal["sendCustomRequest"] = Field("sendCustomRequest", validation_alias="@type", alias="@type")
     method: String
     parameters: String

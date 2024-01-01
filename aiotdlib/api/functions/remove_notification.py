@@ -22,6 +22,6 @@ class RemoveNotification(BaseObject):
     :type notification_id: :class:`Int32`
     """
 
-    ID: typing.Literal["removeNotification"] = "removeNotification"
+    ID: typing.Literal["removeNotification"] = Field("removeNotification", validation_alias="@type", alias="@type")
     notification_group_id: Int32
     notification_id: Int32

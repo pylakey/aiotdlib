@@ -17,4 +17,6 @@ class GetForumTopicDefaultIcons(BaseObject):
     Returns list of custom emojis, which can be used as forum topic icon by all users
     """
 
-    ID: typing.Literal["getForumTopicDefaultIcons"] = "getForumTopicDefaultIcons"
+    ID: typing.Literal["getForumTopicDefaultIcons"] = Field(
+        "getForumTopicDefaultIcons", validation_alias="@type", alias="@type"
+    )

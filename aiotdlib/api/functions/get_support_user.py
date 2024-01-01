@@ -17,4 +17,4 @@ class GetSupportUser(BaseObject):
     Returns a user that can be contacted to get support
     """
 
-    ID: typing.Literal["getSupportUser"] = "getSupportUser"
+    ID: typing.Literal["getSupportUser"] = Field("getSupportUser", validation_alias="@type", alias="@type")

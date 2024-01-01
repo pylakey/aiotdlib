@@ -22,6 +22,8 @@ class ToggleSupergroupJoinToSendMessages(BaseObject):
     :type join_to_send_messages: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleSupergroupJoinToSendMessages"] = "toggleSupergroupJoinToSendMessages"
+    ID: typing.Literal["toggleSupergroupJoinToSendMessages"] = Field(
+        "toggleSupergroupJoinToSendMessages", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53
     join_to_send_messages: Bool

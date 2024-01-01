@@ -24,7 +24,7 @@ class GetChatPinnedStories(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["getChatPinnedStories"] = "getChatPinnedStories"
+    ID: typing.Literal["getChatPinnedStories"] = Field("getChatPinnedStories", validation_alias="@type", alias="@type")
     chat_id: Int53
     from_story_id: Int32
     limit: Int32

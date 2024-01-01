@@ -24,5 +24,7 @@ class DeletePassportElement(BaseObject):
     :type type_: :class:`PassportElementType`
     """
 
-    ID: typing.Literal["deletePassportElement"] = "deletePassportElement"
+    ID: typing.Literal["deletePassportElement"] = Field(
+        "deletePassportElement", validation_alias="@type", alias="@type"
+    )
     type_: PassportElementType = Field(..., alias="type")

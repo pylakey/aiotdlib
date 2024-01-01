@@ -20,5 +20,5 @@ class RemoveChatActionBar(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["removeChatActionBar"] = "removeChatActionBar"
+    ID: typing.Literal["removeChatActionBar"] = Field("removeChatActionBar", validation_alias="@type", alias="@type")
     chat_id: Int53

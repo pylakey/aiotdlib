@@ -22,6 +22,6 @@ class CheckChatUsername(BaseObject):
     :type username: :class:`String`
     """
 
-    ID: typing.Literal["checkChatUsername"] = "checkChatUsername"
+    ID: typing.Literal["checkChatUsername"] = Field("checkChatUsername", validation_alias="@type", alias="@type")
     chat_id: Int53
     username: String

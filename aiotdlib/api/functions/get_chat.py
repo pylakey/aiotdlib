@@ -20,5 +20,5 @@ class GetChat(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getChat"] = "getChat"
+    ID: typing.Literal["getChat"] = Field("getChat", validation_alias="@type", alias="@type")
     chat_id: Int53

@@ -24,7 +24,7 @@ class SendBotStartMessage(BaseObject):
     :type parameter: :class:`String`
     """
 
-    ID: typing.Literal["sendBotStartMessage"] = "sendBotStartMessage"
+    ID: typing.Literal["sendBotStartMessage"] = Field("sendBotStartMessage", validation_alias="@type", alias="@type")
     bot_user_id: Int53
     chat_id: Int53
     parameter: String

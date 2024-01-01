@@ -20,5 +20,7 @@ class ReplaceVideoChatRtmpUrl(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["replaceVideoChatRtmpUrl"] = "replaceVideoChatRtmpUrl"
+    ID: typing.Literal["replaceVideoChatRtmpUrl"] = Field(
+        "replaceVideoChatRtmpUrl", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53

@@ -24,5 +24,5 @@ class ViewPremiumFeature(BaseObject):
     :type feature: :class:`PremiumFeature`
     """
 
-    ID: typing.Literal["viewPremiumFeature"] = "viewPremiumFeature"
+    ID: typing.Literal["viewPremiumFeature"] = Field("viewPremiumFeature", validation_alias="@type", alias="@type")
     feature: PremiumFeature

@@ -26,6 +26,6 @@ class RemoveTopChat(BaseObject):
     :type chat_id: :class:`Int53`
     """
 
-    ID: typing.Literal["removeTopChat"] = "removeTopChat"
+    ID: typing.Literal["removeTopChat"] = Field("removeTopChat", validation_alias="@type", alias="@type")
     category: TopChatCategory
     chat_id: Int53

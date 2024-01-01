@@ -17,4 +17,6 @@ class ResendEmailAddressVerificationCode(BaseObject):
     Resends the code to verify an email address to be added to a user's Telegram Passport
     """
 
-    ID: typing.Literal["resendEmailAddressVerificationCode"] = "resendEmailAddressVerificationCode"
+    ID: typing.Literal["resendEmailAddressVerificationCode"] = Field(
+        "resendEmailAddressVerificationCode", validation_alias="@type", alias="@type"
+    )

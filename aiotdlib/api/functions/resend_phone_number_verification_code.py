@@ -17,4 +17,6 @@ class ResendPhoneNumberVerificationCode(BaseObject):
     Resends the code to verify a phone number to be added to a user's Telegram Passport
     """
 
-    ID: typing.Literal["resendPhoneNumberVerificationCode"] = "resendPhoneNumberVerificationCode"
+    ID: typing.Literal["resendPhoneNumberVerificationCode"] = Field(
+        "resendPhoneNumberVerificationCode", validation_alias="@type", alias="@type"
+    )

@@ -20,5 +20,5 @@ class GetInternalLinkType(BaseObject):
     :type link: :class:`String`
     """
 
-    ID: typing.Literal["getInternalLinkType"] = "getInternalLinkType"
+    ID: typing.Literal["getInternalLinkType"] = Field("getInternalLinkType", validation_alias="@type", alias="@type")
     link: String

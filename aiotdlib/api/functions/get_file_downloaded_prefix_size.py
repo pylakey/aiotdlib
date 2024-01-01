@@ -22,6 +22,8 @@ class GetFileDownloadedPrefixSize(BaseObject):
     :type offset: :class:`Int53`
     """
 
-    ID: typing.Literal["getFileDownloadedPrefixSize"] = "getFileDownloadedPrefixSize"
+    ID: typing.Literal["getFileDownloadedPrefixSize"] = Field(
+        "getFileDownloadedPrefixSize", validation_alias="@type", alias="@type"
+    )
     file_id: Int32
     offset: Int53

@@ -17,4 +17,4 @@ class GetSupportName(BaseObject):
     Returns localized name of the Telegram support user; for Telegram support only
     """
 
-    ID: typing.Literal["getSupportName"] = "getSupportName"
+    ID: typing.Literal["getSupportName"] = Field("getSupportName", validation_alias="@type", alias="@type")

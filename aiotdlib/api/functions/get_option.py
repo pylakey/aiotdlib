@@ -20,5 +20,5 @@ class GetOption(BaseObject):
     :type name: :class:`String`
     """
 
-    ID: typing.Literal["getOption"] = "getOption"
+    ID: typing.Literal["getOption"] = Field("getOption", validation_alias="@type", alias="@type")
     name: String

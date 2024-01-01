@@ -33,7 +33,9 @@ class EditInlineMessageLiveLocation(BaseObject):
     :type location: :class:`Location`, optional
     """
 
-    ID: typing.Literal["editInlineMessageLiveLocation"] = "editInlineMessageLiveLocation"
+    ID: typing.Literal["editInlineMessageLiveLocation"] = Field(
+        "editInlineMessageLiveLocation", validation_alias="@type", alias="@type"
+    )
     inline_message_id: String
     heading: Int32 = 0
     proximity_alert_radius: Int32 = 0

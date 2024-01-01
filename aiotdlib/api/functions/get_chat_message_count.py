@@ -28,7 +28,7 @@ class GetChatMessageCount(BaseObject):
     :type return_local: :class:`Bool`
     """
 
-    ID: typing.Literal["getChatMessageCount"] = "getChatMessageCount"
+    ID: typing.Literal["getChatMessageCount"] = Field("getChatMessageCount", validation_alias="@type", alias="@type")
     chat_id: Int53
     filter_: SearchMessagesFilter = Field(..., alias="filter")
     return_local: Bool = False

@@ -17,4 +17,6 @@ class ResendLoginEmailAddressCode(BaseObject):
     Resends the login email address verification code
     """
 
-    ID: typing.Literal["resendLoginEmailAddressCode"] = "resendLoginEmailAddressCode"
+    ID: typing.Literal["resendLoginEmailAddressCode"] = Field(
+        "resendLoginEmailAddressCode", validation_alias="@type", alias="@type"
+    )

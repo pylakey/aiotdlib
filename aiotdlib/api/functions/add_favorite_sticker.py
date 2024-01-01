@@ -24,5 +24,5 @@ class AddFavoriteSticker(BaseObject):
     :type sticker: :class:`InputFile`
     """
 
-    ID: typing.Literal["addFavoriteSticker"] = "addFavoriteSticker"
+    ID: typing.Literal["addFavoriteSticker"] = Field("addFavoriteSticker", validation_alias="@type", alias="@type")
     sticker: InputFile

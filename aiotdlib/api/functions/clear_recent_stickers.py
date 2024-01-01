@@ -20,5 +20,5 @@ class ClearRecentStickers(BaseObject):
     :type is_attached: :class:`Bool`
     """
 
-    ID: typing.Literal["clearRecentStickers"] = "clearRecentStickers"
+    ID: typing.Literal["clearRecentStickers"] = Field("clearRecentStickers", validation_alias="@type", alias="@type")
     is_attached: Bool = False

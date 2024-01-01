@@ -24,5 +24,5 @@ class ParseMarkdown(BaseObject):
     :type text: :class:`FormattedText`
     """
 
-    ID: typing.Literal["parseMarkdown"] = "parseMarkdown"
+    ID: typing.Literal["parseMarkdown"] = Field("parseMarkdown", validation_alias="@type", alias="@type")
     text: FormattedText

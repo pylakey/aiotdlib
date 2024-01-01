@@ -36,7 +36,7 @@ class JoinGroupCall(BaseObject):
     :type participant_id: :class:`MessageSender`, optional
     """
 
-    ID: typing.Literal["joinGroupCall"] = "joinGroupCall"
+    ID: typing.Literal["joinGroupCall"] = Field("joinGroupCall", validation_alias="@type", alias="@type")
     group_call_id: Int32
     audio_source_id: Int32
     payload: String

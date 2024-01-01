@@ -26,6 +26,6 @@ class DeleteCommands(BaseObject):
     :type scope: :class:`BotCommandScope`, optional
     """
 
-    ID: typing.Literal["deleteCommands"] = "deleteCommands"
+    ID: typing.Literal["deleteCommands"] = Field("deleteCommands", validation_alias="@type", alias="@type")
     language_code: String
     scope: typing.Optional[BotCommandScope] = None

@@ -22,6 +22,8 @@ class ToggleGroupCallIsMyVideoEnabled(BaseObject):
     :type is_my_video_enabled: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleGroupCallIsMyVideoEnabled"] = "toggleGroupCallIsMyVideoEnabled"
+    ID: typing.Literal["toggleGroupCallIsMyVideoEnabled"] = Field(
+        "toggleGroupCallIsMyVideoEnabled", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     is_my_video_enabled: Bool = False

@@ -28,7 +28,7 @@ class StopPoll(BaseObject):
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
 
-    ID: typing.Literal["stopPoll"] = "stopPoll"
+    ID: typing.Literal["stopPoll"] = Field("stopPoll", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
     reply_markup: typing.Optional[ReplyMarkup] = None

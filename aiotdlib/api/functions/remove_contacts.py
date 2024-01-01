@@ -20,5 +20,5 @@ class RemoveContacts(BaseObject):
     :type user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["removeContacts"] = "removeContacts"
+    ID: typing.Literal["removeContacts"] = Field("removeContacts", validation_alias="@type", alias="@type")
     user_ids: Vector[Int53]

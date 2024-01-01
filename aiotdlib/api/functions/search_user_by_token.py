@@ -20,5 +20,5 @@ class SearchUserByToken(BaseObject):
     :type token: :class:`String`
     """
 
-    ID: typing.Literal["searchUserByToken"] = "searchUserByToken"
+    ID: typing.Literal["searchUserByToken"] = Field("searchUserByToken", validation_alias="@type", alias="@type")
     token: String

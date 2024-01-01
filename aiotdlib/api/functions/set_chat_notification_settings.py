@@ -26,6 +26,8 @@ class SetChatNotificationSettings(BaseObject):
     :type notification_settings: :class:`ChatNotificationSettings`
     """
 
-    ID: typing.Literal["setChatNotificationSettings"] = "setChatNotificationSettings"
+    ID: typing.Literal["setChatNotificationSettings"] = Field(
+        "setChatNotificationSettings", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     notification_settings: ChatNotificationSettings

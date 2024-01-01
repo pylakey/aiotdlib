@@ -27,6 +27,8 @@ class SetScopeNotificationSettings(BaseObject):
     :type notification_settings: :class:`ScopeNotificationSettings`
     """
 
-    ID: typing.Literal["setScopeNotificationSettings"] = "setScopeNotificationSettings"
+    ID: typing.Literal["setScopeNotificationSettings"] = Field(
+        "setScopeNotificationSettings", validation_alias="@type", alias="@type"
+    )
     scope: NotificationSettingsScope
     notification_settings: ScopeNotificationSettings

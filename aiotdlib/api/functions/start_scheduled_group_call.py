@@ -20,5 +20,7 @@ class StartScheduledGroupCall(BaseObject):
     :type group_call_id: :class:`Int32`
     """
 
-    ID: typing.Literal["startScheduledGroupCall"] = "startScheduledGroupCall"
+    ID: typing.Literal["startScheduledGroupCall"] = Field(
+        "startScheduledGroupCall", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32

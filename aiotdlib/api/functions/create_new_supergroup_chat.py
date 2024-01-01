@@ -36,7 +36,9 @@ class CreateNewSupergroupChat(BaseObject):
     :type location: :class:`ChatLocation`, optional
     """
 
-    ID: typing.Literal["createNewSupergroupChat"] = "createNewSupergroupChat"
+    ID: typing.Literal["createNewSupergroupChat"] = Field(
+        "createNewSupergroupChat", validation_alias="@type", alias="@type"
+    )
     title: String = Field(..., min_length=1, max_length=128)
     is_forum: Bool = False
     is_channel: Bool = False

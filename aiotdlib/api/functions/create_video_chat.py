@@ -26,7 +26,7 @@ class CreateVideoChat(BaseObject):
     :type is_rtmp_stream: :class:`Bool`
     """
 
-    ID: typing.Literal["createVideoChat"] = "createVideoChat"
+    ID: typing.Literal["createVideoChat"] = Field("createVideoChat", validation_alias="@type", alias="@type")
     chat_id: Int53
     title: String
     start_date: Int32

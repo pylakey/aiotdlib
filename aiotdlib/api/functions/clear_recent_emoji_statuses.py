@@ -17,4 +17,6 @@ class ClearRecentEmojiStatuses(BaseObject):
     Clears the list of recently used emoji statuses
     """
 
-    ID: typing.Literal["clearRecentEmojiStatuses"] = "clearRecentEmojiStatuses"
+    ID: typing.Literal["clearRecentEmojiStatuses"] = Field(
+        "clearRecentEmojiStatuses", validation_alias="@type", alias="@type"
+    )

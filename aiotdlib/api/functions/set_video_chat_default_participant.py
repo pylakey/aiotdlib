@@ -26,6 +26,8 @@ class SetVideoChatDefaultParticipant(BaseObject):
     :type default_participant_id: :class:`MessageSender`
     """
 
-    ID: typing.Literal["setVideoChatDefaultParticipant"] = "setVideoChatDefaultParticipant"
+    ID: typing.Literal["setVideoChatDefaultParticipant"] = Field(
+        "setVideoChatDefaultParticipant", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     default_participant_id: MessageSender

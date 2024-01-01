@@ -20,5 +20,7 @@ class CheckChatFolderInviteLink(BaseObject):
     :type invite_link: :class:`String`
     """
 
-    ID: typing.Literal["checkChatFolderInviteLink"] = "checkChatFolderInviteLink"
+    ID: typing.Literal["checkChatFolderInviteLink"] = Field(
+        "checkChatFolderInviteLink", validation_alias="@type", alias="@type"
+    )
     invite_link: String

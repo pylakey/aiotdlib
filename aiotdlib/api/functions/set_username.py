@@ -20,5 +20,5 @@ class SetUsername(BaseObject):
     :type username: :class:`String`
     """
 
-    ID: typing.Literal["setUsername"] = "setUsername"
+    ID: typing.Literal["setUsername"] = Field("setUsername", validation_alias="@type", alias="@type")
     username: String

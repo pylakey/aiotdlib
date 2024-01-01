@@ -22,6 +22,8 @@ class SearchOutgoingDocumentMessages(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["searchOutgoingDocumentMessages"] = "searchOutgoingDocumentMessages"
+    ID: typing.Literal["searchOutgoingDocumentMessages"] = Field(
+        "searchOutgoingDocumentMessages", validation_alias="@type", alias="@type"
+    )
     query: String
     limit: Int32

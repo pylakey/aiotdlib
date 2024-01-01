@@ -20,5 +20,5 @@ class ConfirmSession(BaseObject):
     :type session_id: :class:`Int64`
     """
 
-    ID: typing.Literal["confirmSession"] = "confirmSession"
+    ID: typing.Literal["confirmSession"] = Field("confirmSession", validation_alias="@type", alias="@type")
     session_id: Int64

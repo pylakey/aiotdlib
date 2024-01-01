@@ -20,5 +20,5 @@ class SearchStickerSets(BaseObject):
     :type query: :class:`String`
     """
 
-    ID: typing.Literal["searchStickerSets"] = "searchStickerSets"
+    ID: typing.Literal["searchStickerSets"] = Field("searchStickerSets", validation_alias="@type", alias="@type")
     query: String

@@ -24,5 +24,7 @@ class GetInstalledStickerSets(BaseObject):
     :type sticker_type: :class:`StickerType`
     """
 
-    ID: typing.Literal["getInstalledStickerSets"] = "getInstalledStickerSets"
+    ID: typing.Literal["getInstalledStickerSets"] = Field(
+        "getInstalledStickerSets", validation_alias="@type", alias="@type"
+    )
     sticker_type: StickerType

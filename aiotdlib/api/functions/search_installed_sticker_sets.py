@@ -28,7 +28,9 @@ class SearchInstalledStickerSets(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["searchInstalledStickerSets"] = "searchInstalledStickerSets"
+    ID: typing.Literal["searchInstalledStickerSets"] = Field(
+        "searchInstalledStickerSets", validation_alias="@type", alias="@type"
+    )
     sticker_type: StickerType
     query: String
     limit: Int32

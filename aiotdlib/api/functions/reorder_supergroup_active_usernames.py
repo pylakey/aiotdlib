@@ -22,6 +22,8 @@ class ReorderSupergroupActiveUsernames(BaseObject):
     :type usernames: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["reorderSupergroupActiveUsernames"] = "reorderSupergroupActiveUsernames"
+    ID: typing.Literal["reorderSupergroupActiveUsernames"] = Field(
+        "reorderSupergroupActiveUsernames", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53
     usernames: Vector[String]

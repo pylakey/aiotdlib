@@ -24,7 +24,9 @@ class GetMessageAvailableReactions(BaseObject):
     :type row_size: :class:`Int32`
     """
 
-    ID: typing.Literal["getMessageAvailableReactions"] = "getMessageAvailableReactions"
+    ID: typing.Literal["getMessageAvailableReactions"] = Field(
+        "getMessageAvailableReactions", validation_alias="@type", alias="@type"
+    )
     chat_id: Int53
     message_id: Int53
     row_size: Int32

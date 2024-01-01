@@ -29,7 +29,7 @@ class SetBackground(BaseObject):
     :type type_: :class:`BackgroundType`, optional
     """
 
-    ID: typing.Literal["setBackground"] = "setBackground"
+    ID: typing.Literal["setBackground"] = Field("setBackground", validation_alias="@type", alias="@type")
     for_dark_theme: Bool = False
     background: typing.Optional[InputBackground] = None
     type_: typing.Optional[BackgroundType] = Field(None, alias="type")

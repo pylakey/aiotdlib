@@ -22,6 +22,8 @@ class InviteGroupCallParticipants(BaseObject):
     :type user_ids: :class:`Vector[Int53]`
     """
 
-    ID: typing.Literal["inviteGroupCallParticipants"] = "inviteGroupCallParticipants"
+    ID: typing.Literal["inviteGroupCallParticipants"] = Field(
+        "inviteGroupCallParticipants", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     user_ids: Vector[Int53]

@@ -24,5 +24,5 @@ class AddNetworkStatistics(BaseObject):
     :type entry: :class:`NetworkStatisticsEntry`
     """
 
-    ID: typing.Literal["addNetworkStatistics"] = "addNetworkStatistics"
+    ID: typing.Literal["addNetworkStatistics"] = Field("addNetworkStatistics", validation_alias="@type", alias="@type")
     entry: NetworkStatisticsEntry

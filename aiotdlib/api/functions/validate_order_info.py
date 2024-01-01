@@ -29,7 +29,7 @@ class ValidateOrderInfo(BaseObject):
     :type order_info: :class:`OrderInfo`, optional
     """
 
-    ID: typing.Literal["validateOrderInfo"] = "validateOrderInfo"
+    ID: typing.Literal["validateOrderInfo"] = Field("validateOrderInfo", validation_alias="@type", alias="@type")
     input_invoice: InputInvoice
     allow_save: Bool = False
     order_info: typing.Optional[OrderInfo] = None

@@ -24,7 +24,9 @@ class WriteGeneratedFilePart(BaseObject):
     :type data: :class:`Bytes`
     """
 
-    ID: typing.Literal["writeGeneratedFilePart"] = "writeGeneratedFilePart"
+    ID: typing.Literal["writeGeneratedFilePart"] = Field(
+        "writeGeneratedFilePart", validation_alias="@type", alias="@type"
+    )
     generation_id: Int64
     offset: Int53
     data: Bytes

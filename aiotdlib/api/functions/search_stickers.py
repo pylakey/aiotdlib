@@ -28,7 +28,7 @@ class SearchStickers(BaseObject):
     :type limit: :class:`Int32`
     """
 
-    ID: typing.Literal["searchStickers"] = "searchStickers"
+    ID: typing.Literal["searchStickers"] = Field("searchStickers", validation_alias="@type", alias="@type")
     sticker_type: StickerType
     emojis: String
     limit: Int32

@@ -24,7 +24,9 @@ class ToggleSupergroupUsernameIsActive(BaseObject):
     :type is_active: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleSupergroupUsernameIsActive"] = "toggleSupergroupUsernameIsActive"
+    ID: typing.Literal["toggleSupergroupUsernameIsActive"] = Field(
+        "toggleSupergroupUsernameIsActive", validation_alias="@type", alias="@type"
+    )
     supergroup_id: Int53
     username: String
     is_active: Bool = False

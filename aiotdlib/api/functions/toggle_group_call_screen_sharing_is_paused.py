@@ -22,6 +22,8 @@ class ToggleGroupCallScreenSharingIsPaused(BaseObject):
     :type is_paused: :class:`Bool`
     """
 
-    ID: typing.Literal["toggleGroupCallScreenSharingIsPaused"] = "toggleGroupCallScreenSharingIsPaused"
+    ID: typing.Literal["toggleGroupCallScreenSharingIsPaused"] = Field(
+        "toggleGroupCallScreenSharingIsPaused", validation_alias="@type", alias="@type"
+    )
     group_call_id: Int32
     is_paused: Bool = False
