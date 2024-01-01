@@ -16,15 +16,15 @@ from typing import Optional
 from typing import Union
 
 import pydantic.errors
+import pydantic_settings
 from pydantic import BaseModel
-from pydantic import root_validator
-from pydantic import validator
+from pydantic import field_validator
+from pydantic import model_validator
 
 from . import __version__
 from .api import API
 from .api import AioTDLibError
 from .api import AuthorizationState
-from .api import AuthorizationStateClosed
 from .api import BadRequest
 from .api import BaseObject
 from .api import BasicGroup
@@ -52,6 +52,7 @@ from .api import Message
 from .api import MessageReplyToMessage
 from .api import MessageSchedulingStateSendAtDate
 from .api import MessageSchedulingStateSendWhenOnline
+from .api import MessageSelfDestructType
 from .api import MessageSendOptions
 from .api import MessageSendingStatePending
 from .api import Messages
@@ -86,7 +87,6 @@ from .handlers import HandlerCallable
 from .middlewares import MiddlewareCallable
 from .tdjson import TDJsonClient
 from .tdjson import TDLibLogVerbosity
-from .types import Undefined
 from .utils import PendingRequest
 from .utils import ainput
 from .utils import make_input_file
@@ -151,10 +151,13 @@ class ClientProxySettings(BaseModel):
     http_only: bool = False
     secret: Optional[str] = None
 
-    @validator('secret', pre=True, always=True)
-    def validate_secret(cls, secret: str, values):
+    @field_validator('secret')
+    @classmethod
+    def validate_secret(cls, secret: str, info: pydantic.ValidationInfo):
+        values = info.data
+
         if values.get('type') == ClientProxyType.MTPROTO and secret is None:
-            raise pydantic.errors.MissingError
+            raise ValueError('Proxy secret is required for MTPROTO proxy')
 
         return secret
 
@@ -165,67 +168,67 @@ class ClientParseMode(str, enum.Enum):
 
 
 class ClientOptions(pydantic.BaseModel):
-    always_parse_markdown: Optional[bool]
+    always_parse_markdown: Optional[bool] = None
     """
     If true, text entities will be automatically parsed in all inputMessageText objects
     """
 
-    archive_and_mute_new_chats_from_unknown_users: Optional[bool]
+    archive_and_mute_new_chats_from_unknown_users: Optional[bool] = None
     """
     If true, new chats from non-contacts will be automatically archived and muted. 
     The option can be set only if the option “can_archive_and_mute_new_chats_from_unknown_users” is true. 
     getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
     """
 
-    disable_contact_registered_notifications: Optional[bool]
+    disable_contact_registered_notifications: Optional[bool] = None
     """
     If true, notifications about the user's contacts who have joined Telegram will be disabled. 
     User will still receive the corresponding message in the private chat. 
     getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
     """
 
-    disable_persistent_network_statistics: Optional[bool]
+    disable_persistent_network_statistics: Optional[bool] = None
     """
     If true, persistent network statistics will be disabled, which significantly reduces disk usage
     """
 
-    disable_sent_scheduled_message_notifications: Optional[bool]
+    disable_sent_scheduled_message_notifications: Optional[bool] = None
     """
     If true, notifications about outgoing scheduled messages that were sent will be disabled
     """
 
-    disable_time_adjustment_protection: Optional[bool]
+    disable_time_adjustment_protection: Optional[bool] = None
     """
     If true, protection from external time adjustment will be disabled, which significantly reduces disk usage
     """
 
-    disable_top_chats: Optional[bool]
+    disable_top_chats: Optional[bool] = None
     """
     If true, support for top chats and statistics collection is disabled
     """
 
-    ignore_background_updates: Optional[bool]
+    ignore_background_updates: Optional[bool] = None
     """
     If true, allows to skip all updates received while the TDLib instance was not running. 
     The option does nothing if the database or secret chats are used
     """
 
-    ignore_default_disable_notification: Optional[bool]
+    ignore_default_disable_notification: Optional[bool] = None
     """
     If true, the disable_notification value specified in the request will be always used instead of the default value
     """
 
-    ignore_inline_thumbnails: Optional[bool]
+    ignore_inline_thumbnails: Optional[bool] = None
     """
     If true, prevents file thumbnails sent by the server along with messages from being saved on the disk
     """
 
-    ignore_platform_restrictions: Optional[bool]
+    ignore_platform_restrictions: Optional[bool] = None
     """
     If true, chat and message reictions specific to the currently used operating system will be ignored
     """
 
-    is_location_visible: Optional[bool]
+    is_location_visible: Optional[bool] = None
     """
     If true, other users will be allowed to see the current user's location
     """
@@ -238,60 +241,60 @@ class ClientOptions(pydantic.BaseModel):
     # so it should be set before call to setTdlibParameters.
     # """
 
-    language_pack_id: Optional[str]
+    language_pack_id: Optional[str] = None
     """
     Identifier of the currently used language pack from the current localization target
     """
 
-    localization_target: Optional[str]
+    localization_target: Optional[str] = None
     """
     Name for the current localization target (currently supported: “android”,“android_x”,“ios”,“macos” and “tdesktop”)
     """
 
-    message_unload_delay: Optional[int]
+    message_unload_delay: Optional[int] = None
     """
     The maximum time messages are stored in memory before they are unloaded, 60-86400; in seconds. 
     Defaults to 60 for users and 1800 for bots
     """
 
-    notification_group_count_max: Optional[int]
+    notification_group_count_max: Optional[int] = None
     """
     Maximum number of notification groups to be shown simultaneously, 0-25
     """
 
-    notification_group_size_max: Optional[int]
+    notification_group_size_max: Optional[int] = None
     """
     Maximum number of simultaneously shown notifications in a group, 1-25. Defaults to 10
     """
 
-    online: Optional[bool]
+    online: Optional[bool] = None
     """
     Online status of the current user
     """
 
-    prefer_ipv6: Optional[bool]
+    prefer_ipv6: Optional[bool] = None
     """
     If true, IPv6 addresses will be preferred over IPv4 addresses
     """
 
-    use_pfs: Optional[bool]
+    use_pfs: Optional[bool] = None
     """
     If true, Perfect Forward Secrecy will be enabled for interaction with the Telegram servers for cloud chats
     """
 
-    use_quick_ack: Optional[bool]
+    use_quick_ack: Optional[bool] = None
     """
     If true, quick acknowledgement will be enabled for outgoing messages
     """
 
-    use_storage_optimizer: Optional[bool]
+    use_storage_optimizer: Optional[bool] = None
     """
     If true, the background storage optimizer will be enabled
     """
 
 
 # noinspection PyUnresolvedReferences
-class ClientSettings(pydantic.BaseSettings):
+class ClientSettings(pydantic_settings.BaseSettings):
     """
     :param api_id: Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
     :type api_id: int
@@ -359,23 +362,23 @@ class ClientSettings(pydantic.BaseSettings):
     api_id: int
     api_hash: pydantic.SecretStr
     database_encryption_key: Union[str, bytes] = 'aiotdlib'
-    phone_number: str = None
-    bot_token: pydantic.SecretStr = None
+    phone_number: Optional[str] = None
+    bot_token: Optional[pydantic.SecretStr] = None
     use_test_dc: bool = False
     system_language_code: str = 'en'
     device_model: str = 'aiotdlib'
     system_version: str = ""
     application_version: str = __version__
     files_directory: Path = Path(sys.argv[0]).parent
-    first_name: str = None
-    last_name: str = None
-    email: str = None
-    password: pydantic.SecretStr = None
-    library_path: str = None
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    email: Optional[str] = None
+    password: Optional[pydantic.SecretStr] = None
+    library_path: Optional[str] = None
     tdlib_verbosity: TDLibLogVerbosity = TDLibLogVerbosity.ERROR
     debug: bool = False
     parse_mode: ClientParseMode = ClientParseMode.HTML
-    proxy_settings: ClientProxySettings = None
+    proxy_settings: Optional[ClientProxySettings] = None
     use_file_database: bool = True
     use_chat_info_database: bool = True
     use_message_database: bool = True
@@ -385,38 +388,45 @@ class ClientSettings(pydantic.BaseSettings):
     ignore_background_updates: bool = False
     options: ClientOptions = ClientOptions()
 
-    @root_validator(pre=True)
+    @model_validator(mode="before")
+    @classmethod
     def check_phone_and_bot_token(cls, values):
         if not bool(values.get('phone_number')) and not bool(values.get('bot_token')):
             raise ValueError('Either phone_number or bot_token should be specified')
 
         return values
 
-    @validator('parse_mode', pre=True)
+    @field_validator('parse_mode', mode="before")
+    @classmethod
     def validator_parse_mode(cls, value):
         if isinstance(value, str):
             return value.lower()
 
         return value
 
-    @validator('phone_number')
+    @field_validator('phone_number')
+    @classmethod
     def validator_phone_number(cls, value):
         if bool(value):
             return strip_phone_number_symbols(value)
 
         return value
 
-    @validator('database_encryption_key', pre=True)
+    @field_validator('database_encryption_key', mode="before")
+    @classmethod
     def validator_database_encryption_key(cls, value):
         if not bool(value):
             return value
 
         return str_to_base64(value)
 
-    @validator('files_directory', always=True)
-    def validator_files_directory(cls, value, values):
+    @field_validator('files_directory', mode='after')
+    @classmethod
+    def validator_files_directory(cls, value, info: pydantic.ValidationInfo):
+        values = info.data
+
         if not bool(value):
-            value = Path(sys.argv[0]).parent
+            value = Path.cwd().parent
 
         md5_hash = hashlib.md5()
         phone_number = values.get('phone_number')
@@ -434,10 +444,11 @@ class ClientSettings(pydantic.BaseSettings):
 
         return value / '.aiotdlib' / directory_name
 
-    class Config:
-        env_prefix = 'aiotdlib_'
-        use_enum_values = True
-        allow_population_by_field_name = True
+    model_config = pydantic_settings.SettingsConfigDict(
+        env_prefix='aiotdlib_',
+        use_enum_values=True,
+        populate_by_name=True
+    )
 
 
 AUTHORIZATION_REQUEST_ID = 'updateAuthorizationState'
@@ -472,7 +483,6 @@ class Client:
             enable_storage_optimizer: bool = Undefined,
             ignore_file_names: bool = Undefined,
             options: ClientOptions = Undefined,
-            loop: Union[asyncio.AbstractEventLoop, None] = None
     ):
         """
         :param api_id: Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
@@ -551,16 +561,15 @@ class Client:
         :type options: ClientOptions
 
         """
-        self.__current_authorization_state = None
-        self.__is_authorized = False
-        self.__running = False
-        self.__pending_requests: dict[str, PendingRequest] = {}
-        self.__pending_messages: dict[str, Message] = {}
-        self.__updates_handlers: dict[str, set[Handler]] = {}
-        self.__middlewares: list[MiddlewareCallable] = []
-        self.__middlewares_handlers: list[MiddlewareCallable] = []
-        self.__update_task: typing.Optional[asyncio.Task[None]] = None
-        self.loop: asyncio.AbstractEventLoop = loop
+        self._current_authorization_state = None
+        self._is_authorized = False
+        self._running = False
+        self._pending_requests: dict[str, PendingRequest] = {}
+        self._pending_messages: dict[str, Message] = {}
+        self._updates_handlers: dict[str, set[Handler]] = {}
+        self._middlewares: list[MiddlewareCallable] = []
+        self._middlewares_handlers: list[MiddlewareCallable] = []
+        self._update_task: typing.Optional[asyncio.Task[None]] = None
 
         settings = {
             'api_id': api_id,
@@ -609,90 +618,85 @@ class Client:
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         await self.stop()
 
-    async def __call_handler(self, handler: Handler, update: TDLibObject):
+    async def _call_handler(self, handler: Handler, update: TDLibObject):
         try:
             await handler(self, update)
         except Exception as e:
             self.logger.error(e, exc_info=True)
 
-    async def __call_handlers(self, update: TDLibObject):
+    async def _call_handlers(self, update: TDLibObject):
         tasks = []
-        tasks.extend(self.__call_handler(h, update) for h in self.__updates_handlers.get(update.ID, []))
-        tasks.extend(self.__call_handler(h, update) for h in self.__updates_handlers.get('*', []))
+        tasks.extend(self._call_handler(h, update) for h in self._updates_handlers.get(update.ID, []))
+        tasks.extend(self._call_handler(h, update) for h in self._updates_handlers.get('*', []))
         # Running all handlers concurrently and independently
         await asyncio.gather(*tasks, return_exceptions=True)
 
-    async def __handle_update(self, update: TDLibObject):
-        if len(self.__middlewares_handlers) == 0:
-            return await self.__call_handlers(update)
+    async def _handle_update(self, update: TDLibObject):
+        if len(self._middlewares_handlers) == 0:
+            return await self._call_handlers(update)
 
-        async def __fn(*_, **__):
-            return await self.__call_handlers(update)
+        async def _fn(*_, **__):
+            return await self._call_handlers(update)
 
-        call_next = __fn
+        call_next = _fn
 
-        for m in self.__middlewares_handlers:
+        for m in self._middlewares_handlers:
             call_next = update_wrapper(partial(m, call_next=call_next), call_next)
 
         return await call_next(self, update)
 
-    async def __handle_pending_request(self, update: TDLibObject):
+    async def _handle_pending_request(self, update: TDLibObject):
         request_id = update.EXTRA.get('request_id')
 
         if not bool(request_id) and update.ID in [AUTHORIZATION_REQUEST_ID]:
             request_id = update.ID
 
         if bool(request_id):
-            pending_request = self.__pending_requests.get(request_id)
+            pending_request = self._pending_requests.get(request_id)
 
             if bool(pending_request):
                 if isinstance(update, Message) and isinstance(update.sending_state, MessageSendingStatePending):
-                    self.__pending_messages[f"{update.chat_id}_{update.id}"] = update
+                    self._pending_messages[f"{update.chat_id}_{update.id}"] = update
                 else:
-                    self.__pending_requests.pop(request_id)
+                    self._pending_requests.pop(request_id)
                     pending_request.set_update(update)
 
         if isinstance(update, UpdateMessageSendSucceeded):
             pending_message_key = f"{update.message.chat_id}_{update.old_message_id}"
-            pending_message = self.__pending_messages.pop(pending_message_key, None)
+            pending_message = self._pending_messages.pop(pending_message_key, None)
 
             if bool(pending_message):
                 request_id = pending_message.EXTRA.get('request_id')
-                pending_request = self.__pending_requests.get(request_id)
+                pending_request = self._pending_requests.get(request_id)
 
                 if bool(pending_request):
                     update.message.EXTRA['request_id'] = request_id
-                    self.__pending_requests.pop(request_id)
+                    self._pending_requests.pop(request_id)
                     pending_request.set_update(update.message)
 
-    async def __updates_loop(self):
+    async def _updates_loop(self):
         try:
-            while self.__running:
-                update = await self.receive()
-
-                if not bool(update):
+            async for packet in self.tdjson_client.receive():
+                if not bool(packet):
                     continue
 
-                if isinstance(update, UpdateAuthorizationState):
-                    if isinstance(update.authorization_state, AuthorizationStateClosed):
-                        self.logger.warning('Session was terminated!')
-                        self.loop.create_task(self.stop())
-                        return
+                try:
+                    update = parse_tdlib_object(packet)
+                except Exception as e:
+                    self.logger.error(f'Unable to parse incoming update: {packet}! {e}', exc_info=True)
+                    continue
 
-                self.loop.create_task(self.__handle_pending_request(update))
-                self.loop.create_task(self.__handle_update(update))
+                # if isinstance(update, UpdateAuthorizationState):
+                #     if isinstance(update.authorization_state, AuthorizationStateClosed):
+                #         self.logger.warning('Session was terminated!')
+                #         break
+
+                asyncio.create_task(self._handle_pending_request(update))
+                asyncio.create_task(self._handle_update(update))
         except (asyncio.CancelledError, KeyboardInterrupt):
             raise
         except Exception as e:
             self.logger.error(f'Unhandled exception occurred!. {e.__class__.__qualname__}. {e}', exc_info=True)
-
-    async def __close(self):
-        if not bool(self.__running):
-            return
-
-        if bool(self.tdjson_client):
-            self.logger.info('Gracefully closing TDLib connection')
-            await self.tdjson_client.stop()
 
     async def _setup_proxy(self):
         if not bool(self.settings.proxy_settings):
@@ -732,15 +736,15 @@ class Client:
                 return
 
         if self.settings.proxy_settings.type == ClientProxyType.HTTP:
-            proxy_type = ProxyTypeHttp.construct(
+            proxy_type = ProxyTypeHttp(
                 username=self.settings.proxy_settings.username,
                 password=self.settings.proxy_settings.password,
                 http_only=self.settings.proxy_settings.http_only
             )
         elif self.settings.proxy_settings.type == ClientProxyType.MTPROTO:
-            proxy_type = ProxyTypeMtproto.construct(secret=self.settings.proxy_settings.secret)
+            proxy_type = ProxyTypeMtproto(secret=self.settings.proxy_settings.secret)
         elif self.settings.proxy_settings.type == ClientProxyType.SOCKS5:
-            proxy_type = ProxyTypeSocks5.construct(
+            proxy_type = ProxyTypeSocks5(
                 username=self.settings.proxy_settings.username,
                 password=self.settings.proxy_settings.password,
             )
@@ -760,7 +764,7 @@ class Client:
         )
 
     async def _setup_options(self):
-        for k, v in self.settings.options.dict(exclude_none=True, by_alias=True).items():
+        for k, v in self.settings.options.model_dump(exclude_none=True, by_alias=True).items():
             if isinstance(v, bool):
                 option_value = OptionValueBoolean(value=v)
             elif isinstance(v, str):
@@ -776,7 +780,7 @@ class Client:
             self.logger.info(f'Setting up option {k} = {v}')
 
             try:
-                await self.api.set_option(k, option_value, skip_validation=True)
+                await self.api.set_option(k, option_value)
             except BadRequest as e:
                 self.logger.error(f'Unable to setup option {k} = {v}: {e}!')
 
@@ -928,31 +932,31 @@ class Client:
         return email
 
     async def _auth_completed(self):
-        self.__pending_requests.pop(AUTHORIZATION_REQUEST_ID, None)
+        self._pending_requests.pop(AUTHORIZATION_REQUEST_ID, None)
 
         if not self.is_bot:
             # Preload main list chats
             await self.get_main_list_chats()
 
-        self.__is_authorized = True
+        self._is_authorized = True
         self.logger.info('Authorization is completed')
 
     async def _auth_logging_out(self):
-        self.__is_authorized = False
+        self._is_authorized = False
         self.logger.info('Auth session is logging out')
 
     async def _auth_closing(self):
-        self.__is_authorized = False
+        self._is_authorized = False
         self.logger.info('Auth session is closing')
 
     async def _auth_closed(self):
         self.logger.info('Auth session is closed')
 
     async def send(self, query: TDLibObject):
-        if not self.__running:
+        if not self._running:
             raise RuntimeError('Client not started')
 
-        query_json = query.dict(by_alias=True)
+        query_json = query.model_dump(by_alias=True)
 
         if self.settings.debug:
             self.logger.debug(f">>>>> {query.ID} {query_json}")
@@ -974,25 +978,27 @@ class Client:
 
         query.EXTRA['request_id'] = request_id
         pending_request = PendingRequest(self, query)
-        self.__pending_requests[request_id] = pending_request
+        self._pending_requests[request_id] = pending_request
 
         try:
             await self.send(query)
             await pending_request.wait(raise_exc=True, timeout=request_timeout)
-        except asyncio.TimeoutError:
-            self.__pending_requests.pop(request_id, None)
+        except (asyncio.TimeoutError, TimeoutError):
+            self._pending_requests.pop(request_id, None)
             raise
         finally:
             if self.settings.debug and bool(pending_request.update):
-                self.logger.debug(f"<<<<< {pending_request.update.ID} {pending_request.update.json(by_alias=True)}")
+                self.logger.debug(
+                    f"<<<<< {pending_request.update.ID} {pending_request.update.model_dump_json(by_alias=True)}"
+                )
 
         return pending_request.update
 
     async def execute(self, query: TDLibObject) -> ExecuteResult:
-        if not self.__running:
+        if not self._running:
             raise RuntimeError('Client not started')
 
-        result = await self.tdjson_client.execute(query.dict(by_alias=True))
+        result = await self.tdjson_client.execute(query.model_dump(by_alias=True))
         result_object = parse_tdlib_object(result)
 
         if isinstance(result_object, Error):
@@ -1002,21 +1008,6 @@ class Client:
             )
 
         return result_object
-
-    async def receive(self) -> Optional[BaseObject]:
-        if not self.__running:
-            raise RuntimeError('Client not started')
-
-        data = await self.tdjson_client.receive()
-
-        if not bool(data):
-            return None
-
-        try:
-            return parse_tdlib_object(data)
-        except Exception as e:
-            self.logger.error(f'Unable to parse incoming update: {data}! {e}', exc_info=True)
-            return None
 
     async def authorize(self):
         if self.is_bot:
@@ -1041,18 +1032,18 @@ class Client:
             # API.Types.AUTHORIZATION_STATE_WAIT_OTHER_DEVICE_CONFIRMATION: None,
         }
 
-        while not self.__is_authorized:
+        while not self._is_authorized:
             result = None
 
             while True:
                 try:
-                    self.logger.debug('Current authorization state: %s', self.__current_authorization_state)
-                    next_action = auth_actions.get(self.__current_authorization_state)
+                    self.logger.debug('Current authorization state: %s', self._current_authorization_state)
+                    next_action = auth_actions.get(self._current_authorization_state)
 
                     if bool(next_action):
                         result = await next_action()
                     else:
-                        self.logger.error(f'Unhandled authorization state: {self.__current_authorization_state}')
+                        self.logger.error(f'Unhandled authorization state: {self._current_authorization_state}')
                         break
                 except AioTDLibError as e:
                     # Need to retry previous step
@@ -1062,7 +1053,7 @@ class Client:
                     break
 
             if isinstance(result, UpdateAuthorizationState):
-                self.__current_authorization_state = result.authorization_state.ID
+                self._current_authorization_state = result.authorization_state.ID
 
             await asyncio.sleep(0.1)
 
@@ -1071,15 +1062,11 @@ class Client:
         self.logger.info(f'Session workdir: {self.settings.files_directory.absolute()}')
 
         # Preparing middlewares handlers
-        self.__middlewares_handlers = list(reversed(self.__middlewares))
-
-        # Setting up asyncio stuff
-        if not bool(self.loop):
-            self.loop = asyncio.get_running_loop()
+        self._middlewares_handlers = list(reversed(self._middlewares))
 
         # Starting updates loop
-        self.__running = True
-        self.__update_task = self.loop.create_task(self.__updates_loop())
+        self._running = True
+        self._update_task = asyncio.create_task(self._updates_loop())
 
         # Initialize authorization process
         await self.authorize()
@@ -1094,8 +1081,15 @@ class Client:
 
     async def stop(self):
         self.logger.info('Stopping telegram client...')
-        await self.__close()
-        self.__running = False
+
+        if not bool(self._running):
+            return
+
+        if bool(self.tdjson_client):
+            self.logger.info('Gracefully closing TDLib connection')
+            await self.tdjson_client.close()
+
+        self._running = False
 
     async def _run(self):
         async with self:
@@ -1216,7 +1210,7 @@ class Client:
             )
         )
 
-    async def __send_message(
+    async def _send_message(
             self,
             chat_id: int,
             content: InputMessageContent,
@@ -1228,6 +1222,8 @@ class Client:
             send_date: int = None,
             request_timeout: int = None,
             protect_content: bool = False,
+            update_order_of_installed_sticker_sets: bool = False,
+            sending_id: int = 0,
     ):
         """
         Sends a message. Returns the sent message
@@ -1260,6 +1256,12 @@ class Client:
         :param protect_content: Pass true if the content of the message must be protected from forwarding and saving; for bots only
         :type protect_content: :class:`bool`
 
+        :param update_order_of_installed_sticker_sets: Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum
+        :type update_order_of_installed_sticker_sets: :class:`bool`
+
+        :param sending_id: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+        :type sending_id: :class:`int`
+
         """
 
         if bool(send_date):
@@ -1276,15 +1278,16 @@ class Client:
                 chat_id=chat_id,
                 message_id=reply_to_message_id
             ) if bool(reply_to_message_id) else None,
-            options=MessageSendOptions.construct(
+            options=MessageSendOptions(
                 disable_notification=disable_notification,
                 from_background=False,
                 protect_content=protect_content,
-                scheduling_state=scheduling_state
+                scheduling_state=scheduling_state,
+                update_order_of_installed_sticker_sets=update_order_of_installed_sticker_sets,
+                sending_id=sending_id
             ),
             reply_markup=reply_markup,
             input_message_content=content,
-            skip_validation=True,
             request_timeout=request_timeout
         )
 
@@ -1302,6 +1305,7 @@ class Client:
             send_date: int = None,
             request_timeout: int = None,
             protect_content: bool = False,
+            sending_id: int = 0,
     ) -> Message:
         """
         Sends a text message. Returns the sent message
@@ -1344,9 +1348,9 @@ class Client:
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
         """
-        return await self.__send_message(
+        return await self._send_message(
             chat_id=chat_id,
-            content=InputMessageText.construct(
+            content=InputMessageText(
                 text=(await self.parse_text(text)),
                 disable_web_page_preview=disable_web_page_preview,
                 clear_draft=clear_draft,
@@ -1357,7 +1361,8 @@ class Client:
             send_when_online=send_when_online,
             send_date=send_date,
             request_timeout=request_timeout,
-            protect_content=protect_content
+            protect_content=protect_content,
+            sending_id=sending_id
         )
 
     async def edit_text(
@@ -1405,12 +1410,11 @@ class Client:
             chat_id=chat_id,
             message_id=message_id,
             reply_markup=reply_markup,
-            input_message_content=InputMessageText.construct(
+            input_message_content=InputMessageText(
                 text=formatted_text,
                 disable_web_page_preview=disable_web_page_preview,
                 clear_draft=clear_draft,
             ),
-            skip_validation=True,
             request_timeout=request_timeout
         )
 
@@ -1423,7 +1427,7 @@ class Client:
             added_sticker_file_ids: list[int] = None,
             photo_width: int = None,
             photo_height: int = None,
-            ttl: int = None,
+            self_destruct_type: Optional[MessageSelfDestructType] = None,
             thumbnail: Union[str, InputThumbnail] = None,
             thumbnail_width: int = None,
             thumbnail_height: int = None,
@@ -1434,6 +1438,7 @@ class Client:
             send_date: int = None,
             request_timeout: int = None,
             protect_content: bool = False,
+            sending_id: int = 0,
     ):
         """
         Sends a photo with caption to chat. Returns the sent message
@@ -1457,8 +1462,8 @@ class Client:
             photo_height (int)
                 Photo height
 
-            ttl (int)
-                Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
+            self_destruct_type (MessageSelfDestructType)
+                Photo self-destruct type; pass null if none; private chats only, defaults to None
 
             thumbnail (str)
                 Thumbnail file to send. Sending thumbnails by file_id is currently not supported
@@ -1494,16 +1499,16 @@ class Client:
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
         """
-        return await self.__send_message(
+        return await self._send_message(
             chat_id=chat_id,
-            content=InputMessagePhoto.construct(
+            content=InputMessagePhoto(
                 caption=(await self.parse_text(caption)),
                 photo=make_input_file(photo),
                 thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
                 added_sticker_file_ids=added_sticker_file_ids,
                 width=photo_width,
                 height=photo_height,
-                ttl=ttl,
+                self_destruct_type=self_destruct_type,
             ),
             reply_to_message_id=reply_to_message_id,
             reply_markup=reply_markup,
@@ -1511,7 +1516,8 @@ class Client:
             send_when_online=send_when_online,
             send_date=send_date,
             request_timeout=request_timeout,
-            protect_content=protect_content
+            protect_content=protect_content,
+            sending_id=sending_id
         )
 
     async def send_video(
@@ -1524,7 +1530,7 @@ class Client:
             duration: int = None,
             video_width: int = None,
             video_height: int = None,
-            ttl: int = None,
+            self_destruct_type: Optional[MessageSelfDestructType] = None,
             supports_streaming: bool = False,
             thumbnail: Union[str, InputThumbnail] = None,
             thumbnail_width: int = None,
@@ -1536,6 +1542,7 @@ class Client:
             send_date: int = None,
             request_timeout: int = None,
             protect_content: bool = False,
+            sending_id: int = 0,
     ):
         """
         Sends a video with caption to chat. Returns the sent message
@@ -1562,8 +1569,8 @@ class Client:
             video_height (int)
                 Video height
 
-            ttl (int)
-                Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
+            self_destruct_type (MessageSelfDestructType)
+                Photo self-destruct type; pass null if none; private chats only, defaults to None
 
             supports_streaming (bool)
                 True, if the video should be tried to be streamed
@@ -1602,9 +1609,9 @@ class Client:
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
         """
-        return await self.__send_message(
+        return await self._send_message(
             chat_id=chat_id,
-            content=InputMessageVideo.construct(
+            content=InputMessageVideo(
                 caption=(await self.parse_text(caption)),
                 video=make_input_file(video),
                 thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
@@ -1612,7 +1619,7 @@ class Client:
                 duration=duration,
                 width=video_width,
                 height=video_height,
-                ttl=ttl,
+                self_destruct_type=self_destruct_type,
                 supports_streaming=supports_streaming,
             ),
             reply_to_message_id=reply_to_message_id,
@@ -1621,7 +1628,8 @@ class Client:
             send_when_online=send_when_online,
             send_date=send_date,
             request_timeout=request_timeout,
-            protect_content=protect_content
+            protect_content=protect_content,
+            sending_id=sending_id
         )
 
     async def send_animation(
@@ -1644,6 +1652,7 @@ class Client:
             send_date: int = None,
             request_timeout: int = None,
             protect_content: bool = False,
+            sending_id: int = 0,
     ):
         """
         Sends an animation with caption to chat. Returns the sent message
@@ -1704,9 +1713,9 @@ class Client:
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
         """
-        return await self.__send_message(
+        return await self._send_message(
             chat_id=chat_id,
-            content=InputMessageAnimation.construct(
+            content=InputMessageAnimation(
                 caption=(await self.parse_text(caption)),
                 animation=make_input_file(animation),
                 thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
@@ -1721,7 +1730,8 @@ class Client:
             send_when_online=send_when_online,
             send_date=send_date,
             request_timeout=request_timeout,
-            protect_content=protect_content
+            protect_content=protect_content,
+            sending_id=sending_id
         )
 
     async def send_sticker(
@@ -1742,6 +1752,7 @@ class Client:
             send_date: int = None,
             request_timeout: int = None,
             protect_content: bool = False,
+            sending_id: int = 0,
     ):
         """
         Sends an sticker to chat. Returns the sent message
@@ -1794,9 +1805,9 @@ class Client:
             protect_content: (bool)
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
         """
-        return await self.__send_message(
+        return await self._send_message(
             chat_id=chat_id,
-            content=InputMessageSticker.construct(
+            content=InputMessageSticker(
                 sticker=make_input_file(sticker),
                 thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
                 width=sticker_width,
@@ -1809,7 +1820,8 @@ class Client:
             send_when_online=send_when_online,
             send_date=send_date,
             request_timeout=request_timeout,
-            protect_content=protect_content
+            protect_content=protect_content,
+            sending_id=sending_id
         )
 
     async def send_document(
@@ -1829,6 +1841,7 @@ class Client:
             send_date: int = None,
             request_timeout: int = None,
             protect_content: bool = False,
+            sending_id: int = 0,
     ):
         """
         Sends a document with caption to chat. Returns the sent message
@@ -1881,9 +1894,9 @@ class Client:
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
         """
-        return await self.__send_message(
+        return await self._send_message(
             chat_id=chat_id,
-            content=InputMessageDocument.construct(
+            content=InputMessageDocument(
                 document=make_input_file(document),
                 caption=(await self.parse_text(caption)),
                 thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
@@ -1895,7 +1908,8 @@ class Client:
             send_when_online=send_when_online,
             send_date=send_date,
             request_timeout=request_timeout,
-            protect_content=protect_content
+            protect_content=protect_content,
+            sending_id=sending_id
         )
 
     async def send_audio(
@@ -1917,6 +1931,7 @@ class Client:
             send_date: int = None,
             request_timeout: int = None,
             protect_content: bool = False,
+            sending_id: int = 0,
     ):
         """
         Sends an audio with caption to chat. Returns the sent message
@@ -1975,9 +1990,9 @@ class Client:
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
         """
-        return await self.__send_message(
+        return await self._send_message(
             chat_id=chat_id,
-            content=InputMessageAudio.construct(
+            content=InputMessageAudio(
                 audio=make_input_file(audio),
                 caption=(await self.parse_text(caption)),
                 album_cover_thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
@@ -1991,7 +2006,8 @@ class Client:
             send_when_online=send_when_online,
             send_date=send_date,
             request_timeout=request_timeout,
-            protect_content=protect_content
+            protect_content=protect_content,
+            sending_id=sending_id
         )
 
     async def send_voice_note(
@@ -2009,6 +2025,7 @@ class Client:
             send_date: int = None,
             request_timeout: int = None,
             protect_content: bool = False,
+            sending_id: int = 0,
     ):
         """
         Sends a voice note with caption to chat. Returns the sent message
@@ -2054,9 +2071,9 @@ class Client:
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
         """
-        return await self.__send_message(
+        return await self._send_message(
             chat_id=chat_id,
-            content=InputMessageVoiceNote.construct(
+            content=InputMessageVoiceNote(
                 voice_note=make_input_file(voice_note),
                 caption=(await self.parse_text(caption)),
                 duration=duration,
@@ -2068,7 +2085,8 @@ class Client:
             send_when_online=send_when_online,
             send_date=send_date,
             request_timeout=request_timeout,
-            protect_content=protect_content
+            protect_content=protect_content,
+            sending_id=sending_id
         )
 
     async def send_video_note(
@@ -2088,6 +2106,7 @@ class Client:
             send_date: int = None,
             request_timeout: int = None,
             protect_content: bool = False,
+            sending_id: int = 0,
     ):
         """
         Sends a video note with caption to chat. Returns the sent message
@@ -2140,9 +2159,9 @@ class Client:
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
         """
-        return await self.__send_message(
+        return await self._send_message(
             chat_id=chat_id,
-            content=InputMessageVideoNote.construct(
+            content=InputMessageVideoNote(
                 video_note=make_input_file(video_note),
                 thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
                 length=length,
@@ -2154,7 +2173,8 @@ class Client:
             send_when_online=send_when_online,
             send_date=send_date,
             request_timeout=request_timeout,
-            protect_content=protect_content
+            protect_content=protect_content,
+            sending_id=sending_id
         )
 
     async def forward_messages(
@@ -2172,6 +2192,7 @@ class Client:
             send_date: int = None,
             request_timeout: int = None,
             protect_content: bool = False,
+            sending_id: int = 0
     ) -> Messages:
         """
         Forwards previously sent messages.
@@ -2214,6 +2235,9 @@ class Client:
         :param protect_content: Pass true if the content of the message must be protected from forwarding and saving; for bots only
         :type protect_content: :class:`bool`
 
+        :param sending_id: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+        :type sending_id: :class:`int`
+
         :return: response from TDLib
         :rtype: aiotdlib.api.types.Messages
         """
@@ -2228,17 +2252,18 @@ class Client:
             chat_id=chat_id,
             from_chat_id=from_chat_id,
             message_ids=message_ids,
-            options=MessageSendOptions.construct(
+            options=MessageSendOptions(
                 disable_notification=disable_notification,
                 from_background=from_background,
                 protect_content=protect_content,
-                scheduling_state=scheduling_state
+                scheduling_state=scheduling_state,
+                update_order_of_installed_sticker_sets=False,
+                sending_id=sending_id
             ),
             send_copy=send_copy,
             remove_caption=remove_caption,
             only_preview=only_preview,
             request_timeout=request_timeout,
-            skip_validation=True
         )
 
     async def iter_chat_history(
@@ -2312,11 +2337,11 @@ class Client:
             Registering event handler
             You can register many handlers for certain event type
         """
-        if self.__updates_handlers.get(update_type) is None:
-            self.__updates_handlers[update_type] = set()
+        if self._updates_handlers.get(update_type) is None:
+            self._updates_handlers[update_type] = set()
 
-        if handler not in self.__updates_handlers[update_type]:
-            self.__updates_handlers[update_type].add(
+        if handler not in self._updates_handlers[update_type]:
+            self._updates_handlers[update_type].add(
                 handler
                 if isinstance(handler, Handler)
                 else Handler(handler, filters=filters)
@@ -2331,10 +2356,10 @@ class Client:
         return decorator
 
     def remove_event_handler(self, handler: Handler, update_type: str = API.Types.ANY):
-        if self.__updates_handlers.get(update_type) is None:
+        if self._updates_handlers.get(update_type) is None:
             return
 
-        self.__updates_handlers.get(update_type).remove(handler)
+        self._updates_handlers.get(update_type).remove(handler)
 
     def add_middleware(self, middleware: MiddlewareCallable):
         """
@@ -2345,7 +2370,7 @@ class Client:
             They would be called in order you've added them
         """
 
-        self.__middlewares.append(middleware)
+        self._middlewares.append(middleware)
         return middleware
 
     def text_message_handler(self, function: HandlerCallable = None):
