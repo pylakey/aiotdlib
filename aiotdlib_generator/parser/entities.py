@@ -3,16 +3,13 @@ from __future__ import annotations
 import re
 import typing
 
-from pydantic import (
-    BaseModel,
-    validator,
-)
+from pydantic import BaseModel
+from pydantic import field_validator
+from pydantic import model_validator
 
-from .utils import (
-    lower_first,
-    snake_case,
-    upper_first,
-)
+from .utils import lower_first
+from .utils import snake_case
+from .utils import upper_first
 
 vector_type_regex = re.compile(r"[Vv]ector<(?P<type>.*)>")
 list_type_regex = re.compile(r".*[Vv]ector\[(?P<type>\w+)].*")
@@ -63,26 +60,26 @@ class Parameter(BaseModel):
 
     type: str
     name: str
-    alias: str = None
+    alias: typing.Optional[str] = None
     doc: str = ""
 
-    @validator('name')
+    @field_validator('name')
+    @classmethod
     def check_name(cls, name):
         if name in ['json', 'filter', 'type', 'hash', 'class']:
             return f"{name}_"
 
         return name
 
-    @validator('alias', always=True)
-    def set_alias(cls, _, values):
-        name = values.get('name').rstrip('_')
+    @model_validator(mode='after')
+    def assign_alias(self) -> 'Parameter':
+        if (alias := self.name.rstrip('_')) in ['json', 'filter', 'type', 'hash']:
+            self.alias = alias
 
-        if name in ['json', 'filter', 'type', 'hash']:
-            return name
+        return self
 
-        return None
-
-    @validator('type', pre=True)
+    @field_validator('type', mode="before")
+    @classmethod
     def convert_tl_type(cls, tl_type: str) -> str:
         if not tl_type:
             return ""
@@ -244,7 +241,8 @@ class Constructor(ConstructorShort):
 class Function(BaseEntity):
     return_type: typing.Union[str, Constructor]
 
-    @validator('return_type', pre=True)
+    @field_validator('return_type', mode="before")
+    @classmethod
     def _convert_return_type(cls, return_type: typing.Union[str, Constructor]) -> typing.Union[str, Constructor]:
         if not return_type:
             return ""
@@ -277,5 +275,5 @@ class Function(BaseEntity):
         return list(sorted(deps, key=lambda x: x.name))
 
 
-BaseEntity.update_forward_refs()
-Constructor.update_forward_refs()
+BaseEntity.model_rebuild()
+Constructor.model_rebuild()
