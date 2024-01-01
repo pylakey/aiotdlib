@@ -8,108 +8,92 @@ import os
 import sys
 import typing
 import uuid
-from functools import (
-    partial,
-    update_wrapper,
-)
+from functools import partial
+from functools import update_wrapper
 from pathlib import Path
-from typing import (
-    AsyncIterator,
-    Optional,
-    Union,
-)
+from typing import AsyncIterator
+from typing import Optional
+from typing import Union
 
 import pydantic.errors
-from pydantic import (
-    BaseModel,
-    root_validator,
-    validator,
-)
+from pydantic import BaseModel
+from pydantic import root_validator
+from pydantic import validator
 
 from . import __version__
-from .api import (
-    API,
-    AioTDLibError,
-    AuthorizationState,
-    AuthorizationStateClosed,
-    BaseObject,
-    BasicGroup,
-    BasicGroupFullInfo,
-    Chat,
-    ChatTypeBasicGroup,
-    ChatTypePrivate,
-    ChatTypeSecret,
-    ChatTypeSupergroup,
-    EmailAddressAuthenticationCode,
-    Error,
-    FormattedText,
-    InputMessageAnimation,
-    InputMessageAudio,
-    InputMessageContent,
-    InputMessageDocument,
-    InputMessagePhoto,
-    InputMessageSticker,
-    InputMessageText,
-    InputMessageVideo,
-    InputMessageVideoNote,
-    InputMessageVoiceNote,
-    InputThumbnail,
-    Message,
-    MessageReplyToMessage,
-    MessageSchedulingStateSendAtDate,
-    MessageSchedulingStateSendWhenOnline,
-    MessageSendOptions,
-    MessageSendingStatePending,
-    Messages,
-    Ok,
-    ParseTextEntities,
-    PhoneNumberAuthenticationSettings,
-    ProxyType,
-    ProxyTypeHttp,
-    ProxyTypeMtproto,
-    ProxyTypeSocks5,
-    ReplyMarkup,
-    SecretChat,
-    Supergroup,
-    SupergroupFullInfo,
-    TDLibObject,
-    TextParseModeHTML,
-    TextParseModeMarkdown,
-    UpdateAuthorizationState,
-    UpdateMessageSendSucceeded,
-    User,
-    UserFullInfo,
-)
-from .api import (
-    BadRequest,
-    OptionValueBoolean,
-    OptionValueEmpty,
-    OptionValueInteger,
-    OptionValueString,
-)
+from .api import API
+from .api import AioTDLibError
+from .api import AuthorizationState
+from .api import AuthorizationStateClosed
+from .api import BadRequest
+from .api import BaseObject
+from .api import BasicGroup
+from .api import BasicGroupFullInfo
+from .api import Chat
+from .api import ChatTypeBasicGroup
+from .api import ChatTypePrivate
+from .api import ChatTypeSecret
+from .api import ChatTypeSupergroup
+from .api import EmailAddressAuthenticationCode
+from .api import Error
+from .api import FormattedText
+from .api import InputMessageAnimation
+from .api import InputMessageAudio
+from .api import InputMessageContent
+from .api import InputMessageDocument
+from .api import InputMessagePhoto
+from .api import InputMessageSticker
+from .api import InputMessageText
+from .api import InputMessageVideo
+from .api import InputMessageVideoNote
+from .api import InputMessageVoiceNote
+from .api import InputThumbnail
+from .api import Message
+from .api import MessageReplyToMessage
+from .api import MessageSchedulingStateSendAtDate
+from .api import MessageSchedulingStateSendWhenOnline
+from .api import MessageSendOptions
+from .api import MessageSendingStatePending
+from .api import Messages
+from .api import Ok
+from .api import OptionValueBoolean
+from .api import OptionValueEmpty
+from .api import OptionValueInteger
+from .api import OptionValueString
+from .api import ParseTextEntities
+from .api import PhoneNumberAuthenticationSettings
+from .api import ProxyType
+from .api import ProxyTypeHttp
+from .api import ProxyTypeMtproto
+from .api import ProxyTypeSocks5
+from .api import ReplyMarkup
+from .api import SecretChat
+from .api import Supergroup
+from .api import SupergroupFullInfo
+from .api import TDLibObject
+from .api import TextParseModeHTML
+from .api import TextParseModeMarkdown
+from .api import UpdateAuthorizationState
+from .api import UpdateMessageSendSucceeded
+from .api import User
+from .api import UserFullInfo
 from .client_cache import ClientCache
 from .constants import TDLIB_MAX_INT
 from .filters import Filters
-from .handlers import (
-    FilterCallable,
-    Handler,
-    HandlerCallable,
-)
+from .handlers import FilterCallable
+from .handlers import Handler
+from .handlers import HandlerCallable
 from .middlewares import MiddlewareCallable
-from .tdjson import (
-    TDLIB_MAX_INT,
-    TDLibLogVerbosity,
-    create_client,
-)
-from .utils import (
-    PendingRequest,
-    ainput,
-    make_input_file,
-    make_thumbnail,
-    parse_tdlib_object,
-    str_to_base64,
-    strip_phone_number_symbols,
-)
+from .tdjson import TDJsonClient
+from .tdjson import TDLibLogVerbosity
+from .types import Undefined
+from .utils import PendingRequest
+from .utils import ainput
+from .utils import make_input_file
+from .utils import make_thumbnail
+from .utils import parse_tdlib_object
+from .utils import str_to_base64
+from .utils import strip_phone_number_symbols
 
 RequestResult = typing.TypeVar('RequestResult', bound=BaseObject)
 ExecuteResult = typing.TypeVar('ExecuteResult', bound=BaseObject)
@@ -122,7 +106,6 @@ ChatInfo = Union[
     SupergroupFullInfo,
     SecretChat
 ]
-AuthActionsDict = dict[Optional[str], typing.Callable[[], typing.Coroutine[typing.Any, typing.Any, RequestResult]]]
 
 
 class ClientProxyType(str, enum.Enum):
@@ -456,7 +439,6 @@ class ClientSettings(pydantic.BaseSettings):
         allow_population_by_field_name = True
 
 
-Undefined = object()
 AUTHORIZATION_REQUEST_ID = 'updateAuthorizationState'
 
 
@@ -576,8 +558,9 @@ class Client:
         self.__updates_handlers: dict[str, set[Handler]] = {}
         self.__middlewares: list[MiddlewareCallable] = []
         self.__middlewares_handlers: list[MiddlewareCallable] = []
-
+        self.__update_task: typing.Optional[asyncio.Task[None]] = None
         self.loop: asyncio.AbstractEventLoop = loop
+
         settings = {
             'api_id': api_id,
             'api_hash': pydantic.SecretStr(api_hash) if api_hash is not Undefined else Undefined,
@@ -608,12 +591,11 @@ class Client:
         }
         settings = {k: v for k, v in settings.items() if v is not Undefined}
         self.settings = ClientSettings(**settings)
-        self.__tdjson = create_client()
-        self.logger = logging.getLogger(f"{self.__class__.__name__ }:{self.__tdjson.client_id}")
-        self.logger.setLevel(logging.DEBUG if self.settings.debug else logging.INFO)
+        self.tdjson_client = TDJsonClient.create(library_path=self.settings.library_path)
+        self.logger = logging.getLogger(f"{self.__class__.__name__}:{self.tdjson_client.client_id}")
+        self.logger.setLevel(logging.DEBUG if debug else logging.INFO)
         self.api = API(self)
         self.cache = ClientCache(self)
-        self.__update_task: typing.Optional[asyncio.Task[None]] = None
 
     @property
     def is_bot(self) -> bool:
@@ -707,9 +689,9 @@ class Client:
         if not bool(self.__running):
             return
 
-        if bool(self.__tdjson):
+        if bool(self.tdjson_client):
             self.logger.info('Gracefully closing TDLib connection')
-            await self.__tdjson.stop()
+            await self.tdjson_client.stop()
 
     async def _setup_proxy(self):
         if not bool(self.settings.proxy_settings):
@@ -974,7 +956,7 @@ class Client:
         if self.settings.debug:
             self.logger.debug(f">>>>> {query.ID} {query_json}")
 
-        await self.__tdjson.send(query_json)
+        await self.tdjson_client.send(query_json)
 
     async def request(
             self,
@@ -1009,7 +991,7 @@ class Client:
         if not self.__running:
             raise RuntimeError('Client not started')
 
-        result = await self.__tdjson.execute(query.dict(by_alias=True))
+        result = await self.tdjson_client.execute(query.dict(by_alias=True))
         result_object = parse_tdlib_object(result)
 
         if isinstance(result_object, Error):
@@ -1024,7 +1006,8 @@ class Client:
         if not self.__running:
             raise RuntimeError('Client not started')
 
-        data = await self.__tdjson.receive()
+        data = await self.tdjson_client.receive()
+
         if not bool(data):
             return None
 
@@ -1040,7 +1023,7 @@ class Client:
         else:
             self.logger.info('Authorization process has been started with phone')
 
-        auth_actions: AuthActionsDict = {
+        auth_actions: dict[Optional[str], typing.Callable[[], typing.Awaitable[RequestResult]]] = {
             None: self._auth_start,
             API.Types.AUTHORIZATION_STATE_WAIT_TDLIB_PARAMETERS: self._set_tdlib_parameters,
             API.Types.AUTHORIZATION_STATE_WAIT_PHONE_NUMBER: self._set_authentication_phone_number_or_check_bot_token,
