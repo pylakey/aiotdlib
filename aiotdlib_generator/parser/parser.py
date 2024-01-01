@@ -13,6 +13,7 @@ from .utils import upper_first
 DEFAULT_TD_API_SCHEME_URL = "https://raw.githubusercontent.com/pylakey/td/master/td/generate/scheme/td_api.tl"
 UNDOCUMENTED_NULLABLE_FIELDS = {}
 
+
 class TDApiParser:
     @staticmethod
     def parse() -> list[typing.Union[Constructor, Function]]:

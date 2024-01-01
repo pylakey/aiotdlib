@@ -10,7 +10,7 @@ class {{ entity.uf_name }}(BaseObject):
     {%- endif %}
     """
 
-    ID: typing.Literal['{{ entity.lf_name }}'] = '{{ entity.lf_name }}'
+    ID: typing.Literal['{{ entity.lf_name }}'] = Field('{{ entity.lf_name }}', validation_alias='@type', alias="@type")
     {%- for parameter in entity.parameters %}
     {%- if parameter.alias or parameter.has_constraints %}
     {{ parameter.name }}: {% if parameter.nullable %}{{ parameter.optional_type }}{% else %}{{ parameter.type }}{% endif %} = Field(

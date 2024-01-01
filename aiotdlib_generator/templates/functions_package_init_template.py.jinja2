@@ -18,7 +18,7 @@ from .{{ entity.snake_name }} import (
 {% else %}
 from .{{ entity.snake_name }} import {{ entity.uf_name }}
 {% endif %}
-{% endfor %}
+{%- endfor %}
 
 __all__ = [
     {% for entity in entities %}

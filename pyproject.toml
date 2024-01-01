@@ -30,6 +30,7 @@ python = "^3.9"
 pydantic = ">=2,<3"
 sortedcontainers = "^2.4.0"
 ujson = "^5.4.0"
+pydantic-settings = "^2.1.0"
 
 [tool.poetry.dev-dependencies]
 Jinja2 = "^3.1.2"
