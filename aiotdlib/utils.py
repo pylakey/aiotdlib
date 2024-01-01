@@ -7,14 +7,10 @@ import logging
 import os
 import re
 import sys
-import typing
 from enum import Enum
-from functools import partial
 from typing import Optional
 from typing import TYPE_CHECKING
 from typing import Union
-
-import ujson
 
 from .api import BaseObject
 from .api import Error
@@ -26,7 +22,6 @@ from .api import TDLibObject
 from .api import TDLibObjects
 from .api.errors import AioTDLibError
 from .api.errors.error import http_code_to_error
-from .types import Query
 
 if TYPE_CHECKING:
     from .client import Client
@@ -34,16 +29,19 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
+def _read_input(prompt: str = "") -> str:
+    print(prompt, end=" ", flush=True)
+    return sys.stdin.readline()
+
+
 async def ainput(prompt: str = "", secured: bool = False) -> str:
     if len(prompt):
-        prompt = prompt.strip() + " "
+        prompt = prompt.strip()
 
     if secured:
-        getpass_func = partial(getpass.getpass, prompt=prompt)
-        stdin = await asyncio.get_event_loop().run_in_executor(None, getpass_func)
+        stdin = await asyncio.to_thread(getpass.getpass, prompt=prompt, stream=None)
     else:
-        print(prompt, end=" ", flush=True)
-        stdin = await asyncio.get_event_loop().run_in_executor(None, sys.stdin.readline)
+        stdin = await asyncio.to_thread(_read_input, prompt)
 
     return stdin.strip()
 
@@ -81,7 +79,7 @@ def make_input_file(file: Union[str, int]) -> Union[InputFileId, InputFileLocal,
 
 def make_thumbnail(thumbnail: str, width: int = None, height: int = None) -> Optional[InputThumbnail]:
     if isinstance(thumbnail, str):
-        return InputThumbnail.construct(
+        return InputThumbnail(
             # Sending thumbnails by file_id is currently not supported
             thumbnail=InputFileLocal(path=thumbnail),
             width=width,
@@ -89,17 +87,6 @@ def make_thumbnail(thumbnail: str, width: int = None, height: int = None) -> Opt
         )
 
     return None
-
-
-def encode_query(query: Query) -> bytes:
-    if isinstance(query, dict):
-        return ujson.dumps(query, ensure_ascii=False).encode('utf-8')
-    elif isinstance(query, str):
-        return query.encode('utf-8')
-    elif isinstance(query, bytes):
-        return query
-
-    raise ValueError('Query has wrong type')
 
 
 def parse_tdlib_object(data: dict) -> TDLibObject:
@@ -122,21 +109,7 @@ def parse_tdlib_object(data: dict) -> TDLibObject:
         logger.error(f'Object class not found for @type={type_}')
         return data
 
-    processed_data = {}
-
-    for key, value in data.items():
-        # Workaround for BaseModel.construct(**kwargs).
-        # It doesn't automatically rename fields according to aliases
-        if key in ['json', 'filter', 'type', 'hash']:
-            key = key + "_"
-        elif key == '@extra':
-            key = 'EXTRA'
-            processed_data[key] = value
-            continue
-
-        processed_data[key] = parse_tdlib_object(value)
-
-    return object_class(**data)
+    return object_class.model_validate(data)
 
 
 class PendingRequest:

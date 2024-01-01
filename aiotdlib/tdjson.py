@@ -12,10 +12,7 @@ from enum import IntEnum
 
 import ujson
 
-from .types import Query
-from .utils import encode_query
-from .utils import run_in_executor
-
+TDJsonQuery = typing.Union[str, bytes, dict]
 LogMessageCallback = CFUNCTYPE(None, c_int, c_char_p)
 ARCH_ALIASES = {
     "x86_64": "amd64",
@@ -46,6 +43,17 @@ def _get_bundled_tdjson_lib_path() -> str:
 
     binary_name = f'libtdjson_{system_name}_{machine_name}.{extension}'
     return str((pathlib.Path(__file__).parent / 'tdlib' / binary_name).absolute())
+
+
+def _encode_tdjson_query(query: TDJsonQuery) -> bytes:
+    if isinstance(query, dict):
+        return ujson.dumps(query, ensure_ascii=False).encode('utf-8')
+    elif isinstance(query, str):
+        return query.encode('utf-8')
+    elif isinstance(query, bytes):
+        return query
+
+    raise ValueError('Query has wrong type')
 
 
 class TDLibLogVerbosity(IntEnum):
