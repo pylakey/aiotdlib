@@ -7,31 +7,32 @@ from typing import NoReturn
 from typing import Optional
 from typing import Union
 
-from aiotdlib.api import BaseObject
-from aiotdlib.api import MessageAnimation
-from aiotdlib.api import MessageAudio
-from aiotdlib.api import MessageContact
-from aiotdlib.api import MessageDice
-from aiotdlib.api import MessageDocument
-from aiotdlib.api import MessageGame
-from aiotdlib.api import MessageInvoice
-from aiotdlib.api import MessageLocation
-from aiotdlib.api import MessagePhoto
-from aiotdlib.api import MessagePoll
-from aiotdlib.api import MessageSticker
-from aiotdlib.api import MessageText
-from aiotdlib.api import MessageUnsupported
-from aiotdlib.api import MessageVenue
-from aiotdlib.api import MessageVideo
-from aiotdlib.api import MessageVideoNote
-from aiotdlib.api import MessageVoiceNote
-from aiotdlib.api import UpdateNewMessage
+from .api import BaseObject
+from .api import MessageAnimation
+from .api import MessageAudio
+from .api import MessageContact
+from .api import MessageDice
+from .api import MessageDocument
+from .api import MessageGame
+from .api import MessageInvoice
+from .api import MessageLocation
+from .api import MessagePhoto
+from .api import MessagePoll
+from .api import MessageSticker
+from .api import MessageText
+from .api import MessageUnsupported
+from .api import MessageVenue
+from .api import MessageVideo
+from .api import MessageVideoNote
+from .api import MessageVoiceNote
+from .api import UpdateNewMessage
 
 FilterCallable = Callable[[BaseObject], Awaitable[bool]]
 
 
 class BaseFilter(ABC):
     _name = None
+    data_filter = False  # If True - dict, returned from filter() will be merged into update.EXTRA
 
     @abstractmethod
     async def __call__(self, update: BaseObject) -> Optional[Union[bool, dict]]:
@@ -66,8 +67,6 @@ class BaseFilter(ABC):
 
 
 class BaseObjectFilter(BaseFilter, ABC):
-    data_filter = False  # If True - dict, returned from filter() will be merged into update.EXTRA
-
     async def __call__(self, update: BaseObject) -> Optional[Union[bool, dict]]:
         super_result = await super().__call__(update)
 
