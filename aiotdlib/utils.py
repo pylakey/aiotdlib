@@ -151,8 +151,3 @@ class PendingRequest:
             )
 
         raise RuntimeError(f'Unknown TDLib error')
-
-
-async def run_in_executor(func: typing.Callable, *args):
-    loop = asyncio.get_running_loop()
-    return await loop.run_in_executor(None, func, *args)
