@@ -8,7 +8,7 @@ from .functions import *
 from .types import *
 
 if typing.TYPE_CHECKING:
-    from aiotdlib.client import Client
+    from ..client import Client
 
 
 class API:
