@@ -17984,8 +17984,8 @@ class API:
         use_chat_info_database: Bool = False,
         use_message_database: Bool = False,
         use_secret_chats: Bool = False,
-        enable_storage_optimizer: Bool = False,
-        ignore_file_names: Bool = False,
+        enable_storage_optimizer: Bool = True,
+        ignore_file_names: Bool = True,
         *,
         request_id: str = None,
         request_timeout: int = None

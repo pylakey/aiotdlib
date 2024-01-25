@@ -165,68 +165,322 @@ class ClientCache:
         self.main_chat_list: SortedSet[OrderedChat] = SortedSet()
         self.have_full_main_chat_list: bool = False
 
-        client.add_event_handler(self.__on_update_option, API.Types.UPDATE_OPTION)
-        client.add_event_handler(self.__on_update_user, API.Types.UPDATE_USER)
-        client.add_event_handler(self.__on_update_user_full_info, API.Types.UPDATE_USER_FULL_INFO)
-        client.add_event_handler(self.__on_update_basic_group, API.Types.UPDATE_BASIC_GROUP)
-        client.add_event_handler(self.__on_update_basic_group_full_info, API.Types.UPDATE_BASIC_GROUP_FULL_INFO)
-        client.add_event_handler(self.__on_update_supergroup, API.Types.UPDATE_SUPERGROUP)
-        client.add_event_handler(self.__on_update_supergroup_full_info, API.Types.UPDATE_SUPERGROUP_FULL_INFO)
-        client.add_event_handler(self.__on_update_secret_chat, API.Types.UPDATE_SECRET_CHAT)
-        client.add_event_handler(self.__on_update_new_chat, API.Types.UPDATE_NEW_CHAT)
+        self.update_option_handler = client.add_event_handler(
+            self.__on_update_option,
+            API.Types.UPDATE_OPTION
+        )
+        self.update_user_handler = client.add_event_handler(
+            self.__on_update_user,
+            API.Types.UPDATE_USER
+        )
+        self.update_user_full_info_handler = client.add_event_handler(
+            self.__on_update_user_full_info,
+            API.Types.UPDATE_USER_FULL_INFO
+        )
+        self.update_basic_group_handler = client.add_event_handler(
+            self.__on_update_basic_group,
+            API.Types.UPDATE_BASIC_GROUP
+        )
+        self.update_basic_group_full_info_handler = client.add_event_handler(
+            self.__on_update_basic_group_full_info,
+            API.Types.UPDATE_BASIC_GROUP_FULL_INFO
+        )
+        self.update_supergroup_handler = client.add_event_handler(
+            self.__on_update_supergroup,
+            API.Types.UPDATE_SUPERGROUP
+        )
+        self.update_supergroup_full_info_handler = client.add_event_handler(
+            self.__on_update_supergroup_full_info,
+            API.Types.UPDATE_SUPERGROUP_FULL_INFO
+        )
+        self.update_secret_chat_handler = client.add_event_handler(
+            self.__on_update_secret_chat,
+            API.Types.UPDATE_SECRET_CHAT
+        )
+        self.update_new_chat_handler = client.add_event_handler(
+            self.__on_update_new_chat,
+            API.Types.UPDATE_NEW_CHAT
+        )
 
         # Chat updates
         # Updates changing positions
-        client.add_event_handler(self.__on_update_chat_position, API.Types.UPDATE_CHAT_POSITION)
-        client.add_event_handler(self.__on_update_chat_last_message, API.Types.UPDATE_CHAT_LAST_MESSAGE)
-        client.add_event_handler(self.__on_update_chat_draft_message, API.Types.UPDATE_CHAT_DRAFT_MESSAGE)
+        self.update_chat_position_handler = client.add_event_handler(
+            self.__on_update_chat_position,
+            API.Types.UPDATE_CHAT_POSITION
+        )
+        self.update_chat_last_message_handler = client.add_event_handler(
+            self.__on_update_chat_last_message,
+            API.Types.UPDATE_CHAT_LAST_MESSAGE
+        )
+        self.update_chat_draft_message_handler = client.add_event_handler(
+            self.__on_update_chat_draft_message,
+            API.Types.UPDATE_CHAT_DRAFT_MESSAGE
+        )
 
         # Updates changing info only
-        client.add_event_handler(self.__on_update_chat_action_bar, API.Types.UPDATE_CHAT_ACTION_BAR)
-        client.add_event_handler(self.__on_update_chat_available_reactions, API.Types.UPDATE_CHAT_AVAILABLE_REACTIONS)
-        client.add_event_handler(self.__on_update_chat_background, API.Types.UPDATE_CHAT_BACKGROUND)
-        client.add_event_handler(
+        self.update_chat_action_bar_handler = client.add_event_handler(
+            self.__on_update_chat_action_bar,
+            API.Types.UPDATE_CHAT_ACTION_BAR
+        )
+        self.update_chat_available_reactions_handler = client.add_event_handler(
+            self.__on_update_chat_available_reactions,
+            API.Types.UPDATE_CHAT_AVAILABLE_REACTIONS
+        )
+        self.update_chat_background_handler = client.add_event_handler(
+            self.__on_update_chat_background,
+            API.Types.UPDATE_CHAT_BACKGROUND
+        )
+        self.update_chat_default_disable_notification_handler = self.client.add_event_handler(
             self.__on_update_chat_default_disable_notification,
             API.Types.UPDATE_CHAT_DEFAULT_DISABLE_NOTIFICATION
         )
-        client.add_event_handler(self.__on_update_chat_folders, API.Types.UPDATE_CHAT_FOLDERS)
-        client.add_event_handler(
+        self.update_chat_folders_handler = client.add_event_handler(
+            self.__on_update_chat_folders,
+            API.Types.UPDATE_CHAT_FOLDERS
+        )
+        self.update_chat_has_protected_content_handler = self.client.add_event_handler(
             self.__on_update_chat_has_protected_content,
             API.Types.UPDATE_CHAT_HAS_PROTECTED_CONTENT
         )
-        client.add_event_handler(
+        self.update_chat_has_scheduled_messages_handler = self.client.add_event_handler(
             self.__on_update_chat_has_scheduled_messages,
             API.Types.UPDATE_CHAT_HAS_SCHEDULED_MESSAGES
         )
-        client.add_event_handler(self.__on_update_chat_is_blocked, API.Types.UPDATE_CHAT_BLOCK_LIST)
-        client.add_event_handler(self.__on_update_chat_is_marked_as_unread, API.Types.UPDATE_CHAT_IS_MARKED_AS_UNREAD)
-        client.add_event_handler(self.__on_update_chat_is_translatable, API.Types.UPDATE_CHAT_IS_TRANSLATABLE)
-        client.add_event_handler(
+        self.update_chat_block_list_handler = client.add_event_handler(
+            self.__on_update_chat_is_blocked,
+            API.Types.UPDATE_CHAT_BLOCK_LIST
+        )
+        self.update_chat_is_marked_as_unread_handler = client.add_event_handler(
+            self.__on_update_chat_is_marked_as_unread,
+            API.Types.UPDATE_CHAT_IS_MARKED_AS_UNREAD
+        )
+        self.update_chat_is_translatable_handler = client.add_event_handler(
+            self.__on_update_chat_is_translatable,
+            API.Types.UPDATE_CHAT_IS_TRANSLATABLE
+        )
+        self.update_chat_message_auto_delete_time_handler = self.client.add_event_handler(
             self.__on_update_chat_message_auto_delete_time,
             API.Types.UPDATE_CHAT_MESSAGE_AUTO_DELETE_TIME
         )
-        client.add_event_handler(self.__on_update_chat_message_sender, API.Types.UPDATE_CHAT_MESSAGE_SENDER)
-        client.add_event_handler(
+        self.update_chat_message_sender_handler = client.add_event_handler(
+            self.__on_update_chat_message_sender,
+            API.Types.UPDATE_CHAT_MESSAGE_SENDER
+        )
+        self.update_chat_notification_settings_handler = self.client.add_event_handler(
             self.__on_update_chat_notification_settings,
-            API.Types.UPDATE_CHAT_NOTIFICATION_SETTINGS)
-        client.add_event_handler(self.__on_update_chat_online_member_count, API.Types.UPDATE_CHAT_ONLINE_MEMBER_COUNT)
-        client.add_event_handler(
+            API.Types.UPDATE_CHAT_NOTIFICATION_SETTINGS
+        )
+        self.update_chat_online_member_count_handler = client.add_event_handler(
+            self.__on_update_chat_online_member_count,
+            API.Types.UPDATE_CHAT_ONLINE_MEMBER_COUNT
+        )
+        self.update_chat_pending_join_requests_handler = self.client.add_event_handler(
             self.__on_update_chat_pending_join_requests,
             API.Types.UPDATE_CHAT_PENDING_JOIN_REQUESTS
         )
-        client.add_event_handler(self.__on_update_chat_permissions, API.Types.UPDATE_CHAT_PERMISSIONS)
-        client.add_event_handler(self.__on_update_chat_photo, API.Types.UPDATE_CHAT_PHOTO)
-        client.add_event_handler(self.__on_update_chat_read_inbox, API.Types.UPDATE_CHAT_READ_INBOX)
-        client.add_event_handler(self.__on_update_chat_read_outbox, API.Types.UPDATE_CHAT_READ_OUTBOX)
-        client.add_event_handler(self.__on_update_chat_reply_markup, API.Types.UPDATE_CHAT_REPLY_MARKUP)
-        client.add_event_handler(self.__on_update_chat_theme, API.Types.UPDATE_CHAT_THEME)
-        client.add_event_handler(self.__on_update_chat_title, API.Types.UPDATE_CHAT_TITLE)
-        client.add_event_handler(self.__on_update_chat_unread_mention_count, API.Types.UPDATE_CHAT_UNREAD_MENTION_COUNT)
-        client.add_event_handler(
+        self.update_chat_permissions_handler = client.add_event_handler(
+            self.__on_update_chat_permissions,
+            API.Types.UPDATE_CHAT_PERMISSIONS
+        )
+        self.update_chat_photo_handler = client.add_event_handler(
+            self.__on_update_chat_photo,
+            API.Types.UPDATE_CHAT_PHOTO
+        )
+        self.update_chat_read_inbox_handler = client.add_event_handler(
+            self.__on_update_chat_read_inbox,
+            API.Types.UPDATE_CHAT_READ_INBOX
+        )
+        self.update_chat_read_outbox_handler = client.add_event_handler(
+            self.__on_update_chat_read_outbox,
+            API.Types.UPDATE_CHAT_READ_OUTBOX
+        )
+        self.update_chat_reply_markup_handler = client.add_event_handler(
+            self.__on_update_chat_reply_markup,
+            API.Types.UPDATE_CHAT_REPLY_MARKUP
+        )
+        self.update_chat_theme_handler = client.add_event_handler(
+            self.__on_update_chat_theme,
+            API.Types.UPDATE_CHAT_THEME
+        )
+        self.update_chat_title_handler = client.add_event_handler(
+            self.__on_update_chat_title,
+            API.Types.UPDATE_CHAT_TITLE
+        )
+        self.update_chat_unread_mention_count_handler = client.add_event_handler(
+            self.__on_update_chat_unread_mention_count,
+            API.Types.UPDATE_CHAT_UNREAD_MENTION_COUNT
+        )
+        self.update_chat_unread_reaction_count_handler = self.client.add_event_handler(
             self.__on_update_chat_unread_reaction_count,
             API.Types.UPDATE_CHAT_UNREAD_REACTION_COUNT
         )
-        client.add_event_handler(self.__on_update_chat_video_chat, API.Types.UPDATE_CHAT_VIDEO_CHAT)
+        self.update_chat_video_chat_handler = client.add_event_handler(
+            self.__on_update_chat_video_chat,
+            API.Types.UPDATE_CHAT_VIDEO_CHAT
+        )
+
+    def clear(self):
+        self.options.clear()
+        self.users.clear()
+        self.basic_groups.clear()
+        self.supergroups.clear()
+        self.secret_chats.clear()
+        self.users_full_info.clear()
+        self.basic_groups_full_info.clear()
+        self.supergroups_full_info.clear()
+        self.chats.clear()
+        self.main_chat_list.clear()
+        self.have_full_main_chat_list = False
+
+        if bool(self.client):
+            self.client.remove_event_handler(
+                self.update_option_handler,
+                API.Types.UPDATE_OPTION
+            )
+            self.client.remove_event_handler(
+                self.update_user_handler,
+                API.Types.UPDATE_USER
+            )
+            self.client.remove_event_handler(
+                self.update_user_full_info_handler,
+                API.Types.UPDATE_USER_FULL_INFO
+            )
+            self.client.remove_event_handler(
+                self.update_basic_group_handler,
+                API.Types.UPDATE_BASIC_GROUP
+            )
+            self.client.remove_event_handler(
+                self.update_basic_group_full_info_handler,
+                API.Types.UPDATE_BASIC_GROUP_FULL_INFO
+            )
+            self.client.remove_event_handler(
+                self.update_supergroup_handler,
+                API.Types.UPDATE_SUPERGROUP
+            )
+            self.client.remove_event_handler(
+                self.update_supergroup_full_info_handler,
+                API.Types.UPDATE_SUPERGROUP_FULL_INFO
+            )
+            self.client.remove_event_handler(
+                self.update_secret_chat_handler,
+                API.Types.UPDATE_SECRET_CHAT
+            )
+            self.client.remove_event_handler(
+                self.update_new_chat_handler,
+                API.Types.UPDATE_NEW_CHAT
+            )
+            self.client.remove_event_handler(
+                self.update_chat_position_handler,
+                API.Types.UPDATE_CHAT_POSITION
+            )
+            self.client.remove_event_handler(
+                self.update_chat_last_message_handler,
+                API.Types.UPDATE_CHAT_LAST_MESSAGE
+            )
+            self.client.remove_event_handler(
+                self.update_chat_draft_message_handler,
+                API.Types.UPDATE_CHAT_DRAFT_MESSAGE
+            )
+            self.client.remove_event_handler(
+                self.update_chat_action_bar_handler,
+                API.Types.UPDATE_CHAT_ACTION_BAR
+            )
+            self.client.remove_event_handler(
+                self.update_chat_available_reactions_handler,
+                API.Types.UPDATE_CHAT_AVAILABLE_REACTIONS
+            )
+            self.client.remove_event_handler(
+                self.update_chat_background_handler,
+                API.Types.UPDATE_CHAT_BACKGROUND
+            )
+            self.client.remove_event_handler(
+                self.update_chat_default_disable_notification_handler,
+                API.Types.UPDATE_CHAT_DEFAULT_DISABLE_NOTIFICATION
+            )
+            self.client.remove_event_handler(
+                self.update_chat_folders_handler,
+                API.Types.UPDATE_CHAT_FOLDERS
+            )
+            self.client.remove_event_handler(
+                self.update_chat_has_protected_content_handler,
+                API.Types.UPDATE_CHAT_HAS_PROTECTED_CONTENT
+            )
+            self.client.remove_event_handler(
+                self.update_chat_has_scheduled_messages_handler,
+                API.Types.UPDATE_CHAT_HAS_SCHEDULED_MESSAGES
+            )
+            self.client.remove_event_handler(
+                self.update_chat_block_list_handler,
+                API.Types.UPDATE_CHAT_BLOCK_LIST
+            )
+            self.client.remove_event_handler(
+                self.update_chat_is_marked_as_unread_handler,
+                API.Types.UPDATE_CHAT_IS_MARKED_AS_UNREAD
+            )
+            self.client.remove_event_handler(
+                self.update_chat_is_translatable_handler,
+                API.Types.UPDATE_CHAT_IS_TRANSLATABLE
+            )
+            self.client.remove_event_handler(
+                self.update_chat_message_auto_delete_time_handler,
+                API.Types.UPDATE_CHAT_MESSAGE_AUTO_DELETE_TIME
+            )
+            self.client.remove_event_handler(
+                self.update_chat_message_sender_handler,
+                API.Types.UPDATE_CHAT_MESSAGE_SENDER
+            )
+            self.client.remove_event_handler(
+                self.update_chat_notification_settings_handler,
+                API.Types.UPDATE_CHAT_NOTIFICATION_SETTINGS
+            )
+            self.client.remove_event_handler(
+                self.update_chat_online_member_count_handler,
+                API.Types.UPDATE_CHAT_ONLINE_MEMBER_COUNT
+            )
+            self.client.remove_event_handler(
+                self.update_chat_pending_join_requests_handler,
+                API.Types.UPDATE_CHAT_PENDING_JOIN_REQUESTS
+            )
+            self.client.remove_event_handler(
+                self.update_chat_permissions_handler,
+                API.Types.UPDATE_CHAT_PERMISSIONS
+            )
+            self.client.remove_event_handler(
+                self.update_chat_photo_handler,
+                API.Types.UPDATE_CHAT_PHOTO
+            )
+            self.client.remove_event_handler(
+                self.update_chat_read_inbox_handler,
+                API.Types.UPDATE_CHAT_READ_INBOX
+            )
+            self.client.remove_event_handler(
+                self.update_chat_read_outbox_handler,
+                API.Types.UPDATE_CHAT_READ_OUTBOX
+            )
+            self.client.remove_event_handler(
+                self.update_chat_reply_markup_handler,
+                API.Types.UPDATE_CHAT_REPLY_MARKUP
+            )
+            self.client.remove_event_handler(
+                self.update_chat_theme_handler,
+                API.Types.UPDATE_CHAT_THEME
+            )
+            self.client.remove_event_handler(
+                self.update_chat_title_handler,
+                API.Types.UPDATE_CHAT_TITLE
+            )
+            self.client.remove_event_handler(
+                self.update_chat_unread_mention_count_handler,
+                API.Types.UPDATE_CHAT_UNREAD_MENTION_COUNT
+            )
+            self.client.remove_event_handler(
+                self.update_chat_unread_reaction_count_handler,
+                API.Types.UPDATE_CHAT_UNREAD_REACTION_COUNT
+            )
+            self.client.remove_event_handler(
+                self.update_chat_video_chat_handler,
+                API.Types.UPDATE_CHAT_VIDEO_CHAT
+            )
 
     async def get_option_value(self, name: str) -> typing.Union[str, int, bool, None]:
         value = self.options.get(name)

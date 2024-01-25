@@ -47,7 +47,7 @@ class API:
         {%- endfor %}
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
         {% if entity.return_type_str %}
         :return: response from TDLib

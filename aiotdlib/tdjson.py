@@ -150,9 +150,9 @@ class CoreTDJson:
 
     def receive(self, timeout: float = 10.0) -> typing.Optional[dict]:
         result = self._td_receive(timeout)
-        self.logger.debug("Received %s", result)
 
         if bool(result):
+            self.logger.debug("Received %s", result)
             result = ujson.loads(result)
 
         return result
@@ -189,19 +189,23 @@ class TDJson(CoreTDJson):
         if bool(client_id) and client_id in self._subscribed_clients:
             self._subscribed_clients.pop(client_id, None)
 
-        if len(self._subscribed_clients) == 0:
+        if len(self._subscribed_clients) == 0 and bool(self._listen_task) and not self._listen_task.cancelled():
             self._listen_task.cancel()
-            self._listen_task = None
 
     async def _listen_updates(self):
-        while True:
-            update = await asyncio.to_thread(self.receive)
+        try:
+            while True:
+                update = await asyncio.to_thread(self.receive)
 
-            if update:
-                client_id = update.get("@client_id")
+                if update:
+                    client_id = update.get("@client_id")
 
-                if client_id in self._subscribed_clients:
-                    await self._subscribed_clients[client_id].enqueue_update(update)
+                    if client_id in self._subscribed_clients:
+                        await self._subscribed_clients[client_id].enqueue_update(update)
+        except asyncio.CancelledError:
+            self._subscribed_clients.clear()
+            self._listen_task = None
+            raise
 
 
 DEFAULT_TDJSON = TDJson(library_path=_get_bundled_tdjson_lib_path())

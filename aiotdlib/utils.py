@@ -120,14 +120,14 @@ class PendingRequest:
     def __init__(self, client: 'Client', request: TDLibObject) -> None:
         self.client = client
         self.request = request
-        self.__ready_event = asyncio.Event()
+        self._ready_event = asyncio.Event()
 
     @property
     def id(self) -> Optional[str]:
         return self.request.EXTRA.get('request_id')
 
     async def wait(self, timeout: Union[int, float] = None, raise_exc: bool = False) -> None:
-        result = await asyncio.wait_for(self.__ready_event.wait(), timeout=timeout)
+        result = await asyncio.wait_for(self._ready_event.wait(), timeout=timeout)
 
         if result is False:
             raise asyncio.TimeoutError()
@@ -140,7 +140,7 @@ class PendingRequest:
             self.error = True
 
         self.update = update
-        self.__ready_event.set()
+        self._ready_event.set()
 
     def raise_error(self):
         if isinstance(self.update, Error):

@@ -4,7 +4,6 @@ import asyncio
 import enum
 import hashlib
 import logging
-import os
 import sys
 import typing
 import uuid
@@ -25,7 +24,6 @@ from . import __version__
 from .api import API
 from .api import AioTDLibError
 from .api import AuthorizationState
-from .api import BadRequest
 from .api import BaseObject
 from .api import BasicGroup
 from .api import BasicGroupFullInfo
@@ -34,9 +32,12 @@ from .api import ChatTypeBasicGroup
 from .api import ChatTypePrivate
 from .api import ChatTypeSecret
 from .api import ChatTypeSupergroup
+from .api import DisableProxy
 from .api import EmailAddressAuthenticationCode
 from .api import Error
 from .api import FormattedText
+from .api import GetAuthorizationState
+from .api import GetProxies
 from .api import InputMessageAnimation
 from .api import InputMessageAudio
 from .api import InputMessageContent
@@ -56,7 +57,6 @@ from .api import MessageSelfDestructType
 from .api import MessageSendOptions
 from .api import MessageSendingStatePending
 from .api import Messages
-from .api import Ok
 from .api import OptionValueBoolean
 from .api import OptionValueEmpty
 from .api import OptionValueInteger
@@ -69,6 +69,8 @@ from .api import ProxyTypeMtproto
 from .api import ProxyTypeSocks5
 from .api import ReplyMarkup
 from .api import SecretChat
+from .api import SetOption
+from .api import SetTdlibParameters
 from .api import Supergroup
 from .api import SupergroupFullInfo
 from .api import TDLibObject
@@ -97,6 +99,7 @@ from .utils import strip_phone_number_symbols
 
 RequestResult = typing.TypeVar('RequestResult', bound=BaseObject)
 ExecuteResult = typing.TypeVar('ExecuteResult', bound=BaseObject)
+AuthActions = dict[Optional[str], typing.Callable[[], typing.Coroutine[None, None, None]]]
 ChatInfo = Union[
     User,
     UserFullInfo,
@@ -168,67 +171,67 @@ class ClientParseMode(str, enum.Enum):
 
 
 class ClientOptions(pydantic.BaseModel):
-    always_parse_markdown: Optional[bool] = None
+    always_parse_markdown: Optional[bool] = Undefined
     """
     If true, text entities will be automatically parsed in all inputMessageText objects
     """
 
-    archive_and_mute_new_chats_from_unknown_users: Optional[bool] = None
+    archive_and_mute_new_chats_from_unknown_users: Optional[bool] = Undefined
     """
     If true, new chats from non-contacts will be automatically archived and muted. 
     The option can be set only if the option “can_archive_and_mute_new_chats_from_unknown_users” is true. 
     getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
     """
 
-    disable_contact_registered_notifications: Optional[bool] = None
+    disable_contact_registered_notifications: Optional[bool] = Undefined
     """
     If true, notifications about the user's contacts who have joined Telegram will be disabled. 
     User will still receive the corresponding message in the private chat. 
     getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
     """
 
-    disable_persistent_network_statistics: Optional[bool] = None
+    disable_persistent_network_statistics: Optional[bool] = Undefined
     """
     If true, persistent network statistics will be disabled, which significantly reduces disk usage
     """
 
-    disable_sent_scheduled_message_notifications: Optional[bool] = None
+    disable_sent_scheduled_message_notifications: Optional[bool] = Undefined
     """
     If true, notifications about outgoing scheduled messages that were sent will be disabled
     """
 
-    disable_time_adjustment_protection: Optional[bool] = None
+    disable_time_adjustment_protection: Optional[bool] = Undefined
     """
     If true, protection from external time adjustment will be disabled, which significantly reduces disk usage
     """
 
-    disable_top_chats: Optional[bool] = None
+    disable_top_chats: Optional[bool] = Undefined
     """
     If true, support for top chats and statistics collection is disabled
     """
 
-    ignore_background_updates: Optional[bool] = None
+    ignore_background_updates: Optional[bool] = Undefined
     """
     If true, allows to skip all updates received while the TDLib instance was not running. 
     The option does nothing if the database or secret chats are used
     """
 
-    ignore_default_disable_notification: Optional[bool] = None
+    ignore_default_disable_notification: Optional[bool] = Undefined
     """
     If true, the disable_notification value specified in the request will be always used instead of the default value
     """
 
-    ignore_inline_thumbnails: Optional[bool] = None
+    ignore_inline_thumbnails: Optional[bool] = Undefined
     """
     If true, prevents file thumbnails sent by the server along with messages from being saved on the disk
     """
 
-    ignore_platform_restrictions: Optional[bool] = None
+    ignore_platform_restrictions: Optional[bool] = Undefined
     """
     If true, chat and message reictions specific to the currently used operating system will be ignored
     """
 
-    is_location_visible: Optional[bool] = None
+    is_location_visible: Optional[bool] = Undefined
     """
     If true, other users will be allowed to see the current user's location
     """
@@ -241,56 +244,60 @@ class ClientOptions(pydantic.BaseModel):
     # so it should be set before call to setTdlibParameters.
     # """
 
-    language_pack_id: Optional[str] = None
+    language_pack_id: Optional[str] = Undefined
     """
     Identifier of the currently used language pack from the current localization target
     """
 
-    localization_target: Optional[str] = None
+    localization_target: Optional[str] = Undefined
     """
     Name for the current localization target (currently supported: “android”,“android_x”,“ios”,“macos” and “tdesktop”)
     """
 
-    message_unload_delay: Optional[int] = None
+    message_unload_delay: Optional[int] = Undefined
     """
     The maximum time messages are stored in memory before they are unloaded, 60-86400; in seconds. 
     Defaults to 60 for users and 1800 for bots
     """
 
-    notification_group_count_max: Optional[int] = None
+    notification_group_count_max: Optional[int] = Undefined
     """
     Maximum number of notification groups to be shown simultaneously, 0-25
     """
 
-    notification_group_size_max: Optional[int] = None
+    notification_group_size_max: Optional[int] = Undefined
     """
     Maximum number of simultaneously shown notifications in a group, 1-25. Defaults to 10
     """
 
-    online: Optional[bool] = None
+    online: Optional[bool] = Undefined
     """
     Online status of the current user
     """
 
-    prefer_ipv6: Optional[bool] = None
+    prefer_ipv6: Optional[bool] = Undefined
     """
     If true, IPv6 addresses will be preferred over IPv4 addresses
     """
 
-    use_pfs: Optional[bool] = None
+    use_pfs: Optional[bool] = Undefined
     """
     If true, Perfect Forward Secrecy will be enabled for interaction with the Telegram servers for cloud chats
     """
 
-    use_quick_ack: Optional[bool] = None
+    use_quick_ack: Optional[bool] = Undefined
     """
     If true, quick acknowledgement will be enabled for outgoing messages
     """
 
-    use_storage_optimizer: Optional[bool] = None
+    use_storage_optimizer: Optional[bool] = Undefined
     """
     If true, the background storage optimizer will be enabled
     """
+
+    disable_network_statistics: Optional[bool] = Undefined
+
+    reuse_uploaded_photos_by_hash: Optional[bool] = Undefined
 
 
 # noinspection PyUnresolvedReferences
@@ -386,7 +393,7 @@ class ClientSettings(pydantic_settings.BaseSettings):
     enable_storage_optimizer: bool = True
     ignore_file_names: bool = True
     ignore_background_updates: bool = False
-    options: ClientOptions = ClientOptions()
+    options: ClientOptions | None = ClientOptions()
 
     @model_validator(mode="before")
     @classmethod
@@ -449,9 +456,6 @@ class ClientSettings(pydantic_settings.BaseSettings):
         use_enum_values=True,
         populate_by_name=True
     )
-
-
-AUTHORIZATION_REQUEST_ID = 'updateAuthorizationState'
 
 
 class Client:
@@ -562,7 +566,7 @@ class Client:
 
         """
         self._current_authorization_state = None
-        self._is_authorized = False
+        self._authorized_event = asyncio.Event()
         self._running = False
         self._pending_requests: dict[str, PendingRequest] = {}
         self._pending_messages: dict[str, Message] = {}
@@ -570,6 +574,19 @@ class Client:
         self._middlewares: list[MiddlewareCallable] = []
         self._middlewares_handlers: list[MiddlewareCallable] = []
         self._update_task: typing.Optional[asyncio.Task[None]] = None
+
+        if options is Undefined or not bool(options):
+            options = ClientOptions(
+                always_parse_markdown=False,
+                disable_contact_registered_notifications=True,
+                disable_persistent_network_statistics=True,
+                disable_time_adjustment_protection=True,
+                disable_network_statistics=True,
+                disable_top_chats=True,
+                ignore_inline_thumbnails=True,
+                reuse_uploaded_photos_by_hash=True,
+                ignore_background_updates=True,
+            )
 
         settings = {
             'api_id': api_id,
@@ -648,9 +665,6 @@ class Client:
     async def _handle_pending_request(self, update: TDLibObject):
         request_id = update.EXTRA.get('request_id')
 
-        if not bool(request_id) and update.ID in [AUTHORIZATION_REQUEST_ID]:
-            request_id = update.ID
-
         if bool(request_id):
             pending_request = self._pending_requests.get(request_id)
 
@@ -661,7 +675,7 @@ class Client:
                     self._pending_requests.pop(request_id)
                     pending_request.set_update(update)
 
-        if isinstance(update, UpdateMessageSendSucceeded):
+        if isinstance(update.ID, UpdateMessageSendSucceeded):
             pending_message_key = f"{update.message.chat_id}_{update.old_message_id}"
             pending_message = self._pending_messages.pop(pending_message_key, None)
 
@@ -682,30 +696,51 @@ class Client:
 
                 try:
                     update = parse_tdlib_object(packet)
-                except Exception as e:
+                except pydantic.ValidationError as e:
                     self.logger.error(f'Unable to parse incoming update: {packet}! {e}', exc_info=True)
                     continue
 
-                # if isinstance(update, UpdateAuthorizationState):
-                #     if isinstance(update.authorization_state, AuthorizationStateClosed):
-                #         self.logger.warning('Session was terminated!')
-                #         break
+                if isinstance(update, UpdateAuthorizationState):
+                    try:
+                        await self._on_authorization_state_update(update.authorization_state)
+                    except asyncio.CancelledError:
+                        raise
+                    except BaseException as e:
+                        self.logger.error(
+                            f'Unable to handle authorization state update {update.model_dump_json()}! {e}',
+                            exc_info=True
+                        )
+                        raise SystemExit from e
 
-                asyncio.create_task(self._handle_pending_request(update))
-                asyncio.create_task(self._handle_update(update))
-        except (asyncio.CancelledError, KeyboardInterrupt):
+                    continue
+
+                try:
+                    await self._handle_pending_request(update)
+                except asyncio.CancelledError:
+                    raise
+                except BaseException as e:
+                    self.logger.error(f'Unable to handle pending request {update}! {e}', exc_info=True)
+
+                try:
+                    await self._handle_update(update)
+                except asyncio.CancelledError:
+                    raise
+                except BaseException as e:
+                    self.logger.error(f'Unable to handle update {update}! {e}', exc_info=True)
+        except asyncio.CancelledError:
+            self._pending_requests.clear()
+            self._pending_messages.clear()
             raise
-        except Exception as e:
-            self.logger.error(f'Unhandled exception occurred!. {e.__class__.__qualname__}. {e}', exc_info=True)
 
     async def _setup_proxy(self):
         if not bool(self.settings.proxy_settings):
             # If proxy is not set disabling all configured proxy
-            await self.api.disable_proxy()
+            await self.send(DisableProxy())
             return
 
         self.logger.info('Retrieving all proxies list')
-        result = await self.api.get_proxies()
+        # TODO: execute is blocking
+        result = await self.execute(GetProxies())
 
         proxy_type_by_class: dict[typing.Type[ProxyType], str] = {
             ProxyTypeSocks5: 'socks5',
@@ -764,62 +799,75 @@ class Client:
         )
 
     async def _setup_options(self):
-        for k, v in self.settings.options.model_dump(exclude_none=True, by_alias=True).items():
-            if isinstance(v, bool):
+        if not bool(self.settings.options):
+            return
+
+        for k, v in self.settings.options.model_dump(exclude_unset=True, by_alias=True).items():
+            if v is Undefined:
+                continue
+            elif v is None:
+                option_value = OptionValueEmpty()
+            elif isinstance(v, bool):
                 option_value = OptionValueBoolean(value=v)
             elif isinstance(v, str):
                 option_value = OptionValueString(value=v)
             elif isinstance(v, int):
                 option_value = OptionValueInteger(value=v)
-            elif v is None:
-                option_value = OptionValueEmpty()
             else:
                 self.logger.warning(f"Option {k} has unsupported value of type {v.__class__.__name__}: {v}")
                 continue
 
             self.logger.info(f'Setting up option {k} = {v}')
-
             try:
-                await self.api.set_option(k, option_value)
-            except BadRequest as e:
-                self.logger.error(f'Unable to setup option {k} = {v}: {e}!')
+                query = SetOption(name=k, value=option_value)
+            except pydantic.ValidationError:
+                self.logger.warning(f"Option {k} has unsupported value of type {v.__class__.__name__}: {v}")
+                continue
 
-    async def _auth_start(self) -> AuthorizationState:
-        return await self.api.get_authorization_state(request_id=AUTHORIZATION_REQUEST_ID)
+            await self.send(query)
 
-    async def _set_tdlib_parameters(self) -> Ok:
-        result = await self.api.set_tdlib_parameters(
-            database_directory=os.path.join(f"{self.settings.files_directory}", "database"),
-            files_directory=os.path.join(f"{self.settings.files_directory}", "files"),
-            database_encryption_key=self.settings.database_encryption_key,
-            api_id=self.settings.api_id,
-            api_hash=self.settings.api_hash.get_secret_value(),
-            system_language_code=self.settings.system_language_code,
-            device_model=self.settings.device_model,
-            system_version=self.settings.system_version,
-            application_version=self.settings.application_version,
-            use_test_dc=self.settings.use_test_dc,
-            use_file_database=self.settings.use_file_database,
-            use_chat_info_database=self.settings.use_chat_info_database,
-            use_message_database=self.settings.use_message_database,
-            use_secret_chats=self.settings.use_secret_chats,
-            enable_storage_optimizer=self.settings.enable_storage_optimizer,
-            ignore_file_names=self.settings.ignore_file_names,
-            request_id=AUTHORIZATION_REQUEST_ID
+    async def _auth_start(self):
+        await self.send(
+            GetAuthorizationState()
         )
+        # return await self.api.get_authorization_state(request_id=AUTHORIZATION_REQUEST_ID)
 
+    async def _set_tdlib_parameters(self):
         await self._setup_options()
         await self._setup_proxy()
 
+        result = await self.send(
+            SetTdlibParameters(
+                database_directory=str(self.settings.files_directory / "database"),
+                files_directory=str(self.settings.files_directory / "files"),
+                database_encryption_key=self.settings.database_encryption_key,
+                api_id=self.settings.api_id,
+                api_hash=self.settings.api_hash.get_secret_value(),
+                system_language_code=self.settings.system_language_code,
+                device_model=self.settings.device_model,
+                system_version=self.settings.system_version,
+                application_version=self.settings.application_version,
+                use_test_dc=self.settings.use_test_dc,
+                use_file_database=self.settings.use_file_database,
+                use_chat_info_database=self.settings.use_chat_info_database,
+                use_message_database=self.settings.use_message_database,
+                use_secret_chats=self.settings.use_secret_chats,
+                enable_storage_optimizer=self.settings.enable_storage_optimizer,
+                ignore_file_names=self.settings.ignore_file_names,
+            )
+        )
+
         return result
 
-    async def _set_authentication_phone_number_or_check_bot_token(self) -> Ok:
+    async def _set_authentication_phone_number_or_check_bot_token(self):
+        await self.send(SetOption(name='online', value=OptionValueBoolean(value=True)))
+
         if self.is_bot:
             return await self._check_authentication_bot_token()
 
         return await self._set_authentication_phone_number()
 
-    async def _set_authentication_phone_number(self) -> Ok:
+    async def _set_authentication_phone_number(self):
         self.logger.info('Sending phone number')
         return await self.api.set_authentication_phone_number(
             phone_number=self.settings.phone_number,
@@ -830,34 +878,30 @@ class Client:
                 allow_sms_retriever_api=False,
                 authentication_tokens=[]
             ),
-            request_id=AUTHORIZATION_REQUEST_ID
         )
 
-    async def _check_authentication_bot_token(self) -> Ok:
+    async def _check_authentication_bot_token(self):
         self.logger.info('Sending bot token')
         return await self.api.check_authentication_bot_token(
             self.settings.bot_token.get_secret_value(),
-            request_id=AUTHORIZATION_REQUEST_ID
         )
 
-    async def _check_authentication_code(self) -> Ok:
+    async def _check_authentication_code(self):
         code = await self._auth_get_code(code_type='SMS')
         self.logger.info(f'Sending code {code}')
 
         return await self.api.check_authentication_code(
             code=code,
-            request_id=AUTHORIZATION_REQUEST_ID
         )
 
-    async def _set_authentication_email_address(self) -> Ok:
+    async def _set_authentication_email_address(self):
         email = await self._auth_get_email()
 
         return await self.api.set_authentication_email_address(
             email_address=email,
-            request_id=AUTHORIZATION_REQUEST_ID
         )
 
-    async def _check_authentication_email_code(self) -> Ok:
+    async def _check_authentication_email_code(self):
         code = await self._auth_get_code(code_type='EMail')
         self.logger.info(f'Sending email code {code}')
 
@@ -865,10 +909,9 @@ class Client:
             code=EmailAddressAuthenticationCode(
                 code=code
             ),
-            request_id=AUTHORIZATION_REQUEST_ID
         )
 
-    async def _register_user(self) -> Ok:
+    async def _register_user(self):
         first_name = await self._auth_get_first_name()
         last_name = await self._auth_get_last_name()
         self.logger.info(f'Registering new user in telegram as {first_name} {last_name or ""}'.strip())
@@ -876,16 +919,14 @@ class Client:
         return await self.api.register_user(
             first_name=first_name,
             last_name=last_name,
-            request_id=AUTHORIZATION_REQUEST_ID
         )
 
-    async def _check_authentication_password(self) -> Ok:
+    async def _check_authentication_password(self):
         password = await self._auth_get_password()
         self.logger.info('Sending password')
 
         return await self.api.check_authentication_password(
             password=password,
-            request_id=AUTHORIZATION_REQUEST_ID
         )
 
     # noinspection PyMethodMayBeStatic
@@ -932,25 +973,43 @@ class Client:
         return email
 
     async def _auth_completed(self):
-        self._pending_requests.pop(AUTHORIZATION_REQUEST_ID, None)
+        self._authorized_event.set()
 
-        if not self.is_bot:
-            # Preload main list chats
-            await self.get_main_list_chats()
-
-        self._is_authorized = True
-        self.logger.info('Authorization is completed')
+        # if not self.is_bot:
+        #     # Preload main list chats
+        #     await self.get_main_list_chats()
 
     async def _auth_logging_out(self):
-        self._is_authorized = False
         self.logger.info('Auth session is logging out')
 
     async def _auth_closing(self):
-        self._is_authorized = False
         self.logger.info('Auth session is closing')
 
     async def _auth_closed(self):
         self.logger.info('Auth session is closed')
+
+    async def _on_authorization_state_update(self, authorization_state: AuthorizationState):
+        auth_actions: AuthActions = {
+            None: self._auth_start,
+            API.Types.AUTHORIZATION_STATE_WAIT_TDLIB_PARAMETERS: self._set_tdlib_parameters,
+            API.Types.AUTHORIZATION_STATE_WAIT_PHONE_NUMBER: self._set_authentication_phone_number_or_check_bot_token,
+            API.Types.AUTHORIZATION_STATE_WAIT_CODE: self._check_authentication_code,
+            API.Types.AUTHORIZATION_STATE_WAIT_EMAIL_ADDRESS: self._set_authentication_email_address,
+            API.Types.AUTHORIZATION_STATE_WAIT_EMAIL_CODE: self._check_authentication_email_code,
+            API.Types.AUTHORIZATION_STATE_WAIT_REGISTRATION: self._register_user,
+            API.Types.AUTHORIZATION_STATE_WAIT_PASSWORD: self._check_authentication_password,
+            API.Types.AUTHORIZATION_STATE_READY: self._auth_completed,
+            API.Types.AUTHORIZATION_STATE_LOGGING_OUT: self._auth_logging_out,
+            API.Types.AUTHORIZATION_STATE_CLOSING: self._auth_closing,
+            API.Types.AUTHORIZATION_STATE_CLOSED: self._auth_closed,
+            # TODO: QR Login support
+            # API.Types.AUTHORIZATION_STATE_WAIT_OTHER_DEVICE_CONFIRMATION: None,
+        }
+
+        action = auth_actions.get(authorization_state.ID)
+
+        if bool(action):
+            await action()
 
     async def send(self, query: TDLibObject):
         if not self._running:
@@ -1015,47 +1074,12 @@ class Client:
         else:
             self.logger.info('Authorization process has been started with phone')
 
-        auth_actions: dict[Optional[str], typing.Callable[[], typing.Awaitable[RequestResult]]] = {
-            None: self._auth_start,
-            API.Types.AUTHORIZATION_STATE_WAIT_TDLIB_PARAMETERS: self._set_tdlib_parameters,
-            API.Types.AUTHORIZATION_STATE_WAIT_PHONE_NUMBER: self._set_authentication_phone_number_or_check_bot_token,
-            API.Types.AUTHORIZATION_STATE_WAIT_CODE: self._check_authentication_code,
-            API.Types.AUTHORIZATION_STATE_WAIT_EMAIL_ADDRESS: self._set_authentication_email_address,
-            API.Types.AUTHORIZATION_STATE_WAIT_EMAIL_CODE: self._check_authentication_email_code,
-            API.Types.AUTHORIZATION_STATE_WAIT_REGISTRATION: self._register_user,
-            API.Types.AUTHORIZATION_STATE_WAIT_PASSWORD: self._check_authentication_password,
-            API.Types.AUTHORIZATION_STATE_READY: self._auth_completed,
-            API.Types.AUTHORIZATION_STATE_LOGGING_OUT: self._auth_logging_out,
-            API.Types.AUTHORIZATION_STATE_CLOSING: self._auth_closing,
-            API.Types.AUTHORIZATION_STATE_CLOSED: self._auth_closed,
-            # TODO: QR Login support
-            # API.Types.AUTHORIZATION_STATE_WAIT_OTHER_DEVICE_CONFIRMATION: None,
-        }
+        await self.send(
+            GetAuthorizationState()
+        )
 
-        while not self._is_authorized:
-            result = None
-
-            while True:
-                try:
-                    self.logger.debug('Current authorization state: %s', self._current_authorization_state)
-                    next_action = auth_actions.get(self._current_authorization_state)
-
-                    if bool(next_action):
-                        result = await next_action()
-                    else:
-                        self.logger.error(f'Unhandled authorization state: {self._current_authorization_state}')
-                        break
-                except AioTDLibError as e:
-                    # Need to retry previous step
-                    self.logger.error(e)
-                    await asyncio.sleep(0.1)
-                else:
-                    break
-
-            if isinstance(result, UpdateAuthorizationState):
-                self._current_authorization_state = result.authorization_state.ID
-
-            await asyncio.sleep(0.1)
+        self.logger.info('Waiting for authorization to be completed...')
+        await self._authorized_event.wait()
 
     async def start(self) -> 'Client':
         self.logger.info('Starting client')
@@ -1065,12 +1089,38 @@ class Client:
         self._middlewares_handlers = list(reversed(self._middlewares))
 
         # Starting updates loop
-        self._running = True
         self._update_task = asyncio.create_task(self._updates_loop())
+        self._running = True
 
-        # Initialize authorization process
-        await self.authorize()
+        try:
+            self.logger.info("Initialize authorization process")
+            await self.authorize()
+        except asyncio.CancelledError:
+            await self._cleanup()
+        else:
+            self.logger.info('Authorization is completed...')
+
         return self
+
+    async def _cleanup(self):
+        if bool(self._update_task) and not self._update_task.cancelled():
+            self.logger.info("Cancelling updates loop task")
+            self._update_task.cancel()
+
+            try:
+                await self._update_task
+            except asyncio.CancelledError:
+                pass
+
+        if bool(self.cache):
+            self.cache.clear()
+
+        if bool(self.tdjson_client):
+            # TODO: gracefully close current tdjson client
+            self.logger.info('Gracefully closing TDLib connection')
+            await self.tdjson_client.close()
+
+        self._running = False
 
     async def idle(self):
         try:
@@ -1081,15 +1131,7 @@ class Client:
 
     async def stop(self):
         self.logger.info('Stopping telegram client...')
-
-        if not bool(self._running):
-            return
-
-        if bool(self.tdjson_client):
-            self.logger.info('Gracefully closing TDLib connection')
-            await self.tdjson_client.close()
-
-        self._running = False
+        await self._cleanup()
 
     async def _run(self):
         async with self:
@@ -2332,7 +2374,7 @@ class Client:
             update_type: str = API.Types.ANY,
             *,
             filters: FilterCallable = None
-    ):
+    ) -> Handler:
         """
             Registering event handler
             You can register many handlers for certain event type
@@ -2340,12 +2382,9 @@ class Client:
         if self._updates_handlers.get(update_type) is None:
             self._updates_handlers[update_type] = set()
 
-        if handler not in self._updates_handlers[update_type]:
-            self._updates_handlers[update_type].add(
-                handler
-                if isinstance(handler, Handler)
-                else Handler(handler, filters=filters)
-            )
+        handler = Handler(handler, filters=filters)
+        self._updates_handlers[update_type].add(handler)
+        return handler
 
     # Decorators
     def on_event(self, update_type: str = API.Types.ANY, *, filters: FilterCallable = None):
@@ -2359,7 +2398,7 @@ class Client:
         if self._updates_handlers.get(update_type) is None:
             return
 
-        self._updates_handlers.get(update_type).remove(handler)
+        self._updates_handlers.get(update_type).discard(handler)
 
     def add_middleware(self, middleware: MiddlewareCallable):
         """
