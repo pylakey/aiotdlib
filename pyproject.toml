@@ -40,7 +40,7 @@ aiotdlib_generator = "aiotdlib_generator.__main__:main"
 
 [tool.poetry.group.dev.dependencies]
 pydash = "^7.0.4"
-black = "^23.3.0"
+black = ">=23.3,<25.0"
 bump-pydantic = "^0.8.0"
 
 [build-system]
