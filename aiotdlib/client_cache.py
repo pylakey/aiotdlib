@@ -502,18 +502,22 @@ class ClientCache:
         return value
 
     async def get_main_chat_list(self, limit: int = 100) -> list[Chat]:
-        main_chat_list_size = len(self.main_chat_list)
-
-        if not self.have_full_main_chat_list and limit > main_chat_list_size:
+        while not self.have_full_main_chat_list:
             try:
-                result = await self.client.api.load_chats(limit - main_chat_list_size, request_timeout=300)
+                result = await self.client.api.load_chats(
+                    limit=100,
+                    chat_list=ChatListMain(),
+                    request_id='chats_preload',
+                    request_timeout=300
+                )
             except NotFound:
                 self.have_full_main_chat_list = True
             except AioTDLibError as e:
                 self.logger.error(f'Received an error for get_main_list_chats: {e}')
+                break
             else:
-                if isinstance(result, Ok):
-                    return await self.get_main_chat_list(limit)
+                if not isinstance(result, Ok):
+                    break
 
         return [self.chats.get(ordered_chat.chat_id) for ordered_chat in self.main_chat_list[:limit]]
 
