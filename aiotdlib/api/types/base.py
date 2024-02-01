@@ -10,12 +10,16 @@ from pydantic import BaseModel
 from pydantic import ConfigDict
 from pydantic import Field
 
+INT32_MAX_VALUE = 2 ** 32 - 1
+INT53_MAX_VALUE = 2 ** 53 - 1
+INT64_MAX_VALUE = DOUBLE64_MAX_VALUE = 2 ** 64 - 1
+
 Bool = bool
-Double = Annotated[float, Field(lt=2**64)]
 String = str
-Int32 = Annotated[int, Field(lt=2**32)]
-Int53 = Annotated[int, Field(lt=2**53)]
-Int64 = Annotated[int, Field(lt=2**64)]
+Double = Annotated[float, Field(lt=DOUBLE64_MAX_VALUE)]
+Int32 = Annotated[int, Field(le=INT32_MAX_VALUE)]
+Int53 = Annotated[int, Field(le=INT53_MAX_VALUE)]
+Int64 = Annotated[int, Field(le=INT64_MAX_VALUE)]
 Bytes = typing.Union[str, bytes]
 Vector = list
 
