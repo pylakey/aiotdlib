@@ -121,15 +121,15 @@ class CoreTDJson:
 
     def __log_message_callback(self, verbosity_level: int, message: str) -> None:
         if verbosity_level == TDLibLogVerbosity.FATAL:
-            self.logger.error('TDLib FATAL error: %s', message)
+            self.logger.error('[TDLib FATAL ERROR]: %s', message)
         elif verbosity_level == TDLibLogVerbosity.ERROR:
-            self.logger.error('TDLib ERROR: %s', message)
+            self.logger.error('[TDLib ERROR]: %s', message)
         elif verbosity_level == TDLibLogVerbosity.WARNING:
-            self.logger.warning('TDLib WARNING: %s', message)
+            self.logger.warning('[TDLib WARNING]: %s', message)
         elif verbosity_level == TDLibLogVerbosity.INFO:
-            self.logger.info('TDLib INFO: %s', message)
+            self.logger.info('[TDLib INFO]: %s', message)
         elif verbosity_level == TDLibLogVerbosity.DEBUG:
-            self.logger.debug('TDLib DEBUG: %s', message)
+            self.logger.debug('[TDLib DEBUG]: %s', message)
 
         sys.stdout.flush()
 

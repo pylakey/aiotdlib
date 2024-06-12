@@ -356,9 +356,6 @@ class ClientSettings(pydantic_settings.BaseSettings):
     Default: 2 (WARNING) for more info look at (TDLibLogVerbosity)
     :type tdlib_verbosity: str
 
-    :param debug: When set to true all request and responses would be logged in console with DEBUG level
-    :type debug: bool
-
     :param parse_mode: Default parse mode for high-level methods like send_message. Default: html
     :type parse_mode: str
 
@@ -382,8 +379,7 @@ class ClientSettings(pydantic_settings.BaseSettings):
     email: Optional[str] = None
     password: Optional[pydantic.SecretStr] = None
     library_path: Optional[str] = None
-    tdlib_verbosity: TDLibLogVerbosity = TDLibLogVerbosity.ERROR
-    debug: bool = False
+    tdlib_verbosity: TDLibLogVerbosity = TDLibLogVerbosity.FATAL
     parse_mode: ClientParseMode = ClientParseMode.HTML
     proxy_settings: Optional[ClientProxySettings] = None
     use_file_database: bool = True
@@ -477,7 +473,6 @@ class Client:
             password: str = Undefined,
             library_path: str = Undefined,
             tdlib_verbosity: TDLibLogVerbosity = Undefined,
-            debug: bool = Undefined,
             parse_mode: ClientParseMode = Undefined,
             proxy_settings: ClientProxySettings = Undefined,
             use_file_database: bool = Undefined,
@@ -533,9 +528,6 @@ class Client:
 
         :param tdlib_verbosity: Verbosity level of TDLib itself. Default: 2 (WARNING) for more info look at (TDLibLogVerbosity)
         :type tdlib_verbosity: str
-
-        :param debug: When set to true all request and responses would be logged in console with DEBUG level
-        :type debug: bool
 
         :param parse_mode: Default parse mode for high-level methods like send_message. Default: html
         :type parse_mode: str
@@ -605,7 +597,6 @@ class Client:
             'password': pydantic.SecretStr(password) if password is not Undefined else Undefined,
             'library_path': library_path,
             'tdlib_verbosity': tdlib_verbosity,
-            'debug': debug,
             'parse_mode': parse_mode,
             'proxy_settings': proxy_settings,
             'use_file_database': use_file_database,
@@ -618,9 +609,11 @@ class Client:
         }
         settings = {k: v for k, v in settings.items() if v is not Undefined}
         self.settings = ClientSettings(**settings)
-        self.tdjson_client = TDJsonClient.create(library_path=self.settings.library_path)
-        self.logger = logging.getLogger(f"{self.__class__.__name__}:{self.tdjson_client.client_id}")
-        self.logger.setLevel(logging.DEBUG if debug else logging.INFO)
+        self.tdjson_client = TDJsonClient.create(
+            library_path=self.settings.library_path,
+            tdlib_verbosity=self.settings.tdlib_verbosity
+        )
+        self.logger = logging.getLogger(f"{self.__class__.__name__}_{self.tdjson_client.client_id}")
         self.api = API(self)
         self.cache = ClientCache(self)
 
@@ -748,16 +741,15 @@ class Client:
             ProxyTypeHttp: 'http',
         }
 
-        if self.settings.debug:
-            proxies_list_string = "\n".join(
+        self.logger.debug(
+            f'{len(result.proxies)} proxies already set up:\n'
+            f'%s'
+            f'\n',
+            "\n".join(
                 f"{'* ' if p.is_enabled else ''}[{proxy_type_by_class.get(p.type_.__class__)}] {p.server}:{p.port}"
                 for p in result.proxies
             )
-            self.logger.info(
-                f'{len(result.proxies)} proxies already set up:\n'
-                f'{proxies_list_string}'
-                f'\n'
-            )
+        )
 
         for p in result.proxies:
             if (
@@ -1015,11 +1007,8 @@ class Client:
         if not self._running:
             raise RuntimeError('Client not started')
 
-        query_json = query.model_dump(by_alias=True)
-
-        if self.settings.debug:
-            self.logger.debug(f">>>>> {query.ID} {query_json}")
-
+        query_json = query.model_dump_json(by_alias=True)
+        self.logger.debug(f">>>>> {query.ID} %s", query_json)
         await self.tdjson_client.send(query_json)
 
     async def request(
@@ -1046,9 +1035,10 @@ class Client:
             self._pending_requests.pop(request_id, None)
             raise
         finally:
-            if self.settings.debug and bool(pending_request.update):
+            if bool(pending_request.update):
                 self.logger.debug(
-                    f"<<<<< {pending_request.update.ID} {pending_request.update.model_dump_json(by_alias=True)}"
+                    f"<<<<< {pending_request.update.ID} %s",
+                    pending_request.update.model_dump_json(by_alias=True)
                 )
 
         return pending_request.update
