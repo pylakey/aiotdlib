@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetSavedNotificationSounds(BaseObject):
     """
-    Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
+    Returns the list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
     """
 
     ID: typing.Literal["getSavedNotificationSounds"] = Field(

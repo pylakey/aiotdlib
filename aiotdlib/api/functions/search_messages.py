@@ -27,6 +27,8 @@ class SearchMessages(BaseObject):
     :type offset: :class:`String`
     :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     :type limit: :class:`Int32`
+    :param only_in_channels: Pass true to search only for messages in channels
+    :type only_in_channels: :class:`Bool`
     :param min_date: If not 0, the minimum date of the messages to return
     :type min_date: :class:`Int32`
     :param max_date: If not 0, the maximum date of the messages to return
@@ -41,6 +43,7 @@ class SearchMessages(BaseObject):
     query: String
     offset: String
     limit: Int32
+    only_in_channels: Bool = False
     min_date: Int32 = 0
     max_date: Int32 = 0
     chat_list: typing.Optional[ChatList] = None

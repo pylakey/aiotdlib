@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetLogTags(BaseObject):
     """
-    Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
+    Returns the list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
     """
 
     ID: typing.Literal["getLogTags"] = Field("getLogTags", validation_alias="@type", alias="@type")

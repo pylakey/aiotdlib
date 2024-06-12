@@ -40,4 +40,4 @@ class GetMapThumbnailFile(BaseObject):
     width: Int32
     height: Int32
     scale: Int32
-    chat_id: Int53
+    chat_id: Int53 = 0

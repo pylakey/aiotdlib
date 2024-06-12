@@ -18,7 +18,7 @@ from ..types.all import (
 
 class SetStickerKeywords(BaseObject):
     """
-    Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+    Changes the list of keywords of a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
 
     :param sticker: Sticker
     :type sticker: :class:`InputFile`

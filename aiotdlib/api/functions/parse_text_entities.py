@@ -18,7 +18,7 @@ from ..types.all import (
 
 class ParseTextEntities(BaseObject):
     """
-    Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
+    Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
 
     :param text: The text to parse
     :type text: :class:`String`

@@ -67,7 +67,7 @@ class TDLibLogVerbosity(IntEnum):
 
 
 class CoreTDJson:
-    def __init__(self, library_path: str | pathlib.Path, verbosity: TDLibLogVerbosity = TDLibLogVerbosity.ERROR):
+    def __init__(self, library_path: str | pathlib.Path):
         self.logger = logging.getLogger(__name__)
 
         if not bool(library_path):
@@ -117,8 +117,6 @@ class CoreTDJson:
         self._td_set_log_message_callback.argtypes = [LogMessageCallback]
         self._td_set_log_message_callback(LogMessageCallback(self.__log_message_callback))
 
-        self.set_log_verbosity(verbosity)
-
     def __log_message_callback(self, verbosity_level: int, message: str) -> None:
         if verbosity_level == TDLibLogVerbosity.FATAL:
             self.logger.error('[TDLib FATAL ERROR]: %s', message)
@@ -162,20 +160,14 @@ class CoreTDJson:
         self.logger.debug('Created new client ID: %d', client_id)
         return client_id
 
-    def set_log_verbosity(self, verbosity_level: TDLibLogVerbosity) -> typing.Optional[dict]:
-        return self.execute({
-            '@type': 'setLogVerbosityLevel',
-            'new_verbosity_level': verbosity_level.value
-        })
-
     def close_client(self, client_id: int):
         # TDLib client instances are destroyed automatically after they are closed
         self.send(client_id, {'@type': 'close'})
 
 
 class TDJson(CoreTDJson):
-    def __init__(self, library_path: str | pathlib.Path, verbosity: TDLibLogVerbosity = TDLibLogVerbosity.ERROR):
-        super().__init__(library_path, verbosity)
+    def __init__(self, library_path: str | pathlib.Path):
+        super().__init__(library_path)
         self._subscribed_clients: dict[int, TDJsonClient] = {}
         self._listen_task: typing.Optional[asyncio.Task] = None
 
@@ -213,13 +205,9 @@ DEFAULT_TDJSON = TDJson(library_path=_get_bundled_tdjson_lib_path())
 
 class TDJsonClient:
     @classmethod
-    def create(
-            cls,
-            library_path: typing.Optional[str] = None,
-            tdlib_verbosity: TDLibLogVerbosity = TDLibLogVerbosity.ERROR,
-    ):
+    def create(cls, library_path: typing.Optional[str] = None):
         if bool(library_path):
-            td_json = TDJson(library_path=library_path, verbosity=tdlib_verbosity)
+            td_json = TDJson(library_path=library_path)
         else:
             td_json = DEFAULT_TDJSON
 

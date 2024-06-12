@@ -14,9 +14,9 @@ from ..types.base import *
 
 class DeleteStickerSet(BaseObject):
     """
-    Deleted a sticker set; for bots only
+    Completely deletes a sticker set
 
-    :param name: Sticker set name
+    :param name: Sticker set name. The sticker set must be owned by the current user
     :type name: :class:`String`
     """
 

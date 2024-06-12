@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetChatInviteLinkCounts(BaseObject):
     """
-    Returns list of chat administrators with number of their invite links. Requires owner privileges in the chat
+    Returns the list of chat administrators with number of their invite links. Requires owner privileges in the chat
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

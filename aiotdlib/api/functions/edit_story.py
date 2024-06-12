@@ -20,8 +20,10 @@ from ..types.all import (
 
 class EditStory(BaseObject):
     """
-    Changes content and caption of a previously sent story
+    Changes content and caption of a story. Can be called only if story.can_be_edited == true
 
+    :param story_sender_chat_id: Identifier of the chat that posted the story
+    :type story_sender_chat_id: :class:`Int53`
     :param story_id: Identifier of the story to edit
     :type story_id: :class:`Int32`
     :param content: New content of the story; pass null to keep the current content, defaults to None
@@ -33,6 +35,7 @@ class EditStory(BaseObject):
     """
 
     ID: typing.Literal["editStory"] = Field("editStory", validation_alias="@type", alias="@type")
+    story_sender_chat_id: Int53
     story_id: Int32
     content: typing.Optional[InputStoryContent] = None
     areas: typing.Optional[InputStoryAreas] = None

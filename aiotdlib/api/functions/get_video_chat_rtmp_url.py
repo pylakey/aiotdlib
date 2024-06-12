@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetVideoChatRtmpUrl(BaseObject):
     """
-    Returns RTMP URL for streaming to the chat; requires creator privileges
+    Returns RTMP URL for streaming to the chat; requires owner privileges
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

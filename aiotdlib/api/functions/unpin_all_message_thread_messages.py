@@ -14,7 +14,7 @@ from ..types.base import *
 
 class UnpinAllMessageThreadMessages(BaseObject):
     """
-    Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
+    Removes all pinned messages from a forum topic; requires can_pin_messages member right in the supergroup
 
     :param chat_id: Identifier of the chat
     :type chat_id: :class:`Int53`

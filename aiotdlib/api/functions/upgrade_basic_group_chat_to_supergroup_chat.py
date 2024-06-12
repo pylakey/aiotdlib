@@ -14,7 +14,7 @@ from ..types.base import *
 
 class UpgradeBasicGroupChatToSupergroupChat(BaseObject):
     """
-    Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group
+    Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires owner privileges. Deactivates the original basic group
 
     :param chat_id: Identifier of the chat to upgrade
     :type chat_id: :class:`Int53`

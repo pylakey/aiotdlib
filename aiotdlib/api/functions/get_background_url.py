@@ -22,7 +22,7 @@ class GetBackgroundUrl(BaseObject):
 
     :param name: Background name
     :type name: :class:`String`
-    :param type_: Background type
+    :param type_: Background type; backgroundTypeChatTheme isn't supported
     :type type_: :class:`BackgroundType`
     """
 

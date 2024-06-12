@@ -20,7 +20,7 @@ class ImportMessages(BaseObject):
     """
     Imports messages exported from another app
 
-    :param chat_id: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+    :param chat_id: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info member right
     :type chat_id: :class:`Int53`
     :param message_file: File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
     :type message_file: :class:`InputFile`

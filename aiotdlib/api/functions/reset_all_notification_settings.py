@@ -14,7 +14,7 @@ from ..types.base import *
 
 class ResetAllNotificationSettings(BaseObject):
     """
-    Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown
+    Resets all chat and scope notification settings to their default values. By default, all chats are unmuted and message previews are shown
     """
 
     ID: typing.Literal["resetAllNotificationSettings"] = Field(

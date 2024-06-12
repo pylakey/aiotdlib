@@ -14,7 +14,7 @@ from ..types.base import *
 
 class ToggleGeneralForumTopicIsHidden(BaseObject):
     """
-    Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
+    Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics right in the supergroup
 
     :param chat_id: Identifier of the chat
     :type chat_id: :class:`Int53`

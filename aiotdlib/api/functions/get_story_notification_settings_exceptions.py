@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetStoryNotificationSettingsExceptions(BaseObject):
     """
-    Returns list of chats with non-default notification settings for stories
+    Returns the list of chats with non-default notification settings for stories
     """
 
     ID: typing.Literal["getStoryNotificationSettingsExceptions"] = Field(

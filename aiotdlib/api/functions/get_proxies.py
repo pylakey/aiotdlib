@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetProxies(BaseObject):
     """
-    Returns list of proxies that are currently set up. Can be called before authorization
+    Returns the list of proxies that are currently set up. Can be called before authorization
     """
 
     ID: typing.Literal["getProxies"] = Field("getProxies", validation_alias="@type", alias="@type")

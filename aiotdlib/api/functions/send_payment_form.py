@@ -29,10 +29,10 @@ class SendPaymentForm(BaseObject):
     :type order_info_id: :class:`String`
     :param shipping_option_id: Identifier of a chosen shipping option, if applicable
     :type shipping_option_id: :class:`String`
-    :param credentials: The credentials chosen by user for payment
-    :type credentials: :class:`InputCredentials`
     :param tip_amount: Chosen by the user amount of tip in the smallest units of the currency
     :type tip_amount: :class:`Int53`
+    :param credentials: The credentials chosen by user for payment; pass null for a payment in Telegram stars, defaults to None
+    :type credentials: :class:`InputCredentials`, optional
     """
 
     ID: typing.Literal["sendPaymentForm"] = Field("sendPaymentForm", validation_alias="@type", alias="@type")
@@ -40,5 +40,5 @@ class SendPaymentForm(BaseObject):
     payment_form_id: Int64
     order_info_id: String
     shipping_option_id: String
-    credentials: InputCredentials
     tip_amount: Int53
+    credentials: typing.Optional[InputCredentials] = None

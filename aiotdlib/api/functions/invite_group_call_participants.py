@@ -14,7 +14,7 @@ from ..types.base import *
 
 class InviteGroupCallParticipants(BaseObject):
     """
-    Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
+    Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats
 
     :param group_call_id: Group call identifier
     :type group_call_id: :class:`Int32`

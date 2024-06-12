@@ -18,7 +18,7 @@ from ..types.all import (
 
 class CreateForumTopic(BaseObject):
     """
-    Creates a topic in a forum supergroup chat; requires can_manage_topics rights in the supergroup
+    Creates a topic in a forum supergroup chat; requires can_manage_topics administrator or can_create_topics member right in the supergroup
 
     :param chat_id: Identifier of the chat
     :type chat_id: :class:`Int53`

@@ -18,7 +18,7 @@ from ..types.all import (
 
 class BanChatMember(BaseObject):
     """
-    Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
+    Bans a member in a chat; requires can_restrict_members administrator right. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`
@@ -33,5 +33,5 @@ class BanChatMember(BaseObject):
     ID: typing.Literal["banChatMember"] = Field("banChatMember", validation_alias="@type", alias="@type")
     chat_id: Int53
     member_id: MessageSender
-    banned_until_date: Int32
+    banned_until_date: Int32 = 0
     revoke_messages: Bool = False

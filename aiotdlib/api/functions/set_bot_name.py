@@ -26,5 +26,5 @@ class SetBotName(BaseObject):
 
     ID: typing.Literal["setBotName"] = Field("setBotName", validation_alias="@type", alias="@type")
     bot_user_id: Int53
-    language_code: String
+    language_code: String = ""
     name: String = Field("", max_length=64)

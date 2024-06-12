@@ -14,7 +14,7 @@ from ..types.base import *
 
 class SetPinnedForumTopics(BaseObject):
     """
-    Changes the order of pinned forum topics
+    Changes the order of pinned forum topics; requires can_manage_topics right in the supergroup
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

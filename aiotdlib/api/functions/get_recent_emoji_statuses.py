@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetRecentEmojiStatuses(BaseObject):
     """
-    Returns recent emoji statuses
+    Returns recent emoji statuses for self status
     """
 
     ID: typing.Literal["getRecentEmojiStatuses"] = Field(

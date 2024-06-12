@@ -28,6 +28,8 @@ class GetChatSparseMessagePositions(BaseObject):
     :type from_message_id: :class:`Int53`
     :param limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
     :type limit: :class:`Int32`
+    :param saved_messages_topic_id: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
+    :type saved_messages_topic_id: :class:`Int53`
     """
 
     ID: typing.Literal["getChatSparseMessagePositions"] = Field(
@@ -37,3 +39,4 @@ class GetChatSparseMessagePositions(BaseObject):
     filter_: SearchMessagesFilter = Field(..., alias="filter")
     from_message_id: Int53
     limit: Int32
+    saved_messages_topic_id: Int53 = 0

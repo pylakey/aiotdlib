@@ -10,9 +10,9 @@ from pydantic import BaseModel
 from pydantic import ConfigDict
 from pydantic import Field
 
-INT32_MAX_VALUE = 2 ** 31  # Unsigned INT32
-INT53_MAX_VALUE = 2 ** 52  # Unsigned INT53
-INT64_MAX_VALUE = DOUBLE64_MAX_VALUE = 2 ** 63  # Unsigned INT64
+INT32_MAX_VALUE = 2**31  # Unsigned INT32
+INT53_MAX_VALUE = 2**52  # Unsigned INT53
+INT64_MAX_VALUE = DOUBLE64_MAX_VALUE = 2**63  # Unsigned INT64
 INT32_MIN_VALUE = -INT32_MAX_VALUE
 INT53_MIN_VALUE = -INT53_MAX_VALUE
 INT64_MIN_VALUE = DOUBLE64_MIN_VALUE = -INT64_MAX_VALUE
@@ -34,7 +34,7 @@ class BaseObject(BaseModel):
         arbitrary_types_allowed=True,
         str_strip_whitespace=True,
         use_enum_values=True,
-        populate_by_name=True,
+        # populate_by_name=True,
     )
 
     EXTRA: Optional[dict[str, Any]] = Field({}, alias="@extra", validation_alias="@extra")

@@ -18,7 +18,7 @@ from ..types.all import (
 
 class EditMessageReplyMarkup(BaseObject):
     """
-    Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
+    Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
 
     :param chat_id: The chat the message belongs to
     :type chat_id: :class:`Int53`

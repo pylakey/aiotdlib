@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetVideoChatAvailableParticipants(BaseObject):
     """
-    Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
+    Returns the list of participant identifiers, on whose behalf a video chat in the chat can be joined
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

@@ -14,7 +14,7 @@ from ..types.base import *
 
 class ToggleGroupCallEnabledStartNotification(BaseObject):
     """
-    Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only
+    Toggles whether the current user will receive a notification when the group call starts; scheduled group calls only
 
     :param group_call_id: Group call identifier
     :type group_call_id: :class:`Int32`

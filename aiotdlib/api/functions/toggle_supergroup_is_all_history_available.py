@@ -14,7 +14,7 @@ from ..types.base import *
 
 class ToggleSupergroupIsAllHistoryAvailable(BaseObject):
     """
-    Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right
+    Toggles whether the message history of a supergroup is available to new members; requires can_change_info member right
 
     :param supergroup_id: The identifier of the supergroup
     :type supergroup_id: :class:`Int53`

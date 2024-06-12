@@ -14,7 +14,7 @@ from ..types.base import *
 
 class SetChatSlowModeDelay(BaseObject):
     """
-    Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights
+    Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members right
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

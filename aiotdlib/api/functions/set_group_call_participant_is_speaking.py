@@ -28,5 +28,5 @@ class SetGroupCallParticipantIsSpeaking(BaseObject):
         "setGroupCallParticipantIsSpeaking", validation_alias="@type", alias="@type"
     )
     group_call_id: Int32
-    audio_source: Int32
+    audio_source: Int32 = 0
     is_speaking: Bool = False

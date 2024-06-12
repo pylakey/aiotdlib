@@ -13,7 +13,7 @@ from ..types.base import *
 
 from ..types.all import (
     InputMessageContent,
-    MessageReplyTo,
+    InputMessageReplyTo,
     MessageSender,
 )
 
@@ -30,8 +30,8 @@ class AddLocalMessage(BaseObject):
     :type input_message_content: :class:`InputMessageContent`
     :param disable_notification: Pass true to disable notification for the message
     :type disable_notification: :class:`Bool`
-    :param reply_to: Identifier of the replied message or story; pass null if none, defaults to None
-    :type reply_to: :class:`MessageReplyTo`, optional
+    :param reply_to: Information about the message or story to be replied; pass null if none, defaults to None
+    :type reply_to: :class:`InputMessageReplyTo`, optional
     """
 
     ID: typing.Literal["addLocalMessage"] = Field("addLocalMessage", validation_alias="@type", alias="@type")
@@ -39,4 +39,4 @@ class AddLocalMessage(BaseObject):
     sender_id: MessageSender
     input_message_content: InputMessageContent
     disable_notification: Bool = False
-    reply_to: typing.Optional[MessageReplyTo] = None
+    reply_to: typing.Optional[InputMessageReplyTo] = None

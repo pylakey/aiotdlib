@@ -30,7 +30,7 @@ class CreateNewSupergroupChat(BaseObject):
     :type description: :class:`String`
     :param message_auto_delete_time: Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
     :type message_auto_delete_time: :class:`Int32`
-    :param for_import: Pass true to create a supergroup for importing messages using importMessage
+    :param for_import: Pass true to create a supergroup for importing messages using importMessages
     :type for_import: :class:`Bool`
     :param location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat, defaults to None
     :type location: :class:`ChatLocation`, optional

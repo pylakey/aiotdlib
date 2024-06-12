@@ -24,7 +24,7 @@ class GetSupergroupMembers(BaseObject):
     :type supergroup_id: :class:`Int53`
     :param offset: Number of users to skip
     :type offset: :class:`Int32`
-    :param limit: The maximum number of users be returned; up to 200
+    :param limit: The maximum number of users to be returned; up to 200
     :type limit: :class:`Int32`
     :param filter_: The type of users to return; pass null to use supergroupMembersFilterRecent, defaults to None
     :type filter_: :class:`SupergroupMembersFilter`, optional

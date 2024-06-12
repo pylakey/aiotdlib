@@ -18,7 +18,7 @@ from ..types.all import (
 
 class StopPoll(BaseObject):
     """
-    Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set
+    Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
 
     :param chat_id: Identifier of the chat to which the poll belongs
     :type chat_id: :class:`Int53`

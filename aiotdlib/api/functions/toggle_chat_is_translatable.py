@@ -14,7 +14,7 @@ from ..types.base import *
 
 class ToggleChatIsTranslatable(BaseObject):
     """
-    Changes the translatable state of a chat; for Telegram Premium users only
+    Changes the translatable state of a chat
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

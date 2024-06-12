@@ -14,7 +14,7 @@ from ..types.base import *
 
 class ToggleForumTopicIsClosed(BaseObject):
     """
-    Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+    Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic
 
     :param chat_id: Identifier of the chat
     :type chat_id: :class:`Int53`

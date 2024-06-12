@@ -14,7 +14,7 @@ from ..types.base import *
 
 class ClearRecentEmojiStatuses(BaseObject):
     """
-    Clears the list of recently used emoji statuses
+    Clears the list of recently used emoji statuses for self status
     """
 
     ID: typing.Literal["clearRecentEmojiStatuses"] = Field(

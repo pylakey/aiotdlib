@@ -12,7 +12,7 @@ from pydantic import Field
 from ..types.base import *
 
 from ..types.all import (
-    MessageReplyTo,
+    InputMessageReplyTo,
     ThemeParameters,
 )
 
@@ -29,12 +29,12 @@ class OpenWebApp(BaseObject):
     :type url: :class:`String`
     :param application_name: Short name of the application; 0-64 English letters, digits, and underscores
     :type application_name: :class:`String`
-    :param message_thread_id: If not 0, a message thread identifier in which the message will be sent
+    :param message_thread_id: If not 0, the message thread identifier in which the message will be sent
     :type message_thread_id: :class:`Int53`
     :param theme: Preferred Web App theme; pass null to use the default theme, defaults to None
     :type theme: :class:`ThemeParameters`, optional
-    :param reply_to: Identifier of the replied message or story for the message sent by the Web App; pass null if none, defaults to None
-    :type reply_to: :class:`MessageReplyTo`, optional
+    :param reply_to: Information about the message or story to be replied in the message sent by the Web App; pass null if none, defaults to None
+    :type reply_to: :class:`InputMessageReplyTo`, optional
     """
 
     ID: typing.Literal["openWebApp"] = Field("openWebApp", validation_alias="@type", alias="@type")
@@ -44,4 +44,4 @@ class OpenWebApp(BaseObject):
     application_name: String
     message_thread_id: Int53 = 0
     theme: typing.Optional[ThemeParameters] = None
-    reply_to: typing.Optional[MessageReplyTo] = None
+    reply_to: typing.Optional[InputMessageReplyTo] = None

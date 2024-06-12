@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetForumTopicDefaultIcons(BaseObject):
     """
-    Returns list of custom emojis, which can be used as forum topic icon by all users
+    Returns the list of custom emojis, which can be used as forum topic icon by all users
     """
 
     ID: typing.Literal["getForumTopicDefaultIcons"] = Field(

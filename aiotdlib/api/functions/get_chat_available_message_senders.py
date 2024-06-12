@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetChatAvailableMessageSenders(BaseObject):
     """
-    Returns list of message sender identifiers, which can be used to send messages in a chat
+    Returns the list of message sender identifiers, which can be used to send messages in a chat
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

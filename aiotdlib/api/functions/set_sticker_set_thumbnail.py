@@ -13,19 +13,22 @@ from ..types.base import *
 
 from ..types.all import (
     InputFile,
+    StickerFormat,
 )
 
 
 class SetStickerSetThumbnail(BaseObject):
     """
-    Sets a sticker set thumbnail; for bots only
+    Sets a sticker set thumbnail
 
-    :param user_id: Sticker set owner
+    :param user_id: Sticker set owner; ignored for regular users
     :type user_id: :class:`Int53`
-    :param name: Sticker set name
+    :param name: Sticker set name. The sticker set must be owned by the current user
     :type name: :class:`String`
-    :param thumbnail: Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set, defaults to None
+    :param thumbnail: Thumbnail to set; pass null to remove the sticker set thumbnail, defaults to None
     :type thumbnail: :class:`InputFile`, optional
+    :param format: Format of the thumbnail; pass null if thumbnail is removed, defaults to None
+    :type format: :class:`StickerFormat`, optional
     """
 
     ID: typing.Literal["setStickerSetThumbnail"] = Field(
@@ -34,3 +37,4 @@ class SetStickerSetThumbnail(BaseObject):
     user_id: Int53
     name: String
     thumbnail: typing.Optional[InputFile] = None
+    format: typing.Optional[StickerFormat] = None

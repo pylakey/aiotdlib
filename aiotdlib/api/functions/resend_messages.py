@@ -11,6 +11,10 @@ from pydantic import Field
 
 from ..types.base import *
 
+from ..types.all import (
+    InputTextQuote,
+)
+
 
 class ResendMessages(BaseObject):
     """
@@ -20,8 +24,11 @@ class ResendMessages(BaseObject):
     :type chat_id: :class:`Int53`
     :param message_ids: Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
     :type message_ids: :class:`Vector[Int53]`
+    :param quote: New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false, defaults to None
+    :type quote: :class:`InputTextQuote`, optional
     """
 
     ID: typing.Literal["resendMessages"] = Field("resendMessages", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_ids: Vector[Int53]
+    quote: typing.Optional[InputTextQuote] = None

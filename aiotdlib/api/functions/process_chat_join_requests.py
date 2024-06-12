@@ -28,5 +28,5 @@ class ProcessChatJoinRequests(BaseObject):
         "processChatJoinRequests", validation_alias="@type", alias="@type"
     )
     chat_id: Int53
-    invite_link: String
+    invite_link: String = ""
     approve: Bool = False

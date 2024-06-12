@@ -13,6 +13,7 @@ from typing import Union
 import pydantic.errors
 
 from .api import API
+from .api import AddProxy
 from .api import AioTDLibError
 from .api import AuthorizationState
 from .api import BaseObject
@@ -28,7 +29,7 @@ from .api import EmailAddressAuthenticationCode
 from .api import Error
 from .api import FormattedText
 from .api import GetAuthorizationState
-from .api import GetProxies
+from .api import GetCurrentState
 from .api import InputMessageAnimation
 from .api import InputMessageAudio
 from .api import InputMessageContent
@@ -40,6 +41,7 @@ from .api import InputMessageVideo
 from .api import InputMessageVideoNote
 from .api import InputMessageVoiceNote
 from .api import InputThumbnail
+from .api import LinkPreviewOptions
 from .api import Message
 from .api import MessageReplyToMessage
 from .api import MessageSchedulingStateSendAtDate
@@ -54,12 +56,12 @@ from .api import OptionValueInteger
 from .api import OptionValueString
 from .api import ParseTextEntities
 from .api import PhoneNumberAuthenticationSettings
-from .api import ProxyType
 from .api import ProxyTypeHttp
 from .api import ProxyTypeMtproto
 from .api import ProxyTypeSocks5
 from .api import ReplyMarkup
 from .api import SecretChat
+from .api import SetLogVerbosityLevel
 from .api import SetOption
 from .api import SetTdlibParameters
 from .api import Supergroup
@@ -114,10 +116,7 @@ class Client:
         self._middlewares_handlers: list[MiddlewareCallable] = []
         self._update_task: typing.Optional[asyncio.Task[None]] = None
         self.settings = settings or ClientSettings()
-        self.tdjson_client = TDJsonClient.create(
-            library_path=self.settings.library_path,
-            tdlib_verbosity=self.settings.tdlib_verbosity
-        )
+        self.tdjson_client = TDJsonClient.create(self.settings.library_path)
         self.logger = logging.getLogger(f"{self.__class__.__name__}_{self.tdjson_client.client_id}")
         self.api = API(self)
         self.cache = ClientCache(self)
@@ -125,6 +124,73 @@ class Client:
     @property
     def is_bot(self) -> bool:
         return bool(self.settings.bot_token)
+
+    def add_event_handler(
+            self,
+            handler: HandlerCallable,
+            update_type: str = API.Types.ANY,
+            *,
+            filters: FilterCallable = None
+    ) -> Handler:
+        """
+            Registering event handler
+            You can register many handlers for certain event type
+        """
+        if self._updates_handlers.get(update_type) is None:
+            self._updates_handlers[update_type] = set()
+
+        handler = Handler(handler, filters=filters)
+        self._updates_handlers[update_type].add(handler)
+        return handler
+
+    def on_event(self, update_type: str = API.Types.ANY, *, filters: FilterCallable = None):
+        def decorator(function: HandlerCallable) -> HandlerCallable:
+            self.add_event_handler(function, update_type, filters=filters)
+            return function
+
+        return decorator
+
+    def remove_event_handler(self, handler: Handler, update_type: str = API.Types.ANY):
+        if self._updates_handlers.get(update_type) is None:
+            return
+
+        self._updates_handlers.get(update_type).discard(handler)
+
+    def add_middleware(self, middleware: MiddlewareCallable):
+        """
+            Register middleware.
+            Note that middleware would be called for EVERY EVENT.
+            Do not use them for long-running tasks as it could be heavy performance hit
+            You can add as much middlewares as you want.
+            They would be called in order you've added them
+        """
+
+        self._middlewares.append(middleware)
+        return middleware
+
+    def text_message_handler(self, function: HandlerCallable = None):
+        """
+        Registers event handler with predefined filter `Filters.text`
+        which allows only UpdateNewMessage with MessageText content
+
+        Note: this method is universal and can be used directly or as decorator
+        """
+        if callable(function):
+            self.add_event_handler(function, API.Types.UPDATE_NEW_MESSAGE, filters=Filters.text)
+        else:
+            return self.on_event(API.Types.UPDATE_NEW_MESSAGE, filters=Filters.text)
+
+    def bot_command_handler(self, function: HandlerCallable = None, *, command: str = None):
+        """
+        Registers event handler with predefined filter Filters.bot_command
+        which allows only UpdateNewMessage with MessageText content and text of message starts with "/"
+
+        Note: this method is universal and can be used directly or as decorator
+        """
+        if callable(function):
+            self.add_event_handler(function, API.Types.UPDATE_NEW_MESSAGE, filters=Filters.bot_command(command))
+        else:
+            return self.on_event(API.Types.UPDATE_NEW_MESSAGE, filters=Filters.bot_command(command))
 
     # Magic methods
     async def __aenter__(self) -> 'Client':
@@ -203,7 +269,7 @@ class Client:
                         await self._on_authorization_state_update(update.authorization_state)
                     except asyncio.CancelledError:
                         raise
-                    except BaseException as e:
+                    except Exception as e:
                         self.logger.error(
                             f'Unable to handle authorization state update {update.model_dump_json()}! {e}',
                             exc_info=True
@@ -216,14 +282,14 @@ class Client:
                     await self._handle_pending_request(update)
                 except asyncio.CancelledError:
                     raise
-                except BaseException as e:
+                except Exception as e:
                     self.logger.error(f'Unable to handle pending request {update}! {e}', exc_info=True)
 
                 try:
                     await self._handle_update(update)
                 except asyncio.CancelledError:
                     raise
-                except BaseException as e:
+                except Exception as e:
                     self.logger.error(f'Unable to handle update {update}! {e}', exc_info=True)
         except asyncio.CancelledError:
             self._pending_requests.clear()
@@ -233,66 +299,40 @@ class Client:
     async def _setup_proxy(self):
         if not bool(self.settings.proxy_settings):
             # If proxy is not set disabling all configured proxy
+            self.logger.info('Proxy is not set. Disabling all proxy settings.')
             await self.send(DisableProxy())
             return
-
-        self.logger.info('Retrieving all proxies list')
-        # TODO: execute is blocking
-        result = await self.execute(GetProxies())
-
-        proxy_type_by_class: dict[typing.Type[ProxyType], str] = {
-            ProxyTypeSocks5: 'socks5',
-            ProxyTypeMtproto: 'mtproto',
-            ProxyTypeHttp: 'http',
-        }
-
-        self.logger.debug(
-            f'{len(result.proxies)} proxies already set up:\n'
-            f'%s'
-            f'\n',
-            "\n".join(
-                f"{'* ' if p.is_enabled else ''}[{proxy_type_by_class.get(p.type_.__class__)}] {p.server}:{p.port}"
-                for p in result.proxies
-            )
-        )
-
-        for p in result.proxies:
-            if (
-                    p.server == self.settings.proxy_settings.host and
-                    p.port == self.settings.proxy_settings.port and
-                    proxy_type_by_class.get(p.type_.__class__) == self.settings.proxy_settings.type
-            ):
-                if not p.is_enabled:
-                    await self.api.enable_proxy(p.id)
-
-                return
-
-        if self.settings.proxy_settings.type == ClientProxyType.HTTP:
-            proxy_type = ProxyTypeHttp(
-                username=self.settings.proxy_settings.username,
-                password=self.settings.proxy_settings.password,
-                http_only=self.settings.proxy_settings.http_only
-            )
-        elif self.settings.proxy_settings.type == ClientProxyType.MTPROTO:
-            proxy_type = ProxyTypeMtproto(secret=self.settings.proxy_settings.secret)
-        elif self.settings.proxy_settings.type == ClientProxyType.SOCKS5:
-            proxy_type = ProxyTypeSocks5(
-                username=self.settings.proxy_settings.username,
-                password=self.settings.proxy_settings.password,
-            )
-        else:
-            raise ValueError(f'Unknown proxy type {self.settings.proxy_settings.type}')
 
         self.logger.info(
             f"Configuring PROXY of type {self.settings.proxy_settings.type.value}. "
             f"Server: {self.settings.proxy_settings.host}:{self.settings.proxy_settings.port}"
         )
 
-        await self.api.add_proxy(
-            enable=True,
-            server=self.settings.proxy_settings.host,
-            port=self.settings.proxy_settings.port,
-            type_=proxy_type,
+        if self.settings.proxy_settings.type == ClientProxyType.SOCKS5:
+            proxy_type = ProxyTypeSocks5(
+                username=self.settings.proxy_settings.username,
+                password=self.settings.proxy_settings.password,
+            )
+        elif self.settings.proxy_settings.type == ClientProxyType.HTTP:
+            proxy_type = ProxyTypeHttp(
+                username=self.settings.proxy_settings.username,
+                password=self.settings.proxy_settings.password,
+                http_only=self.settings.proxy_settings.http_only,
+            )
+        elif self.settings.proxy_settings.type == ClientProxyType.MTPROTO:
+            proxy_type = ProxyTypeMtproto(
+                secret=self.settings.proxy_settings.secret,
+            )
+        else:
+            raise ValueError(f'Unknown proxy type {self.settings.proxy_settings.type}')
+
+        await self.send(
+            AddProxy(
+                enable=True,
+                server=self.settings.proxy_settings.host,
+                port=self.settings.proxy_settings.port,
+                type=proxy_type,
+            )
         )
 
     async def _setup_options(self):
@@ -330,31 +370,24 @@ class Client:
         # return await self.api.get_authorization_state(request_id=AUTHORIZATION_REQUEST_ID)
 
     async def _set_tdlib_parameters(self):
-        await self._setup_options()
-        await self._setup_proxy()
-
-        result = await self.send(
+        await self.send(
             SetTdlibParameters(
-                database_directory=str(self.settings.files_directory / "database"),
-                files_directory=str(self.settings.files_directory / "files"),
                 database_encryption_key=self.settings.database_encryption_key,
                 api_id=self.settings.api_id,
                 api_hash=self.settings.api_hash.get_secret_value(),
                 system_language_code=self.settings.system_language_code,
                 device_model=self.settings.device_model,
-                system_version=self.settings.system_version,
                 application_version=self.settings.application_version,
                 use_test_dc=self.settings.use_test_dc,
+                database_directory=str(self.settings.files_directory / "database"),
+                files_directory=str(self.settings.files_directory / "files"),
                 use_file_database=self.settings.use_file_database,
                 use_chat_info_database=self.settings.use_chat_info_database,
                 use_message_database=self.settings.use_message_database,
                 use_secret_chats=self.settings.use_secret_chats,
-                enable_storage_optimizer=self.settings.enable_storage_optimizer,
-                ignore_file_names=self.settings.ignore_file_names,
+                system_version=self.settings.system_version,
             )
         )
-
-        return result
 
     async def _set_authentication_phone_number_or_check_bot_token(self):
         await self.send(SetOption(name='online', value=OptionValueBoolean(value=True)))
@@ -508,11 +541,39 @@ class Client:
         if bool(action):
             await action()
 
+    async def _cleanup(self):
+        if bool(self._update_task) and not self._update_task.cancelled():
+            self.logger.info("Cancelling updates loop task")
+            self._update_task.cancel()
+
+            try:
+                await self._update_task
+            except asyncio.CancelledError:
+                pass
+
+        if bool(self.cache):
+            self.cache.clear()
+
+        if bool(self.tdjson_client):
+            # TODO: gracefully close current tdjson client
+            self.logger.info('Gracefully closing TDLib connection')
+            await self.tdjson_client.close()
+
+        self._running = False
+
+    async def _run(self):
+        async with self:
+            await self.idle()
+
+    def run(self):
+        asyncio.run(self._run())
+
+    # Core methods
     async def send(self, query: TDLibObject):
         if not self._running:
             raise RuntimeError('Client not started')
 
-        query_json = query.model_dump_json(by_alias=True)
+        query_json = query.model_dump_json(by_alias=True)  # Exclude unset??
         self.logger.debug(f">>>>> {query.ID} %s", query_json)
         await self.tdjson_client.send(query_json)
 
@@ -588,34 +649,21 @@ class Client:
         self._running = True
 
         try:
+            self.logger.info('Setting log verbosity level')
+            await self.execute(SetLogVerbosityLevel(new_verbosity_level=self.settings.tdlib_verbosity))
+            self.logger.info('Setting up proxy')
+            await self._setup_proxy()
+            self.logger.info('Setting up Options')
+            await self._setup_options()
             self.logger.info("Initialize authorization process")
             await self.authorize()
         except asyncio.CancelledError:
             await self._cleanup()
         else:
             self.logger.info('Authorization is completed...')
+            await self.send(GetCurrentState())
 
         return self
-
-    async def _cleanup(self):
-        if bool(self._update_task) and not self._update_task.cancelled():
-            self.logger.info("Cancelling updates loop task")
-            self._update_task.cancel()
-
-            try:
-                await self._update_task
-            except asyncio.CancelledError:
-                pass
-
-        if bool(self.cache):
-            self.cache.clear()
-
-        if bool(self.tdjson_client):
-            # TODO: gracefully close current tdjson client
-            self.logger.info('Gracefully closing TDLib connection')
-            await self.tdjson_client.close()
-
-        self._running = False
 
     async def idle(self):
         try:
@@ -628,14 +676,10 @@ class Client:
         self.logger.info('Stopping telegram client...')
         await self._cleanup()
 
-    async def _run(self):
-        async with self:
-            await self.idle()
-
-    def run(self):
-        asyncio.run(self._run())
-
     # Cache related methods
+    async def get_my_id(self) -> int:
+        return await self.get_option_value('my_id')
+
     async def get_option_value(self, name: str) -> typing.Union[str, int, bool, None]:
         """
         Returns the value of an option by its name.
@@ -761,6 +805,8 @@ class Client:
             protect_content: bool = False,
             update_order_of_installed_sticker_sets: bool = False,
             sending_id: int = 0,
+            effect_id: Optional[int] = None,
+            only_preview: bool = False,
     ):
         """
         Sends a message. Returns the sent message
@@ -781,23 +827,36 @@ class Client:
         :param disable_notification: Pass true to disable notification for the message
         :type disable_notification: :class:`bool`
 
-        :param send_when_online: When True, the message will be sent when the peer will be online. Applicable to private chats only and when the exact online status of the peer is known
+        :param send_when_online: When True, the message will be sent when the peer will be online.
+          Applicable to private chats only and when the exact online status of the peer is known
         :type send_when_online: :class:`bool`
 
-        :param send_date: Date the message will be sent. The date must be within 367 days in the future. If send_date passed send_when_online will be ignored
+        :param send_date: Date the message will be sent. The date must be within 367 days in the future.
+          If send_date passed send_when_online will be ignored
         :type send_date: :class:`int`
 
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`)
+          will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
-        :param protect_content: Pass true if the content of the message must be protected from forwarding and saving; for bots only
+        :param protect_content: Pass true if the content of the message must be protected from forwarding and saving;
+          for bots only
         :type protect_content: :class:`bool`
 
-        :param update_order_of_installed_sticker_sets: Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum
+        :param update_order_of_installed_sticker_sets: Pass true if the user explicitly chosen a sticker
+          or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum
         :type update_order_of_installed_sticker_sets: :class:`bool`
 
-        :param sending_id: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+        :param sending_id: Non-persistent identifier, which will be returned back in messageSendingStatePending object
+          and can be used to match sent messages and corresponding updateNewMessage updates
         :type sending_id: :class:`int`
+
+        :param effect_id: Identifier of the effect to apply to the message; applicable only to sendMessage
+          and sendMessageAlbum in private chats, defaults to None
+        :type effect_id: :class:`int`
+
+        :param only_preview: Pass true to get a fake message instead of actually sending them
+        :type only_preview: bool
 
         """
 
@@ -821,7 +880,9 @@ class Client:
                 protect_content=protect_content,
                 scheduling_state=scheduling_state,
                 update_order_of_installed_sticker_sets=update_order_of_installed_sticker_sets,
-                sending_id=sending_id
+                sending_id=sending_id,
+                effect_id=effect_id,
+                only_preview=only_preview,
             ),
             reply_markup=reply_markup,
             input_message_content=content,
@@ -836,13 +897,14 @@ class Client:
             reply_to_message_id: int = None,
             reply_markup: ReplyMarkup = None,
             disable_notification: bool = False,
-            disable_web_page_preview: bool = False,
+            link_preview_options: Optional[LinkPreviewOptions] = None,
             clear_draft: bool = True,
             send_when_online: bool = False,
             send_date: int = None,
             request_timeout: int = None,
             protect_content: bool = False,
             sending_id: int = 0,
+            only_preview: bool = False,
     ) -> Message:
         """
         Sends a text message. Returns the sent message
@@ -863,8 +925,8 @@ class Client:
             disable_notification (bool)
                 Pass true to disable notification for the message
 
-            disable_web_page_preview (bool)
-                True, if rich web page previews for URLs in the message text should be disabled
+            link_preview_options (LinkPreviewOptions)
+                Options to be used for generation of a link preview
 
             clear_draft (bool)
                 True, if a chat message draft should be deleted
@@ -884,13 +946,20 @@ class Client:
             protect_content: (bool)
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
+            sending_id: (int)
+                Non-persistent identifier, which will be returned back in messageSendingStatePending object
+                and can be used to match sent messages and corresponding updateNewMessage updates
+
+            only_preview: (bool)
+                Pass true to get a fake message instead of actually sending them
+
         """
         return await self._send_message(
             chat_id=chat_id,
             content=InputMessageText(
                 text=(await self.parse_text(text)),
-                disable_web_page_preview=disable_web_page_preview,
                 clear_draft=clear_draft,
+                link_preview_options=link_preview_options,
             ),
             reply_to_message_id=reply_to_message_id,
             reply_markup=reply_markup,
@@ -899,7 +968,8 @@ class Client:
             send_date=send_date,
             request_timeout=request_timeout,
             protect_content=protect_content,
-            sending_id=sending_id
+            sending_id=sending_id,
+            only_preview=only_preview
         )
 
     async def edit_text(
@@ -909,7 +979,7 @@ class Client:
             text: str,
             *,
             reply_markup: ReplyMarkup = None,
-            disable_web_page_preview: bool = False,
+            link_preview_options: Optional[LinkPreviewOptions] = None,
             clear_draft: bool = True,
             request_timeout: int = None
     ):
@@ -930,8 +1000,8 @@ class Client:
             reply_markup (ReplyMarkup)
                 The new message reply markup; for bots only
 
-            disable_web_page_preview (bool)
-                True, if rich web page previews for URLs in the message text should be disabled
+            link_preview_options (LinkPreviewOptions)
+                Options to be used for generation of a link preview
 
             clear_draft (bool)
                 True, if a chat message draft should be deleted
@@ -949,8 +1019,8 @@ class Client:
             reply_markup=reply_markup,
             input_message_content=InputMessageText(
                 text=formatted_text,
-                disable_web_page_preview=disable_web_page_preview,
                 clear_draft=clear_draft,
+                link_preview_options=link_preview_options,
             ),
             request_timeout=request_timeout
         )
@@ -976,6 +1046,7 @@ class Client:
             request_timeout: int = None,
             protect_content: bool = False,
             sending_id: int = 0,
+            only_preview: bool = False,
     ):
         """
         Sends a photo with caption to chat. Returns the sent message
@@ -1035,6 +1106,13 @@ class Client:
             protect_content: (bool)
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
+            sending_id: (int)
+                Non-persistent identifier, which will be returned back in messageSendingStatePending object
+                and can be used to match sent messages and corresponding updateNewMessage updates
+
+            only_preview: (bool)
+                Pass true to get a fake message instead of actually sending them
+
         """
         return await self._send_message(
             chat_id=chat_id,
@@ -1054,7 +1132,8 @@ class Client:
             send_date=send_date,
             request_timeout=request_timeout,
             protect_content=protect_content,
-            sending_id=sending_id
+            sending_id=sending_id,
+            only_preview=only_preview
         )
 
     async def send_video(
@@ -1080,6 +1159,7 @@ class Client:
             request_timeout: int = None,
             protect_content: bool = False,
             sending_id: int = 0,
+            only_preview: bool = False,
     ):
         """
         Sends a video with caption to chat. Returns the sent message
@@ -1145,6 +1225,13 @@ class Client:
             protect_content: (bool)
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
+            sending_id: (int)
+                Non-persistent identifier, which will be returned back in messageSendingStatePending object
+                and can be used to match sent messages and corresponding updateNewMessage updates
+
+            only_preview: (bool)
+                Pass true to get a fake message instead of actually sending them
+
         """
         return await self._send_message(
             chat_id=chat_id,
@@ -1166,7 +1253,8 @@ class Client:
             send_date=send_date,
             request_timeout=request_timeout,
             protect_content=protect_content,
-            sending_id=sending_id
+            sending_id=sending_id,
+            only_preview=only_preview
         )
 
     async def send_animation(
@@ -1190,6 +1278,7 @@ class Client:
             request_timeout: int = None,
             protect_content: bool = False,
             sending_id: int = 0,
+            only_preview: bool = False,
     ):
         """
         Sends an animation with caption to chat. Returns the sent message
@@ -1249,6 +1338,13 @@ class Client:
             protect_content: (bool)
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
+            sending_id: (int)
+                Non-persistent identifier, which will be returned back in messageSendingStatePending object
+                and can be used to match sent messages and corresponding updateNewMessage updates
+
+            only_preview: (bool)
+                Pass true to get a fake message instead of actually sending them
+
         """
         return await self._send_message(
             chat_id=chat_id,
@@ -1268,7 +1364,8 @@ class Client:
             send_date=send_date,
             request_timeout=request_timeout,
             protect_content=protect_content,
-            sending_id=sending_id
+            sending_id=sending_id,
+            only_preview=only_preview
         )
 
     async def send_sticker(
@@ -1290,6 +1387,7 @@ class Client:
             request_timeout: int = None,
             protect_content: bool = False,
             sending_id: int = 0,
+            only_preview: bool = False,
     ):
         """
         Sends an sticker to chat. Returns the sent message
@@ -1341,6 +1439,13 @@ class Client:
 
             protect_content: (bool)
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
+
+            sending_id: (int)
+                Non-persistent identifier, which will be returned back in messageSendingStatePending object
+                and can be used to match sent messages and corresponding updateNewMessage updates
+
+            only_preview: (bool)
+                Pass true to get a fake message instead of actually sending them
         """
         return await self._send_message(
             chat_id=chat_id,
@@ -1358,7 +1463,8 @@ class Client:
             send_date=send_date,
             request_timeout=request_timeout,
             protect_content=protect_content,
-            sending_id=sending_id
+            sending_id=sending_id,
+            only_preview=only_preview
         )
 
     async def send_document(
@@ -1379,6 +1485,7 @@ class Client:
             request_timeout: int = None,
             protect_content: bool = False,
             sending_id: int = 0,
+            only_preview: bool = False,
     ):
         """
         Sends a document with caption to chat. Returns the sent message
@@ -1430,6 +1537,12 @@ class Client:
             protect_content: (bool)
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
+            sending_id: (int)
+                Non-persistent identifier, which will be returned back in messageSendingStatePending object
+
+            only_preview: (bool)
+                Pass true to get a fake message instead of actually sending them
+
         """
         return await self._send_message(
             chat_id=chat_id,
@@ -1446,7 +1559,8 @@ class Client:
             send_date=send_date,
             request_timeout=request_timeout,
             protect_content=protect_content,
-            sending_id=sending_id
+            sending_id=sending_id,
+            only_preview=only_preview
         )
 
     async def send_audio(
@@ -1469,6 +1583,7 @@ class Client:
             request_timeout: int = None,
             protect_content: bool = False,
             sending_id: int = 0,
+            only_preview: bool = False,
     ):
         """
         Sends an audio with caption to chat. Returns the sent message
@@ -1526,6 +1641,12 @@ class Client:
             protect_content: (bool)
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
+            sending_id: (int)
+                Non-persistent identifier, which will be returned back in messageSendingStatePending object
+
+            only_preview: (bool)
+                Pass true to get a fake message instead of actually sending them
+
         """
         return await self._send_message(
             chat_id=chat_id,
@@ -1544,7 +1665,8 @@ class Client:
             send_date=send_date,
             request_timeout=request_timeout,
             protect_content=protect_content,
-            sending_id=sending_id
+            sending_id=sending_id,
+            only_preview=only_preview
         )
 
     async def send_voice_note(
@@ -1563,6 +1685,7 @@ class Client:
             request_timeout: int = None,
             protect_content: bool = False,
             sending_id: int = 0,
+            only_preview: bool = False,
     ):
         """
         Sends a voice note with caption to chat. Returns the sent message
@@ -1607,6 +1730,12 @@ class Client:
             protect_content: (bool)
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
+            sending_id: (int)
+                Non-persistent identifier, which will be returned back in messageSendingStatePending object
+
+            only_preview: (bool)
+                Pass true to get a fake message instead of actually sending them
+
         """
         return await self._send_message(
             chat_id=chat_id,
@@ -1623,7 +1752,8 @@ class Client:
             send_date=send_date,
             request_timeout=request_timeout,
             protect_content=protect_content,
-            sending_id=sending_id
+            sending_id=sending_id,
+            only_preview=only_preview
         )
 
     async def send_video_note(
@@ -1644,6 +1774,7 @@ class Client:
             request_timeout: int = None,
             protect_content: bool = False,
             sending_id: int = 0,
+            only_preview: bool = False,
     ):
         """
         Sends a video note with caption to chat. Returns the sent message
@@ -1695,6 +1826,12 @@ class Client:
             protect_content: (bool)
                 Pass true if the content of the message must be protected from forwarding and saving; for bots only
 
+            sending_id: (int)
+                Non-persistent identifier, which will be returned back in messageSendingStatePending object
+
+            only_preview: (bool)
+                Pass true to get a fake message instead of actually sending them
+
         """
         return await self._send_message(
             chat_id=chat_id,
@@ -1711,96 +1848,8 @@ class Client:
             send_date=send_date,
             request_timeout=request_timeout,
             protect_content=protect_content,
-            sending_id=sending_id
-        )
-
-    async def forward_messages(
-            self,
-            from_chat_id: int,
-            chat_id: int,
-            message_ids: list[int],
-            *,
-            send_copy: bool = False,
-            remove_caption: bool = False,
-            disable_notification: bool = False,
-            send_when_online: bool = False,
-            only_preview: bool = False,
-            from_background: bool = False,
-            send_date: int = None,
-            request_timeout: int = None,
-            protect_content: bool = False,
-            sending_id: int = 0
-    ) -> Messages:
-        """
-        Forwards previously sent messages.
-        Returns the forwarded messages in the same order as the message identifiers passed in message_ids.
-        If a message can't be forwarded, null will be returned instead of the message
-
-        :param chat_id: Identifier of the chat to which to forward messages
-        :type chat_id: int
-
-        :param from_chat_id: Identifier of the chat from which to forward messages
-        :type from_chat_id: int
-
-        :param message_ids: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
-        :type message_ids: list[int]
-
-        :param send_copy: If true, content of the messages will be copied without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
-        :type send_copy: bool
-
-        :param remove_caption: If true, media caption of message copies will be removed. Ignored if send_copy is false
-        :type remove_caption: bool
-
-        :param only_preview: If true, messages will not be forwarded and instead fake messages will be returned
-        :type only_preview: bool
-
-        :param disable_notification: Pass true to disable notification for the message
-        :type disable_notification: bool
-
-        :param from_background: Pass true if the message is sent from the background
-        :type from_background: bool
-
-        :param send_date: Date the message will be sent. The date must be within 367 days in the future
-        :type send_date: int
-
-        :param send_when_online: When True, the message will be sent when the peer will be online. Applicable to private chats only and when the exact online status of the peer is known
-        :type send_when_online: bool
-
-        :param request_timeout: amounts of seconds to wait of response, (asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout seconds, defaults to None
-        :type request_timeout: int
-
-        :param protect_content: Pass true if the content of the message must be protected from forwarding and saving; for bots only
-        :type protect_content: :class:`bool`
-
-        :param sending_id: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
-        :type sending_id: :class:`int`
-
-        :return: response from TDLib
-        :rtype: aiotdlib.api.types.Messages
-        """
-        if bool(send_date):
-            scheduling_state = MessageSchedulingStateSendAtDate(send_date=send_date)
-        elif send_when_online:
-            scheduling_state = MessageSchedulingStateSendWhenOnline()
-        else:
-            scheduling_state = None
-
-        return await self.api.forward_messages(
-            chat_id=chat_id,
-            from_chat_id=from_chat_id,
-            message_ids=message_ids,
-            options=MessageSendOptions(
-                disable_notification=disable_notification,
-                from_background=from_background,
-                protect_content=protect_content,
-                scheduling_state=scheduling_state,
-                update_order_of_installed_sticker_sets=False,
-                sending_id=sending_id
-            ),
-            send_copy=send_copy,
-            remove_caption=remove_caption,
-            only_preview=only_preview,
-            request_timeout=request_timeout,
+            sending_id=sending_id,
+            only_preview=only_preview
         )
 
     async def iter_chat_history(
@@ -1818,10 +1867,14 @@ class Client:
         :param chat_id: Chat identifier
         :type chat_id: int
 
-        :param from_message_id: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
+        :param from_message_id: Identifier of the message starting from which history must be fetched;
+          use 0 to get results from the last message
         :type from_message_id: int
 
-        :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100.
+          If the offset is negative, the limit must be greater than or equal to -offset.
+          For optimal performance, the number of returned messages is chosen by TDLib
+          and can be smaller than the specified limit
         :type limit: int
 
         :param only_local: If true, returns only messages that are available locally without sending network requests
@@ -1860,73 +1913,99 @@ class Client:
 
             request_limit = min(100, limit - yielded_messages_count)
 
-    async def get_my_id(self) -> int:
-        return await self.get_option_value('my_id')
-
-    def add_event_handler(
+    async def forward_messages(
             self,
-            handler: HandlerCallable,
-            update_type: str = API.Types.ANY,
+            from_chat_id: int,
+            chat_id: int,
+            message_ids: list[int],
             *,
-            filters: FilterCallable = None
-    ) -> Handler:
+            send_copy: bool = False,
+            remove_caption: bool = False,
+            disable_notification: bool = False,
+            send_when_online: bool = False,
+            from_background: bool = False,
+            send_date: int = None,
+            request_timeout: int = None,
+            protect_content: bool = False,
+            sending_id: int = 0,
+            only_preview: bool = False,
+    ) -> Messages:
         """
-            Registering event handler
-            You can register many handlers for certain event type
+        Forwards previously sent messages.
+        Returns the forwarded messages in the same order as the message identifiers passed in message_ids.
+        If a message can't be forwarded, null will be returned instead of the message
+
+        :param chat_id: Identifier of the chat to which to forward messages
+        :type chat_id: int
+
+        :param from_chat_id: Identifier of the chat from which to forward messages
+        :type from_chat_id: int
+
+        :param message_ids: Identifiers of the messages to forward.
+          Message identifiers must be in a strictly increasing order.
+          At most 100 messages can be forwarded simultaneously
+        :type message_ids: list[int]
+
+        :param send_copy: If true, content of the messages will be copied without reference to the original sender.
+          Always true if the messages are forwarded to a secret chat or are local
+        :type send_copy: bool
+
+        :param remove_caption: If true, media caption of message copies will be removed. Ignored if send_copy is false
+        :type remove_caption: bool
+
+        :param disable_notification: Pass true to disable notification for the message
+        :type disable_notification: bool
+
+        :param from_background: Pass true if the message is sent from the background
+        :type from_background: bool
+
+        :param send_date: Date the message will be sent. The date must be within 367 days in the future
+        :type send_date: int
+
+        :param send_when_online: When True, the message will be sent when the peer will be online.
+          Applicable to private chats only and when the exact online status of the peer is known
+        :type send_when_online: bool
+
+        :param request_timeout: amounts of seconds to wait of response,
+          (asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout seconds,
+          defaults to None
+        :type request_timeout: int
+
+        :param protect_content: Pass true if the content of the message must be protected from forwarding and saving;
+          for bots only
+        :type protect_content: :class:`bool`
+
+        :param sending_id: Non-persistent identifier, which will be returned back in messageSendingStatePending object
+          and can be used to match sent messages and corresponding updateNewMessage updates
+        :type sending_id: :class:`int`
+
+        :param only_preview: Pass true to get a fake message instead of actually sending them
+        :type only_preview: bool
+
+        :return: response from TDLib
+        :rtype: aiotdlib.api.types.Messages
         """
-        if self._updates_handlers.get(update_type) is None:
-            self._updates_handlers[update_type] = set()
-
-        handler = Handler(handler, filters=filters)
-        self._updates_handlers[update_type].add(handler)
-        return handler
-
-    # Decorators
-    def on_event(self, update_type: str = API.Types.ANY, *, filters: FilterCallable = None):
-        def decorator(function: HandlerCallable) -> HandlerCallable:
-            self.add_event_handler(function, update_type, filters=filters)
-            return function
-
-        return decorator
-
-    def remove_event_handler(self, handler: Handler, update_type: str = API.Types.ANY):
-        if self._updates_handlers.get(update_type) is None:
-            return
-
-        self._updates_handlers.get(update_type).discard(handler)
-
-    def add_middleware(self, middleware: MiddlewareCallable):
-        """
-            Register middleware.
-            Note that middleware would be called for EVERY EVENT.
-            Do not use them for long-running tasks as it could be heavy performance hit
-            You can add as much middlewares as you want.
-            They would be called in order you've added them
-        """
-
-        self._middlewares.append(middleware)
-        return middleware
-
-    def text_message_handler(self, function: HandlerCallable = None):
-        """
-        Registers event handler with predefined filter Filters.text
-        which allows only UpdateNewMessage with MessageText content
-
-        Note: this method is universal and can be used directly or as decorator
-        """
-        if callable(function):
-            self.add_event_handler(function, API.Types.UPDATE_NEW_MESSAGE, filters=Filters.text)
+        if bool(send_date):
+            scheduling_state = MessageSchedulingStateSendAtDate(send_date=send_date)
+        elif send_when_online:
+            scheduling_state = MessageSchedulingStateSendWhenOnline()
         else:
-            return self.on_event(API.Types.UPDATE_NEW_MESSAGE, filters=Filters.text)
+            scheduling_state = None
 
-    def bot_command_handler(self, function: HandlerCallable = None, *, command: str = None):
-        """
-        Registers event handler with predefined filter Filters.bot_command
-        which allows only UpdateNewMessage with MessageText content and text of message starts with "/"
-
-        Note: this method is universal and can be used directly or as decorator
-        """
-        if callable(function):
-            self.add_event_handler(function, API.Types.UPDATE_NEW_MESSAGE, filters=Filters.bot_command(command))
-        else:
-            return self.on_event(API.Types.UPDATE_NEW_MESSAGE, filters=Filters.bot_command(command))
+        return await self.api.forward_messages(
+            chat_id=chat_id,
+            from_chat_id=from_chat_id,
+            message_ids=message_ids,
+            options=MessageSendOptions(
+                disable_notification=disable_notification,
+                from_background=from_background,
+                protect_content=protect_content,
+                scheduling_state=scheduling_state,
+                update_order_of_installed_sticker_sets=False,
+                only_preview=only_preview,
+                sending_id=sending_id
+            ),
+            send_copy=send_copy,
+            remove_caption=remove_caption,
+            request_timeout=request_timeout,
+        )

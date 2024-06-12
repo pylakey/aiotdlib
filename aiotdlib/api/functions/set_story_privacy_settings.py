@@ -18,7 +18,7 @@ from ..types.all import (
 
 class SetStoryPrivacySettings(BaseObject):
     """
-    Changes privacy settings of a previously sent story
+    Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_be_edited == true
 
     :param story_id: Identifier of the story
     :type story_id: :class:`Int32`

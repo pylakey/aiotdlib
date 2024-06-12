@@ -13,7 +13,7 @@ from ..types.base import *
 
 from ..types.all import (
     InputMessageContent,
-    MessageReplyTo,
+    InputMessageReplyTo,
     MessageSendOptions,
 )
 
@@ -24,14 +24,12 @@ class SendMessageAlbum(BaseObject):
 
     :param chat_id: Target chat
     :type chat_id: :class:`Int53`
-    :param input_message_contents: Contents of messages to be sent. At most 10 messages can be added to an album
+    :param input_message_contents: Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
     :type input_message_contents: :class:`Vector[InputMessageContent]`
-    :param message_thread_id: If not 0, a message thread identifier in which the messages will be sent
+    :param message_thread_id: If not 0, the message thread identifier in which the messages will be sent
     :type message_thread_id: :class:`Int53`
-    :param only_preview: Pass true to get fake messages instead of actually sending them
-    :type only_preview: :class:`Bool`
-    :param reply_to: Identifier of the replied message or story; pass null if none, defaults to None
-    :type reply_to: :class:`MessageReplyTo`, optional
+    :param reply_to: Information about the message or story to be replied; pass null if none, defaults to None
+    :type reply_to: :class:`InputMessageReplyTo`, optional
     :param options: Options to be used to send the messages; pass null to use default options, defaults to None
     :type options: :class:`MessageSendOptions`, optional
     """
@@ -40,6 +38,5 @@ class SendMessageAlbum(BaseObject):
     chat_id: Int53
     input_message_contents: Vector[InputMessageContent]
     message_thread_id: Int53 = 0
-    only_preview: Bool = False
-    reply_to: typing.Optional[MessageReplyTo] = None
+    reply_to: typing.Optional[InputMessageReplyTo] = None
     options: typing.Optional[MessageSendOptions] = None

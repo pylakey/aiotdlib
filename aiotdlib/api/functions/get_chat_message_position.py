@@ -28,6 +28,8 @@ class GetChatMessagePosition(BaseObject):
     :type filter_: :class:`SearchMessagesFilter`
     :param message_thread_id: If not 0, only messages in the specified thread will be considered; supergroups only
     :type message_thread_id: :class:`Int53`
+    :param saved_messages_topic_id: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all relevant messages, or for chats other than Saved Messages
+    :type saved_messages_topic_id: :class:`Int53`
     """
 
     ID: typing.Literal["getChatMessagePosition"] = Field(
@@ -37,3 +39,4 @@ class GetChatMessagePosition(BaseObject):
     message_id: Int53
     filter_: SearchMessagesFilter = Field(..., alias="filter")
     message_thread_id: Int53 = 0
+    saved_messages_topic_id: Int53 = 0

@@ -14,7 +14,7 @@ from ..types.base import *
 
 class CreateNewBasicGroupChat(BaseObject):
     """
-    Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
+    Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns information about the newly created chat
 
     :param title: Title of the new basic group; 1-128 characters
     :type title: :class:`String`

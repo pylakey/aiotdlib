@@ -18,11 +18,11 @@ from ..types.all import (
 
 class AddStickerToSet(BaseObject):
     """
-    Adds a new sticker to a set; for bots only
+    Adds a new sticker to a set
 
-    :param user_id: Sticker set owner
+    :param user_id: Sticker set owner; ignored for regular users
     :type user_id: :class:`Int53`
-    :param name: Sticker set name
+    :param name: Sticker set name. The sticker set must be owned by the current user, and contain less than 200 stickers for custom emoji sticker sets and less than 120 otherwise
     :type name: :class:`String`
     :param sticker: Sticker to add to the set
     :type sticker: :class:`InputSticker`

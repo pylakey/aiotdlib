@@ -292,8 +292,6 @@ class ClientSettings(pydantic_settings.BaseSettings):
     use_chat_info_database: bool = True
     use_message_database: bool = True
     use_secret_chats: bool = False
-    enable_storage_optimizer: bool = True
-    ignore_file_names: bool = True
     options: Optional[ClientOptions] = ClientOptions()
 
     @model_validator(mode="before")

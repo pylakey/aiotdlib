@@ -18,11 +18,11 @@ from ..types.all import (
 
 class SetChatAvailableReactions(BaseObject):
     """
-    Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+    Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
 
     :param chat_id: Identifier of the chat
     :type chat_id: :class:`Int53`
-    :param available_reactions: Reactions available in the chat. All emoji reactions must be active
+    :param available_reactions: Reactions available in the chat. All explicitly specified emoji reactions must be active. In channel chats up to the chat's boost level custom emoji reactions can be explicitly specified
     :type available_reactions: :class:`ChatAvailableReactions`
     """
 

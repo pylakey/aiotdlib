@@ -8,6 +8,8 @@ import os
 import re
 import sys
 from enum import Enum
+from functools import wraps
+from time import perf_counter
 from typing import Optional
 from typing import TYPE_CHECKING
 from typing import Union
@@ -151,3 +153,20 @@ class PendingRequest:
             )
 
         raise RuntimeError(f'Unknown TDLib error')
+
+
+def measure_time(func: callable):
+    _logger = logging.getLogger(f"{__name__}.'measure_time'")
+    func_name = getattr(func, '__qualname__', '') or getattr(func, '__name__', '???')
+
+    @wraps(func)
+    async def decorated(*args, **kwargs):
+        start_time = perf_counter()
+
+        try:
+            return await func(*args, **kwargs)
+        finally:
+            end_time = perf_counter() - start_time
+            logger.info(f"{func_name} call finished in {end_time} seconds")
+
+    return decorated

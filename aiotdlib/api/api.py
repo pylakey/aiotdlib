@@ -20,11 +20,11 @@ class API:
         # Types and Functions
         ANY = "*"
 
+        ACCENT_COLOR = "accentColor"
         ACCEPT_CALL = "acceptCall"
         ACCEPT_TERMS_OF_SERVICE = "acceptTermsOfService"
         ACCOUNT_TTL = "accountTtl"
         ACTIVATE_STORY_STEALTH_MODE = "activateStoryStealthMode"
-        ADD_APPLICATION_CHANGELOG = "addApplicationChangelog"
         ADD_CHAT_FOLDER_BY_INVITE_LINK = "addChatFolderByInviteLink"
         ADD_CHAT_MEMBER = "addChatMember"
         ADD_CHAT_MEMBERS = "addChatMembers"
@@ -38,6 +38,9 @@ class API:
         ADD_MESSAGE_REACTION = "addMessageReaction"
         ADD_NETWORK_STATISTICS = "addNetworkStatistics"
         ADD_PROXY = "addProxy"
+        ADD_QUICK_REPLY_SHORTCUT_INLINE_QUERY_RESULT_MESSAGE = "addQuickReplyShortcutInlineQueryResultMessage"
+        ADD_QUICK_REPLY_SHORTCUT_MESSAGE = "addQuickReplyShortcutMessage"
+        ADD_QUICK_REPLY_SHORTCUT_MESSAGE_ALBUM = "addQuickReplyShortcutMessageAlbum"
         ADD_RECENT_STICKER = "addRecentSticker"
         ADD_RECENTLY_FOUND_CHAT = "addRecentlyFoundChat"
         ADD_SAVED_ANIMATION = "addSavedAnimation"
@@ -57,6 +60,7 @@ class API:
         ANSWER_PRE_CHECKOUT_QUERY = "answerPreCheckoutQuery"
         ANSWER_SHIPPING_QUERY = "answerShippingQuery"
         ANSWER_WEB_APP_QUERY = "answerWebAppQuery"
+        APPLY_PREMIUM_GIFT_CODE = "applyPremiumGiftCode"
         ARCHIVE_CHAT_LIST_SETTINGS = "archiveChatListSettings"
         ASSIGN_APP_STORE_TRANSACTION = "assignAppStoreTransaction"
         ASSIGN_GOOGLE_PLAY_TRANSACTION = "assignGooglePlayTransaction"
@@ -72,6 +76,8 @@ class API:
         AUTHENTICATION_CODE_TYPE_FRAGMENT = "authenticationCodeTypeFragment"
         AUTHENTICATION_CODE_TYPE_MISSED_CALL = "authenticationCodeTypeMissedCall"
         AUTHENTICATION_CODE_TYPE_SMS = "authenticationCodeTypeSms"
+        AUTHENTICATION_CODE_TYPE_SMS_PHRASE = "authenticationCodeTypeSmsPhrase"
+        AUTHENTICATION_CODE_TYPE_SMS_WORD = "authenticationCodeTypeSmsWord"
         AUTHENTICATION_CODE_TYPE_TELEGRAM_MESSAGE = "authenticationCodeTypeTelegramMessage"
         AUTHORIZATION_STATE = "authorizationState"
         AUTHORIZATION_STATE_CLOSED = "authorizationStateClosed"
@@ -103,6 +109,7 @@ class API:
         BACKGROUND_FILL_GRADIENT = "backgroundFillGradient"
         BACKGROUND_FILL_SOLID = "backgroundFillSolid"
         BACKGROUND_TYPE = "backgroundType"
+        BACKGROUND_TYPE_CHAT_THEME = "backgroundTypeChatTheme"
         BACKGROUND_TYPE_FILL = "backgroundTypeFill"
         BACKGROUND_TYPE_PATTERN = "backgroundTypePattern"
         BACKGROUND_TYPE_WALLPAPER = "backgroundTypeWallpaper"
@@ -112,10 +119,12 @@ class API:
         BANK_CARD_INFO = "bankCardInfo"
         BASIC_GROUP = "basicGroup"
         BASIC_GROUP_FULL_INFO = "basicGroupFullInfo"
+        BIRTHDATE = "birthdate"
         BLOCK_LIST = "blockList"
         BLOCK_LIST_MAIN = "blockListMain"
         BLOCK_LIST_STORIES = "blockListStories"
         BLOCK_MESSAGE_SENDER_FROM_REPLIES = "blockMessageSenderFromReplies"
+        BOOST_CHAT = "boostChat"
         BOT_COMMAND = "botCommand"
         BOT_COMMAND_SCOPE = "botCommandScope"
         BOT_COMMAND_SCOPE_ALL_CHAT_ADMINISTRATORS = "botCommandScopeAllChatAdministrators"
@@ -128,6 +137,45 @@ class API:
         BOT_COMMANDS = "botCommands"
         BOT_INFO = "botInfo"
         BOT_MENU_BUTTON = "botMenuButton"
+        BOT_WRITE_ACCESS_ALLOW_REASON = "botWriteAccessAllowReason"
+        BOT_WRITE_ACCESS_ALLOW_REASON_ACCEPTED_REQUEST = "botWriteAccessAllowReasonAcceptedRequest"
+        BOT_WRITE_ACCESS_ALLOW_REASON_ADDED_TO_ATTACHMENT_MENU = "botWriteAccessAllowReasonAddedToAttachmentMenu"
+        BOT_WRITE_ACCESS_ALLOW_REASON_CONNECTED_WEBSITE = "botWriteAccessAllowReasonConnectedWebsite"
+        BOT_WRITE_ACCESS_ALLOW_REASON_LAUNCHED_WEB_APP = "botWriteAccessAllowReasonLaunchedWebApp"
+        BUSINESS_AWAY_MESSAGE_SCHEDULE = "businessAwayMessageSchedule"
+        BUSINESS_AWAY_MESSAGE_SCHEDULE_ALWAYS = "businessAwayMessageScheduleAlways"
+        BUSINESS_AWAY_MESSAGE_SCHEDULE_CUSTOM = "businessAwayMessageScheduleCustom"
+        BUSINESS_AWAY_MESSAGE_SCHEDULE_OUTSIDE_OF_OPENING_HOURS = "businessAwayMessageScheduleOutsideOfOpeningHours"
+        BUSINESS_AWAY_MESSAGE_SETTINGS = "businessAwayMessageSettings"
+        BUSINESS_BOT_MANAGE_BAR = "businessBotManageBar"
+        BUSINESS_CHAT_LINK = "businessChatLink"
+        BUSINESS_CHAT_LINK_INFO = "businessChatLinkInfo"
+        BUSINESS_CHAT_LINKS = "businessChatLinks"
+        BUSINESS_CONNECTED_BOT = "businessConnectedBot"
+        BUSINESS_CONNECTION = "businessConnection"
+        BUSINESS_FEATURE = "businessFeature"
+        BUSINESS_FEATURE_ACCOUNT_LINKS = "businessFeatureAccountLinks"
+        BUSINESS_FEATURE_AWAY_MESSAGE = "businessFeatureAwayMessage"
+        BUSINESS_FEATURE_BOTS = "businessFeatureBots"
+        BUSINESS_FEATURE_CHAT_FOLDER_TAGS = "businessFeatureChatFolderTags"
+        BUSINESS_FEATURE_EMOJI_STATUS = "businessFeatureEmojiStatus"
+        BUSINESS_FEATURE_GREETING_MESSAGE = "businessFeatureGreetingMessage"
+        BUSINESS_FEATURE_LOCATION = "businessFeatureLocation"
+        BUSINESS_FEATURE_OPENING_HOURS = "businessFeatureOpeningHours"
+        BUSINESS_FEATURE_QUICK_REPLIES = "businessFeatureQuickReplies"
+        BUSINESS_FEATURE_START_PAGE = "businessFeatureStartPage"
+        BUSINESS_FEATURE_UPGRADED_STORIES = "businessFeatureUpgradedStories"
+        BUSINESS_FEATURE_PROMOTION_ANIMATION = "businessFeaturePromotionAnimation"
+        BUSINESS_FEATURES = "businessFeatures"
+        BUSINESS_GREETING_MESSAGE_SETTINGS = "businessGreetingMessageSettings"
+        BUSINESS_INFO = "businessInfo"
+        BUSINESS_LOCATION = "businessLocation"
+        BUSINESS_MESSAGE = "businessMessage"
+        BUSINESS_MESSAGES = "businessMessages"
+        BUSINESS_OPENING_HOURS = "businessOpeningHours"
+        BUSINESS_OPENING_HOURS_INTERVAL = "businessOpeningHoursInterval"
+        BUSINESS_RECIPIENTS = "businessRecipients"
+        BUSINESS_START_PAGE = "businessStartPage"
         CALL = "call"
         CALL_DISCARD_REASON = "callDiscardReason"
         CALL_DISCARD_REASON_DECLINED = "callDiscardReasonDeclined"
@@ -164,10 +212,16 @@ class API:
         CALLBACK_QUERY_PAYLOAD_DATA_WITH_PASSWORD = "callbackQueryPayloadDataWithPassword"
         CALLBACK_QUERY_PAYLOAD_GAME = "callbackQueryPayloadGame"
         CAN_BOT_SEND_MESSAGES = "canBotSendMessages"
-        CAN_PURCHASE_PREMIUM = "canPurchasePremium"
+        CAN_PURCHASE_FROM_STORE = "canPurchaseFromStore"
+        CAN_SEND_MESSAGE_TO_USER = "canSendMessageToUser"
+        CAN_SEND_MESSAGE_TO_USER_RESULT = "canSendMessageToUserResult"
+        CAN_SEND_MESSAGE_TO_USER_RESULT_OK = "canSendMessageToUserResultOk"
+        CAN_SEND_MESSAGE_TO_USER_RESULT_USER_IS_DELETED = "canSendMessageToUserResultUserIsDeleted"
+        CAN_SEND_MESSAGE_TO_USER_RESULT_USER_RESTRICTS_NEW_CHATS = "canSendMessageToUserResultUserRestrictsNewChats"
         CAN_SEND_STORY = "canSendStory"
         CAN_SEND_STORY_RESULT = "canSendStoryResult"
         CAN_SEND_STORY_RESULT_ACTIVE_STORY_LIMIT_EXCEEDED = "canSendStoryResultActiveStoryLimitExceeded"
+        CAN_SEND_STORY_RESULT_BOOST_NEEDED = "canSendStoryResultBoostNeeded"
         CAN_SEND_STORY_RESULT_MONTHLY_LIMIT_EXCEEDED = "canSendStoryResultMonthlyLimitExceeded"
         CAN_SEND_STORY_RESULT_OK = "canSendStoryResultOk"
         CAN_SEND_STORY_RESULT_PREMIUM_NEEDED = "canSendStoryResultPremiumNeeded"
@@ -181,8 +235,8 @@ class API:
         CANCEL_DOWNLOAD_FILE = "cancelDownloadFile"
         CANCEL_PASSWORD_RESET = "cancelPasswordReset"
         CANCEL_PRELIMINARY_UPLOAD_FILE = "cancelPreliminaryUploadFile"
+        CANCEL_RECOVERY_EMAIL_ADDRESS_VERIFICATION = "cancelRecoveryEmailAddressVerification"
         CHANGE_IMPORTED_CONTACTS = "changeImportedContacts"
-        CHANGE_PHONE_NUMBER = "changePhoneNumber"
         CHANGE_STICKER_SET = "changeStickerSet"
         CHAT = "chat"
         CHAT_ACTION = "chatAction"
@@ -217,11 +271,27 @@ class API:
         CHAT_AVAILABLE_REACTIONS_ALL = "chatAvailableReactionsAll"
         CHAT_AVAILABLE_REACTIONS_SOME = "chatAvailableReactionsSome"
         CHAT_BACKGROUND = "chatBackground"
+        CHAT_BOOST = "chatBoost"
+        CHAT_BOOST_FEATURES = "chatBoostFeatures"
+        CHAT_BOOST_LEVEL_FEATURES = "chatBoostLevelFeatures"
+        CHAT_BOOST_LINK = "chatBoostLink"
+        CHAT_BOOST_LINK_INFO = "chatBoostLinkInfo"
+        CHAT_BOOST_SLOT = "chatBoostSlot"
+        CHAT_BOOST_SLOTS = "chatBoostSlots"
+        CHAT_BOOST_SOURCE = "chatBoostSource"
+        CHAT_BOOST_SOURCE_GIFT_CODE = "chatBoostSourceGiftCode"
+        CHAT_BOOST_SOURCE_GIVEAWAY = "chatBoostSourceGiveaway"
+        CHAT_BOOST_SOURCE_PREMIUM = "chatBoostSourcePremium"
+        CHAT_BOOST_STATUS = "chatBoostStatus"
         CHAT_EVENT = "chatEvent"
         CHAT_EVENT_ACTION = "chatEventAction"
+        CHAT_EVENT_ACCENT_COLOR_CHANGED = "chatEventAccentColorChanged"
         CHAT_EVENT_ACTIVE_USERNAMES_CHANGED = "chatEventActiveUsernamesChanged"
         CHAT_EVENT_AVAILABLE_REACTIONS_CHANGED = "chatEventAvailableReactionsChanged"
+        CHAT_EVENT_BACKGROUND_CHANGED = "chatEventBackgroundChanged"
+        CHAT_EVENT_CUSTOM_EMOJI_STICKER_SET_CHANGED = "chatEventCustomEmojiStickerSetChanged"
         CHAT_EVENT_DESCRIPTION_CHANGED = "chatEventDescriptionChanged"
+        CHAT_EVENT_EMOJI_STATUS_CHANGED = "chatEventEmojiStatusChanged"
         CHAT_EVENT_FORUM_TOPIC_CREATED = "chatEventForumTopicCreated"
         CHAT_EVENT_FORUM_TOPIC_DELETED = "chatEventForumTopicDeleted"
         CHAT_EVENT_FORUM_TOPIC_EDITED = "chatEventForumTopicEdited"
@@ -253,6 +323,7 @@ class API:
         CHAT_EVENT_PERMISSIONS_CHANGED = "chatEventPermissionsChanged"
         CHAT_EVENT_PHOTO_CHANGED = "chatEventPhotoChanged"
         CHAT_EVENT_POLL_STOPPED = "chatEventPollStopped"
+        CHAT_EVENT_PROFILE_ACCENT_COLOR_CHANGED = "chatEventProfileAccentColorChanged"
         CHAT_EVENT_SIGN_MESSAGES_TOGGLED = "chatEventSignMessagesToggled"
         CHAT_EVENT_SLOW_MODE_DELAY_CHANGED = "chatEventSlowModeDelayChanged"
         CHAT_EVENT_STICKER_SET_CHANGED = "chatEventStickerSetChanged"
@@ -317,6 +388,18 @@ class API:
         CHAT_PHOTO_STICKER_TYPE_REGULAR_OR_MASK = "chatPhotoStickerTypeRegularOrMask"
         CHAT_PHOTOS = "chatPhotos"
         CHAT_POSITION = "chatPosition"
+        CHAT_REVENUE_AMOUNT = "chatRevenueAmount"
+        CHAT_REVENUE_STATISTICS = "chatRevenueStatistics"
+        CHAT_REVENUE_TRANSACTION = "chatRevenueTransaction"
+        CHAT_REVENUE_TRANSACTION_TYPE = "chatRevenueTransactionType"
+        CHAT_REVENUE_TRANSACTION_TYPE_EARNINGS = "chatRevenueTransactionTypeEarnings"
+        CHAT_REVENUE_TRANSACTION_TYPE_REFUND = "chatRevenueTransactionTypeRefund"
+        CHAT_REVENUE_TRANSACTION_TYPE_WITHDRAWAL = "chatRevenueTransactionTypeWithdrawal"
+        CHAT_REVENUE_TRANSACTIONS = "chatRevenueTransactions"
+        CHAT_REVENUE_WITHDRAWAL_STATE = "chatRevenueWithdrawalState"
+        CHAT_REVENUE_WITHDRAWAL_STATE_COMPLETED = "chatRevenueWithdrawalStateCompleted"
+        CHAT_REVENUE_WITHDRAWAL_STATE_FAILED = "chatRevenueWithdrawalStateFailed"
+        CHAT_REVENUE_WITHDRAWAL_STATE_PENDING = "chatRevenueWithdrawalStatePending"
         CHAT_SOURCE = "chatSource"
         CHAT_SOURCE_MTPROTO_PROXY = "chatSourceMtprotoProxy"
         CHAT_SOURCE_PUBLIC_SERVICE_ANNOUNCEMENT = "chatSourcePublicServiceAnnouncement"
@@ -324,9 +407,12 @@ class API:
         CHAT_STATISTICS_CHANNEL = "chatStatisticsChannel"
         CHAT_STATISTICS_SUPERGROUP = "chatStatisticsSupergroup"
         CHAT_STATISTICS_ADMINISTRATOR_ACTIONS_INFO = "chatStatisticsAdministratorActionsInfo"
+        CHAT_STATISTICS_INTERACTION_INFO = "chatStatisticsInteractionInfo"
         CHAT_STATISTICS_INVITER_INFO = "chatStatisticsInviterInfo"
-        CHAT_STATISTICS_MESSAGE_INTERACTION_INFO = "chatStatisticsMessageInteractionInfo"
         CHAT_STATISTICS_MESSAGE_SENDER_INFO = "chatStatisticsMessageSenderInfo"
+        CHAT_STATISTICS_OBJECT_TYPE = "chatStatisticsObjectType"
+        CHAT_STATISTICS_OBJECT_TYPE_MESSAGE = "chatStatisticsObjectTypeMessage"
+        CHAT_STATISTICS_OBJECT_TYPE_STORY = "chatStatisticsObjectTypeStory"
         CHAT_THEME = "chatTheme"
         CHAT_TYPE = "chatType"
         CHAT_TYPE_BASIC_GROUP = "chatTypeBasicGroup"
@@ -340,7 +426,6 @@ class API:
         CHECK_AUTHENTICATION_EMAIL_CODE = "checkAuthenticationEmailCode"
         CHECK_AUTHENTICATION_PASSWORD = "checkAuthenticationPassword"
         CHECK_AUTHENTICATION_PASSWORD_RECOVERY_CODE = "checkAuthenticationPasswordRecoveryCode"
-        CHECK_CHANGE_PHONE_NUMBER_CODE = "checkChangePhoneNumberCode"
         CHECK_CHAT_FOLDER_INVITE_LINK = "checkChatFolderInviteLink"
         CHECK_CHAT_INVITE_LINK = "checkChatInviteLink"
         CHECK_CHAT_USERNAME = "checkChatUsername"
@@ -355,8 +440,9 @@ class API:
         CHECK_EMAIL_ADDRESS_VERIFICATION_CODE = "checkEmailAddressVerificationCode"
         CHECK_LOGIN_EMAIL_ADDRESS_CODE = "checkLoginEmailAddressCode"
         CHECK_PASSWORD_RECOVERY_CODE = "checkPasswordRecoveryCode"
-        CHECK_PHONE_NUMBER_CONFIRMATION_CODE = "checkPhoneNumberConfirmationCode"
-        CHECK_PHONE_NUMBER_VERIFICATION_CODE = "checkPhoneNumberVerificationCode"
+        CHECK_PHONE_NUMBER_CODE = "checkPhoneNumberCode"
+        CHECK_PREMIUM_GIFT_CODE = "checkPremiumGiftCode"
+        CHECK_QUICK_REPLY_SHORTCUT_NAME = "checkQuickReplyShortcutName"
         CHECK_RECOVERY_EMAIL_ADDRESS_CODE = "checkRecoveryEmailAddressCode"
         CHECK_STICKER_SET_NAME = "checkStickerSetName"
         CHECK_STICKER_SET_NAME_RESULT = "checkStickerSetNameResult"
@@ -371,15 +457,21 @@ class API:
         CLEAR_RECENT_REACTIONS = "clearRecentReactions"
         CLEAR_RECENT_STICKERS = "clearRecentStickers"
         CLEAR_RECENTLY_FOUND_CHATS = "clearRecentlyFoundChats"
+        CLEAR_SEARCHED_FOR_HASHTAGS = "clearSearchedForHashtags"
         CLICK_ANIMATED_EMOJI_MESSAGE = "clickAnimatedEmojiMessage"
         CLICK_CHAT_SPONSORED_MESSAGE = "clickChatSponsoredMessage"
         CLICK_PREMIUM_SUBSCRIPTION_BUTTON = "clickPremiumSubscriptionButton"
         CLOSE = "close"
+        CLOSE_BIRTHDAY_USER = "closeBirthdayUser"
         CLOSE_CHAT = "closeChat"
         CLOSE_SECRET_CHAT = "closeSecretChat"
         CLOSE_STORY = "closeStory"
         CLOSE_WEB_APP = "closeWebApp"
         CLOSED_VECTOR_PATH = "closedVectorPath"
+        COLLECTIBLE_ITEM_INFO = "collectibleItemInfo"
+        COLLECTIBLE_ITEM_TYPE = "collectibleItemType"
+        COLLECTIBLE_ITEM_TYPE_PHONE_NUMBER = "collectibleItemTypePhoneNumber"
+        COLLECTIBLE_ITEM_TYPE_USERNAME = "collectibleItemTypeUsername"
         CONFIRM_QR_CODE_AUTHENTICATION = "confirmQrCodeAuthentication"
         CONFIRM_SESSION = "confirmSession"
         CONNECTED_WEBSITE = "connectedWebsite"
@@ -395,6 +487,7 @@ class API:
         COUNTRIES = "countries"
         COUNTRY_INFO = "countryInfo"
         CREATE_BASIC_GROUP_CHAT = "createBasicGroupChat"
+        CREATE_BUSINESS_CHAT_LINK = "createBusinessChatLink"
         CREATE_CALL = "createCall"
         CREATE_CHAT_FOLDER = "createChatFolder"
         CREATE_CHAT_FOLDER_INVITE_LINK = "createChatFolderInviteLink"
@@ -410,6 +503,7 @@ class API:
         CREATE_SUPERGROUP_CHAT = "createSupergroupChat"
         CREATE_TEMPORARY_PASSWORD = "createTemporaryPassword"
         CREATE_VIDEO_CHAT = "createVideoChat"
+        CREATED_BASIC_GROUP_CHAT = "createdBasicGroupChat"
         CUSTOM_REQUEST_RESULT = "customRequestResult"
         DATABASE_STATISTICS = "databaseStatistics"
         DATE = "date"
@@ -419,7 +513,10 @@ class API:
         DELETE_ACCOUNT = "deleteAccount"
         DELETE_ALL_CALL_MESSAGES = "deleteAllCallMessages"
         DELETE_ALL_REVOKED_CHAT_INVITE_LINKS = "deleteAllRevokedChatInviteLinks"
+        DELETE_BUSINESS_CHAT_LINK = "deleteBusinessChatLink"
+        DELETE_BUSINESS_CONNECTED_BOT = "deleteBusinessConnectedBot"
         DELETE_CHAT = "deleteChat"
+        DELETE_CHAT_BACKGROUND = "deleteChatBackground"
         DELETE_CHAT_FOLDER = "deleteChatFolder"
         DELETE_CHAT_FOLDER_INVITE_LINK = "deleteChatFolderInviteLink"
         DELETE_CHAT_HISTORY = "deleteChatHistory"
@@ -427,14 +524,19 @@ class API:
         DELETE_CHAT_MESSAGES_BY_SENDER = "deleteChatMessagesBySender"
         DELETE_CHAT_REPLY_MARKUP = "deleteChatReplyMarkup"
         DELETE_COMMANDS = "deleteCommands"
+        DELETE_DEFAULT_BACKGROUND = "deleteDefaultBackground"
         DELETE_FILE = "deleteFile"
         DELETE_FORUM_TOPIC = "deleteForumTopic"
         DELETE_LANGUAGE_PACK = "deleteLanguagePack"
         DELETE_MESSAGES = "deleteMessages"
         DELETE_PASSPORT_ELEMENT = "deletePassportElement"
         DELETE_PROFILE_PHOTO = "deleteProfilePhoto"
+        DELETE_QUICK_REPLY_SHORTCUT = "deleteQuickReplyShortcut"
+        DELETE_QUICK_REPLY_SHORTCUT_MESSAGES = "deleteQuickReplyShortcutMessages"
         DELETE_REVOKED_CHAT_INVITE_LINK = "deleteRevokedChatInviteLink"
         DELETE_SAVED_CREDENTIALS = "deleteSavedCredentials"
+        DELETE_SAVED_MESSAGES_TOPIC_HISTORY = "deleteSavedMessagesTopicHistory"
+        DELETE_SAVED_MESSAGES_TOPIC_MESSAGES_BY_DATE = "deleteSavedMessagesTopicMessagesByDate"
         DELETE_SAVED_ORDER_INFO = "deleteSavedOrderInfo"
         DELETE_STICKER_SET = "deleteStickerSet"
         DELETE_STORY = "deleteStory"
@@ -464,6 +566,7 @@ class API:
         DOWNLOAD_FILE = "downloadFile"
         DOWNLOADED_FILE_COUNTS = "downloadedFileCounts"
         DRAFT_MESSAGE = "draftMessage"
+        EDIT_BUSINESS_CHAT_LINK = "editBusinessChatLink"
         EDIT_CHAT_FOLDER = "editChatFolder"
         EDIT_CHAT_FOLDER_INVITE_LINK = "editChatFolderInviteLink"
         EDIT_CHAT_INVITE_LINK = "editChatInviteLink"
@@ -481,6 +584,7 @@ class API:
         EDIT_MESSAGE_SCHEDULING_STATE = "editMessageSchedulingState"
         EDIT_MESSAGE_TEXT = "editMessageText"
         EDIT_PROXY = "editProxy"
+        EDIT_QUICK_REPLY_MESSAGE = "editQuickReplyMessage"
         EDIT_STORY = "editStory"
         EMAIL_ADDRESS_AUTHENTICATION = "emailAddressAuthentication"
         EMAIL_ADDRESS_AUTHENTICATION_APPLE_ID = "emailAddressAuthenticationAppleId"
@@ -492,10 +596,16 @@ class API:
         EMAIL_ADDRESS_RESET_STATE_PENDING = "emailAddressResetStatePending"
         EMOJI_CATEGORIES = "emojiCategories"
         EMOJI_CATEGORY = "emojiCategory"
+        EMOJI_CATEGORY_SOURCE = "emojiCategorySource"
+        EMOJI_CATEGORY_SOURCE_PREMIUM = "emojiCategorySourcePremium"
+        EMOJI_CATEGORY_SOURCE_SEARCH = "emojiCategorySourceSearch"
         EMOJI_CATEGORY_TYPE = "emojiCategoryType"
         EMOJI_CATEGORY_TYPE_CHAT_PHOTO = "emojiCategoryTypeChatPhoto"
         EMOJI_CATEGORY_TYPE_DEFAULT = "emojiCategoryTypeDefault"
         EMOJI_CATEGORY_TYPE_EMOJI_STATUS = "emojiCategoryTypeEmojiStatus"
+        EMOJI_CATEGORY_TYPE_REGULAR_STICKERS = "emojiCategoryTypeRegularStickers"
+        EMOJI_KEYWORD = "emojiKeyword"
+        EMOJI_KEYWORDS = "emojiKeywords"
         EMOJI_REACTION = "emojiReaction"
         EMOJI_STATUS = "emojiStatus"
         EMOJI_STATUSES = "emojiStatuses"
@@ -507,6 +617,9 @@ class API:
         END_GROUP_CALL_RECORDING = "endGroupCallRecording"
         END_GROUP_CALL_SCREEN_SHARING = "endGroupCallScreenSharing"
         ERROR = "error"
+        FACT_CHECK = "factCheck"
+        FAILED_TO_ADD_MEMBER = "failedToAddMember"
+        FAILED_TO_ADD_MEMBERS = "failedToAddMembers"
         FILE = "file"
         FILE_DOWNLOAD = "fileDownload"
         FILE_DOWNLOADED_PREFIX_SIZE = "fileDownloadedPrefixSize"
@@ -541,9 +654,12 @@ class API:
         FORUM_TOPIC_INFO = "forumTopicInfo"
         FORUM_TOPICS = "forumTopics"
         FORWARD_MESSAGES = "forwardMessages"
+        FORWARD_SOURCE = "forwardSource"
+        FOUND_CHAT_BOOSTS = "foundChatBoosts"
         FOUND_CHAT_MESSAGES = "foundChatMessages"
         FOUND_FILE_DOWNLOADS = "foundFileDownloads"
         FOUND_MESSAGES = "foundMessages"
+        FOUND_POSITION = "foundPosition"
         FOUND_POSITIONS = "foundPositions"
         FOUND_WEB_APP = "foundWebApp"
         GAME = "game"
@@ -559,14 +675,13 @@ class API:
         GET_APPLICATION_DOWNLOAD_LINK = "getApplicationDownloadLink"
         GET_ARCHIVE_CHAT_LIST_SETTINGS = "getArchiveChatListSettings"
         GET_ARCHIVED_STICKER_SETS = "getArchivedStickerSets"
-        GET_ARCHIVED_STORIES = "getArchivedStories"
         GET_ATTACHED_STICKER_SETS = "getAttachedStickerSets"
         GET_ATTACHMENT_MENU_BOT = "getAttachmentMenuBot"
         GET_AUTHORIZATION_STATE = "getAuthorizationState"
         GET_AUTO_DOWNLOAD_SETTINGS_PRESETS = "getAutoDownloadSettingsPresets"
         GET_AUTOSAVE_SETTINGS = "getAutosaveSettings"
+        GET_AVAILABLE_CHAT_BOOST_SLOTS = "getAvailableChatBoostSlots"
         GET_BACKGROUND_URL = "getBackgroundUrl"
-        GET_BACKGROUNDS = "getBackgrounds"
         GET_BANK_CARD_INFO = "getBankCardInfo"
         GET_BASIC_GROUP = "getBasicGroup"
         GET_BASIC_GROUP_FULL_INFO = "getBasicGroupFullInfo"
@@ -574,12 +689,24 @@ class API:
         GET_BOT_INFO_DESCRIPTION = "getBotInfoDescription"
         GET_BOT_INFO_SHORT_DESCRIPTION = "getBotInfoShortDescription"
         GET_BOT_NAME = "getBotName"
+        GET_BUSINESS_CHAT_LINK_INFO = "getBusinessChatLinkInfo"
+        GET_BUSINESS_CHAT_LINKS = "getBusinessChatLinks"
+        GET_BUSINESS_CONNECTED_BOT = "getBusinessConnectedBot"
+        GET_BUSINESS_CONNECTION = "getBusinessConnection"
+        GET_BUSINESS_FEATURES = "getBusinessFeatures"
         GET_CALLBACK_QUERY_ANSWER = "getCallbackQueryAnswer"
         GET_CALLBACK_QUERY_MESSAGE = "getCallbackQueryMessage"
         GET_CHAT = "getChat"
         GET_CHAT_ACTIVE_STORIES = "getChatActiveStories"
         GET_CHAT_ADMINISTRATORS = "getChatAdministrators"
+        GET_CHAT_ARCHIVED_STORIES = "getChatArchivedStories"
         GET_CHAT_AVAILABLE_MESSAGE_SENDERS = "getChatAvailableMessageSenders"
+        GET_CHAT_BOOST_FEATURES = "getChatBoostFeatures"
+        GET_CHAT_BOOST_LEVEL_FEATURES = "getChatBoostLevelFeatures"
+        GET_CHAT_BOOST_LINK = "getChatBoostLink"
+        GET_CHAT_BOOST_LINK_INFO = "getChatBoostLinkInfo"
+        GET_CHAT_BOOST_STATUS = "getChatBoostStatus"
+        GET_CHAT_BOOSTS = "getChatBoosts"
         GET_CHAT_EVENT_LOG = "getChatEventLog"
         GET_CHAT_FOLDER = "getChatFolder"
         GET_CHAT_FOLDER_CHAT_COUNT = "getChatFolderChatCount"
@@ -601,29 +728,41 @@ class API:
         GET_CHAT_MESSAGE_POSITION = "getChatMessagePosition"
         GET_CHAT_NOTIFICATION_SETTINGS_EXCEPTIONS = "getChatNotificationSettingsExceptions"
         GET_CHAT_PINNED_MESSAGE = "getChatPinnedMessage"
-        GET_CHAT_PINNED_STORIES = "getChatPinnedStories"
+        GET_CHAT_POSTED_TO_CHAT_PAGE_STORIES = "getChatPostedToChatPageStories"
+        GET_CHAT_REVENUE_STATISTICS = "getChatRevenueStatistics"
+        GET_CHAT_REVENUE_TRANSACTIONS = "getChatRevenueTransactions"
+        GET_CHAT_REVENUE_WITHDRAWAL_URL = "getChatRevenueWithdrawalUrl"
         GET_CHAT_SCHEDULED_MESSAGES = "getChatScheduledMessages"
+        GET_CHAT_SIMILAR_CHAT_COUNT = "getChatSimilarChatCount"
+        GET_CHAT_SIMILAR_CHATS = "getChatSimilarChats"
         GET_CHAT_SPARSE_MESSAGE_POSITIONS = "getChatSparseMessagePositions"
         GET_CHAT_SPONSORED_MESSAGES = "getChatSponsoredMessages"
         GET_CHAT_STATISTICS = "getChatStatistics"
+        GET_CHAT_STORY_INTERACTIONS = "getChatStoryInteractions"
         GET_CHATS = "getChats"
         GET_CHATS_FOR_CHAT_FOLDER_INVITE_LINK = "getChatsForChatFolderInviteLink"
+        GET_CHATS_TO_SEND_STORIES = "getChatsToSendStories"
         GET_CLOSE_FRIENDS = "getCloseFriends"
+        GET_COLLECTIBLE_ITEM_INFO = "getCollectibleItemInfo"
         GET_COMMANDS = "getCommands"
         GET_CONNECTED_WEBSITES = "getConnectedWebsites"
         GET_CONTACTS = "getContacts"
         GET_COUNTRIES = "getCountries"
         GET_COUNTRY_CODE = "getCountryCode"
+        GET_COUNTRY_FLAG_EMOJI = "getCountryFlagEmoji"
         GET_CREATED_PUBLIC_CHATS = "getCreatedPublicChats"
         GET_CURRENT_STATE = "getCurrentState"
         GET_CUSTOM_EMOJI_REACTION_ANIMATIONS = "getCustomEmojiReactionAnimations"
         GET_CUSTOM_EMOJI_STICKERS = "getCustomEmojiStickers"
         GET_DATABASE_STATISTICS = "getDatabaseStatistics"
         GET_DEEP_LINK_INFO = "getDeepLinkInfo"
+        GET_DEFAULT_BACKGROUND_CUSTOM_EMOJI_STICKERS = "getDefaultBackgroundCustomEmojiStickers"
+        GET_DEFAULT_CHAT_EMOJI_STATUSES = "getDefaultChatEmojiStatuses"
         GET_DEFAULT_CHAT_PHOTO_CUSTOM_EMOJI_STICKERS = "getDefaultChatPhotoCustomEmojiStickers"
         GET_DEFAULT_EMOJI_STATUSES = "getDefaultEmojiStatuses"
         GET_DEFAULT_MESSAGE_AUTO_DELETE_TIME = "getDefaultMessageAutoDeleteTime"
         GET_DEFAULT_PROFILE_PHOTO_CUSTOM_EMOJI_STICKERS = "getDefaultProfilePhotoCustomEmojiStickers"
+        GET_DISALLOWED_CHAT_EMOJI_STATUSES = "getDisallowedChatEmojiStatuses"
         GET_EMOJI_CATEGORIES = "getEmojiCategories"
         GET_EMOJI_REACTION = "getEmojiReaction"
         GET_EMOJI_SUGGESTIONS_URL = "getEmojiSuggestionsUrl"
@@ -639,6 +778,7 @@ class API:
         GET_FORUM_TOPIC_LINK = "getForumTopicLink"
         GET_FORUM_TOPICS = "getForumTopics"
         GET_GAME_HIGH_SCORES = "getGameHighScores"
+        GET_GREETING_STICKERS = "getGreetingStickers"
         GET_GROUP_CALL = "getGroupCall"
         GET_GROUP_CALL_INVITE_LINK = "getGroupCallInviteLink"
         GET_GROUP_CALL_STREAM_SEGMENT = "getGroupCallStreamSegment"
@@ -648,11 +788,13 @@ class API:
         GET_INACTIVE_SUPERGROUP_CHATS = "getInactiveSupergroupChats"
         GET_INLINE_GAME_HIGH_SCORES = "getInlineGameHighScores"
         GET_INLINE_QUERY_RESULTS = "getInlineQueryResults"
+        GET_INSTALLED_BACKGROUNDS = "getInstalledBackgrounds"
         GET_INSTALLED_STICKER_SETS = "getInstalledStickerSets"
         GET_INTERNAL_LINK = "getInternalLink"
         GET_INTERNAL_LINK_TYPE = "getInternalLinkType"
         GET_JSON_STRING = "getJsonString"
         GET_JSON_VALUE = "getJsonValue"
+        GET_KEYWORD_EMOJIS = "getKeywordEmojis"
         GET_LANGUAGE_PACK_INFO = "getLanguagePackInfo"
         GET_LANGUAGE_PACK_STRING = "getLanguagePackString"
         GET_LANGUAGE_PACK_STRINGS = "getLanguagePackStrings"
@@ -670,6 +812,7 @@ class API:
         GET_MESSAGE = "getMessage"
         GET_MESSAGE_ADDED_REACTIONS = "getMessageAddedReactions"
         GET_MESSAGE_AVAILABLE_REACTIONS = "getMessageAvailableReactions"
+        GET_MESSAGE_EFFECT = "getMessageEffect"
         GET_MESSAGE_EMBEDDING_CODE = "getMessageEmbeddingCode"
         GET_MESSAGE_FILE_TYPE = "getMessageFileType"
         GET_MESSAGE_IMPORT_CONFIRMATION_TEXT = "getMessageImportConfirmationText"
@@ -677,13 +820,16 @@ class API:
         GET_MESSAGE_LINK_INFO = "getMessageLinkInfo"
         GET_MESSAGE_LOCALLY = "getMessageLocally"
         GET_MESSAGE_PUBLIC_FORWARDS = "getMessagePublicForwards"
+        GET_MESSAGE_READ_DATE = "getMessageReadDate"
         GET_MESSAGE_STATISTICS = "getMessageStatistics"
         GET_MESSAGE_THREAD = "getMessageThread"
         GET_MESSAGE_THREAD_HISTORY = "getMessageThreadHistory"
         GET_MESSAGE_VIEWERS = "getMessageViewers"
         GET_MESSAGES = "getMessages"
         GET_NETWORK_STATISTICS = "getNetworkStatistics"
+        GET_NEW_CHAT_PRIVACY_SETTINGS = "getNewChatPrivacySettings"
         GET_OPTION = "getOption"
+        GET_OWNED_STICKER_SETS = "getOwnedStickerSets"
         GET_PASSPORT_AUTHORIZATION_FORM = "getPassportAuthorizationForm"
         GET_PASSPORT_AUTHORIZATION_FORM_AVAILABLE_ELEMENTS = "getPassportAuthorizationFormAvailableElements"
         GET_PASSPORT_ELEMENT = "getPassportElement"
@@ -695,6 +841,8 @@ class API:
         GET_POLL_VOTERS = "getPollVoters"
         GET_PREFERRED_COUNTRY_LANGUAGE = "getPreferredCountryLanguage"
         GET_PREMIUM_FEATURES = "getPremiumFeatures"
+        GET_PREMIUM_GIFT_CODE_PAYMENT_OPTIONS = "getPremiumGiftCodePaymentOptions"
+        GET_PREMIUM_GIVEAWAY_INFO = "getPremiumGiveawayInfo"
         GET_PREMIUM_LIMIT = "getPremiumLimit"
         GET_PREMIUM_STATE = "getPremiumState"
         GET_PREMIUM_STICKER_EXAMPLES = "getPremiumStickerExamples"
@@ -702,21 +850,29 @@ class API:
         GET_PROXIES = "getProxies"
         GET_PROXY_LINK = "getProxyLink"
         GET_PUSH_RECEIVER_ID = "getPushReceiverId"
+        GET_READ_DATE_PRIVACY_SETTINGS = "getReadDatePrivacySettings"
         GET_RECENT_EMOJI_STATUSES = "getRecentEmojiStatuses"
         GET_RECENT_INLINE_BOTS = "getRecentInlineBots"
         GET_RECENT_STICKERS = "getRecentStickers"
         GET_RECENTLY_OPENED_CHATS = "getRecentlyOpenedChats"
         GET_RECENTLY_VISITED_T_ME_URLS = "getRecentlyVisitedTMeUrls"
         GET_RECOMMENDED_CHAT_FOLDERS = "getRecommendedChatFolders"
+        GET_RECOMMENDED_CHATS = "getRecommendedChats"
         GET_RECOVERY_EMAIL_ADDRESS = "getRecoveryEmailAddress"
         GET_REMOTE_FILE = "getRemoteFile"
         GET_REPLIED_MESSAGE = "getRepliedMessage"
         GET_SAVED_ANIMATIONS = "getSavedAnimations"
+        GET_SAVED_MESSAGES_TAGS = "getSavedMessagesTags"
+        GET_SAVED_MESSAGES_TOPIC_HISTORY = "getSavedMessagesTopicHistory"
+        GET_SAVED_MESSAGES_TOPIC_MESSAGE_BY_DATE = "getSavedMessagesTopicMessageByDate"
         GET_SAVED_NOTIFICATION_SOUND = "getSavedNotificationSound"
         GET_SAVED_NOTIFICATION_SOUNDS = "getSavedNotificationSounds"
         GET_SAVED_ORDER_INFO = "getSavedOrderInfo"
         GET_SCOPE_NOTIFICATION_SETTINGS = "getScopeNotificationSettings"
+        GET_SEARCHED_FOR_HASHTAGS = "getSearchedForHashtags"
         GET_SECRET_CHAT = "getSecretChat"
+        GET_STAR_PAYMENT_OPTIONS = "getStarPaymentOptions"
+        GET_STAR_TRANSACTIONS = "getStarTransactions"
         GET_STATISTICAL_GRAPH = "getStatisticalGraph"
         GET_STICKER_EMOJIS = "getStickerEmojis"
         GET_STICKER_SET = "getStickerSet"
@@ -725,11 +881,14 @@ class API:
         GET_STORAGE_STATISTICS_FAST = "getStorageStatisticsFast"
         GET_STORY = "getStory"
         GET_STORY_AVAILABLE_REACTIONS = "getStoryAvailableReactions"
+        GET_STORY_INTERACTIONS = "getStoryInteractions"
         GET_STORY_NOTIFICATION_SETTINGS_EXCEPTIONS = "getStoryNotificationSettingsExceptions"
-        GET_STORY_VIEWERS = "getStoryViewers"
+        GET_STORY_PUBLIC_FORWARDS = "getStoryPublicForwards"
+        GET_STORY_STATISTICS = "getStoryStatistics"
         GET_SUGGESTED_FILE_NAME = "getSuggestedFileName"
         GET_SUGGESTED_STICKER_SET_NAME = "getSuggestedStickerSetName"
         GET_SUITABLE_DISCUSSION_CHATS = "getSuitableDiscussionChats"
+        GET_SUITABLE_PERSONAL_CHATS = "getSuitablePersonalChats"
         GET_SUPERGROUP = "getSupergroup"
         GET_SUPERGROUP_FULL_INFO = "getSupergroupFullInfo"
         GET_SUPERGROUP_MEMBERS = "getSupergroupMembers"
@@ -738,10 +897,13 @@ class API:
         GET_TEMPORARY_PASSWORD_STATE = "getTemporaryPasswordState"
         GET_TEXT_ENTITIES = "getTextEntities"
         GET_THEME_PARAMETERS_JSON_STRING = "getThemeParametersJsonString"
+        GET_THEMED_CHAT_EMOJI_STATUSES = "getThemedChatEmojiStatuses"
         GET_THEMED_EMOJI_STATUSES = "getThemedEmojiStatuses"
+        GET_TIME_ZONES = "getTimeZones"
         GET_TOP_CHATS = "getTopChats"
         GET_TRENDING_STICKER_SETS = "getTrendingStickerSets"
         GET_USER = "getUser"
+        GET_USER_CHAT_BOOSTS = "getUserChatBoosts"
         GET_USER_FULL_INFO = "getUserFullInfo"
         GET_USER_LINK = "getUserLink"
         GET_USER_PRIVACY_SETTING_RULES = "getUserPrivacySettingRules"
@@ -766,6 +928,7 @@ class API:
         GROUP_CALL_VIDEO_QUALITY_THUMBNAIL = "groupCallVideoQualityThumbnail"
         GROUP_CALL_VIDEO_SOURCE_GROUP = "groupCallVideoSourceGroup"
         HASHTAGS = "hashtags"
+        HIDE_CONTACT_CLOSE_BIRTHDAYS = "hideContactCloseBirthdays"
         HIDE_SUGGESTED_ACTION = "hideSuggestedAction"
         HTTP_URL = "httpUrl"
         IDENTITY_DOCUMENT = "identityDocument"
@@ -805,6 +968,8 @@ class API:
         INPUT_BACKGROUND_LOCAL = "inputBackgroundLocal"
         INPUT_BACKGROUND_PREVIOUS = "inputBackgroundPrevious"
         INPUT_BACKGROUND_REMOTE = "inputBackgroundRemote"
+        INPUT_BUSINESS_CHAT_LINK = "inputBusinessChatLink"
+        INPUT_BUSINESS_START_PAGE = "inputBusinessStartPage"
         INPUT_CHAT_PHOTO = "inputChatPhoto"
         INPUT_CHAT_PHOTO_ANIMATION = "inputChatPhotoAnimation"
         INPUT_CHAT_PHOTO_PREVIOUS = "inputChatPhotoPrevious"
@@ -837,6 +1002,7 @@ class API:
         INPUT_INVOICE = "inputInvoice"
         INPUT_INVOICE_MESSAGE = "inputInvoiceMessage"
         INPUT_INVOICE_NAME = "inputInvoiceName"
+        INPUT_INVOICE_TELEGRAM = "inputInvoiceTelegram"
         INPUT_MESSAGE_CONTENT = "inputMessageContent"
         INPUT_MESSAGE_ANIMATION = "inputMessageAnimation"
         INPUT_MESSAGE_AUDIO = "inputMessageAudio"
@@ -856,6 +1022,9 @@ class API:
         INPUT_MESSAGE_VIDEO = "inputMessageVideo"
         INPUT_MESSAGE_VIDEO_NOTE = "inputMessageVideoNote"
         INPUT_MESSAGE_VOICE_NOTE = "inputMessageVoiceNote"
+        INPUT_MESSAGE_REPLY_TO = "inputMessageReplyTo"
+        INPUT_MESSAGE_REPLY_TO_MESSAGE = "inputMessageReplyToMessage"
+        INPUT_MESSAGE_REPLY_TO_STORY = "inputMessageReplyToStory"
         INPUT_PASSPORT_ELEMENT = "inputPassportElement"
         INPUT_PASSPORT_ELEMENT_ADDRESS = "inputPassportElementAddress"
         INPUT_PASSPORT_ELEMENT_BANK_STATEMENT = "inputPassportElementBankStatement"
@@ -887,11 +1056,14 @@ class API:
         INPUT_STORY_AREA_TYPE = "inputStoryAreaType"
         INPUT_STORY_AREA_TYPE_FOUND_VENUE = "inputStoryAreaTypeFoundVenue"
         INPUT_STORY_AREA_TYPE_LOCATION = "inputStoryAreaTypeLocation"
+        INPUT_STORY_AREA_TYPE_MESSAGE = "inputStoryAreaTypeMessage"
         INPUT_STORY_AREA_TYPE_PREVIOUS_VENUE = "inputStoryAreaTypePreviousVenue"
+        INPUT_STORY_AREA_TYPE_SUGGESTED_REACTION = "inputStoryAreaTypeSuggestedReaction"
         INPUT_STORY_AREAS = "inputStoryAreas"
         INPUT_STORY_CONTENT = "inputStoryContent"
         INPUT_STORY_CONTENT_PHOTO = "inputStoryContentPhoto"
         INPUT_STORY_CONTENT_VIDEO = "inputStoryContentVideo"
+        INPUT_TEXT_QUOTE = "inputTextQuote"
         INPUT_THUMBNAIL = "inputThumbnail"
         INTERNAL_LINK_TYPE = "internalLinkType"
         INTERNAL_LINK_TYPE_ACTIVE_SESSIONS = "internalLinkTypeActiveSessions"
@@ -901,7 +1073,9 @@ class API:
         INTERNAL_LINK_TYPE_BOT_ADD_TO_CHANNEL = "internalLinkTypeBotAddToChannel"
         INTERNAL_LINK_TYPE_BOT_START = "internalLinkTypeBotStart"
         INTERNAL_LINK_TYPE_BOT_START_IN_GROUP = "internalLinkTypeBotStartInGroup"
+        INTERNAL_LINK_TYPE_BUSINESS_CHAT = "internalLinkTypeBusinessChat"
         INTERNAL_LINK_TYPE_CHANGE_PHONE_NUMBER = "internalLinkTypeChangePhoneNumber"
+        INTERNAL_LINK_TYPE_CHAT_BOOST = "internalLinkTypeChatBoost"
         INTERNAL_LINK_TYPE_CHAT_FOLDER_INVITE = "internalLinkTypeChatFolderInvite"
         INTERNAL_LINK_TYPE_CHAT_FOLDER_SETTINGS = "internalLinkTypeChatFolderSettings"
         INTERNAL_LINK_TYPE_CHAT_INVITE = "internalLinkTypeChatInvite"
@@ -919,6 +1093,8 @@ class API:
         INTERNAL_LINK_TYPE_PASSPORT_DATA_REQUEST = "internalLinkTypePassportDataRequest"
         INTERNAL_LINK_TYPE_PHONE_NUMBER_CONFIRMATION = "internalLinkTypePhoneNumberConfirmation"
         INTERNAL_LINK_TYPE_PREMIUM_FEATURES = "internalLinkTypePremiumFeatures"
+        INTERNAL_LINK_TYPE_PREMIUM_GIFT = "internalLinkTypePremiumGift"
+        INTERNAL_LINK_TYPE_PREMIUM_GIFT_CODE = "internalLinkTypePremiumGiftCode"
         INTERNAL_LINK_TYPE_PRIVACY_AND_SECURITY_SETTINGS = "internalLinkTypePrivacyAndSecuritySettings"
         INTERNAL_LINK_TYPE_PROXY = "internalLinkTypeProxy"
         INTERNAL_LINK_TYPE_PUBLIC_CHAT = "internalLinkTypePublicChat"
@@ -958,7 +1134,7 @@ class API:
         KEYBOARD_BUTTON_TYPE_REQUEST_LOCATION = "keyboardButtonTypeRequestLocation"
         KEYBOARD_BUTTON_TYPE_REQUEST_PHONE_NUMBER = "keyboardButtonTypeRequestPhoneNumber"
         KEYBOARD_BUTTON_TYPE_REQUEST_POLL = "keyboardButtonTypeRequestPoll"
-        KEYBOARD_BUTTON_TYPE_REQUEST_USER = "keyboardButtonTypeRequestUser"
+        KEYBOARD_BUTTON_TYPE_REQUEST_USERS = "keyboardButtonTypeRequestUsers"
         KEYBOARD_BUTTON_TYPE_TEXT = "keyboardButtonTypeText"
         KEYBOARD_BUTTON_TYPE_WEB_APP = "keyboardButtonTypeWebApp"
         LABELED_PRICE_PART = "labeledPricePart"
@@ -969,11 +1145,16 @@ class API:
         LANGUAGE_PACK_STRING_VALUE_ORDINARY = "languagePackStringValueOrdinary"
         LANGUAGE_PACK_STRING_VALUE_PLURALIZED = "languagePackStringValuePluralized"
         LANGUAGE_PACK_STRINGS = "languagePackStrings"
+        LAUNCH_PREPAID_PREMIUM_GIVEAWAY = "launchPrepaidPremiumGiveaway"
         LEAVE_CHAT = "leaveChat"
         LEAVE_GROUP_CALL = "leaveGroupCall"
+        LINK_PREVIEW_OPTIONS = "linkPreviewOptions"
         LOAD_ACTIVE_STORIES = "loadActiveStories"
         LOAD_CHATS = "loadChats"
         LOAD_GROUP_CALL_PARTICIPANTS = "loadGroupCallParticipants"
+        LOAD_QUICK_REPLY_SHORTCUT_MESSAGES = "loadQuickReplyShortcutMessages"
+        LOAD_QUICK_REPLY_SHORTCUTS = "loadQuickReplyShortcuts"
+        LOAD_SAVED_MESSAGES_TOPICS = "loadSavedMessagesTopics"
         LOCAL_FILE = "localFile"
         LOCALIZATION_TARGET_INFO = "localizationTargetInfo"
         LOCATION = "location"
@@ -1005,6 +1186,7 @@ class API:
         MESSAGE_BOT_WRITE_ACCESS_ALLOWED = "messageBotWriteAccessAllowed"
         MESSAGE_CALL = "messageCall"
         MESSAGE_CHAT_ADD_MEMBERS = "messageChatAddMembers"
+        MESSAGE_CHAT_BOOST = "messageChatBoost"
         MESSAGE_CHAT_CHANGE_PHOTO = "messageChatChangePhoto"
         MESSAGE_CHAT_CHANGE_TITLE = "messageChatChangeTitle"
         MESSAGE_CHAT_DELETE_MEMBER = "messageChatDeleteMember"
@@ -1024,6 +1206,8 @@ class API:
         MESSAGE_DOCUMENT = "messageDocument"
         MESSAGE_EXPIRED_PHOTO = "messageExpiredPhoto"
         MESSAGE_EXPIRED_VIDEO = "messageExpiredVideo"
+        MESSAGE_EXPIRED_VIDEO_NOTE = "messageExpiredVideoNote"
+        MESSAGE_EXPIRED_VOICE_NOTE = "messageExpiredVoiceNote"
         MESSAGE_FORUM_TOPIC_CREATED = "messageForumTopicCreated"
         MESSAGE_FORUM_TOPIC_EDITED = "messageForumTopicEdited"
         MESSAGE_FORUM_TOPIC_IS_CLOSED_TOGGLED = "messageForumTopicIsClosedToggled"
@@ -1041,6 +1225,11 @@ class API:
         MESSAGE_PHOTO = "messagePhoto"
         MESSAGE_PIN_MESSAGE = "messagePinMessage"
         MESSAGE_POLL = "messagePoll"
+        MESSAGE_PREMIUM_GIFT_CODE = "messagePremiumGiftCode"
+        MESSAGE_PREMIUM_GIVEAWAY = "messagePremiumGiveaway"
+        MESSAGE_PREMIUM_GIVEAWAY_COMPLETED = "messagePremiumGiveawayCompleted"
+        MESSAGE_PREMIUM_GIVEAWAY_CREATED = "messagePremiumGiveawayCreated"
+        MESSAGE_PREMIUM_GIVEAWAY_WINNERS = "messagePremiumGiveawayWinners"
         MESSAGE_PROXIMITY_ALERT_TRIGGERED = "messageProximityAlertTriggered"
         MESSAGE_SCREENSHOT_TAKEN = "messageScreenshotTaken"
         MESSAGE_STICKER = "messageSticker"
@@ -1049,7 +1238,7 @@ class API:
         MESSAGE_SUPERGROUP_CHAT_CREATE = "messageSupergroupChatCreate"
         MESSAGE_TEXT = "messageText"
         MESSAGE_UNSUPPORTED = "messageUnsupported"
-        MESSAGE_USER_SHARED = "messageUserShared"
+        MESSAGE_USERS_SHARED = "messageUsersShared"
         MESSAGE_VENUE = "messageVenue"
         MESSAGE_VIDEO = "messageVideo"
         MESSAGE_VIDEO_CHAT_ENDED = "messageVideoChatEnded"
@@ -1059,8 +1248,11 @@ class API:
         MESSAGE_VOICE_NOTE = "messageVoiceNote"
         MESSAGE_WEB_APP_DATA_RECEIVED = "messageWebAppDataReceived"
         MESSAGE_WEB_APP_DATA_SENT = "messageWebAppDataSent"
-        MESSAGE_WEBSITE_CONNECTED = "messageWebsiteConnected"
         MESSAGE_COPY_OPTIONS = "messageCopyOptions"
+        MESSAGE_EFFECT = "messageEffect"
+        MESSAGE_EFFECT_TYPE = "messageEffectType"
+        MESSAGE_EFFECT_TYPE_EMOJI_REACTION = "messageEffectTypeEmojiReaction"
+        MESSAGE_EFFECT_TYPE_PREMIUM_STICKER = "messageEffectTypePremiumSticker"
         MESSAGE_EXTENDED_MEDIA = "messageExtendedMedia"
         MESSAGE_EXTENDED_MEDIA_PHOTO = "messageExtendedMediaPhoto"
         MESSAGE_EXTENDED_MEDIA_PREVIEW = "messageExtendedMediaPreview"
@@ -1071,18 +1263,25 @@ class API:
         MESSAGE_FILE_TYPE_PRIVATE = "messageFileTypePrivate"
         MESSAGE_FILE_TYPE_UNKNOWN = "messageFileTypeUnknown"
         MESSAGE_FORWARD_INFO = "messageForwardInfo"
-        MESSAGE_FORWARD_ORIGIN = "messageForwardOrigin"
-        MESSAGE_FORWARD_ORIGIN_CHANNEL = "messageForwardOriginChannel"
-        MESSAGE_FORWARD_ORIGIN_CHAT = "messageForwardOriginChat"
-        MESSAGE_FORWARD_ORIGIN_HIDDEN_USER = "messageForwardOriginHiddenUser"
-        MESSAGE_FORWARD_ORIGIN_MESSAGE_IMPORT = "messageForwardOriginMessageImport"
-        MESSAGE_FORWARD_ORIGIN_USER = "messageForwardOriginUser"
+        MESSAGE_IMPORT_INFO = "messageImportInfo"
         MESSAGE_INTERACTION_INFO = "messageInteractionInfo"
         MESSAGE_LINK = "messageLink"
         MESSAGE_LINK_INFO = "messageLinkInfo"
+        MESSAGE_ORIGIN = "messageOrigin"
+        MESSAGE_ORIGIN_CHANNEL = "messageOriginChannel"
+        MESSAGE_ORIGIN_CHAT = "messageOriginChat"
+        MESSAGE_ORIGIN_HIDDEN_USER = "messageOriginHiddenUser"
+        MESSAGE_ORIGIN_USER = "messageOriginUser"
         MESSAGE_POSITION = "messagePosition"
         MESSAGE_POSITIONS = "messagePositions"
         MESSAGE_REACTION = "messageReaction"
+        MESSAGE_REACTIONS = "messageReactions"
+        MESSAGE_READ_DATE = "messageReadDate"
+        MESSAGE_READ_DATE_MY_PRIVACY_RESTRICTED = "messageReadDateMyPrivacyRestricted"
+        MESSAGE_READ_DATE_READ = "messageReadDateRead"
+        MESSAGE_READ_DATE_TOO_OLD = "messageReadDateTooOld"
+        MESSAGE_READ_DATE_UNREAD = "messageReadDateUnread"
+        MESSAGE_READ_DATE_USER_PRIVACY_RESTRICTED = "messageReadDateUserPrivacyRestricted"
         MESSAGE_REPLY_INFO = "messageReplyInfo"
         MESSAGE_REPLY_TO = "messageReplyTo"
         MESSAGE_REPLY_TO_MESSAGE = "messageReplyToMessage"
@@ -1113,11 +1312,6 @@ class API:
         MESSAGE_SOURCE_SCREENSHOT = "messageSourceScreenshot"
         MESSAGE_SOURCE_SEARCH = "messageSourceSearch"
         MESSAGE_SPONSOR = "messageSponsor"
-        MESSAGE_SPONSOR_TYPE = "messageSponsorType"
-        MESSAGE_SPONSOR_TYPE_BOT = "messageSponsorTypeBot"
-        MESSAGE_SPONSOR_TYPE_PRIVATE_CHANNEL = "messageSponsorTypePrivateChannel"
-        MESSAGE_SPONSOR_TYPE_PUBLIC_CHANNEL = "messageSponsorTypePublicChannel"
-        MESSAGE_SPONSOR_TYPE_WEBSITE = "messageSponsorTypeWebsite"
         MESSAGE_STATISTICS = "messageStatistics"
         MESSAGE_THREAD_INFO = "messageThreadInfo"
         MESSAGE_VIEWER = "messageViewer"
@@ -1134,6 +1328,7 @@ class API:
         NETWORK_TYPE_NONE = "networkTypeNone"
         NETWORK_TYPE_OTHER = "networkTypeOther"
         NETWORK_TYPE_WI_FI = "networkTypeWiFi"
+        NEW_CHAT_PRIVACY_SETTINGS = "newChatPrivacySettings"
         NOTIFICATION = "notification"
         NOTIFICATION_GROUP = "notificationGroup"
         NOTIFICATION_GROUP_TYPE = "notificationGroupType"
@@ -1154,6 +1349,7 @@ class API:
         NOTIFICATION_TYPE_NEW_SECRET_CHAT = "notificationTypeNewSecretChat"
         OK = "ok"
         OPEN_CHAT = "openChat"
+        OPEN_CHAT_SIMILAR_CHAT = "openChatSimilarChat"
         OPEN_MESSAGE_CONTENT = "openMessageContent"
         OPEN_STORY = "openStory"
         OPEN_WEB_APP = "openWebApp"
@@ -1253,16 +1449,26 @@ class API:
         PASSPORT_SUITABLE_ELEMENT = "passportSuitableElement"
         PASSWORD_STATE = "passwordState"
         PAYMENT_FORM = "paymentForm"
+        PAYMENT_FORM_TYPE = "paymentFormType"
+        PAYMENT_FORM_TYPE_REGULAR = "paymentFormTypeRegular"
+        PAYMENT_FORM_TYPE_STARS = "paymentFormTypeStars"
         PAYMENT_OPTION = "paymentOption"
         PAYMENT_PROVIDER = "paymentProvider"
         PAYMENT_PROVIDER_OTHER = "paymentProviderOther"
         PAYMENT_PROVIDER_SMART_GLOCAL = "paymentProviderSmartGlocal"
         PAYMENT_PROVIDER_STRIPE = "paymentProviderStripe"
         PAYMENT_RECEIPT = "paymentReceipt"
+        PAYMENT_RECEIPT_TYPE = "paymentReceiptType"
+        PAYMENT_RECEIPT_TYPE_REGULAR = "paymentReceiptTypeRegular"
+        PAYMENT_RECEIPT_TYPE_STARS = "paymentReceiptTypeStars"
         PAYMENT_RESULT = "paymentResult"
         PERSONAL_DETAILS = "personalDetails"
         PERSONAL_DOCUMENT = "personalDocument"
         PHONE_NUMBER_AUTHENTICATION_SETTINGS = "phoneNumberAuthenticationSettings"
+        PHONE_NUMBER_CODE_TYPE = "phoneNumberCodeType"
+        PHONE_NUMBER_CODE_TYPE_CHANGE = "phoneNumberCodeTypeChange"
+        PHONE_NUMBER_CODE_TYPE_CONFIRM_OWNERSHIP = "phoneNumberCodeTypeConfirmOwnership"
+        PHONE_NUMBER_CODE_TYPE_VERIFY = "phoneNumberCodeTypeVerify"
         PHONE_NUMBER_INFO = "phoneNumberInfo"
         PHOTO = "photo"
         PHOTO_SIZE = "photoSize"
@@ -1276,9 +1482,13 @@ class API:
         POLL_TYPE_REGULAR = "pollTypeRegular"
         PRELIMINARY_UPLOAD_FILE = "preliminaryUploadFile"
         PREMIUM_FEATURE = "premiumFeature"
+        PREMIUM_FEATURE_ACCENT_COLOR = "premiumFeatureAccentColor"
         PREMIUM_FEATURE_ADVANCED_CHAT_MANAGEMENT = "premiumFeatureAdvancedChatManagement"
         PREMIUM_FEATURE_ANIMATED_PROFILE_PHOTO = "premiumFeatureAnimatedProfilePhoto"
         PREMIUM_FEATURE_APP_ICONS = "premiumFeatureAppIcons"
+        PREMIUM_FEATURE_BACKGROUND_FOR_BOTH = "premiumFeatureBackgroundForBoth"
+        PREMIUM_FEATURE_BUSINESS = "premiumFeatureBusiness"
+        PREMIUM_FEATURE_CHAT_BOOST = "premiumFeatureChatBoost"
         PREMIUM_FEATURE_CUSTOM_EMOJI = "premiumFeatureCustomEmoji"
         PREMIUM_FEATURE_DISABLED_ADS = "premiumFeatureDisabledAds"
         PREMIUM_FEATURE_EMOJI_STATUS = "premiumFeatureEmojiStatus"
@@ -1286,14 +1496,30 @@ class API:
         PREMIUM_FEATURE_IMPROVED_DOWNLOAD_SPEED = "premiumFeatureImprovedDownloadSpeed"
         PREMIUM_FEATURE_INCREASED_LIMITS = "premiumFeatureIncreasedLimits"
         PREMIUM_FEATURE_INCREASED_UPLOAD_FILE_SIZE = "premiumFeatureIncreasedUploadFileSize"
+        PREMIUM_FEATURE_LAST_SEEN_TIMES = "premiumFeatureLastSeenTimes"
+        PREMIUM_FEATURE_MESSAGE_PRIVACY = "premiumFeatureMessagePrivacy"
         PREMIUM_FEATURE_PROFILE_BADGE = "premiumFeatureProfileBadge"
         PREMIUM_FEATURE_REAL_TIME_CHAT_TRANSLATION = "premiumFeatureRealTimeChatTranslation"
+        PREMIUM_FEATURE_SAVED_MESSAGES_TAGS = "premiumFeatureSavedMessagesTags"
         PREMIUM_FEATURE_UNIQUE_REACTIONS = "premiumFeatureUniqueReactions"
         PREMIUM_FEATURE_UNIQUE_STICKERS = "premiumFeatureUniqueStickers"
         PREMIUM_FEATURE_UPGRADED_STORIES = "premiumFeatureUpgradedStories"
         PREMIUM_FEATURE_VOICE_RECOGNITION = "premiumFeatureVoiceRecognition"
         PREMIUM_FEATURE_PROMOTION_ANIMATION = "premiumFeaturePromotionAnimation"
         PREMIUM_FEATURES = "premiumFeatures"
+        PREMIUM_GIFT_CODE_INFO = "premiumGiftCodeInfo"
+        PREMIUM_GIFT_CODE_PAYMENT_OPTION = "premiumGiftCodePaymentOption"
+        PREMIUM_GIFT_CODE_PAYMENT_OPTIONS = "premiumGiftCodePaymentOptions"
+        PREMIUM_GIVEAWAY_INFO = "premiumGiveawayInfo"
+        PREMIUM_GIVEAWAY_INFO_COMPLETED = "premiumGiveawayInfoCompleted"
+        PREMIUM_GIVEAWAY_INFO_ONGOING = "premiumGiveawayInfoOngoing"
+        PREMIUM_GIVEAWAY_PARAMETERS = "premiumGiveawayParameters"
+        PREMIUM_GIVEAWAY_PARTICIPANT_STATUS = "premiumGiveawayParticipantStatus"
+        PREMIUM_GIVEAWAY_PARTICIPANT_STATUS_ADMINISTRATOR = "premiumGiveawayParticipantStatusAdministrator"
+        PREMIUM_GIVEAWAY_PARTICIPANT_STATUS_ALREADY_WAS_MEMBER = "premiumGiveawayParticipantStatusAlreadyWasMember"
+        PREMIUM_GIVEAWAY_PARTICIPANT_STATUS_DISALLOWED_COUNTRY = "premiumGiveawayParticipantStatusDisallowedCountry"
+        PREMIUM_GIVEAWAY_PARTICIPANT_STATUS_ELIGIBLE = "premiumGiveawayParticipantStatusEligible"
+        PREMIUM_GIVEAWAY_PARTICIPANT_STATUS_PARTICIPATING = "premiumGiveawayParticipantStatusParticipating"
         PREMIUM_LIMIT = "premiumLimit"
         PREMIUM_LIMIT_TYPE = "premiumLimitType"
         PREMIUM_LIMIT_TYPE_ACTIVE_STORY_COUNT = "premiumLimitTypeActiveStoryCount"
@@ -1307,13 +1533,17 @@ class API:
         PREMIUM_LIMIT_TYPE_MONTHLY_SENT_STORY_COUNT = "premiumLimitTypeMonthlySentStoryCount"
         PREMIUM_LIMIT_TYPE_PINNED_ARCHIVED_CHAT_COUNT = "premiumLimitTypePinnedArchivedChatCount"
         PREMIUM_LIMIT_TYPE_PINNED_CHAT_COUNT = "premiumLimitTypePinnedChatCount"
+        PREMIUM_LIMIT_TYPE_PINNED_SAVED_MESSAGES_TOPIC_COUNT = "premiumLimitTypePinnedSavedMessagesTopicCount"
         PREMIUM_LIMIT_TYPE_SAVED_ANIMATION_COUNT = "premiumLimitTypeSavedAnimationCount"
         PREMIUM_LIMIT_TYPE_SHAREABLE_CHAT_FOLDER_COUNT = "premiumLimitTypeShareableChatFolderCount"
+        PREMIUM_LIMIT_TYPE_SIMILAR_CHAT_COUNT = "premiumLimitTypeSimilarChatCount"
         PREMIUM_LIMIT_TYPE_STORY_CAPTION_LENGTH = "premiumLimitTypeStoryCaptionLength"
+        PREMIUM_LIMIT_TYPE_STORY_SUGGESTED_REACTION_AREA_COUNT = "premiumLimitTypeStorySuggestedReactionAreaCount"
         PREMIUM_LIMIT_TYPE_SUPERGROUP_COUNT = "premiumLimitTypeSupergroupCount"
         PREMIUM_LIMIT_TYPE_WEEKLY_SENT_STORY_COUNT = "premiumLimitTypeWeeklySentStoryCount"
         PREMIUM_PAYMENT_OPTION = "premiumPaymentOption"
         PREMIUM_SOURCE = "premiumSource"
+        PREMIUM_SOURCE_BUSINESS_FEATURE = "premiumSourceBusinessFeature"
         PREMIUM_SOURCE_FEATURE = "premiumSourceFeature"
         PREMIUM_SOURCE_LIMIT_EXCEEDED = "premiumSourceLimitExceeded"
         PREMIUM_SOURCE_LINK = "premiumSourceLink"
@@ -1328,10 +1558,15 @@ class API:
         PREMIUM_STORY_FEATURE_PRIORITY_ORDER = "premiumStoryFeaturePriorityOrder"
         PREMIUM_STORY_FEATURE_SAVE_STORIES = "premiumStoryFeatureSaveStories"
         PREMIUM_STORY_FEATURE_STEALTH_MODE = "premiumStoryFeatureStealthMode"
+        PREMIUM_STORY_FEATURE_VIDEO_QUALITY = "premiumStoryFeatureVideoQuality"
+        PREPAID_PREMIUM_GIVEAWAY = "prepaidPremiumGiveaway"
         PROCESS_CHAT_FOLDER_NEW_CHATS = "processChatFolderNewChats"
         PROCESS_CHAT_JOIN_REQUEST = "processChatJoinRequest"
         PROCESS_CHAT_JOIN_REQUESTS = "processChatJoinRequests"
         PROCESS_PUSH_NOTIFICATION = "processPushNotification"
+        PRODUCT_INFO = "productInfo"
+        PROFILE_ACCENT_COLOR = "profileAccentColor"
+        PROFILE_ACCENT_COLORS = "profileAccentColors"
         PROFILE_PHOTO = "profilePhoto"
         PROXIES = "proxies"
         PROXY = "proxy"
@@ -1342,6 +1577,10 @@ class API:
         PUBLIC_CHAT_TYPE = "publicChatType"
         PUBLIC_CHAT_TYPE_HAS_USERNAME = "publicChatTypeHasUsername"
         PUBLIC_CHAT_TYPE_IS_LOCATION_BASED = "publicChatTypeIsLocationBased"
+        PUBLIC_FORWARD = "publicForward"
+        PUBLIC_FORWARD_MESSAGE = "publicForwardMessage"
+        PUBLIC_FORWARD_STORY = "publicForwardStory"
+        PUBLIC_FORWARDS = "publicForwards"
         PUSH_MESSAGE_CONTENT = "pushMessageContent"
         PUSH_MESSAGE_CONTENT_ANIMATION = "pushMessageContentAnimation"
         PUSH_MESSAGE_CONTENT_AUDIO = "pushMessageContentAudio"
@@ -1366,6 +1605,8 @@ class API:
         PUSH_MESSAGE_CONTENT_MESSAGE_FORWARDS = "pushMessageContentMessageForwards"
         PUSH_MESSAGE_CONTENT_PHOTO = "pushMessageContentPhoto"
         PUSH_MESSAGE_CONTENT_POLL = "pushMessageContentPoll"
+        PUSH_MESSAGE_CONTENT_PREMIUM_GIFT_CODE = "pushMessageContentPremiumGiftCode"
+        PUSH_MESSAGE_CONTENT_PREMIUM_GIVEAWAY = "pushMessageContentPremiumGiveaway"
         PUSH_MESSAGE_CONTENT_RECURRING_PAYMENT = "pushMessageContentRecurringPayment"
         PUSH_MESSAGE_CONTENT_SCREENSHOT_TAKEN = "pushMessageContentScreenshotTaken"
         PUSH_MESSAGE_CONTENT_STICKER = "pushMessageContentSticker"
@@ -1376,31 +1617,46 @@ class API:
         PUSH_MESSAGE_CONTENT_VIDEO_NOTE = "pushMessageContentVideoNote"
         PUSH_MESSAGE_CONTENT_VOICE_NOTE = "pushMessageContentVoiceNote"
         PUSH_RECEIVER_ID = "pushReceiverId"
+        QUICK_REPLY_MESSAGE = "quickReplyMessage"
+        QUICK_REPLY_MESSAGES = "quickReplyMessages"
+        QUICK_REPLY_SHORTCUT = "quickReplyShortcut"
         RATE_SPEECH_RECOGNITION = "rateSpeechRecognition"
+        REACTION_NOTIFICATION_SETTINGS = "reactionNotificationSettings"
+        REACTION_NOTIFICATION_SOURCE = "reactionNotificationSource"
+        REACTION_NOTIFICATION_SOURCE_ALL = "reactionNotificationSourceAll"
+        REACTION_NOTIFICATION_SOURCE_CONTACTS = "reactionNotificationSourceContacts"
+        REACTION_NOTIFICATION_SOURCE_NONE = "reactionNotificationSourceNone"
         REACTION_TYPE = "reactionType"
         REACTION_TYPE_CUSTOM_EMOJI = "reactionTypeCustomEmoji"
         REACTION_TYPE_EMOJI = "reactionTypeEmoji"
+        REACTION_UNAVAILABILITY_REASON = "reactionUnavailabilityReason"
+        REACTION_UNAVAILABILITY_REASON_ANONYMOUS_ADMINISTRATOR = "reactionUnavailabilityReasonAnonymousAdministrator"
+        REACTION_UNAVAILABILITY_REASON_GUEST = "reactionUnavailabilityReasonGuest"
         READ_ALL_CHAT_MENTIONS = "readAllChatMentions"
         READ_ALL_CHAT_REACTIONS = "readAllChatReactions"
         READ_ALL_MESSAGE_THREAD_MENTIONS = "readAllMessageThreadMentions"
         READ_ALL_MESSAGE_THREAD_REACTIONS = "readAllMessageThreadReactions"
         READ_CHAT_LIST = "readChatList"
+        READ_DATE_PRIVACY_SETTINGS = "readDatePrivacySettings"
         READ_FILE_PART = "readFilePart"
+        READD_QUICK_REPLY_SHORTCUT_MESSAGES = "readdQuickReplyShortcutMessages"
         RECOGNIZE_SPEECH = "recognizeSpeech"
         RECOMMENDED_CHAT_FOLDER = "recommendedChatFolder"
         RECOMMENDED_CHAT_FOLDERS = "recommendedChatFolders"
         RECOVER_AUTHENTICATION_PASSWORD = "recoverAuthenticationPassword"
         RECOVER_PASSWORD = "recoverPassword"
         RECOVERY_EMAIL_ADDRESS = "recoveryEmailAddress"
+        REFUND_STAR_PAYMENT = "refundStarPayment"
         REGISTER_DEVICE = "registerDevice"
         REGISTER_USER = "registerUser"
         REMOTE_FILE = "remoteFile"
         REMOVE_ALL_FILES_FROM_DOWNLOADS = "removeAllFilesFromDownloads"
-        REMOVE_BACKGROUND = "removeBackground"
+        REMOVE_BUSINESS_CONNECTED_BOT_FROM_CHAT = "removeBusinessConnectedBotFromChat"
         REMOVE_CHAT_ACTION_BAR = "removeChatActionBar"
         REMOVE_CONTACTS = "removeContacts"
         REMOVE_FAVORITE_STICKER = "removeFavoriteSticker"
         REMOVE_FILE_FROM_DOWNLOADS = "removeFileFromDownloads"
+        REMOVE_INSTALLED_BACKGROUND = "removeInstalledBackground"
         REMOVE_MESSAGE_REACTION = "removeMessageReaction"
         REMOVE_NOTIFICATION = "removeNotification"
         REMOVE_NOTIFICATION_GROUP = "removeNotificationGroup"
@@ -1410,23 +1666,36 @@ class API:
         REMOVE_RECENTLY_FOUND_CHAT = "removeRecentlyFoundChat"
         REMOVE_SAVED_ANIMATION = "removeSavedAnimation"
         REMOVE_SAVED_NOTIFICATION_SOUND = "removeSavedNotificationSound"
+        REMOVE_SEARCHED_FOR_HASHTAG = "removeSearchedForHashtag"
         REMOVE_STICKER_FROM_SET = "removeStickerFromSet"
         REMOVE_TOP_CHAT = "removeTopChat"
         REORDER_ACTIVE_USERNAMES = "reorderActiveUsernames"
         REORDER_BOT_ACTIVE_USERNAMES = "reorderBotActiveUsernames"
         REORDER_CHAT_FOLDERS = "reorderChatFolders"
         REORDER_INSTALLED_STICKER_SETS = "reorderInstalledStickerSets"
+        REORDER_QUICK_REPLY_SHORTCUTS = "reorderQuickReplyShortcuts"
         REORDER_SUPERGROUP_ACTIVE_USERNAMES = "reorderSupergroupActiveUsernames"
         REPLACE_PRIMARY_CHAT_INVITE_LINK = "replacePrimaryChatInviteLink"
+        REPLACE_STICKER_IN_SET = "replaceStickerInSet"
         REPLACE_VIDEO_CHAT_RTMP_URL = "replaceVideoChatRtmpUrl"
         REPLY_MARKUP = "replyMarkup"
         REPLY_MARKUP_FORCE_REPLY = "replyMarkupForceReply"
         REPLY_MARKUP_INLINE_KEYBOARD = "replyMarkupInlineKeyboard"
         REPLY_MARKUP_REMOVE_KEYBOARD = "replyMarkupRemoveKeyboard"
         REPLY_MARKUP_SHOW_KEYBOARD = "replyMarkupShowKeyboard"
+        REPORT_AUTHENTICATION_CODE_MISSING = "reportAuthenticationCodeMissing"
         REPORT_CHAT = "reportChat"
         REPORT_CHAT_PHOTO = "reportChatPhoto"
+        REPORT_CHAT_SPONSORED_MESSAGE = "reportChatSponsoredMessage"
+        REPORT_CHAT_SPONSORED_MESSAGE_OPTION = "reportChatSponsoredMessageOption"
+        REPORT_CHAT_SPONSORED_MESSAGE_RESULT = "reportChatSponsoredMessageResult"
+        REPORT_CHAT_SPONSORED_MESSAGE_RESULT_ADS_HIDDEN = "reportChatSponsoredMessageResultAdsHidden"
+        REPORT_CHAT_SPONSORED_MESSAGE_RESULT_FAILED = "reportChatSponsoredMessageResultFailed"
+        REPORT_CHAT_SPONSORED_MESSAGE_RESULT_OK = "reportChatSponsoredMessageResultOk"
+        REPORT_CHAT_SPONSORED_MESSAGE_RESULT_OPTION_REQUIRED = "reportChatSponsoredMessageResultOptionRequired"
+        REPORT_CHAT_SPONSORED_MESSAGE_RESULT_PREMIUM_REQUIRED = "reportChatSponsoredMessageResultPremiumRequired"
         REPORT_MESSAGE_REACTIONS = "reportMessageReactions"
+        REPORT_PHONE_NUMBER_CODE_MISSING = "reportPhoneNumberCodeMissing"
         REPORT_REASON = "reportReason"
         REPORT_REASON_CHILD_ABUSE = "reportReasonChildAbuse"
         REPORT_REASON_COPYRIGHT = "reportReasonCopyright"
@@ -1445,16 +1714,17 @@ class API:
         REQUEST_PASSWORD_RECOVERY = "requestPasswordRecovery"
         REQUEST_QR_CODE_AUTHENTICATION = "requestQrCodeAuthentication"
         RESEND_AUTHENTICATION_CODE = "resendAuthenticationCode"
-        RESEND_CHANGE_PHONE_NUMBER_CODE = "resendChangePhoneNumberCode"
+        RESEND_CODE_REASON = "resendCodeReason"
+        RESEND_CODE_REASON_USER_REQUEST = "resendCodeReasonUserRequest"
+        RESEND_CODE_REASON_VERIFICATION_FAILED = "resendCodeReasonVerificationFailed"
         RESEND_EMAIL_ADDRESS_VERIFICATION_CODE = "resendEmailAddressVerificationCode"
         RESEND_LOGIN_EMAIL_ADDRESS_CODE = "resendLoginEmailAddressCode"
         RESEND_MESSAGES = "resendMessages"
-        RESEND_PHONE_NUMBER_CONFIRMATION_CODE = "resendPhoneNumberConfirmationCode"
-        RESEND_PHONE_NUMBER_VERIFICATION_CODE = "resendPhoneNumberVerificationCode"
+        RESEND_PHONE_NUMBER_CODE = "resendPhoneNumberCode"
         RESEND_RECOVERY_EMAIL_ADDRESS_CODE = "resendRecoveryEmailAddressCode"
         RESET_ALL_NOTIFICATION_SETTINGS = "resetAllNotificationSettings"
         RESET_AUTHENTICATION_EMAIL_ADDRESS = "resetAuthenticationEmailAddress"
-        RESET_BACKGROUNDS = "resetBackgrounds"
+        RESET_INSTALLED_BACKGROUNDS = "resetInstalledBackgrounds"
         RESET_NETWORK_STATISTICS = "resetNetworkStatistics"
         RESET_PASSWORD = "resetPassword"
         RESET_PASSWORD_RESULT = "resetPasswordResult"
@@ -1484,6 +1754,13 @@ class API:
         RTMP_URL = "rtmpUrl"
         SAVE_APPLICATION_LOG_EVENT = "saveApplicationLogEvent"
         SAVED_CREDENTIALS = "savedCredentials"
+        SAVED_MESSAGES_TAG = "savedMessagesTag"
+        SAVED_MESSAGES_TAGS = "savedMessagesTags"
+        SAVED_MESSAGES_TOPIC = "savedMessagesTopic"
+        SAVED_MESSAGES_TOPIC_TYPE = "savedMessagesTopicType"
+        SAVED_MESSAGES_TOPIC_TYPE_AUTHOR_HIDDEN = "savedMessagesTopicTypeAuthorHidden"
+        SAVED_MESSAGES_TOPIC_TYPE_MY_NOTES = "savedMessagesTopicTypeMyNotes"
+        SAVED_MESSAGES_TOPIC_TYPE_SAVED_FROM_CHAT = "savedMessagesTopicTypeSavedFromChat"
         SCOPE_AUTOSAVE_SETTINGS = "scopeAutosaveSettings"
         SCOPE_NOTIFICATION_SETTINGS = "scopeNotificationSettings"
         SEARCH_BACKGROUND = "searchBackground"
@@ -1521,7 +1798,10 @@ class API:
         SEARCH_OUTGOING_DOCUMENT_MESSAGES = "searchOutgoingDocumentMessages"
         SEARCH_PUBLIC_CHAT = "searchPublicChat"
         SEARCH_PUBLIC_CHATS = "searchPublicChats"
+        SEARCH_PUBLIC_HASHTAG_MESSAGES = "searchPublicHashtagMessages"
+        SEARCH_QUOTE = "searchQuote"
         SEARCH_RECENTLY_FOUND_CHATS = "searchRecentlyFoundChats"
+        SEARCH_SAVED_MESSAGES = "searchSavedMessages"
         SEARCH_SECRET_MESSAGES = "searchSecretMessages"
         SEARCH_STICKER_SET = "searchStickerSet"
         SEARCH_STICKER_SETS = "searchStickerSets"
@@ -1538,6 +1818,8 @@ class API:
         SECRET_CHAT_STATE_READY = "secretChatStateReady"
         SEND_AUTHENTICATION_FIREBASE_SMS = "sendAuthenticationFirebaseSms"
         SEND_BOT_START_MESSAGE = "sendBotStartMessage"
+        SEND_BUSINESS_MESSAGE = "sendBusinessMessage"
+        SEND_BUSINESS_MESSAGE_ALBUM = "sendBusinessMessageAlbum"
         SEND_CALL_DEBUG_INFORMATION = "sendCallDebugInformation"
         SEND_CALL_LOG = "sendCallLog"
         SEND_CALL_RATING = "sendCallRating"
@@ -1550,8 +1832,9 @@ class API:
         SEND_MESSAGE_ALBUM = "sendMessageAlbum"
         SEND_PASSPORT_AUTHORIZATION_FORM = "sendPassportAuthorizationForm"
         SEND_PAYMENT_FORM = "sendPaymentForm"
-        SEND_PHONE_NUMBER_CONFIRMATION_CODE = "sendPhoneNumberConfirmationCode"
-        SEND_PHONE_NUMBER_VERIFICATION_CODE = "sendPhoneNumberVerificationCode"
+        SEND_PHONE_NUMBER_CODE = "sendPhoneNumberCode"
+        SEND_PHONE_NUMBER_FIREBASE_SMS = "sendPhoneNumberFirebaseSms"
+        SEND_QUICK_REPLY_SHORTCUT_MESSAGES = "sendQuickReplyShortcutMessages"
         SEND_STORY = "sendStory"
         SEND_WEB_APP_CUSTOM_REQUEST = "sendWebAppCustomRequest"
         SEND_WEB_APP_DATA = "sendWebAppData"
@@ -1576,20 +1859,29 @@ class API:
         SESSION_TYPE_WINDOWS = "sessionTypeWindows"
         SESSION_TYPE_XBOX = "sessionTypeXbox"
         SESSIONS = "sessions"
+        SET_ACCENT_COLOR = "setAccentColor"
         SET_ACCOUNT_TTL = "setAccountTtl"
         SET_ALARM = "setAlarm"
+        SET_APPLICATION_VERIFICATION_TOKEN = "setApplicationVerificationToken"
         SET_ARCHIVE_CHAT_LIST_SETTINGS = "setArchiveChatListSettings"
         SET_AUTHENTICATION_EMAIL_ADDRESS = "setAuthenticationEmailAddress"
         SET_AUTHENTICATION_PHONE_NUMBER = "setAuthenticationPhoneNumber"
         SET_AUTO_DOWNLOAD_SETTINGS = "setAutoDownloadSettings"
         SET_AUTOSAVE_SETTINGS = "setAutosaveSettings"
-        SET_BACKGROUND = "setBackground"
         SET_BIO = "setBio"
+        SET_BIRTHDATE = "setBirthdate"
         SET_BOT_INFO_DESCRIPTION = "setBotInfoDescription"
         SET_BOT_INFO_SHORT_DESCRIPTION = "setBotInfoShortDescription"
         SET_BOT_NAME = "setBotName"
         SET_BOT_PROFILE_PHOTO = "setBotProfilePhoto"
         SET_BOT_UPDATES_STATUS = "setBotUpdatesStatus"
+        SET_BUSINESS_AWAY_MESSAGE_SETTINGS = "setBusinessAwayMessageSettings"
+        SET_BUSINESS_CONNECTED_BOT = "setBusinessConnectedBot"
+        SET_BUSINESS_GREETING_MESSAGE_SETTINGS = "setBusinessGreetingMessageSettings"
+        SET_BUSINESS_LOCATION = "setBusinessLocation"
+        SET_BUSINESS_OPENING_HOURS = "setBusinessOpeningHours"
+        SET_BUSINESS_START_PAGE = "setBusinessStartPage"
+        SET_CHAT_ACCENT_COLOR = "setChatAccentColor"
         SET_CHAT_ACTIVE_STORIES_LIST = "setChatActiveStoriesList"
         SET_CHAT_AVAILABLE_REACTIONS = "setChatAvailableReactions"
         SET_CHAT_BACKGROUND = "setChatBackground"
@@ -1597,6 +1889,7 @@ class API:
         SET_CHAT_DESCRIPTION = "setChatDescription"
         SET_CHAT_DISCUSSION_GROUP = "setChatDiscussionGroup"
         SET_CHAT_DRAFT_MESSAGE = "setChatDraftMessage"
+        SET_CHAT_EMOJI_STATUS = "setChatEmojiStatus"
         SET_CHAT_LOCATION = "setChatLocation"
         SET_CHAT_MEMBER_STATUS = "setChatMemberStatus"
         SET_CHAT_MESSAGE_AUTO_DELETE_TIME = "setChatMessageAutoDeleteTime"
@@ -1604,6 +1897,8 @@ class API:
         SET_CHAT_NOTIFICATION_SETTINGS = "setChatNotificationSettings"
         SET_CHAT_PERMISSIONS = "setChatPermissions"
         SET_CHAT_PHOTO = "setChatPhoto"
+        SET_CHAT_PINNED_STORIES = "setChatPinnedStories"
+        SET_CHAT_PROFILE_ACCENT_COLOR = "setChatProfileAccentColor"
         SET_CHAT_SLOW_MODE_DELAY = "setChatSlowModeDelay"
         SET_CHAT_THEME = "setChatTheme"
         SET_CHAT_TITLE = "setChatTitle"
@@ -1613,6 +1908,7 @@ class API:
         SET_CUSTOM_LANGUAGE_PACK = "setCustomLanguagePack"
         SET_CUSTOM_LANGUAGE_PACK_STRING = "setCustomLanguagePackString"
         SET_DATABASE_ENCRYPTION_KEY = "setDatabaseEncryptionKey"
+        SET_DEFAULT_BACKGROUND = "setDefaultBackground"
         SET_DEFAULT_CHANNEL_ADMINISTRATOR_RIGHTS = "setDefaultChannelAdministratorRights"
         SET_DEFAULT_GROUP_ADMINISTRATOR_RIGHTS = "setDefaultGroupAdministratorRights"
         SET_DEFAULT_MESSAGE_AUTO_DELETE_TIME = "setDefaultMessageAutoDeleteTime"
@@ -1632,18 +1928,28 @@ class API:
         SET_LOG_VERBOSITY_LEVEL = "setLogVerbosityLevel"
         SET_LOGIN_EMAIL_ADDRESS = "setLoginEmailAddress"
         SET_MENU_BUTTON = "setMenuButton"
+        SET_MESSAGE_FACT_CHECK = "setMessageFactCheck"
+        SET_MESSAGE_REACTIONS = "setMessageReactions"
         SET_MESSAGE_SENDER_BLOCK_LIST = "setMessageSenderBlockList"
         SET_NAME = "setName"
         SET_NETWORK_TYPE = "setNetworkType"
+        SET_NEW_CHAT_PRIVACY_SETTINGS = "setNewChatPrivacySettings"
         SET_OPTION = "setOption"
         SET_PASSPORT_ELEMENT = "setPassportElement"
         SET_PASSPORT_ELEMENT_ERRORS = "setPassportElementErrors"
         SET_PASSWORD = "setPassword"
+        SET_PERSONAL_CHAT = "setPersonalChat"
         SET_PINNED_CHATS = "setPinnedChats"
         SET_PINNED_FORUM_TOPICS = "setPinnedForumTopics"
+        SET_PINNED_SAVED_MESSAGES_TOPICS = "setPinnedSavedMessagesTopics"
         SET_POLL_ANSWER = "setPollAnswer"
+        SET_PROFILE_ACCENT_COLOR = "setProfileAccentColor"
         SET_PROFILE_PHOTO = "setProfilePhoto"
+        SET_QUICK_REPLY_SHORTCUT_NAME = "setQuickReplyShortcutName"
+        SET_REACTION_NOTIFICATION_SETTINGS = "setReactionNotificationSettings"
+        SET_READ_DATE_PRIVACY_SETTINGS = "setReadDatePrivacySettings"
         SET_RECOVERY_EMAIL_ADDRESS = "setRecoveryEmailAddress"
+        SET_SAVED_MESSAGES_TAG_LABEL = "setSavedMessagesTagLabel"
         SET_SCOPE_NOTIFICATION_SETTINGS = "setScopeNotificationSettings"
         SET_STICKER_EMOJIS = "setStickerEmojis"
         SET_STICKER_KEYWORDS = "setStickerKeywords"
@@ -1653,7 +1959,9 @@ class API:
         SET_STICKER_SET_TITLE = "setStickerSetTitle"
         SET_STORY_PRIVACY_SETTINGS = "setStoryPrivacySettings"
         SET_STORY_REACTION = "setStoryReaction"
+        SET_SUPERGROUP_CUSTOM_EMOJI_STICKER_SET = "setSupergroupCustomEmojiStickerSet"
         SET_SUPERGROUP_STICKER_SET = "setSupergroupStickerSet"
+        SET_SUPERGROUP_UNRESTRICT_BOOST_COUNT = "setSupergroupUnrestrictBoostCount"
         SET_SUPERGROUP_USERNAME = "setSupergroupUsername"
         SET_TDLIB_PARAMETERS = "setTdlibParameters"
         SET_USER_PERSONAL_PROFILE_PHOTO = "setUserPersonalProfilePhoto"
@@ -1663,7 +1971,9 @@ class API:
         SET_VIDEO_CHAT_DEFAULT_PARTICIPANT = "setVideoChatDefaultParticipant"
         SHARE_CHAT_WITH_BOT = "shareChatWithBot"
         SHARE_PHONE_NUMBER = "sharePhoneNumber"
-        SHARE_USER_WITH_BOT = "shareUserWithBot"
+        SHARE_USERS_WITH_BOT = "shareUsersWithBot"
+        SHARED_CHAT = "sharedChat"
+        SHARED_USER = "sharedUser"
         SHIPPING_OPTION = "shippingOption"
         SPEECH_RECOGNITION_RESULT = "speechRecognitionResult"
         SPEECH_RECOGNITION_RESULT_ERROR = "speechRecognitionResultError"
@@ -1671,6 +1981,20 @@ class API:
         SPEECH_RECOGNITION_RESULT_TEXT = "speechRecognitionResultText"
         SPONSORED_MESSAGE = "sponsoredMessage"
         SPONSORED_MESSAGES = "sponsoredMessages"
+        STAR_PAYMENT_OPTION = "starPaymentOption"
+        STAR_PAYMENT_OPTIONS = "starPaymentOptions"
+        STAR_TRANSACTION = "starTransaction"
+        STAR_TRANSACTION_DIRECTION = "starTransactionDirection"
+        STAR_TRANSACTION_DIRECTION_INCOMING = "starTransactionDirectionIncoming"
+        STAR_TRANSACTION_DIRECTION_OUTGOING = "starTransactionDirectionOutgoing"
+        STAR_TRANSACTION_SOURCE = "starTransactionSource"
+        STAR_TRANSACTION_SOURCE_APP_STORE = "starTransactionSourceAppStore"
+        STAR_TRANSACTION_SOURCE_FRAGMENT = "starTransactionSourceFragment"
+        STAR_TRANSACTION_SOURCE_GOOGLE_PLAY = "starTransactionSourceGooglePlay"
+        STAR_TRANSACTION_SOURCE_TELEGRAM = "starTransactionSourceTelegram"
+        STAR_TRANSACTION_SOURCE_UNSUPPORTED = "starTransactionSourceUnsupported"
+        STAR_TRANSACTION_SOURCE_USER = "starTransactionSourceUser"
+        STAR_TRANSACTIONS = "starTransactions"
         START_GROUP_CALL_RECORDING = "startGroupCallRecording"
         START_GROUP_CALL_SCREEN_SHARING = "startGroupCallScreenSharing"
         START_SCHEDULED_GROUP_CALL = "startScheduledGroupCall"
@@ -1703,38 +2027,56 @@ class API:
         STORAGE_STATISTICS_FAST = "storageStatisticsFast"
         STORE_PAYMENT_PURPOSE = "storePaymentPurpose"
         STORE_PAYMENT_PURPOSE_GIFTED_PREMIUM = "storePaymentPurposeGiftedPremium"
+        STORE_PAYMENT_PURPOSE_PREMIUM_GIFT_CODES = "storePaymentPurposePremiumGiftCodes"
+        STORE_PAYMENT_PURPOSE_PREMIUM_GIVEAWAY = "storePaymentPurposePremiumGiveaway"
         STORE_PAYMENT_PURPOSE_PREMIUM_SUBSCRIPTION = "storePaymentPurposePremiumSubscription"
+        STORE_PAYMENT_PURPOSE_STARS = "storePaymentPurposeStars"
         STORIES = "stories"
         STORY = "story"
         STORY_AREA = "storyArea"
         STORY_AREA_POSITION = "storyAreaPosition"
         STORY_AREA_TYPE = "storyAreaType"
         STORY_AREA_TYPE_LOCATION = "storyAreaTypeLocation"
+        STORY_AREA_TYPE_MESSAGE = "storyAreaTypeMessage"
+        STORY_AREA_TYPE_SUGGESTED_REACTION = "storyAreaTypeSuggestedReaction"
         STORY_AREA_TYPE_VENUE = "storyAreaTypeVenue"
         STORY_CONTENT = "storyContent"
         STORY_CONTENT_PHOTO = "storyContentPhoto"
         STORY_CONTENT_UNSUPPORTED = "storyContentUnsupported"
         STORY_CONTENT_VIDEO = "storyContentVideo"
+        STORY_FULL_ID = "storyFullId"
         STORY_INFO = "storyInfo"
+        STORY_INTERACTION = "storyInteraction"
         STORY_INTERACTION_INFO = "storyInteractionInfo"
+        STORY_INTERACTION_TYPE = "storyInteractionType"
+        STORY_INTERACTION_TYPE_FORWARD = "storyInteractionTypeForward"
+        STORY_INTERACTION_TYPE_REPOST = "storyInteractionTypeRepost"
+        STORY_INTERACTION_TYPE_VIEW = "storyInteractionTypeView"
+        STORY_INTERACTIONS = "storyInteractions"
         STORY_LIST = "storyList"
         STORY_LIST_ARCHIVE = "storyListArchive"
         STORY_LIST_MAIN = "storyListMain"
+        STORY_ORIGIN = "storyOrigin"
+        STORY_ORIGIN_HIDDEN_USER = "storyOriginHiddenUser"
+        STORY_ORIGIN_PUBLIC_STORY = "storyOriginPublicStory"
         STORY_PRIVACY_SETTINGS = "storyPrivacySettings"
         STORY_PRIVACY_SETTINGS_CLOSE_FRIENDS = "storyPrivacySettingsCloseFriends"
         STORY_PRIVACY_SETTINGS_CONTACTS = "storyPrivacySettingsContacts"
         STORY_PRIVACY_SETTINGS_EVERYONE = "storyPrivacySettingsEveryone"
         STORY_PRIVACY_SETTINGS_SELECTED_USERS = "storyPrivacySettingsSelectedUsers"
+        STORY_REPOST_INFO = "storyRepostInfo"
+        STORY_STATISTICS = "storyStatistics"
         STORY_VIDEO = "storyVideo"
-        STORY_VIEWER = "storyViewer"
-        STORY_VIEWERS = "storyViewers"
         SUGGEST_USER_PROFILE_PHOTO = "suggestUserProfilePhoto"
         SUGGESTED_ACTION = "suggestedAction"
         SUGGESTED_ACTION_CHECK_PASSWORD = "suggestedActionCheckPassword"
         SUGGESTED_ACTION_CHECK_PHONE_NUMBER = "suggestedActionCheckPhoneNumber"
         SUGGESTED_ACTION_CONVERT_TO_BROADCAST_GROUP = "suggestedActionConvertToBroadcastGroup"
         SUGGESTED_ACTION_ENABLE_ARCHIVE_AND_MUTE_NEW_CHATS = "suggestedActionEnableArchiveAndMuteNewChats"
+        SUGGESTED_ACTION_EXTEND_PREMIUM = "suggestedActionExtendPremium"
+        SUGGESTED_ACTION_GIFT_PREMIUM_FOR_CHRISTMAS = "suggestedActionGiftPremiumForChristmas"
         SUGGESTED_ACTION_RESTORE_PREMIUM = "suggestedActionRestorePremium"
+        SUGGESTED_ACTION_SET_BIRTHDATE = "suggestedActionSetBirthdate"
         SUGGESTED_ACTION_SET_PASSWORD = "suggestedActionSetPassword"
         SUGGESTED_ACTION_SUBSCRIBE_TO_ANNUAL_PREMIUM = "suggestedActionSubscribeToAnnualPremium"
         SUGGESTED_ACTION_UPGRADE_PREMIUM = "suggestedActionUpgradePremium"
@@ -1762,6 +2104,10 @@ class API:
         TARGET_CHAT_CHOSEN = "targetChatChosen"
         TARGET_CHAT_CURRENT = "targetChatCurrent"
         TARGET_CHAT_INTERNAL_LINK = "targetChatInternalLink"
+        TELEGRAM_PAYMENT_PURPOSE = "telegramPaymentPurpose"
+        TELEGRAM_PAYMENT_PURPOSE_PREMIUM_GIFT_CODES = "telegramPaymentPurposePremiumGiftCodes"
+        TELEGRAM_PAYMENT_PURPOSE_PREMIUM_GIVEAWAY = "telegramPaymentPurposePremiumGiveaway"
+        TELEGRAM_PAYMENT_PURPOSE_STARS = "telegramPaymentPurposeStars"
         TEMPORARY_PASSWORD_STATE = "temporaryPasswordState"
         TERMINATE_ALL_OTHER_SESSIONS = "terminateAllOtherSessions"
         TERMINATE_SESSION = "terminateSession"
@@ -1791,12 +2137,14 @@ class API:
         TEXT_ENTITY = "textEntity"
         TEXT_ENTITY_TYPE = "textEntityType"
         TEXT_ENTITY_TYPE_BANK_CARD_NUMBER = "textEntityTypeBankCardNumber"
+        TEXT_ENTITY_TYPE_BLOCK_QUOTE = "textEntityTypeBlockQuote"
         TEXT_ENTITY_TYPE_BOLD = "textEntityTypeBold"
         TEXT_ENTITY_TYPE_BOT_COMMAND = "textEntityTypeBotCommand"
         TEXT_ENTITY_TYPE_CASHTAG = "textEntityTypeCashtag"
         TEXT_ENTITY_TYPE_CODE = "textEntityTypeCode"
         TEXT_ENTITY_TYPE_CUSTOM_EMOJI = "textEntityTypeCustomEmoji"
         TEXT_ENTITY_TYPE_EMAIL_ADDRESS = "textEntityTypeEmailAddress"
+        TEXT_ENTITY_TYPE_EXPANDABLE_BLOCK_QUOTE = "textEntityTypeExpandableBlockQuote"
         TEXT_ENTITY_TYPE_HASHTAG = "textEntityTypeHashtag"
         TEXT_ENTITY_TYPE_ITALIC = "textEntityTypeItalic"
         TEXT_ENTITY_TYPE_MEDIA_TIMESTAMP = "textEntityTypeMediaTimestamp"
@@ -1813,6 +2161,7 @@ class API:
         TEXT_PARSE_MODE = "textParseMode"
         TEXT_PARSE_MODE_HTML = "textParseModeHTML"
         TEXT_PARSE_MODE_MARKDOWN = "textParseModeMarkdown"
+        TEXT_QUOTE = "textQuote"
         THEME_PARAMETERS = "themeParameters"
         THEME_SETTINGS = "themeSettings"
         THUMBNAIL = "thumbnail"
@@ -1824,14 +2173,19 @@ class API:
         THUMBNAIL_FORMAT_TGS = "thumbnailFormatTgs"
         THUMBNAIL_FORMAT_WEBM = "thumbnailFormatWebm"
         THUMBNAIL_FORMAT_WEBP = "thumbnailFormatWebp"
+        TIME_ZONE = "timeZone"
+        TIME_ZONES = "timeZones"
         TOGGLE_ALL_DOWNLOADS_ARE_PAUSED = "toggleAllDownloadsArePaused"
         TOGGLE_BOT_IS_ADDED_TO_ATTACHMENT_MENU = "toggleBotIsAddedToAttachmentMenu"
         TOGGLE_BOT_USERNAME_IS_ACTIVE = "toggleBotUsernameIsActive"
+        TOGGLE_BUSINESS_CONNECTED_BOT_CHAT_IS_PAUSED = "toggleBusinessConnectedBotChatIsPaused"
         TOGGLE_CHAT_DEFAULT_DISABLE_NOTIFICATION = "toggleChatDefaultDisableNotification"
+        TOGGLE_CHAT_FOLDER_TAGS = "toggleChatFolderTags"
         TOGGLE_CHAT_HAS_PROTECTED_CONTENT = "toggleChatHasProtectedContent"
         TOGGLE_CHAT_IS_MARKED_AS_UNREAD = "toggleChatIsMarkedAsUnread"
         TOGGLE_CHAT_IS_PINNED = "toggleChatIsPinned"
         TOGGLE_CHAT_IS_TRANSLATABLE = "toggleChatIsTranslatable"
+        TOGGLE_CHAT_VIEW_AS_TOPICS = "toggleChatViewAsTopics"
         TOGGLE_DOWNLOAD_IS_PAUSED = "toggleDownloadIsPaused"
         TOGGLE_FORUM_TOPIC_IS_CLOSED = "toggleForumTopicIsClosed"
         TOGGLE_FORUM_TOPIC_IS_PINNED = "toggleForumTopicIsPinned"
@@ -1843,9 +2197,12 @@ class API:
         TOGGLE_GROUP_CALL_PARTICIPANT_IS_HAND_RAISED = "toggleGroupCallParticipantIsHandRaised"
         TOGGLE_GROUP_CALL_PARTICIPANT_IS_MUTED = "toggleGroupCallParticipantIsMuted"
         TOGGLE_GROUP_CALL_SCREEN_SHARING_IS_PAUSED = "toggleGroupCallScreenSharingIsPaused"
+        TOGGLE_HAS_SPONSORED_MESSAGES_ENABLED = "toggleHasSponsoredMessagesEnabled"
+        TOGGLE_SAVED_MESSAGES_TOPIC_IS_PINNED = "toggleSavedMessagesTopicIsPinned"
         TOGGLE_SESSION_CAN_ACCEPT_CALLS = "toggleSessionCanAcceptCalls"
         TOGGLE_SESSION_CAN_ACCEPT_SECRET_CHATS = "toggleSessionCanAcceptSecretChats"
-        TOGGLE_STORY_IS_PINNED = "toggleStoryIsPinned"
+        TOGGLE_STORY_IS_POSTED_TO_CHAT_PAGE = "toggleStoryIsPostedToChatPage"
+        TOGGLE_SUPERGROUP_CAN_HAVE_SPONSORED_MESSAGES = "toggleSupergroupCanHaveSponsoredMessages"
         TOGGLE_SUPERGROUP_HAS_AGGRESSIVE_ANTI_SPAM_ENABLED = "toggleSupergroupHasAggressiveAntiSpamEnabled"
         TOGGLE_SUPERGROUP_HAS_HIDDEN_MEMBERS = "toggleSupergroupHasHiddenMembers"
         TOGGLE_SUPERGROUP_IS_ALL_HISTORY_AVAILABLE = "toggleSupergroupIsAllHistoryAvailable"
@@ -1874,25 +2231,35 @@ class API:
         UNPIN_CHAT_MESSAGE = "unpinChatMessage"
         UNREAD_REACTION = "unreadReaction"
         UPDATE = "update"
+        UPDATE_ACCENT_COLORS = "updateAccentColors"
         UPDATE_ACTIVE_EMOJI_REACTIONS = "updateActiveEmojiReactions"
         UPDATE_ACTIVE_NOTIFICATIONS = "updateActiveNotifications"
-        UPDATE_ADD_CHAT_MEMBERS_PRIVACY_FORBIDDEN = "updateAddChatMembersPrivacyForbidden"
         UPDATE_ANIMATED_EMOJI_MESSAGE_CLICKED = "updateAnimatedEmojiMessageClicked"
         UPDATE_ANIMATION_SEARCH_PARAMETERS = "updateAnimationSearchParameters"
+        UPDATE_APPLICATION_VERIFICATION_REQUIRED = "updateApplicationVerificationRequired"
         UPDATE_ATTACHMENT_MENU_BOTS = "updateAttachmentMenuBots"
         UPDATE_AUTHORIZATION_STATE = "updateAuthorizationState"
         UPDATE_AUTOSAVE_SETTINGS = "updateAutosaveSettings"
+        UPDATE_AVAILABLE_MESSAGE_EFFECTS = "updateAvailableMessageEffects"
         UPDATE_BASIC_GROUP = "updateBasicGroup"
         UPDATE_BASIC_GROUP_FULL_INFO = "updateBasicGroupFullInfo"
+        UPDATE_BUSINESS_CONNECTION = "updateBusinessConnection"
+        UPDATE_BUSINESS_MESSAGE_EDITED = "updateBusinessMessageEdited"
+        UPDATE_BUSINESS_MESSAGES_DELETED = "updateBusinessMessagesDeleted"
         UPDATE_CALL = "updateCall"
+        UPDATE_CHAT_ACCENT_COLORS = "updateChatAccentColors"
         UPDATE_CHAT_ACTION = "updateChatAction"
         UPDATE_CHAT_ACTION_BAR = "updateChatActionBar"
         UPDATE_CHAT_ACTIVE_STORIES = "updateChatActiveStories"
+        UPDATE_CHAT_ADDED_TO_LIST = "updateChatAddedToList"
         UPDATE_CHAT_AVAILABLE_REACTIONS = "updateChatAvailableReactions"
         UPDATE_CHAT_BACKGROUND = "updateChatBackground"
         UPDATE_CHAT_BLOCK_LIST = "updateChatBlockList"
+        UPDATE_CHAT_BOOST = "updateChatBoost"
+        UPDATE_CHAT_BUSINESS_BOT_MANAGE_BAR = "updateChatBusinessBotManageBar"
         UPDATE_CHAT_DEFAULT_DISABLE_NOTIFICATION = "updateChatDefaultDisableNotification"
         UPDATE_CHAT_DRAFT_MESSAGE = "updateChatDraftMessage"
+        UPDATE_CHAT_EMOJI_STATUS = "updateChatEmojiStatus"
         UPDATE_CHAT_FOLDERS = "updateChatFolders"
         UPDATE_CHAT_HAS_PROTECTED_CONTENT = "updateChatHasProtectedContent"
         UPDATE_CHAT_HAS_SCHEDULED_MESSAGES = "updateChatHasScheduledMessages"
@@ -1910,14 +2277,19 @@ class API:
         UPDATE_CHAT_POSITION = "updateChatPosition"
         UPDATE_CHAT_READ_INBOX = "updateChatReadInbox"
         UPDATE_CHAT_READ_OUTBOX = "updateChatReadOutbox"
+        UPDATE_CHAT_REMOVED_FROM_LIST = "updateChatRemovedFromList"
         UPDATE_CHAT_REPLY_MARKUP = "updateChatReplyMarkup"
+        UPDATE_CHAT_REVENUE_AMOUNT = "updateChatRevenueAmount"
         UPDATE_CHAT_THEME = "updateChatTheme"
         UPDATE_CHAT_THEMES = "updateChatThemes"
         UPDATE_CHAT_TITLE = "updateChatTitle"
         UPDATE_CHAT_UNREAD_MENTION_COUNT = "updateChatUnreadMentionCount"
         UPDATE_CHAT_UNREAD_REACTION_COUNT = "updateChatUnreadReactionCount"
         UPDATE_CHAT_VIDEO_CHAT = "updateChatVideoChat"
+        UPDATE_CHAT_VIEW_AS_TOPICS = "updateChatViewAsTopics"
         UPDATE_CONNECTION_STATE = "updateConnectionState"
+        UPDATE_CONTACT_CLOSE_BIRTHDAYS = "updateContactCloseBirthdays"
+        UPDATE_DEFAULT_BACKGROUND = "updateDefaultBackground"
         UPDATE_DEFAULT_REACTION_TYPE = "updateDefaultReactionType"
         UPDATE_DELETE_MESSAGES = "updateDeleteMessages"
         UPDATE_DICE_EMOJIS = "updateDiceEmojis"
@@ -1938,14 +2310,18 @@ class API:
         UPDATE_MESSAGE_CONTENT = "updateMessageContent"
         UPDATE_MESSAGE_CONTENT_OPENED = "updateMessageContentOpened"
         UPDATE_MESSAGE_EDITED = "updateMessageEdited"
+        UPDATE_MESSAGE_FACT_CHECK = "updateMessageFactCheck"
         UPDATE_MESSAGE_INTERACTION_INFO = "updateMessageInteractionInfo"
         UPDATE_MESSAGE_IS_PINNED = "updateMessageIsPinned"
         UPDATE_MESSAGE_LIVE_LOCATION_VIEWED = "updateMessageLiveLocationViewed"
         UPDATE_MESSAGE_MENTION_READ = "updateMessageMentionRead"
+        UPDATE_MESSAGE_REACTION = "updateMessageReaction"
+        UPDATE_MESSAGE_REACTIONS = "updateMessageReactions"
         UPDATE_MESSAGE_SEND_ACKNOWLEDGED = "updateMessageSendAcknowledged"
         UPDATE_MESSAGE_SEND_FAILED = "updateMessageSendFailed"
         UPDATE_MESSAGE_SEND_SUCCEEDED = "updateMessageSendSucceeded"
         UPDATE_MESSAGE_UNREAD_REACTIONS = "updateMessageUnreadReactions"
+        UPDATE_NEW_BUSINESS_MESSAGE = "updateNewBusinessMessage"
         UPDATE_NEW_CALL_SIGNALING_DATA = "updateNewCallSignalingData"
         UPDATE_NEW_CALLBACK_QUERY = "updateNewCallbackQuery"
         UPDATE_NEW_CHAT = "updateNewChat"
@@ -1961,15 +2337,26 @@ class API:
         UPDATE_NOTIFICATION = "updateNotification"
         UPDATE_NOTIFICATION_GROUP = "updateNotificationGroup"
         UPDATE_OPTION = "updateOption"
+        UPDATE_OWNED_STAR_COUNT = "updateOwnedStarCount"
         UPDATE_POLL = "updatePoll"
         UPDATE_POLL_ANSWER = "updatePollAnswer"
+        UPDATE_PROFILE_ACCENT_COLORS = "updateProfileAccentColors"
+        UPDATE_QUICK_REPLY_SHORTCUT = "updateQuickReplyShortcut"
+        UPDATE_QUICK_REPLY_SHORTCUT_DELETED = "updateQuickReplyShortcutDeleted"
+        UPDATE_QUICK_REPLY_SHORTCUT_MESSAGES = "updateQuickReplyShortcutMessages"
+        UPDATE_QUICK_REPLY_SHORTCUTS = "updateQuickReplyShortcuts"
+        UPDATE_REACTION_NOTIFICATION_SETTINGS = "updateReactionNotificationSettings"
         UPDATE_RECENT_STICKERS = "updateRecentStickers"
         UPDATE_SAVED_ANIMATIONS = "updateSavedAnimations"
+        UPDATE_SAVED_MESSAGES_TAGS = "updateSavedMessagesTags"
+        UPDATE_SAVED_MESSAGES_TOPIC = "updateSavedMessagesTopic"
+        UPDATE_SAVED_MESSAGES_TOPIC_COUNT = "updateSavedMessagesTopicCount"
         UPDATE_SAVED_NOTIFICATION_SOUNDS = "updateSavedNotificationSounds"
         UPDATE_SCOPE_NOTIFICATION_SETTINGS = "updateScopeNotificationSettings"
         UPDATE_SECRET_CHAT = "updateSecretChat"
-        UPDATE_SELECTED_BACKGROUND = "updateSelectedBackground"
         UPDATE_SERVICE_NOTIFICATION = "updateServiceNotification"
+        UPDATE_SPEECH_RECOGNITION_TRIAL = "updateSpeechRecognitionTrial"
+        UPDATE_SPEED_LIMIT_NOTIFICATION = "updateSpeedLimitNotification"
         UPDATE_STICKER_SET = "updateStickerSet"
         UPDATE_STORY = "updateStory"
         UPDATE_STORY_DELETED = "updateStoryDeleted"
@@ -2006,6 +2393,7 @@ class API:
             "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
         )
         USER_PRIVACY_SETTING_SHOW_BIO = "userPrivacySettingShowBio"
+        USER_PRIVACY_SETTING_SHOW_BIRTHDATE = "userPrivacySettingShowBirthdate"
         USER_PRIVACY_SETTING_SHOW_LINK_IN_FORWARDED_MESSAGES = "userPrivacySettingShowLinkInForwardedMessages"
         USER_PRIVACY_SETTING_SHOW_PHONE_NUMBER = "userPrivacySettingShowPhoneNumber"
         USER_PRIVACY_SETTING_SHOW_PROFILE_PHOTO = "userPrivacySettingShowProfilePhoto"
@@ -2014,6 +2402,7 @@ class API:
         USER_PRIVACY_SETTING_RULE_ALLOW_ALL = "userPrivacySettingRuleAllowAll"
         USER_PRIVACY_SETTING_RULE_ALLOW_CHAT_MEMBERS = "userPrivacySettingRuleAllowChatMembers"
         USER_PRIVACY_SETTING_RULE_ALLOW_CONTACTS = "userPrivacySettingRuleAllowContacts"
+        USER_PRIVACY_SETTING_RULE_ALLOW_PREMIUM_USERS = "userPrivacySettingRuleAllowPremiumUsers"
         USER_PRIVACY_SETTING_RULE_ALLOW_USERS = "userPrivacySettingRuleAllowUsers"
         USER_PRIVACY_SETTING_RULE_RESTRICT_ALL = "userPrivacySettingRuleRestrictAll"
         USER_PRIVACY_SETTING_RULE_RESTRICT_CHAT_MEMBERS = "userPrivacySettingRuleRestrictChatMembers"
@@ -2069,7 +2458,7 @@ class API:
         :type protocol: :class:`CallProtocol`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2095,7 +2484,7 @@ class API:
         :type terms_of_service_id: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2121,31 +2510,6 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def add_application_changelog(
-        self, previous_application_version: String, *, request_id: str = None, request_timeout: int = None
-    ) -> Ok:
-        """
-        Adds server-provided application changelog as messages to the chat 777000 (Telegram) or as a stories; for official applications only. Returns a 404 error if nothing changed
-
-        :param previous_application_version: The previous application version
-        :type previous_application_version: :class:`String`
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Ok`
-        """
-
-        return await self.client.request(
-            AddApplicationChangelog(
-                previous_application_version=previous_application_version,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
     async def add_chat_folder_by_invite_link(
         self, invite_link: String, chat_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
@@ -2158,7 +2522,7 @@ class API:
         :type chat_ids: :class:`Vector[Int53]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2182,9 +2546,9 @@ class API:
         *,
         request_id: str = None,
         request_timeout: int = None
-    ) -> Ok:
+    ) -> FailedToAddMembers:
         """
-        Adds a new member to a chat. Members can't be added to private or secret chats
+        Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats. Returns information about members that weren't added
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
@@ -2194,11 +2558,11 @@ class API:
         :type forward_limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Ok`
+        :rtype: :class:`aiotdlib.api.types.FailedToAddMembers`
         """
 
         return await self.client.request(
@@ -2213,9 +2577,9 @@ class API:
 
     async def add_chat_members(
         self, chat_id: Int53, user_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
-    ) -> Ok:
+    ) -> FailedToAddMembers:
         """
-        Adds multiple new members to a chat. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members
+        Adds multiple new members to a chat; requires can_invite_users member right. Currently, this method is only available for supergroups and channels. This method can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Returns information about members that weren't added
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
@@ -2223,11 +2587,11 @@ class API:
         :type user_ids: :class:`Vector[Int53]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Ok`
+        :rtype: :class:`aiotdlib.api.types.FailedToAddMembers`
         """
 
         return await self.client.request(
@@ -2251,7 +2615,7 @@ class API:
         :type chat_list: :class:`ChatList`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2279,7 +2643,7 @@ class API:
         :type share_phone_number: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2305,7 +2669,7 @@ class API:
         :type language_pack_id: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2324,13 +2688,13 @@ class API:
         self, sticker: InputFile, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to favorite stickers
+        Adds a new sticker to the list of favorite stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP or WEBM format can be added to this list. Emoji stickers can't be added to favorite stickers
 
         :param sticker: Sticker file to add
         :type sticker: :class:`InputFile`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2356,7 +2720,7 @@ class API:
         request_timeout: int = None
     ) -> File:
         """
-        Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent from download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
+        Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent of download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
 
         :param file_id: Identifier of the file to download
         :type file_id: :class:`Int32`
@@ -2368,7 +2732,7 @@ class API:
         :type priority: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2392,7 +2756,7 @@ class API:
         sender_id: MessageSender,
         input_message_content: InputMessageContent,
         disable_notification: Bool = False,
-        reply_to: typing.Optional[MessageReplyTo] = None,
+        reply_to: typing.Optional[InputMessageReplyTo] = None,
         *,
         request_id: str = None,
         request_timeout: int = None
@@ -2408,11 +2772,11 @@ class API:
         :type input_message_content: :class:`InputMessageContent`
         :param disable_notification: Pass true to disable notification for the message
         :type disable_notification: :class:`Bool`
-        :param reply_to: Identifier of the replied message or story; pass null if none, defaults to None
-        :type reply_to: :class:`MessageReplyTo`, optional
+        :param reply_to: Information about the message or story to be replied; pass null if none, defaults to None
+        :type reply_to: :class:`InputMessageReplyTo`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2443,7 +2807,7 @@ class API:
         :type text: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2471,7 +2835,7 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+        Adds a reaction or a tag to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
 
         :param chat_id: Identifier of the chat to which the message belongs
         :type chat_id: :class:`Int53`
@@ -2481,11 +2845,11 @@ class API:
         :type reaction_type: :class:`ReactionType`
         :param is_big: Pass true if the reaction is added with a big animation
         :type is_big: :class:`Bool`
-        :param update_recent_reactions: Pass true if the reaction needs to be added to recent reactions
+        :param update_recent_reactions: Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions
         :type update_recent_reactions: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2514,7 +2878,7 @@ class API:
         :type entry: :class:`NetworkStatisticsEntry`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2552,7 +2916,7 @@ class API:
         :type enable: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2570,11 +2934,130 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def add_quick_reply_shortcut_inline_query_result_message(
+        self,
+        shortcut_name: String,
+        query_id: Int64,
+        result_id: String,
+        reply_to_message_id: Int53 = 0,
+        hide_via_bot: Bool = False,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> QuickReplyMessage:
+        """
+        Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
+
+        :param shortcut_name: Name of the target shortcut
+        :type shortcut_name: :class:`String`
+        :param query_id: Identifier of the inline query
+        :type query_id: :class:`Int64`
+        :param result_id: Identifier of the inline query result
+        :type result_id: :class:`String`
+        :param reply_to_message_id: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+        :type reply_to_message_id: :class:`Int53`
+        :param hide_via_bot: Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
+        :type hide_via_bot: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.QuickReplyMessage`
+        """
+
+        return await self.client.request(
+            AddQuickReplyShortcutInlineQueryResultMessage(
+                shortcut_name=shortcut_name,
+                query_id=query_id,
+                result_id=result_id,
+                reply_to_message_id=reply_to_message_id,
+                hide_via_bot=hide_via_bot,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def add_quick_reply_shortcut_message(
+        self,
+        shortcut_name: String,
+        input_message_content: InputMessageContent,
+        reply_to_message_id: Int53 = 0,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> QuickReplyMessage:
+        """
+        Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
+
+        :param shortcut_name: Name of the target shortcut
+        :type shortcut_name: :class:`String`
+        :param input_message_content: The content of the message to be added; inputMessagePoll, inputMessageForwarded and inputMessageLocation with live_period aren't supported
+        :type input_message_content: :class:`InputMessageContent`
+        :param reply_to_message_id: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+        :type reply_to_message_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.QuickReplyMessage`
+        """
+
+        return await self.client.request(
+            AddQuickReplyShortcutMessage(
+                shortcut_name=shortcut_name,
+                input_message_content=input_message_content,
+                reply_to_message_id=reply_to_message_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def add_quick_reply_shortcut_message_album(
+        self,
+        shortcut_name: String,
+        input_message_contents: Vector[InputMessageContent],
+        reply_to_message_id: Int53 = 0,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> QuickReplyMessages:
+        """
+        Adds 2-10 messages grouped together into an album to a quick reply shortcut. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
+
+        :param shortcut_name: Name of the target shortcut
+        :type shortcut_name: :class:`String`
+        :param input_message_contents: Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
+        :type input_message_contents: :class:`Vector[InputMessageContent]`
+        :param reply_to_message_id: Identifier of a quick reply message in the same shortcut to be replied; pass 0 if none
+        :type reply_to_message_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.QuickReplyMessages`
+        """
+
+        return await self.client.request(
+            AddQuickReplyShortcutMessageAlbum(
+                shortcut_name=shortcut_name,
+                input_message_contents=input_message_contents,
+                reply_to_message_id=reply_to_message_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def add_recent_sticker(
         self, sticker: InputFile, is_attached: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Stickers:
         """
-        Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set can be added to this list. Emoji stickers can't be added to recent stickers
+        Manually adds a new sticker to the list of recently used stickers. The new sticker is added to the top of the list. If the sticker was already in the list, it is removed from the list first. Only stickers belonging to a sticker set or in WEBP or WEBM format can be added to this list. Emoji stickers can't be added to recent stickers
 
         :param sticker: Sticker file to add
         :type sticker: :class:`InputFile`
@@ -2582,7 +3065,7 @@ class API:
         :type is_attached: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2608,7 +3091,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2633,7 +3116,7 @@ class API:
         :type animation: :class:`InputFile`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2658,7 +3141,7 @@ class API:
         :type sound: :class:`InputFile`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2683,17 +3166,17 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Adds a new sticker to a set; for bots only
+        Adds a new sticker to a set
 
-        :param user_id: Sticker set owner
+        :param user_id: Sticker set owner; ignored for regular users
         :type user_id: :class:`Int53`
-        :param name: Sticker set name
+        :param name: Sticker set name. The sticker set must be owned by the current user, and contain less than 200 stickers for custom emoji sticker sets and less than 120 otherwise
         :type name: :class:`String`
         :param sticker: Sticker to add to the set
         :type sticker: :class:`InputSticker`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2720,7 +3203,7 @@ class API:
         :type bot_user_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2761,7 +3244,7 @@ class API:
         :type show_alert: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2792,7 +3275,7 @@ class API:
         :type data: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2837,7 +3320,7 @@ class API:
         :type button: :class:`InlineQueryResultsButton`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2874,7 +3357,7 @@ class API:
         :type error_message: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2910,7 +3393,7 @@ class API:
         :type error_message: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2944,7 +3427,7 @@ class API:
         :type result: :class:`InputInlineQueryResult`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -2955,6 +3438,29 @@ class API:
             AnswerWebAppQuery(
                 web_app_query_id=web_app_query_id,
                 result=result,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def apply_premium_gift_code(self, code: String, *, request_id: str = None, request_timeout: int = None) -> Ok:
+        """
+        Applies a Telegram Premium gift code
+
+        :param code: The code to apply
+        :type code: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            ApplyPremiumGiftCode(
+                code=code,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -2972,7 +3478,7 @@ class API:
         :type purpose: :class:`StorePaymentPurpose`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3011,7 +3517,7 @@ class API:
         :type purpose: :class:`StorePaymentPurpose`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3033,14 +3539,14 @@ class API:
         self,
         chat_id: Int53,
         member_id: MessageSender,
-        banned_until_date: Int32,
+        banned_until_date: Int32 = 0,
         revoke_messages: Bool = False,
         *,
         request_id: str = None,
         request_timeout: int = None
     ) -> Ok:
         """
-        Bans a member in a chat. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
+        Bans a member in a chat; requires can_restrict_members administrator right. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
@@ -3052,7 +3558,7 @@ class API:
         :type revoke_messages: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3093,7 +3599,7 @@ class API:
         :type report_spam: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3111,6 +3617,34 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def boost_chat(
+        self, chat_id: Int53, slot_ids: Vector[Int32], *, request_id: str = None, request_timeout: int = None
+    ) -> ChatBoostSlots:
+        """
+        Boosts a chat and returns the list of available chat boost slots for the current user after the boost
+
+        :param chat_id: Identifier of the chat
+        :type chat_id: :class:`Int53`
+        :param slot_ids: Identifiers of boost slots of the current user from which to apply boosts to the chat
+        :type slot_ids: :class:`Vector[Int32]`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatBoostSlots`
+        """
+
+        return await self.client.request(
+            BoostChat(
+                chat_id=chat_id,
+                slot_ids=slot_ids,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def can_bot_send_messages(
         self, bot_user_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
@@ -3121,7 +3655,7 @@ class API:
         :type bot_user_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3136,17 +3670,17 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def can_purchase_premium(
+    async def can_purchase_from_store(
         self, purpose: StorePaymentPurpose, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Checks whether Telegram Premium purchase is possible. Must be called before in-store Premium purchase
+        Checks whether an in-store purchase is possible. Must be called before any in-store purchase
 
         :param purpose: Transaction purpose
         :type purpose: :class:`StorePaymentPurpose`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3154,20 +3688,62 @@ class API:
         """
 
         return await self.client.request(
-            CanPurchasePremium(
+            CanPurchaseFromStore(
                 purpose=purpose,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def can_send_story(self, *, request_id: str = None, request_timeout: int = None) -> CanSendStoryResult:
+    async def can_send_message_to_user(
+        self, user_id: Int53, only_local: Bool = False, *, request_id: str = None, request_timeout: int = None
+    ) -> CanSendMessageToUserResult:
         """
-        Checks whether the current user can send a story
+        Check whether the current user can message another user or try to create a chat with them
+
+        :param user_id: Identifier of the other user
+        :type user_id: :class:`Int53`
+        :param only_local: Pass true to get only locally available information without sending network requests
+        :type only_local: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.CanSendMessageToUserResult`
         """
 
         return await self.client.request(
-            CanSendStory(),
+            CanSendMessageToUser(
+                user_id=user_id,
+                only_local=only_local,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def can_send_story(
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
+    ) -> CanSendStoryResult:
+        """
+        Checks whether the current user can send a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.CanSendStoryResult`
+        """
+
+        return await self.client.request(
+            CanSendStory(
+                chat_id=chat_id,
+            ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
@@ -3197,7 +3773,7 @@ class API:
         :type only_if_pending: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3234,7 +3810,7 @@ class API:
         :type file_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3249,6 +3825,19 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def cancel_recovery_email_address_verification(
+        self, *, request_id: str = None, request_timeout: int = None
+    ) -> PasswordState:
+        """
+        Cancels verification of the 2-step verification recovery email address
+        """
+
+        return await self.client.request(
+            CancelRecoveryEmailAddressVerification(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def change_imported_contacts(
         self, contacts: Vector[Contact], *, request_id: str = None, request_timeout: int = None
     ) -> ImportedContacts:
@@ -3259,7 +3848,7 @@ class API:
         :type contacts: :class:`Vector[Contact]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3269,39 +3858,6 @@ class API:
         return await self.client.request(
             ChangeImportedContacts(
                 contacts=contacts,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
-    async def change_phone_number(
-        self,
-        phone_number: String,
-        settings: typing.Optional[PhoneNumberAuthenticationSettings] = None,
-        *,
-        request_id: str = None,
-        request_timeout: int = None
-    ) -> AuthenticationCodeInfo:
-        """
-        Changes the phone number of the user and sends an authentication code to the user's new phone number; for official Android and iOS applications only. On success, returns information about the sent code
-
-        :param phone_number: The new phone number of the user in international format
-        :type phone_number: :class:`String`
-        :param settings: Settings for the authentication of the user's phone number; pass null to use default settings, defaults to None
-        :type settings: :class:`PhoneNumberAuthenticationSettings`, optional
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.AuthenticationCodeInfo`
-        """
-
-        return await self.client.request(
-            ChangePhoneNumber(
-                phone_number=phone_number,
-                settings=settings,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -3327,7 +3883,7 @@ class API:
         :type is_archived: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3354,7 +3910,7 @@ class API:
         :type token: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3379,7 +3935,7 @@ class API:
         :type code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3398,13 +3954,13 @@ class API:
         self, code: EmailAddressAuthentication, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode
+        Checks the authentication of an email address. Works only when the current authorization state is authorizationStateWaitEmailCode
 
         :param code: Email address authentication to check
         :type code: :class:`EmailAddressAuthentication`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3429,7 +3985,7 @@ class API:
         :type password: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3454,7 +4010,7 @@ class API:
         :type recovery_code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3464,31 +4020,6 @@ class API:
         return await self.client.request(
             CheckAuthenticationPasswordRecoveryCode(
                 recovery_code=recovery_code,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
-    async def check_change_phone_number_code(
-        self, code: String, *, request_id: str = None, request_timeout: int = None
-    ) -> Ok:
-        """
-        Checks the authentication code sent to confirm a new phone number of the user
-
-        :param code: Authentication code to check
-        :type code: :class:`String`
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Ok`
-        """
-
-        return await self.client.request(
-            CheckChangePhoneNumberCode(
-                code=code,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -3504,7 +4035,7 @@ class API:
         :type invite_link: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3529,7 +4060,7 @@ class API:
         :type invite_link: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3545,18 +4076,18 @@ class API:
         )
 
     async def check_chat_username(
-        self, chat_id: Int53, username: String, *, request_id: str = None, request_timeout: int = None
+        self, username: String, chat_id: Int53 = 0, *, request_id: str = None, request_timeout: int = None
     ) -> CheckChatUsernameResult:
         """
         Checks whether a username can be set for a chat
 
-        :param chat_id: Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created
-        :type chat_id: :class:`Int53`
         :param username: Username to be checked
         :type username: :class:`String`
+        :param chat_id: Chat identifier; must be identifier of a supergroup chat, or a channel chat, or a private chat with self, or 0 if the chat is being created
+        :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3565,8 +4096,8 @@ class API:
 
         return await self.client.request(
             CheckChatUsername(
-                chat_id=chat_id,
                 username=username,
+                chat_id=chat_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -3582,7 +4113,7 @@ class API:
         :type type_: :class:`PublicChatType`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3607,7 +4138,7 @@ class API:
         :type code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3632,7 +4163,7 @@ class API:
         :type code: :class:`EmailAddressAuthentication`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3657,7 +4188,7 @@ class API:
         :type recovery_code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3672,17 +4203,15 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def check_phone_number_confirmation_code(
-        self, code: String, *, request_id: str = None, request_timeout: int = None
-    ) -> Ok:
+    async def check_phone_number_code(self, code: String, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
-        Checks phone number confirmation code
+        Check the authentication code and completes the request for which the code was sent if appropriate
 
-        :param code: Confirmation code to check
+        :param code: Authentication code to check
         :type code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3690,24 +4219,49 @@ class API:
         """
 
         return await self.client.request(
-            CheckPhoneNumberConfirmationCode(
+            CheckPhoneNumberCode(
                 code=code,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def check_phone_number_verification_code(
+    async def check_premium_gift_code(
         self, code: String, *, request_id: str = None, request_timeout: int = None
-    ) -> Ok:
+    ) -> PremiumGiftCodeInfo:
         """
-        Checks the phone number verification code for Telegram Passport
+        Return information about a Telegram Premium gift code
 
-        :param code: Verification code to check
+        :param code: The code to check
         :type code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PremiumGiftCodeInfo`
+        """
+
+        return await self.client.request(
+            CheckPremiumGiftCode(
+                code=code,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def check_quick_reply_shortcut_name(
+        self, name: String, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Checks validness of a name for a quick reply shortcut. Can be called synchronously
+
+        :param name: The name of the shortcut; 1-32 characters
+        :type name: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3715,8 +4269,8 @@ class API:
         """
 
         return await self.client.request(
-            CheckPhoneNumberVerificationCode(
-                code=code,
+            CheckQuickReplyShortcutName(
+                name=name,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -3732,7 +4286,7 @@ class API:
         :type code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3757,7 +4311,7 @@ class API:
         :type name: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3780,7 +4334,7 @@ class API:
         :type file_name: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3805,7 +4359,7 @@ class API:
         :type exclude_secret_chats: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3844,7 +4398,7 @@ class API:
 
     async def clear_recent_emoji_statuses(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
-        Clears the list of recently used emoji statuses
+        Clears the list of recently used emoji statuses for self status
         """
 
         return await self.client.request(
@@ -3874,7 +4428,7 @@ class API:
         :type is_attached: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3900,6 +4454,17 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def clear_searched_for_hashtags(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
+        """
+        Clears the list of recently searched for hashtags
+        """
+
+        return await self.client.request(
+            ClearSearchedForHashtags(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def click_animated_emoji_message(
         self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Sticker:
@@ -3912,7 +4477,7 @@ class API:
         :type message_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3940,7 +4505,7 @@ class API:
         :type message_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -3986,7 +4551,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4011,7 +4576,7 @@ class API:
         :type secret_chat_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4038,7 +4603,7 @@ class API:
         :type story_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4064,7 +4629,7 @@ class API:
         :type web_app_launch_id: :class:`Int64`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4089,7 +4654,7 @@ class API:
         :type link: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4112,7 +4677,7 @@ class API:
         :type session_id: :class:`Int64`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4139,7 +4704,7 @@ class API:
         :type force: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4150,6 +4715,31 @@ class API:
             CreateBasicGroupChat(
                 basic_group_id=basic_group_id,
                 force=force,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def create_business_chat_link(
+        self, link_info: InputBusinessChatLink, *, request_id: str = None, request_timeout: int = None
+    ) -> BusinessChatLink:
+        """
+        Creates a business chat link for the current account. Requires Telegram Business subscription. There can be up to getOption("business_chat_link_count_max") links created. Returns the created link
+
+        :param link_info: Information about the link to create
+        :type link_info: :class:`InputBusinessChatLink`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BusinessChatLink`
+        """
+
+        return await self.client.request(
+            CreateBusinessChatLink(
+                link_info=link_info,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -4175,7 +4765,7 @@ class API:
         :type is_video: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4202,7 +4792,7 @@ class API:
         :type folder: :class:`ChatFolder`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4237,7 +4827,7 @@ class API:
         :type name: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4280,7 +4870,7 @@ class API:
         :type creates_join_request: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4303,7 +4893,7 @@ class API:
         self, chat_id: Int53, name: String, icon: ForumTopicIcon, *, request_id: str = None, request_timeout: int = None
     ) -> ForumTopicInfo:
         """
-        Creates a topic in a forum supergroup chat; requires can_manage_topics rights in the supergroup
+        Creates a topic in a forum supergroup chat; requires can_manage_topics administrator or can_create_topics member right in the supergroup
 
         :param chat_id: Identifier of the chat
         :type chat_id: :class:`Int53`
@@ -4313,7 +4903,7 @@ class API:
         :type icon: :class:`ForumTopicIcon`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4340,7 +4930,7 @@ class API:
         :type invoice: :class:`InputMessageContent`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4363,9 +4953,9 @@ class API:
         *,
         request_id: str = None,
         request_timeout: int = None
-    ) -> Chat:
+    ) -> CreatedBasicGroupChat:
         """
-        Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns the newly created chat
+        Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns information about the newly created chat
 
         :param title: Title of the new basic group; 1-128 characters
         :type title: :class:`String`
@@ -4375,11 +4965,11 @@ class API:
         :type message_auto_delete_time: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Chat`
+        :rtype: :class:`aiotdlib.api.types.CreatedBasicGroupChat`
         """
 
         return await self.client.request(
@@ -4402,7 +4992,7 @@ class API:
         :type user_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4421,12 +5011,11 @@ class API:
         self,
         user_id: Int53,
         title: String,
-        name: String,
-        sticker_format: StickerFormat,
         sticker_type: StickerType,
         stickers: Vector[InputSticker],
         needs_repainting: Bool = False,
         source: String = "",
+        name: typing.Optional[String] = "",
         *,
         request_id: str = None,
         request_timeout: int = None
@@ -4438,21 +5027,19 @@ class API:
         :type user_id: :class:`Int53`
         :param title: Sticker set title; 1-64 characters
         :type title: :class:`String`
-        :param name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 1-64 characters
-        :type name: :class:`String`
-        :param sticker_format: Format of the stickers in the set
-        :type sticker_format: :class:`StickerFormat`
         :param sticker_type: Type of the stickers in the set
         :type sticker_type: :class:`StickerType`
-        :param stickers: List of stickers to be added to the set; must be non-empty. All stickers must have the same format. For TGS stickers, uploadStickerFile must be used before the sticker is shown
+        :param stickers: List of stickers to be added to the set; 1-200 stickers for custom emoji sticker sets, and 1-120 stickers otherwise. For TGS stickers, uploadStickerFile must be used before the sticker is shown
         :type stickers: :class:`Vector[InputSticker]`
         :param needs_repainting: Pass true if stickers in the sticker set must be repainted; for custom emoji sticker sets only
         :type needs_repainting: :class:`Bool`
         :param source: Source of the sticker set; may be empty if unknown
         :type source: :class:`String`
+        :param name: Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive) for bots; 0-64 characters. If empty, then the name returned by getSuggestedStickerSetName will be used automatically, defaults to None
+        :type name: :class:`String`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4463,12 +5050,11 @@ class API:
             CreateNewStickerSet(
                 user_id=user_id,
                 title=title,
-                name=name,
-                sticker_format=sticker_format,
                 sticker_type=sticker_type,
                 stickers=stickers,
                 needs_repainting=needs_repainting,
                 source=source,
+                name=name,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -4500,13 +5086,13 @@ class API:
         :type description: :class:`String`
         :param message_auto_delete_time: Message auto-delete time value, in seconds; must be from 0 up to 365 * 86400 and be divisible by 86400. If 0, then messages aren't deleted automatically
         :type message_auto_delete_time: :class:`Int32`
-        :param for_import: Pass true to create a supergroup for importing messages using importMessage
+        :param for_import: Pass true to create a supergroup for importing messages using importMessages
         :type for_import: :class:`Bool`
         :param location: Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat, defaults to None
         :type location: :class:`ChatLocation`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4539,7 +5125,7 @@ class API:
         :type force: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4565,7 +5151,7 @@ class API:
         :type secret_chat_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4592,7 +5178,7 @@ class API:
         :type force: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4620,7 +5206,7 @@ class API:
         :type valid_for: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4639,27 +5225,27 @@ class API:
     async def create_video_chat(
         self,
         chat_id: Int53,
-        title: String,
         start_date: Int32,
+        title: String = "",
         is_rtmp_stream: Bool = False,
         *,
         request_id: str = None,
         request_timeout: int = None
     ) -> GroupCallId:
         """
-        Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats rights
+        Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats administrator right
 
         :param chat_id: Identifier of a chat in which the video chat will be created
         :type chat_id: :class:`Int53`
-        :param title: Group call title; if empty, chat title will be used
-        :type title: :class:`String`
         :param start_date: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
         :type start_date: :class:`Int32`
-        :param is_rtmp_stream: Pass true to create an RTMP stream instead of an ordinary video chat; requires creator privileges
+        :param title: Group call title; if empty, chat title will be used
+        :type title: :class:`String`
+        :param is_rtmp_stream: Pass true to create an RTMP stream instead of an ordinary video chat; requires owner privileges
         :type is_rtmp_stream: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4669,8 +5255,8 @@ class API:
         return await self.client.request(
             CreateVideoChat(
                 chat_id=chat_id,
-                title=title,
                 start_date=start_date,
+                title=title,
                 is_rtmp_stream=is_rtmp_stream,
             ),
             request_id=request_id,
@@ -4685,11 +5271,11 @@ class API:
 
         :param reason: The reason why the account was deleted; optional
         :type reason: :class:`String`
-        :param password: The 2-step verification password of the current user. If not specified, account deletion can be canceled within one week
+        :param password: The 2-step verification password of the current user. If the current user isn't authorized, then an empty string can be passed and account deletion can be canceled within one week
         :type password: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4715,7 +5301,7 @@ class API:
         :type revoke: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4742,7 +5328,7 @@ class API:
         :type creator_user_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4758,6 +5344,56 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def delete_business_chat_link(
+        self, link: String, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Deletes a business chat link of the current account
+
+        :param link: The link to delete
+        :type link: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            DeleteBusinessChatLink(
+                link=link,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def delete_business_connected_bot(
+        self, bot_user_id: Int53, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Deletes the business bot that is connected to the current user account
+
+        :param bot_user_id: Unique user identifier for the bot
+        :type bot_user_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            DeleteBusinessConnectedBot(
+                bot_user_id=bot_user_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def delete_chat(self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Deletes a chat along with all messages in the corresponding chat for all chat members. For group chats this will release the usernames and remove all members. Use the field chat.can_be_deleted_for_all_users to find whether the method can be applied to the chat
@@ -4766,7 +5402,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4776,6 +5412,34 @@ class API:
         return await self.client.request(
             DeleteChat(
                 chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def delete_chat_background(
+        self, chat_id: Int53, restore_previous: Bool = False, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Deletes background in a specific chat
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param restore_previous: Pass true to restore previously set background. Can be used only in private and secret chats with non-deleted users if userFullInfo.set_chat_background == true. Supposed to be used from messageChatSetBackground messages with the currently set background that was set for both sides by the other user
+        :type restore_previous: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            DeleteChatBackground(
+                chat_id=chat_id,
+                restore_previous=restore_previous,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -4798,7 +5462,7 @@ class API:
         :type leave_chat_ids: :class:`Vector[Int53]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4826,7 +5490,7 @@ class API:
         :type invite_link: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4862,7 +5526,7 @@ class API:
         :type revoke: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4902,7 +5566,7 @@ class API:
         :type revoke: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4932,7 +5596,7 @@ class API:
         :type sender_id: :class:`MessageSender`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4960,7 +5624,7 @@ class API:
         :type message_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -4993,7 +5657,7 @@ class API:
         :type scope: :class:`BotCommandScope`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5009,6 +5673,31 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def delete_default_background(
+        self, for_dark_theme: Bool = False, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Deletes default background for chats
+
+        :param for_dark_theme: Pass true if the background is deleted for a dark theme
+        :type for_dark_theme: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            DeleteDefaultBackground(
+                for_dark_theme=for_dark_theme,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def delete_file(self, file_id: Int32, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Deletes a file from the TDLib file cache
@@ -5017,7 +5706,7 @@ class API:
         :type file_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5044,7 +5733,7 @@ class API:
         :type message_thread_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5070,7 +5759,7 @@ class API:
         :type language_pack_id: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5105,7 +5794,7 @@ class API:
         :type revoke: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5132,7 +5821,7 @@ class API:
         :type type_: :class:`PassportElementType`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5157,7 +5846,7 @@ class API:
         :type profile_photo_id: :class:`Int64`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5167,6 +5856,59 @@ class API:
         return await self.client.request(
             DeleteProfilePhoto(
                 profile_photo_id=profile_photo_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def delete_quick_reply_shortcut(
+        self, shortcut_id: Int32, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Deletes a quick reply shortcut
+
+        :param shortcut_id: Unique identifier of the quick reply shortcut
+        :type shortcut_id: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            DeleteQuickReplyShortcut(
+                shortcut_id=shortcut_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def delete_quick_reply_shortcut_messages(
+        self, shortcut_id: Int32, message_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Deletes specified quick reply messages
+
+        :param shortcut_id: Unique identifier of the quick reply shortcut to which the messages belong
+        :type shortcut_id: :class:`Int32`
+        :param message_ids: Unique identifiers of the messages
+        :type message_ids: :class:`Vector[Int53]`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            DeleteQuickReplyShortcutMessages(
+                shortcut_id=shortcut_id,
+                message_ids=message_ids,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -5184,7 +5926,7 @@ class API:
         :type invite_link: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5211,6 +5953,68 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def delete_saved_messages_topic_history(
+        self, saved_messages_topic_id: Int53, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Deletes all messages in a Saved Messages topic
+
+        :param saved_messages_topic_id: Identifier of Saved Messages topic which messages will be deleted
+        :type saved_messages_topic_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            DeleteSavedMessagesTopicHistory(
+                saved_messages_topic_id=saved_messages_topic_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def delete_saved_messages_topic_messages_by_date(
+        self,
+        saved_messages_topic_id: Int53,
+        min_date: Int32,
+        max_date: Int32,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Deletes all messages between the specified dates in a Saved Messages topic. Messages sent in the last 30 seconds will not be deleted
+
+        :param saved_messages_topic_id: Identifier of Saved Messages topic which messages will be deleted
+        :type saved_messages_topic_id: :class:`Int53`
+        :param min_date: The minimum date of the messages to delete
+        :type min_date: :class:`Int32`
+        :param max_date: The maximum date of the messages to delete
+        :type max_date: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            DeleteSavedMessagesTopicMessagesByDate(
+                saved_messages_topic_id=saved_messages_topic_id,
+                min_date=min_date,
+                max_date=max_date,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def delete_saved_order_info(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Deletes saved order information
@@ -5224,13 +6028,13 @@ class API:
 
     async def delete_sticker_set(self, name: String, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
-        Deleted a sticker set; for bots only
+        Completely deletes a sticker set
 
-        :param name: Sticker set name
+        :param name: Sticker set name. The sticker set must be owned by the current user
         :type name: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5245,15 +6049,19 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def delete_story(self, story_id: Int32, *, request_id: str = None, request_timeout: int = None) -> Ok:
+    async def delete_story(
+        self, story_sender_chat_id: Int53, story_id: Int32, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
         """
-        Deletes a previously sent story
+        Deletes a previously sent story. Can be called only if story.can_be_deleted == true
 
+        :param story_sender_chat_id: Identifier of the chat that posted the story
+        :type story_sender_chat_id: :class:`Int53`
         :param story_id: Identifier of the story to delete
         :type story_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5262,6 +6070,7 @@ class API:
 
         return await self.client.request(
             DeleteStory(
+                story_sender_chat_id=story_sender_chat_id,
                 story_id=story_id,
             ),
             request_id=request_id,
@@ -5289,7 +6098,7 @@ class API:
         :type supergroup_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5341,7 +6150,7 @@ class API:
         :type is_video: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5379,7 +6188,7 @@ class API:
         :type website_id: :class:`Int64`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5420,7 +6229,7 @@ class API:
         :type synchronous: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5439,6 +6248,34 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def edit_business_chat_link(
+        self, link: String, link_info: InputBusinessChatLink, *, request_id: str = None, request_timeout: int = None
+    ) -> BusinessChatLink:
+        """
+        Edits a business chat link of the current account. Requires Telegram Business subscription. Returns the edited link
+
+        :param link: The link to edit
+        :type link: :class:`String`
+        :param link_info: New description of the link
+        :type link_info: :class:`InputBusinessChatLink`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BusinessChatLink`
+        """
+
+        return await self.client.request(
+            EditBusinessChatLink(
+                link=link,
+                link_info=link_info,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def edit_chat_folder(
         self, chat_folder_id: Int32, folder: ChatFolder, *, request_id: str = None, request_timeout: int = None
     ) -> ChatFolderInfo:
@@ -5451,7 +6288,7 @@ class API:
         :type folder: :class:`ChatFolder`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5490,7 +6327,7 @@ class API:
         :type name: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5537,7 +6374,7 @@ class API:
         :type creates_join_request: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5567,7 +6404,7 @@ class API:
         :type info: :class:`LanguagePackInfo`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5587,14 +6424,14 @@ class API:
         chat_id: Int53,
         message_thread_id: Int53,
         icon_custom_emoji_id: Int64,
-        name: String = "",
         edit_icon_custom_emoji: Bool = False,
+        name: typing.Optional[String] = "",
         *,
         request_id: str = None,
         request_timeout: int = None
     ) -> Ok:
         """
-        Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+        Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic
 
         :param chat_id: Identifier of the chat
         :type chat_id: :class:`Int53`
@@ -5602,13 +6439,13 @@ class API:
         :type message_thread_id: :class:`Int53`
         :param icon_custom_emoji_id: Identifier of the new custom emoji for topic icon; pass 0 to remove the custom emoji. Ignored if edit_icon_custom_emoji is false. Telegram Premium users can use any custom emoji, other users can use only a custom emoji returned by getForumTopicDefaultIcons
         :type icon_custom_emoji_id: :class:`Int64`
-        :param name: New name of the topic; 0-128 characters. If empty, the previous topic name is kept
-        :type name: :class:`String`
         :param edit_icon_custom_emoji: Pass true to edit the icon of the topic. Icon of the General topic can't be edited
         :type edit_icon_custom_emoji: :class:`Bool`
+        :param name: New name of the topic; 0-128 characters. If empty, the previous topic name is kept, defaults to None
+        :type name: :class:`String`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5620,8 +6457,8 @@ class API:
                 chat_id=chat_id,
                 message_thread_id=message_thread_id,
                 icon_custom_emoji_id=icon_custom_emoji_id,
-                name=name,
                 edit_icon_custom_emoji=edit_icon_custom_emoji,
+                name=name,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -5630,6 +6467,7 @@ class API:
     async def edit_inline_message_caption(
         self,
         inline_message_id: String,
+        show_caption_above_media: Bool = False,
         reply_markup: typing.Optional[ReplyMarkup] = None,
         caption: typing.Optional[FormattedText] = None,
         *,
@@ -5641,13 +6479,15 @@ class API:
 
         :param inline_message_id: Inline message identifier
         :type inline_message_id: :class:`String`
+        :param show_caption_above_media: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+        :type show_caption_above_media: :class:`Bool`
         :param reply_markup: The new message reply markup; pass null if none, defaults to None
         :type reply_markup: :class:`ReplyMarkup`, optional
         :param caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters, defaults to None
         :type caption: :class:`FormattedText`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5657,6 +6497,7 @@ class API:
         return await self.client.request(
             EditInlineMessageCaption(
                 inline_message_id=inline_message_id,
+                show_caption_above_media=show_caption_above_media,
                 reply_markup=reply_markup,
                 caption=caption,
             ),
@@ -5667,6 +6508,7 @@ class API:
     async def edit_inline_message_live_location(
         self,
         inline_message_id: String,
+        live_period: Int32 = 0,
         heading: Int32 = 0,
         proximity_alert_radius: Int32 = 0,
         reply_markup: typing.Optional[ReplyMarkup] = None,
@@ -5680,6 +6522,8 @@ class API:
 
         :param inline_message_id: Inline message identifier
         :type inline_message_id: :class:`String`
+        :param live_period: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
+        :type live_period: :class:`Int32`
         :param heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
         :type heading: :class:`Int32`
         :param proximity_alert_radius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
@@ -5690,7 +6534,7 @@ class API:
         :type location: :class:`Location`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5700,6 +6544,7 @@ class API:
         return await self.client.request(
             EditInlineMessageLiveLocation(
                 inline_message_id=inline_message_id,
+                live_period=live_period,
                 heading=heading,
                 proximity_alert_radius=proximity_alert_radius,
                 reply_markup=reply_markup,
@@ -5729,7 +6574,7 @@ class API:
         :type reply_markup: :class:`ReplyMarkup`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5763,7 +6608,7 @@ class API:
         :type reply_markup: :class:`ReplyMarkup`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5799,7 +6644,7 @@ class API:
         :type reply_markup: :class:`ReplyMarkup`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5820,6 +6665,7 @@ class API:
         self,
         chat_id: Int53,
         message_id: Int53,
+        show_caption_above_media: Bool = False,
         reply_markup: typing.Optional[ReplyMarkup] = None,
         caption: typing.Optional[FormattedText] = None,
         *,
@@ -5827,19 +6673,21 @@ class API:
         request_timeout: int = None
     ) -> Message:
         """
-        Edits the message content caption. Returns the edited message after the edit is completed on the server side
+        Edits the message content caption. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
 
         :param chat_id: The chat the message belongs to
         :type chat_id: :class:`Int53`
         :param message_id: Identifier of the message
         :type message_id: :class:`Int53`
+        :param show_caption_above_media: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+        :type show_caption_above_media: :class:`Bool`
         :param reply_markup: The new message reply markup; pass null if none; for bots only, defaults to None
         :type reply_markup: :class:`ReplyMarkup`, optional
         :param caption: New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption, defaults to None
         :type caption: :class:`FormattedText`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5850,6 +6698,7 @@ class API:
             EditMessageCaption(
                 chat_id=chat_id,
                 message_id=message_id,
+                show_caption_above_media=show_caption_above_media,
                 reply_markup=reply_markup,
                 caption=caption,
             ),
@@ -5861,6 +6710,7 @@ class API:
         self,
         chat_id: Int53,
         message_id: Int53,
+        live_period: Int32 = 0,
         heading: Int32 = 0,
         proximity_alert_radius: Int32 = 0,
         reply_markup: typing.Optional[ReplyMarkup] = None,
@@ -5870,12 +6720,14 @@ class API:
         request_timeout: int = None
     ) -> Message:
         """
-        Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
+        Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
 
         :param chat_id: The chat the message belongs to
         :type chat_id: :class:`Int53`
         :param message_id: Identifier of the message
         :type message_id: :class:`Int53`
+        :param live_period: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
+        :type live_period: :class:`Int32`
         :param heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
         :type heading: :class:`Int32`
         :param proximity_alert_radius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
@@ -5886,7 +6738,7 @@ class API:
         :type location: :class:`Location`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5897,6 +6749,7 @@ class API:
             EditMessageLiveLocation(
                 chat_id=chat_id,
                 message_id=message_id,
+                live_period=live_period,
                 heading=heading,
                 proximity_alert_radius=proximity_alert_radius,
                 reply_markup=reply_markup,
@@ -5917,7 +6770,7 @@ class API:
         request_timeout: int = None
     ) -> Message:
         """
-        Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side
+        Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
 
         :param chat_id: The chat the message belongs to
         :type chat_id: :class:`Int53`
@@ -5929,7 +6782,7 @@ class API:
         :type reply_markup: :class:`ReplyMarkup`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -5957,7 +6810,7 @@ class API:
         request_timeout: int = None
     ) -> Message:
         """
-        Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
+        Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
 
         :param chat_id: The chat the message belongs to
         :type chat_id: :class:`Int53`
@@ -5967,7 +6820,7 @@ class API:
         :type reply_markup: :class:`ReplyMarkup`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6004,7 +6857,7 @@ class API:
         :type scheduling_state: :class:`MessageSchedulingState`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6032,7 +6885,7 @@ class API:
         request_timeout: int = None
     ) -> Message:
         """
-        Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
+        Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
 
         :param chat_id: The chat the message belongs to
         :type chat_id: :class:`Int53`
@@ -6044,7 +6897,7 @@ class API:
         :type reply_markup: :class:`ReplyMarkup`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6088,7 +6941,7 @@ class API:
         :type enable: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6107,8 +6960,46 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def edit_quick_reply_message(
+        self,
+        shortcut_id: Int32,
+        message_id: Int53,
+        input_message_content: InputMessageContent,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Text message can be edited only to a text message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
+
+        :param shortcut_id: Unique identifier of the quick reply shortcut with the message
+        :type shortcut_id: :class:`Int32`
+        :param message_id: Identifier of the message
+        :type message_id: :class:`Int53`
+        :param input_message_content: New content of the message. Must be one of the following types: inputMessageText, inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+        :type input_message_content: :class:`InputMessageContent`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            EditQuickReplyMessage(
+                shortcut_id=shortcut_id,
+                message_id=message_id,
+                input_message_content=input_message_content,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def edit_story(
         self,
+        story_sender_chat_id: Int53,
         story_id: Int32,
         content: typing.Optional[InputStoryContent] = None,
         areas: typing.Optional[InputStoryAreas] = None,
@@ -6118,8 +7009,10 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Changes content and caption of a previously sent story
+        Changes content and caption of a story. Can be called only if story.can_be_edited == true
 
+        :param story_sender_chat_id: Identifier of the chat that posted the story
+        :type story_sender_chat_id: :class:`Int53`
         :param story_id: Identifier of the story to edit
         :type story_id: :class:`Int32`
         :param content: New content of the story; pass null to keep the current content, defaults to None
@@ -6130,7 +7023,7 @@ class API:
         :type caption: :class:`FormattedText`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6139,6 +7032,7 @@ class API:
 
         return await self.client.request(
             EditStory(
+                story_sender_chat_id=story_sender_chat_id,
                 story_id=story_id,
                 content=content,
                 areas=areas,
@@ -6156,7 +7050,7 @@ class API:
         :type proxy_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6179,7 +7073,7 @@ class API:
         :type group_call_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6204,7 +7098,7 @@ class API:
         :type group_call_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6229,7 +7123,7 @@ class API:
         :type group_call_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6261,7 +7155,7 @@ class API:
         :type error: :class:`Error`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6285,7 +7179,6 @@ class API:
         message_thread_id: Int53 = 0,
         send_copy: Bool = False,
         remove_caption: Bool = False,
-        only_preview: Bool = False,
         options: typing.Optional[MessageSendOptions] = None,
         *,
         request_id: str = None,
@@ -6298,21 +7191,19 @@ class API:
         :type chat_id: :class:`Int53`
         :param from_chat_id: Identifier of the chat from which to forward messages
         :type from_chat_id: :class:`Int53`
-        :param message_ids: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
+        :param message_ids: Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously. A message can be forwarded only if message.can_be_forwarded
         :type message_ids: :class:`Vector[Int53]`
-        :param message_thread_id: If not 0, a message thread identifier in which the message will be sent; for forum threads only
+        :param message_thread_id: If not 0, the message thread identifier in which the message will be sent; for forum threads only
         :type message_thread_id: :class:`Int53`
         :param send_copy: Pass true to copy content of the messages without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
         :type send_copy: :class:`Bool`
         :param remove_caption: Pass true to remove media captions of message copies. Ignored if send_copy is false
         :type remove_caption: :class:`Bool`
-        :param only_preview: Pass true to get fake messages instead of actually forwarding them
-        :type only_preview: :class:`Bool`
         :param options: Options to be used to send the messages; pass null to use default options, defaults to None
         :type options: :class:`MessageSendOptions`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6327,7 +7218,6 @@ class API:
                 message_thread_id=message_thread_id,
                 send_copy=send_copy,
                 remove_caption=remove_caption,
-                only_preview=only_preview,
                 options=options,
             ),
             request_id=request_id,
@@ -6379,7 +7269,7 @@ class API:
         :type password: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6417,7 +7307,7 @@ class API:
         :type return_only_main_emoji: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6445,7 +7335,7 @@ class API:
         :type emoji: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6509,13 +7399,13 @@ class API:
 
         :param sticker_type: Type of the sticker sets to return
         :type sticker_type: :class:`StickerType`
-        :param offset_sticker_set_id: Identifier of the sticker set from which to return the result
+        :param offset_sticker_set_id: Identifier of the sticker set from which to return the result; use 0 to get results from the beginning
         :type offset_sticker_set_id: :class:`Int64`
         :param limit: The maximum number of sticker sets to return; up to 100
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6532,34 +7422,6 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_archived_stories(
-        self, from_story_id: Int32, limit: Int32, *, request_id: str = None, request_timeout: int = None
-    ) -> Stories:
-        """
-        Returns the list of all stories of the current user. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
-
-        :param from_story_id: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
-        :type from_story_id: :class:`Int32`
-        :param limit: The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
-        :type limit: :class:`Int32`
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Stories`
-        """
-
-        return await self.client.request(
-            GetArchivedStories(
-                from_story_id=from_story_id,
-                limit=limit,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
     async def get_attached_sticker_sets(
         self, file_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> StickerSets:
@@ -6570,7 +7432,7 @@ class API:
         :type file_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6595,7 +7457,7 @@ class API:
         :type bot_user_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6647,6 +7509,19 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_available_chat_boost_slots(
+        self, *, request_id: str = None, request_timeout: int = None
+    ) -> ChatBoostSlots:
+        """
+        Returns the list of available chat boost slots for the current user
+        """
+
+        return await self.client.request(
+            GetAvailableChatBoostSlots(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_background_url(
         self, name: String, type_: BackgroundType, *, request_id: str = None, request_timeout: int = None
     ) -> HttpUrl:
@@ -6655,11 +7530,11 @@ class API:
 
         :param name: Background name
         :type name: :class:`String`
-        :param type_: Background type
+        :param type_: Background type; backgroundTypeChatTheme isn't supported
         :type type_: :class:`BackgroundType`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6675,31 +7550,6 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_backgrounds(
-        self, for_dark_theme: Bool = False, *, request_id: str = None, request_timeout: int = None
-    ) -> Backgrounds:
-        """
-        Returns backgrounds installed by the user
-
-        :param for_dark_theme: Pass true to order returned backgrounds for a dark theme
-        :type for_dark_theme: :class:`Bool`
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Backgrounds`
-        """
-
-        return await self.client.request(
-            GetBackgrounds(
-                for_dark_theme=for_dark_theme,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
     async def get_bank_card_info(
         self, bank_card_number: String, *, request_id: str = None, request_timeout: int = None
     ) -> BankCardInfo:
@@ -6710,7 +7560,7 @@ class API:
         :type bank_card_number: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6735,7 +7585,7 @@ class API:
         :type basic_group_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6760,7 +7610,7 @@ class API:
         :type basic_group_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6789,7 +7639,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6818,7 +7668,7 @@ class API:
         :type language_code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6846,7 +7696,7 @@ class API:
         :type language_code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6874,7 +7724,7 @@ class API:
         :type language_code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6885,6 +7735,107 @@ class API:
             GetBotName(
                 bot_user_id=bot_user_id,
                 language_code=language_code,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_business_chat_link_info(
+        self, link_name: String, *, request_id: str = None, request_timeout: int = None
+    ) -> BusinessChatLinkInfo:
+        """
+        Returns information about a business chat link
+
+        :param link_name: Name of the link
+        :type link_name: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BusinessChatLinkInfo`
+        """
+
+        return await self.client.request(
+            GetBusinessChatLinkInfo(
+                link_name=link_name,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_business_chat_links(
+        self, *, request_id: str = None, request_timeout: int = None
+    ) -> BusinessChatLinks:
+        """
+        Returns business chat links created for the current account
+        """
+
+        return await self.client.request(
+            GetBusinessChatLinks(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_business_connected_bot(
+        self, *, request_id: str = None, request_timeout: int = None
+    ) -> BusinessConnectedBot:
+        """
+        Returns the business bot that is connected to the current user account. Returns a 404 error if there is no connected bot
+        """
+
+        return await self.client.request(
+            GetBusinessConnectedBot(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_business_connection(
+        self, connection_id: String, *, request_id: str = None, request_timeout: int = None
+    ) -> BusinessConnection:
+        """
+        Returns information about a business connection by its identifier; for bots only
+
+        :param connection_id: Identifier of the business connection to return
+        :type connection_id: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BusinessConnection`
+        """
+
+        return await self.client.request(
+            GetBusinessConnection(
+                connection_id=connection_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_business_features(
+        self, source: typing.Optional[BusinessFeature] = None, *, request_id: str = None, request_timeout: int = None
+    ) -> BusinessFeatures:
+        """
+        Returns information about features, available to Business users
+
+        :param source: Source of the request; pass null if the method is called from settings or some non-standard source, defaults to None
+        :type source: :class:`BusinessFeature`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BusinessFeatures`
+        """
+
+        return await self.client.request(
+            GetBusinessFeatures(
+                source=source,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -6910,7 +7861,7 @@ class API:
         :type payload: :class:`CallbackQueryPayload`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6947,7 +7898,7 @@ class API:
         :type callback_query_id: :class:`Int64`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6972,7 +7923,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -6997,7 +7948,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7022,7 +7973,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7037,17 +7988,48 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_chat_archived_stories(
+        self, chat_id: Int53, from_story_id: Int32, limit: Int32, *, request_id: str = None, request_timeout: int = None
+    ) -> Stories:
+        """
+        Returns the list of all stories posted by the given chat; requires can_edit_stories right in the chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param from_story_id: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
+        :type from_story_id: :class:`Int32`
+        :param limit: The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Stories`
+        """
+
+        return await self.client.request(
+            GetChatArchivedStories(
+                chat_id=chat_id,
+                from_story_id=from_story_id,
+                limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_chat_available_message_senders(
         self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> ChatMessageSenders:
         """
-        Returns list of message sender identifiers, which can be used to send messages in a chat
+        Returns the list of message sender identifiers, which can be used to send messages in a chat
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7057,6 +8039,175 @@ class API:
         return await self.client.request(
             GetChatAvailableMessageSenders(
                 chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chat_boost_features(
+        self, is_channel: Bool = False, *, request_id: str = None, request_timeout: int = None
+    ) -> ChatBoostFeatures:
+        """
+        Returns the list of features available for different chat boost levels; this is an offline request
+
+        :param is_channel: Pass true to get the list of features for channels; pass false to get the list of features for supergroups
+        :type is_channel: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatBoostFeatures`
+        """
+
+        return await self.client.request(
+            GetChatBoostFeatures(
+                is_channel=is_channel,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chat_boost_level_features(
+        self, level: Int32, is_channel: Bool = False, *, request_id: str = None, request_timeout: int = None
+    ) -> ChatBoostLevelFeatures:
+        """
+        Returns the list of features available on the specific chat boost level; this is an offline request
+
+        :param level: Chat boost level
+        :type level: :class:`Int32`
+        :param is_channel: Pass true to get the list of features for channels; pass false to get the list of features for supergroups
+        :type is_channel: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatBoostLevelFeatures`
+        """
+
+        return await self.client.request(
+            GetChatBoostLevelFeatures(
+                level=level,
+                is_channel=is_channel,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chat_boost_link(
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
+    ) -> ChatBoostLink:
+        """
+        Returns an HTTPS link to boost the specified supergroup or channel chat
+
+        :param chat_id: Identifier of the chat
+        :type chat_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatBoostLink`
+        """
+
+        return await self.client.request(
+            GetChatBoostLink(
+                chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chat_boost_link_info(
+        self, url: String, *, request_id: str = None, request_timeout: int = None
+    ) -> ChatBoostLinkInfo:
+        """
+        Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost
+
+        :param url: The link to boost a chat
+        :type url: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatBoostLinkInfo`
+        """
+
+        return await self.client.request(
+            GetChatBoostLinkInfo(
+                url=url,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chat_boost_status(
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
+    ) -> ChatBoostStatus:
+        """
+        Returns the current boost status for a supergroup or a channel chat
+
+        :param chat_id: Identifier of the chat
+        :type chat_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatBoostStatus`
+        """
+
+        return await self.client.request(
+            GetChatBoostStatus(
+                chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chat_boosts(
+        self,
+        chat_id: Int53,
+        offset: String,
+        limit: Int32,
+        only_gift_codes: Bool = False,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> FoundChatBoosts:
+        """
+        Returns the list of boosts applied to a chat; requires administrator rights in the chat
+
+        :param chat_id: Identifier of the chat
+        :type chat_id: :class:`Int53`
+        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+        :type offset: :class:`String`
+        :param limit: The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit
+        :type limit: :class:`Int32`
+        :param only_gift_codes: Pass true to receive only boosts received from gift codes and giveaways created by the chat
+        :type only_gift_codes: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FoundChatBoosts`
+        """
+
+        return await self.client.request(
+            GetChatBoosts(
+                chat_id=chat_id,
+                offset=offset,
+                limit=limit,
+                only_gift_codes=only_gift_codes,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -7091,7 +8242,7 @@ class API:
         :type filters: :class:`ChatEventLogFilters`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7121,7 +8272,7 @@ class API:
         :type chat_folder_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7146,7 +8297,7 @@ class API:
         :type folder: :class:`ChatFolder`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7171,7 +8322,7 @@ class API:
         :type chat_folder_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7196,7 +8347,7 @@ class API:
         :type folder: :class:`ChatFolder`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7221,7 +8372,7 @@ class API:
         :type chat_folder_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7246,7 +8397,7 @@ class API:
         :type chat_folder_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7279,7 +8430,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param from_message_id: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
         :type from_message_id: :class:`Int53`
-        :param offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+        :param offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
         :type offset: :class:`Int32`
         :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         :type limit: :class:`Int32`
@@ -7287,7 +8438,7 @@ class API:
         :type only_local: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7318,7 +8469,7 @@ class API:
         :type invite_link: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7338,13 +8489,13 @@ class API:
         self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> ChatInviteLinkCounts:
         """
-        Returns list of chat administrators with number of their invite links. Requires owner privileges in the chat
+        Returns the list of chat administrators with number of their invite links. Requires owner privileges in the chat
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7382,7 +8533,7 @@ class API:
         :type offset_member: :class:`ChatInviteLinkMember`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7429,7 +8580,7 @@ class API:
         :type is_revoked: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7452,9 +8603,9 @@ class API:
     async def get_chat_join_requests(
         self,
         chat_id: Int53,
-        invite_link: String,
         query: String,
         limit: Int32,
+        invite_link: String = "",
         offset_request: typing.Optional[ChatJoinRequest] = None,
         *,
         request_id: str = None,
@@ -7465,17 +8616,17 @@ class API:
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
-        :param invite_link: Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
-        :type invite_link: :class:`String`
         :param query: A query to search for in the first names, last names and usernames of the users to return
         :type query: :class:`String`
         :param limit: The maximum number of requests to join the chat to return
         :type limit: :class:`Int32`
+        :param invite_link: Invite link for which to return join requests. If empty, all join requests will be returned. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+        :type invite_link: :class:`String`
         :param offset_request: A chat join request from which to return next requests; pass null to get results from the beginning, defaults to None
         :type offset_request: :class:`ChatJoinRequest`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7485,9 +8636,9 @@ class API:
         return await self.client.request(
             GetChatJoinRequests(
                 chat_id=chat_id,
-                invite_link=invite_link,
                 query=query,
                 limit=limit,
+                invite_link=invite_link,
                 offset_request=offset_request,
             ),
             request_id=request_id,
@@ -7504,7 +8655,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7531,7 +8682,7 @@ class API:
         :type member_id: :class:`MessageSender`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7559,7 +8710,7 @@ class API:
         :type date: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7580,6 +8731,7 @@ class API:
         chat_id: Int53,
         filter_: SearchMessagesFilter,
         from_message_id: Int53,
+        saved_messages_topic_id: Int53,
         *,
         request_id: str = None,
         request_timeout: int = None
@@ -7593,9 +8745,11 @@ class API:
         :type filter_: :class:`SearchMessagesFilter`
         :param from_message_id: The message identifier from which to return information about messages; use 0 to get results from the last message
         :type from_message_id: :class:`Int53`
+        :param saved_messages_topic_id: If not0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
+        :type saved_messages_topic_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7607,6 +8761,7 @@ class API:
                 chat_id=chat_id,
                 filter=filter_,
                 from_message_id=from_message_id,
+                saved_messages_topic_id=saved_messages_topic_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -7616,6 +8771,7 @@ class API:
         self,
         chat_id: Int53,
         filter_: SearchMessagesFilter,
+        saved_messages_topic_id: Int53 = 0,
         return_local: Bool = False,
         *,
         request_id: str = None,
@@ -7628,11 +8784,13 @@ class API:
         :type chat_id: :class:`Int53`
         :param filter_: Filter for message content; searchMessagesFilterEmpty is unsupported in this function
         :type filter_: :class:`SearchMessagesFilter`
+        :param saved_messages_topic_id: If not 0, only messages in the specified Saved Messages topic will be counted; pass 0 to count all messages, or for chats other than Saved Messages
+        :type saved_messages_topic_id: :class:`Int53`
         :param return_local: Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
         :type return_local: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7643,6 +8801,7 @@ class API:
             GetChatMessageCount(
                 chat_id=chat_id,
                 filter=filter_,
+                saved_messages_topic_id=saved_messages_topic_id,
                 return_local=return_local,
             ),
             request_id=request_id,
@@ -7655,6 +8814,7 @@ class API:
         message_id: Int53,
         filter_: SearchMessagesFilter,
         message_thread_id: Int53 = 0,
+        saved_messages_topic_id: Int53 = 0,
         *,
         request_id: str = None,
         request_timeout: int = None
@@ -7670,9 +8830,11 @@ class API:
         :type filter_: :class:`SearchMessagesFilter`
         :param message_thread_id: If not 0, only messages in the specified thread will be considered; supergroups only
         :type message_thread_id: :class:`Int53`
+        :param saved_messages_topic_id: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all relevant messages, or for chats other than Saved Messages
+        :type saved_messages_topic_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7685,6 +8847,7 @@ class API:
                 message_id=message_id,
                 filter=filter_,
                 message_thread_id=message_thread_id,
+                saved_messages_topic_id=saved_messages_topic_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -7699,7 +8862,7 @@ class API:
         request_timeout: int = None
     ) -> Chats:
         """
-        Returns list of chats with non-default notification settings for new messages
+        Returns the list of chats with non-default notification settings for new messages
 
         :param compare_sound: Pass true to include in the response chats with only non-default sound
         :type compare_sound: :class:`Bool`
@@ -7707,7 +8870,7 @@ class API:
         :type scope: :class:`NotificationSettingsScope`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7733,7 +8896,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7748,21 +8911,21 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_chat_pinned_stories(
+    async def get_chat_posted_to_chat_page_stories(
         self, chat_id: Int53, from_story_id: Int32, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Stories:
         """
-        Returns the list of pinned stories posted by the given chat. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
+        Returns the list of stories that posted by the given chat to its chat page. If from_story_id == 0, then pinned stories are returned first. Then, stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
-        :param from_story_id: Identifier of the story starting from which stories must be returned; use 0 to get results from the last story
+        :param from_story_id: Identifier of the story starting from which stories must be returned; use 0 to get results from pinned and the newest story
         :type from_story_id: :class:`Int32`
         :param limit: The maximum number of stories to be returned For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7770,10 +8933,97 @@ class API:
         """
 
         return await self.client.request(
-            GetChatPinnedStories(
+            GetChatPostedToChatPageStories(
                 chat_id=chat_id,
                 from_story_id=from_story_id,
                 limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chat_revenue_statistics(
+        self, chat_id: Int53, is_dark: Bool = False, *, request_id: str = None, request_timeout: int = None
+    ) -> ChatRevenueStatistics:
+        """
+        Returns detailed revenue statistics about a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param is_dark: Pass true if a dark theme is used by the application
+        :type is_dark: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatRevenueStatistics`
+        """
+
+        return await self.client.request(
+            GetChatRevenueStatistics(
+                chat_id=chat_id,
+                is_dark=is_dark,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chat_revenue_transactions(
+        self, chat_id: Int53, offset: Int32, limit: Int32, *, request_id: str = None, request_timeout: int = None
+    ) -> ChatRevenueTransactions:
+        """
+        Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param offset: Number of transactions to skip
+        :type offset: :class:`Int32`
+        :param limit: The maximum number of transactions to be returned; up to 200
+        :type limit: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ChatRevenueTransactions`
+        """
+
+        return await self.client.request(
+            GetChatRevenueTransactions(
+                chat_id=chat_id,
+                offset=offset,
+                limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chat_revenue_withdrawal_url(
+        self, chat_id: Int53, password: String, *, request_id: str = None, request_timeout: int = None
+    ) -> HttpUrl:
+        """
+        Returns URL for chat revenue withdrawal; requires owner privileges in the chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true and getOption("can_withdraw_chat_revenue")
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param password: The 2-step verification password of the current user
+        :type password: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.HttpUrl`
+        """
+
+        return await self.client.request(
+            GetChatRevenueWithdrawalUrl(
+                chat_id=chat_id,
+                password=password,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -7789,7 +9039,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7804,12 +9054,66 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_chat_similar_chat_count(
+        self, chat_id: Int53, return_local: Bool = False, *, request_id: str = None, request_timeout: int = None
+    ) -> Count:
+        """
+        Returns approximate number of chats similar to the given chat
+
+        :param chat_id: Identifier of the target chat; must be an identifier of a channel chat
+        :type chat_id: :class:`Int53`
+        :param return_local: Pass true to get the number of chats without sending network requests, or -1 if the number of chats is unknown locally
+        :type return_local: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Count`
+        """
+
+        return await self.client.request(
+            GetChatSimilarChatCount(
+                chat_id=chat_id,
+                return_local=return_local,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chat_similar_chats(
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
+    ) -> Chats:
+        """
+        Returns a list of chats similar to the given chat
+
+        :param chat_id: Identifier of the target chat; must be an identifier of a channel chat
+        :type chat_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Chats`
+        """
+
+        return await self.client.request(
+            GetChatSimilarChats(
+                chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_chat_sparse_message_positions(
         self,
         chat_id: Int53,
         filter_: SearchMessagesFilter,
         from_message_id: Int53,
         limit: Int32,
+        saved_messages_topic_id: Int53 = 0,
         *,
         request_id: str = None,
         request_timeout: int = None
@@ -7825,9 +9129,11 @@ class API:
         :type from_message_id: :class:`Int53`
         :param limit: The expected number of message positions to be returned; 50-2000. A smaller number of positions can be returned, if there are not enough appropriate messages
         :type limit: :class:`Int32`
+        :param saved_messages_topic_id: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
+        :type saved_messages_topic_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7840,6 +9146,7 @@ class API:
                 filter=filter_,
                 from_message_id=from_message_id,
                 limit=limit,
+                saved_messages_topic_id=saved_messages_topic_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -7855,7 +9162,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7882,7 +9189,7 @@ class API:
         :type is_dark: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7893,6 +9200,55 @@ class API:
             GetChatStatistics(
                 chat_id=chat_id,
                 is_dark=is_dark,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chat_story_interactions(
+        self,
+        story_sender_chat_id: Int53,
+        story_id: Int32,
+        offset: String,
+        limit: Int32,
+        prefer_forwards: Bool = False,
+        reaction_type: typing.Optional[ReactionType] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> StoryInteractions:
+        """
+        Returns interactions with a story posted in a chat. Can be used only if story is posted on behalf of a chat and the user is an administrator in the chat
+
+        :param story_sender_chat_id: The identifier of the sender of the story
+        :type story_sender_chat_id: :class:`Int53`
+        :param story_id: Story identifier
+        :type story_id: :class:`Int32`
+        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+        :type offset: :class:`String`
+        :param limit: The maximum number of story interactions to return
+        :type limit: :class:`Int32`
+        :param prefer_forwards: Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
+        :type prefer_forwards: :class:`Bool`
+        :param reaction_type: Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions, defaults to None
+        :type reaction_type: :class:`ReactionType`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StoryInteractions`
+        """
+
+        return await self.client.request(
+            GetChatStoryInteractions(
+                story_sender_chat_id=story_sender_chat_id,
+                story_id=story_id,
+                offset=offset,
+                limit=limit,
+                prefer_forwards=prefer_forwards,
+                reaction_type=reaction_type,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -7915,7 +9271,7 @@ class API:
         :type chat_list: :class:`ChatList`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7941,7 +9297,7 @@ class API:
         :type chat_folder_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -7952,6 +9308,17 @@ class API:
             GetChatsForChatFolderInviteLink(
                 chat_folder_id=chat_folder_id,
             ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_chats_to_send_stories(self, *, request_id: str = None, request_timeout: int = None) -> Chats:
+        """
+        Returns supergroup and channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there
+        """
+
+        return await self.client.request(
+            GetChatsToSendStories(),
             request_id=request_id,
             request_timeout=request_timeout,
         )
@@ -7967,6 +9334,31 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_collectible_item_info(
+        self, type_: CollectibleItemType, *, request_id: str = None, request_timeout: int = None
+    ) -> CollectibleItemInfo:
+        """
+        Returns information about a given collectible item that was purchased at https://fragment.com
+
+        :param type_: Type of the collectible item. The item must be used by a user and must be visible to the current user
+        :type type_: :class:`CollectibleItemType`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.CollectibleItemInfo`
+        """
+
+        return await self.client.request(
+            GetCollectibleItemInfo(
+                type=type_,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_commands(
         self,
         language_code: String,
@@ -7976,7 +9368,7 @@ class API:
         request_timeout: int = None
     ) -> BotCommands:
         """
-        Returns list of commands supported by the bot for the given user scope and language; for bots only
+        Returns the list of commands supported by the bot for the given user scope and language; for bots only
 
         :param language_code: A two-letter ISO 639-1 language code or an empty string
         :type language_code: :class:`String`
@@ -7984,7 +9376,7 @@ class API:
         :type scope: :class:`BotCommandScope`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8044,6 +9436,31 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_country_flag_emoji(
+        self, country_code: String, *, request_id: str = None, request_timeout: int = None
+    ) -> Text:
+        """
+        Returns an emoji for the given country. Returns an empty string on failure. Can be called synchronously
+
+        :param country_code: A two-letter ISO 3166-1 alpha-2 country code as received from getCountries
+        :type country_code: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Text`
+        """
+
+        return await self.client.request(
+            GetCountryFlagEmoji(
+                country_code=country_code,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_created_public_chats(
         self, type_: PublicChatType, *, request_id: str = None, request_timeout: int = None
     ) -> Chats:
@@ -8054,7 +9471,7 @@ class API:
         :type type_: :class:`PublicChatType`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8097,13 +9514,13 @@ class API:
         self, custom_emoji_ids: Vector[Int64], *, request_id: str = None, request_timeout: int = None
     ) -> Stickers:
         """
-        Returns list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
+        Returns the list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
 
         :param custom_emoji_ids: Identifiers of custom emoji stickers. At most 200 custom emoji stickers can be received simultaneously
         :type custom_emoji_ids: :class:`Vector[Int64]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8141,7 +9558,7 @@ class API:
         :type link: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8152,6 +9569,32 @@ class API:
             GetDeepLinkInfo(
                 link=link,
             ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_default_background_custom_emoji_stickers(
+        self, *, request_id: str = None, request_timeout: int = None
+    ) -> Stickers:
+        """
+        Returns default list of custom emoji stickers for reply background
+        """
+
+        return await self.client.request(
+            GetDefaultBackgroundCustomEmojiStickers(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_default_chat_emoji_statuses(
+        self, *, request_id: str = None, request_timeout: int = None
+    ) -> EmojiStatuses:
+        """
+        Returns default emoji statuses for chats
+        """
+
+        return await self.client.request(
+            GetDefaultChatEmojiStatuses(),
             request_id=request_id,
             request_timeout=request_timeout,
         )
@@ -8171,7 +9614,7 @@ class API:
 
     async def get_default_emoji_statuses(self, *, request_id: str = None, request_timeout: int = None) -> EmojiStatuses:
         """
-        Returns default emoji statuses
+        Returns default emoji statuses for self status
         """
 
         return await self.client.request(
@@ -8206,6 +9649,19 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_disallowed_chat_emoji_statuses(
+        self, *, request_id: str = None, request_timeout: int = None
+    ) -> EmojiStatuses:
+        """
+        Returns the list of emoji statuses, which can't be used as chat emoji status, even they are from a sticker set with is_allowed_as_chat_emoji_status == true
+        """
+
+        return await self.client.request(
+            GetDisallowedChatEmojiStatuses(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_emoji_categories(
         self, type_: typing.Optional[EmojiCategoryType] = None, *, request_id: str = None, request_timeout: int = None
     ) -> EmojiCategories:
@@ -8216,7 +9672,7 @@ class API:
         :type type_: :class:`EmojiCategoryType`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8235,13 +9691,13 @@ class API:
         self, emoji: String, *, request_id: str = None, request_timeout: int = None
     ) -> EmojiReaction:
         """
-        Returns information about a emoji reaction. Returns a 404 error if the reaction is not found
+        Returns information about an emoji reaction. Returns a 404 error if the reaction is not found
 
         :param emoji: Text representation of the reaction
         :type emoji: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8266,7 +9722,7 @@ class API:
         :type language_code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8293,7 +9749,7 @@ class API:
         :type allow_write_access: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8319,7 +9775,7 @@ class API:
         :type link: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8353,7 +9809,7 @@ class API:
         :type file_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8380,7 +9836,7 @@ class API:
         :type offset: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8406,7 +9862,7 @@ class API:
         :type mime_type: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8431,7 +9887,7 @@ class API:
         :type file_name: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8458,7 +9914,7 @@ class API:
         :type message_thread_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8476,7 +9932,7 @@ class API:
 
     async def get_forum_topic_default_icons(self, *, request_id: str = None, request_timeout: int = None) -> Stickers:
         """
-        Returns list of custom emojis, which can be used as forum topic icon by all users
+        Returns the list of custom emojis, which can be used as forum topic icon by all users
         """
 
         return await self.client.request(
@@ -8497,7 +9953,7 @@ class API:
         :type message_thread_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8518,9 +9974,9 @@ class API:
         chat_id: Int53,
         query: String,
         offset_date: Int32,
-        offset_message_id: Int53,
-        offset_message_thread_id: Int53,
         limit: Int32,
+        offset_message_id: Int53 = 0,
+        offset_message_thread_id: Int53 = 0,
         *,
         request_id: str = None,
         request_timeout: int = None
@@ -8534,15 +9990,15 @@ class API:
         :type query: :class:`String`
         :param offset_date: The date starting from which the results need to be fetched. Use 0 or any date in the future to get results from the last topic
         :type offset_date: :class:`Int32`
+        :param limit: The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`Int32`
         :param offset_message_id: The message identifier of the last message in the last found topic, or 0 for the first request
         :type offset_message_id: :class:`Int53`
         :param offset_message_thread_id: The message thread identifier of the last found topic, or 0 for the first request
         :type offset_message_thread_id: :class:`Int53`
-        :param limit: The maximum number of forum topics to be returned; up to 100. For optimal performance, the number of returned forum topics is chosen by TDLib and can be smaller than the specified limit
-        :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8554,9 +10010,9 @@ class API:
                 chat_id=chat_id,
                 query=query,
                 offset_date=offset_date,
+                limit=limit,
                 offset_message_id=offset_message_id,
                 offset_message_thread_id=offset_message_thread_id,
-                limit=limit,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -8576,7 +10032,7 @@ class API:
         :type user_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8593,6 +10049,17 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_greeting_stickers(self, *, request_id: str = None, request_timeout: int = None) -> Stickers:
+        """
+        Returns greeting stickers from regular sticker sets that can be used for the start page of other users
+        """
+
+        return await self.client.request(
+            GetGreetingStickers(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_group_call(
         self, group_call_id: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> GroupCall:
@@ -8603,7 +10070,7 @@ class API:
         :type group_call_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8635,7 +10102,7 @@ class API:
         :type can_self_unmute: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8677,7 +10144,7 @@ class API:
         :type video_quality: :class:`GroupCallVideoQuality`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8706,7 +10173,7 @@ class API:
         :type group_call_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8724,8 +10191,8 @@ class API:
     async def get_groups_in_common(
         self,
         user_id: Int53,
-        offset_chat_id: Int53,
         limit: Int32,
+        offset_chat_id: Int53 = 0,
         *,
         request_id: str = None,
         request_timeout: int = None
@@ -8735,13 +10202,13 @@ class API:
 
         :param user_id: User identifier
         :type user_id: :class:`Int53`
-        :param offset_chat_id: Chat identifier starting from which to return chats; use 0 for the first request
-        :type offset_chat_id: :class:`Int53`
         :param limit: The maximum number of chats to be returned; up to 100
         :type limit: :class:`Int32`
+        :param offset_chat_id: Chat identifier starting from which to return chats; use 0 for the first request
+        :type offset_chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8751,8 +10218,8 @@ class API:
         return await self.client.request(
             GetGroupsInCommon(
                 user_id=user_id,
-                offset_chat_id=offset_chat_id,
                 limit=limit,
+                offset_chat_id=offset_chat_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -8792,7 +10259,7 @@ class API:
         :type user_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8834,7 +10301,7 @@ class API:
         :type user_location: :class:`Location`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8853,6 +10320,31 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_installed_backgrounds(
+        self, for_dark_theme: Bool = False, *, request_id: str = None, request_timeout: int = None
+    ) -> Backgrounds:
+        """
+        Returns backgrounds installed by the user
+
+        :param for_dark_theme: Pass true to order returned backgrounds for a dark theme
+        :type for_dark_theme: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Backgrounds`
+        """
+
+        return await self.client.request(
+            GetInstalledBackgrounds(
+                for_dark_theme=for_dark_theme,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_installed_sticker_sets(
         self, sticker_type: StickerType, *, request_id: str = None, request_timeout: int = None
     ) -> StickerSets:
@@ -8863,7 +10355,7 @@ class API:
         :type sticker_type: :class:`StickerType`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8890,7 +10382,7 @@ class API:
         :type is_http: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8910,13 +10402,13 @@ class API:
         self, link: String, *, request_id: str = None, request_timeout: int = None
     ) -> InternalLinkType:
         """
-        Returns information about the type of an internal link. Returns a 404 error if the link is not internal. Can be called before authorization
+        Returns information about the type of internal link. Returns a 404 error if the link is not internal. Can be called before authorization
 
         :param link: The link
         :type link: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8941,7 +10433,7 @@ class API:
         :type json_value: :class:`JsonValue`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8964,7 +10456,7 @@ class API:
         :type json_: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -8974,6 +10466,39 @@ class API:
         return await self.client.request(
             GetJsonValue(
                 json=json_,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_keyword_emojis(
+        self,
+        text: String,
+        input_language_codes: Vector[String] = [],
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Emojis:
+        """
+        Return emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified
+
+        :param text: Text to search for
+        :type text: :class:`String`
+        :param input_language_codes: List of possible IETF language tags of the user's input language; may be empty if unknown
+        :type input_language_codes: :class:`Vector[String]`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Emojis`
+        """
+
+        return await self.client.request(
+            GetKeywordEmojis(
+                text=text,
+                input_language_codes=input_language_codes,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -8989,7 +10514,7 @@ class API:
         :type language_pack_id: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9027,7 +10552,7 @@ class API:
         :type key: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9057,7 +10582,7 @@ class API:
         :type keys: :class:`Vector[String]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9083,7 +10608,7 @@ class API:
         :type only_local: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9119,7 +10644,7 @@ class API:
         :type tag: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9136,7 +10661,7 @@ class API:
 
     async def get_log_tags(self, *, request_id: str = None, request_timeout: int = None) -> LogTags:
         """
-        Returns list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
+        Returns the list of available TDLib internal log tags, for example, ["actor", "binlog", "connections", "notifications", "proxy"]. Can be called synchronously
         """
 
         return await self.client.request(
@@ -9181,7 +10706,7 @@ class API:
         :type allow_write_access: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9219,7 +10744,7 @@ class API:
         :type button_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9243,7 +10768,7 @@ class API:
         width: Int32,
         height: Int32,
         scale: Int32,
-        chat_id: Int53,
+        chat_id: Int53 = 0,
         *,
         request_id: str = None,
         request_timeout: int = None
@@ -9265,7 +10790,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9295,7 +10820,7 @@ class API:
         :type text: :class:`FormattedText`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9331,7 +10856,7 @@ class API:
         :type user_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9358,7 +10883,7 @@ class API:
         :type message_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9400,7 +10925,7 @@ class API:
         :type reaction_type: :class:`ReactionType`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9433,7 +10958,7 @@ class API:
         :type row_size: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9445,6 +10970,31 @@ class API:
                 chat_id=chat_id,
                 message_id=message_id,
                 row_size=row_size,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_message_effect(
+        self, effect_id: Int64, *, request_id: str = None, request_timeout: int = None
+    ) -> MessageEffect:
+        """
+        Returns information about a message effect. Returns a 404 error if the effect is not found
+
+        :param effect_id: Unique identifier of the effect
+        :type effect_id: :class:`Int64`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.MessageEffect`
+        """
+
+        return await self.client.request(
+            GetMessageEffect(
+                effect_id=effect_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -9470,7 +11020,7 @@ class API:
         :type for_album: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9497,7 +11047,7 @@ class API:
         :type message_file_head: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9518,11 +11068,11 @@ class API:
         """
         Returns a confirmation text to be shown to the user before starting message import
 
-        :param chat_id: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+        :param chat_id: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info member right
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9555,7 +11105,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param message_id: Identifier of the message
         :type message_id: :class:`Int53`
-        :param media_timestamp: If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview
+        :param media_timestamp: If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its web page preview
         :type media_timestamp: :class:`Int32`
         :param for_album: Pass true to create a link for the whole media album
         :type for_album: :class:`Bool`
@@ -9563,7 +11113,7 @@ class API:
         :type in_message_thread: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9592,7 +11142,7 @@ class API:
         :type url: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9619,7 +11169,7 @@ class API:
         :type message_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9644,9 +11194,9 @@ class API:
         *,
         request_id: str = None,
         request_timeout: int = None
-    ) -> FoundMessages:
+    ) -> PublicForwards:
         """
-        Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib
+        Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if message.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
 
         :param chat_id: Chat identifier of the message
         :type chat_id: :class:`Int53`
@@ -9654,15 +11204,15 @@ class API:
         :type message_id: :class:`Int53`
         :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
         :type offset: :class:`String`
-        :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        :param limit: The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.FoundMessages`
+        :rtype: :class:`aiotdlib.api.types.PublicForwards`
         """
 
         return await self.client.request(
@@ -9671,6 +11221,34 @@ class API:
                 message_id=message_id,
                 offset=offset,
                 limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_message_read_date(
+        self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
+    ) -> MessageReadDate:
+        """
+        Returns read date of a recent outgoing message in a private chat. The method can be called if message.can_get_read_date == true and the message is read
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param message_id: Identifier of the message
+        :type message_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.MessageReadDate`
+        """
+
+        return await self.client.request(
+            GetMessageReadDate(
+                chat_id=chat_id,
+                message_id=message_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -9696,7 +11274,7 @@ class API:
         :type is_dark: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9725,7 +11303,7 @@ class API:
         :type message_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9761,13 +11339,13 @@ class API:
         :type message_id: :class:`Int53`
         :param from_message_id: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
         :type from_message_id: :class:`Int53`
-        :param offset: Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
+        :param offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
         :type offset: :class:`Int32`
         :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9798,7 +11376,7 @@ class API:
         :type message_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9826,7 +11404,7 @@ class API:
         :type message_ids: :class:`Vector[Int53]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9852,7 +11430,7 @@ class API:
         :type only_current: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9867,6 +11445,19 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_new_chat_privacy_settings(
+        self, *, request_id: str = None, request_timeout: int = None
+    ) -> NewChatPrivacySettings:
+        """
+        Returns privacy settings for new chat creation
+        """
+
+        return await self.client.request(
+            GetNewChatPrivacySettings(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_option(self, name: String, *, request_id: str = None, request_timeout: int = None) -> OptionValue:
         """
         Returns the value of an option by its name. (Check the list of available options on https://core.telegram.org/tdlib/options.) Can be called before authorization. Can be called synchronously for options "version" and "commit_hash"
@@ -9875,7 +11466,7 @@ class API:
         :type name: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9885,6 +11476,34 @@ class API:
         return await self.client.request(
             GetOption(
                 name=name,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_owned_sticker_sets(
+        self, offset_sticker_set_id: Int64, limit: Int32, *, request_id: str = None, request_timeout: int = None
+    ) -> StickerSets:
+        """
+        Returns sticker sets owned by the current user
+
+        :param offset_sticker_set_id: Identifier of the sticker set from which to return owned sticker sets; use 0 to get results from the beginning
+        :type offset_sticker_set_id: :class:`Int64`
+        :param limit: The maximum number of sticker sets to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StickerSets`
+        """
+
+        return await self.client.request(
+            GetOwnedStickerSets(
+                offset_sticker_set_id=offset_sticker_set_id,
+                limit=limit,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -9913,7 +11532,7 @@ class API:
         :type nonce: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9943,7 +11562,7 @@ class API:
         :type password: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -9971,7 +11590,7 @@ class API:
         :type password: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10007,7 +11626,7 @@ class API:
         request_timeout: int = None
     ) -> PaymentForm:
         """
-        Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy
+        Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
 
         :param input_invoice: The invoice
         :type input_invoice: :class:`InputInvoice`
@@ -10015,7 +11634,7 @@ class API:
         :type theme: :class:`ThemeParameters`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10043,7 +11662,7 @@ class API:
         :type message_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10069,7 +11688,7 @@ class API:
         :type phone_number_prefix: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10096,7 +11715,7 @@ class API:
         :type phone_number_prefix: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10138,7 +11757,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10167,7 +11786,7 @@ class API:
         :type country_code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10192,7 +11811,7 @@ class API:
         :type source: :class:`PremiumSource`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10202,6 +11821,59 @@ class API:
         return await self.client.request(
             GetPremiumFeatures(
                 source=source,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_premium_gift_code_payment_options(
+        self, boosted_chat_id: typing.Optional[Int53] = 0, *, request_id: str = None, request_timeout: int = None
+    ) -> PremiumGiftCodePaymentOptions:
+        """
+        Returns available options for Telegram Premium gift code or giveaway creation
+
+        :param boosted_chat_id: Identifier of the supergroup or channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user; 0 if none, defaults to None
+        :type boosted_chat_id: :class:`Int53`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PremiumGiftCodePaymentOptions`
+        """
+
+        return await self.client.request(
+            GetPremiumGiftCodePaymentOptions(
+                boosted_chat_id=boosted_chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_premium_giveaway_info(
+        self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
+    ) -> PremiumGiveawayInfo:
+        """
+        Returns information about a Telegram Premium giveaway
+
+        :param chat_id: Identifier of the channel chat which started the giveaway
+        :type chat_id: :class:`Int53`
+        :param message_id: Identifier of the giveaway or a giveaway winners message in the chat
+        :type message_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.PremiumGiveawayInfo`
+        """
+
+        return await self.client.request(
+            GetPremiumGiveawayInfo(
+                chat_id=chat_id,
+                message_id=message_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -10217,7 +11889,7 @@ class API:
         :type limit_type: :class:`PremiumLimitType`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10264,7 +11936,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10281,7 +11953,7 @@ class API:
 
     async def get_proxies(self, *, request_id: str = None, request_timeout: int = None) -> Proxies:
         """
-        Returns list of proxies that are currently set up. Can be called before authorization
+        Returns the list of proxies that are currently set up. Can be called before authorization
         """
 
         return await self.client.request(
@@ -10298,7 +11970,7 @@ class API:
         :type proxy_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10323,7 +11995,7 @@ class API:
         :type payload: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10338,9 +12010,22 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_read_date_privacy_settings(
+        self, *, request_id: str = None, request_timeout: int = None
+    ) -> ReadDatePrivacySettings:
+        """
+        Returns privacy settings for message read date
+        """
+
+        return await self.client.request(
+            GetReadDatePrivacySettings(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_recent_emoji_statuses(self, *, request_id: str = None, request_timeout: int = None) -> EmojiStatuses:
         """
-        Returns recent emoji statuses
+        Returns recent emoji statuses for self status
         """
 
         return await self.client.request(
@@ -10370,7 +12055,7 @@ class API:
         :type is_attached: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10395,7 +12080,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10420,7 +12105,7 @@ class API:
         :type referrer: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10448,6 +12133,17 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_recommended_chats(self, *, request_id: str = None, request_timeout: int = None) -> Chats:
+        """
+        Returns a list of channel chats recommended to the current user
+        """
+
+        return await self.client.request(
+            GetRecommendedChats(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_recovery_email_address(
         self, password: String, *, request_id: str = None, request_timeout: int = None
     ) -> RecoveryEmailAddress:
@@ -10458,7 +12154,7 @@ class API:
         :type password: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10490,7 +12186,7 @@ class API:
         :type file_type: :class:`FileType`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10510,7 +12206,7 @@ class API:
         self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Message:
         """
-        Returns information about a message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground and topic messages without replied message respectively
+        Returns information about a non-bundled message that is replied by a given message. Also, returns the pinned message, the game message, the invoice message, the message with a previously set same background, the giveaway message, and the topic creation message for messages of the types messagePinMessage, messageGameScore, messagePaymentSuccessful, messageChatSetBackground, messagePremiumGiveawayCompleted and topic messages without non-bundled replied message respectively
 
         :param chat_id: Identifier of the chat the message belongs to
         :type chat_id: :class:`Int53`
@@ -10518,7 +12214,7 @@ class API:
         :type message_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10545,6 +12241,100 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_saved_messages_tags(
+        self, saved_messages_topic_id: Int53, *, request_id: str = None, request_timeout: int = None
+    ) -> SavedMessagesTags:
+        """
+        Returns tags used in Saved Messages or a Saved Messages topic
+
+        :param saved_messages_topic_id: Identifier of Saved Messages topic which tags will be returned; pass 0 to get all Saved Messages tags
+        :type saved_messages_topic_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.SavedMessagesTags`
+        """
+
+        return await self.client.request(
+            GetSavedMessagesTags(
+                saved_messages_topic_id=saved_messages_topic_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_saved_messages_topic_history(
+        self,
+        saved_messages_topic_id: Int53,
+        from_message_id: Int53,
+        offset: Int32,
+        limit: Int32,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Messages:
+        """
+        Returns messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+
+        :param saved_messages_topic_id: Identifier of Saved Messages topic which messages will be fetched
+        :type saved_messages_topic_id: :class:`Int53`
+        :param from_message_id: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+        :type from_message_id: :class:`Int53`
+        :param offset: Specify 0 to get results from exactly the message from_message_id or a negative offset up to 99 to get additionally some newer messages
+        :type offset: :class:`Int32`
+        :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Messages`
+        """
+
+        return await self.client.request(
+            GetSavedMessagesTopicHistory(
+                saved_messages_topic_id=saved_messages_topic_id,
+                from_message_id=from_message_id,
+                offset=offset,
+                limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_saved_messages_topic_message_by_date(
+        self, saved_messages_topic_id: Int53, date: Int32, *, request_id: str = None, request_timeout: int = None
+    ) -> Message:
+        """
+        Returns the last message sent in a Saved Messages topic no later than the specified date
+
+        :param saved_messages_topic_id: Identifier of Saved Messages topic which message will be returned
+        :type saved_messages_topic_id: :class:`Int53`
+        :param date: Point in time (Unix timestamp) relative to which to search for messages
+        :type date: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Message`
+        """
+
+        return await self.client.request(
+            GetSavedMessagesTopicMessageByDate(
+                saved_messages_topic_id=saved_messages_topic_id,
+                date=date,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_saved_notification_sound(
         self, notification_sound_id: Int64, *, request_id: str = None, request_timeout: int = None
     ) -> NotificationSounds:
@@ -10555,7 +12345,7 @@ class API:
         :type notification_sound_id: :class:`Int64`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10574,7 +12364,7 @@ class API:
         self, *, request_id: str = None, request_timeout: int = None
     ) -> NotificationSounds:
         """
-        Returns list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
+        Returns the list of saved notification sounds. If a sound isn't in the list, then default sound needs to be used
         """
 
         return await self.client.request(
@@ -10604,7 +12394,7 @@ class API:
         :type scope: :class:`NotificationSettingsScope`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10614,6 +12404,34 @@ class API:
         return await self.client.request(
             GetScopeNotificationSettings(
                 scope=scope,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_searched_for_hashtags(
+        self, prefix: String, limit: Int32, *, request_id: str = None, request_timeout: int = None
+    ) -> Hashtags:
+        """
+        Returns recently searched for hashtags or cashtags by their prefix
+
+        :param prefix: Prefix of hashtags or cashtags to return
+        :type prefix: :class:`String`
+        :param limit: The maximum number of items to be returned
+        :type limit: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Hashtags`
+        """
+
+        return await self.client.request(
+            GetSearchedForHashtags(
+                prefix=prefix,
+                limit=limit,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -10629,7 +12447,7 @@ class API:
         :type secret_chat_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10639,6 +12457,52 @@ class API:
         return await self.client.request(
             GetSecretChat(
                 secret_chat_id=secret_chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_star_payment_options(
+        self, *, request_id: str = None, request_timeout: int = None
+    ) -> StarPaymentOptions:
+        """
+        Returns available options for Telegram stars purchase
+        """
+
+        return await self.client.request(
+            GetStarPaymentOptions(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_star_transactions(
+        self,
+        offset: String,
+        direction: typing.Optional[StarTransactionDirection] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> StarTransactions:
+        """
+        Returns the list of Telegram star transactions for the current user
+
+        :param offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
+        :type offset: :class:`String`
+        :param direction: Direction of the transactions to receive; pass null to get all transactions, defaults to None
+        :type direction: :class:`StarTransactionDirection`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StarTransactions`
+        """
+
+        return await self.client.request(
+            GetStarTransactions(
+                offset=offset,
+                direction=direction,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -10658,7 +12522,7 @@ class API:
         :type x: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10685,7 +12549,7 @@ class API:
         :type sticker: :class:`InputFile`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10710,7 +12574,7 @@ class API:
         :type set_id: :class:`Int64`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10728,9 +12592,9 @@ class API:
     async def get_stickers(
         self,
         sticker_type: StickerType,
-        query: String,
         limit: Int32,
         chat_id: Int53,
+        query: String = "",
         *,
         request_id: str = None,
         request_timeout: int = None
@@ -10740,15 +12604,15 @@ class API:
 
         :param sticker_type: Type of the stickers to return
         :type sticker_type: :class:`StickerType`
-        :param query: Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
-        :type query: :class:`String`
         :param limit: The maximum number of stickers to be returned
         :type limit: :class:`Int32`
         :param chat_id: Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
         :type chat_id: :class:`Int53`
+        :param query: Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
+        :type query: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10758,9 +12622,9 @@ class API:
         return await self.client.request(
             GetStickers(
                 sticker_type=sticker_type,
-                query=query,
                 limit=limit,
                 chat_id=chat_id,
+                query=query,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -10776,7 +12640,7 @@ class API:
         :type chat_limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10824,7 +12688,7 @@ class API:
         :type only_local: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10851,7 +12715,7 @@ class API:
         :type row_size: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10866,11 +12730,64 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_story_interactions(
+        self,
+        story_id: Int32,
+        offset: String,
+        limit: Int32,
+        query: String = "",
+        only_contacts: Bool = False,
+        prefer_forwards: Bool = False,
+        prefer_with_reaction: Bool = False,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> StoryInteractions:
+        """
+        Returns interactions with a story. The method can be called only for stories posted on behalf of the current user
+
+        :param story_id: Story identifier
+        :type story_id: :class:`Int32`
+        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+        :type offset: :class:`String`
+        :param limit: The maximum number of story interactions to return
+        :type limit: :class:`Int32`
+        :param query: Query to search for in names, usernames and titles; may be empty to get all relevant interactions
+        :type query: :class:`String`
+        :param only_contacts: Pass true to get only interactions by contacts; pass false to get all relevant interactions
+        :type only_contacts: :class:`Bool`
+        :param prefer_forwards: Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
+        :type prefer_forwards: :class:`Bool`
+        :param prefer_with_reaction: Pass true to get interactions with reaction first; pass false to get interactions sorted just by interaction date. Ignored if prefer_forwards == true
+        :type prefer_with_reaction: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StoryInteractions`
+        """
+
+        return await self.client.request(
+            GetStoryInteractions(
+                story_id=story_id,
+                offset=offset,
+                limit=limit,
+                query=query,
+                only_contacts=only_contacts,
+                prefer_forwards=prefer_forwards,
+                prefer_with_reaction=prefer_with_reaction,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_story_notification_settings_exceptions(
         self, *, request_id: str = None, request_timeout: int = None
     ) -> Chats:
         """
-        Returns list of chats with non-default notification settings for stories
+        Returns the list of chats with non-default notification settings for stories
         """
 
         return await self.client.request(
@@ -10879,50 +12796,79 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_story_viewers(
+    async def get_story_public_forwards(
         self,
+        story_sender_chat_id: Int53,
         story_id: Int32,
         offset: String,
         limit: Int32,
-        query: String = "",
-        only_contacts: Bool = False,
-        prefer_with_reaction: Bool = False,
         *,
         request_id: str = None,
         request_timeout: int = None
-    ) -> StoryViewers:
+    ) -> PublicForwards:
         """
-        Returns viewers of a story. The method can be called if story.can_get_viewers == true
+        Returns forwards of a story as a message to public chats and reposts by public channels. Can be used only if the story is posted on behalf of the current user or story.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
 
-        :param story_id: Story identifier
+        :param story_sender_chat_id: The identifier of the sender of the story
+        :type story_sender_chat_id: :class:`Int53`
+        :param story_id: The identifier of the story
         :type story_id: :class:`Int32`
         :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
         :type offset: :class:`String`
-        :param limit: The maximum number of story viewers to return
+        :param limit: The maximum number of messages and stories to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
         :type limit: :class:`Int32`
-        :param query: Query to search for in names and usernames of the viewers; may be empty to get all relevant viewers
-        :type query: :class:`String`
-        :param only_contacts: Pass true to get only contacts; pass false to get all relevant viewers
-        :type only_contacts: :class:`Bool`
-        :param prefer_with_reaction: Pass true to get viewers with reaction first; pass false to get viewers sorted just by view_date
-        :type prefer_with_reaction: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.StoryViewers`
+        :rtype: :class:`aiotdlib.api.types.PublicForwards`
         """
 
         return await self.client.request(
-            GetStoryViewers(
+            GetStoryPublicForwards(
+                story_sender_chat_id=story_sender_chat_id,
                 story_id=story_id,
                 offset=offset,
                 limit=limit,
-                query=query,
-                only_contacts=only_contacts,
-                prefer_with_reaction=prefer_with_reaction,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_story_statistics(
+        self,
+        chat_id: Int53,
+        story_id: Int32,
+        is_dark: Bool = False,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> StoryStatistics:
+        """
+        Returns detailed statistics about a story. Can be used only if story.can_get_statistics == true
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param story_id: Story identifier
+        :type story_id: :class:`Int32`
+        :param is_dark: Pass true if a dark theme is used by the application
+        :type is_dark: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StoryStatistics`
+        """
+
+        return await self.client.request(
+            GetStoryStatistics(
+                chat_id=chat_id,
+                story_id=story_id,
+                is_dark=is_dark,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -10940,7 +12886,7 @@ class API:
         :type directory: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10966,7 +12912,7 @@ class API:
         :type title: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -10992,6 +12938,17 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_suitable_personal_chats(self, *, request_id: str = None, request_timeout: int = None) -> Chats:
+        """
+        Returns a list of channel chats, which can be used as a personal chat
+        """
+
+        return await self.client.request(
+            GetSuitablePersonalChats(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_supergroup(
         self, supergroup_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Supergroup:
@@ -11002,7 +12959,7 @@ class API:
         :type supergroup_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11027,7 +12984,7 @@ class API:
         :type supergroup_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11059,13 +13016,13 @@ class API:
         :type supergroup_id: :class:`Int53`
         :param offset: Number of users to skip
         :type offset: :class:`Int32`
-        :param limit: The maximum number of users be returned; up to 200
+        :param limit: The maximum number of users to be returned; up to 200
         :type limit: :class:`Int32`
         :param filter_: The type of users to return; pass null to use supergroupMembersFilterRecent, defaults to None
         :type filter_: :class:`SupergroupMembersFilter`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11128,7 +13085,7 @@ class API:
         :type text: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11153,7 +13110,7 @@ class API:
         :type theme: :class:`ThemeParameters`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11168,13 +13125,37 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_themed_chat_emoji_statuses(
+        self, *, request_id: str = None, request_timeout: int = None
+    ) -> EmojiStatuses:
+        """
+        Returns up to 8 emoji statuses, which must be shown in the emoji status list for chats
+        """
+
+        return await self.client.request(
+            GetThemedChatEmojiStatuses(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_themed_emoji_statuses(self, *, request_id: str = None, request_timeout: int = None) -> EmojiStatuses:
         """
-        Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list
+        Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list for self status
         """
 
         return await self.client.request(
             GetThemedEmojiStatuses(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_time_zones(self, *, request_id: str = None, request_timeout: int = None) -> TimeZones:
+        """
+        Returns the list of supported time zones
+        """
+
+        return await self.client.request(
+            GetTimeZones(),
             request_id=request_id,
             request_timeout=request_timeout,
         )
@@ -11191,7 +13172,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11227,7 +13208,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11252,7 +13233,7 @@ class API:
         :type user_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11261,6 +13242,34 @@ class API:
 
         return await self.client.request(
             GetUser(
+                user_id=user_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_user_chat_boosts(
+        self, chat_id: Int53, user_id: Int53, *, request_id: str = None, request_timeout: int = None
+    ) -> FoundChatBoosts:
+        """
+        Returns the list of boosts applied to a chat by a given user; requires administrator rights in the chat; for bots only
+
+        :param chat_id: Identifier of the chat
+        :type chat_id: :class:`Int53`
+        :param user_id: Identifier of the user
+        :type user_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FoundChatBoosts`
+        """
+
+        return await self.client.request(
+            GetUserChatBoosts(
+                chat_id=chat_id,
                 user_id=user_id,
             ),
             request_id=request_id,
@@ -11277,7 +13286,7 @@ class API:
         :type user_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11313,7 +13322,7 @@ class API:
         :type setting: :class:`UserPrivacySetting`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11342,7 +13351,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11369,7 +13378,7 @@ class API:
         :type user_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11388,13 +13397,13 @@ class API:
         self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> MessageSenders:
         """
-        Returns list of participant identifiers, on whose behalf a video chat in the chat can be joined
+        Returns the list of participant identifiers, on whose behalf a video chat in the chat can be joined
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11413,13 +13422,13 @@ class API:
         self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> RtmpUrl:
         """
-        Returns RTMP URL for streaming to the chat; requires creator privileges
+        Returns RTMP URL for streaming to the chat; requires owner privileges
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11466,7 +13475,7 @@ class API:
         :type theme: :class:`ThemeParameters`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11510,7 +13519,7 @@ class API:
         :type theme: :class:`ThemeParameters`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11540,7 +13549,7 @@ class API:
         :type force_full: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11557,16 +13566,23 @@ class API:
         )
 
     async def get_web_page_preview(
-        self, text: FormattedText, *, request_id: str = None, request_timeout: int = None
+        self,
+        text: FormattedText,
+        link_preview_options: typing.Optional[LinkPreviewOptions] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
     ) -> WebPage:
         """
-        Returns a web page preview by the text of the message. Do not call this function too often. Returns a 404 error if the web page has no preview
+        Returns a link preview by the text of a message. Do not call this function too often. Returns a 404 error if the text has no link preview
 
         :param text: Message text with formatting
         :type text: :class:`FormattedText`
+        :param link_preview_options: Options to be used for generation of the link preview; pass null to use default link preview options, defaults to None
+        :type link_preview_options: :class:`LinkPreviewOptions`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11576,7 +13592,19 @@ class API:
         return await self.client.request(
             GetWebPagePreview(
                 text=text,
+                link_preview_options=link_preview_options,
             ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def hide_contact_close_birthdays(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
+        """
+        Hides the list of contacts that have close birthdays for 24 hours
+        """
+
+        return await self.client.request(
+            HideContactCloseBirthdays(),
             request_id=request_id,
             request_timeout=request_timeout,
         )
@@ -11591,7 +13619,7 @@ class API:
         :type action: :class:`SuggestedAction`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11616,7 +13644,7 @@ class API:
         :type contacts: :class:`Vector[Contact]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11643,7 +13671,7 @@ class API:
         """
         Imports messages exported from another app
 
-        :param chat_id: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info administrator right
+        :param chat_id: Identifier of a chat to which the messages will be imported. It must be an identifier of a private chat with a mutual contact or an identifier of a supergroup chat with can_change_info member right
         :type chat_id: :class:`Int53`
         :param message_file: File with messages to import. Only inputFileLocal and inputFileGenerated are supported. The file must not be previously uploaded
         :type message_file: :class:`InputFile`
@@ -11651,7 +13679,7 @@ class API:
         :type attached_files: :class:`Vector[InputFile]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11672,7 +13700,7 @@ class API:
         self, group_call_id: Int32, user_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats
+        Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats
 
         :param group_call_id: Group call identifier
         :type group_call_id: :class:`Int32`
@@ -11680,7 +13708,7 @@ class API:
         :type user_ids: :class:`Vector[Int53]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11704,7 +13732,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11729,7 +13757,7 @@ class API:
         :type invite_link: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11749,9 +13777,9 @@ class API:
         group_call_id: Int32,
         audio_source_id: Int32,
         payload: String,
-        invite_hash: String,
         is_muted: Bool = False,
         is_my_video_enabled: Bool = False,
+        invite_hash: String = "",
         participant_id: typing.Optional[MessageSender] = None,
         *,
         request_id: str = None,
@@ -11766,17 +13794,17 @@ class API:
         :type audio_source_id: :class:`Int32`
         :param payload: Group call join payload; received from tgcalls
         :type payload: :class:`String`
-        :param invite_hash: If non-empty, invite hash to be used to join the group call without being muted by administrators
-        :type invite_hash: :class:`String`
         :param is_muted: Pass true to join the call with muted microphone
         :type is_muted: :class:`Bool`
         :param is_my_video_enabled: Pass true if the user's video is enabled
         :type is_my_video_enabled: :class:`Bool`
+        :param invite_hash: If non-empty, invite hash to be used to join the group call without being muted by administrators
+        :type invite_hash: :class:`String`
         :param participant_id: Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only, defaults to None
         :type participant_id: :class:`MessageSender`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11788,10 +13816,43 @@ class API:
                 group_call_id=group_call_id,
                 audio_source_id=audio_source_id,
                 payload=payload,
-                invite_hash=invite_hash,
                 is_muted=is_muted,
                 is_my_video_enabled=is_my_video_enabled,
+                invite_hash=invite_hash,
                 participant_id=participant_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def launch_prepaid_premium_giveaway(
+        self,
+        giveaway_id: Int64,
+        parameters: PremiumGiveawayParameters,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Launches a prepaid Telegram Premium giveaway
+
+        :param giveaway_id: Unique identifier of the prepaid giveaway
+        :type giveaway_id: :class:`Int64`
+        :param parameters: Giveaway parameters
+        :type parameters: :class:`PremiumGiveawayParameters`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            LaunchPrepaidPremiumGiveaway(
+                giveaway_id=giveaway_id,
+                parameters=parameters,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -11805,7 +13866,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11830,7 +13891,7 @@ class API:
         :type group_call_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11855,7 +13916,7 @@ class API:
         :type story_list: :class:`StoryList`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11887,7 +13948,7 @@ class API:
         :type chat_list: :class:`ChatList`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11915,7 +13976,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11925,6 +13986,67 @@ class API:
         return await self.client.request(
             LoadGroupCallParticipants(
                 group_call_id=group_call_id,
+                limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def load_quick_reply_shortcut_messages(
+        self, shortcut_id: Int32, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Loads quick reply messages that can be sent by a given quick reply shortcut. The loaded messages will be sent through updateQuickReplyShortcutMessages
+
+        :param shortcut_id: Unique identifier of the quick reply shortcut
+        :type shortcut_id: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            LoadQuickReplyShortcutMessages(
+                shortcut_id=shortcut_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def load_quick_reply_shortcuts(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
+        """
+        Loads quick reply shortcuts created by the current user. The loaded topics will be sent through updateQuickReplyShortcuts
+        """
+
+        return await self.client.request(
+            LoadQuickReplyShortcuts(),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def load_saved_messages_topics(
+        self, limit: Int32, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Loads more Saved Messages topics. The loaded topics will be sent through updateSavedMessagesTopic. Topics are sorted by their topic.order in descending order. Returns a 404 error if all topics have been loaded
+
+        :param limit: The maximum number of topics to be loaded. For optimal performance, the number of loaded topics is chosen by TDLib and can be smaller than the specified limit, even if the end of the list is not reached
+        :type limit: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            LoadSavedMessagesTopics(
                 limit=limit,
             ),
             request_id=request_id,
@@ -11950,7 +14072,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -11960,6 +14082,34 @@ class API:
         return await self.client.request(
             OpenChat(
                 chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def open_chat_similar_chat(
+        self, chat_id: Int53, opened_chat_id: Int53, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Informs TDLib that a chat was opened from the list of similar chats. The method is independent of openChat and closeChat methods
+
+        :param chat_id: Identifier of the original chat, which similar chats were requested
+        :type chat_id: :class:`Int53`
+        :param opened_chat_id: Identifier of the opened chat
+        :type opened_chat_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            OpenChatSimilarChat(
+                chat_id=chat_id,
+                opened_chat_id=opened_chat_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -11977,7 +14127,7 @@ class API:
         :type message_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12005,7 +14155,7 @@ class API:
         :type story_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12029,7 +14179,7 @@ class API:
         application_name: String,
         message_thread_id: Int53 = 0,
         theme: typing.Optional[ThemeParameters] = None,
-        reply_to: typing.Optional[MessageReplyTo] = None,
+        reply_to: typing.Optional[InputMessageReplyTo] = None,
         *,
         request_id: str = None,
         request_timeout: int = None
@@ -12045,15 +14195,15 @@ class API:
         :type url: :class:`String`
         :param application_name: Short name of the application; 0-64 English letters, digits, and underscores
         :type application_name: :class:`String`
-        :param message_thread_id: If not 0, a message thread identifier in which the message will be sent
+        :param message_thread_id: If not 0, the message thread identifier in which the message will be sent
         :type message_thread_id: :class:`Int53`
         :param theme: Preferred Web App theme; pass null to use the default theme, defaults to None
         :type theme: :class:`ThemeParameters`, optional
-        :param reply_to: Identifier of the replied message or story for the message sent by the Web App; pass null if none, defaults to None
-        :type reply_to: :class:`MessageReplyTo`, optional
+        :param reply_to: Information about the message or story to be replied in the message sent by the Web App; pass null if none, defaults to None
+        :type reply_to: :class:`InputMessageReplyTo`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12080,10 +14230,10 @@ class API:
         ttl: Int32,
         count: Int32,
         immunity_delay: Int32,
-        file_types: Vector[FileType],
-        chat_ids: Vector[Int53],
-        exclude_chat_ids: Vector[Int53],
         chat_limit: Int32,
+        file_types: Vector[FileType] = [],
+        chat_ids: Vector[Int53] = [],
+        exclude_chat_ids: Vector[Int53] = [],
         return_deleted_file_statistics: Bool = False,
         *,
         request_id: str = None,
@@ -12100,19 +14250,19 @@ class API:
         :type count: :class:`Int32`
         :param immunity_delay: The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value
         :type immunity_delay: :class:`Int32`
+        :param chat_limit: Same as in getStorageStatistics. Affects only returned statistics
+        :type chat_limit: :class:`Int32`
         :param file_types: If non-empty, only files with the given types are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
         :type file_types: :class:`Vector[FileType]`
         :param chat_ids: If non-empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
         :type chat_ids: :class:`Vector[Int53]`
         :param exclude_chat_ids: If non-empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
         :type exclude_chat_ids: :class:`Vector[Int53]`
-        :param chat_limit: Same as in getStorageStatistics. Affects only returned statistics
-        :type chat_limit: :class:`Int32`
         :param return_deleted_file_statistics: Pass true if statistics about the files that were deleted must be returned instead of the whole storage usage statistics. Affects only returned statistics
         :type return_deleted_file_statistics: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12125,10 +14275,10 @@ class API:
                 ttl=ttl,
                 count=count,
                 immunity_delay=immunity_delay,
+                chat_limit=chat_limit,
                 file_types=file_types,
                 chat_ids=chat_ids,
                 exclude_chat_ids=exclude_chat_ids,
-                chat_limit=chat_limit,
                 return_deleted_file_statistics=return_deleted_file_statistics,
             ),
             request_id=request_id,
@@ -12145,7 +14295,7 @@ class API:
         :type text: :class:`FormattedText`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12164,7 +14314,7 @@ class API:
         self, text: String, parse_mode: TextParseMode, *, request_id: str = None, request_timeout: int = None
     ) -> FormattedText:
         """
-        Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
+        Parses Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, ExpandableBlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities from a marked-up text. Can be called synchronously
 
         :param text: The text to parse
         :type text: :class:`String`
@@ -12172,7 +14322,7 @@ class API:
         :type parse_mode: :class:`TextParseMode`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12199,7 +14349,7 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
+        Pins a message in a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
 
         :param chat_id: Identifier of the chat
         :type chat_id: :class:`Int53`
@@ -12211,7 +14361,7 @@ class API:
         :type only_for_self: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12237,7 +14387,7 @@ class API:
         :type proxy_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12262,7 +14412,7 @@ class API:
         request_timeout: int = None
     ) -> File:
         """
-        Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. Updates updateFile will be used to notify about upload progress and successful completion of the upload. The file will not have a persistent remote identifier until it will be sent in a message
+        Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. In all other cases there is no need to preliminary upload a file. Updates updateFile will be used to notify about upload progress. The upload will not be completed until the file is sent in a message
 
         :param file: File to upload
         :type file: :class:`InputFile`
@@ -12272,7 +14422,7 @@ class API:
         :type file_type: :class:`FileType`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12306,7 +14456,7 @@ class API:
         :type added_chat_ids: :class:`Vector[Int53]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12342,7 +14492,7 @@ class API:
         :type approve: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12362,7 +14512,7 @@ class API:
     async def process_chat_join_requests(
         self,
         chat_id: Int53,
-        invite_link: String,
+        invite_link: String = "",
         approve: Bool = False,
         *,
         request_id: str = None,
@@ -12379,7 +14529,7 @@ class API:
         :type approve: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12406,7 +14556,7 @@ class API:
         :type payload: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12441,7 +14591,7 @@ class API:
         :type is_good: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12468,7 +14618,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12493,7 +14643,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12520,7 +14670,7 @@ class API:
         :type message_thread_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12548,7 +14698,7 @@ class API:
         :type message_thread_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12572,7 +14722,7 @@ class API:
         :type chat_list: :class:`ChatList`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12601,7 +14751,7 @@ class API:
         :type count: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12618,11 +14768,39 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def readd_quick_reply_shortcut_messages(
+        self, shortcut_name: String, message_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
+    ) -> QuickReplyMessages:
+        """
+        Readds quick reply messages which failed to add. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is readded, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be readded, null will be returned instead of the message
+
+        :param shortcut_name: Name of the target shortcut
+        :type shortcut_name: :class:`String`
+        :param message_ids: Identifiers of the quick reply messages to readd. Message identifiers must be in a strictly increasing order
+        :type message_ids: :class:`Vector[Int53]`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.QuickReplyMessages`
+        """
+
+        return await self.client.request(
+            ReaddQuickReplyShortcutMessages(
+                shortcut_name=shortcut_name,
+                message_ids=message_ids,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def recognize_speech(
         self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Recognizes speech in a video note or a voice note message. The message must be successfully sent and must not be scheduled. May return an error with a message "MSG_VOICE_TOO_LONG" if media duration is too big to be recognized
+        Recognizes speech in a video note or a voice note message. The message must be successfully sent, must not be scheduled, and must be from a non-secret chat
 
         :param chat_id: Identifier of the chat to which the message belongs
         :type chat_id: :class:`Int53`
@@ -12630,7 +14808,7 @@ class API:
         :type message_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12666,7 +14844,7 @@ class API:
         :type new_hint: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12703,7 +14881,7 @@ class API:
         :type new_hint: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12715,6 +14893,34 @@ class API:
                 recovery_code=recovery_code,
                 new_password=new_password,
                 new_hint=new_hint,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def refund_star_payment(
+        self, user_id: Int53, telegram_payment_charge_id: String, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Refunds a previously done payment in Telegram Stars
+
+        :param user_id: Identifier of the user that did the payment
+        :type user_id: :class:`Int53`
+        :param telegram_payment_charge_id: Telegram payment identifier
+        :type telegram_payment_charge_id: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            RefundStarPayment(
+                user_id=user_id,
+                telegram_payment_charge_id=telegram_payment_charge_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -12737,7 +14943,7 @@ class API:
         :type other_user_ids: :class:`Vector[Int53]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12754,7 +14960,13 @@ class API:
         )
 
     async def register_user(
-        self, first_name: String, last_name: String = "", *, request_id: str = None, request_timeout: int = None
+        self,
+        first_name: String,
+        last_name: String = "",
+        disable_notification: Bool = False,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
     ) -> Ok:
         """
         Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
@@ -12763,9 +14975,11 @@ class API:
         :type first_name: :class:`String`
         :param last_name: The last name of the user; 0-64 characters
         :type last_name: :class:`String`
+        :param disable_notification: Pass true to disable notification about the current user joining Telegram for other users that added them to contact list
+        :type disable_notification: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12776,6 +14990,7 @@ class API:
             RegisterUser(
                 first_name=first_name,
                 last_name=last_name,
+                disable_notification=disable_notification,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -12801,7 +15016,7 @@ class API:
         :type delete_from_cache: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12818,17 +15033,17 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def remove_background(
-        self, background_id: Int64, *, request_id: str = None, request_timeout: int = None
+    async def remove_business_connected_bot_from_chat(
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Removes background from the list of installed backgrounds
+        Removes the connected business bot from a specific chat by adding the chat to businessRecipients.excluded_chat_ids
 
-        :param background_id: The background identifier
-        :type background_id: :class:`Int64`
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12836,8 +15051,8 @@ class API:
         """
 
         return await self.client.request(
-            RemoveBackground(
-                background_id=background_id,
+            RemoveBusinessConnectedBotFromChat(
+                chat_id=chat_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -12853,7 +15068,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12878,7 +15093,7 @@ class API:
         :type user_ids: :class:`Vector[Int53]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12903,7 +15118,7 @@ class API:
         :type sticker: :class:`InputFile`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12930,7 +15145,7 @@ class API:
         :type delete_from_cache: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -12941,6 +15156,31 @@ class API:
             RemoveFileFromDownloads(
                 file_id=file_id,
                 delete_from_cache=delete_from_cache,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def remove_installed_background(
+        self, background_id: Int64, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Removes background from the list of installed backgrounds
+
+        :param background_id: The background identifier
+        :type background_id: :class:`Int64`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            RemoveInstalledBackground(
+                background_id=background_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -12966,7 +15206,7 @@ class API:
         :type reaction_type: :class:`ReactionType`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13000,7 +15240,7 @@ class API:
         :type notification_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13033,7 +15273,7 @@ class API:
         :type max_notification_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13057,7 +15297,7 @@ class API:
         :type proxy_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13082,7 +15322,7 @@ class API:
         :type hashtag: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13109,7 +15349,7 @@ class API:
         :type is_attached: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13135,7 +15375,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13160,7 +15400,7 @@ class API:
         :type animation: :class:`InputFile`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13185,7 +15425,7 @@ class API:
         :type notification_sound_id: :class:`Int64`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13200,17 +15440,42 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def remove_searched_for_hashtag(
+        self, hashtag: String, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Removes a hashtag or a cashtag from the list of recently searched for hashtags or cashtags
+
+        :param hashtag: Hashtag or cashtag to delete
+        :type hashtag: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            RemoveSearchedForHashtag(
+                hashtag=hashtag,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def remove_sticker_from_set(
         self, sticker: InputFile, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot
+        Removes a sticker from the set to which it belongs. The sticker set must be owned by the current user
 
-        :param sticker: Sticker
+        :param sticker: Sticker to remove from the set
         :type sticker: :class:`InputFile`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13237,7 +15502,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13263,7 +15528,7 @@ class API:
         :type usernames: :class:`Vector[String]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13290,7 +15555,7 @@ class API:
         :type usernames: :class:`Vector[String]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13323,7 +15588,7 @@ class API:
         :type main_chat_list_position: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13356,7 +15621,7 @@ class API:
         :type sticker_set_ids: :class:`Vector[Int64]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13367,6 +15632,31 @@ class API:
             ReorderInstalledStickerSets(
                 sticker_type=sticker_type,
                 sticker_set_ids=sticker_set_ids,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def reorder_quick_reply_shortcuts(
+        self, shortcut_ids: Vector[Int32], *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the order of quick reply shortcuts
+
+        :param shortcut_ids: The new order of quick reply shortcuts
+        :type shortcut_ids: :class:`Vector[Int32]`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            ReorderQuickReplyShortcuts(
+                shortcut_ids=shortcut_ids,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -13384,7 +15674,7 @@ class API:
         :type usernames: :class:`Vector[String]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13410,7 +15700,7 @@ class API:
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13425,17 +15715,58 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def replace_sticker_in_set(
+        self,
+        user_id: Int53,
+        name: String,
+        old_sticker: InputFile,
+        new_sticker: InputSticker,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Replaces existing sticker in a set. The function is equivalent to removeStickerFromSet, then addStickerToSet, then setStickerPositionInSet
+
+        :param user_id: Sticker set owner; ignored for regular users
+        :type user_id: :class:`Int53`
+        :param name: Sticker set name. The sticker set must be owned by the current user
+        :type name: :class:`String`
+        :param old_sticker: Sticker to remove from the set
+        :type old_sticker: :class:`InputFile`
+        :param new_sticker: Sticker to add to the set
+        :type new_sticker: :class:`InputSticker`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            ReplaceStickerInSet(
+                user_id=user_id,
+                name=name,
+                old_sticker=old_sticker,
+                new_sticker=new_sticker,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def replace_video_chat_rtmp_url(
         self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> RtmpUrl:
         """
-        Replaces the current RTMP URL for streaming to the chat; requires creator privileges
+        Replaces the current RTMP URL for streaming to the chat; requires owner privileges
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13445,6 +15776,31 @@ class API:
         return await self.client.request(
             ReplaceVideoChatRtmpUrl(
                 chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def report_authentication_code_missing(
+        self, mobile_network_code: String, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Reports that authentication code wasn't delivered via SMS; for official mobile applications only. Works only when the current authorization state is authorizationStateWaitCode
+
+        :param mobile_network_code: Current mobile network code
+        :type mobile_network_code: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            ReportAuthenticationCodeMissing(
+                mobile_network_code=mobile_network_code,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -13473,7 +15829,7 @@ class API:
         :type text: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13514,7 +15870,7 @@ class API:
         :type text: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13527,6 +15883,43 @@ class API:
                 file_id=file_id,
                 reason=reason,
                 text=text,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def report_chat_sponsored_message(
+        self,
+        chat_id: Int53,
+        message_id: Int53,
+        option_id: Bytes,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> ReportChatSponsoredMessageResult:
+        """
+        Reports a sponsored message to Telegram moderators
+
+        :param chat_id: Chat identifier of the sponsored message
+        :type chat_id: :class:`Int53`
+        :param message_id: Identifier of the sponsored message
+        :type message_id: :class:`Int53`
+        :param option_id: Option identifier chosen by the user; leave empty for the initial request
+        :type option_id: :class:`Bytes`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.ReportChatSponsoredMessageResult`
+        """
+
+        return await self.client.request(
+            ReportChatSponsoredMessage(
+                chat_id=chat_id,
+                message_id=message_id,
+                option_id=option_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -13552,7 +15945,7 @@ class API:
         :type sender_id: :class:`MessageSender`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13564,6 +15957,31 @@ class API:
                 chat_id=chat_id,
                 message_id=message_id,
                 sender_id=sender_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def report_phone_number_code_missing(
+        self, mobile_network_code: String, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Reports that authentication code wasn't delivered via SMS to the specified phone number; for official mobile applications only
+
+        :param mobile_network_code: Current mobile network code
+        :type mobile_network_code: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            ReportPhoneNumberCodeMissing(
+                mobile_network_code=mobile_network_code,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -13592,7 +16010,7 @@ class API:
         :type text: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13622,7 +16040,7 @@ class API:
         :type message_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13650,7 +16068,7 @@ class API:
         :type message_ids: :class:`Vector[Int53]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13702,7 +16120,7 @@ class API:
         :type other_user_ids: :class:`Vector[Int53]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13717,26 +16135,27 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def resend_authentication_code(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
+    async def resend_authentication_code(
+        self, reason: typing.Optional[ResendCodeReason] = None, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
         """
         Resends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode, the next_code_type of the result is not null and the server-specified timeout has passed, or when the current authorization state is authorizationStateWaitEmailCode
+
+        :param reason: Reason of code resending; pass null if unknown, defaults to None
+        :type reason: :class:`ResendCodeReason`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
         return await self.client.request(
-            ResendAuthenticationCode(),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
-    async def resend_change_phone_number_code(
-        self, *, request_id: str = None, request_timeout: int = None
-    ) -> AuthenticationCodeInfo:
-        """
-        Resends the authentication code sent to confirm a new phone number for the current user. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
-        """
-
-        return await self.client.request(
-            ResendChangePhoneNumberCode(),
+            ResendAuthenticationCode(
+                reason=reason,
+            ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
@@ -13768,7 +16187,13 @@ class API:
         )
 
     async def resend_messages(
-        self, chat_id: Int53, message_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
+        self,
+        chat_id: Int53,
+        message_ids: Vector[Int53],
+        quote: typing.Optional[InputTextQuote] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
     ) -> Messages:
         """
         Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
@@ -13777,9 +16202,11 @@ class API:
         :type chat_id: :class:`Int53`
         :param message_ids: Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
         :type message_ids: :class:`Vector[Int53]`
+        :param quote: New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false, defaults to None
+        :type quote: :class:`InputTextQuote`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13790,33 +16217,33 @@ class API:
             ResendMessages(
                 chat_id=chat_id,
                 message_ids=message_ids,
+                quote=quote,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def resend_phone_number_confirmation_code(
-        self, *, request_id: str = None, request_timeout: int = None
+    async def resend_phone_number_code(
+        self, reason: typing.Optional[ResendCodeReason] = None, *, request_id: str = None, request_timeout: int = None
     ) -> AuthenticationCodeInfo:
         """
-        Resends phone number confirmation code
+        Resends the authentication code sent to a phone number. Works only if the previously received authenticationCodeInfo next_code_type was not null and the server-specified timeout has passed
+
+        :param reason: Reason of code resending; pass null if unknown, defaults to None
+        :type reason: :class:`ResendCodeReason`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.AuthenticationCodeInfo`
         """
 
         return await self.client.request(
-            ResendPhoneNumberConfirmationCode(),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
-    async def resend_phone_number_verification_code(
-        self, *, request_id: str = None, request_timeout: int = None
-    ) -> AuthenticationCodeInfo:
-        """
-        Resends the code to verify a phone number to be added to a user's Telegram Passport
-        """
-
-        return await self.client.request(
-            ResendPhoneNumberVerificationCode(),
+            ResendPhoneNumberCode(
+                reason=reason,
+            ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
@@ -13836,7 +16263,7 @@ class API:
 
     async def reset_all_notification_settings(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
-        Resets all notification settings to their default values. By default, all chats are unmuted and message previews are shown
+        Resets all chat and scope notification settings to their default values. By default, all chats are unmuted and message previews are shown
         """
 
         return await self.client.request(
@@ -13856,13 +16283,13 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def reset_backgrounds(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
+    async def reset_installed_backgrounds(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Resets list of installed backgrounds to its default value
         """
 
         return await self.client.request(
-            ResetBackgrounds(),
+            ResetInstalledBackgrounds(),
             request_id=request_id,
             request_timeout=request_timeout,
         )
@@ -13901,7 +16328,7 @@ class API:
         :type invite_link: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13927,7 +16354,7 @@ class API:
         :type group_call_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13956,7 +16383,7 @@ class API:
         :type data: :class:`JsonValue`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -13983,7 +16410,7 @@ class API:
         :type name: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14018,7 +16445,7 @@ class API:
         :type only_missed: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14046,7 +16473,7 @@ class API:
         request_timeout: int = None
     ) -> ChatMembers:
         """
-        Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights in channels
+        Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights if the chat is a channel
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
@@ -14058,7 +16485,7 @@ class API:
         :type filter_: :class:`ChatMembersFilter`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14084,6 +16511,7 @@ class API:
         offset: Int32,
         limit: Int32,
         message_thread_id: Int53 = 0,
+        saved_messages_topic_id: Int53 = 0,
         sender_id: typing.Optional[MessageSender] = None,
         filter_: typing.Optional[SearchMessagesFilter] = None,
         *,
@@ -14099,19 +16527,21 @@ class API:
         :type query: :class:`String`
         :param from_message_id: Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
         :type from_message_id: :class:`Int53`
-        :param offset: Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
+        :param offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
         :type offset: :class:`Int32`
         :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         :type limit: :class:`Int32`
         :param message_thread_id: If not 0, only messages in the specified thread will be returned; supergroups only
         :type message_thread_id: :class:`Int53`
+        :param saved_messages_topic_id: If not 0, only messages in the specified Saved Messages topic will be returned; pass 0 to return all messages, or for chats other than Saved Messages
+        :type saved_messages_topic_id: :class:`Int53`
         :param sender_id: Identifier of the sender of messages to search for; pass null to search for messages from any sender. Not supported in secret chats, defaults to None
         :type sender_id: :class:`MessageSender`, optional
         :param filter_: Additional filter for messages to search; pass null to search for all messages, defaults to None
         :type filter_: :class:`SearchMessagesFilter`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14126,6 +16556,7 @@ class API:
                 offset=offset,
                 limit=limit,
                 message_thread_id=message_thread_id,
+                saved_messages_topic_id=saved_messages_topic_id,
                 sender_id=sender_id,
                 filter=filter_,
             ),
@@ -14145,7 +16576,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14173,7 +16604,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14199,7 +16630,7 @@ class API:
         :type location: :class:`Location`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14226,7 +16657,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14254,7 +16685,7 @@ class API:
         :type query: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14273,34 +16704,30 @@ class API:
     async def search_emojis(
         self,
         text: String,
-        exact_match: Bool = False,
         input_language_codes: Vector[String] = [],
         *,
         request_id: str = None,
         request_timeout: int = None
-    ) -> Emojis:
+    ) -> EmojiKeywords:
         """
-        Searches for emojis by keywords. Supported only if the file database is enabled
+        Searches for emojis by keywords. Supported only if the file database is enabled. Order of results is unspecified
 
         :param text: Text to search for
         :type text: :class:`String`
-        :param exact_match: Pass true if only emojis, which exactly match the text, needs to be returned
-        :type exact_match: :class:`Bool`
         :param input_language_codes: List of possible IETF language tags of the user's input language; may be empty if unknown
         :type input_language_codes: :class:`Vector[String]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Emojis`
+        :rtype: :class:`aiotdlib.api.types.EmojiKeywords`
         """
 
         return await self.client.request(
             SearchEmojis(
                 text=text,
-                exact_match=exact_match,
                 input_language_codes=input_language_codes,
             ),
             request_id=request_id,
@@ -14333,7 +16760,7 @@ class API:
         :type only_completed: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14364,7 +16791,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14400,7 +16827,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14422,6 +16849,7 @@ class API:
         query: String,
         offset: String,
         limit: Int32,
+        only_in_channels: Bool = False,
         min_date: Int32 = 0,
         max_date: Int32 = 0,
         chat_list: typing.Optional[ChatList] = None,
@@ -14439,6 +16867,8 @@ class API:
         :type offset: :class:`String`
         :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         :type limit: :class:`Int32`
+        :param only_in_channels: Pass true to search only for messages in channels
+        :type only_in_channels: :class:`Bool`
         :param min_date: If not 0, the minimum date of the messages to return
         :type min_date: :class:`Int32`
         :param max_date: If not 0, the maximum date of the messages to return
@@ -14449,7 +16879,7 @@ class API:
         :type filter_: :class:`SearchMessagesFilter`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14461,6 +16891,7 @@ class API:
                 query=query,
                 offset=offset,
                 limit=limit,
+                only_in_channels=only_in_channels,
                 min_date=min_date,
                 max_date=max_date,
                 chat_list=chat_list,
@@ -14482,7 +16913,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14508,7 +16939,7 @@ class API:
         :type username: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14531,7 +16962,7 @@ class API:
         :type query: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14541,6 +16972,74 @@ class API:
         return await self.client.request(
             SearchPublicChats(
                 query=query,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def search_public_hashtag_messages(
+        self, hashtag: String, offset: String, limit: Int32, *, request_id: str = None, request_timeout: int = None
+    ) -> FoundMessages:
+        """
+        Searches for public channel posts with the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+
+        :param hashtag: Hashtag or cashtag to search for
+        :type hashtag: :class:`String`
+        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+        :type offset: :class:`String`
+        :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FoundMessages`
+        """
+
+        return await self.client.request(
+            SearchPublicHashtagMessages(
+                hashtag=hashtag,
+                offset=offset,
+                limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def search_quote(
+        self,
+        text: FormattedText,
+        quote: FormattedText,
+        quote_position: Int32,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> FoundPosition:
+        """
+        Searches for a given quote in a text. Returns found quote start position in UTF-16 code units. Returns a 404 error if the quote is not found. Can be called synchronously
+
+        :param text: Text in which to search for the quote
+        :type text: :class:`FormattedText`
+        :param quote: Quote to search for
+        :type quote: :class:`FormattedText`
+        :param quote_position: Approximate quote position in UTF-16 code units
+        :type quote_position: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FoundPosition`
+        """
+
+        return await self.client.request(
+            SearchQuote(
+                text=text,
+                quote=quote,
+                quote_position=quote_position,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -14558,7 +17057,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14574,12 +17073,61 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def search_saved_messages(
+        self,
+        query: String,
+        from_message_id: Int53,
+        offset: Int32,
+        limit: Int32,
+        saved_messages_topic_id: Int53 = 0,
+        tag: typing.Optional[ReactionType] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> FoundChatMessages:
+        """
+        Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e. in order of decreasing message_id For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+
+        :param query: Query to search for
+        :type query: :class:`String`
+        :param from_message_id: Identifier of the message starting from which messages must be fetched; use 0 to get results from the last message
+        :type from_message_id: :class:`Int53`
+        :param offset: Specify 0 to get results from exactly the message from_message_id or a negative offset to get the specified message and some newer messages
+        :type offset: :class:`Int32`
+        :param limit: The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`Int32`
+        :param saved_messages_topic_id: If not 0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages
+        :type saved_messages_topic_id: :class:`Int53`
+        :param tag: Tag to search for; pass null to return all suitable messages, defaults to None
+        :type tag: :class:`ReactionType`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FoundChatMessages`
+        """
+
+        return await self.client.request(
+            SearchSavedMessages(
+                query=query,
+                from_message_id=from_message_id,
+                offset=offset,
+                limit=limit,
+                saved_messages_topic_id=saved_messages_topic_id,
+                tag=tag,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def search_secret_messages(
         self,
         chat_id: Int53,
-        query: String,
         offset: String,
         limit: Int32,
+        query: String = "",
         filter_: typing.Optional[SearchMessagesFilter] = None,
         *,
         request_id: str = None,
@@ -14590,17 +17138,17 @@ class API:
 
         :param chat_id: Identifier of the chat in which to search. Specify 0 to search in all secret chats
         :type chat_id: :class:`Int53`
-        :param query: Query to search for. If empty, searchChatMessages must be used instead
-        :type query: :class:`String`
         :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
         :type offset: :class:`String`
         :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
         :type limit: :class:`Int32`
+        :param query: Query to search for. If empty, searchChatMessages must be used instead
+        :type query: :class:`String`
         :param filter_: Additional filter for messages to search; pass null to search for all messages, defaults to None
         :type filter_: :class:`SearchMessagesFilter`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14610,9 +17158,9 @@ class API:
         return await self.client.request(
             SearchSecretMessages(
                 chat_id=chat_id,
-                query=query,
                 offset=offset,
                 limit=limit,
+                query=query,
                 filter=filter_,
             ),
             request_id=request_id,
@@ -14629,7 +17177,7 @@ class API:
         :type name: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14645,16 +17193,18 @@ class API:
         )
 
     async def search_sticker_sets(
-        self, query: String, *, request_id: str = None, request_timeout: int = None
+        self, sticker_type: StickerType, query: String, *, request_id: str = None, request_timeout: int = None
     ) -> StickerSets:
         """
-        Searches for ordinary sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
+        Searches for sticker sets by looking for specified query in their title and name. Excludes installed sticker sets from the results
 
+        :param sticker_type: Type of the sticker sets to return
+        :type sticker_type: :class:`StickerType`
         :param query: Query to search for
         :type query: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14663,6 +17213,7 @@ class API:
 
         return await self.client.request(
             SearchStickerSets(
+                sticker_type=sticker_type,
                 query=query,
             ),
             request_id=request_id,
@@ -14689,7 +17240,7 @@ class API:
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14729,7 +17280,7 @@ class API:
         :type return_none_for_empty_query: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14748,16 +17299,18 @@ class API:
         )
 
     async def search_user_by_phone_number(
-        self, phone_number: String, *, request_id: str = None, request_timeout: int = None
+        self, phone_number: String, only_local: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> User:
         """
         Searches a user by their phone number. Returns a 404 error if the user can't be found
 
         :param phone_number: Phone number to search for
         :type phone_number: :class:`String`
+        :param only_local: Pass true to get only locally available information without sending network requests
+        :type only_local: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14767,6 +17320,7 @@ class API:
         return await self.client.request(
             SearchUserByPhoneNumber(
                 phone_number=phone_number,
+                only_local=only_local,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -14780,7 +17334,7 @@ class API:
         :type token: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14807,7 +17361,7 @@ class API:
         :type web_app_short_name: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14829,11 +17383,11 @@ class API:
         """
         Sends Firebase Authentication SMS to the phone number of the user. Works only when the current authorization state is authorizationStateWaitCode and the server returned code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
 
-        :param token: SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
+        :param token: Play Integrity API or SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
         :type token: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14858,7 +17412,7 @@ class API:
         request_timeout: int = None
     ) -> Message:
         """
-        Invites a bot to a chat (if it is not yet a member) and sends it the /start command. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
+        Invites a bot to a chat (if it is not yet a member) and sends it the /start command; requires can_invite_users member right. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
 
         :param bot_user_id: Identifier of the bot
         :type bot_user_id: :class:`Int53`
@@ -14868,7 +17422,7 @@ class API:
         :type parameter: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14880,6 +17434,116 @@ class API:
                 bot_user_id=bot_user_id,
                 chat_id=chat_id,
                 parameter=parameter,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def send_business_message(
+        self,
+        business_connection_id: String,
+        chat_id: Int53,
+        effect_id: Int64,
+        input_message_content: InputMessageContent,
+        disable_notification: Bool = False,
+        protect_content: Bool = False,
+        reply_to: typing.Optional[InputMessageReplyTo] = None,
+        reply_markup: typing.Optional[ReplyMarkup] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> BusinessMessage:
+        """
+        Sends a message on behalf of a business account; for bots only. Returns the message after it was sent
+
+        :param business_connection_id: Unique identifier of business connection on behalf of which to send the request
+        :type business_connection_id: :class:`String`
+        :param chat_id: Target chat
+        :type chat_id: :class:`Int53`
+        :param effect_id: Identifier of the effect to apply to the message
+        :type effect_id: :class:`Int64`
+        :param input_message_content: The content of the message to be sent
+        :type input_message_content: :class:`InputMessageContent`
+        :param disable_notification: Pass true to disable notification for the message
+        :type disable_notification: :class:`Bool`
+        :param protect_content: Pass true if the content of the message must be protected from forwarding and saving
+        :type protect_content: :class:`Bool`
+        :param reply_to: Information about the message to be replied; pass null if none, defaults to None
+        :type reply_to: :class:`InputMessageReplyTo`, optional
+        :param reply_markup: Markup for replying to the message; pass null if none, defaults to None
+        :type reply_markup: :class:`ReplyMarkup`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BusinessMessage`
+        """
+
+        return await self.client.request(
+            SendBusinessMessage(
+                business_connection_id=business_connection_id,
+                chat_id=chat_id,
+                effect_id=effect_id,
+                input_message_content=input_message_content,
+                disable_notification=disable_notification,
+                protect_content=protect_content,
+                reply_to=reply_to,
+                reply_markup=reply_markup,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def send_business_message_album(
+        self,
+        business_connection_id: String,
+        chat_id: Int53,
+        effect_id: Int64,
+        input_message_contents: Vector[InputMessageContent],
+        disable_notification: Bool = False,
+        protect_content: Bool = False,
+        reply_to: typing.Optional[InputMessageReplyTo] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> BusinessMessages:
+        """
+        Sends 2-10 messages grouped together into an album on behalf of a business account; for bots only. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
+
+        :param business_connection_id: Unique identifier of business connection on behalf of which to send the request
+        :type business_connection_id: :class:`String`
+        :param chat_id: Target chat
+        :type chat_id: :class:`Int53`
+        :param effect_id: Identifier of the effect to apply to the message
+        :type effect_id: :class:`Int64`
+        :param input_message_contents: Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
+        :type input_message_contents: :class:`Vector[InputMessageContent]`
+        :param disable_notification: Pass true to disable notification for the message
+        :type disable_notification: :class:`Bool`
+        :param protect_content: Pass true if the content of the message must be protected from forwarding and saving
+        :type protect_content: :class:`Bool`
+        :param reply_to: Information about the message to be replied; pass null if none, defaults to None
+        :type reply_to: :class:`InputMessageReplyTo`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BusinessMessages`
+        """
+
+        return await self.client.request(
+            SendBusinessMessageAlbum(
+                business_connection_id=business_connection_id,
+                chat_id=chat_id,
+                effect_id=effect_id,
+                input_message_contents=input_message_contents,
+                disable_notification=disable_notification,
+                protect_content=protect_content,
+                reply_to=reply_to,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -14897,7 +17561,7 @@ class API:
         :type debug_information: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14925,7 +17589,7 @@ class API:
         :type log_file: :class:`InputFile`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14964,7 +17628,7 @@ class API:
         :type problems: :class:`Vector[CallProblem]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -14994,7 +17658,7 @@ class API:
         :type data: :class:`Bytes`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15013,6 +17677,7 @@ class API:
     async def send_chat_action(
         self,
         chat_id: Int53,
+        business_connection_id: String,
         message_thread_id: Int53 = 0,
         action: typing.Optional[ChatAction] = None,
         *,
@@ -15024,13 +17689,15 @@ class API:
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
-        :param message_thread_id: If not 0, a message thread identifier in which the action was performed
+        :param business_connection_id: Unique identifier of business connection on behalf of which to send the request; for bots only
+        :type business_connection_id: :class:`String`
+        :param message_thread_id: If not 0, the message thread identifier in which the action was performed
         :type message_thread_id: :class:`Int53`
         :param action: The action description; pass null to cancel the currently active action, defaults to None
         :type action: :class:`ChatAction`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15040,6 +17707,7 @@ class API:
         return await self.client.request(
             SendChatAction(
                 chat_id=chat_id,
+                business_connection_id=business_connection_id,
                 message_thread_id=message_thread_id,
                 action=action,
             ),
@@ -15059,7 +17727,7 @@ class API:
         :type parameters: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15085,7 +17753,7 @@ class API:
         :type email_address: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15107,7 +17775,7 @@ class API:
         result_id: String,
         message_thread_id: Int53 = 0,
         hide_via_bot: Bool = False,
-        reply_to: typing.Optional[MessageReplyTo] = None,
+        reply_to: typing.Optional[InputMessageReplyTo] = None,
         options: typing.Optional[MessageSendOptions] = None,
         *,
         request_id: str = None,
@@ -15122,17 +17790,17 @@ class API:
         :type query_id: :class:`Int64`
         :param result_id: Identifier of the inline query result
         :type result_id: :class:`String`
-        :param message_thread_id: If not 0, a message thread identifier in which the message will be sent
+        :param message_thread_id: If not 0, the message thread identifier in which the message will be sent
         :type message_thread_id: :class:`Int53`
         :param hide_via_bot: Pass true to hide the bot, via which the message is sent. Can be used only for bots getOption("animation_search_bot_username"), getOption("photo_search_bot_username"), and getOption("venue_search_bot_username")
         :type hide_via_bot: :class:`Bool`
-        :param reply_to: Identifier of the replied message or story; pass null if none, defaults to None
-        :type reply_to: :class:`MessageReplyTo`, optional
+        :param reply_to: Information about the message or story to be replied; pass null if none, defaults to None
+        :type reply_to: :class:`InputMessageReplyTo`, optional
         :param options: Options to be used to send the message; pass null to use default options, defaults to None
         :type options: :class:`MessageSendOptions`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15158,7 +17826,7 @@ class API:
         chat_id: Int53,
         input_message_content: InputMessageContent,
         message_thread_id: Int53 = 0,
-        reply_to: typing.Optional[MessageReplyTo] = None,
+        reply_to: typing.Optional[InputMessageReplyTo] = None,
         options: typing.Optional[MessageSendOptions] = None,
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
@@ -15172,17 +17840,17 @@ class API:
         :type chat_id: :class:`Int53`
         :param input_message_content: The content of the message to be sent
         :type input_message_content: :class:`InputMessageContent`
-        :param message_thread_id: If not 0, a message thread identifier in which the message will be sent
+        :param message_thread_id: If not 0, the message thread identifier in which the message will be sent
         :type message_thread_id: :class:`Int53`
-        :param reply_to: Identifier of the replied message or story; pass null if none, defaults to None
-        :type reply_to: :class:`MessageReplyTo`, optional
+        :param reply_to: Information about the message or story to be replied; pass null if none, defaults to None
+        :type reply_to: :class:`InputMessageReplyTo`, optional
         :param options: Options to be used to send the message; pass null to use default options, defaults to None
         :type options: :class:`MessageSendOptions`, optional
         :param reply_markup: Markup for replying to the message; pass null if none; for bots only, defaults to None
         :type reply_markup: :class:`ReplyMarkup`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15207,8 +17875,7 @@ class API:
         chat_id: Int53,
         input_message_contents: Vector[InputMessageContent],
         message_thread_id: Int53 = 0,
-        only_preview: Bool = False,
-        reply_to: typing.Optional[MessageReplyTo] = None,
+        reply_to: typing.Optional[InputMessageReplyTo] = None,
         options: typing.Optional[MessageSendOptions] = None,
         *,
         request_id: str = None,
@@ -15219,19 +17886,17 @@ class API:
 
         :param chat_id: Target chat
         :type chat_id: :class:`Int53`
-        :param input_message_contents: Contents of messages to be sent. At most 10 messages can be added to an album
+        :param input_message_contents: Contents of messages to be sent. At most 10 messages can be added to an album. All messages must have the same value of show_caption_above_media
         :type input_message_contents: :class:`Vector[InputMessageContent]`
-        :param message_thread_id: If not 0, a message thread identifier in which the messages will be sent
+        :param message_thread_id: If not 0, the message thread identifier in which the messages will be sent
         :type message_thread_id: :class:`Int53`
-        :param only_preview: Pass true to get fake messages instead of actually sending them
-        :type only_preview: :class:`Bool`
-        :param reply_to: Identifier of the replied message or story; pass null if none, defaults to None
-        :type reply_to: :class:`MessageReplyTo`, optional
+        :param reply_to: Information about the message or story to be replied; pass null if none, defaults to None
+        :type reply_to: :class:`InputMessageReplyTo`, optional
         :param options: Options to be used to send the messages; pass null to use default options, defaults to None
         :type options: :class:`MessageSendOptions`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15243,7 +17908,6 @@ class API:
                 chat_id=chat_id,
                 input_message_contents=input_message_contents,
                 message_thread_id=message_thread_id,
-                only_preview=only_preview,
                 reply_to=reply_to,
                 options=options,
             ),
@@ -15268,7 +17932,7 @@ class API:
         :type types: :class:`Vector[PassportElementType]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15290,8 +17954,8 @@ class API:
         payment_form_id: Int64,
         order_info_id: String,
         shipping_option_id: String,
-        credentials: InputCredentials,
         tip_amount: Int53,
+        credentials: typing.Optional[InputCredentials] = None,
         *,
         request_id: str = None,
         request_timeout: int = None
@@ -15307,13 +17971,13 @@ class API:
         :type order_info_id: :class:`String`
         :param shipping_option_id: Identifier of a chosen shipping option, if applicable
         :type shipping_option_id: :class:`String`
-        :param credentials: The credentials chosen by user for payment
-        :type credentials: :class:`InputCredentials`
         :param tip_amount: Chosen by the user amount of tip in the smallest units of the currency
         :type tip_amount: :class:`Int53`
+        :param credentials: The credentials chosen by user for payment; pass null for a payment in Telegram stars, defaults to None
+        :type credentials: :class:`InputCredentials`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15326,34 +17990,34 @@ class API:
                 payment_form_id=payment_form_id,
                 order_info_id=order_info_id,
                 shipping_option_id=shipping_option_id,
-                credentials=credentials,
                 tip_amount=tip_amount,
+                credentials=credentials,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def send_phone_number_confirmation_code(
+    async def send_phone_number_code(
         self,
-        hash_: String,
         phone_number: String,
+        type_: PhoneNumberCodeType,
         settings: typing.Optional[PhoneNumberAuthenticationSettings] = None,
         *,
         request_id: str = None,
         request_timeout: int = None
     ) -> AuthenticationCodeInfo:
         """
-        Sends phone number confirmation code to handle links of the type internalLinkTypePhoneNumberConfirmation
+        Sends a code to the specified phone number. Aborts previous phone number verification if there was one. On success, returns information about the sent code
 
-        :param hash_: Hash value from the link
-        :type hash_: :class:`String`
-        :param phone_number: Phone number value from the link
+        :param phone_number: The phone number, in international format
         :type phone_number: :class:`String`
+        :param type_: Type of the request for which the code is sent
+        :type type_: :class:`PhoneNumberCodeType`
         :param settings: Settings for the authentication of the user's phone number; pass null to use default settings, defaults to None
         :type settings: :class:`PhoneNumberAuthenticationSettings`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15361,43 +18025,72 @@ class API:
         """
 
         return await self.client.request(
-            SendPhoneNumberConfirmationCode(
-                hash=hash_,
+            SendPhoneNumberCode(
                 phone_number=phone_number,
+                type=type_,
                 settings=settings,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
 
-    async def send_phone_number_verification_code(
-        self,
-        phone_number: String,
-        settings: typing.Optional[PhoneNumberAuthenticationSettings] = None,
-        *,
-        request_id: str = None,
-        request_timeout: int = None
-    ) -> AuthenticationCodeInfo:
+    async def send_phone_number_firebase_sms(
+        self, token: String, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
         """
-        Sends a code to verify a phone number to be added to a user's Telegram Passport
+        Sends Firebase Authentication SMS to the specified phone number. Works only when received a code of the type authenticationCodeTypeFirebaseAndroid or authenticationCodeTypeFirebaseIos
 
-        :param phone_number: The phone number of the user, in international format
-        :type phone_number: :class:`String`
-        :param settings: Settings for the authentication of the user's phone number; pass null to use default settings, defaults to None
-        :type settings: :class:`PhoneNumberAuthenticationSettings`, optional
+        :param token: Play Integrity API or SafetyNet Attestation API token for the Android application, or secret from push notification for the iOS application
+        :type token: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.AuthenticationCodeInfo`
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
         return await self.client.request(
-            SendPhoneNumberVerificationCode(
-                phone_number=phone_number,
-                settings=settings,
+            SendPhoneNumberFirebaseSms(
+                token=token,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def send_quick_reply_shortcut_messages(
+        self,
+        chat_id: Int53,
+        shortcut_id: Int32,
+        sending_id: Int32,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Messages:
+        """
+        Sends messages from a quick reply shortcut. Requires Telegram Business subscription
+
+        :param chat_id: Identifier of the chat to which to send messages. The chat must be a private chat with a regular user
+        :type chat_id: :class:`Int53`
+        :param shortcut_id: Unique identifier of the quick reply shortcut
+        :type shortcut_id: :class:`Int32`
+        :param sending_id: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
+        :type sending_id: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Messages`
+        """
+
+        return await self.client.request(
+            SendQuickReplyShortcutMessages(
+                chat_id=chat_id,
+                shortcut_id=shortcut_id,
+                sending_id=sending_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -15405,10 +18098,12 @@ class API:
 
     async def send_story(
         self,
+        chat_id: Int53,
         content: InputStoryContent,
         privacy_settings: StoryPrivacySettings,
         active_period: Int32,
-        is_pinned: Bool = False,
+        from_story_full_id: StoryFullId,
+        is_posted_to_chat_page: Bool = False,
         protect_content: Bool = False,
         areas: typing.Optional[InputStoryAreas] = None,
         caption: typing.Optional[FormattedText] = None,
@@ -15417,25 +18112,29 @@ class API:
         request_timeout: int = None
     ) -> Story:
         """
-        Sends a new story. Returns a temporary story
+        Sends a new story to a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story
 
+        :param chat_id: Identifier of the chat that will post the story
+        :type chat_id: :class:`Int53`
         :param content: Content of the story
         :type content: :class:`InputStoryContent`
-        :param privacy_settings: The privacy settings for the story
+        :param privacy_settings: The privacy settings for the story; ignored for stories sent to supergroup and channel chats
         :type privacy_settings: :class:`StoryPrivacySettings`
         :param active_period: Period after which the story is moved to archive, in seconds; must be one of 6 * 3600, 12 * 3600, 86400, or 2 * 86400 for Telegram Premium users, and 86400 otherwise
         :type active_period: :class:`Int32`
-        :param is_pinned: Pass true to keep the story accessible after expiration
-        :type is_pinned: :class:`Bool`
+        :param from_story_full_id: Full identifier of the original story, which content was used to create the story
+        :type from_story_full_id: :class:`StoryFullId`
+        :param is_posted_to_chat_page: Pass true to keep the story accessible after expiration
+        :type is_posted_to_chat_page: :class:`Bool`
         :param protect_content: Pass true if the content of the story must be protected from forwarding and screenshotting
         :type protect_content: :class:`Bool`
         :param areas: Clickable rectangle areas to be shown on the story media; pass null if none, defaults to None
         :type areas: :class:`InputStoryAreas`, optional
-        :param caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters, defaults to None
+        :param caption: Story caption; pass null to use an empty caption; 0-getOption("story_caption_length_max") characters; can have entities only if getOption("can_use_text_entities_in_story_caption"), defaults to None
         :type caption: :class:`FormattedText`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15444,10 +18143,12 @@ class API:
 
         return await self.client.request(
             SendStory(
+                chat_id=chat_id,
                 content=content,
                 privacy_settings=privacy_settings,
                 active_period=active_period,
-                is_pinned=is_pinned,
+                from_story_full_id=from_story_full_id,
+                is_posted_to_chat_page=is_posted_to_chat_page,
                 protect_content=protect_content,
                 areas=areas,
                 caption=caption,
@@ -15476,7 +18177,7 @@ class API:
         :type parameters: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15513,7 +18214,7 @@ class API:
         :type data: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15530,6 +18231,39 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def set_accent_color(
+        self,
+        accent_color_id: Int32,
+        background_custom_emoji_id: typing.Optional[Int64] = 0,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes accent color and background custom emoji for the current user; for Telegram Premium users only
+
+        :param accent_color_id: Identifier of the accent color to use
+        :type accent_color_id: :class:`Int32`
+        :param background_custom_emoji_id: Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none, defaults to None
+        :type background_custom_emoji_id: :class:`Int64`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetAccentColor(
+                accent_color_id=accent_color_id,
+                background_custom_emoji_id=background_custom_emoji_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def set_account_ttl(self, ttl: AccountTtl, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Changes the period of inactivity after which the account of the current user will automatically be deleted
@@ -15538,7 +18272,7 @@ class API:
         :type ttl: :class:`AccountTtl`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15561,7 +18295,7 @@ class API:
         :type seconds: :class:`Double`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15571,6 +18305,34 @@ class API:
         return await self.client.request(
             SetAlarm(
                 seconds=seconds,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_application_verification_token(
+        self, verification_id: Int53, token: String, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Application verification has been completed. Can be called before authorization
+
+        :param verification_id: Unique identifier for the verification process as received from updateApplicationVerificationRequired
+        :type verification_id: :class:`Int53`
+        :param token: Play Integrity API token for the Android application, or secret from push notification for the iOS application; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
+        :type token: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetApplicationVerificationToken(
+                verification_id=verification_id,
+                token=token,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -15586,7 +18348,7 @@ class API:
         :type settings: :class:`ArchiveChatListSettings`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15611,7 +18373,7 @@ class API:
         :type email_address: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15643,7 +18405,7 @@ class API:
         :type settings: :class:`PhoneNumberAuthenticationSettings`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15671,7 +18433,7 @@ class API:
         :type type_: :class:`NetworkType`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15704,7 +18466,7 @@ class API:
         :type settings: :class:`ScopeAutosaveSettings`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15720,43 +18482,6 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def set_background(
-        self,
-        for_dark_theme: Bool = False,
-        background: typing.Optional[InputBackground] = None,
-        type_: typing.Optional[BackgroundType] = None,
-        *,
-        request_id: str = None,
-        request_timeout: int = None
-    ) -> Background:
-        """
-        Changes the background selected by the user; adds background to the list of installed backgrounds
-
-        :param for_dark_theme: Pass true if the background is changed for a dark theme
-        :type for_dark_theme: :class:`Bool`
-        :param background: The input background to use; pass null to create a new filled background or to remove the current background, defaults to None
-        :type background: :class:`InputBackground`, optional
-        :param type_: Background type; pass null to use the default type of the remote background or to remove the current background, defaults to None
-        :type type_: :class:`BackgroundType`, optional
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Background`
-        """
-
-        return await self.client.request(
-            SetBackground(
-                for_dark_theme=for_dark_theme,
-                background=background,
-                type=type_,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
     async def set_bio(self, bio: String, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Changes the bio of the current user
@@ -15765,7 +18490,7 @@ class API:
         :type bio: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15780,11 +18505,36 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def set_birthdate(
+        self, birthdate: typing.Optional[Birthdate] = None, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the birthdate of the current user
+
+        :param birthdate: The new value of the current user's birthdate; pass null to remove the birthdate, defaults to None
+        :type birthdate: :class:`Birthdate`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetBirthdate(
+                birthdate=birthdate,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def set_bot_info_description(
         self,
         bot_user_id: Int53,
-        language_code: String,
         description: String,
+        language_code: String = "",
         *,
         request_id: str = None,
         request_timeout: int = None
@@ -15794,13 +18544,13 @@ class API:
 
         :param bot_user_id: Identifier of the target bot
         :type bot_user_id: :class:`Int53`
-        :param language_code: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description
-        :type language_code: :class:`String`
         :param description: New bot's description on the specified language
         :type description: :class:`String`
+        :param language_code: A two-letter ISO 639-1 language code. If empty, the description will be shown to all users for whose languages there is no dedicated description
+        :type language_code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15810,8 +18560,8 @@ class API:
         return await self.client.request(
             SetBotInfoDescription(
                 bot_user_id=bot_user_id,
-                language_code=language_code,
                 description=description,
+                language_code=language_code,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -15820,8 +18570,8 @@ class API:
     async def set_bot_info_short_description(
         self,
         bot_user_id: Int53,
-        language_code: String,
         short_description: String,
+        language_code: String = "",
         *,
         request_id: str = None,
         request_timeout: int = None
@@ -15831,13 +18581,13 @@ class API:
 
         :param bot_user_id: Identifier of the target bot
         :type bot_user_id: :class:`Int53`
-        :param language_code: A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users for whose languages there is no dedicated description
-        :type language_code: :class:`String`
         :param short_description: New bot's short description on the specified language
         :type short_description: :class:`String`
+        :param language_code: A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users for whose languages there is no dedicated description
+        :type language_code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15847,8 +18597,8 @@ class API:
         return await self.client.request(
             SetBotInfoShortDescription(
                 bot_user_id=bot_user_id,
-                language_code=language_code,
                 short_description=short_description,
+                language_code=language_code,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -15857,7 +18607,7 @@ class API:
     async def set_bot_name(
         self,
         bot_user_id: Int53,
-        language_code: String,
+        language_code: String = "",
         name: String = "",
         *,
         request_id: str = None,
@@ -15874,7 +18624,7 @@ class API:
         :type name: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15908,7 +18658,7 @@ class API:
         :type photo: :class:`InputChatPhoto`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15936,7 +18686,7 @@ class API:
         :type error_message: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15947,6 +18697,209 @@ class API:
             SetBotUpdatesStatus(
                 pending_update_count=pending_update_count,
                 error_message=error_message,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_business_away_message_settings(
+        self,
+        away_message_settings: typing.Optional[BusinessAwayMessageSettings] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the business away message settings of the current user. Requires Telegram Business subscription
+
+        :param away_message_settings: The new settings for the away message of the business; pass null to disable the away message, defaults to None
+        :type away_message_settings: :class:`BusinessAwayMessageSettings`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetBusinessAwayMessageSettings(
+                away_message_settings=away_message_settings,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_business_connected_bot(
+        self, bot: BusinessConnectedBot, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Adds or changes business bot that is connected to the current user account
+
+        :param bot: Connection settings for the bot
+        :type bot: :class:`BusinessConnectedBot`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetBusinessConnectedBot(
+                bot=bot,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_business_greeting_message_settings(
+        self,
+        greeting_message_settings: typing.Optional[BusinessGreetingMessageSettings] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the business greeting message settings of the current user. Requires Telegram Business subscription
+
+        :param greeting_message_settings: The new settings for the greeting message of the business; pass null to disable the greeting message, defaults to None
+        :type greeting_message_settings: :class:`BusinessGreetingMessageSettings`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetBusinessGreetingMessageSettings(
+                greeting_message_settings=greeting_message_settings,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_business_location(
+        self, location: typing.Optional[BusinessLocation] = None, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the business location of the current user. Requires Telegram Business subscription
+
+        :param location: The new location of the business; pass null to remove the location, defaults to None
+        :type location: :class:`BusinessLocation`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetBusinessLocation(
+                location=location,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_business_opening_hours(
+        self,
+        opening_hours: typing.Optional[BusinessOpeningHours] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the business opening hours of the current user. Requires Telegram Business subscription
+
+        :param opening_hours: The new opening hours of the business; pass null to remove the opening hours; up to 28 time intervals can be specified, defaults to None
+        :type opening_hours: :class:`BusinessOpeningHours`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetBusinessOpeningHours(
+                opening_hours=opening_hours,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_business_start_page(
+        self,
+        start_page: typing.Optional[InputBusinessStartPage] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the business start page of the current user. Requires Telegram Business subscription
+
+        :param start_page: The new start page of the business; pass null to remove custom start page, defaults to None
+        :type start_page: :class:`InputBusinessStartPage`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetBusinessStartPage(
+                start_page=start_page,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_chat_accent_color(
+        self,
+        chat_id: Int53,
+        accent_color_id: Int32,
+        background_custom_emoji_id: typing.Optional[Int64] = 0,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes accent color and background custom emoji of a channel chat. Requires can_change_info administrator right
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param accent_color_id: Identifier of the accent color to use. The chat must have at least accentColor.min_channel_chat_boost_level boost level to pass the corresponding color
+        :type accent_color_id: :class:`Int32`
+        :param background_custom_emoji_id: Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. Use chatBoostLevelFeatures.can_set_background_custom_emoji to check whether a custom emoji can be set, defaults to None
+        :type background_custom_emoji_id: :class:`Int64`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetChatAccentColor(
+                chat_id=chat_id,
+                accent_color_id=accent_color_id,
+                background_custom_emoji_id=background_custom_emoji_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -15964,7 +18917,7 @@ class API:
         :type story_list: :class:`StoryList`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -15989,15 +18942,15 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+        Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
 
         :param chat_id: Identifier of the chat
         :type chat_id: :class:`Int53`
-        :param available_reactions: Reactions available in the chat. All emoji reactions must be active
+        :param available_reactions: Reactions available in the chat. All explicitly specified emoji reactions must be active. In channel chats up to the chat's boost level custom emoji reactions can be explicitly specified
         :type available_reactions: :class:`ChatAvailableReactions`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16017,6 +18970,7 @@ class API:
         self,
         chat_id: Int53,
         dark_theme_dimming: Int32,
+        only_for_self: Bool = False,
         background: typing.Optional[InputBackground] = None,
         type_: typing.Optional[BackgroundType] = None,
         *,
@@ -16024,19 +18978,21 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Changes the background in a specific chat. Supported only in private and secret chats with non-deleted users
+        Sets the background in a specific chat. Supported only in private and secret chats with non-deleted users, and in chats with sufficient boost level and can_change_info administrator right
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
-        :param dark_theme_dimming: Dimming of the background in dark themes, as a percentage; 0-100
+        :param dark_theme_dimming: Dimming of the background in dark themes, as a percentage; 0-100. Applied only to Wallpaper and Fill types of background
         :type dark_theme_dimming: :class:`Int32`
-        :param background: The input background to use; pass null to create a new filled background or to remove the current background, defaults to None
+        :param only_for_self: Pass true to set background only for self; pass false to set background for all chat users. Always false for backgrounds set in boosted chats. Background can be set for both users only by Telegram Premium users and if set background isn't of the type inputBackgroundPrevious
+        :type only_for_self: :class:`Bool`
+        :param background: The input background to use; pass null to create a new filled or chat theme background, defaults to None
         :type background: :class:`InputBackground`, optional
-        :param type_: Background type; pass null to remove the current background, defaults to None
+        :param type_: Background type; pass null to use default background type for the chosen background; backgroundTypeChatTheme isn't supported for private and secret chats. Use chatBoostLevelFeatures.chat_theme_background_count and chatBoostLevelFeatures.can_set_custom_background to check whether the background type can be set in the boosted chat, defaults to None
         :type type_: :class:`BackgroundType`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16047,6 +19003,7 @@ class API:
             SetChatBackground(
                 chat_id=chat_id,
                 dark_theme_dimming=dark_theme_dimming,
+                only_for_self=only_for_self,
                 background=background,
                 type=type_,
             ),
@@ -16066,7 +19023,7 @@ class API:
         :type client_data: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16086,7 +19043,7 @@ class API:
         self, chat_id: Int53, description: String = "", *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+        Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
 
         :param chat_id: Identifier of the chat
         :type chat_id: :class:`Int53`
@@ -16094,7 +19051,7 @@ class API:
         :type description: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16116,13 +19073,13 @@ class API:
         """
         Changes the discussion group of a channel chat; requires can_change_info administrator right in the channel if it is specified
 
-        :param chat_id: Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)
+        :param chat_id: Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages member right in the supergroup)
         :type chat_id: :class:`Int53`
         :param discussion_chat_id: Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups. Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
         :type discussion_chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16152,13 +19109,13 @@ class API:
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
-        :param message_thread_id: If not 0, a message thread identifier in which the draft was changed
+        :param message_thread_id: If not 0, the message thread identifier in which the draft was changed
         :type message_thread_id: :class:`Int53`
-        :param draft_message: New draft message; pass null to remove the draft, defaults to None
+        :param draft_message: New draft message; pass null to remove the draft. All files in draft message content must be of the type inputFileLocal. Media thumbnails and captions are ignored, defaults to None
         :type draft_message: :class:`DraftMessage`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16170,6 +19127,39 @@ class API:
                 chat_id=chat_id,
                 message_thread_id=message_thread_id,
                 draft_message=draft_message,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_chat_emoji_status(
+        self,
+        chat_id: Int53,
+        emoji_status: typing.Optional[EmojiStatus] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the emoji status of a chat. Use chatBoostLevelFeatures.can_set_emoji_status to check whether an emoji status can be set. Requires can_change_info administrator right
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param emoji_status: New emoji status; pass null to remove emoji status, defaults to None
+        :type emoji_status: :class:`EmojiStatus`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetChatEmojiStatus(
+                chat_id=chat_id,
+                emoji_status=emoji_status,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -16187,7 +19177,7 @@ class API:
         :type location: :class:`ChatLocation`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16213,7 +19203,7 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
+        Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member, and can_restrict_members administrator right to change restrictions of a user. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
@@ -16223,7 +19213,7 @@ class API:
         :type status: :class:`ChatMemberStatus`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16257,7 +19247,7 @@ class API:
         :type message_auto_delete_time: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16285,7 +19275,7 @@ class API:
         :type message_sender_id: :class:`MessageSender`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16318,7 +19308,7 @@ class API:
         :type notification_settings: :class:`ChatNotificationSettings`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16346,7 +19336,7 @@ class API:
         :type permissions: :class:`ChatPermissions`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16371,7 +19361,7 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
+        Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info member right
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
@@ -16379,7 +19369,7 @@ class API:
         :type photo: :class:`InputChatPhoto`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16395,11 +19385,76 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def set_chat_pinned_stories(
+        self, chat_id: Int53, story_ids: Vector[Int32], *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the list of pinned stories on a chat page; requires can_edit_stories right in the chat
+
+        :param chat_id: Identifier of the chat that posted the stories
+        :type chat_id: :class:`Int53`
+        :param story_ids: New list of pinned stories. All stories must be posted to the chat page first. There can be up to getOption("pinned_story_count_max") pinned stories on a chat page
+        :type story_ids: :class:`Vector[Int32]`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetChatPinnedStories(
+                chat_id=chat_id,
+                story_ids=story_ids,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_chat_profile_accent_color(
+        self,
+        chat_id: Int53,
+        profile_accent_color_id: Int32,
+        profile_background_custom_emoji_id: typing.Optional[Int64] = 0,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes accent color and background custom emoji for profile of a supergroup or channel chat. Requires can_change_info administrator right
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param profile_accent_color_id: Identifier of the accent color to use for profile; pass -1 if none. The chat must have at least profileAccentColor.min_supergroup_chat_boost_level for supergroups or profileAccentColor.min_channel_chat_boost_level for channels boost level to pass the corresponding color
+        :type profile_accent_color_id: :class:`Int32`
+        :param profile_background_custom_emoji_id: Identifier of a custom emoji to be shown on the chat's profile photo background; 0 if none. Use chatBoostLevelFeatures.can_set_profile_background_custom_emoji to check whether a custom emoji can be set, defaults to None
+        :type profile_background_custom_emoji_id: :class:`Int64`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetChatProfileAccentColor(
+                chat_id=chat_id,
+                profile_accent_color_id=profile_accent_color_id,
+                profile_background_custom_emoji_id=profile_background_custom_emoji_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def set_chat_slow_mode_delay(
         self, chat_id: Int53, slow_mode_delay: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights
+        Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members right
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
@@ -16407,7 +19462,7 @@ class API:
         :type slow_mode_delay: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16435,7 +19490,7 @@ class API:
         :type theme_name: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16455,7 +19510,7 @@ class API:
         self, chat_id: Int53, title: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
+        Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info member right
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
@@ -16463,7 +19518,7 @@ class API:
         :type title: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16489,7 +19544,7 @@ class API:
         :type user_ids: :class:`Vector[Int53]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16506,8 +19561,8 @@ class API:
 
     async def set_commands(
         self,
-        language_code: String,
         commands: Vector[BotCommand],
+        language_code: String = "",
         scope: typing.Optional[BotCommandScope] = None,
         *,
         request_id: str = None,
@@ -16516,15 +19571,15 @@ class API:
         """
         Sets the list of commands supported by the bot for the given user scope and language; for bots only
 
-        :param language_code: A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
-        :type language_code: :class:`String`
         :param commands: List of the bot's commands
         :type commands: :class:`Vector[BotCommand]`
+        :param language_code: A two-letter ISO 639-1 language code. If empty, the commands will be applied to all users from the given scope, for which language there are no dedicated commands
+        :type language_code: :class:`String`
         :param scope: The scope to which the commands are relevant; pass null to change commands in the default bot command scope, defaults to None
         :type scope: :class:`BotCommandScope`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16533,8 +19588,8 @@ class API:
 
         return await self.client.request(
             SetCommands(
-                language_code=language_code,
                 commands=commands,
+                language_code=language_code,
                 scope=scope,
             ),
             request_id=request_id,
@@ -16545,15 +19600,15 @@ class API:
         self, name: String, custom_emoji_id: Int64, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Sets a custom emoji sticker set thumbnail; for bots only
+        Sets a custom emoji sticker set thumbnail
 
-        :param name: Sticker set name
+        :param name: Sticker set name. The sticker set must be owned by the current user
         :type name: :class:`String`
         :param custom_emoji_id: Identifier of the custom emoji from the sticker set, which will be set as sticker set thumbnail; pass 0 to remove the sticker set thumbnail
         :type custom_emoji_id: :class:`Int64`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16586,7 +19641,7 @@ class API:
         :type strings: :class:`Vector[LanguagePackString]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16619,7 +19674,7 @@ class API:
         :type new_string: :class:`LanguagePackString`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16645,7 +19700,7 @@ class API:
         :type new_encryption_key: :class:`Bytes`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16655,6 +19710,43 @@ class API:
         return await self.client.request(
             SetDatabaseEncryptionKey(
                 new_encryption_key=new_encryption_key,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_default_background(
+        self,
+        for_dark_theme: Bool = False,
+        background: typing.Optional[InputBackground] = None,
+        type_: typing.Optional[BackgroundType] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Background:
+        """
+        Sets default background for chats; adds the background to the list of installed backgrounds
+
+        :param for_dark_theme: Pass true if the background is set for a dark theme
+        :type for_dark_theme: :class:`Bool`
+        :param background: The input background to use; pass null to create a new filled background, defaults to None
+        :type background: :class:`InputBackground`, optional
+        :param type_: Background type; pass null to use the default type of the remote background; backgroundTypeChatTheme isn't supported, defaults to None
+        :type type_: :class:`BackgroundType`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Background`
+        """
+
+        return await self.client.request(
+            SetDefaultBackground(
+                for_dark_theme=for_dark_theme,
+                background=background,
+                type=type_,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -16674,7 +19766,7 @@ class API:
         :type default_channel_administrator_rights: :class:`ChatAdministratorRights`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16703,7 +19795,7 @@ class API:
         :type default_group_administrator_rights: :class:`ChatAdministratorRights`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16732,7 +19824,7 @@ class API:
         :type message_auto_delete_time: :class:`MessageAutoDeleteTime`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16757,7 +19849,7 @@ class API:
         :type reaction_type: :class:`ReactionType`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16782,7 +19874,7 @@ class API:
         :type emoji_status: :class:`EmojiStatus`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16817,7 +19909,7 @@ class API:
         :type expected_size: :class:`Int53`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16854,7 +19946,7 @@ class API:
         :type notification_settings: :class:`ChatNotificationSettings`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16900,7 +19992,7 @@ class API:
         :type force: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16923,7 +20015,7 @@ class API:
     async def set_group_call_participant_is_speaking(
         self,
         group_call_id: Int32,
-        audio_source: Int32,
+        audio_source: Int32 = 0,
         is_speaking: Bool = False,
         *,
         request_id: str = None,
@@ -16940,7 +20032,7 @@ class API:
         :type is_speaking: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -16977,7 +20069,7 @@ class API:
         :type volume_level: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17006,7 +20098,7 @@ class API:
         :type title: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17032,7 +20124,7 @@ class API:
         :type inactive_session_ttl_days: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17073,7 +20165,7 @@ class API:
         :type force: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17094,13 +20186,13 @@ class API:
 
     async def set_location(self, location: Location, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
-        Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer
+        Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer. Must not be called if the user has a business location
 
         :param location: The new location of the user
         :type location: :class:`Location`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17123,7 +20215,7 @@ class API:
         :type log_stream: :class:`LogStream`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17150,7 +20242,7 @@ class API:
         :type new_verbosity_level: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17176,7 +20268,7 @@ class API:
         :type new_verbosity_level: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17195,13 +20287,13 @@ class API:
         self, new_login_email_address: String, *, request_id: str = None, request_timeout: int = None
     ) -> EmailAddressAuthenticationCodeInfo:
         """
-        Changes the login email address of the user. The email address can be changed only if the current user already has login email and passwordState.login_email_address_pattern is non-empty. The change will not be applied until the new login email address is confirmed with checkLoginEmailAddressCode. To use Apple ID/Google ID instead of a email address, call checkLoginEmailAddressCode directly
+        Changes the login email address of the user. The email address can be changed only if the current user already has login email and passwordState.login_email_address_pattern is non-empty. The change will not be applied until the new login email address is confirmed with checkLoginEmailAddressCode. To use Apple ID/Google ID instead of an email address, call checkLoginEmailAddressCode directly
 
         :param new_login_email_address: New login email address
         :type new_login_email_address: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17228,7 +20320,7 @@ class API:
         :type menu_button: :class:`BotMenuButton`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17239,6 +20331,84 @@ class API:
             SetMenuButton(
                 user_id=user_id,
                 menu_button=menu_button,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_message_fact_check(
+        self,
+        chat_id: Int53,
+        message_id: Int53,
+        text: typing.Optional[FormattedText] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the fact-check of a message. Can be only used if getOption("can_edit_fact_check") == true
+
+        :param chat_id: The channel chat the message belongs to
+        :type chat_id: :class:`Int53`
+        :param message_id: Identifier of the message. The message must be one of the following types: messageAnimation, messageAudio, messageDocument, messagePhoto, messageText, messageVideo
+        :type message_id: :class:`Int53`
+        :param text: New text of the fact-check; 0-getOption("fact_check_length_max") characters; pass null to remove it. Only Bold, Italic, and TextUrl entities with https://t.me/ links are supported, defaults to None
+        :type text: :class:`FormattedText`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetMessageFactCheck(
+                chat_id=chat_id,
+                message_id=message_id,
+                text=text,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_message_reactions(
+        self,
+        chat_id: Int53,
+        message_id: Int53,
+        reaction_types: Vector[ReactionType],
+        is_big: Bool = False,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Sets reactions on a message; for bots only
+
+        :param chat_id: Identifier of the chat to which the message belongs
+        :type chat_id: :class:`Int53`
+        :param message_id: Identifier of the message
+        :type message_id: :class:`Int53`
+        :param reaction_types: Types of the reaction to set
+        :type reaction_types: :class:`Vector[ReactionType]`
+        :param is_big: Pass true if the reactions are added with a big animation
+        :type is_big: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetMessageReactions(
+                chat_id=chat_id,
+                message_id=message_id,
+                reaction_types=reaction_types,
+                is_big=is_big,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -17261,7 +20431,7 @@ class API:
         :type block_list: :class:`BlockList`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17289,7 +20459,7 @@ class API:
         :type last_name: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17315,7 +20485,7 @@ class API:
         :type type_: :class:`NetworkType`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17325,6 +20495,31 @@ class API:
         return await self.client.request(
             SetNetworkType(
                 type=type_,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_new_chat_privacy_settings(
+        self, settings: NewChatPrivacySettings, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes privacy settings for new chat creation; can be used only if getOption("can_set_new_chat_privacy_settings")
+
+        :param settings: New settings
+        :type settings: :class:`NewChatPrivacySettings`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetNewChatPrivacySettings(
+                settings=settings,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -17347,7 +20542,7 @@ class API:
         :type value: :class:`OptionValue`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17375,7 +20570,7 @@ class API:
         :type password: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17408,7 +20603,7 @@ class API:
         :type errors: :class:`Vector[InputPassportElementError]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17450,7 +20645,7 @@ class API:
         :type new_recovery_email_address: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17469,6 +20664,29 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def set_personal_chat(self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None) -> Ok:
+        """
+        Changes the personal chat of the current user
+
+        :param chat_id: Identifier of the new personal chat; pass 0 to remove the chat. Use getSuitablePersonalChats to get suitable chats
+        :type chat_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetPersonalChat(
+                chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def set_pinned_chats(
         self, chat_list: ChatList, chat_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
@@ -17481,7 +20699,7 @@ class API:
         :type chat_ids: :class:`Vector[Int53]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17501,7 +20719,7 @@ class API:
         self, chat_id: Int53, message_thread_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Changes the order of pinned forum topics
+        Changes the order of pinned forum topics; requires can_manage_topics right in the supergroup
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
@@ -17509,7 +20727,7 @@ class API:
         :type message_thread_ids: :class:`Vector[Int53]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17520,6 +20738,31 @@ class API:
             SetPinnedForumTopics(
                 chat_id=chat_id,
                 message_thread_ids=message_thread_ids,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_pinned_saved_messages_topics(
+        self, saved_messages_topic_ids: Vector[Int53], *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the order of pinned Saved Messages topics
+
+        :param saved_messages_topic_ids: Identifiers of the new pinned Saved Messages topics
+        :type saved_messages_topic_ids: :class:`Vector[Int53]`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetPinnedSavedMessagesTopics(
+                saved_messages_topic_ids=saved_messages_topic_ids,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -17545,7 +20788,7 @@ class API:
         :type option_ids: :class:`Vector[Int32]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17557,6 +20800,39 @@ class API:
                 chat_id=chat_id,
                 message_id=message_id,
                 option_ids=option_ids,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_profile_accent_color(
+        self,
+        profile_accent_color_id: Int32,
+        profile_background_custom_emoji_id: typing.Optional[Int64] = 0,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes accent color and background custom emoji for profile of the current user; for Telegram Premium users only
+
+        :param profile_accent_color_id: Identifier of the accent color to use for profile; pass -1 if none
+        :type profile_accent_color_id: :class:`Int32`
+        :param profile_background_custom_emoji_id: Identifier of a custom emoji to be shown on the user's profile photo background; 0 if none, defaults to None
+        :type profile_background_custom_emoji_id: :class:`Int64`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetProfileAccentColor(
+                profile_accent_color_id=profile_accent_color_id,
+                profile_background_custom_emoji_id=profile_background_custom_emoji_id,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -17574,7 +20850,7 @@ class API:
         :type is_public: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17585,6 +20861,88 @@ class API:
             SetProfilePhoto(
                 photo=photo,
                 is_public=is_public,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_quick_reply_shortcut_name(
+        self, shortcut_id: Int32, name: String, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes name of a quick reply shortcut
+
+        :param shortcut_id: Unique identifier of the quick reply shortcut
+        :type shortcut_id: :class:`Int32`
+        :param name: New name for the shortcut. Use checkQuickReplyShortcutName to check its validness
+        :type name: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetQuickReplyShortcutName(
+                shortcut_id=shortcut_id,
+                name=name,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_reaction_notification_settings(
+        self,
+        notification_settings: ReactionNotificationSettings,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes notification settings for reactions
+
+        :param notification_settings: The new notification settings for reactions
+        :type notification_settings: :class:`ReactionNotificationSettings`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetReactionNotificationSettings(
+                notification_settings=notification_settings,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_read_date_privacy_settings(
+        self, settings: ReadDatePrivacySettings, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes privacy settings for message read date
+
+        :param settings: New settings
+        :type settings: :class:`ReadDatePrivacySettings`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetReadDatePrivacySettings(
+                settings=settings,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -17607,7 +20965,7 @@ class API:
         :type new_recovery_email_address: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17618,6 +20976,34 @@ class API:
             SetRecoveryEmailAddress(
                 password=password,
                 new_recovery_email_address=new_recovery_email_address,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_saved_messages_tag_label(
+        self, tag: ReactionType, label: String = "", *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes label of a Saved Messages tag; for Telegram Premium users only
+
+        :param tag: The tag which label will be changed
+        :type tag: :class:`ReactionType`
+        :param label: New label for the tag; 0-12 characters
+        :type label: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetSavedMessagesTagLabel(
+                tag=tag,
+                label=label,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -17640,7 +21026,7 @@ class API:
         :type notification_settings: :class:`ScopeNotificationSettings`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17660,7 +21046,7 @@ class API:
         self, sticker: InputFile, emojis: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Changes the list of emoji corresponding to a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+        Changes the list of emoji corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
 
         :param sticker: Sticker
         :type sticker: :class:`InputFile`
@@ -17668,7 +21054,7 @@ class API:
         :type emojis: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17688,7 +21074,7 @@ class API:
         self, sticker: InputFile, keywords: Vector[String], *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Changes the list of keywords of a sticker; for bots only. The sticker must belong to a regular or custom emoji sticker set created by the bot
+        Changes the list of keywords of a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
 
         :param sticker: Sticker
         :type sticker: :class:`InputFile`
@@ -17696,7 +21082,7 @@ class API:
         :type keywords: :class:`Vector[String]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17721,7 +21107,7 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot
+        Changes the mask position of a mask sticker. The sticker must belong to a mask sticker set that is owned by the current user
 
         :param sticker: Sticker
         :type sticker: :class:`InputFile`
@@ -17729,7 +21115,7 @@ class API:
         :type mask_position: :class:`MaskPosition`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17749,7 +21135,7 @@ class API:
         self, sticker: InputFile, position: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
+        Changes the position of a sticker in the set to which it belongs. The sticker set must be owned by the current user
 
         :param sticker: Sticker
         :type sticker: :class:`InputFile`
@@ -17757,7 +21143,7 @@ class API:
         :type position: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17778,22 +21164,25 @@ class API:
         user_id: Int53,
         name: String,
         thumbnail: typing.Optional[InputFile] = None,
+        format: typing.Optional[StickerFormat] = None,
         *,
         request_id: str = None,
         request_timeout: int = None
     ) -> Ok:
         """
-        Sets a sticker set thumbnail; for bots only
+        Sets a sticker set thumbnail
 
-        :param user_id: Sticker set owner
+        :param user_id: Sticker set owner; ignored for regular users
         :type user_id: :class:`Int53`
-        :param name: Sticker set name
+        :param name: Sticker set name. The sticker set must be owned by the current user
         :type name: :class:`String`
-        :param thumbnail: Thumbnail to set in PNG, TGS, or WEBM format; pass null to remove the sticker set thumbnail. Thumbnail format must match the format of stickers in the set, defaults to None
+        :param thumbnail: Thumbnail to set; pass null to remove the sticker set thumbnail, defaults to None
         :type thumbnail: :class:`InputFile`, optional
+        :param format: Format of the thumbnail; pass null if thumbnail is removed, defaults to None
+        :type format: :class:`StickerFormat`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17805,6 +21194,7 @@ class API:
                 user_id=user_id,
                 name=name,
                 thumbnail=thumbnail,
+                format=format,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -17814,15 +21204,15 @@ class API:
         self, name: String, title: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Sets a sticker set title; for bots only
+        Sets a sticker set title
 
-        :param name: Sticker set name
+        :param name: Sticker set name. The sticker set must be owned by the current user
         :type name: :class:`String`
         :param title: New sticker set title
         :type title: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17847,7 +21237,7 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Changes privacy settings of a previously sent story
+        Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_be_edited == true
 
         :param story_id: Identifier of the story
         :type story_id: :class:`Int32`
@@ -17855,7 +21245,7 @@ class API:
         :type privacy_settings: :class:`StoryPrivacySettings`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17882,7 +21272,7 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Changes chosen reaction on a story
+        Changes chosen reaction on a story that has already been sent
 
         :param story_sender_chat_id: The identifier of the sender of the story
         :type story_sender_chat_id: :class:`Int53`
@@ -17894,7 +21284,7 @@ class API:
         :type reaction_type: :class:`ReactionType`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17912,6 +21302,39 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def set_supergroup_custom_emoji_sticker_set(
+        self,
+        supergroup_id: Int53,
+        custom_emoji_sticker_set_id: Int64,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the custom emoji sticker set of a supergroup; requires can_change_info administrator right. The chat must have at least chatBoostFeatures.min_custom_emoji_sticker_set_boost_level boost level to pass the corresponding color
+
+        :param supergroup_id: Identifier of the supergroup
+        :type supergroup_id: :class:`Int53`
+        :param custom_emoji_sticker_set_id: New value of the custom emoji sticker set identifier for the supergroup. Use 0 to remove the custom emoji sticker set in the supergroup
+        :type custom_emoji_sticker_set_id: :class:`Int64`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetSupergroupCustomEmojiStickerSet(
+                supergroup_id=supergroup_id,
+                custom_emoji_sticker_set_id=custom_emoji_sticker_set_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def set_supergroup_sticker_set(
         self, supergroup_id: Int53, sticker_set_id: Int64, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
@@ -17924,7 +21347,7 @@ class API:
         :type sticker_set_id: :class:`Int64`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17935,6 +21358,39 @@ class API:
             SetSupergroupStickerSet(
                 supergroup_id=supergroup_id,
                 sticker_set_id=sticker_set_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_supergroup_unrestrict_boost_count(
+        self,
+        supergroup_id: Int53,
+        unrestrict_boost_count: Int32,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; requires can_restrict_members administrator right
+
+        :param supergroup_id: Identifier of the supergroup
+        :type supergroup_id: :class:`Int53`
+        :param unrestrict_boost_count: New value of the unrestrict_boost_count supergroup setting; 0-8. Use 0 to remove the setting
+        :type unrestrict_boost_count: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetSupergroupUnrestrictBoostCount(
+                supergroup_id=supergroup_id,
+                unrestrict_boost_count=unrestrict_boost_count,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -17952,7 +21408,7 @@ class API:
         :type username: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -17970,22 +21426,20 @@ class API:
 
     async def set_tdlib_parameters(
         self,
-        database_directory: String,
-        files_directory: String,
         database_encryption_key: Bytes,
         api_id: Int32,
         api_hash: String,
         system_language_code: String,
         device_model: String,
-        system_version: String,
         application_version: String,
         use_test_dc: Bool = False,
+        database_directory: String = "",
+        files_directory: String = "",
         use_file_database: Bool = False,
         use_chat_info_database: Bool = False,
         use_message_database: Bool = False,
         use_secret_chats: Bool = False,
-        enable_storage_optimizer: Bool = True,
-        ignore_file_names: Bool = True,
+        system_version: String = "",
         *,
         request_id: str = None,
         request_timeout: int = None
@@ -17993,10 +21447,6 @@ class API:
         """
         Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
 
-        :param database_directory: The path to the directory for the persistent database; if empty, the current working directory will be used
-        :type database_directory: :class:`String`
-        :param files_directory: The path to the directory for storing files; if empty, database_directory will be used
-        :type files_directory: :class:`String`
         :param database_encryption_key: Encryption key for the database. If the encryption key is invalid, then an error with code 401 will be returned
         :type database_encryption_key: :class:`Bytes`
         :param api_id: Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
@@ -18007,12 +21457,14 @@ class API:
         :type system_language_code: :class:`String`
         :param device_model: Model of the device the application is being run on; must be non-empty
         :type device_model: :class:`String`
-        :param system_version: Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
-        :type system_version: :class:`String`
         :param application_version: Application version; must be non-empty
         :type application_version: :class:`String`
         :param use_test_dc: Pass true to use Telegram test environment instead of the production environment
         :type use_test_dc: :class:`Bool`
+        :param database_directory: The path to the directory for the persistent database; if empty, the current working directory will be used
+        :type database_directory: :class:`String`
+        :param files_directory: The path to the directory for storing files; if empty, database_directory will be used
+        :type files_directory: :class:`String`
         :param use_file_database: Pass true to keep information about downloaded and uploaded files between application restarts
         :type use_file_database: :class:`Bool`
         :param use_chat_info_database: Pass true to keep cache of users, basic groups, supergroups, channels and secret chats between restarts. Implies use_file_database
@@ -18021,13 +21473,11 @@ class API:
         :type use_message_database: :class:`Bool`
         :param use_secret_chats: Pass true to enable support for secret chats
         :type use_secret_chats: :class:`Bool`
-        :param enable_storage_optimizer: Pass true to automatically delete old files in background
-        :type enable_storage_optimizer: :class:`Bool`
-        :param ignore_file_names: Pass true to ignore original file names for downloaded files. Otherwise, downloaded files are saved under names as close as possible to the original name
-        :type ignore_file_names: :class:`Bool`
+        :param system_version: Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
+        :type system_version: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18036,22 +21486,20 @@ class API:
 
         return await self.client.request(
             SetTdlibParameters(
-                database_directory=database_directory,
-                files_directory=files_directory,
                 database_encryption_key=database_encryption_key,
                 api_id=api_id,
                 api_hash=api_hash,
                 system_language_code=system_language_code,
                 device_model=device_model,
-                system_version=system_version,
                 application_version=application_version,
                 use_test_dc=use_test_dc,
+                database_directory=database_directory,
+                files_directory=files_directory,
                 use_file_database=use_file_database,
                 use_chat_info_database=use_chat_info_database,
                 use_message_database=use_message_database,
                 use_secret_chats=use_secret_chats,
-                enable_storage_optimizer=enable_storage_optimizer,
-                ignore_file_names=ignore_file_names,
+                system_version=system_version,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -18074,7 +21522,7 @@ class API:
         :type photo: :class:`InputChatPhoto`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18107,7 +21555,7 @@ class API:
         :type rules: :class:`UserPrivacySettingRules`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18135,7 +21583,7 @@ class API:
         :type message: :class:`FormattedText`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18159,7 +21607,7 @@ class API:
         :type username: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18191,7 +21639,7 @@ class API:
         :type default_participant_id: :class:`MessageSender`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18233,7 +21681,7 @@ class API:
         :type only_check: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18260,7 +21708,7 @@ class API:
         :type user_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18275,19 +21723,19 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def share_user_with_bot(
+    async def share_users_with_bot(
         self,
         chat_id: Int53,
         message_id: Int53,
         button_id: Int32,
-        shared_user_id: Int53,
+        shared_user_ids: Vector[Int53],
         only_check: Bool = False,
         *,
         request_id: str = None,
         request_timeout: int = None
     ) -> Ok:
         """
-        Shares a user after pressing a keyboardButtonTypeRequestUser button with the bot
+        Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
 
         :param chat_id: Identifier of the chat with the bot
         :type chat_id: :class:`Int53`
@@ -18295,13 +21743,13 @@ class API:
         :type message_id: :class:`Int53`
         :param button_id: Identifier of the button
         :type button_id: :class:`Int32`
-        :param shared_user_id: Identifier of the shared user
-        :type shared_user_id: :class:`Int53`
-        :param only_check: Pass true to check that the user can be shared by the button instead of actually sharing them
+        :param shared_user_ids: Identifiers of the shared users
+        :type shared_user_ids: :class:`Vector[Int53]`
+        :param only_check: Pass true to check that the users can be shared by the button instead of actually sharing them
         :type only_check: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18309,11 +21757,11 @@ class API:
         """
 
         return await self.client.request(
-            ShareUserWithBot(
+            ShareUsersWithBot(
                 chat_id=chat_id,
                 message_id=message_id,
                 button_id=button_id,
-                shared_user_id=shared_user_id,
+                shared_user_ids=shared_user_ids,
                 only_check=only_check,
             ),
             request_id=request_id,
@@ -18343,7 +21791,7 @@ class API:
         :type use_portrait_orientation: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18381,7 +21829,7 @@ class API:
         :type payload: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18408,7 +21856,7 @@ class API:
         :type group_call_id: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18433,7 +21881,7 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set
+        Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
 
         :param chat_id: Identifier of the chat to which the poll belongs
         :type chat_id: :class:`Int53`
@@ -18443,7 +21891,7 @@ class API:
         :type reply_markup: :class:`ReplyMarkup`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18472,7 +21920,7 @@ class API:
         :type photo: :class:`InputChatPhoto`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18498,7 +21946,7 @@ class API:
         :type language_pack_id: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18532,7 +21980,7 @@ class API:
         :type session_id: :class:`Int64`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18555,7 +22003,7 @@ class API:
         :type x: :class:`Bytes`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18589,7 +22037,7 @@ class API:
         :type x: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18614,7 +22062,7 @@ class API:
         :type x: :class:`Vector[Int32]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18639,7 +22087,7 @@ class API:
         :type x: :class:`Vector[TestInt]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18664,7 +22112,7 @@ class API:
         :type x: :class:`Vector[String]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18689,7 +22137,7 @@ class API:
         :type x: :class:`Vector[TestString]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18752,7 +22200,7 @@ class API:
         :type timeout: :class:`Double`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18779,7 +22227,7 @@ class API:
         :type error: :class:`Error`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18802,7 +22250,7 @@ class API:
         :type x: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18838,7 +22286,7 @@ class API:
         :type are_paused: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18873,7 +22321,7 @@ class API:
         :type allow_write_access: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18910,7 +22358,7 @@ class API:
         :type is_active: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18922,6 +22370,34 @@ class API:
                 bot_user_id=bot_user_id,
                 username=username,
                 is_active=is_active,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def toggle_business_connected_bot_chat_is_paused(
+        self, chat_id: Int53, is_paused: Bool = False, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Pauses or resumes the connected business bot in a specific chat
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param is_paused: Pass true to pause the connected bot in the chat; pass false to resume the bot
+        :type is_paused: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            ToggleBusinessConnectedBotChatIsPaused(
+                chat_id=chat_id,
+                is_paused=is_paused,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -18939,7 +22415,7 @@ class API:
         :type default_disable_notification: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18950,6 +22426,31 @@ class API:
             ToggleChatDefaultDisableNotification(
                 chat_id=chat_id,
                 default_disable_notification=default_disable_notification,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def toggle_chat_folder_tags(
+        self, are_tags_enabled: Bool = False, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Toggles whether chat folder tags are enabled
+
+        :param are_tags_enabled: Pass true to enable folder tags; pass false to disable them
+        :type are_tags_enabled: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            ToggleChatFolderTags(
+                are_tags_enabled=are_tags_enabled,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -18967,7 +22468,7 @@ class API:
         :type has_protected_content: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -18995,7 +22496,7 @@ class API:
         :type is_marked_as_unread: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19031,7 +22532,7 @@ class API:
         :type is_pinned: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19052,7 +22553,7 @@ class API:
         self, chat_id: Int53, is_translatable: Bool, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Changes the translatable state of a chat; for Telegram Premium users only
+        Changes the translatable state of a chat
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
@@ -19060,7 +22561,7 @@ class API:
         :type is_translatable: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19071,6 +22572,34 @@ class API:
             ToggleChatIsTranslatable(
                 chat_id=chat_id,
                 is_translatable=is_translatable,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def toggle_chat_view_as_topics(
+        self, chat_id: Int53, view_as_topics: Bool, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the view_as_topics setting of a forum chat or Saved Messages
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param view_as_topics: New value of view_as_topics
+        :type view_as_topics: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            ToggleChatViewAsTopics(
+                chat_id=chat_id,
+                view_as_topics=view_as_topics,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -19088,7 +22617,7 @@ class API:
         :type is_paused: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19114,7 +22643,7 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup unless the user is creator of the topic
+        Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic
 
         :param chat_id: Identifier of the chat
         :type chat_id: :class:`Int53`
@@ -19124,7 +22653,7 @@ class API:
         :type is_closed: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19151,7 +22680,7 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Changes the pinned state of a forum topic; requires can_manage_topics administrator right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
+        Changes the pinned state of a forum topic; requires can_manage_topics right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
@@ -19161,7 +22690,7 @@ class API:
         :type is_pinned: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19182,7 +22711,7 @@ class API:
         self, chat_id: Int53, is_hidden: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics administrator right in the supergroup
+        Toggles whether a General topic is hidden in a forum supergroup chat; requires can_manage_topics right in the supergroup
 
         :param chat_id: Identifier of the chat
         :type chat_id: :class:`Int53`
@@ -19190,7 +22719,7 @@ class API:
         :type is_hidden: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19215,7 +22744,7 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Toggles whether the current user will receive a notification when the group call will start; scheduled group calls only
+        Toggles whether the current user will receive a notification when the group call starts; scheduled group calls only
 
         :param group_call_id: Group call identifier
         :type group_call_id: :class:`Int32`
@@ -19223,7 +22752,7 @@ class API:
         :type enabled_start_notification: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19256,7 +22785,7 @@ class API:
         :type is_my_video_enabled: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19289,7 +22818,7 @@ class API:
         :type is_my_video_paused: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19317,7 +22846,7 @@ class API:
         :type mute_new_participants: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19353,7 +22882,7 @@ class API:
         :type is_hand_raised: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19390,7 +22919,7 @@ class API:
         :type is_muted: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19419,7 +22948,7 @@ class API:
         :type is_paused: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19430,6 +22959,64 @@ class API:
             ToggleGroupCallScreenSharingIsPaused(
                 group_call_id=group_call_id,
                 is_paused=is_paused,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def toggle_has_sponsored_messages_enabled(
+        self, has_sponsored_messages_enabled: Bool = False, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
+        """
+        Toggles whether the current user has sponsored messages enabled. The setting has no effect for users without Telegram Premium for which sponsored messages are always enabled
+
+        :param has_sponsored_messages_enabled: Pass true to enable sponsored messages for the current user; false to disable them
+        :type has_sponsored_messages_enabled: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            ToggleHasSponsoredMessagesEnabled(
+                has_sponsored_messages_enabled=has_sponsored_messages_enabled,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def toggle_saved_messages_topic_is_pinned(
+        self,
+        saved_messages_topic_id: Int53,
+        is_pinned: Bool = False,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Changes the pinned state of a Saved Messages topic. There can be up to getOption("pinned_saved_messages_topic_count_max") pinned topics. The limit can be increased with Telegram Premium
+
+        :param saved_messages_topic_id: Identifier of Saved Messages topic to pin or unpin
+        :type saved_messages_topic_id: :class:`Int53`
+        :param is_pinned: Pass true to pin the topic; pass false to unpin it
+        :type is_pinned: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            ToggleSavedMessagesTopicIsPinned(
+                saved_messages_topic_id=saved_messages_topic_id,
+                is_pinned=is_pinned,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -19447,7 +23034,7 @@ class API:
         :type can_accept_calls: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19480,7 +23067,7 @@ class API:
         :type can_accept_secret_chats: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19496,19 +23083,27 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def toggle_story_is_pinned(
-        self, story_id: Int32, is_pinned: Bool = False, *, request_id: str = None, request_timeout: int = None
+    async def toggle_story_is_posted_to_chat_page(
+        self,
+        story_sender_chat_id: Int53,
+        story_id: Int32,
+        is_posted_to_chat_page: Bool = False,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
     ) -> Ok:
         """
-        Toggles whether a story is accessible after expiration
+        Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_posted_to_chat_page == true
 
+        :param story_sender_chat_id: Identifier of the chat that posted the story
+        :type story_sender_chat_id: :class:`Int53`
         :param story_id: Identifier of the story
         :type story_id: :class:`Int32`
-        :param is_pinned: Pass true to make the story accessible after expiration; pass false to make it private
-        :type is_pinned: :class:`Bool`
+        :param is_posted_to_chat_page: Pass true to make the story accessible after expiration; pass false to make it private
+        :type is_posted_to_chat_page: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19516,9 +23111,43 @@ class API:
         """
 
         return await self.client.request(
-            ToggleStoryIsPinned(
+            ToggleStoryIsPostedToChatPage(
+                story_sender_chat_id=story_sender_chat_id,
                 story_id=story_id,
-                is_pinned=is_pinned,
+                is_posted_to_chat_page=is_posted_to_chat_page,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def toggle_supergroup_can_have_sponsored_messages(
+        self,
+        supergroup_id: Int53,
+        can_have_sponsored_messages: Bool,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> Ok:
+        """
+        Toggles whether sponsored messages are shown in the channel chat; requires owner privileges in the channel. The chat must have at least chatBoostFeatures.min_sponsored_message_disable_boost_level boost level to disable sponsored messages
+
+        :param supergroup_id: The identifier of the channel
+        :type supergroup_id: :class:`Int53`
+        :param can_have_sponsored_messages: The new value of can_have_sponsored_messages
+        :type can_have_sponsored_messages: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            ToggleSupergroupCanHaveSponsoredMessages(
+                supergroup_id=supergroup_id,
+                can_have_sponsored_messages=can_have_sponsored_messages,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -19541,7 +23170,7 @@ class API:
         :type has_aggressive_anti_spam_enabled: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19569,7 +23198,7 @@ class API:
         :type has_hidden_members: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19594,7 +23223,7 @@ class API:
         request_timeout: int = None
     ) -> Ok:
         """
-        Toggles whether the message history of a supergroup is available to new members; requires can_change_info administrator right
+        Toggles whether the message history of a supergroup is available to new members; requires can_change_info member right
 
         :param supergroup_id: The identifier of the supergroup
         :type supergroup_id: :class:`Int53`
@@ -19602,7 +23231,7 @@ class API:
         :type is_all_history_available: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19628,7 +23257,7 @@ class API:
         :type supergroup_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19655,7 +23284,7 @@ class API:
         :type is_forum: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19677,13 +23306,13 @@ class API:
         """
         Toggles whether all users directly joining the supergroup need to be approved by supergroup administrators; requires can_restrict_members administrator right
 
-        :param supergroup_id: Identifier of the channel
+        :param supergroup_id: Identifier of the supergroup that isn't a broadcast group
         :type supergroup_id: :class:`Int53`
         :param join_by_request: New value of join_by_request
         :type join_by_request: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19705,13 +23334,13 @@ class API:
         """
         Toggles whether joining is mandatory to send messages to a discussion supergroup; requires can_restrict_members administrator right
 
-        :param supergroup_id: Identifier of the supergroup
+        :param supergroup_id: Identifier of the supergroup that isn't a broadcast group
         :type supergroup_id: :class:`Int53`
         :param join_to_send_messages: New value of join_to_send_messages
         :type join_to_send_messages: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19731,7 +23360,7 @@ class API:
         self, supergroup_id: Int53, sign_messages: Bool, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Toggles whether sender signature is added to sent messages in a channel; requires can_change_info administrator right
+        Toggles whether sender signature is added to sent messages in a channel; requires can_change_info member right
 
         :param supergroup_id: Identifier of the channel
         :type supergroup_id: :class:`Int53`
@@ -19739,7 +23368,7 @@ class API:
         :type sign_messages: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19775,7 +23404,7 @@ class API:
         :type is_active: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19804,7 +23433,7 @@ class API:
         :type is_active: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19824,7 +23453,7 @@ class API:
         self, chat_id: Int53, user_id: Int53, password: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
+        Changes the owner of a chat; requires owner privileges in the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats
 
         :param chat_id: Chat identifier
         :type chat_id: :class:`Int53`
@@ -19834,7 +23463,7 @@ class API:
         :type password: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19871,7 +23500,7 @@ class API:
         :type to_language_code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19900,7 +23529,7 @@ class API:
         :type to_language_code: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19920,13 +23549,13 @@ class API:
         self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
+        Removes all pinned messages from a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
 
         :param chat_id: Identifier of the chat
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19945,7 +23574,7 @@ class API:
         self, chat_id: Int53, message_thread_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Removes all pinned messages from a forum topic; requires can_pin_messages rights in the supergroup
+        Removes all pinned messages from a forum topic; requires can_pin_messages member right in the supergroup
 
         :param chat_id: Identifier of the chat
         :type chat_id: :class:`Int53`
@@ -19953,7 +23582,7 @@ class API:
         :type message_thread_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -19973,7 +23602,7 @@ class API:
         self, chat_id: Int53, message_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Removes a pinned message from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
+        Removes a pinned message from a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
 
         :param chat_id: Identifier of the chat
         :type chat_id: :class:`Int53`
@@ -19981,7 +23610,7 @@ class API:
         :type message_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -20001,13 +23630,13 @@ class API:
         self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
     ) -> Chat:
         """
-        Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group
+        Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires owner privileges. Deactivates the original basic group
 
         :param chat_id: Identifier of the chat to upgrade
         :type chat_id: :class:`Int53`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -20042,7 +23671,7 @@ class API:
         :type sticker: :class:`InputFile`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -20079,7 +23708,7 @@ class API:
         :type order_info: :class:`OrderInfo`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -20119,7 +23748,7 @@ class API:
         :type source: :class:`MessageSource`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -20147,7 +23776,7 @@ class API:
         :type feature: :class:`PremiumFeature`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -20172,7 +23801,7 @@ class API:
         :type sticker_set_ids: :class:`Vector[Int64]`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib
@@ -20201,7 +23830,7 @@ class API:
         :type data: :class:`Bytes`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`asyncio.TimeoutError`) will be be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
         :type request_timeout: :class:`int`
 
         :return: response from TDLib

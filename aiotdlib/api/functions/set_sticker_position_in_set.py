@@ -18,7 +18,7 @@ from ..types.all import (
 
 class SetStickerPositionInSet(BaseObject):
     """
-    Changes the position of a sticker in the set to which it belongs; for bots only. The sticker set must have been created by the bot
+    Changes the position of a sticker in the set to which it belongs. The sticker set must be owned by the current user
 
     :param sticker: Sticker
     :type sticker: :class:`InputFile`

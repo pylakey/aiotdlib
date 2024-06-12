@@ -14,7 +14,7 @@ from ..types.base import *
 
 class AddChatMember(BaseObject):
     """
-    Adds a new member to a chat. Members can't be added to private or secret chats
+    Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats. Returns information about members that weren't added
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

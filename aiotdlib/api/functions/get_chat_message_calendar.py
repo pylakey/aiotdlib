@@ -26,6 +26,8 @@ class GetChatMessageCalendar(BaseObject):
     :type filter_: :class:`SearchMessagesFilter`
     :param from_message_id: The message identifier from which to return information about messages; use 0 to get results from the last message
     :type from_message_id: :class:`Int53`
+    :param saved_messages_topic_id: If not0, only messages in the specified Saved Messages topic will be considered; pass 0 to consider all messages, or for chats other than Saved Messages
+    :type saved_messages_topic_id: :class:`Int53`
     """
 
     ID: typing.Literal["getChatMessageCalendar"] = Field(
@@ -34,3 +36,4 @@ class GetChatMessageCalendar(BaseObject):
     chat_id: Int53
     filter_: SearchMessagesFilter = Field(..., alias="filter")
     from_message_id: Int53
+    saved_messages_topic_id: Int53

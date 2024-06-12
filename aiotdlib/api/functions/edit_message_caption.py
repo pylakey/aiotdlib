@@ -19,12 +19,14 @@ from ..types.all import (
 
 class EditMessageCaption(BaseObject):
     """
-    Edits the message content caption. Returns the edited message after the edit is completed on the server side
+    Edits the message content caption. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
 
     :param chat_id: The chat the message belongs to
     :type chat_id: :class:`Int53`
     :param message_id: Identifier of the message
     :type message_id: :class:`Int53`
+    :param show_caption_above_media: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+    :type show_caption_above_media: :class:`Bool`
     :param reply_markup: The new message reply markup; pass null if none; for bots only, defaults to None
     :type reply_markup: :class:`ReplyMarkup`, optional
     :param caption: New message content caption; 0-getOption("message_caption_length_max") characters; pass null to remove caption, defaults to None
@@ -34,5 +36,6 @@ class EditMessageCaption(BaseObject):
     ID: typing.Literal["editMessageCaption"] = Field("editMessageCaption", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_id: Int53
+    show_caption_above_media: Bool = False
     reply_markup: typing.Optional[ReplyMarkup] = None
     caption: typing.Optional[FormattedText] = None

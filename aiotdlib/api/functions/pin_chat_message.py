@@ -14,7 +14,7 @@ from ..types.base import *
 
 class PinChatMessage(BaseObject):
     """
-    Pins a message in a chat; requires can_pin_messages rights or can_edit_messages rights in the channel
+    Pins a message in a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
 
     :param chat_id: Identifier of the chat
     :type chat_id: :class:`Int53`

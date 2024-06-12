@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetEmojiReaction(BaseObject):
     """
-    Returns information about a emoji reaction. Returns a 404 error if the reaction is not found
+    Returns information about an emoji reaction. Returns a 404 error if the reaction is not found
 
     :param emoji: Text representation of the reaction
     :type emoji: :class:`String`

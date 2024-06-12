@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetCustomEmojiStickers(BaseObject):
     """
-    Returns list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
+    Returns the list of custom emoji stickers by their identifiers. Stickers are returned in arbitrary order. Only found stickers are returned
 
     :param custom_emoji_ids: Identifiers of custom emoji stickers. At most 200 custom emoji stickers can be received simultaneously
     :type custom_emoji_ids: :class:`Vector[Int64]`

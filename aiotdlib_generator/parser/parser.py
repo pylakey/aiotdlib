@@ -2,19 +2,35 @@ import re
 import typing
 import urllib.request
 
-from .entities import (
-    Constructor,
-    ConstructorShort,
-    Function,
-    Parameter,
-)
+from .entities import Constructor
+from .entities import ConstructorShort
+from .entities import Function
+from .entities import Parameter
 from .utils import upper_first
 
 DEFAULT_TD_API_SCHEME_URL = "https://raw.githubusercontent.com/pylakey/td/master/td/generate/scheme/td_api.tl"
 UNDOCUMENTED_NULLABLE_FIELDS = {}
 
 
+def _default_value_based_on_type(arg_type: str, arg_default_value: typing.Optional[str] = None) -> typing.Optional[str]:
+    arg_type_lower = arg_type.lower()
+
+    if arg_default_value == 'None' or arg_default_value == 'null':
+        return 'None'
+
+    if arg_default_value == '0':
+        return '0'
+
+    if arg_type_lower == 'string':
+        return '""'
+    elif arg_type_lower.startswith("vector"):
+        return '[]'
+    elif arg_type_lower == 'bytes':
+        return 'b""'
+
+
 class TDApiParser:
+
     @staticmethod
     def parse() -> list[typing.Union[Constructor, Function]]:
         abstract_class_docs_regex = re.compile(r"^//@class (?P<name>[^@]*) @description (?P<description>.*)$")
@@ -24,7 +40,7 @@ class TDApiParser:
         args_regex = re.compile(r"(?P<name>\w+):(?P<type>[\w<>]+)")
         param_length_constraint = re.compile(r"(?P<min_length>\d+)-(?P<max_length>\d+) characters")
         nullability_constraint = re.compile(r".*may be null.*")
-        empty_constraint = re.compile(r".*may be empty.*")
+        empty_constraint = re.compile(r"(.*may be empty.*)|(.*[Ii]f empty.*)")
         default_value_regex = re.compile(r'defaults to (?P<default_value>\w*?)')
         default_value_regex2 = re.compile(r"(?P<default_value>\w*?) if (none|unknown)")
 
@@ -86,8 +102,9 @@ class TDApiParser:
                 entity_return_type = upper_first(entity_match.group('return_type'))
                 entity_uf_return_type = upper_first(entity_return_type)
                 entity_parameters: list[Parameter] = []
+                entity_args: list[tuple[str, str]] = args_regex.findall(entity_match.group('args'))
 
-                for arg_name, arg_type in args_regex.findall(entity_match.group('args')):
+                for arg_name, arg_type in entity_args:
                     if arg_name in ['description', 'class']:
                         arg_description = current_entity_params_descriptions.get(f'param_{arg_name}')
                     else:
@@ -97,66 +114,73 @@ class TDApiParser:
                     arg_default_value = None
                     arg_min_length = None
                     arg_max_length = None
+                    arg_constraints = arg_description.split(";") if ';' in arg_description else [arg_description]
 
-                    if ";" in arg_description:
-                        # Parsing parameter constraints
-                        # https://github.com/tdlib/td/issues/1016#issuecomment-618959102
-                        for c in arg_description.split(";"):
-                            c = c.strip()
+                    # Parsing parameter constraints
+                    # https://github.com/tdlib/td/issues/1016#issuecomment-618959102
+                    for c in arg_constraints:
+                        c = c.strip()
 
-                            if nullability_constraint.match(c):
+                        if nullability_constraint.match(c):
+                            arg_nullable = True
+
+                        param_length_constraint_match = param_length_constraint.match(c)
+
+                        if bool(param_length_constraint_match):
+                            arg_min_length = int(param_length_constraint_match.group('min_length'))
+
+                            if arg_min_length == 0:
                                 arg_nullable = True
 
-                            param_length_constraint_match = param_length_constraint.match(c)
+                            arg_max_length = int(param_length_constraint_match.group('max_length'))
 
-                            if bool(param_length_constraint_match):
-                                arg_min_length = int(param_length_constraint_match.group('min_length'))
+                        default_value_match = default_value_regex.match(c)
 
-                                if arg_min_length == 0:
-                                    arg_nullable = True
+                        if bool(default_value_match):
+                            arg_nullable = True
+                            arg_default_value = default_value_match.group('default_value')
 
-                                arg_max_length = int(param_length_constraint_match.group('max_length'))
+                        default_value_match = default_value_regex2.match(c)
 
-                            default_value_match = default_value_regex.match(c)
+                        if bool(default_value_match):
+                            arg_nullable = True
+                            default_value = default_value_match.group('default_value')
+                            arg_default_value = _default_value_based_on_type(arg_type, default_value)
 
-                            if bool(default_value_match):
-                                arg_nullable = True
-                                arg_default_value = default_value_match.group('default_value')
+                        empty_default_value_match = empty_constraint.match(c)
 
-                            default_value_match = default_value_regex2.match(c)
-
-                            if bool(default_value_match):
-                                arg_nullable = True
-                                arg_default_value = default_value_match.group('default_value')
-
-                            empty_default_value_match = empty_constraint.match(c)
-
-                            if bool(empty_default_value_match):
-                                arg_type_lower = arg_type.lower()
-
-                                if arg_type_lower == 'string':
-                                    arg_default_value = '""'
-                                elif arg_type_lower.startswith("vector"):
-                                    arg_default_value = '[]'
-                                elif arg_type_lower == 'bytes':
-                                    arg_default_value = 'b""'
+                        if bool(empty_default_value_match):
+                            arg_default_value = _default_value_based_on_type(arg_type)
 
                     if not bool(arg_default_value):
                         # Some workarounds for default values. BETA!
                         if (
                                 'true, if' in arg_description.lower()
+                                or 'if true' in arg_description.lower()
                                 or 'pass true' in arg_description.lower()
                         ):
                             arg_default_value = 'False'
                         elif (
+                                'false, if' in arg_description.lower()
+                                or 'if false' in arg_description.lower()
+                                or 'pass false' in arg_description.lower()
+                        ):
+                            arg_default_value = 'True'
+                        elif (
                                 'if not 0' in arg_description.lower()
-                                or 'pass 0 if' in arg_description.lower()
+                                or '0 if' in arg_description.lower()
                                 or 'if 0' in arg_description.lower()
+                                or ' 0 for' in arg_description.lower()
                         ):
                             arg_default_value = '0'
                         elif 'pass null' in arg_description.lower():
                             arg_default_value = 'None'
                             arg_nullable = True
+                        elif 'applicable only to' in arg_description.lower():
+                            arg_default_value = 'None'
+                            arg_nullable = True
+                        elif 'if non-empty' in arg_description.lower():
+                            arg_default_value = _default_value_based_on_type(arg_type)
                         elif arg_min_length is not None and arg_min_length == 0:
                             arg_default_value = '""'
                             arg_nullable = False

@@ -18,7 +18,7 @@ from ..types.all import (
 
 class SetChatPhoto(BaseObject):
     """
-    Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info administrator right
+    Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info member right
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

@@ -18,7 +18,7 @@ from ..types.all import (
 
 class GetCommands(BaseObject):
     """
-    Returns list of commands supported by the bot for the given user scope and language; for bots only
+    Returns the list of commands supported by the bot for the given user scope and language; for bots only
 
     :param language_code: A two-letter ISO 639-1 language code or an empty string
     :type language_code: :class:`String`

@@ -19,7 +19,7 @@ from ..types.all import (
 
 class SetStickerMaskPosition(BaseObject):
     """
-    Changes the mask position of a mask sticker; for bots only. The sticker must belong to a mask sticker set created by the bot
+    Changes the mask position of a mask sticker. The sticker must belong to a mask sticker set that is owned by the current user
 
     :param sticker: Sticker
     :type sticker: :class:`InputFile`

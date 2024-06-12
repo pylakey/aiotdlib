@@ -18,7 +18,7 @@ from ..types.all import (
 
 class CheckAuthenticationEmailCode(BaseObject):
     """
-    Checks the authentication of a email address. Works only when the current authorization state is authorizationStateWaitEmailCode
+    Checks the authentication of an email address. Works only when the current authorization state is authorizationStateWaitEmailCode
 
     :param code: Email address authentication to check
     :type code: :class:`EmailAddressAuthentication`

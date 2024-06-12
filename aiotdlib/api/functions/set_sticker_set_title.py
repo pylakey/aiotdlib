@@ -14,9 +14,9 @@ from ..types.base import *
 
 class SetStickerSetTitle(BaseObject):
     """
-    Sets a sticker set title; for bots only
+    Sets a sticker set title
 
-    :param name: Sticker set name
+    :param name: Sticker set name. The sticker set must be owned by the current user
     :type name: :class:`String`
     :param title: New sticker set title
     :type title: :class:`String`

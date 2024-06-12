@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetDefaultEmojiStatuses(BaseObject):
     """
-    Returns default emoji statuses
+    Returns default emoji statuses for self status
     """
 
     ID: typing.Literal["getDefaultEmojiStatuses"] = Field(

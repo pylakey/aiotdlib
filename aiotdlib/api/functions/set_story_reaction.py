@@ -18,7 +18,7 @@ from ..types.all import (
 
 class SetStoryReaction(BaseObject):
     """
-    Changes chosen reaction on a story
+    Changes chosen reaction on a story that has already been sent
 
     :param story_sender_chat_id: The identifier of the sender of the story
     :type story_sender_chat_id: :class:`Int53`

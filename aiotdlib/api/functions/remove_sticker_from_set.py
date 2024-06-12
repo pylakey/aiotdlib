@@ -18,9 +18,9 @@ from ..types.all import (
 
 class RemoveStickerFromSet(BaseObject):
     """
-    Removes a sticker from the set to which it belongs; for bots only. The sticker set must have been created by the bot
+    Removes a sticker from the set to which it belongs. The sticker set must be owned by the current user
 
-    :param sticker: Sticker
+    :param sticker: Sticker to remove from the set
     :type sticker: :class:`InputFile`
     """
 

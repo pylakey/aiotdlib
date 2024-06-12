@@ -18,7 +18,7 @@ from ..types.all import (
 
 class AddMessageReaction(BaseObject):
     """
-    Adds a reaction to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
+    Adds a reaction or a tag to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
 
     :param chat_id: Identifier of the chat to which the message belongs
     :type chat_id: :class:`Int53`
@@ -28,7 +28,7 @@ class AddMessageReaction(BaseObject):
     :type reaction_type: :class:`ReactionType`
     :param is_big: Pass true if the reaction is added with a big animation
     :type is_big: :class:`Bool`
-    :param update_recent_reactions: Pass true if the reaction needs to be added to recent reactions
+    :param update_recent_reactions: Pass true if the reaction needs to be added to recent reactions; tags are never added to the list of recent reactions
     :type update_recent_reactions: :class:`Bool`
     """
 

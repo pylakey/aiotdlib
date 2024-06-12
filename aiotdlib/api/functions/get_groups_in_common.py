@@ -18,13 +18,13 @@ class GetGroupsInCommon(BaseObject):
 
     :param user_id: User identifier
     :type user_id: :class:`Int53`
-    :param offset_chat_id: Chat identifier starting from which to return chats; use 0 for the first request
-    :type offset_chat_id: :class:`Int53`
     :param limit: The maximum number of chats to be returned; up to 100
     :type limit: :class:`Int32`
+    :param offset_chat_id: Chat identifier starting from which to return chats; use 0 for the first request
+    :type offset_chat_id: :class:`Int53`
     """
 
     ID: typing.Literal["getGroupsInCommon"] = Field("getGroupsInCommon", validation_alias="@type", alias="@type")
     user_id: Int53
-    offset_chat_id: Int53
     limit: Int32
+    offset_chat_id: Int53 = 0

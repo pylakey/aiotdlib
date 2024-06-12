@@ -18,15 +18,15 @@ class SetBotInfoShortDescription(BaseObject):
 
     :param bot_user_id: Identifier of the target bot
     :type bot_user_id: :class:`Int53`
-    :param language_code: A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users for whose languages there is no dedicated description
-    :type language_code: :class:`String`
     :param short_description: New bot's short description on the specified language
     :type short_description: :class:`String`
+    :param language_code: A two-letter ISO 639-1 language code. If empty, the short description will be shown to all users for whose languages there is no dedicated description
+    :type language_code: :class:`String`
     """
 
     ID: typing.Literal["setBotInfoShortDescription"] = Field(
         "setBotInfoShortDescription", validation_alias="@type", alias="@type"
     )
     bot_user_id: Int53
-    language_code: String
     short_description: String
+    language_code: String = ""

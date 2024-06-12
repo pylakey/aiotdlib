@@ -13,7 +13,7 @@ from ..types.base import *
 
 from ..types.all import (
     InputMessageContent,
-    MessageReplyTo,
+    InputMessageReplyTo,
     MessageSendOptions,
     ReplyMarkup,
 )
@@ -27,10 +27,10 @@ class SendMessage(BaseObject):
     :type chat_id: :class:`Int53`
     :param input_message_content: The content of the message to be sent
     :type input_message_content: :class:`InputMessageContent`
-    :param message_thread_id: If not 0, a message thread identifier in which the message will be sent
+    :param message_thread_id: If not 0, the message thread identifier in which the message will be sent
     :type message_thread_id: :class:`Int53`
-    :param reply_to: Identifier of the replied message or story; pass null if none, defaults to None
-    :type reply_to: :class:`MessageReplyTo`, optional
+    :param reply_to: Information about the message or story to be replied; pass null if none, defaults to None
+    :type reply_to: :class:`InputMessageReplyTo`, optional
     :param options: Options to be used to send the message; pass null to use default options, defaults to None
     :type options: :class:`MessageSendOptions`, optional
     :param reply_markup: Markup for replying to the message; pass null if none; for bots only, defaults to None
@@ -41,6 +41,6 @@ class SendMessage(BaseObject):
     chat_id: Int53
     input_message_content: InputMessageContent
     message_thread_id: Int53 = 0
-    reply_to: typing.Optional[MessageReplyTo] = None
+    reply_to: typing.Optional[InputMessageReplyTo] = None
     options: typing.Optional[MessageSendOptions] = None
     reply_markup: typing.Optional[ReplyMarkup] = None

@@ -14,7 +14,7 @@ from ..types.base import *
 
 class SetChatDescription(BaseObject):
     """
-    Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info administrator right
+    Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
 
     :param chat_id: Identifier of the chat
     :type chat_id: :class:`Int53`
