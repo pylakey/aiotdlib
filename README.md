@@ -48,7 +48,7 @@ poetry add aiotdlib
 import asyncio
 import logging
 
-from aiotdlib import Client
+from aiotdlib import Client, ClientSettings
 
 API_ID = 123456
 API_HASH = ""
@@ -57,9 +57,11 @@ PHONE_NUMBER = ""
 
 async def main():
     client = Client(
-        api_id=API_ID,
-        api_hash=API_HASH,
-        phone_number=PHONE_NUMBER
+        settings=ClientSettings(
+            api_id=API_ID,
+            api_hash=API_HASH,
+            phone_number=PHONE_NUMBER
+        )
     )
 
     async with client:
@@ -72,7 +74,7 @@ if __name__ == '__main__':
     asyncio.run(main())
 ```
 
-Any parameter of Client class could be also set via environment variables.
+Any parameter of Client class could be also set via environment variables with prefix `AIOTDLIB_*`.
 
 ```python
 import asyncio
@@ -107,7 +109,7 @@ python main.py
 import asyncio
 import logging
 
-from aiotdlib import Client
+from aiotdlib import Client, ClientSettings
 from aiotdlib.api import API, BaseObject, UpdateNewMessage
 
 API_ID = 123456
@@ -129,9 +131,11 @@ async def any_event_handler(client: Client, update: BaseObject):
 
 async def main():
     client = Client(
-        api_id=API_ID,
-        api_hash=API_HASH,
-        phone_number=PHONE_NUMBER
+        settings=ClientSettings(
+            api_id=API_ID,
+            api_hash=API_HASH,
+            phone_number=PHONE_NUMBER
+        )
     )
 
     # Registering event handler for 'updateNewMessage' event
@@ -157,15 +161,20 @@ if __name__ == '__main__':
 ```python
 import logging
 
-from aiotdlib import Client
+from aiotdlib import Client, ClientSettings
 from aiotdlib.api import UpdateNewMessage
 
 API_ID = 123456
 API_HASH = ""
 BOT_TOKEN = ""
 
-bot = Client(api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
-
+bot = Client(
+    settings=ClientSettings(
+        api_id=API_ID,
+        api_hash=API_HASH,
+        bot_token=BOT_TOKEN
+    )
+)
 
 # Note: bot_command_handler method is universal and can be used directly or as decorator
 # Registering handler for '/help' command
@@ -203,7 +212,10 @@ if __name__ == '__main__':
 import asyncio
 import logging
 
-from aiotdlib import Client, ClientProxySettings, ClientProxyType
+from aiotdlib import Client
+from aiotdlib import ClientSettings
+from aiotdlib import ClientProxySettings
+from aiotdlib import ClientProxyType
 
 API_ID = 123456
 API_HASH = ""
@@ -212,15 +224,17 @@ PHONE_NUMBER = ""
 
 async def main():
     client = Client(
-        api_id=API_ID,
-        api_hash=API_HASH,
-        phone_number=PHONE_NUMBER,
-        proxy_settings=ClientProxySettings(
-            host="10.0.0.1",
-            port=3333,
-            type=ClientProxyType.SOCKS5,
-            username="aiotdlib",
-            password="somepassword",
+        settings=ClientSettings(
+            api_id=API_ID,
+            api_hash=API_HASH,
+            phone_number=PHONE_NUMBER,
+            proxy_settings=ClientProxySettings(
+                host="10.0.0.1",
+                port=3333,
+                type=ClientProxyType.SOCKS5,
+                username="aiotdlib",
+                password="somepassword",
+            )
         )
     )
 
@@ -240,7 +254,7 @@ if __name__ == '__main__':
 import asyncio
 import logging
 
-from aiotdlib import Client, HandlerCallable
+from aiotdlib import Client, HandlerCallable, ClientSettings
 from aiotdlib.api import API, BaseObject, UpdateNewMessage
 
 API_ID = 12345
@@ -258,7 +272,7 @@ async def some_post_updates_work(event: BaseObject):
 
 # Note that call_next argument would always be passed as keyword argument,
 # so it should be called "call_next" only.
-async def my_middleware(client: Client, event: BaseObject, *, call_next: HandlerCallable):
+async def my_middleware(client: Client, event: BaseObject, /, *, call_next: HandlerCallable):
     # Middlewares useful for opening database connections for example
     await some_pre_updates_work(event)
 
@@ -274,9 +288,11 @@ async def on_update_new_message(client: Client, update: UpdateNewMessage):
 
 async def main():
     client = Client(
-        api_id=API_ID,
-        api_hash=API_HASH,
-        phone_number=PHONE_NUMBER
+        settings=ClientSettings(
+            api_id=API_ID,
+            api_hash=API_HASH,
+            phone_number=PHONE_NUMBER
+        )
     )
 
     client.add_event_handler(on_update_new_message, update_type=API.Types.UPDATE_NEW_MESSAGE)

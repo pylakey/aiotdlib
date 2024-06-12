@@ -1,26 +1,17 @@
 from __future__ import annotations
 
 import asyncio
-import enum
-import hashlib
 import logging
-import sys
 import typing
 import uuid
 from functools import partial
 from functools import update_wrapper
-from pathlib import Path
 from typing import AsyncIterator
 from typing import Optional
 from typing import Union
 
 import pydantic.errors
-import pydantic_settings
-from pydantic import BaseModel
-from pydantic import field_validator
-from pydantic import model_validator
 
-from . import __version__
 from .api import API
 from .api import AioTDLibError
 from .api import AuthorizationState
@@ -81,6 +72,10 @@ from .api import UpdateMessageSendSucceeded
 from .api import User
 from .api import UserFullInfo
 from .client_cache import ClientCache
+from .client_settings import ClientParseMode
+from .client_settings import ClientProxyType
+from .client_settings import ClientSettings
+from .client_settings import Undefined
 from .constants import TDLIB_MAX_INT
 from .filters import Filters
 from .handlers import FilterCallable
@@ -88,474 +83,26 @@ from .handlers import Handler
 from .handlers import HandlerCallable
 from .middlewares import MiddlewareCallable
 from .tdjson import TDJsonClient
-from .tdjson import TDLibLogVerbosity
 from .utils import PendingRequest
 from .utils import ainput
 from .utils import make_input_file
 from .utils import make_thumbnail
 from .utils import parse_tdlib_object
-from .utils import str_to_base64
-from .utils import strip_phone_number_symbols
 
-RequestResult = typing.TypeVar('RequestResult', bound=BaseObject)
-ExecuteResult = typing.TypeVar('ExecuteResult', bound=BaseObject)
+RequestResult = typing.TypeVar('RequestResult', bound=BaseObject, covariant=True)
+ExecuteResult = typing.TypeVar('ExecuteResult', bound=BaseObject, covariant=True)
 AuthActions = dict[Optional[str], typing.Callable[[], typing.Coroutine[None, None, None]]]
-ChatInfo = Union[
-    User,
-    UserFullInfo,
-    BasicGroup,
-    BasicGroupFullInfo,
-    Supergroup,
-    SupergroupFullInfo,
-    SecretChat
-]
-Undefined = object()
-
-
-class ClientProxyType(str, enum.Enum):
-    MTPROTO = 'mtproto'
-    HTTP = 'http'
-    SOCKS5 = 'socks5'
-
-
-# noinspection PyUnresolvedReferences
-class ClientProxySettings(BaseModel):
-    """
-    Universal proxy settings object for all proxy types
-
-    :param host: Proxy server IP address
-    :type host: str
-
-    :param port: Proxy server port
-    :type port: int
-
-    :param type: Proxy type
-    :type type: ClientProxySettingsType
-
-    :param username: Username for logging in; may be empty
-    :type username: str
-
-    :param password: Password for logging in; may be empty
-    :type password: str
-
-    :param http_only: Pass true if the proxy supports only HTTP requests and doesn't support
-    transparent TCP connections via HTTP CONNECT method
-    :type http_only: bool
-
-    :param secret: The proxy's secret in hexadecimal encoding
-    :type secret: str
-    """
-
-    host: str
-    port: int
-    type: ClientProxyType = ClientProxyType.SOCKS5
-    username: Optional[str] = None
-    password: Optional[str] = None
-    http_only: bool = False
-    secret: Optional[str] = None
-
-    @field_validator('secret')
-    @classmethod
-    def validate_secret(cls, secret: str, info: pydantic.ValidationInfo):
-        values = info.data
-
-        if values.get('type') == ClientProxyType.MTPROTO and secret is None:
-            raise ValueError('Proxy secret is required for MTPROTO proxy')
-
-        return secret
-
-
-class ClientParseMode(str, enum.Enum):
-    HTML = 'html'
-    MARKDOWN = 'markdown'
-
-
-class ClientOptions(pydantic.BaseModel):
-    always_parse_markdown: Optional[bool] = Undefined
-    """
-    If true, text entities will be automatically parsed in all inputMessageText objects
-    """
-
-    archive_and_mute_new_chats_from_unknown_users: Optional[bool] = Undefined
-    """
-    If true, new chats from non-contacts will be automatically archived and muted. 
-    The option can be set only if the option “can_archive_and_mute_new_chats_from_unknown_users” is true. 
-    getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
-    """
-
-    disable_contact_registered_notifications: Optional[bool] = Undefined
-    """
-    If true, notifications about the user's contacts who have joined Telegram will be disabled. 
-    User will still receive the corresponding message in the private chat. 
-    getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
-    """
-
-    disable_persistent_network_statistics: Optional[bool] = Undefined
-    """
-    If true, persistent network statistics will be disabled, which significantly reduces disk usage
-    """
-
-    disable_sent_scheduled_message_notifications: Optional[bool] = Undefined
-    """
-    If true, notifications about outgoing scheduled messages that were sent will be disabled
-    """
-
-    disable_time_adjustment_protection: Optional[bool] = Undefined
-    """
-    If true, protection from external time adjustment will be disabled, which significantly reduces disk usage
-    """
-
-    disable_top_chats: Optional[bool] = Undefined
-    """
-    If true, support for top chats and statistics collection is disabled
-    """
-
-    ignore_background_updates: Optional[bool] = Undefined
-    """
-    If true, allows to skip all updates received while the TDLib instance was not running. 
-    The option does nothing if the database or secret chats are used
-    """
-
-    ignore_default_disable_notification: Optional[bool] = Undefined
-    """
-    If true, the disable_notification value specified in the request will be always used instead of the default value
-    """
-
-    ignore_inline_thumbnails: Optional[bool] = Undefined
-    """
-    If true, prevents file thumbnails sent by the server along with messages from being saved on the disk
-    """
-
-    ignore_platform_restrictions: Optional[bool] = Undefined
-    """
-    If true, chat and message reictions specific to the currently used operating system will be ignored
-    """
-
-    is_location_visible: Optional[bool] = Undefined
-    """
-    If true, other users will be allowed to see the current user's location
-    """
-
-    # language_pack_database_path: Optional[str]
-    # """
-    # Path to a database for storing language pack strs, so that this database can be shared between different accounts.
-    # By default, language pack Optional[str]s are stored only in memory.
-    # Changes of value of this option will be applied only after TDLib restart,
-    # so it should be set before call to setTdlibParameters.
-    # """
-
-    language_pack_id: Optional[str] = Undefined
-    """
-    Identifier of the currently used language pack from the current localization target
-    """
-
-    localization_target: Optional[str] = Undefined
-    """
-    Name for the current localization target (currently supported: “android”,“android_x”,“ios”,“macos” and “tdesktop”)
-    """
-
-    message_unload_delay: Optional[int] = Undefined
-    """
-    The maximum time messages are stored in memory before they are unloaded, 60-86400; in seconds. 
-    Defaults to 60 for users and 1800 for bots
-    """
-
-    notification_group_count_max: Optional[int] = Undefined
-    """
-    Maximum number of notification groups to be shown simultaneously, 0-25
-    """
-
-    notification_group_size_max: Optional[int] = Undefined
-    """
-    Maximum number of simultaneously shown notifications in a group, 1-25. Defaults to 10
-    """
-
-    online: Optional[bool] = Undefined
-    """
-    Online status of the current user
-    """
-
-    prefer_ipv6: Optional[bool] = Undefined
-    """
-    If true, IPv6 addresses will be preferred over IPv4 addresses
-    """
-
-    use_pfs: Optional[bool] = Undefined
-    """
-    If true, Perfect Forward Secrecy will be enabled for interaction with the Telegram servers for cloud chats
-    """
-
-    use_quick_ack: Optional[bool] = Undefined
-    """
-    If true, quick acknowledgement will be enabled for outgoing messages
-    """
-
-    use_storage_optimizer: Optional[bool] = Undefined
-    """
-    If true, the background storage optimizer will be enabled
-    """
-
-    disable_network_statistics: Optional[bool] = Undefined
-
-    reuse_uploaded_photos_by_hash: Optional[bool] = Undefined
-
-
-# noinspection PyUnresolvedReferences
-class ClientSettings(pydantic_settings.BaseSettings):
-    """
-    :param api_id: Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
-    :type api_id: int
-
-    :param api_hash: Application identifier hash for Telegram API access,
-    which can be obtained at https://my.telegram.org
-    :type api_hash: str
-
-    :param database_encryption_key: Encryption key of local session database. Default: aiotdlib
-    :type database_encryption_key: str
-
-    :param phone_number: The phone number of the user, in international format.
-    Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
-    :type phone_number: str
-
-    :param bot_token: The bot token. Either phone_number or bot_token MUST be passed.
-    ValueError would be raised otherwise
-    :type bot_token: str
-
-    :param use_test_dc: If set to true, the Telegram test environment will be used instead of the production environment
-    :type use_test_dc: bool
-
-    :param system_language_code: IETF language tag of the user's operating system language; must be non-empty
-    :type system_language_code: str
-
-    :param device_model: Model of the device the application is being run on; must be non-empty
-    :type device_model: str
-
-    :param system_version: Version of the operating system the application is being run on.
-    If empty, the version is automatically detected by TDLib
-    :type system_version: str
-
-    :param application_version: Application version; must be non-empty
-    :type application_version: str
-
-    :param files_directory: The path to the directory for storing files. Default: .aiotdlib/
-    :type files_directory: str
-
-    :param first_name: First name of new account if account with passed phone_number does not exist
-    :type first_name: str
-
-    :param last_name: Last name of new account if account with passed phone_number does not exist
-    :type last_name: str
-
-    :param email: email address of new account if account with passed phone_number does not exist
-    :type email: str
-
-    :param library_path: Path to TDLib binary. By default binary included in package is used
-    :type library_path: str
-
-    :param tdlib_verbosity: Verbosity level of TDLib itself.
-    Default: 2 (WARNING) for more info look at (TDLibLogVerbosity)
-    :type tdlib_verbosity: str
-
-    :param parse_mode: Default parse mode for high-level methods like send_message. Default: html
-    :type parse_mode: str
-
-    :param proxy_settings: Settings for proxying telegram connection
-    :type proxy_settings: aiotdlib.ClientProxySettings
-
-    """
-    api_id: int
-    api_hash: pydantic.SecretStr
-    database_encryption_key: Union[str, bytes] = 'aiotdlib'
-    phone_number: Optional[str] = None
-    bot_token: Optional[pydantic.SecretStr] = None
-    use_test_dc: bool = False
-    system_language_code: str = 'en'
-    device_model: str = 'aiotdlib'
-    system_version: str = ""
-    application_version: str = __version__
-    files_directory: Path = Path(sys.argv[0]).parent
-    first_name: Optional[str] = None
-    last_name: Optional[str] = None
-    email: Optional[str] = None
-    password: Optional[pydantic.SecretStr] = None
-    library_path: Optional[str] = None
-    tdlib_verbosity: TDLibLogVerbosity = TDLibLogVerbosity.FATAL
-    parse_mode: ClientParseMode = ClientParseMode.HTML
-    proxy_settings: Optional[ClientProxySettings] = None
-    use_file_database: bool = True
-    use_chat_info_database: bool = True
-    use_message_database: bool = True
-    use_secret_chats: bool = True
-    enable_storage_optimizer: bool = True
-    ignore_file_names: bool = True
-    ignore_background_updates: bool = False
-    options: ClientOptions | None = ClientOptions()
-
-    @model_validator(mode="before")
-    @classmethod
-    def check_phone_and_bot_token(cls, values):
-        if not bool(values.get('phone_number')) and not bool(values.get('bot_token')):
-            raise ValueError('Either phone_number or bot_token should be specified')
-
-        return values
-
-    @field_validator('parse_mode', mode="before")
-    @classmethod
-    def validator_parse_mode(cls, value):
-        if isinstance(value, str):
-            return value.lower()
-
-        return value
-
-    @field_validator('phone_number')
-    @classmethod
-    def validator_phone_number(cls, value):
-        if bool(value):
-            return strip_phone_number_symbols(value)
-
-        return value
-
-    @field_validator('database_encryption_key', mode="before")
-    @classmethod
-    def validator_database_encryption_key(cls, value):
-        if not bool(value):
-            return value
-
-        return str_to_base64(value)
-
-    @field_validator('files_directory', mode='after')
-    @classmethod
-    def validator_files_directory(cls, value, info: pydantic.ValidationInfo):
-        values = info.data
-
-        if not bool(value):
-            value = Path.cwd().parent
-
-        md5_hash = hashlib.md5()
-        phone_number = values.get('phone_number')
-        bot_token = values.get('bot_token')
-
-        if bool(phone_number):
-            session_name = str(phone_number)
-        elif bool(bot_token):
-            session_name = str(bot_token)
-        else:
-            raise ValueError
-
-        md5_hash.update(session_name.encode('utf-8'))
-        directory_name = md5_hash.hexdigest()
-
-        return value / '.aiotdlib' / directory_name
-
-    model_config = pydantic_settings.SettingsConfigDict(
-        env_prefix='aiotdlib_',
-        use_enum_values=True,
-        populate_by_name=True
-    )
+ChatInfo = Union[User, UserFullInfo, BasicGroup, BasicGroupFullInfo, Supergroup, SupergroupFullInfo, SecretChat]
 
 
 class Client:
-    def __init__(
-            self,
-            api_id: int = Undefined,
-            api_hash: str = Undefined,
-            database_encryption_key: Union[str, bytes] = Undefined,
-            phone_number: str = Undefined,
-            bot_token: str = Undefined,
-            use_test_dc: bool = Undefined,
-            system_language_code: str = Undefined,
-            device_model: str = Undefined,
-            system_version: str = Undefined,
-            application_version: str = Undefined,
-            files_directory: Path = Undefined,
-            first_name: str = Undefined,
-            last_name: str = Undefined,
-            password: str = Undefined,
-            library_path: str = Undefined,
-            tdlib_verbosity: TDLibLogVerbosity = Undefined,
-            parse_mode: ClientParseMode = Undefined,
-            proxy_settings: ClientProxySettings = Undefined,
-            use_file_database: bool = Undefined,
-            use_chat_info_database: bool = Undefined,
-            use_message_database: bool = Undefined,
-            use_secret_chats: bool = Undefined,
-            enable_storage_optimizer: bool = Undefined,
-            ignore_file_names: bool = Undefined,
-            options: ClientOptions = Undefined,
-    ):
+    def __init__(self, settings: Optional[ClientSettings] = None):
         """
-        :param api_id: Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
-        :type api_id: int
+        Create new instance of TDLib client
 
-        :param api_hash: Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
-        :type api_hash: str
-
-        :param database_encryption_key: Encryption key of local session database. Default: aiotdlib
-        :type database_encryption_key: str
-
-        :param phone_number: The phone number of the user, in international format.
-        :type phone_number: str Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
-
-        :param bot_token: The bot token. Either phone_number or bot_token MUST be passed. ValueError would be raised otherwise
-        :type bot_token: str
-
-        :param use_test_dc: If set to true, the Telegram test environment will be used instead of the production environment
-        :type use_test_dc: bool
-
-        :param system_language_code: IETF language tag of the user's operating system language; must be non-empty
-        :type system_language_code: str
-
-        :param device_model: Model of the device the application is being run on; must be non-empty
-        :type device_model: str
-
-        :param system_version: Version of the operating system the application is being run on. If empty, the version is automatically detected by TDLib
-        :type system_version: str
-
-        :param application_version: Application version; must be non-empty
-        :type application_version: str
-
-        :param files_directory: The path to the directory for storing files. Default: .aiotdlib/
-        :type files_directory: str
-
-        :param first_name: First name of new account if account with passed phone_number does not exist
-        :type first_name: str
-
-        :param last_name: Last name of new account if account with passed phone_number does not exist
-        :type last_name: str
-
-        :param library_path: Path to TDLib binary. By default, binary included in package is used
-        :type library_path: str
-
-        :param tdlib_verbosity: Verbosity level of TDLib itself. Default: 2 (WARNING) for more info look at (TDLibLogVerbosity)
-        :type tdlib_verbosity: str
-
-        :param parse_mode: Default parse mode for high-level methods like send_message. Default: html
-        :type parse_mode: str
-
-        :param proxy_settings: Settings for proxying telegram connection
-        :type proxy_settings: ClientProxySettings
-
-        :param use_file_database: If set to true, information about downloaded and uploaded files will be saved between application restarts
-        :type use_file_database: bool
-
-        :param use_chat_info_database: If set to true, the library will maintain a cache of users, basic groups, supergroups, channels and secret chats. Implies use_file_database
-        :type use_chat_info_database: bool
-
-        :param use_message_database: If set to true, the library will maintain a cache of chats and messages. Implies use_chat_info_database
-        :type use_message_database: bool
-
-        :param use_secret_chats: If set to true, support for secret chats will be enabled
-        :type use_secret_chats: bool
-
-        :param enable_storage_optimizer: If set to true, old files will automatically be deleted
-        :type enable_storage_optimizer: bool
-
-        :param ignore_file_names: If set to true, original file names will be ignored. Otherwise, downloaded files will be saved under names as close as possible to the original name
-        :type ignore_file_names: bool
-
-        :param options: Writable TDLib options (Check the list of available options on https://core.telegram.org/tdlib/options.)
-        :type options: ClientOptions
-
+        Args:
+            settings (ClientSettings): Settings for client,
+             if not provided default settings will be used, including environment variables
         """
         self._current_authorization_state = None
         self._authorized_event = asyncio.Event()
@@ -566,49 +113,7 @@ class Client:
         self._middlewares: list[MiddlewareCallable] = []
         self._middlewares_handlers: list[MiddlewareCallable] = []
         self._update_task: typing.Optional[asyncio.Task[None]] = None
-
-        if options is Undefined or not bool(options):
-            options = ClientOptions(
-                always_parse_markdown=False,
-                disable_contact_registered_notifications=True,
-                disable_persistent_network_statistics=True,
-                disable_time_adjustment_protection=True,
-                disable_network_statistics=True,
-                disable_top_chats=True,
-                ignore_inline_thumbnails=True,
-                reuse_uploaded_photos_by_hash=True,
-                ignore_background_updates=True,
-            )
-
-        settings = {
-            'api_id': api_id,
-            'api_hash': pydantic.SecretStr(api_hash) if api_hash is not Undefined else Undefined,
-            'database_encryption_key': database_encryption_key,
-            'phone_number': phone_number,
-            'bot_token': pydantic.SecretStr(bot_token) if bot_token is not Undefined else Undefined,
-            'use_test_dc': use_test_dc,
-            'system_language_code': system_language_code,
-            'device_model': device_model,
-            'system_version': system_version,
-            'application_version': application_version,
-            'files_directory': files_directory,
-            'first_name': first_name,
-            'last_name': last_name,
-            'password': pydantic.SecretStr(password) if password is not Undefined else Undefined,
-            'library_path': library_path,
-            'tdlib_verbosity': tdlib_verbosity,
-            'parse_mode': parse_mode,
-            'proxy_settings': proxy_settings,
-            'use_file_database': use_file_database,
-            'use_chat_info_database': use_chat_info_database,
-            'use_message_database': use_message_database,
-            'use_secret_chats': use_secret_chats,
-            'enable_storage_optimizer': enable_storage_optimizer,
-            'ignore_file_names': ignore_file_names,
-            'options': options,
-        }
-        settings = {k: v for k, v in settings.items() if v is not Undefined}
-        self.settings = ClientSettings(**settings)
+        self.settings = settings or ClientSettings()
         self.tdjson_client = TDJsonClient.create(
             library_path=self.settings.library_path,
             tdlib_verbosity=self.settings.tdlib_verbosity
