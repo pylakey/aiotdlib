@@ -239,7 +239,7 @@ class Client:
                     self._pending_requests.pop(request_id)
                     pending_request.set_update(update)
 
-        if isinstance(update.ID, UpdateMessageSendSucceeded):
+        if isinstance(update, UpdateMessageSendSucceeded):
             pending_message_key = f"{update.message.chat_id}_{update.old_message_id}"
             pending_message = self._pending_messages.pop(pending_message_key, None)
 
@@ -653,7 +653,7 @@ class Client:
             await self.execute(SetLogVerbosityLevel(new_verbosity_level=self.settings.tdlib_verbosity))
             self.logger.info('Setting up proxy')
             await self._setup_proxy()
-            self.logger.info('Setting up Options')
+            self.logger.info('Setting up options')
             await self._setup_options()
             self.logger.info("Initialize authorization process")
             await self.authorize()
@@ -661,7 +661,6 @@ class Client:
             await self._cleanup()
         else:
             self.logger.info('Authorization is completed...')
-            await self.send(GetCurrentState())
 
         return self
 
@@ -679,6 +678,10 @@ class Client:
     # Cache related methods
     async def get_my_id(self) -> int:
         return await self.get_option_value('my_id')
+
+    async def load_current_state(self):
+        # All current state will be received via updates
+        await self.send(GetCurrentState())
 
     async def get_option_value(self, name: str) -> typing.Union[str, int, bool, None]:
         """
