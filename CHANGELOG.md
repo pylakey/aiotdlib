@@ -1,5 +1,8 @@
 # aiotdlib CHANGELOG
 
+## 0.23.1 - Added proper base64 encoded serialization for Bytes type
+
+
 ## 0.23.0 - TDLib 1.8.30, Pydantic V2, Multiple Client instances
 
 > This update may contain breaking changes in some scenarios, please read carefully and update your code accordingly
