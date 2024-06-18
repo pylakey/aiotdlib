@@ -24,6 +24,10 @@ from .api import ChatTypeBasicGroup
 from .api import ChatTypePrivate
 from .api import ChatTypeSecret
 from .api import ChatTypeSupergroup
+from .api import CheckAuthenticationBotToken
+from .api import CheckAuthenticationCode
+from .api import CheckAuthenticationEmailCode
+from .api import CheckAuthenticationPassword
 from .api import DisableProxy
 from .api import EmailAddressAuthenticationCode
 from .api import Error
@@ -59,8 +63,11 @@ from .api import PhoneNumberAuthenticationSettings
 from .api import ProxyTypeHttp
 from .api import ProxyTypeMtproto
 from .api import ProxyTypeSocks5
+from .api import RegisterUser
 from .api import ReplyMarkup
 from .api import SecretChat
+from .api import SetAuthenticationEmailAddress
+from .api import SetAuthenticationPhoneNumber
 from .api import SetLogVerbosityLevel
 from .api import SetOption
 from .api import SetTdlibParameters
@@ -399,64 +406,73 @@ class Client:
 
     async def _set_authentication_phone_number(self):
         self.logger.info('Sending phone number')
-        return await self.api.set_authentication_phone_number(
-            phone_number=self.settings.phone_number,
-            settings=PhoneNumberAuthenticationSettings(
-                allow_flash_call=False,
-                allow_missed_call=False,
-                is_current_phone_number=True,
-                allow_sms_retriever_api=False,
-                authentication_tokens=[]
-            ),
+        await self.send(
+            SetAuthenticationPhoneNumber(
+                phone_number=self.settings.phone_number,
+                settings=PhoneNumberAuthenticationSettings(
+                    allow_flash_call=False,
+                    allow_missed_call=False,
+                    is_current_phone_number=True,
+                    allow_sms_retriever_api=False,
+                    authentication_tokens=[]
+                ),
+            )
         )
 
     async def _check_authentication_bot_token(self):
         self.logger.info('Sending bot token')
-        return await self.api.check_authentication_bot_token(
-            self.settings.bot_token.get_secret_value(),
+        await self.send(
+            CheckAuthenticationBotToken(
+                token=self.settings.bot_token.get_secret_value(),
+            )
         )
 
     async def _check_authentication_code(self):
         code = await self._auth_get_code(code_type='SMS')
         self.logger.info(f'Sending code {code}')
-
-        return await self.api.check_authentication_code(
-            code=code,
+        await self.send(
+            CheckAuthenticationCode(
+                code=code,
+            )
         )
 
     async def _set_authentication_email_address(self):
-        email = await self._auth_get_email()
-
-        return await self.api.set_authentication_email_address(
-            email_address=email,
+        email_address = await self._auth_get_email()
+        await self.send(
+            SetAuthenticationEmailAddress(
+                email_address=email_address,
+            )
         )
 
     async def _check_authentication_email_code(self):
         code = await self._auth_get_code(code_type='EMail')
         self.logger.info(f'Sending email code {code}')
-
-        return await self.api.check_authentication_email_code(
-            code=EmailAddressAuthenticationCode(
-                code=code
-            ),
+        return await self.send(
+            CheckAuthenticationEmailCode(
+                code=EmailAddressAuthenticationCode(
+                    code=code
+                ),
+            )
         )
 
     async def _register_user(self):
         first_name = await self._auth_get_first_name()
         last_name = await self._auth_get_last_name()
         self.logger.info(f'Registering new user in telegram as {first_name} {last_name or ""}'.strip())
-
-        return await self.api.register_user(
-            first_name=first_name,
-            last_name=last_name,
+        await self.send(
+            RegisterUser(
+                first_name=first_name,
+                last_name=last_name,
+            )
         )
 
     async def _check_authentication_password(self):
         password = await self._auth_get_password()
         self.logger.info('Sending password')
-
-        return await self.api.check_authentication_password(
-            password=password,
+        await self.send(
+            CheckAuthenticationPassword(
+                password=password,
+            )
         )
 
     # noinspection PyMethodMayBeStatic
