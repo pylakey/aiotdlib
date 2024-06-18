@@ -77,6 +77,7 @@ from .api import TDLibObject
 from .api import TextParseModeHTML
 from .api import TextParseModeMarkdown
 from .api import UpdateAuthorizationState
+from .api import UpdateMessageSendFailed
 from .api import UpdateMessageSendSucceeded
 from .api import User
 from .api import UserFullInfo
@@ -122,6 +123,7 @@ class Client:
         self._middlewares: list[MiddlewareCallable] = []
         self._middlewares_handlers: list[MiddlewareCallable] = []
         self._update_task: typing.Optional[asyncio.Task[None]] = None
+        self._handlers_tasks: set[asyncio.Task] = set()
         self.settings = settings or ClientSettings()
         self.tdjson_client = TDJsonClient.create(self.settings.library_path)
         self.logger = logging.getLogger(f"{self.__class__.__name__}_{self.tdjson_client.client_id}")
@@ -219,6 +221,11 @@ class Client:
         # Running all handlers concurrently and independently
         await asyncio.gather(*tasks, return_exceptions=True)
 
+    def _create_handler_task(self, coro):
+        task: asyncio.Task = asyncio.create_task(coro)
+        self._handlers_tasks.add(task)
+        task.add_done_callback(self._handlers_tasks.discard)
+
     async def _handle_update(self, update: TDLibObject):
         if len(self._middlewares_handlers) == 0:
             return await self._call_handlers(update)
@@ -231,33 +238,45 @@ class Client:
         for m in self._middlewares_handlers:
             call_next = update_wrapper(partial(m, call_next=call_next), call_next)
 
-        return await call_next(self, update)
+        try:
+            return await call_next(self, update)
+        except asyncio.CancelledError:
+            raise
+        except Exception as e:
+            self.logger.error(f'Unable to handle update {update}! {e}', exc_info=True)
 
     async def _handle_pending_request(self, update: TDLibObject):
         request_id = update.EXTRA.get('request_id')
 
-        if bool(request_id):
-            pending_request = self._pending_requests.get(request_id)
+        if isinstance(update, Message) and isinstance(update.sending_state, MessageSendingStatePending):
+            # MessageSendingStateFailed will be set as an error to pending request, no need to handle it here
+            sending_id = f"{update.chat_id}_{update.id}"
+            self.logger.info(f"Put message to pending messages: {sending_id}")
+            self._pending_messages[sending_id] = update
+            return
 
-            if bool(pending_request):
-                if isinstance(update, Message) and isinstance(update.sending_state, MessageSendingStatePending):
-                    self._pending_messages[f"{update.chat_id}_{update.id}"] = update
-                else:
-                    self._pending_requests.pop(request_id)
-                    pending_request.set_update(update)
-
-        if isinstance(update, UpdateMessageSendSucceeded):
-            pending_message_key = f"{update.message.chat_id}_{update.old_message_id}"
-            pending_message = self._pending_messages.pop(pending_message_key, None)
+        if isinstance(update, (UpdateMessageSendSucceeded, UpdateMessageSendFailed)):
+            sending_id = f"{update.message.chat_id}_{update.old_message_id}"
+            pending_message = self._pending_messages.pop(sending_id, None)
 
             if bool(pending_message):
                 request_id = pending_message.EXTRA.get('request_id')
-                pending_request = self._pending_requests.get(request_id)
 
-                if bool(pending_request):
-                    update.message.EXTRA['request_id'] = request_id
-                    self._pending_requests.pop(request_id)
-                    pending_request.set_update(update.message)
+                if isinstance(update, UpdateMessageSendFailed):
+                    self.logger.debug(f"Message %s sending failed", sending_id)
+                    update = update.error
+                else:
+                    self.logger.debug(f"Message %s sending succeeded", sending_id)
+                    update = update.message
+
+        pending_request = self._pending_requests.pop(request_id, None)
+
+        if bool(pending_request):
+            pending_request.set_update(update)
+            self.logger.debug(
+                f"Pending request {request_id} is successfully processed."
+                f"Total pending: {len(self._pending_requests)}"
+            )
 
     async def _updates_loop(self):
         try:
@@ -292,12 +311,7 @@ class Client:
                 except Exception as e:
                     self.logger.error(f'Unable to handle pending request {update}! {e}', exc_info=True)
 
-                try:
-                    await self._handle_update(update)
-                except asyncio.CancelledError:
-                    raise
-                except Exception as e:
-                    self.logger.error(f'Unable to handle update {update}! {e}', exc_info=True)
+                self._create_handler_task(self._handle_update(update))
         except asyncio.CancelledError:
             self._pending_requests.clear()
             self._pending_messages.clear()
@@ -567,6 +581,20 @@ class Client:
             except asyncio.CancelledError:
                 pass
 
+        # Cancel all background handlers tasks
+        if bool(self._handlers_tasks):
+            self.logger.info(f"Cancelling {len(self._handlers_tasks)} background handlers tasks")
+
+            for task in self._handlers_tasks:
+                # noinspection PyBroadException
+                try:
+                    task.cancel()
+                except Exception:
+                    pass
+
+            # Wait for all tasks to be cancelled
+            await asyncio.wait(self._handlers_tasks, return_when=asyncio.ALL_COMPLETED)
+
         if bool(self.cache):
             self.cache.clear()
 
@@ -609,11 +637,19 @@ class Client:
         query.EXTRA['request_id'] = request_id
         pending_request = PendingRequest(self, query)
         self._pending_requests[request_id] = pending_request
+        self.logger.debug(
+            f"Pending request {query.ID} with request_id {request_id} created."
+            f"Total pending: {len(self._pending_requests)}"
+        )
 
         try:
             await self.send(query)
             await pending_request.wait(raise_exc=True, timeout=request_timeout)
         except (asyncio.TimeoutError, TimeoutError):
+            self.logger.debug(
+                f"Request {query.ID} with request_id {request_id} has been timed out. "
+                f"Total pending: {len(self._pending_requests)}"
+            )
             self._pending_requests.pop(request_id, None)
             raise
         finally:
@@ -684,6 +720,8 @@ class Client:
         try:
             while True:
                 await asyncio.sleep(0.1)
+        except asyncio.CancelledError:
+            pass
         finally:
             self.logger.info('Stop Idling...')
 

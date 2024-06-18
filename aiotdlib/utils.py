@@ -115,13 +115,11 @@ def parse_tdlib_object(data: dict) -> TDLibObject:
 
 
 class PendingRequest:
-    request: Optional[TDLibObject] = None
-    update: Optional[TDLibObject] = None
-    error: bool = False
-
     def __init__(self, client: 'Client', request: TDLibObject) -> None:
         self.client = client
-        self.request = request
+        self.request: Optional[TDLibObject] = request
+        self.update: Optional[TDLibObject] = None
+        self.error: bool = False
         self._ready_event = asyncio.Event()
 
     @property
