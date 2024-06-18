@@ -39,6 +39,7 @@ from .api import InputMessageAudio
 from .api import InputMessageContent
 from .api import InputMessageDocument
 from .api import InputMessagePhoto
+from .api import InputMessageReplyToMessage
 from .api import InputMessageSticker
 from .api import InputMessageText
 from .api import InputMessageVideo
@@ -251,7 +252,7 @@ class Client:
         if isinstance(update, Message) and isinstance(update.sending_state, MessageSendingStatePending):
             # MessageSendingStateFailed will be set as an error to pending request, no need to handle it here
             sending_id = f"{update.chat_id}_{update.id}"
-            self.logger.info(f"Put message to pending messages: {sending_id}")
+            self.logger.debug(f"Put message to pending messages: {sending_id}")
             self._pending_messages[sending_id] = update
             return
 
@@ -862,7 +863,7 @@ class Client:
             protect_content: bool = False,
             update_order_of_installed_sticker_sets: bool = False,
             sending_id: int = 0,
-            effect_id: Optional[int] = None,
+            effect_id: Optional[int] = 0,
             only_preview: bool = False,
     ):
         """
@@ -927,8 +928,7 @@ class Client:
         return await self.api.send_message(
             chat_id=chat_id,
             message_thread_id=0,
-            reply_to=MessageReplyToMessage(
-                chat_id=chat_id,
+            reply_to=InputMessageReplyToMessage(
                 message_id=reply_to_message_id
             ) if bool(reply_to_message_id) else None,
             options=MessageSendOptions(

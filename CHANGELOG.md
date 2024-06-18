@@ -1,7 +1,25 @@
 # aiotdlib CHANGELOG
 
-## 0.23.1 - Added proper base64 encoded serialization for Bytes type
+## 0.24.0 - TDLib 1.8.31
 
+* TDLib version upgraded to 1.8.31. If you use self-built TDLib binaries, you should update them to
+  the [supported version](https://github.com/tdlib/td/commit/8f19c751dc296cedb9a921badb7a02a8c0cb1aeb).
+
+## 0.23.4
+
+* All updates handlers now are called asynchronously in background. It allows making another requests in updates handlers.
+
+## 0.23.3
+
+* Fixed blocking authorization flow
+
+## 0.23.2
+
+* Ignore extra env variables in ClientSettings
+
+## 0.23.1
+
+* Added proper base64 encoded serialization for Bytes type
 
 ## 0.23.0 - TDLib 1.8.30, Pydantic V2, Multiple Client instances
 
@@ -9,12 +27,15 @@
 
 ### !! BREAKING CHANGES !!
 
-* TDLib version upgraded to 1.8.30. If you use self-built TDLib binaries, you should update them to the [supported version](https://github.com/tdlib/td/commit/4257a341bd08c1fa4d5329b7ecc75cf15563aa23). 
+* TDLib version upgraded to 1.8.30. If you use self-built TDLib binaries, you should update them to
+  the [supported version](https://github.com/tdlib/td/commit/4257a341bd08c1fa4d5329b7ecc75cf15563aa23).
 
 * Now library supports only Pydantic v2. If you use Pydantic v1, you should upgrade it to v2. You can follow migration
   guide [here](https://docs.pydantic.dev/latest/migration/)
 
-* The client now accepts a single parameter of type ClientSettings. This parameter is optional. If it is omitted, default settings will be used, with parameters filled from environment variables. Look for [README.md](./README.md) for more information.
+* The client now accepts a single parameter of type ClientSettings. This parameter is optional. If it is omitted,
+  default settings will be used, with parameters filled from environment variables. Look for [README.md](./README.md)
+  for more information.
 
 * `ClientProxyType` is moved to `aiotdlib.client_settings` module
 
@@ -26,19 +47,25 @@
 
 * `ClientSettings` is moved to `aiotdlib.client_settings` module
 
-* Some of the fields in API types and functions now have default values *(ESPECIALLY BOOLEANS)*. Make sure it won't break your code and update it accordingly. Feel free to open any pull request to fix this problem in types generator.
+* Some of the fields in API types and functions now have default values *(ESPECIALLY BOOLEANS)*. Make sure it won't
+  break your code and update it accordingly. Feel free to open any pull request to fix this problem in types generator.
 
 ### Added
 
-* Now you can create multiple Client instances in a single process using the same TD instance. Thanks to @truenicoco for helping us move in this direction!
+* Now you can create multiple Client instances in a single process using the same TD instance. Thanks to @truenicoco for
+  helping us move in this direction!
 
 ### Removed
 
-* Now client logger follows default log level and can be changed directly with `logging.getLogger(...)`. Client logger name now follows pattern "Client_{client_id}"
+* Now client logger follows default log level and can be changed directly with `logging.getLogger(...)`. Client logger
+  name now follows pattern "Client_{client_id}"
 
 ### Updated
 
-* The client settings have been updated to set default properties such as 'enable_storage_optimizer' and 'ignore_file_names'. The handling of setting options has been improved to support setting options with None values. Event registration in the client cache has been refactored to provide clearer semantics and easier removal of event handlers. Logging and handling of updates have also been refined to catch and handle exceptions more effectively.
+* The client settings have been updated to set default properties such as 'enable_storage_optimizer' and '
+  ignore_file_names'. The handling of setting options has been improved to support setting options with None values.
+  Event registration in the client cache has been refactored to provide clearer semantics and easier removal of event
+  handlers. Logging and handling of updates have also been refined to catch and handle exceptions more effectively.
 
 * Minor fixes and improvements
 
@@ -46,7 +73,8 @@
 
 ### !! BREAKING CHANGES !!
 
-In this release added a check of Pydantic version. If you have Pydantic v2 and higher `NotImplementedError` will be raised.
+In this release added a check of Pydantic version. If you have Pydantic v2 and higher `NotImplementedError` will be
+raised.
 
 This version of library will be the last one with Pydantic v1 support.
 
