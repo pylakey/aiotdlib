@@ -18,7 +18,7 @@ from ..types.all import (
 
 class SetStickerEmojis(BaseObject):
     """
-    Changes the list of emoji corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
+    Changes the list of emojis corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
 
     :param sticker: Sticker
     :type sticker: :class:`InputFile`

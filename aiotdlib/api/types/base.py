@@ -31,7 +31,7 @@ Bytes = Annotated[
     ),
     pydantic.BeforeValidator(
         lambda v: base64.urlsafe_b64decode(v.encode()) if isinstance(v, str) else v,
-    )
+    ),
 ]
 Vector = list
 

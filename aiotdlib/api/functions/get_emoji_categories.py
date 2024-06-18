@@ -18,7 +18,7 @@ from ..types.all import (
 
 class GetEmojiCategories(BaseObject):
     """
-    Returns available emojis categories
+    Returns available emoji categories
 
     :param type_: Type of emoji categories to return; pass null to get default emoji categories, defaults to None
     :type type_: :class:`EmojiCategoryType`, optional

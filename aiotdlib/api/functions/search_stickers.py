@@ -22,7 +22,7 @@ class SearchStickers(BaseObject):
 
     :param sticker_type: Type of the stickers to return
     :type sticker_type: :class:`StickerType`
-    :param emojis: Space-separated list of emoji to search for; must be non-empty
+    :param emojis: Space-separated list of emojis to search for; must be non-empty
     :type emojis: :class:`String`
     :param limit: The maximum number of stickers to be returned; 0-100
     :type limit: :class:`Int32`

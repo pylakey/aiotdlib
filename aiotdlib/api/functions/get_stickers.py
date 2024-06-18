@@ -26,7 +26,7 @@ class GetStickers(BaseObject):
     :type limit: :class:`Int32`
     :param chat_id: Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
     :type chat_id: :class:`Int53`
-    :param query: Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
+    :param query: Search query; a space-separated list of emojis or a keyword prefix. If empty, returns all known installed stickers
     :type query: :class:`String`
     """
 

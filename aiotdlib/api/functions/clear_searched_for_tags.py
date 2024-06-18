@@ -12,18 +12,13 @@ from pydantic import Field
 from ..types.base import *
 
 
-class GetSearchedForHashtags(BaseObject):
+class ClearSearchedForTags(BaseObject):
     """
-    Returns recently searched for hashtags or cashtags by their prefix
+    Clears the list of recently searched for hashtags or cashtags
 
-    :param prefix: Prefix of hashtags or cashtags to return
-    :type prefix: :class:`String`
-    :param limit: The maximum number of items to be returned
-    :type limit: :class:`Int32`
+    :param clear_cashtags: Pass true to clear the list of recently searched for cashtags; otherwise, the list of recently searched for hashtags will be cleared
+    :type clear_cashtags: :class:`Bool`
     """
 
-    ID: typing.Literal["getSearchedForHashtags"] = Field(
-        "getSearchedForHashtags", validation_alias="@type", alias="@type"
-    )
-    prefix: String
-    limit: Int32
+    ID: typing.Literal["clearSearchedForTags"] = Field("clearSearchedForTags", validation_alias="@type", alias="@type")
+    clear_cashtags: Bool = False

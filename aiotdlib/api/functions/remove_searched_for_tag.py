@@ -12,11 +12,13 @@ from pydantic import Field
 from ..types.base import *
 
 
-class ClearSearchedForHashtags(BaseObject):
+class RemoveSearchedForTag(BaseObject):
     """
-    Clears the list of recently searched for hashtags
+    Removes a hashtag or a cashtag from the list of recently searched for hashtags or cashtags
+
+    :param tag: Hashtag or cashtag to delete
+    :type tag: :class:`String`
     """
 
-    ID: typing.Literal["clearSearchedForHashtags"] = Field(
-        "clearSearchedForHashtags", validation_alias="@type", alias="@type"
-    )
+    ID: typing.Literal["removeSearchedForTag"] = Field("removeSearchedForTag", validation_alias="@type", alias="@type")
+    tag: String

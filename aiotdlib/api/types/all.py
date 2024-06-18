@@ -2324,7 +2324,7 @@ class CallStateReady(BaseObject):
     :type config: :class:`String`
     :param encryption_key: Call encryption key
     :type encryption_key: :class:`Bytes`
-    :param emojis: Encryption key emojis fingerprint
+    :param emojis: Encryption key fingerprint represented as 4 emoji
     :type emojis: :class:`Vector[String]`
     :param custom_parameters: Custom JSON-encoded call parameters to be passed to tgcalls
     :type custom_parameters: :class:`String`
@@ -4829,7 +4829,7 @@ class ChatMemberStatusAdministrator(BaseObject):
 
     :param rights: Rights of the administrator
     :type rights: :class:`ChatAdministratorRights`
-    :param custom_title: A custom title of the administrator; 0-16 characters without emojis; applicable to supergroups only
+    :param custom_title: A custom title of the administrator; 0-16 characters without emoji; applicable to supergroups only
     :type custom_title: :class:`String`
     :param can_be_edited: True, if the current user can edit the administrator privileges for the called user
     :type can_be_edited: :class:`Bool`
@@ -4861,7 +4861,7 @@ class ChatMemberStatusCreator(BaseObject):
     """
     The user is the owner of the chat and has all the administrator privileges
 
-    :param custom_title: A custom title of the owner; 0-16 characters without emojis; applicable to supergroups only
+    :param custom_title: A custom title of the owner; 0-16 characters without emoji; applicable to supergroups only
     :type custom_title: :class:`String`
     :param is_anonymous: True, if the creator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
     :type is_anonymous: :class:`Bool`
@@ -5426,7 +5426,7 @@ class ChatRevenueTransactionTypeWithdrawal(BaseObject):
     :param provider: Name of the payment provider
     :type provider: :class:`String`
     :param state: State of the withdrawal
-    :type state: :class:`ChatRevenueWithdrawalState`
+    :type state: :class:`RevenueWithdrawalState`
     """
 
     ID: typing.Literal["chatRevenueTransactionTypeWithdrawal"] = Field(
@@ -5434,7 +5434,7 @@ class ChatRevenueTransactionTypeWithdrawal(BaseObject):
     )
     withdrawal_date: Int32
     provider: String
-    state: ChatRevenueWithdrawalState
+    state: RevenueWithdrawalState
 
 
 ChatRevenueTransactionType = typing.Union[
@@ -5459,50 +5459,6 @@ class ChatRevenueTransactions(BaseObject):
     )
     total_count: Int32
     transactions: Vector[ChatRevenueTransaction]
-
-
-class ChatRevenueWithdrawalStateCompleted(BaseObject):
-    """
-    Withdrawal was completed
-
-    :param date: Point in time (Unix timestamp) when the withdrawal was completed
-    :type date: :class:`Int32`
-    :param url: The URL where the withdrawal transaction can be viewed
-    :type url: :class:`String`
-    """
-
-    ID: typing.Literal["chatRevenueWithdrawalStateCompleted"] = Field(
-        "chatRevenueWithdrawalStateCompleted", validation_alias="@type", alias="@type"
-    )
-    date: Int32
-    url: String
-
-
-class ChatRevenueWithdrawalStateFailed(BaseObject):
-    """
-    Withdrawal has_failed
-    """
-
-    ID: typing.Literal["chatRevenueWithdrawalStateFailed"] = Field(
-        "chatRevenueWithdrawalStateFailed", validation_alias="@type", alias="@type"
-    )
-
-
-class ChatRevenueWithdrawalStatePending(BaseObject):
-    """
-    Withdrawal is pending
-    """
-
-    ID: typing.Literal["chatRevenueWithdrawalStatePending"] = Field(
-        "chatRevenueWithdrawalStatePending", validation_alias="@type", alias="@type"
-    )
-
-
-ChatRevenueWithdrawalState = typing.Union[
-    ChatRevenueWithdrawalStateCompleted,
-    ChatRevenueWithdrawalStateFailed,
-    ChatRevenueWithdrawalStatePending,
-]
 
 
 class ChatSourceMtprotoProxy(BaseObject):
@@ -6678,12 +6634,15 @@ class DraftMessage(BaseObject):
     :type input_message_text: :class:`InputMessageContent`
     :param reply_to: Information about the message to be replied; must be of the type inputMessageReplyToMessage; may be null if none, defaults to None
     :type reply_to: :class:`InputMessageReplyTo`, optional
+    :param effect_id: Identifier of the effect to apply to the message when it is sent; 0 if none, defaults to None
+    :type effect_id: :class:`Int64`, optional
     """
 
     ID: typing.Literal["draftMessage"] = Field("draftMessage", validation_alias="@type", alias="@type")
     date: Int32
     input_message_text: InputMessageContent
     reply_to: typing.Optional[InputMessageReplyTo] = None
+    effect_id: typing.Optional[Int64] = 0
 
 
 class EmailAddressAuthenticationAppleId(BaseObject):
@@ -6833,7 +6792,7 @@ class EmojiCategorySourceSearch(BaseObject):
     """
     The category contains a list of similar emoji to search for in getStickers and searchStickers for stickers, or getInlineQueryResults with the bot getOption("animation_search_bot_username") for animations
 
-    :param emojis: List of emojis for search for
+    :param emojis: List of emojis to search for
     :type emojis: :class:`Vector[String]`
     """
 
@@ -6914,9 +6873,9 @@ class EmojiKeyword(BaseObject):
 
 class EmojiKeywords(BaseObject):
     """
-    Represents a list of emoji with their keywords
+    Represents a list of emojis with their keywords
 
-    :param emoji_keywords: List of emoji with their keywords
+    :param emoji_keywords: List of emojis with their keywords
     :type emoji_keywords: :class:`Vector[EmojiKeyword]`
     """
 
@@ -6992,7 +6951,7 @@ class EmojiStatuses(BaseObject):
 
 class Emojis(BaseObject):
     """
-    Represents a list of emoji
+    Represents a list of emojis
 
     :param emojis: List of emojis
     :type emojis: :class:`Vector[String]`
@@ -7657,6 +7616,24 @@ class FoundPositions(BaseObject):
     ID: typing.Literal["foundPositions"] = Field("foundPositions", validation_alias="@type", alias="@type")
     total_count: Int32
     positions: Vector[Int32]
+
+
+class FoundStories(BaseObject):
+    """
+    Contains a list of stories found by a search
+
+    :param total_count: Approximate total number of stories found
+    :type total_count: :class:`Int32`
+    :param stories: List of stories
+    :type stories: :class:`Vector[Story]`
+    :param next_offset: The offset for the next request. If empty, then there are no more results
+    :type next_offset: :class:`String`
+    """
+
+    ID: typing.Literal["foundStories"] = Field("foundStories", validation_alias="@type", alias="@type")
+    total_count: Int32
+    stories: Vector[Story]
+    next_offset: String = ""
 
 
 class FoundWebApp(BaseObject):
@@ -9824,14 +9801,32 @@ InputMessageContent = typing.Union[
 ]
 
 
+class InputMessageReplyToExternalMessage(BaseObject):
+    """
+    Describes a message to be replied that is from a different chat or a forum topic; not supported in secret chats
+
+    :param chat_id: The identifier of the chat to which the message to be replied belongs
+    :type chat_id: :class:`Int53`
+    :param message_id: The identifier of the message to be replied in the specified chat. A message can be replied in another chat or topic only if message.can_be_replied_in_another_chat
+    :type message_id: :class:`Int53`
+    :param quote: Quote from the message to be replied; pass null if none, defaults to None
+    :type quote: :class:`InputTextQuote`, optional
+    """
+
+    ID: typing.Literal["inputMessageReplyToExternalMessage"] = Field(
+        "inputMessageReplyToExternalMessage", validation_alias="@type", alias="@type"
+    )
+    chat_id: Int53
+    message_id: Int53
+    quote: typing.Optional[InputTextQuote] = None
+
+
 class InputMessageReplyToMessage(BaseObject):
     """
-    Describes a message to be replied
+    Describes a message to be replied in the same chat and forum topic
 
-    :param message_id: The identifier of the message to be replied in the same or the specified chat
+    :param message_id: The identifier of the message to be replied in the same chat and forum topic
     :type message_id: :class:`Int53`
-    :param chat_id: The identifier of the chat to which the message to be replied belongs; pass 0 if the message to be replied is in the same chat. Must always be 0 for replies in secret chats. A message can be replied in another chat or topic only if message.can_be_replied_in_another_chat
-    :type chat_id: :class:`Int53`
     :param quote: Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats, defaults to None
     :type quote: :class:`InputTextQuote`, optional
     """
@@ -9840,7 +9835,6 @@ class InputMessageReplyToMessage(BaseObject):
         "inputMessageReplyToMessage", validation_alias="@type", alias="@type"
     )
     message_id: Int53
-    chat_id: Int53 = 0
     quote: typing.Optional[InputTextQuote] = None
 
 
@@ -9862,6 +9856,7 @@ class InputMessageReplyToStory(BaseObject):
 
 
 InputMessageReplyTo = typing.Union[
+    InputMessageReplyToExternalMessage,
     InputMessageReplyToMessage,
     InputMessageReplyToStory,
 ]
@@ -10301,18 +10296,35 @@ class InputStoryAreaTypeFoundVenue(BaseObject):
     result_id: String
 
 
+class InputStoryAreaTypeLink(BaseObject):
+    """
+    An area pointing to a HTTP or tg:// link
+
+    :param url: HTTP or tg:// URL to be opened when the area is clicked
+    :type url: :class:`String`
+    """
+
+    ID: typing.Literal["inputStoryAreaTypeLink"] = Field(
+        "inputStoryAreaTypeLink", validation_alias="@type", alias="@type"
+    )
+    url: String
+
+
 class InputStoryAreaTypeLocation(BaseObject):
     """
     An area pointing to a location
 
     :param location: The location
     :type location: :class:`Location`
+    :param address: Address of the location; pass null if unknown, defaults to None
+    :type address: :class:`LocationAddress`, optional
     """
 
     ID: typing.Literal["inputStoryAreaTypeLocation"] = Field(
         "inputStoryAreaTypeLocation", validation_alias="@type", alias="@type"
     )
     location: Location
+    address: typing.Optional[LocationAddress] = None
 
 
 class InputStoryAreaTypeMessage(BaseObject):
@@ -10371,6 +10383,7 @@ class InputStoryAreaTypeSuggestedReaction(BaseObject):
 
 InputStoryAreaType = typing.Union[
     InputStoryAreaTypeFoundVenue,
+    InputStoryAreaTypeLink,
     InputStoryAreaTypeLocation,
     InputStoryAreaTypeMessage,
     InputStoryAreaTypePreviousVenue,
@@ -10382,7 +10395,7 @@ class InputStoryAreas(BaseObject):
     """
     Contains a list of story areas to be added
 
-    :param areas: List of input story areas. Currently, a story can have up to 10 inputStoryAreaTypeLocation, inputStoryAreaTypeFoundVenue, and inputStoryAreaTypePreviousVenue areas, up to getOption("story_suggested_reaction_area_count_max") inputStoryAreaTypeSuggestedReaction areas, and up to 1 inputStoryAreaTypeMessage area
+    :param areas: List of input story areas. Currently, a story can have up to 10 inputStoryAreaTypeLocation, inputStoryAreaTypeFoundVenue, and inputStoryAreaTypePreviousVenue areas, up to getOption("story_suggested_reaction_area_count_max") inputStoryAreaTypeSuggestedReaction areas, up to 1 inputStoryAreaTypeMessage area, and up to getOption("story_link_area_count_max") inputStoryAreaTypeLink areas if the current user is a Telegram Premium user
     :type areas: :class:`Vector[InputStoryArea]`
     """
 
@@ -11754,6 +11767,27 @@ class Location(BaseObject):
     latitude: Double
     longitude: Double
     horizontal_accuracy: Double = 0
+
+
+class LocationAddress(BaseObject):
+    """
+    Describes an address of a location
+
+    :param country_code: A two-letter ISO 3166-1 alpha-2 country code
+    :type country_code: :class:`String`
+    :param state: State, if applicable; empty if unknown, defaults to None
+    :type state: :class:`String`, optional
+    :param city: City; empty if unknown, defaults to None
+    :type city: :class:`String`, optional
+    :param street: The address; empty if unknown, defaults to None
+    :type street: :class:`String`, optional
+    """
+
+    ID: typing.Literal["locationAddress"] = Field("locationAddress", validation_alias="@type", alias="@type")
+    country_code: String
+    state: typing.Optional[String] = ""
+    city: typing.Optional[String] = ""
+    street: typing.Optional[String] = ""
 
 
 class LogStreamDefault(BaseObject):
@@ -14020,12 +14054,12 @@ class MessageSendOptions(BaseObject):
     :type protect_content: :class:`Bool`
     :param update_order_of_installed_sticker_sets: Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum
     :type update_order_of_installed_sticker_sets: :class:`Bool`
+    :param effect_id: Identifier of the effect to apply to the message; pass 0 if none; applicable only to sendMessage and sendMessageAlbum in private chats
+    :type effect_id: :class:`Int64`
     :param only_preview: Pass true to get a fake message instead of actually sending them
     :type only_preview: :class:`Bool`
     :param scheduling_state: Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled, defaults to None
     :type scheduling_state: :class:`MessageSchedulingState`, optional
-    :param effect_id: Identifier of the effect to apply to the message; applicable only to sendMessage and sendMessageAlbum in private chats, defaults to None
-    :type effect_id: :class:`Int64`, optional
     """
 
     ID: typing.Literal["messageSendOptions"] = Field("messageSendOptions", validation_alias="@type", alias="@type")
@@ -14034,9 +14068,9 @@ class MessageSendOptions(BaseObject):
     from_background: Bool = False
     protect_content: Bool = False
     update_order_of_installed_sticker_sets: Bool = False
+    effect_id: Int64 = 0
     only_preview: Bool = False
     scheduling_state: typing.Optional[MessageSchedulingState] = None
-    effect_id: typing.Optional[Int64] = None
 
 
 class MessageSenderChat(BaseObject):
@@ -16138,7 +16172,7 @@ class PaymentFormTypeStars(BaseObject):
     """
     The payment form is for a payment in Telegram stars
 
-    :param star_count: Number of stars that will be paid
+    :param star_count: Number of Telegram stars that will be paid
     :type star_count: :class:`Int53`
     """
 
@@ -16280,7 +16314,7 @@ class PaymentReceiptTypeStars(BaseObject):
     """
     The payment was done using Telegram stars
 
-    :param star_count: Number of stars that were paid
+    :param star_count: Number of Telegram stars that were paid
     :type star_count: :class:`Int53`
     :param transaction_id: Unique identifier of the transaction that can be used to dispute it
     :type transaction_id: :class:`String`
@@ -17538,7 +17572,7 @@ class PremiumStoryFeatureCustomExpirationDuration(BaseObject):
 
 class PremiumStoryFeatureLinksAndFormatting(BaseObject):
     """
-    The ability to use links and formatting in story caption
+    The ability to use links and formatting in story caption, and use inputStoryAreaTypeLink areas
     """
 
     ID: typing.Literal["premiumStoryFeatureLinksAndFormatting"] = Field(
@@ -19090,6 +19124,50 @@ ResetPasswordResult = typing.Union[
 ]
 
 
+class RevenueWithdrawalStateFailed(BaseObject):
+    """
+    Withdrawal failed
+    """
+
+    ID: typing.Literal["revenueWithdrawalStateFailed"] = Field(
+        "revenueWithdrawalStateFailed", validation_alias="@type", alias="@type"
+    )
+
+
+class RevenueWithdrawalStatePending(BaseObject):
+    """
+    Withdrawal is pending
+    """
+
+    ID: typing.Literal["revenueWithdrawalStatePending"] = Field(
+        "revenueWithdrawalStatePending", validation_alias="@type", alias="@type"
+    )
+
+
+class RevenueWithdrawalStateSucceeded(BaseObject):
+    """
+    Withdrawal succeeded
+
+    :param date: Point in time (Unix timestamp) when the withdrawal was completed
+    :type date: :class:`Int32`
+    :param url: The URL where the withdrawal transaction can be viewed
+    :type url: :class:`String`
+    """
+
+    ID: typing.Literal["revenueWithdrawalStateSucceeded"] = Field(
+        "revenueWithdrawalStateSucceeded", validation_alias="@type", alias="@type"
+    )
+    date: Int32
+    url: String
+
+
+RevenueWithdrawalState = typing.Union[
+    RevenueWithdrawalStateFailed,
+    RevenueWithdrawalStatePending,
+    RevenueWithdrawalStateSucceeded,
+]
+
+
 class RichTextAnchor(BaseObject):
     """
     An anchor
@@ -20219,7 +20297,7 @@ class StarPaymentOption(BaseObject):
     :type currency: :class:`String`
     :param amount: The amount to pay, in the smallest units of the currency
     :type amount: :class:`Int53`
-    :param star_count: Number of stars that will be purchased
+    :param star_count: Number of Telegram stars that will be purchased
     :type star_count: :class:`Int53`
     :param store_product_id: Identifier of the store product associated with the option; may be empty if none
     :type store_product_id: :class:`String`
@@ -20247,6 +20325,50 @@ class StarPaymentOptions(BaseObject):
     options: Vector[StarPaymentOption]
 
 
+class StarRevenueStatistics(BaseObject):
+    """
+    A detailed statistics about Telegram stars earned by a bot or a chat
+
+    :param revenue_by_day_graph: A graph containing amount of revenue in a given day
+    :type revenue_by_day_graph: :class:`StatisticalGraph`
+    :param status: Telegram star revenue status
+    :type status: :class:`StarRevenueStatus`
+    :param usd_rate: Current conversion rate of a Telegram star to USD
+    :type usd_rate: :class:`Double`
+    """
+
+    ID: typing.Literal["starRevenueStatistics"] = Field(
+        "starRevenueStatistics", validation_alias="@type", alias="@type"
+    )
+    revenue_by_day_graph: StatisticalGraph
+    status: StarRevenueStatus
+    usd_rate: Double
+
+
+class StarRevenueStatus(BaseObject):
+    """
+    Contains information about Telegram stars earned by a bot or a chat
+
+    :param total_count: Total number of the stars earned
+    :type total_count: :class:`Int53`
+    :param current_count: The number of Telegram stars that aren't withdrawn yet
+    :type current_count: :class:`Int53`
+    :param available_count: The number of Telegram stars that are available for withdrawal
+    :type available_count: :class:`Int53`
+    :param withdrawal_enabled: True, if Telegram stars can be withdrawn now or later
+    :type withdrawal_enabled: :class:`Bool`
+    :param next_withdrawal_in: Time left before the next withdrawal can be started, in seconds; 0 if withdrawal can be started now
+    :type next_withdrawal_in: :class:`Int32`
+    """
+
+    ID: typing.Literal["starRevenueStatus"] = Field("starRevenueStatus", validation_alias="@type", alias="@type")
+    total_count: Int53
+    current_count: Int53
+    available_count: Int53
+    withdrawal_enabled: Bool = False
+    next_withdrawal_in: Int32 = 0
+
+
 class StarTransaction(BaseObject):
     """
     Represents a transaction changing the amount of owned Telegram stars
@@ -20257,8 +20379,8 @@ class StarTransaction(BaseObject):
     :type star_count: :class:`Int53`
     :param date: Point in time (Unix timestamp) when the transaction was completed
     :type date: :class:`Int32`
-    :param source: Source of the transaction, or its recipient for outgoing transactions
-    :type source: :class:`StarTransactionSource`
+    :param partner: Source of the incoming transaction, or its recipient for outgoing transactions
+    :type partner: :class:`StarTransactionPartner`
     :param is_refund: True, if the transaction is a refund of a previous transaction
     :type is_refund: :class:`Bool`
     """
@@ -20267,7 +20389,7 @@ class StarTransaction(BaseObject):
     id: String
     star_count: Int53
     date: Int32
-    source: StarTransactionSource
+    partner: StarTransactionPartner
     is_refund: Bool = False
 
 
@@ -20297,57 +20419,75 @@ StarTransactionDirection = typing.Union[
 ]
 
 
-class StarTransactionSourceAppStore(BaseObject):
+class StarTransactionPartnerAppStore(BaseObject):
     """
     The transaction is a transaction with App Store
     """
 
-    ID: typing.Literal["starTransactionSourceAppStore"] = Field(
-        "starTransactionSourceAppStore", validation_alias="@type", alias="@type"
+    ID: typing.Literal["starTransactionPartnerAppStore"] = Field(
+        "starTransactionPartnerAppStore", validation_alias="@type", alias="@type"
     )
 
 
-class StarTransactionSourceFragment(BaseObject):
+class StarTransactionPartnerChannel(BaseObject):
+    """
+    The transaction is a transaction with a channel chat
+
+    :param chat_id: Identifier of the chat
+    :type chat_id: :class:`Int53`
+    """
+
+    ID: typing.Literal["starTransactionPartnerChannel"] = Field(
+        "starTransactionPartnerChannel", validation_alias="@type", alias="@type"
+    )
+    chat_id: Int53
+
+
+class StarTransactionPartnerFragment(BaseObject):
     """
     The transaction is a transaction with Fragment
+
+    :param withdrawal_state: State of the withdrawal; may be null for refunds from Fragment, defaults to None
+    :type withdrawal_state: :class:`RevenueWithdrawalState`, optional
     """
 
-    ID: typing.Literal["starTransactionSourceFragment"] = Field(
-        "starTransactionSourceFragment", validation_alias="@type", alias="@type"
+    ID: typing.Literal["starTransactionPartnerFragment"] = Field(
+        "starTransactionPartnerFragment", validation_alias="@type", alias="@type"
     )
+    withdrawal_state: typing.Optional[RevenueWithdrawalState] = None
 
 
-class StarTransactionSourceGooglePlay(BaseObject):
+class StarTransactionPartnerGooglePlay(BaseObject):
     """
     The transaction is a transaction with Google Play
     """
 
-    ID: typing.Literal["starTransactionSourceGooglePlay"] = Field(
-        "starTransactionSourceGooglePlay", validation_alias="@type", alias="@type"
+    ID: typing.Literal["starTransactionPartnerGooglePlay"] = Field(
+        "starTransactionPartnerGooglePlay", validation_alias="@type", alias="@type"
     )
 
 
-class StarTransactionSourceTelegram(BaseObject):
+class StarTransactionPartnerTelegram(BaseObject):
     """
     The transaction is a transaction with Telegram through a bot
     """
 
-    ID: typing.Literal["starTransactionSourceTelegram"] = Field(
-        "starTransactionSourceTelegram", validation_alias="@type", alias="@type"
+    ID: typing.Literal["starTransactionPartnerTelegram"] = Field(
+        "starTransactionPartnerTelegram", validation_alias="@type", alias="@type"
     )
 
 
-class StarTransactionSourceUnsupported(BaseObject):
+class StarTransactionPartnerUnsupported(BaseObject):
     """
-    The transaction is a transaction with unknown source
+    The transaction is a transaction with unknown partner
     """
 
-    ID: typing.Literal["starTransactionSourceUnsupported"] = Field(
-        "starTransactionSourceUnsupported", validation_alias="@type", alias="@type"
+    ID: typing.Literal["starTransactionPartnerUnsupported"] = Field(
+        "starTransactionPartnerUnsupported", validation_alias="@type", alias="@type"
     )
 
 
-class StarTransactionSourceUser(BaseObject):
+class StarTransactionPartnerUser(BaseObject):
     """
     The transaction is a transaction with another user
 
@@ -20357,20 +20497,21 @@ class StarTransactionSourceUser(BaseObject):
     :type product_info: :class:`ProductInfo`, optional
     """
 
-    ID: typing.Literal["starTransactionSourceUser"] = Field(
-        "starTransactionSourceUser", validation_alias="@type", alias="@type"
+    ID: typing.Literal["starTransactionPartnerUser"] = Field(
+        "starTransactionPartnerUser", validation_alias="@type", alias="@type"
     )
     user_id: Int53
     product_info: typing.Optional[ProductInfo] = None
 
 
-StarTransactionSource = typing.Union[
-    StarTransactionSourceAppStore,
-    StarTransactionSourceFragment,
-    StarTransactionSourceGooglePlay,
-    StarTransactionSourceTelegram,
-    StarTransactionSourceUnsupported,
-    StarTransactionSourceUser,
+StarTransactionPartner = typing.Union[
+    StarTransactionPartnerAppStore,
+    StarTransactionPartnerChannel,
+    StarTransactionPartnerFragment,
+    StarTransactionPartnerGooglePlay,
+    StarTransactionPartnerTelegram,
+    StarTransactionPartnerUnsupported,
+    StarTransactionPartnerUser,
 ]
 
 
@@ -20596,7 +20737,7 @@ class StickerSet(BaseObject):
     :type is_viewed: :class:`Bool`
     :param stickers: List of stickers in this set
     :type stickers: :class:`Vector[Sticker]`
-    :param emojis: A list of emoji corresponding to the stickers in the same order. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
+    :param emojis: A list of emojis corresponding to the stickers in the same order. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
     :type emojis: :class:`Vector[Emojis]`
     :param thumbnail: Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed, defaults to None
     :type thumbnail: :class:`Thumbnail`, optional
@@ -21072,6 +21213,8 @@ class StoryAreaPosition(BaseObject):
     :type height_percentage: :class:`Double`
     :param rotation_angle: Clockwise rotation angle of the rectangle, in degrees; 0-360
     :type rotation_angle: :class:`Double`
+    :param corner_radius_percentage: The radius of the rectangle corner rounding, as a percentage of the media width
+    :type corner_radius_percentage: :class:`Double`
     """
 
     ID: typing.Literal["storyAreaPosition"] = Field("storyAreaPosition", validation_alias="@type", alias="@type")
@@ -21080,6 +21223,19 @@ class StoryAreaPosition(BaseObject):
     width_percentage: Double
     height_percentage: Double
     rotation_angle: Double
+    corner_radius_percentage: Double
+
+
+class StoryAreaTypeLink(BaseObject):
+    """
+    An area pointing to a HTTP or tg:// link
+
+    :param url: HTTP or tg:// URL to be opened when the area is clicked
+    :type url: :class:`String`
+    """
+
+    ID: typing.Literal["storyAreaTypeLink"] = Field("storyAreaTypeLink", validation_alias="@type", alias="@type")
+    url: String
 
 
 class StoryAreaTypeLocation(BaseObject):
@@ -21088,12 +21244,15 @@ class StoryAreaTypeLocation(BaseObject):
 
     :param location: The location
     :type location: :class:`Location`
+    :param address: Address of the location; may be null if unknown, defaults to None
+    :type address: :class:`LocationAddress`, optional
     """
 
     ID: typing.Literal["storyAreaTypeLocation"] = Field(
         "storyAreaTypeLocation", validation_alias="@type", alias="@type"
     )
     location: Location
+    address: typing.Optional[LocationAddress] = None
 
 
 class StoryAreaTypeMessage(BaseObject):
@@ -21147,6 +21306,7 @@ class StoryAreaTypeVenue(BaseObject):
 
 
 StoryAreaType = typing.Union[
+    StoryAreaTypeLink,
     StoryAreaTypeLocation,
     StoryAreaTypeMessage,
     StoryAreaTypeSuggestedReaction,
@@ -24512,6 +24672,35 @@ class UpdateMessageUnreadReactions(BaseObject):
     unread_reaction_count: Int32
 
 
+class UpdateNewBusinessCallbackQuery(BaseObject):
+    """
+    A new incoming callback query from a business message; for bots only
+
+    :param id: Unique query identifier
+    :type id: :class:`Int64`
+    :param sender_user_id: Identifier of the user who sent the query
+    :type sender_user_id: :class:`Int53`
+    :param connection_id: Unique identifier of the business connection
+    :type connection_id: :class:`String`
+    :param message: The message from the business account from which the query originated
+    :type message: :class:`BusinessMessage`
+    :param chat_instance: An identifier uniquely corresponding to the chat a message was sent to
+    :type chat_instance: :class:`Int64`
+    :param payload: Query payload
+    :type payload: :class:`CallbackQueryPayload`
+    """
+
+    ID: typing.Literal["updateNewBusinessCallbackQuery"] = Field(
+        "updateNewBusinessCallbackQuery", validation_alias="@type", alias="@type"
+    )
+    id: Int64
+    sender_user_id: Int53
+    connection_id: String
+    message: BusinessMessage
+    chat_instance: Int64
+    payload: CallbackQueryPayload
+
+
 class UpdateNewBusinessMessage(BaseObject):
     """
     A new message was added to a business account; for bots only
@@ -25154,6 +25343,23 @@ class UpdateSpeedLimitNotification(BaseObject):
     is_upload: Bool = False
 
 
+class UpdateStarRevenueStatus(BaseObject):
+    """
+    The Telegram star revenue earned by a bot or a chat has changed. If star transactions screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+
+    :param owner_id: Identifier of the owner of the Telegram stars
+    :type owner_id: :class:`MessageSender`
+    :param status: New Telegram star revenue status
+    :type status: :class:`StarRevenueStatus`
+    """
+
+    ID: typing.Literal["updateStarRevenueStatus"] = Field(
+        "updateStarRevenueStatus", validation_alias="@type", alias="@type"
+    )
+    owner_id: MessageSender
+    status: StarRevenueStatus
+
+
 class UpdateStickerSet(BaseObject):
     """
     A sticker set has changed
@@ -25581,6 +25787,7 @@ Update = typing.Union[
     UpdateMessageSendFailed,
     UpdateMessageSendSucceeded,
     UpdateMessageUnreadReactions,
+    UpdateNewBusinessCallbackQuery,
     UpdateNewBusinessMessage,
     UpdateNewCallSignalingData,
     UpdateNewCallbackQuery,
@@ -25617,6 +25824,7 @@ Update = typing.Union[
     UpdateServiceNotification,
     UpdateSpeechRecognitionTrial,
     UpdateSpeedLimitNotification,
+    UpdateStarRevenueStatus,
     UpdateStickerSet,
     UpdateStory,
     UpdateStoryDeleted,
@@ -26778,6 +26986,7 @@ FoundChatBoosts.model_rebuild()
 FoundChatMessages.model_rebuild()
 FoundFileDownloads.model_rebuild()
 FoundMessages.model_rebuild()
+FoundStories.model_rebuild()
 FoundWebApp.model_rebuild()
 Game.model_rebuild()
 GameHighScores.model_rebuild()
@@ -26838,6 +27047,7 @@ InputMessageVenue.model_rebuild()
 InputMessageVideo.model_rebuild()
 InputMessageVideoNote.model_rebuild()
 InputMessageVoiceNote.model_rebuild()
+InputMessageReplyToExternalMessage.model_rebuild()
 InputMessageReplyToMessage.model_rebuild()
 InputPassportElementAddress.model_rebuild()
 InputPassportElementBankStatement.model_rebuild()
@@ -27073,8 +27283,10 @@ SpeechRecognitionResultError.model_rebuild()
 SponsoredMessage.model_rebuild()
 SponsoredMessages.model_rebuild()
 StarPaymentOptions.model_rebuild()
+StarRevenueStatistics.model_rebuild()
 StarTransaction.model_rebuild()
-StarTransactionSourceUser.model_rebuild()
+StarTransactionPartnerFragment.model_rebuild()
+StarTransactionPartnerUser.model_rebuild()
 StarTransactions.model_rebuild()
 Sticker.model_rebuild()
 StickerFullTypeMask.model_rebuild()
@@ -27178,6 +27390,7 @@ UpdateMessageReactions.model_rebuild()
 UpdateMessageSendFailed.model_rebuild()
 UpdateMessageSendSucceeded.model_rebuild()
 UpdateMessageUnreadReactions.model_rebuild()
+UpdateNewBusinessCallbackQuery.model_rebuild()
 UpdateNewBusinessMessage.model_rebuild()
 UpdateNewCallbackQuery.model_rebuild()
 UpdateNewChat.model_rebuild()
@@ -27202,6 +27415,7 @@ UpdateSavedMessagesTopic.model_rebuild()
 UpdateScopeNotificationSettings.model_rebuild()
 UpdateSecretChat.model_rebuild()
 UpdateServiceNotification.model_rebuild()
+UpdateStarRevenueStatus.model_rebuild()
 UpdateStickerSet.model_rebuild()
 UpdateStory.model_rebuild()
 UpdateStoryListChatCount.model_rebuild()

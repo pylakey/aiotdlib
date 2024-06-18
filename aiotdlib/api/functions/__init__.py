@@ -224,7 +224,7 @@ from .clear_recent_stickers import ClearRecentStickers
 from .clear_recently_found_chats import ClearRecentlyFoundChats
 
 
-from .clear_searched_for_hashtags import ClearSearchedForHashtags
+from .clear_searched_for_tags import ClearSearchedForTags
 
 
 from .click_animated_emoji_message import ClickAnimatedEmojiMessage
@@ -420,6 +420,21 @@ from .download_file import DownloadFile
 
 
 from .edit_business_chat_link import EditBusinessChatLink
+
+
+from .edit_business_message_caption import EditBusinessMessageCaption
+
+
+from .edit_business_message_live_location import EditBusinessMessageLiveLocation
+
+
+from .edit_business_message_media import EditBusinessMessageMedia
+
+
+from .edit_business_message_reply_markup import EditBusinessMessageReplyMarkup
+
+
+from .edit_business_message_text import EditBusinessMessageText
 
 
 from .edit_chat_folder import EditChatFolder
@@ -1109,7 +1124,7 @@ from .get_saved_order_info import GetSavedOrderInfo
 from .get_scope_notification_settings import GetScopeNotificationSettings
 
 
-from .get_searched_for_hashtags import GetSearchedForHashtags
+from .get_searched_for_tags import GetSearchedForTags
 
 
 from .get_secret_chat import GetSecretChat
@@ -1118,7 +1133,13 @@ from .get_secret_chat import GetSecretChat
 from .get_star_payment_options import GetStarPaymentOptions
 
 
+from .get_star_revenue_statistics import GetStarRevenueStatistics
+
+
 from .get_star_transactions import GetStarTransactions
+
+
+from .get_star_withdrawal_url import GetStarWithdrawalUrl
 
 
 from .get_statistical_graph import GetStatisticalGraph
@@ -1436,7 +1457,7 @@ from .remove_saved_animation import RemoveSavedAnimation
 from .remove_saved_notification_sound import RemoveSavedNotificationSound
 
 
-from .remove_searched_for_hashtag import RemoveSearchedForHashtag
+from .remove_searched_for_tag import RemoveSearchedForTag
 
 
 from .remove_sticker_from_set import RemoveStickerFromSet
@@ -1601,7 +1622,16 @@ from .search_public_chat import SearchPublicChat
 from .search_public_chats import SearchPublicChats
 
 
-from .search_public_hashtag_messages import SearchPublicHashtagMessages
+from .search_public_messages_by_tag import SearchPublicMessagesByTag
+
+
+from .search_public_stories_by_location import SearchPublicStoriesByLocation
+
+
+from .search_public_stories_by_tag import SearchPublicStoriesByTag
+
+
+from .search_public_stories_by_venue import SearchPublicStoriesByVenue
 
 
 from .search_quote import SearchQuote
@@ -2051,6 +2081,9 @@ from .start_group_call_screen_sharing import StartGroupCallScreenSharing
 from .start_scheduled_group_call import StartScheduledGroupCall
 
 
+from .stop_business_poll import StopBusinessPoll
+
+
 from .stop_poll import StopPoll
 
 
@@ -2332,7 +2365,7 @@ __all__ = [
     "ClearRecentReactions",
     "ClearRecentStickers",
     "ClearRecentlyFoundChats",
-    "ClearSearchedForHashtags",
+    "ClearSearchedForTags",
     "ClickAnimatedEmojiMessage",
     "ClickChatSponsoredMessage",
     "ClickPremiumSubscriptionButton",
@@ -2398,6 +2431,11 @@ __all__ = [
     "DisconnectWebsite",
     "DownloadFile",
     "EditBusinessChatLink",
+    "EditBusinessMessageCaption",
+    "EditBusinessMessageLiveLocation",
+    "EditBusinessMessageMedia",
+    "EditBusinessMessageReplyMarkup",
+    "EditBusinessMessageText",
     "EditChatFolder",
     "EditChatFolderInviteLink",
     "EditChatInviteLink",
@@ -2627,10 +2665,12 @@ __all__ = [
     "GetSavedNotificationSounds",
     "GetSavedOrderInfo",
     "GetScopeNotificationSettings",
-    "GetSearchedForHashtags",
+    "GetSearchedForTags",
     "GetSecretChat",
     "GetStarPaymentOptions",
+    "GetStarRevenueStatistics",
     "GetStarTransactions",
+    "GetStarWithdrawalUrl",
     "GetStatisticalGraph",
     "GetStickerEmojis",
     "GetStickerSet",
@@ -2736,7 +2776,7 @@ __all__ = [
     "RemoveRecentlyFoundChat",
     "RemoveSavedAnimation",
     "RemoveSavedNotificationSound",
-    "RemoveSearchedForHashtag",
+    "RemoveSearchedForTag",
     "RemoveStickerFromSet",
     "RemoveTopChat",
     "ReorderActiveUsernames",
@@ -2791,7 +2831,10 @@ __all__ = [
     "SearchOutgoingDocumentMessages",
     "SearchPublicChat",
     "SearchPublicChats",
-    "SearchPublicHashtagMessages",
+    "SearchPublicMessagesByTag",
+    "SearchPublicStoriesByLocation",
+    "SearchPublicStoriesByTag",
+    "SearchPublicStoriesByVenue",
     "SearchQuote",
     "SearchRecentlyFoundChats",
     "SearchSavedMessages",
@@ -2941,6 +2984,7 @@ __all__ = [
     "StartGroupCallRecording",
     "StartGroupCallScreenSharing",
     "StartScheduledGroupCall",
+    "StopBusinessPoll",
     "StopPoll",
     "SuggestUserProfilePhoto",
     "SynchronizeLanguagePack",

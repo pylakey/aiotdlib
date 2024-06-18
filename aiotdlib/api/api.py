@@ -396,10 +396,6 @@ class API:
         CHAT_REVENUE_TRANSACTION_TYPE_REFUND = "chatRevenueTransactionTypeRefund"
         CHAT_REVENUE_TRANSACTION_TYPE_WITHDRAWAL = "chatRevenueTransactionTypeWithdrawal"
         CHAT_REVENUE_TRANSACTIONS = "chatRevenueTransactions"
-        CHAT_REVENUE_WITHDRAWAL_STATE = "chatRevenueWithdrawalState"
-        CHAT_REVENUE_WITHDRAWAL_STATE_COMPLETED = "chatRevenueWithdrawalStateCompleted"
-        CHAT_REVENUE_WITHDRAWAL_STATE_FAILED = "chatRevenueWithdrawalStateFailed"
-        CHAT_REVENUE_WITHDRAWAL_STATE_PENDING = "chatRevenueWithdrawalStatePending"
         CHAT_SOURCE = "chatSource"
         CHAT_SOURCE_MTPROTO_PROXY = "chatSourceMtprotoProxy"
         CHAT_SOURCE_PUBLIC_SERVICE_ANNOUNCEMENT = "chatSourcePublicServiceAnnouncement"
@@ -457,7 +453,7 @@ class API:
         CLEAR_RECENT_REACTIONS = "clearRecentReactions"
         CLEAR_RECENT_STICKERS = "clearRecentStickers"
         CLEAR_RECENTLY_FOUND_CHATS = "clearRecentlyFoundChats"
-        CLEAR_SEARCHED_FOR_HASHTAGS = "clearSearchedForHashtags"
+        CLEAR_SEARCHED_FOR_TAGS = "clearSearchedForTags"
         CLICK_ANIMATED_EMOJI_MESSAGE = "clickAnimatedEmojiMessage"
         CLICK_CHAT_SPONSORED_MESSAGE = "clickChatSponsoredMessage"
         CLICK_PREMIUM_SUBSCRIPTION_BUTTON = "clickPremiumSubscriptionButton"
@@ -567,6 +563,11 @@ class API:
         DOWNLOADED_FILE_COUNTS = "downloadedFileCounts"
         DRAFT_MESSAGE = "draftMessage"
         EDIT_BUSINESS_CHAT_LINK = "editBusinessChatLink"
+        EDIT_BUSINESS_MESSAGE_CAPTION = "editBusinessMessageCaption"
+        EDIT_BUSINESS_MESSAGE_LIVE_LOCATION = "editBusinessMessageLiveLocation"
+        EDIT_BUSINESS_MESSAGE_MEDIA = "editBusinessMessageMedia"
+        EDIT_BUSINESS_MESSAGE_REPLY_MARKUP = "editBusinessMessageReplyMarkup"
+        EDIT_BUSINESS_MESSAGE_TEXT = "editBusinessMessageText"
         EDIT_CHAT_FOLDER = "editChatFolder"
         EDIT_CHAT_FOLDER_INVITE_LINK = "editChatFolderInviteLink"
         EDIT_CHAT_INVITE_LINK = "editChatInviteLink"
@@ -661,6 +662,7 @@ class API:
         FOUND_MESSAGES = "foundMessages"
         FOUND_POSITION = "foundPosition"
         FOUND_POSITIONS = "foundPositions"
+        FOUND_STORIES = "foundStories"
         FOUND_WEB_APP = "foundWebApp"
         GAME = "game"
         GAME_HIGH_SCORE = "gameHighScore"
@@ -869,10 +871,12 @@ class API:
         GET_SAVED_NOTIFICATION_SOUNDS = "getSavedNotificationSounds"
         GET_SAVED_ORDER_INFO = "getSavedOrderInfo"
         GET_SCOPE_NOTIFICATION_SETTINGS = "getScopeNotificationSettings"
-        GET_SEARCHED_FOR_HASHTAGS = "getSearchedForHashtags"
+        GET_SEARCHED_FOR_TAGS = "getSearchedForTags"
         GET_SECRET_CHAT = "getSecretChat"
         GET_STAR_PAYMENT_OPTIONS = "getStarPaymentOptions"
+        GET_STAR_REVENUE_STATISTICS = "getStarRevenueStatistics"
         GET_STAR_TRANSACTIONS = "getStarTransactions"
+        GET_STAR_WITHDRAWAL_URL = "getStarWithdrawalUrl"
         GET_STATISTICAL_GRAPH = "getStatisticalGraph"
         GET_STICKER_EMOJIS = "getStickerEmojis"
         GET_STICKER_SET = "getStickerSet"
@@ -1023,6 +1027,7 @@ class API:
         INPUT_MESSAGE_VIDEO_NOTE = "inputMessageVideoNote"
         INPUT_MESSAGE_VOICE_NOTE = "inputMessageVoiceNote"
         INPUT_MESSAGE_REPLY_TO = "inputMessageReplyTo"
+        INPUT_MESSAGE_REPLY_TO_EXTERNAL_MESSAGE = "inputMessageReplyToExternalMessage"
         INPUT_MESSAGE_REPLY_TO_MESSAGE = "inputMessageReplyToMessage"
         INPUT_MESSAGE_REPLY_TO_STORY = "inputMessageReplyToStory"
         INPUT_PASSPORT_ELEMENT = "inputPassportElement"
@@ -1055,6 +1060,7 @@ class API:
         INPUT_STORY_AREA = "inputStoryArea"
         INPUT_STORY_AREA_TYPE = "inputStoryAreaType"
         INPUT_STORY_AREA_TYPE_FOUND_VENUE = "inputStoryAreaTypeFoundVenue"
+        INPUT_STORY_AREA_TYPE_LINK = "inputStoryAreaTypeLink"
         INPUT_STORY_AREA_TYPE_LOCATION = "inputStoryAreaTypeLocation"
         INPUT_STORY_AREA_TYPE_MESSAGE = "inputStoryAreaTypeMessage"
         INPUT_STORY_AREA_TYPE_PREVIOUS_VENUE = "inputStoryAreaTypePreviousVenue"
@@ -1158,6 +1164,7 @@ class API:
         LOCAL_FILE = "localFile"
         LOCALIZATION_TARGET_INFO = "localizationTargetInfo"
         LOCATION = "location"
+        LOCATION_ADDRESS = "locationAddress"
         LOG_OUT = "logOut"
         LOG_STREAM = "logStream"
         LOG_STREAM_DEFAULT = "logStreamDefault"
@@ -1666,7 +1673,7 @@ class API:
         REMOVE_RECENTLY_FOUND_CHAT = "removeRecentlyFoundChat"
         REMOVE_SAVED_ANIMATION = "removeSavedAnimation"
         REMOVE_SAVED_NOTIFICATION_SOUND = "removeSavedNotificationSound"
-        REMOVE_SEARCHED_FOR_HASHTAG = "removeSearchedForHashtag"
+        REMOVE_SEARCHED_FOR_TAG = "removeSearchedForTag"
         REMOVE_STICKER_FROM_SET = "removeStickerFromSet"
         REMOVE_TOP_CHAT = "removeTopChat"
         REORDER_ACTIVE_USERNAMES = "reorderActiveUsernames"
@@ -1731,6 +1738,10 @@ class API:
         RESET_PASSWORD_RESULT_DECLINED = "resetPasswordResultDeclined"
         RESET_PASSWORD_RESULT_OK = "resetPasswordResultOk"
         RESET_PASSWORD_RESULT_PENDING = "resetPasswordResultPending"
+        REVENUE_WITHDRAWAL_STATE = "revenueWithdrawalState"
+        REVENUE_WITHDRAWAL_STATE_FAILED = "revenueWithdrawalStateFailed"
+        REVENUE_WITHDRAWAL_STATE_PENDING = "revenueWithdrawalStatePending"
+        REVENUE_WITHDRAWAL_STATE_SUCCEEDED = "revenueWithdrawalStateSucceeded"
         REVOKE_CHAT_INVITE_LINK = "revokeChatInviteLink"
         REVOKE_GROUP_CALL_INVITE_LINK = "revokeGroupCallInviteLink"
         RICH_TEXT = "richText"
@@ -1798,7 +1809,10 @@ class API:
         SEARCH_OUTGOING_DOCUMENT_MESSAGES = "searchOutgoingDocumentMessages"
         SEARCH_PUBLIC_CHAT = "searchPublicChat"
         SEARCH_PUBLIC_CHATS = "searchPublicChats"
-        SEARCH_PUBLIC_HASHTAG_MESSAGES = "searchPublicHashtagMessages"
+        SEARCH_PUBLIC_MESSAGES_BY_TAG = "searchPublicMessagesByTag"
+        SEARCH_PUBLIC_STORIES_BY_LOCATION = "searchPublicStoriesByLocation"
+        SEARCH_PUBLIC_STORIES_BY_TAG = "searchPublicStoriesByTag"
+        SEARCH_PUBLIC_STORIES_BY_VENUE = "searchPublicStoriesByVenue"
         SEARCH_QUOTE = "searchQuote"
         SEARCH_RECENTLY_FOUND_CHATS = "searchRecentlyFoundChats"
         SEARCH_SAVED_MESSAGES = "searchSavedMessages"
@@ -1983,17 +1997,20 @@ class API:
         SPONSORED_MESSAGES = "sponsoredMessages"
         STAR_PAYMENT_OPTION = "starPaymentOption"
         STAR_PAYMENT_OPTIONS = "starPaymentOptions"
+        STAR_REVENUE_STATISTICS = "starRevenueStatistics"
+        STAR_REVENUE_STATUS = "starRevenueStatus"
         STAR_TRANSACTION = "starTransaction"
         STAR_TRANSACTION_DIRECTION = "starTransactionDirection"
         STAR_TRANSACTION_DIRECTION_INCOMING = "starTransactionDirectionIncoming"
         STAR_TRANSACTION_DIRECTION_OUTGOING = "starTransactionDirectionOutgoing"
-        STAR_TRANSACTION_SOURCE = "starTransactionSource"
-        STAR_TRANSACTION_SOURCE_APP_STORE = "starTransactionSourceAppStore"
-        STAR_TRANSACTION_SOURCE_FRAGMENT = "starTransactionSourceFragment"
-        STAR_TRANSACTION_SOURCE_GOOGLE_PLAY = "starTransactionSourceGooglePlay"
-        STAR_TRANSACTION_SOURCE_TELEGRAM = "starTransactionSourceTelegram"
-        STAR_TRANSACTION_SOURCE_UNSUPPORTED = "starTransactionSourceUnsupported"
-        STAR_TRANSACTION_SOURCE_USER = "starTransactionSourceUser"
+        STAR_TRANSACTION_PARTNER = "starTransactionPartner"
+        STAR_TRANSACTION_PARTNER_APP_STORE = "starTransactionPartnerAppStore"
+        STAR_TRANSACTION_PARTNER_CHANNEL = "starTransactionPartnerChannel"
+        STAR_TRANSACTION_PARTNER_FRAGMENT = "starTransactionPartnerFragment"
+        STAR_TRANSACTION_PARTNER_GOOGLE_PLAY = "starTransactionPartnerGooglePlay"
+        STAR_TRANSACTION_PARTNER_TELEGRAM = "starTransactionPartnerTelegram"
+        STAR_TRANSACTION_PARTNER_UNSUPPORTED = "starTransactionPartnerUnsupported"
+        STAR_TRANSACTION_PARTNER_USER = "starTransactionPartnerUser"
         STAR_TRANSACTIONS = "starTransactions"
         START_GROUP_CALL_RECORDING = "startGroupCallRecording"
         START_GROUP_CALL_SCREEN_SHARING = "startGroupCallScreenSharing"
@@ -2020,6 +2037,7 @@ class API:
         STICKER_TYPE_MASK = "stickerTypeMask"
         STICKER_TYPE_REGULAR = "stickerTypeRegular"
         STICKERS = "stickers"
+        STOP_BUSINESS_POLL = "stopBusinessPoll"
         STOP_POLL = "stopPoll"
         STORAGE_STATISTICS = "storageStatistics"
         STORAGE_STATISTICS_BY_CHAT = "storageStatisticsByChat"
@@ -2036,6 +2054,7 @@ class API:
         STORY_AREA = "storyArea"
         STORY_AREA_POSITION = "storyAreaPosition"
         STORY_AREA_TYPE = "storyAreaType"
+        STORY_AREA_TYPE_LINK = "storyAreaTypeLink"
         STORY_AREA_TYPE_LOCATION = "storyAreaTypeLocation"
         STORY_AREA_TYPE_MESSAGE = "storyAreaTypeMessage"
         STORY_AREA_TYPE_SUGGESTED_REACTION = "storyAreaTypeSuggestedReaction"
@@ -2321,6 +2340,7 @@ class API:
         UPDATE_MESSAGE_SEND_FAILED = "updateMessageSendFailed"
         UPDATE_MESSAGE_SEND_SUCCEEDED = "updateMessageSendSucceeded"
         UPDATE_MESSAGE_UNREAD_REACTIONS = "updateMessageUnreadReactions"
+        UPDATE_NEW_BUSINESS_CALLBACK_QUERY = "updateNewBusinessCallbackQuery"
         UPDATE_NEW_BUSINESS_MESSAGE = "updateNewBusinessMessage"
         UPDATE_NEW_CALL_SIGNALING_DATA = "updateNewCallSignalingData"
         UPDATE_NEW_CALLBACK_QUERY = "updateNewCallbackQuery"
@@ -2357,6 +2377,7 @@ class API:
         UPDATE_SERVICE_NOTIFICATION = "updateServiceNotification"
         UPDATE_SPEECH_RECOGNITION_TRIAL = "updateSpeechRecognitionTrial"
         UPDATE_SPEED_LIMIT_NOTIFICATION = "updateSpeedLimitNotification"
+        UPDATE_STAR_REVENUE_STATUS = "updateStarRevenueStatus"
         UPDATE_STICKER_SET = "updateStickerSet"
         UPDATE_STORY = "updateStory"
         UPDATE_STORY_DELETED = "updateStoryDeleted"
@@ -4454,13 +4475,27 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def clear_searched_for_hashtags(self, *, request_id: str = None, request_timeout: int = None) -> Ok:
+    async def clear_searched_for_tags(
+        self, clear_cashtags: Bool = False, *, request_id: str = None, request_timeout: int = None
+    ) -> Ok:
         """
-        Clears the list of recently searched for hashtags
+        Clears the list of recently searched for hashtags or cashtags
+
+        :param clear_cashtags: Pass true to clear the list of recently searched for cashtags; otherwise, the list of recently searched for hashtags will be cleared
+        :type clear_cashtags: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
         """
 
         return await self.client.request(
-            ClearSearchedForHashtags(),
+            ClearSearchedForTags(
+                clear_cashtags=clear_cashtags,
+            ),
             request_id=request_id,
             request_timeout=request_timeout,
         )
@@ -6271,6 +6306,243 @@ class API:
             EditBusinessChatLink(
                 link=link,
                 link_info=link_info,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def edit_business_message_caption(
+        self,
+        business_connection_id: String,
+        chat_id: Int53,
+        message_id: Int53,
+        show_caption_above_media: Bool = False,
+        reply_markup: typing.Optional[ReplyMarkup] = None,
+        caption: typing.Optional[FormattedText] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> BusinessMessage:
+        """
+        Edits the caption of a message sent on behalf of a business account; for bots only
+
+        :param business_connection_id: Unique identifier of business connection on behalf of which the message was sent
+        :type business_connection_id: :class:`String`
+        :param chat_id: The chat the message belongs to
+        :type chat_id: :class:`Int53`
+        :param message_id: Identifier of the message
+        :type message_id: :class:`Int53`
+        :param show_caption_above_media: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+        :type show_caption_above_media: :class:`Bool`
+        :param reply_markup: The new message reply markup; pass null if none, defaults to None
+        :type reply_markup: :class:`ReplyMarkup`, optional
+        :param caption: New message content caption; pass null to remove caption; 0-getOption("message_caption_length_max") characters, defaults to None
+        :type caption: :class:`FormattedText`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BusinessMessage`
+        """
+
+        return await self.client.request(
+            EditBusinessMessageCaption(
+                business_connection_id=business_connection_id,
+                chat_id=chat_id,
+                message_id=message_id,
+                show_caption_above_media=show_caption_above_media,
+                reply_markup=reply_markup,
+                caption=caption,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def edit_business_message_live_location(
+        self,
+        business_connection_id: String,
+        chat_id: Int53,
+        message_id: Int53,
+        live_period: Int32 = 0,
+        heading: Int32 = 0,
+        proximity_alert_radius: Int32 = 0,
+        reply_markup: typing.Optional[ReplyMarkup] = None,
+        location: typing.Optional[Location] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> BusinessMessage:
+        """
+        Edits the content of a live location in a message sent on behalf of a business account; for bots only
+
+        :param business_connection_id: Unique identifier of business connection on behalf of which the message was sent
+        :type business_connection_id: :class:`String`
+        :param chat_id: The chat the message belongs to
+        :type chat_id: :class:`Int53`
+        :param message_id: Identifier of the message
+        :type message_id: :class:`Int53`
+        :param live_period: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
+        :type live_period: :class:`Int32`
+        :param heading: The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
+        :type heading: :class:`Int32`
+        :param proximity_alert_radius: The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
+        :type proximity_alert_radius: :class:`Int32`
+        :param reply_markup: The new message reply markup; pass null if none, defaults to None
+        :type reply_markup: :class:`ReplyMarkup`, optional
+        :param location: New location content of the message; pass null to stop sharing the live location, defaults to None
+        :type location: :class:`Location`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BusinessMessage`
+        """
+
+        return await self.client.request(
+            EditBusinessMessageLiveLocation(
+                business_connection_id=business_connection_id,
+                chat_id=chat_id,
+                message_id=message_id,
+                live_period=live_period,
+                heading=heading,
+                proximity_alert_radius=proximity_alert_radius,
+                reply_markup=reply_markup,
+                location=location,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def edit_business_message_media(
+        self,
+        business_connection_id: String,
+        chat_id: Int53,
+        message_id: Int53,
+        input_message_content: InputMessageContent,
+        reply_markup: typing.Optional[ReplyMarkup] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> BusinessMessage:
+        """
+        Edits the content of a message with an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
+
+        :param business_connection_id: Unique identifier of business connection on behalf of which the message was sent
+        :type business_connection_id: :class:`String`
+        :param chat_id: The chat the message belongs to
+        :type chat_id: :class:`Int53`
+        :param message_id: Identifier of the message
+        :type message_id: :class:`Int53`
+        :param input_message_content: New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
+        :type input_message_content: :class:`InputMessageContent`
+        :param reply_markup: The new message reply markup; pass null if none; for bots only, defaults to None
+        :type reply_markup: :class:`ReplyMarkup`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BusinessMessage`
+        """
+
+        return await self.client.request(
+            EditBusinessMessageMedia(
+                business_connection_id=business_connection_id,
+                chat_id=chat_id,
+                message_id=message_id,
+                input_message_content=input_message_content,
+                reply_markup=reply_markup,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def edit_business_message_reply_markup(
+        self,
+        business_connection_id: String,
+        chat_id: Int53,
+        message_id: Int53,
+        reply_markup: typing.Optional[ReplyMarkup] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> BusinessMessage:
+        """
+        Edits the reply markup of a message sent on behalf of a business account; for bots only
+
+        :param business_connection_id: Unique identifier of business connection on behalf of which the message was sent
+        :type business_connection_id: :class:`String`
+        :param chat_id: The chat the message belongs to
+        :type chat_id: :class:`Int53`
+        :param message_id: Identifier of the message
+        :type message_id: :class:`Int53`
+        :param reply_markup: The new message reply markup; pass null if none, defaults to None
+        :type reply_markup: :class:`ReplyMarkup`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BusinessMessage`
+        """
+
+        return await self.client.request(
+            EditBusinessMessageReplyMarkup(
+                business_connection_id=business_connection_id,
+                chat_id=chat_id,
+                message_id=message_id,
+                reply_markup=reply_markup,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def edit_business_message_text(
+        self,
+        business_connection_id: String,
+        chat_id: Int53,
+        message_id: Int53,
+        input_message_content: InputMessageContent,
+        reply_markup: typing.Optional[ReplyMarkup] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> BusinessMessage:
+        """
+        Edits the text of a text or game message sent on behalf of a business account; for bots only
+
+        :param business_connection_id: Unique identifier of business connection on behalf of which the message was sent
+        :type business_connection_id: :class:`String`
+        :param chat_id: The chat the message belongs to
+        :type chat_id: :class:`Int53`
+        :param message_id: Identifier of the message
+        :type message_id: :class:`Int53`
+        :param input_message_content: New text content of the message. Must be of type inputMessageText
+        :type input_message_content: :class:`InputMessageContent`
+        :param reply_markup: The new message reply markup; pass null if none, defaults to None
+        :type reply_markup: :class:`ReplyMarkup`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BusinessMessage`
+        """
+
+        return await self.client.request(
+            EditBusinessMessageText(
+                business_connection_id=business_connection_id,
+                chat_id=chat_id,
+                message_id=message_id,
+                input_message_content=input_message_content,
+                reply_markup=reply_markup,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -9666,7 +9938,7 @@ class API:
         self, type_: typing.Optional[EmojiCategoryType] = None, *, request_id: str = None, request_timeout: int = None
     ) -> EmojiCategories:
         """
-        Returns available emojis categories
+        Returns available emoji categories
 
         :param type_: Type of emoji categories to return; pass null to get default emoji categories, defaults to None
         :type type_: :class:`EmojiCategoryType`, optional
@@ -9932,7 +10204,7 @@ class API:
 
     async def get_forum_topic_default_icons(self, *, request_id: str = None, request_timeout: int = None) -> Stickers:
         """
-        Returns the list of custom emojis, which can be used as forum topic icon by all users
+        Returns the list of custom emoji, which can be used as forum topic icon by all users
         """
 
         return await self.client.request(
@@ -12409,14 +12681,14 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def get_searched_for_hashtags(
-        self, prefix: String, limit: Int32, *, request_id: str = None, request_timeout: int = None
+    async def get_searched_for_tags(
+        self, tag_prefix: String, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> Hashtags:
         """
         Returns recently searched for hashtags or cashtags by their prefix
 
-        :param prefix: Prefix of hashtags or cashtags to return
-        :type prefix: :class:`String`
+        :param tag_prefix: Prefix of hashtags or cashtags to return
+        :type tag_prefix: :class:`String`
         :param limit: The maximum number of items to be returned
         :type limit: :class:`Int32`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -12429,8 +12701,8 @@ class API:
         """
 
         return await self.client.request(
-            GetSearchedForHashtags(
-                prefix=prefix,
+            GetSearchedForTags(
+                tag_prefix=tag_prefix,
                 limit=limit,
             ),
             request_id=request_id,
@@ -12475,19 +12747,53 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_star_revenue_statistics(
+        self, owner_id: MessageSender, is_dark: Bool = False, *, request_id: str = None, request_timeout: int = None
+    ) -> StarRevenueStatistics:
+        """
+        Returns detailed Telegram star revenue statistics
+
+        :param owner_id: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+        :type owner_id: :class:`MessageSender`
+        :param is_dark: Pass true if a dark theme is used by the application
+        :type is_dark: :class:`Bool`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.StarRevenueStatistics`
+        """
+
+        return await self.client.request(
+            GetStarRevenueStatistics(
+                owner_id=owner_id,
+                is_dark=is_dark,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_star_transactions(
         self,
+        owner_id: MessageSender,
         offset: String,
+        limit: Int32,
         direction: typing.Optional[StarTransactionDirection] = None,
         *,
         request_id: str = None,
         request_timeout: int = None
     ) -> StarTransactions:
         """
-        Returns the list of Telegram star transactions for the current user
+        Returns the list of Telegram star transactions for the specified owner
 
+        :param owner_id: Identifier of the owner of the Telegram stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+        :type owner_id: :class:`MessageSender`
         :param offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
         :type offset: :class:`String`
+        :param limit: The maximum number of transactions to return
+        :type limit: :class:`Int32`
         :param direction: Direction of the transactions to receive; pass null to get all transactions, defaults to None
         :type direction: :class:`StarTransactionDirection`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
@@ -12501,8 +12807,47 @@ class API:
 
         return await self.client.request(
             GetStarTransactions(
+                owner_id=owner_id,
                 offset=offset,
+                limit=limit,
                 direction=direction,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def get_star_withdrawal_url(
+        self,
+        owner_id: MessageSender,
+        star_count: Int53,
+        password: String,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> HttpUrl:
+        """
+        Returns URL for Telegram star withdrawal
+
+        :param owner_id: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+        :type owner_id: :class:`MessageSender`
+        :param star_count: The number of Telegram stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
+        :type star_count: :class:`Int53`
+        :param password: The 2-step verification password of the current user
+        :type password: :class:`String`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.HttpUrl`
+        """
+
+        return await self.client.request(
+            GetStarWithdrawalUrl(
+                owner_id=owner_id,
+                star_count=star_count,
+                password=password,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -12608,7 +12953,7 @@ class API:
         :type limit: :class:`Int32`
         :param chat_id: Chat identifier for which to return stickers. Available custom emoji stickers may be different for different chats
         :type chat_id: :class:`Int53`
-        :param query: Search query; a space-separated list of emoji or a keyword prefix. If empty, returns all known installed stickers
+        :param query: Search query; a space-separated list of emojis or a keyword prefix. If empty, returns all known installed stickers
         :type query: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
@@ -15440,14 +15785,12 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def remove_searched_for_hashtag(
-        self, hashtag: String, *, request_id: str = None, request_timeout: int = None
-    ) -> Ok:
+    async def remove_searched_for_tag(self, tag: String, *, request_id: str = None, request_timeout: int = None) -> Ok:
         """
         Removes a hashtag or a cashtag from the list of recently searched for hashtags or cashtags
 
-        :param hashtag: Hashtag or cashtag to delete
-        :type hashtag: :class:`String`
+        :param tag: Hashtag or cashtag to delete
+        :type tag: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
@@ -15458,8 +15801,8 @@ class API:
         """
 
         return await self.client.request(
-            RemoveSearchedForHashtag(
-                hashtag=hashtag,
+            RemoveSearchedForTag(
+                tag=tag,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -16977,14 +17320,14 @@ class API:
             request_timeout=request_timeout,
         )
 
-    async def search_public_hashtag_messages(
-        self, hashtag: String, offset: String, limit: Int32, *, request_id: str = None, request_timeout: int = None
+    async def search_public_messages_by_tag(
+        self, tag: String, offset: String, limit: Int32, *, request_id: str = None, request_timeout: int = None
     ) -> FoundMessages:
         """
-        Searches for public channel posts with the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
+        Searches for public channel posts containing the given hashtag or cashtag. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
 
-        :param hashtag: Hashtag or cashtag to search for
-        :type hashtag: :class:`String`
+        :param tag: Hashtag or cashtag to search for
+        :type tag: :class:`String`
         :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
         :type offset: :class:`String`
         :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
@@ -16999,8 +17342,117 @@ class API:
         """
 
         return await self.client.request(
-            SearchPublicHashtagMessages(
-                hashtag=hashtag,
+            SearchPublicMessagesByTag(
+                tag=tag,
+                offset=offset,
+                limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def search_public_stories_by_location(
+        self,
+        address: LocationAddress,
+        offset: String,
+        limit: Int32,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> FoundStories:
+        """
+        Searches for public stories by the given address location. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+
+        :param address: Address of the location
+        :type address: :class:`LocationAddress`
+        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+        :type offset: :class:`String`
+        :param limit: The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FoundStories`
+        """
+
+        return await self.client.request(
+            SearchPublicStoriesByLocation(
+                address=address,
+                offset=offset,
+                limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def search_public_stories_by_tag(
+        self, tag: String, offset: String, limit: Int32, *, request_id: str = None, request_timeout: int = None
+    ) -> FoundStories:
+        """
+        Searches for public stories containing the given hashtag or cashtag. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+
+        :param tag: Hashtag or cashtag to search for
+        :type tag: :class:`String`
+        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+        :type offset: :class:`String`
+        :param limit: The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FoundStories`
+        """
+
+        return await self.client.request(
+            SearchPublicStoriesByTag(
+                tag=tag,
+                offset=offset,
+                limit=limit,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def search_public_stories_by_venue(
+        self,
+        venue_provider: String,
+        venue_id: String,
+        offset: String,
+        limit: Int32,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> FoundStories:
+        """
+        Searches for public stories from the given venue. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+
+        :param venue_provider: Provider of the venue
+        :type venue_provider: :class:`String`
+        :param venue_id: Identifier of the venue in the provider database
+        :type venue_id: :class:`String`
+        :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+        :type offset: :class:`String`
+        :param limit: The maximum number of stories to be returned; up to 100. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
+        :type limit: :class:`Int32`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.FoundStories`
+        """
+
+        return await self.client.request(
+            SearchPublicStoriesByVenue(
+                venue_provider=venue_provider,
+                venue_id=venue_id,
                 offset=offset,
                 limit=limit,
             ),
@@ -17234,7 +17686,7 @@ class API:
 
         :param sticker_type: Type of the stickers to return
         :type sticker_type: :class:`StickerType`
-        :param emojis: Space-separated list of emoji to search for; must be non-empty
+        :param emojis: Space-separated list of emojis to search for; must be non-empty
         :type emojis: :class:`String`
         :param limit: The maximum number of stickers to be returned; 0-100
         :type limit: :class:`Int32`
@@ -21046,7 +21498,7 @@ class API:
         self, sticker: InputFile, emojis: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Changes the list of emoji corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
+        Changes the list of emojis corresponding to a sticker. The sticker must belong to a regular or custom emoji sticker set that is owned by the current user
 
         :param sticker: Sticker
         :type sticker: :class:`InputFile`
@@ -21866,6 +22318,47 @@ class API:
         return await self.client.request(
             StartScheduledGroupCall(
                 group_call_id=group_call_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def stop_business_poll(
+        self,
+        business_connection_id: String,
+        chat_id: Int53,
+        message_id: Int53,
+        reply_markup: typing.Optional[ReplyMarkup] = None,
+        *,
+        request_id: str = None,
+        request_timeout: int = None
+    ) -> BusinessMessage:
+        """
+        Stops a poll sent on behalf of a business account; for bots only
+
+        :param business_connection_id: Unique identifier of business connection on behalf of which the message with the poll was sent
+        :type business_connection_id: :class:`String`
+        :param chat_id: The chat the message belongs to
+        :type chat_id: :class:`Int53`
+        :param message_id: Identifier of the message containing the poll
+        :type message_id: :class:`Int53`
+        :param reply_markup: The new message reply markup; pass null if none, defaults to None
+        :type reply_markup: :class:`ReplyMarkup`, optional
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.BusinessMessage`
+        """
+
+        return await self.client.request(
+            StopBusinessPoll(
+                business_connection_id=business_connection_id,
+                chat_id=chat_id,
+                message_id=message_id,
+                reply_markup=reply_markup,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
