@@ -354,5 +354,6 @@ class ClientSettings(pydantic_settings.BaseSettings):
         env_file='.env',
         env_prefix='aiotdlib_',
         use_enum_values=True,
-        populate_by_name=True
+        populate_by_name=True,
+        extra='ignore'
     )
