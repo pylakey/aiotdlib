@@ -1,4 +1,4 @@
-__version__ = "0.23.4"
+__version__ = "0.24.0"
 
 from .client import Client
 from .client_settings import ClientOptions
