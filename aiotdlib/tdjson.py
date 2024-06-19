@@ -25,6 +25,8 @@ SYSTEM_LIB_EXTENSION = {
     'freebsd': 'so',
 }
 
+logger = logging.getLogger(__name__)
+
 
 def _get_bundled_tdjson_lib_path() -> str:
     tdjson_path = find_library('tdjson')
@@ -42,7 +44,10 @@ def _get_bundled_tdjson_lib_path() -> str:
         raise RuntimeError('Prebuilt TDLib binary is not included for this system')
 
     binary_name = f'libtdjson_{system_name}_{machine_name}.{extension}'
-    return str((pathlib.Path(__file__).parent / 'tdlib' / binary_name).absolute())
+    bundled_lib_path = (pathlib.Path(__file__).parent / 'tdlib' / binary_name).resolve()
+    logger.info('Current system: %s %s', system_name, machine_name)
+    logger.info('Bundled TDLib binary: %s', bundled_lib_path)
+    return str(bundled_lib_path)
 
 
 def _encode_tdjson_query(query: TDJsonQuery) -> bytes:
@@ -73,7 +78,7 @@ class CoreTDJson:
         if not bool(library_path):
             raise ValueError('Library path must be provided')
 
-        library_path = pathlib.Path(library_path)
+        library_path = pathlib.Path(library_path).resolve()
 
         if not bool(library_path.exists()):
             raise FileNotFoundError(f'Library path {library_path} does not exist')
