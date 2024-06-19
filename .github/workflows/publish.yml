@@ -8,15 +8,30 @@ on:
 
 jobs:
   publish_pypi:
-    runs-on: ubuntu-latest
     name: Push python package to PyPI
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v3
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/aiotdlib
+    permissions:
+      id-token: write
 
-      - name: Build and publish to pypi
-        uses: JRubics/poetry-publish@v1.16
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          pypi_token: ${{ secrets.PYPI_API_TOKEN }}
-          ignore_dev_requirements: true
-          python_version: 3.9
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+
+      - name: Build package
+        run: python -m build
+
+      - name: pypi-publish
+        uses: pypa/gh-action-pypi-publish@v1.9.0
