@@ -2566,7 +2566,7 @@ class API:
         forward_limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> FailedToAddMembers:
         """
         Adds a new member to a chat; requires can_invite_users member right. Members can't be added to private or secret chats. Returns information about members that weren't added
@@ -2738,7 +2738,7 @@ class API:
         priority: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> File:
         """
         Adds a file from a message to the list of file downloads. Download progress and completion of the download will be notified through updateFile updates. If message database is used, the list of file downloads is persistent across application restarts. The downloading is independent of download using downloadFile, i.e. it continues if downloadFile is canceled or is used to download a part of the file
@@ -2780,7 +2780,7 @@ class API:
         reply_to: typing.Optional[InputMessageReplyTo] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Message:
         """
         Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
@@ -2853,7 +2853,7 @@ class API:
         update_recent_reactions: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Adds a reaction or a tag to a message. Use getMessageAvailableReactions to receive the list of available reactions for the message
@@ -2922,7 +2922,7 @@ class API:
         enable: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Proxy:
         """
         Adds a proxy server for network requests. Can be called before authorization
@@ -2964,7 +2964,7 @@ class API:
         hide_via_bot: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> QuickReplyMessage:
         """
         Adds a message to a quick reply shortcut via inline bot. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
@@ -3007,7 +3007,7 @@ class API:
         reply_to_message_id: Int53 = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> QuickReplyMessage:
         """
         Adds a message to a quick reply shortcut. If shortcut doesn't exist and there are less than getOption("quick_reply_shortcut_count_max") shortcuts, then a new shortcut is created. The shortcut must not contain more than getOption("quick_reply_shortcut_message_count_max") messages after adding the new message. Returns the added message
@@ -3044,7 +3044,7 @@ class API:
         reply_to_message_id: Int53 = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> QuickReplyMessages:
         """
         Adds 2-10 messages grouped together into an album to a quick reply shortcut. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
@@ -3184,7 +3184,7 @@ class API:
         sticker: InputSticker,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Adds a new sticker to a set
@@ -3248,7 +3248,7 @@ class API:
         show_alert: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets the result of a callback query; for bots only
@@ -3322,7 +3322,7 @@ class API:
         button: typing.Optional[InlineQueryResultsButton] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets the result of an inline query; for bots only
@@ -3367,7 +3367,7 @@ class API:
         error_message: String,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets the result of a pre-checkout query; for bots only
@@ -3401,7 +3401,7 @@ class API:
         error_message: String,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets the result of a shipping query; for bots only
@@ -3437,7 +3437,7 @@ class API:
         result: InputInlineQueryResult,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> SentWebAppMessage:
         """
         Sets the result of interaction with a Web App and sends corresponding message on behalf of the user to the chat from which the query originated; for bots only
@@ -3523,7 +3523,7 @@ class API:
         purpose: StorePaymentPurpose,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Informs server about a purchase through Google Play. For official applications only
@@ -3564,7 +3564,7 @@ class API:
         revoke_messages: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Bans a member in a chat; requires can_restrict_members administrator right. Members can't be banned in private or secret chats. In supergroups and channels, the user will not be able to return to the group on their own using invite links, etc., unless unbanned first
@@ -3605,7 +3605,7 @@ class API:
         report_spam: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Blocks an original sender of a message in the Replies chat
@@ -3891,7 +3891,7 @@ class API:
         is_archived: Bool,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Installs/uninstalls or activates/archives a sticker set
@@ -4787,7 +4787,7 @@ class API:
         is_video: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> CallId:
         """
         Creates a new call
@@ -4849,7 +4849,7 @@ class API:
         name: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> ChatFolderInviteLink:
         """
         Creates a new invite link for a chat folder. A link can be created for a chat folder if it has only pinned and included chats
@@ -4888,7 +4888,7 @@ class API:
         creates_join_request: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> ChatInviteLink:
         """
         Creates a new invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat
@@ -4987,7 +4987,7 @@ class API:
         message_auto_delete_time: Int32 = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> CreatedBasicGroupChat:
         """
         Creates a new basic group and sends a corresponding messageBasicGroupChatCreate. Returns information about the newly created chat
@@ -5053,7 +5053,7 @@ class API:
         name: typing.Optional[String] = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> StickerSet:
         """
         Creates a new sticker set. Returns the newly created sticker set
@@ -5106,7 +5106,7 @@ class API:
         location: typing.Optional[ChatLocation] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Chat:
         """
         Creates a new supergroup or channel and sends a corresponding messageSupergroupChatCreate. Returns the newly created chat
@@ -5265,7 +5265,7 @@ class API:
         is_rtmp_stream: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> GroupCallId:
         """
         Creates a video chat (a group call bound to a chat). Available only for basic groups, supergroups and channels; requires can_manage_video_chats administrator right
@@ -5486,7 +5486,7 @@ class API:
         leave_chat_ids: Vector[Int53],
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Deletes existing chat folder
@@ -5548,7 +5548,7 @@ class API:
         revoke: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Deletes all messages in the chat. Use chat.can_be_deleted_only_for_self and chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat
@@ -5586,7 +5586,7 @@ class API:
         revoke: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Deletes all messages between the specified dates in a chat. Supported only for private chats and basic groups. Messages sent in the last 30 seconds will not be deleted
@@ -5681,7 +5681,7 @@ class API:
         scope: typing.Optional[BotCommandScope] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Deletes commands supported by the bot for the given user scope and language; for bots only
@@ -5816,7 +5816,7 @@ class API:
         revoke: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Deletes messages
@@ -6020,7 +6020,7 @@ class API:
         max_date: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Deletes all messages between the specified dates in a Saved Messages topic. Messages sent in the last 30 seconds will not be deleted
@@ -6168,7 +6168,7 @@ class API:
         is_video: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Discards a call
@@ -6247,7 +6247,7 @@ class API:
         synchronous: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> File:
         """
         Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates
@@ -6321,7 +6321,7 @@ class API:
         caption: typing.Optional[FormattedText] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> BusinessMessage:
         """
         Edits the caption of a message sent on behalf of a business account; for bots only
@@ -6372,7 +6372,7 @@ class API:
         location: typing.Optional[Location] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> BusinessMessage:
         """
         Edits the content of a live location in a message sent on behalf of a business account; for bots only
@@ -6426,7 +6426,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> BusinessMessage:
         """
         Edits the content of a message with an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
@@ -6470,7 +6470,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> BusinessMessage:
         """
         Edits the reply markup of a message sent on behalf of a business account; for bots only
@@ -6512,7 +6512,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> BusinessMessage:
         """
         Edits the text of a text or game message sent on behalf of a business account; for bots only
@@ -6584,7 +6584,7 @@ class API:
         name: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> ChatFolderInviteLink:
         """
         Edits an invite link for a chat folder
@@ -6627,7 +6627,7 @@ class API:
         creates_join_request: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> ChatInviteLink:
         """
         Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -6700,7 +6700,7 @@ class API:
         name: typing.Optional[String] = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Edits title and icon of a topic in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic
@@ -6744,7 +6744,7 @@ class API:
         caption: typing.Optional[FormattedText] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Edits the caption of an inline message sent via a bot; for bots only
@@ -6787,7 +6787,7 @@ class API:
         location: typing.Optional[Location] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Edits the content of a live location in an inline message sent via a bot; for bots only
@@ -6833,7 +6833,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
@@ -6869,7 +6869,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Edits the reply markup of an inline message sent via a bot; for bots only
@@ -6903,7 +6903,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Edits the text of an inline text or game message sent via a bot; for bots only
@@ -6942,7 +6942,7 @@ class API:
         caption: typing.Optional[FormattedText] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Message:
         """
         Edits the message content caption. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
@@ -6989,7 +6989,7 @@ class API:
         location: typing.Optional[Location] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Message:
         """
         Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
@@ -7039,7 +7039,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Message:
         """
         Edits the content of a message with an animation, an audio, a document, a photo or a video, including message caption. If only the caption needs to be edited, use editMessageCaption instead. The media can't be edited if the message was set to self-destruct or to a self-destructing media. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
@@ -7079,7 +7079,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Message:
         """
         Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
@@ -7116,7 +7116,7 @@ class API:
         scheduling_state: typing.Optional[MessageSchedulingState] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed
@@ -7154,7 +7154,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Message:
         """
         Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
@@ -7196,7 +7196,7 @@ class API:
         enable: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Proxy:
         """
         Edits an existing proxy server for network requests. Can be called before authorization
@@ -7239,7 +7239,7 @@ class API:
         input_message_content: InputMessageContent,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Text message can be edited only to a text message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
@@ -7278,7 +7278,7 @@ class API:
         caption: typing.Optional[FormattedText] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes content and caption of a story. Can be called only if story.can_be_edited == true
@@ -7416,7 +7416,7 @@ class API:
         error: typing.Optional[Error] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Finishes the file generation
@@ -7454,7 +7454,7 @@ class API:
         options: typing.Optional[MessageSendOptions] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Messages:
         """
         Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
@@ -7564,7 +7564,7 @@ class API:
         return_only_main_emoji: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Emojis:
         """
         Returns unique emoji that correspond to stickers to be found by the getStickers(sticker_type, query, 1000000, chat_id)
@@ -7664,7 +7664,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> StickerSets:
         """
         Returns a list of archived sticker sets
@@ -8120,7 +8120,7 @@ class API:
         payload: CallbackQueryPayload,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> CallbackQueryAnswer:
         """
         Sends a callback query to a bot and returns an answer. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
@@ -8157,7 +8157,7 @@ class API:
         callback_query_id: Int64,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Message:
         """
         Returns information about a message with the callback button that originated a callback query; for bots only
@@ -8452,7 +8452,7 @@ class API:
         only_gift_codes: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> FoundChatBoosts:
         """
         Returns the list of boosts applied to a chat; requires administrator rights in the chat
@@ -8495,7 +8495,7 @@ class API:
         filters: typing.Optional[ChatEventLogFilters] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> ChatEvents:
         """
         Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i.e., in order of decreasing event_id)
@@ -8693,7 +8693,7 @@ class API:
         only_local: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Messages:
         """
         Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
@@ -8790,7 +8790,7 @@ class API:
         offset_member: typing.Optional[ChatInviteLinkMember] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> ChatInviteLinkMembers:
         """
         Returns chat members joined a chat via an invite link. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
@@ -8833,7 +8833,7 @@ class API:
         is_revoked: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> ChatInviteLinks:
         """
         Returns invite links for a chat created by specified administrator. Requires administrator privileges and can_invite_users right in the chat to get own links and owner privileges to get other links
@@ -8881,7 +8881,7 @@ class API:
         offset_request: typing.Optional[ChatJoinRequest] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> ChatJoinRequests:
         """
         Returns pending join requests in a chat
@@ -9006,7 +9006,7 @@ class API:
         saved_messages_topic_id: Int53,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> MessageCalendar:
         """
         Returns information about the next messages of the specified type in the chat split by days. Returns the results in reverse chronological order. Can return partial result for the last returned day. Behavior of this method depends on the value of the option "utc_time_offset"
@@ -9047,7 +9047,7 @@ class API:
         return_local: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Count:
         """
         Returns approximate number of messages of the specified type in the chat
@@ -9089,7 +9089,7 @@ class API:
         saved_messages_topic_id: Int53 = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Count:
         """
         Returns approximate 1-based position of a message among messages, which can be found by the specified filter in the chat. Cannot be used in secret chats
@@ -9131,7 +9131,7 @@ class API:
         scope: typing.Optional[NotificationSettingsScope] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Chats:
         """
         Returns the list of chats with non-default notification settings for new messages
@@ -9388,7 +9388,7 @@ class API:
         saved_messages_topic_id: Int53 = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> MessagePositions:
         """
         Returns sparse positions of messages of the specified type in the chat to be used for shared media scroll implementation. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). Cannot be used in secret chats or with searchMessagesFilterFailedToSend filter without an enabled message database
@@ -9487,7 +9487,7 @@ class API:
         reaction_type: typing.Optional[ReactionType] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> StoryInteractions:
         """
         Returns interactions with a story posted in a chat. Can be used only if story is posted on behalf of a chat and the user is an administrator in the chat
@@ -9532,7 +9532,7 @@ class API:
         chat_list: typing.Optional[ChatList] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Chats:
         """
         Returns an ordered list of chats from the beginning of a chat list. For informational purposes only. Use loadChats and updates processing instead to maintain chat lists in a consistent state
@@ -9637,7 +9637,7 @@ class API:
         scope: typing.Optional[BotCommandScope] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> BotCommands:
         """
         Returns the list of commands supported by the bot for the given user scope and language; for bots only
@@ -10251,7 +10251,7 @@ class API:
         offset_message_thread_id: Int53 = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> ForumTopics:
         """
         Returns found forum topics in a forum chat. This is a temporary method for getting information about topic list from the server
@@ -10363,7 +10363,7 @@ class API:
         can_self_unmute: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> HttpUrl:
         """
         Returns invite link to a video chat in a public chat
@@ -10399,7 +10399,7 @@ class API:
         video_quality: typing.Optional[GroupCallVideoQuality] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> FilePart:
         """
         Returns a file with a segment of a group call stream in a modified OGG format for audio or MPEG-4 format for video
@@ -10467,7 +10467,7 @@ class API:
         offset_chat_id: Int53 = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Chats:
         """
         Returns a list of common group chats with a given user. Chats are sorted by their type and creation date
@@ -10556,7 +10556,7 @@ class API:
         user_location: typing.Optional[Location] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> InlineQueryResults:
         """
         Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
@@ -10749,7 +10749,7 @@ class API:
         input_language_codes: Vector[String] = [],
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Emojis:
         """
         Return emojis matching the keyword. Supported only if the file database is enabled. Order of results is unspecified
@@ -10809,7 +10809,7 @@ class API:
         key: String,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> LanguagePackStringValue:
         """
         Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. Can be called synchronously
@@ -10963,7 +10963,7 @@ class API:
         allow_write_access: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> HttpUrl:
         """
         Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button
@@ -11003,7 +11003,7 @@ class API:
         button_id: Int53,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> LoginUrlInfo:
         """
         Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
@@ -11043,7 +11043,7 @@ class API:
         chat_id: Int53 = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> File:
         """
         Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
@@ -11180,7 +11180,7 @@ class API:
         reaction_type: typing.Optional[ReactionType] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> AddedReactions:
         """
         Returns reactions added for a message, along with their sender
@@ -11279,7 +11279,7 @@ class API:
         for_album: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Text:
         """
         Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username
@@ -11368,7 +11368,7 @@ class API:
         in_message_thread: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> MessageLink:
         """
         Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
@@ -11465,7 +11465,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> PublicForwards:
         """
         Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if message.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
@@ -11533,7 +11533,7 @@ class API:
         is_dark: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> MessageStatistics:
         """
         Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
@@ -11600,7 +11600,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Messages:
         """
         Returns messages in a message thread of a message. Can be used only if message.can_get_message_thread == true. Message thread of a channel message is in the channel's linked supergroup. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -11789,7 +11789,7 @@ class API:
         nonce: String,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> PassportAuthorizationForm:
         """
         Returns a Telegram Passport authorization form for sharing data with a service
@@ -11895,7 +11895,7 @@ class API:
         theme: typing.Optional[ThemeParameters] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> PaymentForm:
         """
         Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
@@ -12012,7 +12012,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> MessageSenders:
         """
         Returns message senders voted for the specified option in a non-anonymous polls. For optimal performance, the number of returned users is chosen by TDLib
@@ -12447,7 +12447,7 @@ class API:
         file_type: typing.Optional[FileType] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> File:
         """
         Returns information about a file by its remote identifier; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
@@ -12546,7 +12546,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Messages:
         """
         Returns messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
@@ -12783,7 +12783,7 @@ class API:
         direction: typing.Optional[StarTransactionDirection] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> StarTransactions:
         """
         Returns the list of Telegram star transactions for the specified owner
@@ -12823,7 +12823,7 @@ class API:
         password: String,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> HttpUrl:
         """
         Returns URL for Telegram star withdrawal
@@ -12942,7 +12942,7 @@ class API:
         query: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Stickers:
         """
         Returns stickers from the installed sticker sets that correspond to any of the given emoji or can be found by sticker-specific keywords. If the query is non-empty, then favorite, recently used or trending stickers may also be returned
@@ -13020,7 +13020,7 @@ class API:
         only_local: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Story:
         """
         Returns a story
@@ -13086,7 +13086,7 @@ class API:
         prefer_with_reaction: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> StoryInteractions:
         """
         Returns interactions with a story. The method can be called only for stories posted on behalf of the current user
@@ -13149,7 +13149,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> PublicForwards:
         """
         Returns forwards of a story as a message to public chats and reposts by public channels. Can be used only if the story is posted on behalf of the current user or story.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
@@ -13189,7 +13189,7 @@ class API:
         is_dark: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> StoryStatistics:
         """
         Returns detailed statistics about a story. Can be used only if story.can_get_statistics == true
@@ -13352,7 +13352,7 @@ class API:
         filter_: typing.Optional[SupergroupMembersFilter] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> ChatMembers:
         """
         Returns information about members or banned users in a supergroup or channel. Can be used only if supergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters
@@ -13540,7 +13540,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> TrendingStickerSets:
         """
         Returns a list of trending sticker sets. For optimal performance, the number of returned sticker sets is chosen by TDLib
@@ -13799,7 +13799,7 @@ class API:
         theme: typing.Optional[ThemeParameters] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> HttpUrl:
         """
         Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
@@ -13849,7 +13849,7 @@ class API:
         theme: typing.Optional[ThemeParameters] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> HttpUrl:
         """
         Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
@@ -13916,7 +13916,7 @@ class API:
         link_preview_options: typing.Optional[LinkPreviewOptions] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> WebPage:
         """
         Returns a link preview by the text of a message. Do not call this function too often. Returns a 404 error if the text has no link preview
@@ -14011,7 +14011,7 @@ class API:
         attached_files: Vector[InputFile],
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Imports messages exported from another app
@@ -14128,7 +14128,7 @@ class API:
         participant_id: typing.Optional[MessageSender] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Text:
         """
         Joins an active group call. Returns join response payload for tgcalls
@@ -14176,7 +14176,7 @@ class API:
         parameters: PremiumGiveawayParameters,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Launches a prepaid Telegram Premium giveaway
@@ -14282,7 +14282,7 @@ class API:
         chat_list: typing.Optional[ChatList] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Loads more chats from a chat list. The loaded chats and their positions in the chat list will be sent through updates. Chats are sorted by the pair (chat.position.order, chat.id) in descending order. Returns a 404 error if all chats have been loaded
@@ -14527,7 +14527,7 @@ class API:
         reply_to: typing.Optional[InputMessageReplyTo] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> WebAppInfo:
         """
         Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
@@ -14582,7 +14582,7 @@ class API:
         return_deleted_file_statistics: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> StorageStatistics:
         """
         Optimizes storage usage, i.e. deletes some files and returns new storage usage statistics. Secret thumbnails can't be deleted
@@ -14691,7 +14691,7 @@ class API:
         only_for_self: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Pins a message in a chat; requires can_pin_messages member right if the chat is a basic group or supergroup, or can_edit_messages administrator right if the chat is a channel
@@ -14754,7 +14754,7 @@ class API:
         file_type: typing.Optional[FileType] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> File:
         """
         Preliminary uploads a file to the cloud before sending it in a message, which can be useful for uploading of being recorded voice and video notes. In all other cases there is no need to preliminary upload a file. Updates updateFile will be used to notify about upload progress. The upload will not be completed until the file is sent in a message
@@ -14790,7 +14790,7 @@ class API:
         added_chat_ids: Vector[Int53],
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Process new chats added to a shareable chat folder by its owner
@@ -14824,7 +14824,7 @@ class API:
         approve: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Handles a pending join request in a chat
@@ -14861,7 +14861,7 @@ class API:
         approve: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Handles all pending join requests for a given link in a chat
@@ -14923,7 +14923,7 @@ class API:
         is_good: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Rates recognized speech in a video note or a voice note message
@@ -15176,7 +15176,7 @@ class API:
         new_hint: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Recovers the 2-step verification password with a password recovery code sent to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword
@@ -15213,7 +15213,7 @@ class API:
         new_hint: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> PasswordState:
         """
         Recovers the 2-step verification password using a recovery code sent to an email address that was previously set up
@@ -15277,7 +15277,7 @@ class API:
         other_user_ids: Vector[Int53],
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> PushReceiverId:
         """
         Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
@@ -15311,7 +15311,7 @@ class API:
         disable_notification: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
@@ -15348,7 +15348,7 @@ class API:
         delete_from_cache: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Removes all files from the file download list
@@ -15538,7 +15538,7 @@ class API:
         reaction_type: ReactionType,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Removes a reaction from a message. A chosen reaction can always be removed
@@ -15574,7 +15574,7 @@ class API:
         notification_id: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user
@@ -15607,7 +15607,7 @@ class API:
         max_notification_id: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user
@@ -15920,7 +15920,7 @@ class API:
         main_chat_list_position: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the order of chat folders
@@ -15953,7 +15953,7 @@ class API:
         sticker_set_ids: Vector[Int64],
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the order of installed sticker sets
@@ -16066,7 +16066,7 @@ class API:
         new_sticker: InputSticker,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Replaces existing sticker in a set. The function is equivalent to removeStickerFromSet, then addStickerToSet, then setStickerPositionInSet
@@ -16157,7 +16157,7 @@ class API:
         text: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if chat.can_be_reported
@@ -16198,7 +16198,7 @@ class API:
         text: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Reports a chat photo to the Telegram moderators. A chat photo can be reported only if chat.can_be_reported
@@ -16238,7 +16238,7 @@ class API:
         option_id: Bytes,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> ReportChatSponsoredMessageResult:
         """
         Reports a sponsored message to Telegram moderators
@@ -16275,7 +16275,7 @@ class API:
         sender_id: MessageSender,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
@@ -16338,7 +16338,7 @@ class API:
         text: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Reports a story to the Telegram moderators
@@ -16536,7 +16536,7 @@ class API:
         quote: typing.Optional[InputTextQuote] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Messages:
         """
         Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
@@ -16775,7 +16775,7 @@ class API:
         only_missed: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> FoundMessages:
         """
         Searches for call messages. Returns the results in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib
@@ -16813,7 +16813,7 @@ class API:
         filter_: typing.Optional[ChatMembersFilter] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> ChatMembers:
         """
         Searches for a specified query in the first name, last name and usernames of the members of a specified chat. Requires administrator rights if the chat is a channel
@@ -16859,7 +16859,7 @@ class API:
         filter_: typing.Optional[SearchMessagesFilter] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> FoundChatMessages:
         """
         Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages must be used instead), or without an enabled message database. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit. A combination of query, sender_id, filter and message_thread_id search criteria is expected to be supported, only if it is required for Telegram official application implementation
@@ -17050,7 +17050,7 @@ class API:
         input_language_codes: Vector[String] = [],
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> EmojiKeywords:
         """
         Searches for emojis by keywords. Supported only if the file database is enabled. Order of results is unspecified
@@ -17086,7 +17086,7 @@ class API:
         only_completed: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> FoundFileDownloads:
         """
         Searches for files in the file download list or recently downloaded files from the list
@@ -17157,7 +17157,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> StickerSets:
         """
         Searches for installed sticker sets by looking for specified query in their title and name
@@ -17199,7 +17199,7 @@ class API:
         filter_: typing.Optional[SearchMessagesFilter] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> FoundMessages:
         """
         Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
@@ -17358,7 +17358,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> FoundStories:
         """
         Searches for public stories by the given address location. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
@@ -17427,7 +17427,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> FoundStories:
         """
         Searches for public stories from the given venue. For optimal performance, the number of returned stories is chosen by TDLib and can be smaller than the specified limit
@@ -17467,7 +17467,7 @@ class API:
         quote_position: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> FoundPosition:
         """
         Searches for a given quote in a text. Returns found quote start position in UTF-16 code units. Returns a 404 error if the quote is not found. Can be called synchronously
@@ -17535,7 +17535,7 @@ class API:
         tag: typing.Optional[ReactionType] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> FoundChatMessages:
         """
         Searches for messages tagged by the given reaction and with the given words in the Saved Messages chat; for Telegram Premium users only. Returns the results in reverse chronological order, i.e. in order of decreasing message_id For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
@@ -17583,7 +17583,7 @@ class API:
         filter_: typing.Optional[SearchMessagesFilter] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> FoundMessages:
         """
         Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance, the number of returned messages is chosen by TDLib
@@ -17679,7 +17679,7 @@ class API:
         limit: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Stickers:
         """
         Searches for stickers from public sticker sets that correspond to any of the given emoji
@@ -17717,7 +17717,7 @@ class API:
         return_none_for_empty_query: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> FoundPositions:
         """
         Searches specified query by word prefixes in the provided strings. Returns 0-based positions of strings that matched. Can be called synchronously
@@ -17861,7 +17861,7 @@ class API:
         parameter: String,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Message:
         """
         Invites a bot to a chat (if it is not yet a member) and sends it the /start command; requires can_invite_users member right. Bots can't be invited to a private chat other than the chat with the bot. Bots can't be invited to channels (although they can be added as admins) and secret chats. Returns the sent message
@@ -17903,7 +17903,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> BusinessMessage:
         """
         Sends a message on behalf of a business account; for bots only. Returns the message after it was sent
@@ -17959,7 +17959,7 @@ class API:
         reply_to: typing.Optional[InputMessageReplyTo] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> BusinessMessages:
         """
         Sends 2-10 messages grouped together into an album on behalf of a business account; for bots only. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
@@ -18065,7 +18065,7 @@ class API:
         problems: Vector[CallProblem],
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sends a call rating
@@ -18134,7 +18134,7 @@ class API:
         action: typing.Optional[ChatAction] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sends a notification about user activity in a chat
@@ -18231,7 +18231,7 @@ class API:
         options: typing.Optional[MessageSendOptions] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Message:
         """
         Sends the result of an inline query as a message. Returns the sent message. Always clears a chat draft message
@@ -18283,7 +18283,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Message:
         """
         Sends a message. Returns the sent message
@@ -18331,7 +18331,7 @@ class API:
         options: typing.Optional[MessageSendOptions] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Messages:
         """
         Sends 2-10 messages grouped together into an album. Currently, only audio, document, photo and video messages can be grouped into an album. Documents and audio files can be only grouped in an album with messages of the same type. Returns sent messages
@@ -18373,7 +18373,7 @@ class API:
         types: Vector[PassportElementType],
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements are going to be reused
@@ -18410,7 +18410,7 @@ class API:
         credentials: typing.Optional[InputCredentials] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> PaymentResult:
         """
         Sends a filled-out payment form to the bot for final verification
@@ -18456,7 +18456,7 @@ class API:
         settings: typing.Optional[PhoneNumberAuthenticationSettings] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> AuthenticationCodeInfo:
         """
         Sends a code to the specified phone number. Aborts previous phone number verification if there was one. On success, returns information about the sent code
@@ -18518,7 +18518,7 @@ class API:
         sending_id: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Messages:
         """
         Sends messages from a quick reply shortcut. Requires Telegram Business subscription
@@ -18561,7 +18561,7 @@ class API:
         caption: typing.Optional[FormattedText] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Story:
         """
         Sends a new story to a chat; requires can_post_stories right for supergroup and channel chats. Returns a temporary story
@@ -18616,7 +18616,7 @@ class API:
         parameters: String,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> CustomRequestResult:
         """
         Sends a custom request from a Web App
@@ -18653,7 +18653,7 @@ class API:
         data: String,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sends data received from a keyboardButtonTypeWebApp Web App to a bot
@@ -18689,7 +18689,7 @@ class API:
         background_custom_emoji_id: typing.Optional[Int64] = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes accent color and background custom emoji for the current user; for Telegram Premium users only
@@ -18846,7 +18846,7 @@ class API:
         settings: typing.Optional[PhoneNumberAuthenticationSettings] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
@@ -18907,7 +18907,7 @@ class API:
         settings: typing.Optional[ScopeAutosaveSettings] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets autosave settings for the given scope. The method is guaranteed to work only after at least one call to getAutosaveSettings
@@ -18989,7 +18989,7 @@ class API:
         language_code: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets the text shown in the chat with a bot if the chat is empty. Can be called only if userTypeBot.can_be_edited == true
@@ -19026,7 +19026,7 @@ class API:
         language_code: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets the text shown on a bot's profile page and sent together with the link when users share the bot. Can be called only if userTypeBot.can_be_edited == true
@@ -19063,7 +19063,7 @@ class API:
         name: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets the name of a bot. Can be called only if userTypeBot.can_be_edited == true
@@ -19099,7 +19099,7 @@ class API:
         photo: typing.Optional[InputChatPhoto] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes a profile photo for a bot
@@ -19159,7 +19159,7 @@ class API:
         away_message_settings: typing.Optional[BusinessAwayMessageSettings] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the business away message settings of the current user. Requires Telegram Business subscription
@@ -19213,7 +19213,7 @@ class API:
         greeting_message_settings: typing.Optional[BusinessGreetingMessageSettings] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the business greeting message settings of the current user. Requires Telegram Business subscription
@@ -19267,7 +19267,7 @@ class API:
         opening_hours: typing.Optional[BusinessOpeningHours] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the business opening hours of the current user. Requires Telegram Business subscription
@@ -19296,7 +19296,7 @@ class API:
         start_page: typing.Optional[InputBusinessStartPage] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the business start page of the current user. Requires Telegram Business subscription
@@ -19327,7 +19327,7 @@ class API:
         background_custom_emoji_id: typing.Optional[Int64] = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes accent color and background custom emoji of a channel chat. Requires can_change_info administrator right
@@ -19391,7 +19391,7 @@ class API:
         available_reactions: ChatAvailableReactions,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes reactions, available in a chat. Available for basic groups, supergroups, and channels. Requires can_change_info member right
@@ -19427,7 +19427,7 @@ class API:
         type_: typing.Optional[BackgroundType] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets the background in a specific chat. Supported only in private and secret chats with non-deleted users, and in chats with sufficient boost level and can_change_info administrator right
@@ -19554,7 +19554,7 @@ class API:
         draft_message: typing.Optional[DraftMessage] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the draft message in a chat
@@ -19590,7 +19590,7 @@ class API:
         emoji_status: typing.Optional[EmojiStatus] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the emoji status of a chat. Use chatBoostLevelFeatures.can_set_emoji_status to check whether an emoji status can be set. Requires can_change_info administrator right
@@ -19652,7 +19652,7 @@ class API:
         status: ChatMemberStatus,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the status of a chat member; requires can_invite_users member right to add a chat member, can_promote_members administrator right to change administrator rights of the member, and can_restrict_members administrator right to change restrictions of a user. This function is currently not suitable for transferring chat ownership; use transferChatOwnership instead. Use addChatMember or banChatMember if some additional parameters needs to be passed
@@ -19688,7 +19688,7 @@ class API:
         message_auto_delete_time: Int32 = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the message auto-delete or self-destruct (for secret chats) time in a chat. Requires change_info administrator right in basic groups, supergroups and channels Message auto-delete time can't be changed in a chat with the current user (Saved Messages) and the chat 777000 (Telegram).
@@ -19749,7 +19749,7 @@ class API:
         notification_settings: ChatNotificationSettings,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed
@@ -19810,7 +19810,7 @@ class API:
         photo: typing.Optional[InputChatPhoto] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info member right
@@ -19872,7 +19872,7 @@ class API:
         profile_background_custom_emoji_id: typing.Optional[Int64] = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes accent color and background custom emoji for profile of a supergroup or channel chat. Requires can_change_info administrator right
@@ -20018,7 +20018,7 @@ class API:
         scope: typing.Optional[BotCommandScope] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets the list of commands supported by the bot for the given user scope and language; for bots only
@@ -20082,7 +20082,7 @@ class API:
         strings: Vector[LanguagePackString],
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Adds or changes a custom local language pack to the current localization target
@@ -20115,7 +20115,7 @@ class API:
         new_string: LanguagePackString,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Adds, edits or deletes a string in a custom local language pack. Can be called before authorization
@@ -20174,7 +20174,7 @@ class API:
         type_: typing.Optional[BackgroundType] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Background:
         """
         Sets default background for chats; adds the background to the list of installed backgrounds
@@ -20209,7 +20209,7 @@ class API:
         default_channel_administrator_rights: typing.Optional[ChatAdministratorRights] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets default administrator rights for adding the bot to channel chats; for bots only
@@ -20238,7 +20238,7 @@ class API:
         default_group_administrator_rights: typing.Optional[ChatAdministratorRights] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets default administrator rights for adding the bot to basic group and supergroup chats; for bots only
@@ -20267,7 +20267,7 @@ class API:
         message_auto_delete_time: MessageAutoDeleteTime = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the default message auto-delete time for new chats
@@ -20348,7 +20348,7 @@ class API:
         expected_size: typing.Optional[Int53] = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Informs TDLib on a file generation progress
@@ -20385,7 +20385,7 @@ class API:
         notification_settings: ChatNotificationSettings,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the notification settings of a forum topic
@@ -20425,7 +20425,7 @@ class API:
         force: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Message:
         """
         Updates the game score of the specified user in the game; for bots only
@@ -20471,7 +20471,7 @@ class API:
         is_speaking: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Informs TDLib that speaking state of a participant of an active group has changed
@@ -20508,7 +20508,7 @@ class API:
         volume_level: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes volume level of a participant of an active group call. If the current user can manage the group call, then the participant's volume level will be changed for all users with the default volume level
@@ -20600,7 +20600,7 @@ class API:
         force: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Updates the game score of the specified user in a game; for bots only
@@ -20795,7 +20795,7 @@ class API:
         text: typing.Optional[FormattedText] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the fact-check of a message. Can be only used if getOption("can_edit_fact_check") == true
@@ -20833,7 +20833,7 @@ class API:
         is_big: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets reactions on a message; for bots only
@@ -20872,7 +20872,7 @@ class API:
         block_list: typing.Optional[BlockList] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the block list of a message sender. Currently, only users and supergroup chats can be blocked
@@ -20983,7 +20983,7 @@ class API:
         value: typing.Optional[OptionValue] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets the value of an option. (Check the list of available options on https://core.telegram.org/tdlib/options.) Only writable options can be set. Can be called before authorization
@@ -21044,7 +21044,7 @@ class API:
         errors: Vector[InputPassportElementError],
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
@@ -21080,7 +21080,7 @@ class API:
         new_recovery_email_address: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> PasswordState:
         """
         Changes the 2-step verification password for the current user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed
@@ -21227,7 +21227,7 @@ class API:
         option_ids: Vector[Int32],
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the user answer to a poll. A poll in quiz mode can be answered only once
@@ -21263,7 +21263,7 @@ class API:
         profile_background_custom_emoji_id: typing.Optional[Int64] = 0,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes accent color and background custom emoji for profile of the current user; for Telegram Premium users only
@@ -21351,7 +21351,7 @@ class API:
         notification_settings: ReactionNotificationSettings,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes notification settings for reactions
@@ -21406,7 +21406,7 @@ class API:
         new_recovery_email_address: String,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> PasswordState:
         """
         Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed. If new_recovery_email_address is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation
@@ -21467,7 +21467,7 @@ class API:
         notification_settings: ScopeNotificationSettings,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes notification settings for chats of a given type
@@ -21556,7 +21556,7 @@ class API:
         mask_position: typing.Optional[MaskPosition] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the mask position of a mask sticker. The sticker must belong to a mask sticker set that is owned by the current user
@@ -21619,7 +21619,7 @@ class API:
         format: typing.Optional[StickerFormat] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets a sticker set thumbnail
@@ -21686,7 +21686,7 @@ class API:
         privacy_settings: StoryPrivacySettings,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes privacy settings of a story. The method can be called only for stories posted on behalf of the current user and if story.can_be_edited == true
@@ -21721,7 +21721,7 @@ class API:
         reaction_type: typing.Optional[ReactionType] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes chosen reaction on a story that has already been sent
@@ -21760,7 +21760,7 @@ class API:
         custom_emoji_sticker_set_id: Int64,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the custom emoji sticker set of a supergroup; requires can_change_info administrator right. The chat must have at least chatBoostFeatures.min_custom_emoji_sticker_set_boost_level boost level to pass the corresponding color
@@ -21821,7 +21821,7 @@ class API:
         unrestrict_boost_count: Int32,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; requires can_restrict_members administrator right
@@ -21894,7 +21894,7 @@ class API:
         system_version: String = "",
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sets the parameters for TDLib initialization. Works only when the current authorization state is authorizationStateWaitTdlibParameters
@@ -21963,7 +21963,7 @@ class API:
         photo: typing.Optional[InputChatPhoto] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes a personal profile photo of a contact user
@@ -21996,7 +21996,7 @@ class API:
         rules: UserPrivacySettingRules,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes user privacy settings
@@ -22080,7 +22080,7 @@ class API:
         default_participant_id: MessageSender,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes default participant identifier, on whose behalf a video chat in the chat will be joined
@@ -22116,7 +22116,7 @@ class API:
         only_check: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Shares a chat after pressing a keyboardButtonTypeRequestChat button with the bot
@@ -22184,7 +22184,7 @@ class API:
         only_check: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Shares users after pressing a keyboardButtonTypeRequestUsers button with the bot
@@ -22228,7 +22228,7 @@ class API:
         use_portrait_orientation: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Starts recording of an active group call. Requires groupCall.can_be_managed group call flag
@@ -22268,7 +22268,7 @@ class API:
         payload: String,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Text:
         """
         Starts screen sharing in a joined group call. Returns join response payload for tgcalls
@@ -22331,7 +22331,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> BusinessMessage:
         """
         Stops a poll sent on behalf of a business account; for bots only
@@ -22371,7 +22371,7 @@ class API:
         reply_markup: typing.Optional[ReplyMarkup] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
@@ -22676,7 +22676,7 @@ class API:
         timeout: Double,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
@@ -22801,7 +22801,7 @@ class API:
         allow_write_access: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Adds or removes a bot to attachment and side menu. Bot can be added to the menu, only if userTypeBot.can_be_added_to_attachment_menu == true
@@ -22838,7 +22838,7 @@ class API:
         is_active: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes active state for a username of a bot. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached. Can be called only if userTypeBot.can_be_edited == true
@@ -23012,7 +23012,7 @@ class API:
         is_pinned: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the pinned state of a chat. There can be up to getOption("pinned_chat_count_max")/getOption("pinned_archived_chat_count_max") pinned non-secret chats and the same number of secret chats in the main/archive chat list. The limit can be increased with Telegram Premium
@@ -23133,7 +23133,7 @@ class API:
         is_closed: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Toggles whether a topic is closed in a forum supergroup chat; requires can_manage_topics right in the supergroup unless the user is creator of the topic
@@ -23170,7 +23170,7 @@ class API:
         is_pinned: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the pinned state of a forum topic; requires can_manage_topics right in the supergroup. There can be up to getOption("pinned_forum_topic_count_max") pinned forum topics
@@ -23234,7 +23234,7 @@ class API:
         enabled_start_notification: Bool,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Toggles whether the current user will receive a notification when the group call starts; scheduled group calls only
@@ -23267,7 +23267,7 @@ class API:
         is_my_video_enabled: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Toggles whether current user's video is enabled
@@ -23300,7 +23300,7 @@ class API:
         is_my_video_paused: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Toggles whether current user's video is paused
@@ -23362,7 +23362,7 @@ class API:
         is_hand_raised: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Toggles whether a group call participant hand is rased
@@ -23399,7 +23399,7 @@ class API:
         is_muted: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Toggles whether a participant of an active group call is muted, unmuted, or allowed to unmute themselves
@@ -23488,7 +23488,7 @@ class API:
         is_pinned: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes the pinned state of a Saved Messages topic. There can be up to getOption("pinned_saved_messages_topic_count_max") pinned topics. The limit can be increased with Telegram Premium
@@ -23549,7 +23549,7 @@ class API:
         can_accept_secret_chats: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Toggles whether a session can accept incoming secret chats
@@ -23583,7 +23583,7 @@ class API:
         is_posted_to_chat_page: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_posted_to_chat_page == true
@@ -23619,7 +23619,7 @@ class API:
         can_have_sponsored_messages: Bool,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Toggles whether sponsored messages are shown in the channel chat; requires owner privileges in the channel. The chat must have at least chatBoostFeatures.min_sponsored_message_disable_boost_level boost level to disable sponsored messages
@@ -23652,7 +23652,7 @@ class API:
         has_aggressive_anti_spam_enabled: Bool,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Toggles whether aggressive anti-spam checks are enabled in the supergroup. Can be called only if supergroupFullInfo.can_toggle_aggressive_anti_spam == true
@@ -23713,7 +23713,7 @@ class API:
         is_all_history_available: Bool,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Toggles whether the message history of a supergroup is available to new members; requires can_change_info member right
@@ -23884,7 +23884,7 @@ class API:
         is_active: Bool = False,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Changes active state for a username of a supergroup or channel, requires owner privileges in the supergroup or channel. The editable username can't be disabled. May return an error with a message "USERNAMES_ACTIVE_TOO_MUCH" if the maximum number of active usernames has been reached
@@ -23980,7 +23980,7 @@ class API:
         to_language_code: String,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> FormattedText:
         """
         Extracts text or caption of the given message and translates it to the given language. If the current user is a Telegram Premium user, then text formatting is preserved
@@ -24151,7 +24151,7 @@ class API:
         sticker: InputFile,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> File:
         """
         Uploads a file with a sticker; returns the uploaded file
@@ -24188,7 +24188,7 @@ class API:
         order_info: typing.Optional[OrderInfo] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> ValidatedOrderInfo:
         """
         Validates the order information provided by a user and returns the available shipping options for a flexible invoice
@@ -24226,7 +24226,7 @@ class API:
         source: typing.Optional[MessageSource] = None,
         *,
         request_id: str = None,
-        request_timeout: int = None
+        request_timeout: int = None,
     ) -> Ok:
         """
         Informs TDLib that messages are being viewed by the user. Sponsored messages must be marked as viewed only when the entire text of the message is shown on the screen (excluding the button). Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)
