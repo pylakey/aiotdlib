@@ -231,6 +231,11 @@ class TDJsonClient:
             self.td_json.unsubscribe_updates(self.client_id)
             self.client_id = None
 
+    def _cleanup(self):
+        # Clear the queue in case of cancellation
+        while not self._updates_queue.empty():
+            self._updates_queue.get_nowait()
+
     async def send(self, query: TDJsonQuery):
         self._subscribe()
         return await asyncio.to_thread(self.td_json.send, self.client_id, query)
@@ -247,8 +252,12 @@ class TDJsonClient:
 
     async def receive(self) -> typing.AsyncGenerator[dict, None]:
         while True:
-            message = await self._updates_queue.get()
-            yield message
+            try:
+                message = await self._updates_queue.get()
+                yield message
+            except asyncio.CancelledError:
+                self._cleanup()
+                raise
 
     async def enqueue_update(self, update: dict) -> None:
         await self._updates_queue.put(update)

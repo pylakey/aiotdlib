@@ -113,7 +113,6 @@ class Client:
             settings (ClientSettings): Settings for client,
              if not provided default settings will be used, including environment variables
         """
-        self._current_authorization_state = None
         self._authorized_event = asyncio.Event()
         self._running = False
         self._pending_requests: dict[str, PendingRequest] = {}
@@ -207,6 +206,9 @@ class Client:
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         await self.stop()
 
+        if bool(exc_val):
+            raise exc_val
+
     async def _call_handler(self, handler: Handler, update: TDLibObject):
         try:
             await handler(self, update)
@@ -278,43 +280,39 @@ class Client:
             )
 
     async def _updates_loop(self):
-        try:
-            async for packet in self.tdjson_client.receive():
-                if not bool(packet):
-                    continue
+        async for packet in self.tdjson_client.receive():
+            if not bool(packet):
+                continue
 
+            try:
+                update = parse_tdlib_object(packet)
+            except pydantic.ValidationError as e:
+                self.logger.error(f'Unable to parse incoming update: {packet}! {e}', exc_info=True)
+                continue
+
+            if isinstance(update, UpdateAuthorizationState):
                 try:
-                    update = parse_tdlib_object(packet)
-                except pydantic.ValidationError as e:
-                    self.logger.error(f'Unable to parse incoming update: {packet}! {e}', exc_info=True)
-                    continue
-
-                if isinstance(update, UpdateAuthorizationState):
-                    try:
-                        await self._on_authorization_state_update(update.authorization_state)
-                    except asyncio.CancelledError:
-                        raise
-                    except Exception as e:
-                        self.logger.error(
-                            f'Unable to handle authorization state update {update.model_dump_json()}! {e}',
-                            exc_info=True
-                        )
-                        raise SystemExit from e
-
-                    continue
-
-                try:
-                    await self._handle_pending_request(update)
+                    await self._on_authorization_state_update(update.authorization_state)
                 except asyncio.CancelledError:
+                    self.logger.info("Authorization process has been cancelled")
                     raise
                 except Exception as e:
-                    self.logger.error(f'Unable to handle pending request {update}! {e}', exc_info=True)
+                    self.logger.error(
+                        f'Unable to handle authorization state update {update.model_dump_json()}! {e}',
+                        exc_info=True
+                    )
+                    raise
+                else:
+                    continue
 
-                self._create_handler_task(self._handle_update(update))
-        except asyncio.CancelledError:
-            self._pending_requests.clear()
-            self._pending_messages.clear()
-            raise
+            try:
+                await self._handle_pending_request(update)
+            except asyncio.CancelledError:
+                raise
+            except Exception as e:
+                self.logger.error(f'Unable to handle pending request {update}! {e}', exc_info=True)
+
+            self._create_handler_task(self._handle_update(update))
 
     async def _setup_proxy(self):
         if not bool(self.settings.proxy_settings):
@@ -569,14 +567,13 @@ class Client:
             await action()
 
     async def _cleanup(self):
+        self._pending_requests.clear()
+        self._pending_messages.clear()
+
         if bool(self._update_task) and not self._update_task.cancelled():
             self.logger.info("Cancelling updates loop task")
             self._update_task.cancel()
-
-            try:
-                await self._update_task
-            except asyncio.CancelledError:
-                pass
+            await self._update_task
 
         # Cancel all background handlers tasks
         if bool(self._handlers_tasks):
@@ -683,7 +680,7 @@ class Client:
             GetAuthorizationState()
         )
 
-        self.logger.info('Waiting for authorization to be completed...')
+        self.logger.info('Waiting for authorization to be completed')
         await self._authorized_event.wait()
 
     async def start(self) -> 'Client':
@@ -708,22 +705,22 @@ class Client:
             await self.authorize()
         except asyncio.CancelledError:
             await self._cleanup()
+            raise
         else:
-            self.logger.info('Authorization is completed...')
+            self.logger.info('Authorization is completed')
 
         return self
 
     async def idle(self):
-        try:
-            while True:
+        while True:
+            try:
                 await asyncio.sleep(0.1)
-        except asyncio.CancelledError:
-            pass
-        finally:
-            self.logger.info('Stop Idling...')
+            except asyncio.CancelledError:
+                self.logger.info('Stop Idling')
+                raise
 
     async def stop(self):
-        self.logger.info('Stopping telegram client...')
+        self.logger.info('Stopping telegram client')
         await self._cleanup()
 
     # Cache related methods
