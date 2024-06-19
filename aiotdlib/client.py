@@ -48,7 +48,6 @@ from .api import InputMessageVoiceNote
 from .api import InputThumbnail
 from .api import LinkPreviewOptions
 from .api import Message
-from .api import MessageReplyToMessage
 from .api import MessageSchedulingStateSendAtDate
 from .api import MessageSchedulingStateSendWhenOnline
 from .api import MessageSelfDestructType
@@ -86,7 +85,6 @@ from .client_cache import ClientCache
 from .client_settings import ClientParseMode
 from .client_settings import ClientProxyType
 from .client_settings import ClientSettings
-from .client_settings import Undefined
 from .constants import TDLIB_MAX_INT
 from .filters import Filters
 from .handlers import FilterCallable
@@ -361,10 +359,8 @@ class Client:
         if not bool(self.settings.options):
             return
 
-        for k, v in self.settings.options.model_dump(exclude_unset=True, by_alias=True).items():
-            if v is Undefined:
-                continue
-            elif v is None:
+        for k, v in self.settings.options.model_dump(by_alias=True).items():
+            if v is None:
                 option_value = OptionValueEmpty()
             elif isinstance(v, bool):
                 option_value = OptionValueBoolean(value=v)
@@ -376,7 +372,7 @@ class Client:
                 self.logger.warning(f"Option {k} has unsupported value of type {v.__class__.__name__}: {v}")
                 continue
 
-            self.logger.info(f'Setting up option {k} = {v}')
+            self.logger.info(f'Setting up option {k} = {v if v is not None else "<empty or default>"}')
             try:
                 query = SetOption(name=k, value=option_value)
             except pydantic.ValidationError:

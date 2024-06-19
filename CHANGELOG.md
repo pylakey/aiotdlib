@@ -1,5 +1,9 @@
 # aiotdlib CHANGELOG
 
+## 0.24.1
+
+* The predefined values of ClientOptions are now being set up properly.
+
 ## 0.24.0 - TDLib 1.8.31
 
 * TDLib version upgraded to 1.8.31. If you use self-built TDLib binaries, you should update them to

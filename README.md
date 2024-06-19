@@ -4,6 +4,9 @@
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/aiotdlib.svg)](https://pypi.python.org/pypi/aiotdlib/)
 [![PyPI license](https://img.shields.io/pypi/l/aiotdlib.svg)](https://pypi.python.org/pypi/aiotdlib/)
 
+> [!WARNING]
+> This library is still in development, so any updates before version 1.0.0 may include breaking changes. Please be cautious and pin the library version when using it. If you wish to update, I recommend reviewing the Git commit history.
+
 > This wrapper is actual
 > for **[TDLib v1.8.31](https://github.com/tdlib/td/commit/8f19c751dc296cedb9a921badb7a02a8c0cb1aeb)**
 >

@@ -17,8 +17,6 @@ from .tdjson import TDLibLogVerbosity
 from .utils import str_to_base64
 from .utils import strip_phone_number_symbols
 
-Undefined = object()
-
 
 class ClientProxyType(str, enum.Enum):
     MTPROTO = 'mtproto'
@@ -83,7 +81,7 @@ class ClientOptions(pydantic.BaseModel):
     If true, text entities will be automatically parsed in all inputMessageText objects
     """
 
-    archive_and_mute_new_chats_from_unknown_users: Optional[bool] = Undefined
+    archive_and_mute_new_chats_from_unknown_users: Optional[bool] = None
     """
     If true, new chats from non-contacts will be automatically archived and muted. 
     The option can be set only if the option “can_archive_and_mute_new_chats_from_unknown_users” is true. 
@@ -102,7 +100,7 @@ class ClientOptions(pydantic.BaseModel):
     If true, persistent network statistics will be disabled, which significantly reduces disk usage
     """
 
-    disable_sent_scheduled_message_notifications: Optional[bool] = Undefined
+    disable_sent_scheduled_message_notifications: Optional[bool] = None
     """
     If true, notifications about outgoing scheduled messages that were sent will be disabled
     """
@@ -123,7 +121,7 @@ class ClientOptions(pydantic.BaseModel):
     The option does nothing if the database or secret chats are used
     """
 
-    ignore_default_disable_notification: Optional[bool] = Undefined
+    ignore_default_disable_notification: Optional[bool] = None
     """
     If true, the disable_notification value specified in the request will be always used instead of the default value
     """
@@ -133,12 +131,12 @@ class ClientOptions(pydantic.BaseModel):
     If true, prevents file thumbnails sent by the server along with messages from being saved on the disk
     """
 
-    ignore_platform_restrictions: Optional[bool] = Undefined
+    ignore_platform_restrictions: Optional[bool] = None
     """
-    If true, chat and message reictions specific to the currently used operating system will be ignored
+    If true, chat and message restrictions specific to the currently used operating system will be ignored
     """
 
-    is_location_visible: Optional[bool] = Undefined
+    is_location_visible: Optional[bool] = None
     """
     If true, other users will be allowed to see the current user's location
     """
@@ -151,53 +149,53 @@ class ClientOptions(pydantic.BaseModel):
     # so it should be set before call to setTdlibParameters.
     # """
 
-    language_pack_id: Optional[str] = Undefined
+    language_pack_id: Optional[str] = None
     """
     Identifier of the currently used language pack from the current localization target
     """
 
-    localization_target: Optional[str] = Undefined
+    localization_target: Optional[str] = None
     """
     Name for the current localization target (currently supported: “android”,“android_x”,“ios”,“macos” and “tdesktop”)
     """
 
-    message_unload_delay: Optional[int] = Undefined
+    message_unload_delay: Optional[int] = None
     """
     The maximum time messages are stored in memory before they are unloaded, 60-86400; in seconds. 
     Defaults to 60 for users and 1800 for bots
     """
 
-    notification_group_count_max: Optional[int] = Undefined
+    notification_group_count_max: Optional[int] = None
     """
     Maximum number of notification groups to be shown simultaneously, 0-25
     """
 
-    notification_group_size_max: Optional[int] = Undefined
+    notification_group_size_max: Optional[int] = None
     """
     Maximum number of simultaneously shown notifications in a group, 1-25. Defaults to 10
     """
 
-    online: Optional[bool] = Undefined
+    online: Optional[bool] = None
     """
     Online status of the current user
     """
 
-    prefer_ipv6: Optional[bool] = Undefined
+    prefer_ipv6: Optional[bool] = None
     """
     If true, IPv6 addresses will be preferred over IPv4 addresses
     """
 
-    use_pfs: Optional[bool] = Undefined
+    use_pfs: Optional[bool] = None
     """
     If true, Perfect Forward Secrecy will be enabled for interaction with the Telegram servers for cloud chats
     """
 
-    use_quick_ack: Optional[bool] = Undefined
+    use_quick_ack: Optional[bool] = None
     """
     If true, quick acknowledgement will be enabled for outgoing messages
     """
 
-    use_storage_optimizer: Optional[bool] = Undefined
+    use_storage_optimizer: Optional[bool] = True
     """
     If true, the background storage optimizer will be enabled
     """
