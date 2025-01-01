@@ -38,6 +38,8 @@ dev = [
     "Jinja2>=3.1.3",
     "pydash>=7.0.4",
     "black>=23.3,<25.0",
+    "pytest>=8.3.4",
+    "pytest-asyncio>=0.25.0",
 ]
 
 [project.urls]
@@ -69,4 +71,13 @@ exclude = [
 only-packages = true
 artifacts = [
     "aiotdlib/tdlib/*",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--import-mode=importlib --log-cli-level=DEBUG"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+testpaths = [
+    "tests",
 ]
