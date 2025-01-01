@@ -13,6 +13,7 @@ from pydantic import field_validator
 from pydantic import model_validator
 
 from . import __version__
+from .authorization import AuthorizationHandler, CliAuthorizationHandler
 from .tdjson import TDLibLogVerbosity
 from .utils import str_to_base64
 from .utils import strip_phone_number_symbols
@@ -241,6 +242,13 @@ class ClientSettings(pydantic_settings.BaseSettings):
     :param application_version: Application version; must be non-empty
     :type application_version: str
 
+    :param authorization_handler: A class for handling user authorization. Defaults to (CliAuthorizationHandler)
+    :type authorization_handler: AuthorizationHandler
+
+    :param session_name: An optional session name used for data storage when neither phone_number
+    nor bot_token are provided
+    :type session_name: str
+
     :param files_directory: The path to the directory for storing files. Default: .aiotdlib/
     :type files_directory: str
 
@@ -277,6 +285,8 @@ class ClientSettings(pydantic_settings.BaseSettings):
     device_model: str = 'aiotdlib'
     system_version: str = ""
     application_version: str = __version__
+    authorization_handler: Optional[AuthorizationHandler] = CliAuthorizationHandler()
+    session_name: Optional[str] = None
     files_directory: Path = Path(sys.argv[0]).parent
     first_name: Optional[str] = None
     last_name: Optional[str] = None
@@ -291,14 +301,6 @@ class ClientSettings(pydantic_settings.BaseSettings):
     use_message_database: bool = True
     use_secret_chats: bool = False
     options: Optional[ClientOptions] = ClientOptions()
-
-    @model_validator(mode="before")
-    @classmethod
-    def check_phone_and_bot_token(cls, values):
-        if not bool(values.get('phone_number')) and not bool(values.get('bot_token')):
-            raise ValueError('Either phone_number or bot_token should be specified')
-
-        return values
 
     @field_validator('parse_mode', mode="before")
     @classmethod
@@ -333,10 +335,13 @@ class ClientSettings(pydantic_settings.BaseSettings):
             value = Path.cwd().parent
 
         md5_hash = hashlib.md5()
+        cfg_session_name = values.get('session_name')
         phone_number = values.get('phone_number')
         bot_token = values.get('bot_token')
 
-        if bool(phone_number):
+        if bool(cfg_session_name):
+            session_name = cfg_session_name
+        elif bool(phone_number):
             session_name = str(phone_number)
         elif bool(bot_token):
             session_name = str(bot_token)

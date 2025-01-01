@@ -4,6 +4,7 @@ import asyncio
 import logging
 import typing
 import uuid
+from contextlib import suppress
 from functools import partial
 from functools import update_wrapper
 from typing import AsyncIterator
@@ -100,7 +101,7 @@ from .utils import parse_tdlib_object
 
 RequestResult = typing.TypeVar('RequestResult', bound=BaseObject, covariant=True)
 ExecuteResult = typing.TypeVar('ExecuteResult', bound=BaseObject, covariant=True)
-AuthActions = dict[Optional[str], typing.Callable[[], typing.Coroutine[None, None, None]]]
+AuthActions = dict[Optional[str], typing.Callable[[AuthorizationState], typing.Coroutine[None, None, None]]]
 ChatInfo = Union[User, UserFullInfo, BasicGroup, BasicGroupFullInfo, Supergroup, SupergroupFullInfo, SecretChat]
 
 
@@ -113,7 +114,6 @@ class Client:
             settings (ClientSettings): Settings for client,
              if not provided default settings will be used, including environment variables
         """
-        self._authorized_event = asyncio.Event()
         self._running = False
         self._pending_requests: dict[str, PendingRequest] = {}
         self._pending_messages: dict[str, Message] = {}
@@ -122,7 +122,10 @@ class Client:
         self._middlewares_handlers: list[MiddlewareCallable] = []
         self._update_task: typing.Optional[asyncio.Task[None]] = None
         self._handlers_tasks: set[asyncio.Task] = set()
+        self._latest_authorization_state: typing.Optional[AuthorizationState] = None
         self.settings = settings or ClientSettings()
+        if settings.authorization_handler is not None:
+            settings.authorization_handler.set_client(self)
         self.tdjson_client = TDJsonClient.create(self.settings.library_path)
         self.logger = logging.getLogger(f"{self.__class__.__name__}_{self.tdjson_client.client_id}")
         self.api = API(self)
@@ -131,6 +134,18 @@ class Client:
     @property
     def is_bot(self) -> bool:
         return bool(self.settings.bot_token)
+
+    @property
+    def is_running(self) -> bool:
+        return self._running
+
+    @property
+    def is_authorized(self) -> bool:
+        return self._latest_authorization_state.ID == API.Types.AUTHORIZATION_STATE_READY
+
+    @property
+    def authorization_state(self) -> AuthorizationState:
+        return self._latest_authorization_state
 
     def add_event_handler(
             self,
@@ -385,7 +400,7 @@ class Client:
         )
         # return await self.api.get_authorization_state(request_id=AUTHORIZATION_REQUEST_ID)
 
-    async def _set_tdlib_parameters(self):
+    async def _set_tdlib_parameters(self, *_):
         await self.send(
             SetTdlibParameters(
                 database_encryption_key=self.settings.database_encryption_key,
@@ -405,166 +420,31 @@ class Client:
             )
         )
 
-    async def _set_authentication_phone_number_or_check_bot_token(self):
-        await self.send(SetOption(name='online', value=OptionValueBoolean(value=True)))
-
-        if self.is_bot:
-            return await self._check_authentication_bot_token()
-
-        return await self._set_authentication_phone_number()
-
-    async def _set_authentication_phone_number(self):
-        self.logger.info('Sending phone number')
-        await self.send(
-            SetAuthenticationPhoneNumber(
-                phone_number=self.settings.phone_number,
-                settings=PhoneNumberAuthenticationSettings(
-                    allow_flash_call=False,
-                    allow_missed_call=False,
-                    is_current_phone_number=True,
-                    allow_sms_retriever_api=False,
-                    authentication_tokens=[]
-                ),
-            )
-        )
-
-    async def _check_authentication_bot_token(self):
-        self.logger.info('Sending bot token')
-        await self.send(
-            CheckAuthenticationBotToken(
-                token=self.settings.bot_token.get_secret_value(),
-            )
-        )
-
-    async def _check_authentication_code(self):
-        code = await self._auth_get_code(code_type='SMS')
-        self.logger.info(f'Sending code {code}')
-        await self.send(
-            CheckAuthenticationCode(
-                code=code,
-            )
-        )
-
-    async def _set_authentication_email_address(self):
-        email_address = await self._auth_get_email()
-        await self.send(
-            SetAuthenticationEmailAddress(
-                email_address=email_address,
-            )
-        )
-
-    async def _check_authentication_email_code(self):
-        code = await self._auth_get_code(code_type='EMail')
-        self.logger.info(f'Sending email code {code}')
-        return await self.send(
-            CheckAuthenticationEmailCode(
-                code=EmailAddressAuthenticationCode(
-                    code=code
-                ),
-            )
-        )
-
-    async def _register_user(self):
-        first_name = await self._auth_get_first_name()
-        last_name = await self._auth_get_last_name()
-        self.logger.info(f'Registering new user in telegram as {first_name} {last_name or ""}'.strip())
-        await self.send(
-            RegisterUser(
-                first_name=first_name,
-                last_name=last_name,
-            )
-        )
-
-    async def _check_authentication_password(self):
-        password = await self._auth_get_password()
-        self.logger.info('Sending password')
-        await self.send(
-            CheckAuthenticationPassword(
-                password=password,
-            )
-        )
-
-    # noinspection PyMethodMayBeStatic
-    async def _auth_get_code(self, *, code_type: str = 'SMS') -> str:
-        code = ""
-
-        while len(code) != 5 or not code.isdigit():
-            code = await ainput(f'Enter {code_type} code:')
-
-        return code
-
-    async def _auth_get_password(self) -> str:
-        password = self.settings.password
-
-        if not bool(password):
-            password = await ainput('Enter 2FA password:', secured=True)
-        else:
-            password = password.get_secret_value()
-
-        return password
-
-    async def _auth_get_first_name(self) -> str:
-        first_name = self.settings.first_name or ""
-
-        while not bool(first_name) or len(first_name) > 64:
-            first_name = await ainput('Enter first name:')
-
-        return first_name
-
-    async def _auth_get_last_name(self) -> str:
-        last_name = self.settings.last_name or ""
-
-        if not bool(last_name):
-            last_name = await ainput('Enter last name:')
-
-        return last_name
-
-    async def _auth_get_email(self) -> str:
-        email = self.settings.email or ""
-
-        if not bool(email):
-            email = await ainput('Enter your email:')
-
-        return email
-
-    async def _auth_completed(self):
-        self._authorized_event.set()
-
-        # if not self.is_bot:
-        #     # Preload main list chats
-        #     await self.get_main_list_chats()
-
-    async def _auth_logging_out(self):
+    async def _auth_logging_out(self, *_):
         self.logger.info('Auth session is logging out')
 
-    async def _auth_closing(self):
+    async def _auth_closing(self, *_):
         self.logger.info('Auth session is closing')
 
-    async def _auth_closed(self):
+    async def _auth_closed(self, *_):
         self.logger.info('Auth session is closed')
 
     async def _on_authorization_state_update(self, authorization_state: AuthorizationState):
-        auth_actions: AuthActions = {
+        self._latest_authorization_state = authorization_state
+        auth_actions_handled_internally: AuthActions = {
             None: self._auth_start,
             API.Types.AUTHORIZATION_STATE_WAIT_TDLIB_PARAMETERS: self._set_tdlib_parameters,
-            API.Types.AUTHORIZATION_STATE_WAIT_PHONE_NUMBER: self._set_authentication_phone_number_or_check_bot_token,
-            API.Types.AUTHORIZATION_STATE_WAIT_CODE: self._check_authentication_code,
-            API.Types.AUTHORIZATION_STATE_WAIT_EMAIL_ADDRESS: self._set_authentication_email_address,
-            API.Types.AUTHORIZATION_STATE_WAIT_EMAIL_CODE: self._check_authentication_email_code,
-            API.Types.AUTHORIZATION_STATE_WAIT_REGISTRATION: self._register_user,
-            API.Types.AUTHORIZATION_STATE_WAIT_PASSWORD: self._check_authentication_password,
-            API.Types.AUTHORIZATION_STATE_READY: self._auth_completed,
             API.Types.AUTHORIZATION_STATE_LOGGING_OUT: self._auth_logging_out,
             API.Types.AUTHORIZATION_STATE_CLOSING: self._auth_closing,
             API.Types.AUTHORIZATION_STATE_CLOSED: self._auth_closed,
-            # TODO: QR Login support
-            # API.Types.AUTHORIZATION_STATE_WAIT_OTHER_DEVICE_CONFIRMATION: None,
         }
 
-        action = auth_actions.get(authorization_state.ID)
+        action = auth_actions_handled_internally.get(authorization_state.ID)
 
         if bool(action):
-            await action()
+            await action(authorization_state)
+        if self.settings.authorization_handler is not None:
+            await self.settings.authorization_handler.on_authorization_update(authorization_state)
 
     async def _cleanup(self):
         self._pending_requests.clear()
@@ -573,7 +453,8 @@ class Client:
         if bool(self._update_task) and not self._update_task.cancelled():
             self.logger.info("Cancelling updates loop task")
             self._update_task.cancel()
-            await self._update_task
+            with suppress(asyncio.CancelledError):
+                await self._update_task
 
         # Cancel all background handlers tasks
         if bool(self._handlers_tasks):
@@ -671,17 +552,7 @@ class Client:
         return result_object
 
     async def authorize(self):
-        if self.is_bot:
-            self.logger.info('Authorization process has been started with bot token')
-        else:
-            self.logger.info('Authorization process has been started with phone')
-
-        await self.send(
-            GetAuthorizationState()
-        )
-
-        self.logger.info('Waiting for authorization to be completed')
-        await self._authorized_event.wait()
+        await self.settings.authorization_handler.authorize()
 
     async def start(self) -> 'Client':
         self.logger.info('Starting client')
