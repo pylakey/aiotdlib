@@ -170,6 +170,9 @@ def measure_time(func: callable):
 
         try:
             return await func(*args, **kwargs)
+        except Exception as e:
+            _logger.error(f"{func_name} call failed: {e}")
+            raise e
         finally:
             end_time = perf_counter() - start_time
             logger.info(f"{func_name} call finished in {end_time} seconds")
