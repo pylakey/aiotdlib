@@ -81,9 +81,7 @@ def make_input_file(file: Union[str, int]) -> Union[InputFileId, InputFileLocal,
     return InputFileRemote(id=file)
 
 
-def make_thumbnail(
-    thumbnail: str, width: int = None, height: int = None
-) -> Optional[InputThumbnail]:
+def make_thumbnail(thumbnail: str, width: int = 0, height: int = 0) -> Optional[InputThumbnail]:
     if isinstance(thumbnail, str):
         return InputThumbnail(
             # Sending thumbnails by file_id is currently not supported
