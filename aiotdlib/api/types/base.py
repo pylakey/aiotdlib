@@ -3,9 +3,7 @@ from __future__ import annotations
 import base64
 import logging
 import typing
-from typing import Annotated
-from typing import Any
-from typing import Optional
+from typing import Annotated, Any, Optional
 
 import pydantic
 
@@ -25,7 +23,9 @@ Int64 = Annotated[int, pydantic.Field(gt=INT64_MIN_VALUE, lt=INT64_MAX_VALUE)]
 Bytes = Annotated[
     typing.Union[str, bytes],
     pydantic.PlainSerializer(
-        lambda v: base64.urlsafe_b64encode(v).decode(), return_type=str, when_used="json-unless-none"
+        lambda v: base64.urlsafe_b64encode(v).decode(),
+        return_type=str,
+        when_used="json-unless-none",
     ),
     pydantic.BeforeValidator(
         lambda v: base64.urlsafe_b64decode(v.encode()) if isinstance(v, str) else v,

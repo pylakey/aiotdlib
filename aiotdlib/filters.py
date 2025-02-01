@@ -1,31 +1,28 @@
 import re
-from abc import ABC
-from abc import abstractmethod
-from typing import Awaitable
-from typing import Callable
-from typing import NoReturn
-from typing import Optional
-from typing import Union
+from abc import ABC, abstractmethod
+from typing import Awaitable, Callable, NoReturn, Optional, Union
 
-from .api import BaseObject
-from .api import MessageAnimation
-from .api import MessageAudio
-from .api import MessageContact
-from .api import MessageDice
-from .api import MessageDocument
-from .api import MessageGame
-from .api import MessageInvoice
-from .api import MessageLocation
-from .api import MessagePhoto
-from .api import MessagePoll
-from .api import MessageSticker
-from .api import MessageText
-from .api import MessageUnsupported
-from .api import MessageVenue
-from .api import MessageVideo
-from .api import MessageVideoNote
-from .api import MessageVoiceNote
-from .api import UpdateNewMessage
+from .api import (
+    BaseObject,
+    MessageAnimation,
+    MessageAudio,
+    MessageContact,
+    MessageDice,
+    MessageDocument,
+    MessageGame,
+    MessageInvoice,
+    MessageLocation,
+    MessagePhoto,
+    MessagePoll,
+    MessageSticker,
+    MessageText,
+    MessageUnsupported,
+    MessageVenue,
+    MessageVideo,
+    MessageVideoNote,
+    MessageVoiceNote,
+    UpdateNewMessage,
+)
 
 FilterCallable = Callable[[BaseObject], Awaitable[bool]]
 
@@ -38,16 +35,16 @@ class BaseFilter(ABC):
     async def __call__(self, update: BaseObject) -> Optional[Union[bool, dict]]:
         return True
 
-    def __and__(self, other: 'BaseFilter') -> 'BaseFilter':
+    def __and__(self, other: "BaseFilter") -> "BaseFilter":
         return MergedFilter(self, and_filter=other)
 
-    def __or__(self, other: 'BaseFilter') -> 'BaseFilter':
+    def __or__(self, other: "BaseFilter") -> "BaseFilter":
         return MergedFilter(self, or_filter=other)
 
-    def __xor__(self, other: 'BaseFilter') -> 'BaseFilter':
+    def __xor__(self, other: "BaseFilter") -> "BaseFilter":
         return XORFilter(self, other)
 
-    def __invert__(self) -> 'BaseFilter':
+    def __invert__(self) -> "BaseFilter":
         return InvertedFilter(self)
 
     def __repr__(self) -> str:
@@ -94,7 +91,7 @@ class InvertedFilter(BaseObjectFilter):
 
     @name.setter
     def name(self, name: str) -> NoReturn:
-        raise RuntimeError('Cannot set name for InvertedFilter')
+        raise RuntimeError("Cannot set name for InvertedFilter")
 
 
 class MergedFilter(BaseObjectFilter):
@@ -108,10 +105,7 @@ class MergedFilter(BaseObjectFilter):
     """
 
     def __init__(
-            self,
-            base_filter: BaseFilter,
-            and_filter: BaseFilter = None,
-            or_filter: BaseFilter = None
+        self, base_filter: BaseFilter, and_filter: BaseFilter = None, or_filter: BaseFilter = None
     ):
         self.base_filter = base_filter
 
@@ -120,7 +114,11 @@ class MergedFilter(BaseObjectFilter):
 
         self.and_filter = and_filter
 
-        if self.and_filter and not isinstance(self.and_filter, bool) and self.and_filter.data_filter:
+        if (
+            self.and_filter
+            and not isinstance(self.and_filter, bool)
+            and self.and_filter.data_filter
+        ):
             self.data_filter = True
 
         self.or_filter = or_filter
@@ -173,7 +171,7 @@ class MergedFilter(BaseObjectFilter):
 
     @name.setter
     def name(self, name: str) -> NoReturn:
-        raise RuntimeError('Cannot set name for MergedFilter')
+        raise RuntimeError("Cannot set name for MergedFilter")
 
 
 class XORFilter(BaseObjectFilter):
@@ -197,142 +195,142 @@ class XORFilter(BaseObjectFilter):
 
     @property
     def name(self) -> str:
-        return f'<{self.base_filter} xor {self.xor_filter}>'
+        return f"<{self.base_filter} xor {self.xor_filter}>"
 
     @name.setter
     def name(self, name: str) -> NoReturn:
-        raise RuntimeError('Cannot set name for XORFilter')
+        raise RuntimeError("Cannot set name for XORFilter")
 
 
 # Predefined filters
 class AllFilter(BaseObjectFilter):
-    name = 'Filters.all'
+    name = "Filters.all"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return True
 
 
 class MessageFilter(BaseObjectFilter):
-    name = 'Filters.message'
+    name = "Filters.message"
 
     async def filter(self, update: UpdateNewMessage) -> Optional[Union[bool, dict]]:
         return isinstance(update, UpdateNewMessage)
 
 
 class TextFilter(MessageFilter):
-    name = 'Filters.text'
+    name = "Filters.text"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageText)
 
 
 class AnimationFilter(MessageFilter):
-    name = 'Filters.animation'
+    name = "Filters.animation"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageAnimation)
 
 
 class AudioFilter(MessageFilter):
-    name = 'Filters.audio'
+    name = "Filters.audio"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageAudio)
 
 
 class ContactFilter(MessageFilter):
-    name = 'Filters.contact'
+    name = "Filters.contact"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageContact)
 
 
 class DiceFilter(MessageFilter):
-    name = 'Filters.dice'
+    name = "Filters.dice"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageDice)
 
 
 class DocumentFilter(MessageFilter):
-    name = 'Filters.document'
+    name = "Filters.document"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageDocument)
 
 
 class GameFilter(MessageFilter):
-    name = 'Filters.game'
+    name = "Filters.game"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageGame)
 
 
 class InvoiceFilter(MessageFilter):
-    name = 'Filters.invoice'
+    name = "Filters.invoice"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageInvoice)
 
 
 class LocationFilter(MessageFilter):
-    name = 'Filters.location'
+    name = "Filters.location"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageLocation)
 
 
 class PhotoFilter(MessageFilter):
-    name = 'Filters.photo'
+    name = "Filters.photo"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessagePhoto)
 
 
 class PollFilter(MessageFilter):
-    name = 'Filters.poll'
+    name = "Filters.poll"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessagePoll)
 
 
 class StickerFilter(MessageFilter):
-    name = 'Filters.sticker'
+    name = "Filters.sticker"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageSticker)
 
 
 class UnsupportedFilter(MessageFilter):
-    name = 'Filters.unsupported'
+    name = "Filters.unsupported"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageUnsupported)
 
 
 class VenueFilter(MessageFilter):
-    name = 'Filters.venue'
+    name = "Filters.venue"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageVenue)
 
 
 class VideoFilter(MessageFilter):
-    name = 'Filters.video'
+    name = "Filters.video"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageVideo)
 
 
 class VideoNoteFilter(MessageFilter):
-    name = 'Filters.video_note'
+    name = "Filters.video_note"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageVideoNote)
 
 
 class VoiceNoteFilter(MessageFilter):
-    name = 'Filters.voice_note'
+    name = "Filters.voice_note"
 
     async def filter(self, update: UpdateNewMessage) -> bool:
         return isinstance(update.message.content, MessageVoiceNote)
@@ -342,25 +340,22 @@ class BotCommandFilter(TextFilter):
     data_filter = True
     command: str = None
 
-    def __init__(self, command: str = '*'):
+    def __init__(self, command: str = "*"):
         self.command = command
 
     async def filter(self, update: UpdateNewMessage) -> Union[bool, dict]:
         message_text = update.message.content.text.text
 
-        if not message_text.startswith('/'):
+        if not message_text.startswith("/"):
             return False
 
-        [bot_command, *bot_command_args] = message_text.lstrip('/').split()
+        [bot_command, *bot_command_args] = message_text.lstrip("/").split()
 
-        update.EXTRA['bot_command'] = bot_command
-        update.EXTRA['bot_command_args'] = bot_command_args
+        update.EXTRA["bot_command"] = bot_command
+        update.EXTRA["bot_command_args"] = bot_command_args
 
         if not bool(self.command) or self.command in ["*", bot_command]:
-            return {
-                'bot_command': bot_command,
-                'bot_command_args': bot_command_args
-            }
+            return {"bot_command": bot_command, "bot_command_args": bot_command_args}
 
         return False
 

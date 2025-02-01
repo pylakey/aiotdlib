@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-from typing import Awaitable
-from typing import Callable
-from typing import TypeVar
+from typing import TYPE_CHECKING, Awaitable, Callable, TypeVar
 
 from .api import BaseObject
 from .handlers import HandlerCallable
 
-SomeUpdate = TypeVar('SomeUpdate', bound=BaseObject)
-MiddlewareCallable = Callable[['aiotdlib.Client', SomeUpdate, HandlerCallable], Awaitable[None]]
+if TYPE_CHECKING:
+    from .client import Client
+
+SomeUpdate = TypeVar("SomeUpdate", bound=BaseObject, covariant=True)
+MiddlewareCallable = Callable[["Client", SomeUpdate, HandlerCallable], Awaitable[None]]

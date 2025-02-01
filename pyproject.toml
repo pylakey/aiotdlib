@@ -82,6 +82,8 @@ select = [
     "I001", # isort,
     "D403", # docstring
 ]
+ignore = ["E501"]
+
 
 [tool.ruff.lint.isort]
 known-first-party = ["aiotdlib"]

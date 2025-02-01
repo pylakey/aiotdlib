@@ -4,29 +4,26 @@ import enum
 import hashlib
 import sys
 from pathlib import Path
-from typing import Optional
-from typing import Union
+from typing import Optional, Union
 
 import pydantic
 import pydantic_settings
-from pydantic import field_validator
-from pydantic import model_validator
+from pydantic import field_validator, model_validator
 
 from . import __version__
 from .tdjson import TDLibLogVerbosity
-from .utils import str_to_base64
-from .utils import strip_phone_number_symbols
+from .utils import str_to_base64, strip_phone_number_symbols
 
 
 class ClientProxyType(str, enum.Enum):
-    MTPROTO = 'mtproto'
-    HTTP = 'http'
-    SOCKS5 = 'socks5'
+    MTPROTO = "mtproto"
+    HTTP = "http"
+    SOCKS5 = "socks5"
 
 
 class ClientParseMode(str, enum.Enum):
-    HTML = 'html'
-    MARKDOWN = 'markdown'
+    HTML = "html"
+    MARKDOWN = "markdown"
 
 
 class ClientProxySettings(pydantic.BaseModel):
@@ -64,13 +61,13 @@ class ClientProxySettings(pydantic.BaseModel):
     http_only: bool = False
     secret: Optional[str] = None
 
-    @field_validator('secret')
+    @field_validator("secret")
     @classmethod
     def validate_secret(cls, secret: str, info: pydantic.ValidationInfo):
         values = info.data
 
-        if values.get('type') == ClientProxyType.MTPROTO and secret is None:
-            raise ValueError('Proxy secret is required for MTPROTO proxy')
+        if values.get("type") == ClientProxyType.MTPROTO and secret is None:
+            raise ValueError("Proxy secret is required for MTPROTO proxy")
 
         return secret
 
@@ -83,15 +80,15 @@ class ClientOptions(pydantic.BaseModel):
 
     archive_and_mute_new_chats_from_unknown_users: Optional[bool] = None
     """
-    If true, new chats from non-contacts will be automatically archived and muted. 
-    The option can be set only if the option “can_archive_and_mute_new_chats_from_unknown_users” is true. 
+    If true, new chats from non-contacts will be automatically archived and muted.
+    The option can be set only if the option “can_archive_and_mute_new_chats_from_unknown_users” is true.
     getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
     """
 
     disable_contact_registered_notifications: Optional[bool] = True
     """
-    If true, notifications about the user's contacts who have joined Telegram will be disabled. 
-    User will still receive the corresponding message in the private chat. 
+    If true, notifications about the user's contacts who have joined Telegram will be disabled.
+    User will still receive the corresponding message in the private chat.
     getOption needs to be called explicitly to fetch the latest value of the option, changed from another device
     """
 
@@ -117,7 +114,7 @@ class ClientOptions(pydantic.BaseModel):
 
     ignore_background_updates: Optional[bool] = True
     """
-    If true, allows to skip all updates received while the TDLib instance was not running. 
+    If true, allows to skip all updates received while the TDLib instance was not running.
     The option does nothing if the database or secret chats are used
     """
 
@@ -161,7 +158,7 @@ class ClientOptions(pydantic.BaseModel):
 
     message_unload_delay: Optional[int] = None
     """
-    The maximum time messages are stored in memory before they are unloaded, 60-86400; in seconds. 
+    The maximum time messages are stored in memory before they are unloaded, 60-86400; in seconds.
     Defaults to 60 for users and 1800 for bots
     """
 
@@ -267,14 +264,15 @@ class ClientSettings(pydantic_settings.BaseSettings):
     :type proxy_settings: aiotdlib.ClientProxySettings
 
     """
+
     api_id: int
     api_hash: pydantic.SecretStr
-    database_encryption_key: Union[str, bytes] = 'aiotdlib'
+    database_encryption_key: Union[str, bytes] = "aiotdlib"
     phone_number: Optional[str] = None
     bot_token: Optional[pydantic.SecretStr] = None
     use_test_dc: bool = False
-    system_language_code: str = 'en'
-    device_model: str = 'aiotdlib'
+    system_language_code: str = "en"
+    device_model: str = "aiotdlib"
     system_version: str = ""
     application_version: str = __version__
     files_directory: Path = Path(sys.argv[0]).parent
@@ -295,12 +293,12 @@ class ClientSettings(pydantic_settings.BaseSettings):
     @model_validator(mode="before")
     @classmethod
     def check_phone_and_bot_token(cls, values):
-        if not bool(values.get('phone_number')) and not bool(values.get('bot_token')):
-            raise ValueError('Either phone_number or bot_token should be specified')
+        if not bool(values.get("phone_number")) and not bool(values.get("bot_token")):
+            raise ValueError("Either phone_number or bot_token should be specified")
 
         return values
 
-    @field_validator('parse_mode', mode="before")
+    @field_validator("parse_mode", mode="before")
     @classmethod
     def validator_parse_mode(cls, value):
         if isinstance(value, str):
@@ -308,7 +306,7 @@ class ClientSettings(pydantic_settings.BaseSettings):
 
         return value
 
-    @field_validator('phone_number')
+    @field_validator("phone_number")
     @classmethod
     def validator_phone_number(cls, value):
         if bool(value):
@@ -316,7 +314,7 @@ class ClientSettings(pydantic_settings.BaseSettings):
 
         return value
 
-    @field_validator('database_encryption_key', mode="before")
+    @field_validator("database_encryption_key", mode="before")
     @classmethod
     def validator_database_encryption_key(cls, value):
         if not bool(value):
@@ -324,7 +322,7 @@ class ClientSettings(pydantic_settings.BaseSettings):
 
         return str_to_base64(value)
 
-    @field_validator('files_directory', mode='after')
+    @field_validator("files_directory", mode="after")
     @classmethod
     def validator_files_directory(cls, value, info: pydantic.ValidationInfo):
         values = info.data
@@ -333,8 +331,8 @@ class ClientSettings(pydantic_settings.BaseSettings):
             value = Path.cwd().parent
 
         md5_hash = hashlib.md5()
-        phone_number = values.get('phone_number')
-        bot_token = values.get('bot_token')
+        phone_number = values.get("phone_number")
+        bot_token = values.get("bot_token")
 
         if bool(phone_number):
             session_name = str(phone_number)
@@ -343,15 +341,15 @@ class ClientSettings(pydantic_settings.BaseSettings):
         else:
             raise ValueError
 
-        md5_hash.update(session_name.encode('utf-8'))
+        md5_hash.update(session_name.encode("utf-8"))
         directory_name = md5_hash.hexdigest()
 
-        return value / '.aiotdlib' / directory_name
+        return value / ".aiotdlib" / directory_name
 
     model_config = pydantic_settings.SettingsConfigDict(
-        env_file='.env',
-        env_prefix='aiotdlib_',
+        env_file=".env",
+        env_prefix="aiotdlib_",
         use_enum_values=True,
         populate_by_name=True,
-        extra='ignore'
+        extra="ignore",
     )

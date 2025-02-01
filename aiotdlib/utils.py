@@ -10,18 +10,18 @@ import sys
 from enum import Enum
 from functools import wraps
 from time import perf_counter
-from typing import Optional
-from typing import TYPE_CHECKING
-from typing import Union
+from typing import TYPE_CHECKING, Optional, Union
 
-from .api import BaseObject
-from .api import Error
-from .api import InputFileId
-from .api import InputFileLocal
-from .api import InputFileRemote
-from .api import InputThumbnail
-from .api import TDLibObject
-from .api import TDLibObjects
+from .api import (
+    BaseObject,
+    Error,
+    InputFileId,
+    InputFileLocal,
+    InputFileRemote,
+    InputThumbnail,
+    TDLibObject,
+    TDLibObjects,
+)
 from .api.errors import AioTDLibError
 from .api.errors.error import http_code_to_error
 
@@ -50,7 +50,7 @@ async def ainput(prompt: str = "", secured: bool = False) -> str:
 
 def str_to_base64(text: Union[str, bytes]) -> str:
     if not text:
-        return ''
+        return ""
 
     result = text
 
@@ -64,10 +64,12 @@ def strip_phone_number_symbols(phone_number: str) -> str:
     if not isinstance(phone_number, str):
         try:
             phone_number = str(phone_number)
-        except ValueError:
-            raise ValueError(f'Phone number should be an instance of str, not a {phone_number.__class__.__name__}')
+        except ValueError as e:
+            raise ValueError(
+                f"Phone number should be an instance of str, not a {phone_number.__class__.__name__}"
+            ) from e
 
-    return re.sub(r'(?<!^)|[^\d]+', '', phone_number)
+    return re.sub(r"(?<!^)|[^\d]+", "", phone_number)
 
 
 def make_input_file(file: Union[str, int]) -> Union[InputFileId, InputFileLocal, InputFileRemote]:
@@ -79,7 +81,9 @@ def make_input_file(file: Union[str, int]) -> Union[InputFileId, InputFileLocal,
     return InputFileRemote(id=file)
 
 
-def make_thumbnail(thumbnail: str, width: int = None, height: int = None) -> Optional[InputThumbnail]:
+def make_thumbnail(
+    thumbnail: str, width: int = None, height: int = None
+) -> Optional[InputThumbnail]:
     if isinstance(thumbnail, str):
         return InputThumbnail(
             # Sending thumbnails by file_id is currently not supported
@@ -92,13 +96,19 @@ def make_thumbnail(thumbnail: str, width: int = None, height: int = None) -> Opt
 
 
 def parse_tdlib_object(data: dict) -> TDLibObject:
-    if isinstance(data, (list, tuple,)):
+    if isinstance(
+        data,
+        (
+            list,
+            tuple,
+        ),
+    ):
         return [parse_tdlib_object(x) for x in data]
 
     if not isinstance(data, dict):
         return data
 
-    type_ = data.get('@type')
+    type_ = data.get("@type")
 
     if not bool(type_):
         logger.error(f"Data: {data}")
@@ -108,14 +118,14 @@ def parse_tdlib_object(data: dict) -> TDLibObject:
     object_class = TDLibObjects.get(type_)
 
     if not bool(object_class):
-        logger.error(f'Object class not found for @type={type_}')
+        logger.error(f"Object class not found for @type={type_}")
         return data
 
     return object_class.model_validate(data)
 
 
 class PendingRequest:
-    def __init__(self, client: 'Client', request: TDLibObject) -> None:
+    def __init__(self, client: "Client", request: TDLibObject) -> None:
         self.client = client
         self.request: Optional[TDLibObject] = request
         self.update: Optional[TDLibObject] = None
@@ -124,7 +134,7 @@ class PendingRequest:
 
     @property
     def id(self) -> Optional[str]:
-        return self.request.EXTRA.get('request_id')
+        return self.request.EXTRA.get("request_id")
 
     async def wait(self, timeout: Union[int, float] = None, raise_exc: bool = False) -> None:
         result = await asyncio.wait_for(self._ready_event.wait(), timeout=timeout)
@@ -145,17 +155,14 @@ class PendingRequest:
     def raise_error(self):
         if isinstance(self.update, Error):
             http_error = http_code_to_error.get(self.update.code, AioTDLibError)
-            raise http_error(
-                code=self.update.code,
-                message=self.update.message
-            )
+            raise http_error(code=self.update.code, message=self.update.message)
 
-        raise RuntimeError(f'Unknown TDLib error')
+        raise RuntimeError(f"Unknown TDLib error: {type(self.update)}")
 
 
 def measure_time(func: callable):
     _logger = logging.getLogger(f"{__name__}.'measure_time'")
-    func_name = getattr(func, '__qualname__', '') or getattr(func, '__name__', '???')
+    func_name = getattr(func, "__qualname__", "") or getattr(func, "__name__", "???")
 
     @wraps(func)
     async def decorated(*args, **kwargs):

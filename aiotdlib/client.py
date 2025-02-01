@@ -4,104 +4,97 @@ import asyncio
 import logging
 import typing
 import uuid
-from functools import partial
-from functools import update_wrapper
-from typing import AsyncIterator
-from typing import Optional
-from typing import Union
+from functools import partial, update_wrapper
+from typing import AsyncIterator, Optional, Union
 
 import pydantic.errors
 
-from .api import API
-from .api import AddProxy
-from .api import AioTDLibError
-from .api import AuthorizationState
-from .api import BaseObject
-from .api import BasicGroup
-from .api import BasicGroupFullInfo
-from .api import Chat
-from .api import ChatTypeBasicGroup
-from .api import ChatTypePrivate
-from .api import ChatTypeSecret
-from .api import ChatTypeSupergroup
-from .api import CheckAuthenticationBotToken
-from .api import CheckAuthenticationCode
-from .api import CheckAuthenticationEmailCode
-from .api import CheckAuthenticationPassword
-from .api import DisableProxy
-from .api import EmailAddressAuthenticationCode
-from .api import Error
-from .api import FormattedText
-from .api import GetAuthorizationState
-from .api import GetCurrentState
-from .api import InputMessageAnimation
-from .api import InputMessageAudio
-from .api import InputMessageContent
-from .api import InputMessageDocument
-from .api import InputMessagePhoto
-from .api import InputMessageReplyToMessage
-from .api import InputMessageSticker
-from .api import InputMessageText
-from .api import InputMessageVideo
-from .api import InputMessageVideoNote
-from .api import InputMessageVoiceNote
-from .api import InputThumbnail
-from .api import LinkPreviewOptions
-from .api import Message
-from .api import MessageSchedulingStateSendAtDate
-from .api import MessageSchedulingStateSendWhenOnline
-from .api import MessageSelfDestructType
-from .api import MessageSendOptions
-from .api import MessageSendingStatePending
-from .api import Messages
-from .api import OptionValueBoolean
-from .api import OptionValueEmpty
-from .api import OptionValueInteger
-from .api import OptionValueString
-from .api import ParseTextEntities
-from .api import PhoneNumberAuthenticationSettings
-from .api import ProxyTypeHttp
-from .api import ProxyTypeMtproto
-from .api import ProxyTypeSocks5
-from .api import RegisterUser
-from .api import ReplyMarkup
-from .api import SecretChat
-from .api import SetAuthenticationEmailAddress
-from .api import SetAuthenticationPhoneNumber
-from .api import SetLogVerbosityLevel
-from .api import SetOption
-from .api import SetTdlibParameters
-from .api import Supergroup
-from .api import SupergroupFullInfo
-from .api import TDLibObject
-from .api import TextParseModeHTML
-from .api import TextParseModeMarkdown
-from .api import UpdateAuthorizationState
-from .api import UpdateMessageSendFailed
-from .api import UpdateMessageSendSucceeded
-from .api import User
-from .api import UserFullInfo
+from .api import (
+    API,
+    AddProxy,
+    AioTDLibError,
+    AuthorizationState,
+    BaseObject,
+    BasicGroup,
+    BasicGroupFullInfo,
+    Chat,
+    ChatTypeBasicGroup,
+    ChatTypePrivate,
+    ChatTypeSecret,
+    ChatTypeSupergroup,
+    CheckAuthenticationBotToken,
+    CheckAuthenticationCode,
+    CheckAuthenticationEmailCode,
+    CheckAuthenticationPassword,
+    DisableProxy,
+    EmailAddressAuthenticationCode,
+    Error,
+    FormattedText,
+    GetAuthorizationState,
+    GetCurrentState,
+    InputMessageAnimation,
+    InputMessageAudio,
+    InputMessageContent,
+    InputMessageDocument,
+    InputMessagePhoto,
+    InputMessageReplyToMessage,
+    InputMessageSticker,
+    InputMessageText,
+    InputMessageVideo,
+    InputMessageVideoNote,
+    InputMessageVoiceNote,
+    InputThumbnail,
+    LinkPreviewOptions,
+    Message,
+    Messages,
+    MessageSchedulingStateSendAtDate,
+    MessageSchedulingStateSendWhenOnline,
+    MessageSelfDestructType,
+    MessageSendingStatePending,
+    MessageSendOptions,
+    OptionValueBoolean,
+    OptionValueEmpty,
+    OptionValueInteger,
+    OptionValueString,
+    ParseTextEntities,
+    PhoneNumberAuthenticationSettings,
+    ProxyTypeHttp,
+    ProxyTypeMtproto,
+    ProxyTypeSocks5,
+    RegisterUser,
+    ReplyMarkup,
+    SecretChat,
+    SetAuthenticationEmailAddress,
+    SetAuthenticationPhoneNumber,
+    SetLogVerbosityLevel,
+    SetOption,
+    SetTdlibParameters,
+    Supergroup,
+    SupergroupFullInfo,
+    TDLibObject,
+    TextParseModeHTML,
+    TextParseModeMarkdown,
+    UpdateAuthorizationState,
+    UpdateMessageSendFailed,
+    UpdateMessageSendSucceeded,
+    User,
+    UserFullInfo,
+)
 from .client_cache import ClientCache
-from .client_settings import ClientParseMode
-from .client_settings import ClientProxyType
-from .client_settings import ClientSettings
+from .client_settings import ClientParseMode, ClientProxyType, ClientSettings
 from .constants import TDLIB_MAX_INT
 from .filters import Filters
-from .handlers import FilterCallable
-from .handlers import Handler
-from .handlers import HandlerCallable
+from .handlers import FilterCallable, Handler, HandlerCallable
 from .middlewares import MiddlewareCallable
 from .tdjson import TDJsonClient
-from .utils import PendingRequest
-from .utils import ainput
-from .utils import make_input_file
-from .utils import make_thumbnail
-from .utils import parse_tdlib_object
+from .utils import PendingRequest, ainput, make_input_file, make_thumbnail, parse_tdlib_object
 
-RequestResult = typing.TypeVar('RequestResult', bound=BaseObject, covariant=True)
-ExecuteResult = typing.TypeVar('ExecuteResult', bound=BaseObject, covariant=True)
+RequestResult = typing.TypeVar("RequestResult", bound=BaseObject, covariant=True)
+ExecuteResult = typing.TypeVar("ExecuteResult", bound=BaseObject, covariant=True)
 AuthActions = dict[Optional[str], typing.Callable[[], typing.Coroutine[None, None, None]]]
-ChatInfo = Union[User, UserFullInfo, BasicGroup, BasicGroupFullInfo, Supergroup, SupergroupFullInfo, SecretChat]
+ChatInfo = Union[
+    User, UserFullInfo, BasicGroup, BasicGroupFullInfo, Supergroup, SupergroupFullInfo, SecretChat
+]
 
 
 class Client:
@@ -133,15 +126,15 @@ class Client:
         return bool(self.settings.bot_token)
 
     def add_event_handler(
-            self,
-            handler: HandlerCallable,
-            update_type: str = API.Types.ANY,
-            *,
-            filters: FilterCallable = None
+        self,
+        handler: HandlerCallable,
+        update_type: str = API.Types.ANY,
+        *,
+        filters: FilterCallable = None,
     ) -> Handler:
         """
-            Registering event handler
-            You can register many handlers for certain event type
+        Registering event handler
+        You can register many handlers for certain event type
         """
         if self._updates_handlers.get(update_type) is None:
             self._updates_handlers[update_type] = set()
@@ -165,11 +158,11 @@ class Client:
 
     def add_middleware(self, middleware: MiddlewareCallable):
         """
-            Register middleware.
-            Note that middleware would be called for EVERY EVENT.
-            Do not use them for long-running tasks as it could be heavy performance hit
-            You can add as much middlewares as you want.
-            They would be called in order you've added them
+        Register middleware.
+        Note that middleware would be called for EVERY EVENT.
+        Do not use them for long-running tasks as it could be heavy performance hit
+        You can add as much middlewares as you want.
+        They would be called in order you've added them
         """
 
         self._middlewares.append(middleware)
@@ -195,12 +188,14 @@ class Client:
         Note: this method is universal and can be used directly or as decorator
         """
         if callable(function):
-            self.add_event_handler(function, API.Types.UPDATE_NEW_MESSAGE, filters=Filters.bot_command(command))
+            self.add_event_handler(
+                function, API.Types.UPDATE_NEW_MESSAGE, filters=Filters.bot_command(command)
+            )
         else:
             return self.on_event(API.Types.UPDATE_NEW_MESSAGE, filters=Filters.bot_command(command))
 
     # Magic methods
-    async def __aenter__(self) -> 'Client':
+    async def __aenter__(self) -> "Client":
         return await self.start()
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
@@ -217,8 +212,10 @@ class Client:
 
     async def _call_handlers(self, update: TDLibObject):
         tasks = []
-        tasks.extend(self._call_handler(h, update) for h in self._updates_handlers.get(update.ID, []))
-        tasks.extend(self._call_handler(h, update) for h in self._updates_handlers.get('*', []))
+        tasks.extend(
+            self._call_handler(h, update) for h in self._updates_handlers.get(update.ID, [])
+        )
+        tasks.extend(self._call_handler(h, update) for h in self._updates_handlers.get("*", []))
         # Running all handlers concurrently and independently
         await asyncio.gather(*tasks, return_exceptions=True)
 
@@ -244,12 +241,14 @@ class Client:
         except asyncio.CancelledError:
             raise
         except Exception as e:
-            self.logger.error(f'Unable to handle update {update}! {e}', exc_info=True)
+            self.logger.error(f"Unable to handle update {update}! {e}", exc_info=True)
 
     async def _handle_pending_request(self, update: TDLibObject):
-        request_id = update.EXTRA.get('request_id')
+        request_id = update.EXTRA.get("request_id")
 
-        if isinstance(update, Message) and isinstance(update.sending_state, MessageSendingStatePending):
+        if isinstance(update, Message) and isinstance(
+            update.sending_state, MessageSendingStatePending
+        ):
             # MessageSendingStateFailed will be set as an error to pending request, no need to handle it here
             sending_id = f"{update.chat_id}_{update.id}"
             self.logger.debug(f"Put message to pending messages: {sending_id}")
@@ -261,13 +260,13 @@ class Client:
             pending_message = self._pending_messages.pop(sending_id, None)
 
             if bool(pending_message):
-                request_id = pending_message.EXTRA.get('request_id')
+                request_id = pending_message.EXTRA.get("request_id")
 
                 if isinstance(update, UpdateMessageSendFailed):
-                    self.logger.debug(f"Message %s sending failed", sending_id)
+                    self.logger.debug(f"Message {sending_id} sending failed")
                     update = update.error
                 else:
-                    self.logger.debug(f"Message %s sending succeeded", sending_id)
+                    self.logger.debug(f"Message {sending_id} sending succeeded")
                     update = update.message
 
         pending_request = self._pending_requests.pop(request_id, None)
@@ -287,7 +286,7 @@ class Client:
             try:
                 update = parse_tdlib_object(packet)
             except pydantic.ValidationError as e:
-                self.logger.error(f'Unable to parse incoming update: {packet}! {e}', exc_info=True)
+                self.logger.error(f"Unable to parse incoming update: {packet}! {e}", exc_info=True)
                 continue
 
             if isinstance(update, UpdateAuthorizationState):
@@ -298,8 +297,8 @@ class Client:
                     raise
                 except Exception as e:
                     self.logger.error(
-                        f'Unable to handle authorization state update {update.model_dump_json()}! {e}',
-                        exc_info=True
+                        f"Unable to handle authorization state update {update.model_dump_json()}! {e}",
+                        exc_info=True,
                     )
                     raise
                 else:
@@ -310,14 +309,14 @@ class Client:
             except asyncio.CancelledError:
                 raise
             except Exception as e:
-                self.logger.error(f'Unable to handle pending request {update}! {e}', exc_info=True)
+                self.logger.error(f"Unable to handle pending request {update}! {e}", exc_info=True)
 
             self._create_handler_task(self._handle_update(update))
 
     async def _setup_proxy(self):
         if not bool(self.settings.proxy_settings):
             # If proxy is not set disabling all configured proxy
-            self.logger.info('Proxy is not set. Disabling all proxy settings.')
+            self.logger.info("Proxy is not set. Disabling all proxy settings.")
             await self.send(DisableProxy())
             return
 
@@ -342,7 +341,7 @@ class Client:
                 secret=self.settings.proxy_settings.secret,
             )
         else:
-            raise ValueError(f'Unknown proxy type {self.settings.proxy_settings.type}')
+            raise ValueError(f"Unknown proxy type {self.settings.proxy_settings.type}")
 
         await self.send(
             AddProxy(
@@ -367,22 +366,26 @@ class Client:
             elif isinstance(v, int):
                 option_value = OptionValueInteger(value=v)
             else:
-                self.logger.warning(f"Option {k} has unsupported value of type {v.__class__.__name__}: {v}")
+                self.logger.warning(
+                    f"Option {k} has unsupported value of type {v.__class__.__name__}: {v}"
+                )
                 continue
 
-            self.logger.info(f'Setting up option {k} = {v if v is not None else "<empty or default>"}')
+            self.logger.info(
+                f"Setting up option {k} = {v if v is not None else '<empty or default>'}"
+            )
             try:
                 query = SetOption(name=k, value=option_value)
             except pydantic.ValidationError:
-                self.logger.warning(f"Option {k} has unsupported value of type {v.__class__.__name__}: {v}")
+                self.logger.warning(
+                    f"Option {k} has unsupported value of type {v.__class__.__name__}: {v}"
+                )
                 continue
 
             await self.send(query)
 
     async def _auth_start(self):
-        await self.send(
-            GetAuthorizationState()
-        )
+        await self.send(GetAuthorizationState())
         # return await self.api.get_authorization_state(request_id=AUTHORIZATION_REQUEST_ID)
 
     async def _set_tdlib_parameters(self):
@@ -406,7 +409,7 @@ class Client:
         )
 
     async def _set_authentication_phone_number_or_check_bot_token(self):
-        await self.send(SetOption(name='online', value=OptionValueBoolean(value=True)))
+        await self.send(SetOption(name="online", value=OptionValueBoolean(value=True)))
 
         if self.is_bot:
             return await self._check_authentication_bot_token()
@@ -414,7 +417,7 @@ class Client:
         return await self._set_authentication_phone_number()
 
     async def _set_authentication_phone_number(self):
-        self.logger.info('Sending phone number')
+        self.logger.info("Sending phone number")
         await self.send(
             SetAuthenticationPhoneNumber(
                 phone_number=self.settings.phone_number,
@@ -423,13 +426,13 @@ class Client:
                     allow_missed_call=False,
                     is_current_phone_number=True,
                     allow_sms_retriever_api=False,
-                    authentication_tokens=[]
+                    authentication_tokens=[],
                 ),
             )
         )
 
     async def _check_authentication_bot_token(self):
-        self.logger.info('Sending bot token')
+        self.logger.info("Sending bot token")
         await self.send(
             CheckAuthenticationBotToken(
                 token=self.settings.bot_token.get_secret_value(),
@@ -437,8 +440,8 @@ class Client:
         )
 
     async def _check_authentication_code(self):
-        code = await self._auth_get_code(code_type='SMS')
-        self.logger.info(f'Sending code {code}')
+        code = await self._auth_get_code(code_type="SMS")
+        self.logger.info(f"Sending code {code}")
         await self.send(
             CheckAuthenticationCode(
                 code=code,
@@ -454,20 +457,20 @@ class Client:
         )
 
     async def _check_authentication_email_code(self):
-        code = await self._auth_get_code(code_type='EMail')
-        self.logger.info(f'Sending email code {code}')
+        code = await self._auth_get_code(code_type="EMail")
+        self.logger.info(f"Sending email code {code}")
         return await self.send(
             CheckAuthenticationEmailCode(
-                code=EmailAddressAuthenticationCode(
-                    code=code
-                ),
+                code=EmailAddressAuthenticationCode(code=code),
             )
         )
 
     async def _register_user(self):
         first_name = await self._auth_get_first_name()
         last_name = await self._auth_get_last_name()
-        self.logger.info(f'Registering new user in telegram as {first_name} {last_name or ""}'.strip())
+        self.logger.info(
+            f"Registering new user in telegram as {first_name} {last_name or ''}".strip()
+        )
         await self.send(
             RegisterUser(
                 first_name=first_name,
@@ -477,7 +480,7 @@ class Client:
 
     async def _check_authentication_password(self):
         password = await self._auth_get_password()
-        self.logger.info('Sending password')
+        self.logger.info("Sending password")
         await self.send(
             CheckAuthenticationPassword(
                 password=password,
@@ -485,11 +488,11 @@ class Client:
         )
 
     # noinspection PyMethodMayBeStatic
-    async def _auth_get_code(self, *, code_type: str = 'SMS') -> str:
+    async def _auth_get_code(self, *, code_type: str = "SMS") -> str:
         code = ""
 
         while len(code) != 5 or not code.isdigit():
-            code = await ainput(f'Enter {code_type} code:')
+            code = await ainput(f"Enter {code_type} code:")
 
         return code
 
@@ -497,7 +500,7 @@ class Client:
         password = self.settings.password
 
         if not bool(password):
-            password = await ainput('Enter 2FA password:', secured=True)
+            password = await ainput("Enter 2FA password:", secured=True)
         else:
             password = password.get_secret_value()
 
@@ -507,7 +510,7 @@ class Client:
         first_name = self.settings.first_name or ""
 
         while not bool(first_name) or len(first_name) > 64:
-            first_name = await ainput('Enter first name:')
+            first_name = await ainput("Enter first name:")
 
         return first_name
 
@@ -515,7 +518,7 @@ class Client:
         last_name = self.settings.last_name or ""
 
         if not bool(last_name):
-            last_name = await ainput('Enter last name:')
+            last_name = await ainput("Enter last name:")
 
         return last_name
 
@@ -523,7 +526,7 @@ class Client:
         email = self.settings.email or ""
 
         if not bool(email):
-            email = await ainput('Enter your email:')
+            email = await ainput("Enter your email:")
 
         return email
 
@@ -535,13 +538,13 @@ class Client:
         #     await self.get_main_list_chats()
 
     async def _auth_logging_out(self):
-        self.logger.info('Auth session is logging out')
+        self.logger.info("Auth session is logging out")
 
     async def _auth_closing(self):
-        self.logger.info('Auth session is closing')
+        self.logger.info("Auth session is closing")
 
     async def _auth_closed(self):
-        self.logger.info('Auth session is closed')
+        self.logger.info("Auth session is closed")
 
     async def _on_authorization_state_update(self, authorization_state: AuthorizationState):
         auth_actions: AuthActions = {
@@ -594,7 +597,7 @@ class Client:
 
         if bool(self.tdjson_client):
             # TODO: gracefully close current tdjson client
-            self.logger.info('Gracefully closing TDLib connection')
+            self.logger.info("Gracefully closing TDLib connection")
             await self.tdjson_client.close()
 
         self._running = False
@@ -609,26 +612,22 @@ class Client:
     # Core methods
     async def send(self, query: TDLibObject):
         if not self._running:
-            raise RuntimeError('Client not started')
+            raise RuntimeError("Client not started")
 
         query_json = query.model_dump_json(by_alias=True)  # Exclude unset??
         self.logger.debug(f">>>>> {query.ID} %s", query_json)
         await self.tdjson_client.send(query_json)
 
     async def request(
-            self,
-            query: TDLibObject,
-            *,
-            request_id: str = None,
-            request_timeout: int = None
+        self, query: TDLibObject, *, request_id: str = None, request_timeout: int = None
     ) -> Optional[RequestResult]:
         if request_id is None:
-            request_id = query.EXTRA.get('request_id') or uuid.uuid4().hex
+            request_id = query.EXTRA.get("request_id") or uuid.uuid4().hex
 
         if request_timeout is None:
             request_timeout = 10
 
-        query.EXTRA['request_id'] = request_id
+        query.EXTRA["request_id"] = request_id
         pending_request = PendingRequest(self, query)
         self._pending_requests[request_id] = pending_request
         self.logger.debug(
@@ -650,42 +649,37 @@ class Client:
             if bool(pending_request.update):
                 self.logger.debug(
                     f"<<<<< {pending_request.update.ID} %s",
-                    pending_request.update.model_dump_json(by_alias=True)
+                    pending_request.update.model_dump_json(by_alias=True),
                 )
 
         return pending_request.update
 
     async def execute(self, query: TDLibObject) -> ExecuteResult:
         if not self._running:
-            raise RuntimeError('Client not started')
+            raise RuntimeError("Client not started")
 
         result = await self.tdjson_client.execute(query.model_dump(by_alias=True))
         result_object = parse_tdlib_object(result)
 
         if isinstance(result_object, Error):
-            raise AioTDLibError(
-                code=result_object.code,
-                message=result_object.message
-            )
+            raise AioTDLibError(code=result_object.code, message=result_object.message)
 
         return result_object
 
     async def authorize(self):
         if self.is_bot:
-            self.logger.info('Authorization process has been started with bot token')
+            self.logger.info("Authorization process has been started with bot token")
         else:
-            self.logger.info('Authorization process has been started with phone')
+            self.logger.info("Authorization process has been started with phone")
 
-        await self.send(
-            GetAuthorizationState()
-        )
+        await self.send(GetAuthorizationState())
 
-        self.logger.info('Waiting for authorization to be completed')
+        self.logger.info("Waiting for authorization to be completed")
         await self._authorized_event.wait()
 
-    async def start(self) -> 'Client':
-        self.logger.info('Starting client')
-        self.logger.info(f'Session workdir: {self.settings.files_directory.absolute()}')
+    async def start(self) -> "Client":
+        self.logger.info("Starting client")
+        self.logger.info(f"Session workdir: {self.settings.files_directory.absolute()}")
 
         # Preparing middlewares handlers
         self._middlewares_handlers = list(reversed(self._middlewares))
@@ -695,11 +689,13 @@ class Client:
         self._running = True
 
         try:
-            self.logger.info('Setting log verbosity level')
-            await self.execute(SetLogVerbosityLevel(new_verbosity_level=self.settings.tdlib_verbosity))
-            self.logger.info('Setting up proxy')
+            self.logger.info("Setting log verbosity level")
+            await self.execute(
+                SetLogVerbosityLevel(new_verbosity_level=self.settings.tdlib_verbosity)
+            )
+            self.logger.info("Setting up proxy")
             await self._setup_proxy()
-            self.logger.info('Setting up options')
+            self.logger.info("Setting up options")
             await self._setup_options()
             self.logger.info("Initialize authorization process")
             await self.authorize()
@@ -707,7 +703,7 @@ class Client:
             await self._cleanup()
             raise
         else:
-            self.logger.info('Authorization is completed')
+            self.logger.info("Authorization is completed")
 
         return self
 
@@ -716,16 +712,16 @@ class Client:
             try:
                 await asyncio.sleep(0.1)
             except asyncio.CancelledError:
-                self.logger.info('Stop Idling')
+                self.logger.info("Stop Idling")
                 raise
 
     async def stop(self):
-        self.logger.info('Stopping telegram client')
+        self.logger.info("Stopping telegram client")
         await self._cleanup()
 
     # Cache related methods
     async def get_my_id(self) -> int:
-        return await self.get_option_value('my_id')
+        return await self.get_option_value("my_id")
 
     async def load_current_state(self):
         # All current state will be received via updates
@@ -769,27 +765,31 @@ class Client:
     async def get_user_full_info(self, user_id: int, *, force_update: bool = False) -> UserFullInfo:
         return await self.cache.get_user_full_info(user_id, force_update=force_update)
 
-    async def get_basic_group(self, basic_group_id: int, *, force_update: bool = False) -> BasicGroup:
+    async def get_basic_group(
+        self, basic_group_id: int, *, force_update: bool = False
+    ) -> BasicGroup:
         return await self.cache.get_basic_group(basic_group_id, force_update=force_update)
 
-    async def get_basic_group_full_info(self, basic_group_id: int, *, force_update: bool = False) -> BasicGroupFullInfo:
+    async def get_basic_group_full_info(
+        self, basic_group_id: int, *, force_update: bool = False
+    ) -> BasicGroupFullInfo:
         return await self.cache.get_basic_group_full_info(basic_group_id, force_update=force_update)
 
     async def get_supergroup(self, supergroup_id: int, *, force_update: bool = False) -> Supergroup:
         return await self.cache.get_supergroup(supergroup_id, force_update=force_update)
 
-    async def get_supergroup_full_info(self, supergroup_id: int, *, force_update: bool = False) -> SupergroupFullInfo:
+    async def get_supergroup_full_info(
+        self, supergroup_id: int, *, force_update: bool = False
+    ) -> SupergroupFullInfo:
         return await self.cache.get_supergroup_full_info(supergroup_id, force_update=force_update)
 
-    async def get_secret_chat(self, secret_chat_id: int, *, force_update: bool = False) -> SecretChat:
+    async def get_secret_chat(
+        self, secret_chat_id: int, *, force_update: bool = False
+    ) -> SecretChat:
         return await self.cache.get_secret_chat(secret_chat_id, force_update=force_update)
 
     async def get_chat_info(
-            self,
-            chat: Union[int, Chat],
-            *,
-            full: bool = False,
-            force_update: bool = False
+        self, chat: Union[int, Chat], *, full: bool = False, force_update: bool = False
     ) -> Optional[ChatInfo]:
         chat = await self.get_chat(chat) if isinstance(chat, int) else chat
 
@@ -801,20 +801,28 @@ class Client:
 
         if isinstance(chat.type_, ChatTypeBasicGroup):
             if full:
-                return await self.get_basic_group_full_info(chat.type_.basic_group_id, force_update=force_update)
+                return await self.get_basic_group_full_info(
+                    chat.type_.basic_group_id, force_update=force_update
+                )
             else:
-                return await self.get_basic_group(chat.type_.basic_group_id, force_update=force_update)
+                return await self.get_basic_group(
+                    chat.type_.basic_group_id, force_update=force_update
+                )
 
         if isinstance(chat.type_, ChatTypeSupergroup):
             if full:
-                return await self.get_supergroup_full_info(chat.type_.supergroup_id, force_update=force_update)
+                return await self.get_supergroup_full_info(
+                    chat.type_.supergroup_id, force_update=force_update
+                )
             else:
-                return await self.get_supergroup(chat.type_.supergroup_id, force_update=force_update)
+                return await self.get_supergroup(
+                    chat.type_.supergroup_id, force_update=force_update
+                )
 
         if isinstance(chat.type_, ChatTypeSecret):
             return await self.get_secret_chat(chat.type_.secret_chat_id, force_update=force_update)
 
-        raise ValueError(f'Unknown chat.type {chat.type_.__class__.__qualname__}')
+        raise ValueError(f"Unknown chat.type {chat.type_.__class__.__qualname__}")
 
     # API methods shorthands
     async def parse_text(self, text: str, *, parse_mode: str = None) -> Optional[FormattedText]:
@@ -836,28 +844,28 @@ class Client:
                 text=text,
                 parse_mode=(
                     TextParseModeHTML()
-                    if parse_mode == ClientParseMode.HTML else
-                    TextParseModeMarkdown(version=2)
-                )
+                    if parse_mode == ClientParseMode.HTML
+                    else TextParseModeMarkdown(version=2)
+                ),
             )
         )
 
     async def _send_message(
-            self,
-            chat_id: int,
-            content: InputMessageContent,
-            *,
-            reply_to_message_id: int = None,
-            reply_markup: ReplyMarkup = None,
-            disable_notification: bool = False,
-            send_when_online: bool = False,
-            send_date: int = None,
-            request_timeout: int = None,
-            protect_content: bool = False,
-            update_order_of_installed_sticker_sets: bool = False,
-            sending_id: int = 0,
-            effect_id: Optional[int] = 0,
-            only_preview: bool = False,
+        self,
+        chat_id: int,
+        content: InputMessageContent,
+        *,
+        reply_to_message_id: int = None,
+        reply_markup: ReplyMarkup = None,
+        disable_notification: bool = False,
+        send_when_online: bool = False,
+        send_date: int = None,
+        request_timeout: int = None,
+        protect_content: bool = False,
+        update_order_of_installed_sticker_sets: bool = False,
+        sending_id: int = 0,
+        effect_id: Optional[int] = 0,
+        only_preview: bool = False,
     ):
         """
         Sends a message. Returns the sent message
@@ -921,9 +929,9 @@ class Client:
         return await self.api.send_message(
             chat_id=chat_id,
             message_thread_id=0,
-            reply_to=InputMessageReplyToMessage(
-                message_id=reply_to_message_id
-            ) if bool(reply_to_message_id) else None,
+            reply_to=InputMessageReplyToMessage(message_id=reply_to_message_id)
+            if bool(reply_to_message_id)
+            else None,
             options=MessageSendOptions(
                 disable_notification=disable_notification,
                 from_background=False,
@@ -936,25 +944,25 @@ class Client:
             ),
             reply_markup=reply_markup,
             input_message_content=content,
-            request_timeout=request_timeout
+            request_timeout=request_timeout,
         )
 
     async def send_text(
-            self,
-            chat_id: int,
-            text: str,
-            *,
-            reply_to_message_id: int = None,
-            reply_markup: ReplyMarkup = None,
-            disable_notification: bool = False,
-            link_preview_options: Optional[LinkPreviewOptions] = None,
-            clear_draft: bool = True,
-            send_when_online: bool = False,
-            send_date: int = None,
-            request_timeout: int = None,
-            protect_content: bool = False,
-            sending_id: int = 0,
-            only_preview: bool = False,
+        self,
+        chat_id: int,
+        text: str,
+        *,
+        reply_to_message_id: int = None,
+        reply_markup: ReplyMarkup = None,
+        disable_notification: bool = False,
+        link_preview_options: Optional[LinkPreviewOptions] = None,
+        clear_draft: bool = True,
+        send_when_online: bool = False,
+        send_date: int = None,
+        request_timeout: int = None,
+        protect_content: bool = False,
+        sending_id: int = 0,
+        only_preview: bool = False,
     ) -> Message:
         """
         Sends a text message. Returns the sent message
@@ -1019,19 +1027,19 @@ class Client:
             request_timeout=request_timeout,
             protect_content=protect_content,
             sending_id=sending_id,
-            only_preview=only_preview
+            only_preview=only_preview,
         )
 
     async def edit_text(
-            self,
-            chat_id: int,
-            message_id: int,
-            text: str,
-            *,
-            reply_markup: ReplyMarkup = None,
-            link_preview_options: Optional[LinkPreviewOptions] = None,
-            clear_draft: bool = True,
-            request_timeout: int = None
+        self,
+        chat_id: int,
+        message_id: int,
+        text: str,
+        *,
+        reply_markup: ReplyMarkup = None,
+        link_preview_options: Optional[LinkPreviewOptions] = None,
+        clear_draft: bool = True,
+        request_timeout: int = None,
     ):
         """
         Edits the text of a message (or a text of a game message).
@@ -1072,31 +1080,31 @@ class Client:
                 clear_draft=clear_draft,
                 link_preview_options=link_preview_options,
             ),
-            request_timeout=request_timeout
+            request_timeout=request_timeout,
         )
 
     async def send_photo(
-            self,
-            chat_id: int,
-            photo: str,
-            *,
-            caption: str = None,
-            added_sticker_file_ids: list[int] = None,
-            photo_width: int = None,
-            photo_height: int = None,
-            self_destruct_type: Optional[MessageSelfDestructType] = None,
-            thumbnail: Union[str, InputThumbnail] = None,
-            thumbnail_width: int = None,
-            thumbnail_height: int = None,
-            reply_to_message_id: int = None,
-            reply_markup: ReplyMarkup = None,
-            disable_notification: bool = False,
-            send_when_online: bool = False,
-            send_date: int = None,
-            request_timeout: int = None,
-            protect_content: bool = False,
-            sending_id: int = 0,
-            only_preview: bool = False,
+        self,
+        chat_id: int,
+        photo: str,
+        *,
+        caption: str = None,
+        added_sticker_file_ids: list[int] = None,
+        photo_width: int = None,
+        photo_height: int = None,
+        self_destruct_type: Optional[MessageSelfDestructType] = None,
+        thumbnail: Union[str, InputThumbnail] = None,
+        thumbnail_width: int = None,
+        thumbnail_height: int = None,
+        reply_to_message_id: int = None,
+        reply_markup: ReplyMarkup = None,
+        disable_notification: bool = False,
+        send_when_online: bool = False,
+        send_date: int = None,
+        request_timeout: int = None,
+        protect_content: bool = False,
+        sending_id: int = 0,
+        only_preview: bool = False,
     ):
         """
         Sends a photo with caption to chat. Returns the sent message
@@ -1183,33 +1191,33 @@ class Client:
             request_timeout=request_timeout,
             protect_content=protect_content,
             sending_id=sending_id,
-            only_preview=only_preview
+            only_preview=only_preview,
         )
 
     async def send_video(
-            self,
-            chat_id: int,
-            video: str,
-            *,
-            caption: str = None,
-            added_sticker_file_ids: list[int] = None,
-            duration: int = None,
-            video_width: int = None,
-            video_height: int = None,
-            self_destruct_type: Optional[MessageSelfDestructType] = None,
-            supports_streaming: bool = False,
-            thumbnail: Union[str, InputThumbnail] = None,
-            thumbnail_width: int = None,
-            thumbnail_height: int = None,
-            reply_to_message_id: int = None,
-            reply_markup: ReplyMarkup = None,
-            disable_notification: bool = False,
-            send_when_online: bool = False,
-            send_date: int = None,
-            request_timeout: int = None,
-            protect_content: bool = False,
-            sending_id: int = 0,
-            only_preview: bool = False,
+        self,
+        chat_id: int,
+        video: str,
+        *,
+        caption: str = None,
+        added_sticker_file_ids: list[int] = None,
+        duration: int = None,
+        video_width: int = None,
+        video_height: int = None,
+        self_destruct_type: Optional[MessageSelfDestructType] = None,
+        supports_streaming: bool = False,
+        thumbnail: Union[str, InputThumbnail] = None,
+        thumbnail_width: int = None,
+        thumbnail_height: int = None,
+        reply_to_message_id: int = None,
+        reply_markup: ReplyMarkup = None,
+        disable_notification: bool = False,
+        send_when_online: bool = False,
+        send_date: int = None,
+        request_timeout: int = None,
+        protect_content: bool = False,
+        sending_id: int = 0,
+        only_preview: bool = False,
     ):
         """
         Sends a video with caption to chat. Returns the sent message
@@ -1304,31 +1312,31 @@ class Client:
             request_timeout=request_timeout,
             protect_content=protect_content,
             sending_id=sending_id,
-            only_preview=only_preview
+            only_preview=only_preview,
         )
 
     async def send_animation(
-            self,
-            chat_id: int,
-            animation: str,
-            *,
-            caption: str = None,
-            added_sticker_file_ids: list[int] = None,
-            duration: int = None,
-            animation_width: int = None,
-            animation_height: int = None,
-            thumbnail: Union[str, InputThumbnail] = None,
-            thumbnail_width: int = None,
-            thumbnail_height: int = None,
-            reply_to_message_id: int = None,
-            reply_markup: ReplyMarkup = None,
-            disable_notification: bool = False,
-            send_when_online: bool = False,
-            send_date: int = None,
-            request_timeout: int = None,
-            protect_content: bool = False,
-            sending_id: int = 0,
-            only_preview: bool = False,
+        self,
+        chat_id: int,
+        animation: str,
+        *,
+        caption: str = None,
+        added_sticker_file_ids: list[int] = None,
+        duration: int = None,
+        animation_width: int = None,
+        animation_height: int = None,
+        thumbnail: Union[str, InputThumbnail] = None,
+        thumbnail_width: int = None,
+        thumbnail_height: int = None,
+        reply_to_message_id: int = None,
+        reply_markup: ReplyMarkup = None,
+        disable_notification: bool = False,
+        send_when_online: bool = False,
+        send_date: int = None,
+        request_timeout: int = None,
+        protect_content: bool = False,
+        sending_id: int = 0,
+        only_preview: bool = False,
     ):
         """
         Sends an animation with caption to chat. Returns the sent message
@@ -1415,29 +1423,29 @@ class Client:
             request_timeout=request_timeout,
             protect_content=protect_content,
             sending_id=sending_id,
-            only_preview=only_preview
+            only_preview=only_preview,
         )
 
     async def send_sticker(
-            self,
-            chat_id: int,
-            sticker: str,
-            *,
-            sticker_width: int = None,
-            sticker_height: int = None,
-            thumbnail: Union[str, InputThumbnail] = None,
-            thumbnail_width: int = None,
-            thumbnail_height: int = None,
-            emoji: str = None,
-            reply_to_message_id: int = None,
-            reply_markup: ReplyMarkup = None,
-            disable_notification: bool = False,
-            send_when_online: bool = False,
-            send_date: int = None,
-            request_timeout: int = None,
-            protect_content: bool = False,
-            sending_id: int = 0,
-            only_preview: bool = False,
+        self,
+        chat_id: int,
+        sticker: str,
+        *,
+        sticker_width: int = None,
+        sticker_height: int = None,
+        thumbnail: Union[str, InputThumbnail] = None,
+        thumbnail_width: int = None,
+        thumbnail_height: int = None,
+        emoji: str = None,
+        reply_to_message_id: int = None,
+        reply_markup: ReplyMarkup = None,
+        disable_notification: bool = False,
+        send_when_online: bool = False,
+        send_date: int = None,
+        request_timeout: int = None,
+        protect_content: bool = False,
+        sending_id: int = 0,
+        only_preview: bool = False,
     ):
         """
         Sends an sticker to chat. Returns the sent message
@@ -1504,7 +1512,7 @@ class Client:
                 thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
                 width=sticker_width,
                 height=sticker_height,
-                emoji=emoji
+                emoji=emoji,
             ),
             reply_to_message_id=reply_to_message_id,
             reply_markup=reply_markup,
@@ -1514,28 +1522,28 @@ class Client:
             request_timeout=request_timeout,
             protect_content=protect_content,
             sending_id=sending_id,
-            only_preview=only_preview
+            only_preview=only_preview,
         )
 
     async def send_document(
-            self,
-            chat_id: int,
-            document: str,
-            *,
-            caption: str = None,
-            disable_content_type_detection: bool = False,
-            thumbnail: Union[str, InputThumbnail] = None,
-            thumbnail_width: int = None,
-            thumbnail_height: int = None,
-            reply_to_message_id: int = None,
-            reply_markup: ReplyMarkup = None,
-            disable_notification: bool = False,
-            send_when_online: bool = False,
-            send_date: int = None,
-            request_timeout: int = None,
-            protect_content: bool = False,
-            sending_id: int = 0,
-            only_preview: bool = False,
+        self,
+        chat_id: int,
+        document: str,
+        *,
+        caption: str = None,
+        disable_content_type_detection: bool = False,
+        thumbnail: Union[str, InputThumbnail] = None,
+        thumbnail_width: int = None,
+        thumbnail_height: int = None,
+        reply_to_message_id: int = None,
+        reply_markup: ReplyMarkup = None,
+        disable_notification: bool = False,
+        send_when_online: bool = False,
+        send_date: int = None,
+        request_timeout: int = None,
+        protect_content: bool = False,
+        sending_id: int = 0,
+        only_preview: bool = False,
     ):
         """
         Sends a document with caption to chat. Returns the sent message
@@ -1610,30 +1618,30 @@ class Client:
             request_timeout=request_timeout,
             protect_content=protect_content,
             sending_id=sending_id,
-            only_preview=only_preview
+            only_preview=only_preview,
         )
 
     async def send_audio(
-            self,
-            chat_id: int,
-            audio: str,
-            *,
-            caption: str = None,
-            duration: int = None,
-            title: str = None,
-            performer: str = None,
-            thumbnail: Union[str, InputThumbnail] = None,
-            thumbnail_width: int = None,
-            thumbnail_height: int = None,
-            reply_to_message_id: int = None,
-            reply_markup: ReplyMarkup = None,
-            disable_notification: bool = False,
-            send_when_online: bool = False,
-            send_date: int = None,
-            request_timeout: int = None,
-            protect_content: bool = False,
-            sending_id: int = 0,
-            only_preview: bool = False,
+        self,
+        chat_id: int,
+        audio: str,
+        *,
+        caption: str = None,
+        duration: int = None,
+        title: str = None,
+        performer: str = None,
+        thumbnail: Union[str, InputThumbnail] = None,
+        thumbnail_width: int = None,
+        thumbnail_height: int = None,
+        reply_to_message_id: int = None,
+        reply_markup: ReplyMarkup = None,
+        disable_notification: bool = False,
+        send_when_online: bool = False,
+        send_date: int = None,
+        request_timeout: int = None,
+        protect_content: bool = False,
+        sending_id: int = 0,
+        only_preview: bool = False,
     ):
         """
         Sends an audio with caption to chat. Returns the sent message
@@ -1703,10 +1711,12 @@ class Client:
             content=InputMessageAudio(
                 audio=make_input_file(audio),
                 caption=(await self.parse_text(caption)),
-                album_cover_thumbnail=make_thumbnail(thumbnail, width=thumbnail_width, height=thumbnail_height),
+                album_cover_thumbnail=make_thumbnail(
+                    thumbnail, width=thumbnail_width, height=thumbnail_height
+                ),
                 title=title,
                 duration=duration,
-                performer=performer
+                performer=performer,
             ),
             reply_to_message_id=reply_to_message_id,
             reply_markup=reply_markup,
@@ -1716,26 +1726,26 @@ class Client:
             request_timeout=request_timeout,
             protect_content=protect_content,
             sending_id=sending_id,
-            only_preview=only_preview
+            only_preview=only_preview,
         )
 
     async def send_voice_note(
-            self,
-            chat_id: int,
-            voice_note: str,
-            *,
-            caption: str = None,
-            duration: int = None,
-            waveform: str = None,
-            reply_to_message_id: int = None,
-            reply_markup: ReplyMarkup = None,
-            disable_notification: bool = False,
-            send_when_online: bool = False,
-            send_date: int = None,
-            request_timeout: int = None,
-            protect_content: bool = False,
-            sending_id: int = 0,
-            only_preview: bool = False,
+        self,
+        chat_id: int,
+        voice_note: str,
+        *,
+        caption: str = None,
+        duration: int = None,
+        waveform: str = None,
+        reply_to_message_id: int = None,
+        reply_markup: ReplyMarkup = None,
+        disable_notification: bool = False,
+        send_when_online: bool = False,
+        send_date: int = None,
+        request_timeout: int = None,
+        protect_content: bool = False,
+        sending_id: int = 0,
+        only_preview: bool = False,
     ):
         """
         Sends a voice note with caption to chat. Returns the sent message
@@ -1793,7 +1803,7 @@ class Client:
                 voice_note=make_input_file(voice_note),
                 caption=(await self.parse_text(caption)),
                 duration=duration,
-                waveform=waveform
+                waveform=waveform,
             ),
             reply_to_message_id=reply_to_message_id,
             reply_markup=reply_markup,
@@ -1803,28 +1813,28 @@ class Client:
             request_timeout=request_timeout,
             protect_content=protect_content,
             sending_id=sending_id,
-            only_preview=only_preview
+            only_preview=only_preview,
         )
 
     async def send_video_note(
-            self,
-            chat_id: int,
-            video_note: str,
-            *,
-            duration: int = None,
-            length: int = None,
-            thumbnail: Union[str, InputThumbnail] = None,
-            thumbnail_width: int = None,
-            thumbnail_height: int = None,
-            reply_to_message_id: int = None,
-            reply_markup: ReplyMarkup = None,
-            disable_notification: bool = False,
-            send_when_online: bool = False,
-            send_date: int = None,
-            request_timeout: int = None,
-            protect_content: bool = False,
-            sending_id: int = 0,
-            only_preview: bool = False,
+        self,
+        chat_id: int,
+        video_note: str,
+        *,
+        duration: int = None,
+        length: int = None,
+        thumbnail: Union[str, InputThumbnail] = None,
+        thumbnail_width: int = None,
+        thumbnail_height: int = None,
+        reply_to_message_id: int = None,
+        reply_markup: ReplyMarkup = None,
+        disable_notification: bool = False,
+        send_when_online: bool = False,
+        send_date: int = None,
+        request_timeout: int = None,
+        protect_content: bool = False,
+        sending_id: int = 0,
+        only_preview: bool = False,
     ):
         """
         Sends a video note with caption to chat. Returns the sent message
@@ -1899,15 +1909,11 @@ class Client:
             request_timeout=request_timeout,
             protect_content=protect_content,
             sending_id=sending_id,
-            only_preview=only_preview
+            only_preview=only_preview,
         )
 
     async def iter_chat_history(
-            self,
-            chat_id: int,
-            from_message_id: int = 0,
-            limit: int = None,
-            only_local: bool = False
+        self, chat_id: int, from_message_id: int = 0, limit: int = None, only_local: bool = False
     ) -> AsyncIterator[Message]:
         """
         Iterates over messages in a chat.
@@ -1945,7 +1951,7 @@ class Client:
                 from_message_id=from_message_id,
                 limit=request_limit,
                 offset=0,
-                only_local=only_local
+                only_local=only_local,
             )
 
             if len(history.messages) == 0:
@@ -1964,21 +1970,21 @@ class Client:
             request_limit = min(100, limit - yielded_messages_count)
 
     async def forward_messages(
-            self,
-            from_chat_id: int,
-            chat_id: int,
-            message_ids: list[int],
-            *,
-            send_copy: bool = False,
-            remove_caption: bool = False,
-            disable_notification: bool = False,
-            send_when_online: bool = False,
-            from_background: bool = False,
-            send_date: int = None,
-            request_timeout: int = None,
-            protect_content: bool = False,
-            sending_id: int = 0,
-            only_preview: bool = False,
+        self,
+        from_chat_id: int,
+        chat_id: int,
+        message_ids: list[int],
+        *,
+        send_copy: bool = False,
+        remove_caption: bool = False,
+        disable_notification: bool = False,
+        send_when_online: bool = False,
+        from_background: bool = False,
+        send_date: int = None,
+        request_timeout: int = None,
+        protect_content: bool = False,
+        sending_id: int = 0,
+        only_preview: bool = False,
     ) -> Messages:
         """
         Forwards previously sent messages.
@@ -2053,7 +2059,7 @@ class Client:
                 scheduling_state=scheduling_state,
                 update_order_of_installed_sticker_sets=False,
                 only_preview=only_preview,
-                sending_id=sending_id
+                sending_id=sending_id,
             ),
             send_copy=send_copy,
             remove_caption=remove_caption,

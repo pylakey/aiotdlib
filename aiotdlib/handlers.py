@@ -1,33 +1,33 @@
 from __future__ import annotations
 
 import asyncio
-from typing import Awaitable
-from typing import Callable
-from typing import Optional
-from typing import TYPE_CHECKING
-from typing import TypeVar
-from typing import Union
+from typing import TYPE_CHECKING, Awaitable, Callable, Optional, TypeVar, Union
 
 from .api import BaseObject
-from .filters import BaseFilter
-from .filters import FilterCallable
+from .filters import BaseFilter, FilterCallable
 
 if TYPE_CHECKING:
-    from client import Client
+    from .client import Client
 
-SomeUpdate = TypeVar('SomeUpdate', bound=BaseObject)
-HandlerCallable = Callable[['Client', SomeUpdate], Awaitable[None]]
+SomeUpdate = TypeVar("SomeUpdate", bound=BaseObject, covariant=True)
+HandlerCallable = Callable[["Client", SomeUpdate], Awaitable[None]]
 
 
 class Handler(object):
-    def __init__(self, function: HandlerCallable, *, filters: Union[BaseFilter, FilterCallable] = None):
-        if filters is not None and not isinstance(filters, BaseFilter) and not asyncio.iscoroutinefunction(function):
-            raise ValueError('filters should be an instance of BaseFilter!')
+    def __init__(
+        self, function: HandlerCallable, *, filters: Union[BaseFilter, FilterCallable] = None
+    ):
+        if (
+            filters is not None
+            and not isinstance(filters, BaseFilter)
+            and not asyncio.iscoroutinefunction(function)
+        ):
+            raise ValueError("filters should be an instance of BaseFilter!")
 
         self.function: HandlerCallable = function
         self.filters: Optional[FilterCallable] = filters
 
-    async def __call__(self, client: 'Client', update: BaseObject):
+    async def __call__(self, client: "Client", update: BaseObject):
         if callable(self.filters):
             filter_result = await self.filters(update)
 
