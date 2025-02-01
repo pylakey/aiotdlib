@@ -1,0 +1,15 @@
+{
+    "python.analysis.typeCheckingMode": "off",
+    "python.analysis.autoImportCompletions": true,
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.codeActionsOnSave": {
+            "source.unusedImports": "explicit",
+            "source.organizeImports.ruff": "explicit"
+        },
+        "editor.rulers": [
+            100
+        ]
+    },
+    "editor.formatOnSave": true
+}
