@@ -18,7 +18,7 @@ class ReportSupergroupAntiSpamFalsePositive(BaseObject):
 
     :param supergroup_id: Supergroup identifier
     :type supergroup_id: :class:`Int53`
-    :param message_id: Identifier of the erroneously deleted message
+    :param message_id: Identifier of the erroneously deleted message from chatEventMessageDeleted
     :type message_id: :class:`Int53`
     """
 

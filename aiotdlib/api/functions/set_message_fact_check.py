@@ -18,11 +18,11 @@ from ..types.all import (
 
 class SetMessageFactCheck(BaseObject):
     """
-    Changes the fact-check of a message. Can be only used if getOption("can_edit_fact_check") == true
+    Changes the fact-check of a message. Can be only used if messageProperties.can_set_fact_check == true
 
     :param chat_id: The channel chat the message belongs to
     :type chat_id: :class:`Int53`
-    :param message_id: Identifier of the message. The message must be one of the following types: messageAnimation, messageAudio, messageDocument, messagePhoto, messageText, messageVideo
+    :param message_id: Identifier of the message
     :type message_id: :class:`Int53`
     :param text: New text of the fact-check; 0-getOption("fact_check_length_max") characters; pass null to remove it. Only Bold, Italic, and TextUrl entities with https://t.me/ links are supported, defaults to None
     :type text: :class:`FormattedText`, optional

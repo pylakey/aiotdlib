@@ -11,10 +11,6 @@ from pydantic import Field
 
 from ..types.base import *
 
-from ..types.all import (
-    ReportReason,
-)
-
 
 class ReportStory(BaseObject):
     """
@@ -24,14 +20,14 @@ class ReportStory(BaseObject):
     :type story_sender_chat_id: :class:`Int53`
     :param story_id: The identifier of the story to report
     :type story_id: :class:`Int32`
-    :param reason: The reason for reporting the story
-    :type reason: :class:`ReportReason`
-    :param text: Additional report details; 0-1024 characters
+    :param option_id: Option identifier chosen by the user; leave empty for the initial request
+    :type option_id: :class:`Bytes`
+    :param text: Additional report details; 0-1024 characters; leave empty for the initial request
     :type text: :class:`String`
     """
 
     ID: typing.Literal["reportStory"] = Field("reportStory", validation_alias="@type", alias="@type")
     story_sender_chat_id: Int53
     story_id: Int32
-    reason: ReportReason
+    option_id: Bytes
     text: String = Field("", max_length=1024)

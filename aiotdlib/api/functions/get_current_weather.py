@@ -12,22 +12,17 @@ from pydantic import Field
 from ..types.base import *
 
 from ..types.all import (
-    PremiumGiveawayParameters,
+    Location,
 )
 
 
-class LaunchPrepaidPremiumGiveaway(BaseObject):
+class GetCurrentWeather(BaseObject):
     """
-    Launches a prepaid Telegram Premium giveaway
+    Returns the current weather in the given location
 
-    :param giveaway_id: Unique identifier of the prepaid giveaway
-    :type giveaway_id: :class:`Int64`
-    :param parameters: Giveaway parameters
-    :type parameters: :class:`PremiumGiveawayParameters`
+    :param location: The location
+    :type location: :class:`Location`
     """
 
-    ID: typing.Literal["launchPrepaidPremiumGiveaway"] = Field(
-        "launchPrepaidPremiumGiveaway", validation_alias="@type", alias="@type"
-    )
-    giveaway_id: Int64
-    parameters: PremiumGiveawayParameters
+    ID: typing.Literal["getCurrentWeather"] = Field("getCurrentWeather", validation_alias="@type", alias="@type")
+    location: Location

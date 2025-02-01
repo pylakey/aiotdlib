@@ -19,7 +19,7 @@ from ..types.all import (
 
 class EditBusinessMessageMedia(BaseObject):
     """
-    Edits the content of a message with an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
+    Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in a message sent on behalf of a business account; for bots only
 
     :param business_connection_id: Unique identifier of business connection on behalf of which the message was sent
     :type business_connection_id: :class:`String`

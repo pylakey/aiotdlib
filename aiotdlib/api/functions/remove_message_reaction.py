@@ -24,7 +24,7 @@ class RemoveMessageReaction(BaseObject):
     :type chat_id: :class:`Int53`
     :param message_id: Identifier of the message
     :type message_id: :class:`Int53`
-    :param reaction_type: Type of the reaction to remove
+    :param reaction_type: Type of the reaction to remove. The paid reaction can't be removed
     :type reaction_type: :class:`ReactionType`
     """
 

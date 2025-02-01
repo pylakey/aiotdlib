@@ -18,11 +18,11 @@ from ..types.all import (
 
 class GetStarWithdrawalUrl(BaseObject):
     """
-    Returns URL for Telegram star withdrawal
+    Returns a URL for Telegram Star withdrawal
 
-    :param owner_id: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    :param owner_id: Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of an owned channel chat
     :type owner_id: :class:`MessageSender`
-    :param star_count: The number of Telegram stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
+    :param star_count: The number of Telegram Stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
     :type star_count: :class:`Int53`
     :param password: The 2-step verification password of the current user
     :type password: :class:`String`

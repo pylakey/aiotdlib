@@ -30,7 +30,7 @@ class GetChatStoryInteractions(BaseObject):
     :type limit: :class:`Int32`
     :param prefer_forwards: Pass true to get forwards and reposts first, then reactions, then other views; pass false to get interactions sorted just by interaction date
     :type prefer_forwards: :class:`Bool`
-    :param reaction_type: Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions, defaults to None
+    :param reaction_type: Pass the default heart reaction or a suggested reaction type to receive only interactions with the specified reaction type; pass null to receive all interactions; reactionTypePaid isn't supported, defaults to None
     :type reaction_type: :class:`ReactionType`, optional
     """
 

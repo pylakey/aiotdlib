@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetChatScheduledMessages(BaseObject):
     """
-    Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    Returns all scheduled messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

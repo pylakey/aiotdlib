@@ -18,7 +18,7 @@ class GetLoginUrlInfo(BaseObject):
 
     :param chat_id: Chat identifier of the message with the button
     :type chat_id: :class:`Int53`
-    :param message_id: Message identifier of the message with the button
+    :param message_id: Message identifier of the message with the button. The message must not be scheduled
     :type message_id: :class:`Int53`
     :param button_id: Button identifier
     :type button_id: :class:`Int53`

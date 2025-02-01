@@ -18,7 +18,10 @@ class SearchStickerSet(BaseObject):
 
     :param name: Name of the sticker set
     :type name: :class:`String`
+    :param ignore_cache: Pass true to ignore local cache of sticker sets and always send a network request
+    :type ignore_cache: :class:`Bool`
     """
 
     ID: typing.Literal["searchStickerSet"] = Field("searchStickerSet", validation_alias="@type", alias="@type")
     name: String
+    ignore_cache: Bool = False

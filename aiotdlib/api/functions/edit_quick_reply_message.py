@@ -18,7 +18,7 @@ from ..types.all import (
 
 class EditQuickReplyMessage(BaseObject):
     """
-    Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Text message can be edited only to a text message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
+    Asynchronously edits the text, media or caption of a quick reply message. Use quickReplyMessage.can_be_edited to check whether a message can be edited. Media message can be edited only to a media message. The type of message content in an album can't be changed with exception of replacing a photo with a video or vice versa
 
     :param shortcut_id: Unique identifier of the quick reply shortcut with the message
     :type shortcut_id: :class:`Int32`

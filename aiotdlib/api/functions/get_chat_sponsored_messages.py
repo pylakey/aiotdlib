@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetChatSponsoredMessages(BaseObject):
     """
-    Returns sponsored messages to be shown in a chat; for channel chats only
+    Returns sponsored messages to be shown in a chat; for channel chats and chats with bots only
 
     :param chat_id: Identifier of the chat
     :type chat_id: :class:`Int53`

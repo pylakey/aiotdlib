@@ -26,6 +26,8 @@ class GetChatInviteLinkMembers(BaseObject):
     :type invite_link: :class:`String`
     :param limit: The maximum number of chat members to return; up to 100
     :type limit: :class:`Int32`
+    :param only_with_expired_subscription: Pass true if the link is a subscription link and only members with expired subscription must be returned
+    :type only_with_expired_subscription: :class:`Bool`
     :param offset_member: A chat member from which to return next chat members; pass null to get results from the beginning, defaults to None
     :type offset_member: :class:`ChatInviteLinkMember`, optional
     """
@@ -36,4 +38,5 @@ class GetChatInviteLinkMembers(BaseObject):
     chat_id: Int53
     invite_link: String
     limit: Int32
+    only_with_expired_subscription: Bool = False
     offset_member: typing.Optional[ChatInviteLinkMember] = None

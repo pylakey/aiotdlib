@@ -14,7 +14,7 @@ from ..types.base import *
 
 class RefundStarPayment(BaseObject):
     """
-    Refunds a previously done payment in Telegram Stars
+    Refunds a previously done payment in Telegram Stars; for bots only
 
     :param user_id: Identifier of the user that did the payment
     :type user_id: :class:`Int53`

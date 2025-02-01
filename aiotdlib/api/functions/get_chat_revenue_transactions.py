@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetChatRevenueTransactions(BaseObject):
     """
-    Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true
+    Returns the list of revenue transactions for a chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true or bots if userFullInfo.bot_info.can_get_revenue_statistics == true
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

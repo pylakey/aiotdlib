@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetStarPaymentOptions(BaseObject):
     """
-    Returns available options for Telegram stars purchase
+    Returns available options for Telegram Stars purchase
     """
 
     ID: typing.Literal["getStarPaymentOptions"] = Field(

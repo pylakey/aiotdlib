@@ -19,7 +19,7 @@ from ..types.all import (
 
 class EditInlineMessageMedia(BaseObject):
     """
-    Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
+    Edits the media content of a message with a text, an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
 
     :param inline_message_id: Inline message identifier
     :type inline_message_id: :class:`String`

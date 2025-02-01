@@ -12,26 +12,23 @@ from pydantic import Field
 from ..types.base import *
 
 from ..types.all import (
-    ThemeParameters,
+    WebAppOpenParameters,
 )
 
 
 class GetWebAppUrl(BaseObject):
     """
-    Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, an inlineQueryResultsButtonTypeWebApp button, or an internalLinkTypeSideMenuBot link
+    Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
 
     :param bot_user_id: Identifier of the target bot
     :type bot_user_id: :class:`Int53`
-    :param url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, an internalLinkTypeSideMenuBot link, or an empty when the bot is opened from the side menu
+    :param url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
     :type url: :class:`String`
-    :param application_name: Short name of the application; 0-64 English letters, digits, and underscores
-    :type application_name: :class:`String`
-    :param theme: Preferred Web App theme; pass null to use the default theme, defaults to None
-    :type theme: :class:`ThemeParameters`, optional
+    :param parameters: Parameters to use to open the Web App
+    :type parameters: :class:`WebAppOpenParameters`
     """
 
     ID: typing.Literal["getWebAppUrl"] = Field("getWebAppUrl", validation_alias="@type", alias="@type")
     bot_user_id: Int53
     url: String
-    application_name: String
-    theme: typing.Optional[ThemeParameters] = None
+    parameters: WebAppOpenParameters

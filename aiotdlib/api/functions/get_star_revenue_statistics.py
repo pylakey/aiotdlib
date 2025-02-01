@@ -18,9 +18,9 @@ from ..types.all import (
 
 class GetStarRevenueStatistics(BaseObject):
     """
-    Returns detailed Telegram star revenue statistics
+    Returns detailed Telegram Star revenue statistics
 
-    :param owner_id: Identifier of the owner of the Telegram stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_revenue_statistics == true
+    :param owner_id: Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
     :type owner_id: :class:`MessageSender`
     :param is_dark: Pass true if a dark theme is used by the application
     :type is_dark: :class:`Bool`

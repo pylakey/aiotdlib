@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetMessageReadDate(BaseObject):
     """
-    Returns read date of a recent outgoing message in a private chat. The method can be called if message.can_get_read_date == true and the message is read
+    Returns read date of a recent outgoing message in a private chat. The method can be called if messageProperties.can_get_read_date == true
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

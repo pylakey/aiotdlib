@@ -31,7 +31,7 @@ class SendPaymentForm(BaseObject):
     :type shipping_option_id: :class:`String`
     :param tip_amount: Chosen by the user amount of tip in the smallest units of the currency
     :type tip_amount: :class:`Int53`
-    :param credentials: The credentials chosen by user for payment; pass null for a payment in Telegram stars, defaults to None
+    :param credentials: The credentials chosen by user for payment; pass null for a payment in Telegram Stars, defaults to None
     :type credentials: :class:`InputCredentials`, optional
     """
 

@@ -14,7 +14,7 @@ from ..types.base import *
 
 class CancelPreliminaryUploadFile(BaseObject):
     """
-    Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile. For other files the behavior is undefined
+    Stops the preliminary uploading of a file. Supported only for files uploaded by using preliminaryUploadFile
 
     :param file_id: Identifier of the file to stop uploading
     :type file_id: :class:`Int32`

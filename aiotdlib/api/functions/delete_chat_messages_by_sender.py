@@ -18,7 +18,7 @@ from ..types.all import (
 
 class DeleteChatMessagesBySender(BaseObject):
     """
-    Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
+    Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator right
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

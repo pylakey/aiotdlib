@@ -12,17 +12,20 @@ from pydantic import Field
 from ..types.base import *
 
 from ..types.all import (
-    Location,
+    EmojiStatus,
 )
 
 
-class SearchChatsNearby(BaseObject):
+class SetUserEmojiStatus(BaseObject):
     """
-    Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request must be sent again every 25 seconds with adjusted location to not miss new chats
+    Changes the emoji status of a user; for bots only
 
-    :param location: Current user location
-    :type location: :class:`Location`
+    :param user_id: Identifier of the user
+    :type user_id: :class:`Int53`
+    :param emoji_status: New emoji status; pass null to switch to the default badge, defaults to None
+    :type emoji_status: :class:`EmojiStatus`, optional
     """
 
-    ID: typing.Literal["searchChatsNearby"] = Field("searchChatsNearby", validation_alias="@type", alias="@type")
-    location: Location
+    ID: typing.Literal["setUserEmojiStatus"] = Field("setUserEmojiStatus", validation_alias="@type", alias="@type")
+    user_id: Int53
+    emoji_status: typing.Optional[EmojiStatus] = None

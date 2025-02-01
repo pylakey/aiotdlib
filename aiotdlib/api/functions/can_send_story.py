@@ -16,7 +16,7 @@ class CanSendStory(BaseObject):
     """
     Checks whether the current user can send a story on behalf of a chat; requires can_post_stories right for supergroup and channel chats
 
-    :param chat_id: Chat identifier
+    :param chat_id: Chat identifier. Pass Saved Messages chat identifier when posting a story on behalf of the current user
     :type chat_id: :class:`Int53`
     """
 

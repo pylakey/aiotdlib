@@ -14,6 +14,9 @@ from .accept_terms_of_service import AcceptTermsOfService
 from .activate_story_stealth_mode import ActivateStoryStealthMode
 
 
+from .add_bot_media_preview import AddBotMediaPreview
+
+
 from .add_chat_folder_by_invite_link import AddChatFolderByInviteLink
 
 
@@ -48,6 +51,9 @@ from .add_message_reaction import AddMessageReaction
 
 
 from .add_network_statistics import AddNetworkStatistics
+
+
+from .add_pending_paid_message_reaction import AddPendingPaidMessageReaction
 
 
 from .add_proxy import AddProxy
@@ -200,6 +206,9 @@ from .check_recovery_email_address_code import CheckRecoveryEmailAddressCode
 from .check_sticker_set_name import CheckStickerSetName
 
 
+from .check_web_app_file_download import CheckWebAppFileDownload
+
+
 from .clean_file_name import CleanFileName
 
 
@@ -251,10 +260,16 @@ from .close_story import CloseStory
 from .close_web_app import CloseWebApp
 
 
+from .commit_pending_paid_message_reactions import CommitPendingPaidMessageReactions
+
+
 from .confirm_qr_code_authentication import ConfirmQrCodeAuthentication
 
 
 from .confirm_session import ConfirmSession
+
+
+from .connect_affiliate_program import ConnectAffiliateProgram
 
 
 from .create_basic_group_chat import CreateBasicGroupChat
@@ -275,7 +290,13 @@ from .create_chat_folder_invite_link import CreateChatFolderInviteLink
 from .create_chat_invite_link import CreateChatInviteLink
 
 
+from .create_chat_subscription_invite_link import CreateChatSubscriptionInviteLink
+
+
 from .create_forum_topic import CreateForumTopic
+
+
+from .create_group_call import CreateGroupCall
 
 
 from .create_invoice_link import CreateInvoiceLink
@@ -315,6 +336,9 @@ from .delete_all_call_messages import DeleteAllCallMessages
 
 
 from .delete_all_revoked_chat_invite_links import DeleteAllRevokedChatInviteLinks
+
+
+from .delete_bot_media_previews import DeleteBotMediaPreviews
 
 
 from .delete_business_chat_link import DeleteBusinessChatLink
@@ -410,6 +434,9 @@ from .disable_proxy import DisableProxy
 from .discard_call import DiscardCall
 
 
+from .disconnect_affiliate_program import DisconnectAffiliateProgram
+
+
 from .disconnect_all_websites import DisconnectAllWebsites
 
 
@@ -417,6 +444,9 @@ from .disconnect_website import DisconnectWebsite
 
 
 from .download_file import DownloadFile
+
+
+from .edit_bot_media_preview import EditBotMediaPreview
 
 
 from .edit_business_chat_link import EditBusinessChatLink
@@ -444,6 +474,9 @@ from .edit_chat_folder_invite_link import EditChatFolderInviteLink
 
 
 from .edit_chat_invite_link import EditChatInviteLink
+
+
+from .edit_chat_subscription_invite_link import EditChatSubscriptionInviteLink
 
 
 from .edit_custom_language_pack_info import EditCustomLanguagePackInfo
@@ -491,7 +524,16 @@ from .edit_proxy import EditProxy
 from .edit_quick_reply_message import EditQuickReplyMessage
 
 
+from .edit_star_subscription import EditStarSubscription
+
+
 from .edit_story import EditStory
+
+
+from .edit_story_cover import EditStoryCover
+
+
+from .edit_user_star_subscription import EditUserStarSubscription
 
 
 from .enable_proxy import EnableProxy
@@ -513,9 +555,6 @@ from .forward_messages import ForwardMessages
 
 
 from .get_account_ttl import GetAccountTtl
-
-
-from .get_active_live_location_messages import GetActiveLiveLocationMessages
 
 
 from .get_active_sessions import GetActiveSessions
@@ -560,6 +599,9 @@ from .get_autosave_settings import GetAutosaveSettings
 from .get_available_chat_boost_slots import GetAvailableChatBoostSlots
 
 
+from .get_available_gifts import GetAvailableGifts
+
+
 from .get_background_url import GetBackgroundUrl
 
 
@@ -581,7 +623,19 @@ from .get_bot_info_description import GetBotInfoDescription
 from .get_bot_info_short_description import GetBotInfoShortDescription
 
 
+from .get_bot_media_preview_info import GetBotMediaPreviewInfo
+
+
+from .get_bot_media_previews import GetBotMediaPreviews
+
+
 from .get_bot_name import GetBotName
+
+
+from .get_bot_similar_bot_count import GetBotSimilarBotCount
+
+
+from .get_bot_similar_bots import GetBotSimilarBots
 
 
 from .get_business_chat_link_info import GetBusinessChatLinkInfo
@@ -752,6 +806,12 @@ from .get_collectible_item_info import GetCollectibleItemInfo
 from .get_commands import GetCommands
 
 
+from .get_connected_affiliate_program import GetConnectedAffiliateProgram
+
+
+from .get_connected_affiliate_programs import GetConnectedAffiliatePrograms
+
+
 from .get_connected_websites import GetConnectedWebsites
 
 
@@ -771,6 +831,9 @@ from .get_created_public_chats import GetCreatedPublicChats
 
 
 from .get_current_state import GetCurrentState
+
+
+from .get_current_weather import GetCurrentWeather
 
 
 from .get_custom_emoji_reaction_animations import GetCustomEmojiReactionAnimations
@@ -851,7 +914,16 @@ from .get_forum_topics import GetForumTopics
 from .get_game_high_scores import GetGameHighScores
 
 
+from .get_gift_upgrade_preview import GetGiftUpgradePreview
+
+
+from .get_giveaway_info import GetGiveawayInfo
+
+
 from .get_greeting_stickers import GetGreetingStickers
+
+
+from .get_grossing_web_app_bots import GetGrossingWebAppBots
 
 
 from .get_group_call import GetGroupCall
@@ -911,6 +983,9 @@ from .get_language_pack_string import GetLanguagePackString
 from .get_language_pack_strings import GetLanguagePackStrings
 
 
+from .get_link_preview import GetLinkPreview
+
+
 from .get_localization_target_info import GetLocalizationTargetInfo
 
 
@@ -930,6 +1005,9 @@ from .get_login_url import GetLoginUrl
 
 
 from .get_login_url_info import GetLoginUrlInfo
+
+
+from .get_main_web_app import GetMainWebApp
 
 
 from .get_map_thumbnail_file import GetMapThumbnailFile
@@ -974,6 +1052,9 @@ from .get_message_link_info import GetMessageLinkInfo
 from .get_message_locally import GetMessageLocally
 
 
+from .get_message_properties import GetMessageProperties
+
+
 from .get_message_public_forwards import GetMessagePublicForwards
 
 
@@ -1002,6 +1083,9 @@ from .get_new_chat_privacy_settings import GetNewChatPrivacySettings
 
 
 from .get_option import GetOption
+
+
+from .get_owned_bots import GetOwnedBots
 
 
 from .get_owned_sticker_sets import GetOwnedStickerSets
@@ -1043,7 +1127,7 @@ from .get_premium_features import GetPremiumFeatures
 from .get_premium_gift_code_payment_options import GetPremiumGiftCodePaymentOptions
 
 
-from .get_premium_giveaway_info import GetPremiumGiveawayInfo
+from .get_premium_info_sticker import GetPremiumInfoSticker
 
 
 from .get_premium_limit import GetPremiumLimit
@@ -1058,6 +1142,9 @@ from .get_premium_sticker_examples import GetPremiumStickerExamples
 from .get_premium_stickers import GetPremiumStickers
 
 
+from .get_prepared_inline_message import GetPreparedInlineMessage
+
+
 from .get_proxies import GetProxies
 
 
@@ -1068,6 +1155,12 @@ from .get_push_receiver_id import GetPushReceiverId
 
 
 from .get_read_date_privacy_settings import GetReadDatePrivacySettings
+
+
+from .get_received_gift import GetReceivedGift
+
+
+from .get_received_gifts import GetReceivedGifts
 
 
 from .get_recent_emoji_statuses import GetRecentEmojiStatuses
@@ -1130,10 +1223,22 @@ from .get_searched_for_tags import GetSearchedForTags
 from .get_secret_chat import GetSecretChat
 
 
+from .get_star_ad_account_url import GetStarAdAccountUrl
+
+
+from .get_star_gift_payment_options import GetStarGiftPaymentOptions
+
+
+from .get_star_giveaway_payment_options import GetStarGiveawayPaymentOptions
+
+
 from .get_star_payment_options import GetStarPaymentOptions
 
 
 from .get_star_revenue_statistics import GetStarRevenueStatistics
+
+
+from .get_star_subscriptions import GetStarSubscriptions
 
 
 from .get_star_transactions import GetStarTransactions
@@ -1148,7 +1253,13 @@ from .get_statistical_graph import GetStatisticalGraph
 from .get_sticker_emojis import GetStickerEmojis
 
 
+from .get_sticker_outline import GetStickerOutline
+
+
 from .get_sticker_set import GetStickerSet
+
+
+from .get_sticker_set_name import GetStickerSetName
 
 
 from .get_stickers import GetStickers
@@ -1229,6 +1340,15 @@ from .get_top_chats import GetTopChats
 from .get_trending_sticker_sets import GetTrendingStickerSets
 
 
+from .get_upgraded_gift import GetUpgradedGift
+
+
+from .get_upgraded_gift_emoji_statuses import GetUpgradedGiftEmojiStatuses
+
+
+from .get_upgraded_gift_withdrawal_url import GetUpgradedGiftWithdrawalUrl
+
+
 from .get_user import GetUser
 
 
@@ -1259,13 +1379,13 @@ from .get_video_chat_rtmp_url import GetVideoChatRtmpUrl
 from .get_web_app_link_url import GetWebAppLinkUrl
 
 
+from .get_web_app_placeholder import GetWebAppPlaceholder
+
+
 from .get_web_app_url import GetWebAppUrl
 
 
 from .get_web_page_instant_view import GetWebPageInstantView
-
-
-from .get_web_page_preview import GetWebPagePreview
 
 
 from .hide_contact_close_birthdays import HideContactCloseBirthdays
@@ -1292,7 +1412,7 @@ from .join_chat_by_invite_link import JoinChatByInviteLink
 from .join_group_call import JoinGroupCall
 
 
-from .launch_prepaid_premium_giveaway import LaunchPrepaidPremiumGiveaway
+from .launch_prepaid_giveaway import LaunchPrepaidGiveaway
 
 
 from .leave_chat import LeaveChat
@@ -1320,6 +1440,9 @@ from .load_saved_messages_topics import LoadSavedMessagesTopics
 
 
 from .log_out import LogOut
+
+
+from .open_bot_similar_bot import OpenBotSimilarBot
 
 
 from .open_chat import OpenChat
@@ -1433,10 +1556,16 @@ from .remove_installed_background import RemoveInstalledBackground
 from .remove_message_reaction import RemoveMessageReaction
 
 
+from .remove_message_sender_bot_verification import RemoveMessageSenderBotVerification
+
+
 from .remove_notification import RemoveNotification
 
 
 from .remove_notification_group import RemoveNotificationGroup
+
+
+from .remove_pending_paid_message_reactions import RemovePendingPaidMessageReactions
 
 
 from .remove_proxy import RemoveProxy
@@ -1470,6 +1599,9 @@ from .reorder_active_usernames import ReorderActiveUsernames
 
 
 from .reorder_bot_active_usernames import ReorderBotActiveUsernames
+
+
+from .reorder_bot_media_previews import ReorderBotMediaPreviews
 
 
 from .reorder_chat_folders import ReorderChatFolders
@@ -1562,6 +1694,9 @@ from .reset_network_statistics import ResetNetworkStatistics
 from .reset_password import ResetPassword
 
 
+from .reuse_star_subscription import ReuseStarSubscription
+
+
 from .revoke_chat_invite_link import RevokeChatInviteLink
 
 
@@ -1571,10 +1706,19 @@ from .revoke_group_call_invite_link import RevokeGroupCallInviteLink
 from .save_application_log_event import SaveApplicationLogEvent
 
 
+from .save_prepared_inline_message import SavePreparedInlineMessage
+
+
+from .search_affiliate_programs import SearchAffiliatePrograms
+
+
 from .search_background import SearchBackground
 
 
 from .search_call_messages import SearchCallMessages
+
+
+from .search_chat_affiliate_program import SearchChatAffiliateProgram
 
 
 from .search_chat_members import SearchChatMembers
@@ -1587,9 +1731,6 @@ from .search_chat_recent_location_messages import SearchChatRecentLocationMessag
 
 
 from .search_chats import SearchChats
-
-
-from .search_chats_nearby import SearchChatsNearby
 
 
 from .search_chats_on_server import SearchChatsOnServer
@@ -1667,6 +1808,9 @@ from .search_user_by_token import SearchUserByToken
 from .search_web_app import SearchWebApp
 
 
+from .sell_gift import SellGift
+
+
 from .send_authentication_firebase_sms import SendAuthenticationFirebaseSms
 
 
@@ -1698,6 +1842,9 @@ from .send_custom_request import SendCustomRequest
 
 
 from .send_email_address_verification_code import SendEmailAddressVerificationCode
+
+
+from .send_gift import SendGift
 
 
 from .send_inline_query_result_message import SendInlineQueryResultMessage
@@ -1793,6 +1940,9 @@ from .set_business_greeting_message_settings import SetBusinessGreetingMessageSe
 from .set_business_location import SetBusinessLocation
 
 
+from .set_business_message_is_pinned import SetBusinessMessageIsPinned
+
+
 from .set_business_opening_hours import SetBusinessOpeningHours
 
 
@@ -1803,6 +1953,9 @@ from .set_chat_accent_color import SetChatAccentColor
 
 
 from .set_chat_active_stories_list import SetChatActiveStoriesList
+
+
+from .set_chat_affiliate_program import SetChatAffiliateProgram
 
 
 from .set_chat_available_reactions import SetChatAvailableReactions
@@ -1922,9 +2075,6 @@ from .set_inactive_session_ttl import SetInactiveSessionTtl
 from .set_inline_game_score import SetInlineGameScore
 
 
-from .set_location import SetLocation
-
-
 from .set_log_stream import SetLogStream
 
 
@@ -1947,6 +2097,9 @@ from .set_message_reactions import SetMessageReactions
 
 
 from .set_message_sender_block_list import SetMessageSenderBlockList
+
+
+from .set_message_sender_bot_verification import SetMessageSenderBotVerification
 
 
 from .set_name import SetName
@@ -2048,6 +2201,9 @@ from .set_supergroup_username import SetSupergroupUsername
 from .set_tdlib_parameters import SetTdlibParameters
 
 
+from .set_user_emoji_status import SetUserEmojiStatus
+
+
 from .set_user_personal_profile_photo import SetUserPersonalProfilePhoto
 
 
@@ -2141,6 +2297,9 @@ from .test_use_update import TestUseUpdate
 from .toggle_all_downloads_are_paused import ToggleAllDownloadsArePaused
 
 
+from .toggle_bot_can_manage_emoji_status import ToggleBotCanManageEmojiStatus
+
+
 from .toggle_bot_is_added_to_attachment_menu import ToggleBotIsAddedToAttachmentMenu
 
 
@@ -2154,6 +2313,9 @@ from .toggle_chat_default_disable_notification import ToggleChatDefaultDisableNo
 
 
 from .toggle_chat_folder_tags import ToggleChatFolderTags
+
+
+from .toggle_chat_gift_notifications import ToggleChatGiftNotifications
 
 
 from .toggle_chat_has_protected_content import ToggleChatHasProtectedContent
@@ -2183,6 +2345,9 @@ from .toggle_forum_topic_is_pinned import ToggleForumTopicIsPinned
 from .toggle_general_forum_topic_is_hidden import ToggleGeneralForumTopicIsHidden
 
 
+from .toggle_gift_is_saved import ToggleGiftIsSaved
+
+
 from .toggle_group_call_enabled_start_notification import ToggleGroupCallEnabledStartNotification
 
 
@@ -2205,6 +2370,9 @@ from .toggle_group_call_screen_sharing_is_paused import ToggleGroupCallScreenSha
 
 
 from .toggle_has_sponsored_messages_enabled import ToggleHasSponsoredMessagesEnabled
+
+
+from .toggle_paid_message_reaction_is_anonymous import TogglePaidMessageReactionIsAnonymous
 
 
 from .toggle_saved_messages_topic_is_pinned import ToggleSavedMessagesTopicIsPinned
@@ -2255,6 +2423,9 @@ from .toggle_username_is_active import ToggleUsernameIsActive
 from .transfer_chat_ownership import TransferChatOwnership
 
 
+from .transfer_gift import TransferGift
+
+
 from .translate_message_text import TranslateMessageText
 
 
@@ -2271,6 +2442,9 @@ from .unpin_chat_message import UnpinChatMessage
 
 
 from .upgrade_basic_group_chat_to_supergroup_chat import UpgradeBasicGroupChatToSupergroupChat
+
+
+from .upgrade_gift import UpgradeGift
 
 
 from .upload_sticker_file import UploadStickerFile
@@ -2295,6 +2469,7 @@ __all__ = [
     "AcceptCall",
     "AcceptTermsOfService",
     "ActivateStoryStealthMode",
+    "AddBotMediaPreview",
     "AddChatFolderByInviteLink",
     "AddChatMember",
     "AddChatMembers",
@@ -2307,6 +2482,7 @@ __all__ = [
     "AddLogMessage",
     "AddMessageReaction",
     "AddNetworkStatistics",
+    "AddPendingPaidMessageReaction",
     "AddProxy",
     "AddQuickReplyShortcutInlineQueryResultMessage",
     "AddQuickReplyShortcutMessage",
@@ -2357,6 +2533,7 @@ __all__ = [
     "CheckQuickReplyShortcutName",
     "CheckRecoveryEmailAddressCode",
     "CheckStickerSetName",
+    "CheckWebAppFileDownload",
     "CleanFileName",
     "ClearAllDraftMessages",
     "ClearAutosaveSettingsExceptions",
@@ -2374,15 +2551,19 @@ __all__ = [
     "CloseSecretChat",
     "CloseStory",
     "CloseWebApp",
+    "CommitPendingPaidMessageReactions",
     "ConfirmQrCodeAuthentication",
     "ConfirmSession",
+    "ConnectAffiliateProgram",
     "CreateBasicGroupChat",
     "CreateBusinessChatLink",
     "CreateCall",
     "CreateChatFolder",
     "CreateChatFolderInviteLink",
     "CreateChatInviteLink",
+    "CreateChatSubscriptionInviteLink",
     "CreateForumTopic",
+    "CreateGroupCall",
     "CreateInvoiceLink",
     "CreateNewBasicGroupChat",
     "CreateNewSecretChat",
@@ -2396,6 +2577,7 @@ __all__ = [
     "DeleteAccount",
     "DeleteAllCallMessages",
     "DeleteAllRevokedChatInviteLinks",
+    "DeleteBotMediaPreviews",
     "DeleteBusinessChatLink",
     "DeleteBusinessConnectedBot",
     "DeleteChat",
@@ -2427,9 +2609,11 @@ __all__ = [
     "DisableAllSupergroupUsernames",
     "DisableProxy",
     "DiscardCall",
+    "DisconnectAffiliateProgram",
     "DisconnectAllWebsites",
     "DisconnectWebsite",
     "DownloadFile",
+    "EditBotMediaPreview",
     "EditBusinessChatLink",
     "EditBusinessMessageCaption",
     "EditBusinessMessageLiveLocation",
@@ -2439,6 +2623,7 @@ __all__ = [
     "EditChatFolder",
     "EditChatFolderInviteLink",
     "EditChatInviteLink",
+    "EditChatSubscriptionInviteLink",
     "EditCustomLanguagePackInfo",
     "EditForumTopic",
     "EditInlineMessageCaption",
@@ -2454,7 +2639,10 @@ __all__ = [
     "EditMessageText",
     "EditProxy",
     "EditQuickReplyMessage",
+    "EditStarSubscription",
     "EditStory",
+    "EditStoryCover",
+    "EditUserStarSubscription",
     "EnableProxy",
     "EndGroupCall",
     "EndGroupCallRecording",
@@ -2462,7 +2650,6 @@ __all__ = [
     "FinishFileGeneration",
     "ForwardMessages",
     "GetAccountTtl",
-    "GetActiveLiveLocationMessages",
     "GetActiveSessions",
     "GetAllPassportElements",
     "GetAllStickerEmojis",
@@ -2477,6 +2664,7 @@ __all__ = [
     "GetAutoDownloadSettingsPresets",
     "GetAutosaveSettings",
     "GetAvailableChatBoostSlots",
+    "GetAvailableGifts",
     "GetBackgroundUrl",
     "GetBankCardInfo",
     "GetBasicGroup",
@@ -2484,7 +2672,11 @@ __all__ = [
     "GetBlockedMessageSenders",
     "GetBotInfoDescription",
     "GetBotInfoShortDescription",
+    "GetBotMediaPreviewInfo",
+    "GetBotMediaPreviews",
     "GetBotName",
+    "GetBotSimilarBotCount",
+    "GetBotSimilarBots",
     "GetBusinessChatLinkInfo",
     "GetBusinessChatLinks",
     "GetBusinessConnectedBot",
@@ -2541,6 +2733,8 @@ __all__ = [
     "GetCloseFriends",
     "GetCollectibleItemInfo",
     "GetCommands",
+    "GetConnectedAffiliateProgram",
+    "GetConnectedAffiliatePrograms",
     "GetConnectedWebsites",
     "GetContacts",
     "GetCountries",
@@ -2548,6 +2742,7 @@ __all__ = [
     "GetCountryFlagEmoji",
     "GetCreatedPublicChats",
     "GetCurrentState",
+    "GetCurrentWeather",
     "GetCustomEmojiReactionAnimations",
     "GetCustomEmojiStickers",
     "GetDatabaseStatistics",
@@ -2574,7 +2769,10 @@ __all__ = [
     "GetForumTopicLink",
     "GetForumTopics",
     "GetGameHighScores",
+    "GetGiftUpgradePreview",
+    "GetGiveawayInfo",
     "GetGreetingStickers",
+    "GetGrossingWebAppBots",
     "GetGroupCall",
     "GetGroupCallInviteLink",
     "GetGroupCallStreamSegment",
@@ -2594,6 +2792,7 @@ __all__ = [
     "GetLanguagePackInfo",
     "GetLanguagePackString",
     "GetLanguagePackStrings",
+    "GetLinkPreview",
     "GetLocalizationTargetInfo",
     "GetLogStream",
     "GetLogTagVerbosityLevel",
@@ -2601,6 +2800,7 @@ __all__ = [
     "GetLogVerbosityLevel",
     "GetLoginUrl",
     "GetLoginUrlInfo",
+    "GetMainWebApp",
     "GetMapThumbnailFile",
     "GetMarkdownText",
     "GetMe",
@@ -2615,6 +2815,7 @@ __all__ = [
     "GetMessageLink",
     "GetMessageLinkInfo",
     "GetMessageLocally",
+    "GetMessageProperties",
     "GetMessagePublicForwards",
     "GetMessageReadDate",
     "GetMessageStatistics",
@@ -2625,6 +2826,7 @@ __all__ = [
     "GetNetworkStatistics",
     "GetNewChatPrivacySettings",
     "GetOption",
+    "GetOwnedBots",
     "GetOwnedStickerSets",
     "GetPassportAuthorizationForm",
     "GetPassportAuthorizationFormAvailableElements",
@@ -2638,15 +2840,18 @@ __all__ = [
     "GetPreferredCountryLanguage",
     "GetPremiumFeatures",
     "GetPremiumGiftCodePaymentOptions",
-    "GetPremiumGiveawayInfo",
+    "GetPremiumInfoSticker",
     "GetPremiumLimit",
     "GetPremiumState",
     "GetPremiumStickerExamples",
     "GetPremiumStickers",
+    "GetPreparedInlineMessage",
     "GetProxies",
     "GetProxyLink",
     "GetPushReceiverId",
     "GetReadDatePrivacySettings",
+    "GetReceivedGift",
+    "GetReceivedGifts",
     "GetRecentEmojiStatuses",
     "GetRecentInlineBots",
     "GetRecentStickers",
@@ -2667,13 +2872,19 @@ __all__ = [
     "GetScopeNotificationSettings",
     "GetSearchedForTags",
     "GetSecretChat",
+    "GetStarAdAccountUrl",
+    "GetStarGiftPaymentOptions",
+    "GetStarGiveawayPaymentOptions",
     "GetStarPaymentOptions",
     "GetStarRevenueStatistics",
+    "GetStarSubscriptions",
     "GetStarTransactions",
     "GetStarWithdrawalUrl",
     "GetStatisticalGraph",
     "GetStickerEmojis",
+    "GetStickerOutline",
     "GetStickerSet",
+    "GetStickerSetName",
     "GetStickers",
     "GetStorageStatistics",
     "GetStorageStatisticsFast",
@@ -2700,6 +2911,9 @@ __all__ = [
     "GetTimeZones",
     "GetTopChats",
     "GetTrendingStickerSets",
+    "GetUpgradedGift",
+    "GetUpgradedGiftEmojiStatuses",
+    "GetUpgradedGiftWithdrawalUrl",
     "GetUser",
     "GetUserChatBoosts",
     "GetUserFullInfo",
@@ -2710,9 +2924,9 @@ __all__ = [
     "GetVideoChatAvailableParticipants",
     "GetVideoChatRtmpUrl",
     "GetWebAppLinkUrl",
+    "GetWebAppPlaceholder",
     "GetWebAppUrl",
     "GetWebPageInstantView",
-    "GetWebPagePreview",
     "HideContactCloseBirthdays",
     "HideSuggestedAction",
     "ImportContacts",
@@ -2721,7 +2935,7 @@ __all__ = [
     "JoinChat",
     "JoinChatByInviteLink",
     "JoinGroupCall",
-    "LaunchPrepaidPremiumGiveaway",
+    "LaunchPrepaidGiveaway",
     "LeaveChat",
     "LeaveGroupCall",
     "LoadActiveStories",
@@ -2731,6 +2945,7 @@ __all__ = [
     "LoadQuickReplyShortcuts",
     "LoadSavedMessagesTopics",
     "LogOut",
+    "OpenBotSimilarBot",
     "OpenChat",
     "OpenChatSimilarChat",
     "OpenMessageContent",
@@ -2768,8 +2983,10 @@ __all__ = [
     "RemoveFileFromDownloads",
     "RemoveInstalledBackground",
     "RemoveMessageReaction",
+    "RemoveMessageSenderBotVerification",
     "RemoveNotification",
     "RemoveNotificationGroup",
+    "RemovePendingPaidMessageReactions",
     "RemoveProxy",
     "RemoveRecentHashtag",
     "RemoveRecentSticker",
@@ -2781,6 +2998,7 @@ __all__ = [
     "RemoveTopChat",
     "ReorderActiveUsernames",
     "ReorderBotActiveUsernames",
+    "ReorderBotMediaPreviews",
     "ReorderChatFolders",
     "ReorderInstalledStickerSets",
     "ReorderQuickReplyShortcuts",
@@ -2811,16 +3029,19 @@ __all__ = [
     "ResetInstalledBackgrounds",
     "ResetNetworkStatistics",
     "ResetPassword",
+    "ReuseStarSubscription",
     "RevokeChatInviteLink",
     "RevokeGroupCallInviteLink",
     "SaveApplicationLogEvent",
+    "SavePreparedInlineMessage",
+    "SearchAffiliatePrograms",
     "SearchBackground",
     "SearchCallMessages",
+    "SearchChatAffiliateProgram",
     "SearchChatMembers",
     "SearchChatMessages",
     "SearchChatRecentLocationMessages",
     "SearchChats",
-    "SearchChatsNearby",
     "SearchChatsOnServer",
     "SearchContacts",
     "SearchEmojis",
@@ -2846,6 +3067,7 @@ __all__ = [
     "SearchUserByPhoneNumber",
     "SearchUserByToken",
     "SearchWebApp",
+    "SellGift",
     "SendAuthenticationFirebaseSms",
     "SendBotStartMessage",
     "SendBusinessMessage",
@@ -2857,6 +3079,7 @@ __all__ = [
     "SendChatAction",
     "SendCustomRequest",
     "SendEmailAddressVerificationCode",
+    "SendGift",
     "SendInlineQueryResultMessage",
     "SendMessage",
     "SendMessageAlbum",
@@ -2888,10 +3111,12 @@ __all__ = [
     "SetBusinessConnectedBot",
     "SetBusinessGreetingMessageSettings",
     "SetBusinessLocation",
+    "SetBusinessMessageIsPinned",
     "SetBusinessOpeningHours",
     "SetBusinessStartPage",
     "SetChatAccentColor",
     "SetChatActiveStoriesList",
+    "SetChatAffiliateProgram",
     "SetChatAvailableReactions",
     "SetChatBackground",
     "SetChatClientData",
@@ -2931,7 +3156,6 @@ __all__ = [
     "SetGroupCallTitle",
     "SetInactiveSessionTtl",
     "SetInlineGameScore",
-    "SetLocation",
     "SetLogStream",
     "SetLogTagVerbosityLevel",
     "SetLogVerbosityLevel",
@@ -2940,6 +3164,7 @@ __all__ = [
     "SetMessageFactCheck",
     "SetMessageReactions",
     "SetMessageSenderBlockList",
+    "SetMessageSenderBotVerification",
     "SetName",
     "SetNetworkType",
     "SetNewChatPrivacySettings",
@@ -2973,6 +3198,7 @@ __all__ = [
     "SetSupergroupUnrestrictBoostCount",
     "SetSupergroupUsername",
     "SetTdlibParameters",
+    "SetUserEmojiStatus",
     "SetUserPersonalProfilePhoto",
     "SetUserPrivacySettingRules",
     "SetUserSupportInfo",
@@ -3004,11 +3230,13 @@ __all__ = [
     "TestSquareInt",
     "TestUseUpdate",
     "ToggleAllDownloadsArePaused",
+    "ToggleBotCanManageEmojiStatus",
     "ToggleBotIsAddedToAttachmentMenu",
     "ToggleBotUsernameIsActive",
     "ToggleBusinessConnectedBotChatIsPaused",
     "ToggleChatDefaultDisableNotification",
     "ToggleChatFolderTags",
+    "ToggleChatGiftNotifications",
     "ToggleChatHasProtectedContent",
     "ToggleChatIsMarkedAsUnread",
     "ToggleChatIsPinned",
@@ -3018,6 +3246,7 @@ __all__ = [
     "ToggleForumTopicIsClosed",
     "ToggleForumTopicIsPinned",
     "ToggleGeneralForumTopicIsHidden",
+    "ToggleGiftIsSaved",
     "ToggleGroupCallEnabledStartNotification",
     "ToggleGroupCallIsMyVideoEnabled",
     "ToggleGroupCallIsMyVideoPaused",
@@ -3026,6 +3255,7 @@ __all__ = [
     "ToggleGroupCallParticipantIsMuted",
     "ToggleGroupCallScreenSharingIsPaused",
     "ToggleHasSponsoredMessagesEnabled",
+    "TogglePaidMessageReactionIsAnonymous",
     "ToggleSavedMessagesTopicIsPinned",
     "ToggleSessionCanAcceptCalls",
     "ToggleSessionCanAcceptSecretChats",
@@ -3042,12 +3272,14 @@ __all__ = [
     "ToggleSupergroupUsernameIsActive",
     "ToggleUsernameIsActive",
     "TransferChatOwnership",
+    "TransferGift",
     "TranslateMessageText",
     "TranslateText",
     "UnpinAllChatMessages",
     "UnpinAllMessageThreadMessages",
     "UnpinChatMessage",
     "UpgradeBasicGroupChatToSupergroupChat",
+    "UpgradeGift",
     "UploadStickerFile",
     "ValidateOrderInfo",
     "ViewMessages",

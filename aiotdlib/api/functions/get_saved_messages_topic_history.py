@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetSavedMessagesTopicHistory(BaseObject):
     """
-    Returns messages in a Saved Messages topic. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    Returns messages in a Saved Messages topic. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
 
     :param saved_messages_topic_id: Identifier of Saved Messages topic which messages will be fetched
     :type saved_messages_topic_id: :class:`Int53`

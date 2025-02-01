@@ -22,9 +22,9 @@ class EditMessageSchedulingState(BaseObject):
 
     :param chat_id: The chat the message belongs to
     :type chat_id: :class:`Int53`
-    :param message_id: Identifier of the message
+    :param message_id: Identifier of the message. Use messageProperties.can_edit_scheduling_state to check whether the message is suitable
     :type message_id: :class:`Int53`
-    :param scheduling_state: The new message scheduling state; pass null to send the message immediately, defaults to None
+    :param scheduling_state: The new message scheduling state; pass null to send the message immediately. Must be null for messages in the state messageSchedulingStateSendWhenVideoProcessed, defaults to None
     :type scheduling_state: :class:`MessageSchedulingState`, optional
     """
 

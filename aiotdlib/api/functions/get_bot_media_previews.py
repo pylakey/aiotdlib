@@ -11,18 +11,14 @@ from pydantic import Field
 
 from ..types.base import *
 
-from ..types.all import (
-    Location,
-)
 
-
-class SetLocation(BaseObject):
+class GetBotMediaPreviews(BaseObject):
     """
-    Changes the location of the current user. Needs to be called if getOption("is_location_visible") is true and location changes for more than 1 kilometer. Must not be called if the user has a business location
+    Returns the list of media previews of a bot
 
-    :param location: The new location of the user
-    :type location: :class:`Location`
+    :param bot_user_id: Identifier of the target bot. The bot must have the main Web App
+    :type bot_user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["setLocation"] = Field("setLocation", validation_alias="@type", alias="@type")
-    location: Location
+    ID: typing.Literal["getBotMediaPreviews"] = Field("getBotMediaPreviews", validation_alias="@type", alias="@type")
+    bot_user_id: Int53

@@ -18,7 +18,7 @@ class ReportSupergroupSpam(BaseObject):
 
     :param supergroup_id: Supergroup identifier
     :type supergroup_id: :class:`Int53`
-    :param message_ids: Identifiers of messages to report
+    :param message_ids: Identifiers of messages to report. Use messageProperties.can_report_supergroup_spam to check whether the message can be reported
     :type message_ids: :class:`Vector[Int53]`
     """
 

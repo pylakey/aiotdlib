@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetMessageEmbeddingCode(BaseObject):
     """
-    Returns an HTML code for embedding the message. Available only for messages in supergroups and channels with a username
+    Returns an HTML code for embedding the message. Available only if messageProperties.can_get_embedding_code
 
     :param chat_id: Identifier of the chat to which the message belongs
     :type chat_id: :class:`Int53`

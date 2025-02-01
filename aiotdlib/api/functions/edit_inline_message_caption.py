@@ -23,7 +23,7 @@ class EditInlineMessageCaption(BaseObject):
 
     :param inline_message_id: Inline message identifier
     :type inline_message_id: :class:`String`
-    :param show_caption_above_media: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+    :param show_caption_above_media: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
     :type show_caption_above_media: :class:`Bool`
     :param reply_markup: The new message reply markup; pass null if none, defaults to None
     :type reply_markup: :class:`ReplyMarkup`, optional

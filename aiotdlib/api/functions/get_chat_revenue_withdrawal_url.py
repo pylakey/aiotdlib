@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetChatRevenueWithdrawalUrl(BaseObject):
     """
-    Returns URL for chat revenue withdrawal; requires owner privileges in the chat. Currently, this method can be used only for channels if supergroupFullInfo.can_get_revenue_statistics == true and getOption("can_withdraw_chat_revenue")
+    Returns a URL for chat revenue withdrawal; requires owner privileges in the channel chat or the bot. Currently, this method can be used only if getOption("can_withdraw_chat_revenue") for channels with supergroupFullInfo.can_get_revenue_statistics == true or bots with userFullInfo.bot_info.can_get_revenue_statistics == true
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

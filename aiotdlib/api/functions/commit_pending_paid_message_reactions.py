@@ -12,18 +12,18 @@ from pydantic import Field
 from ..types.base import *
 
 
-class GetPremiumGiveawayInfo(BaseObject):
+class CommitPendingPaidMessageReactions(BaseObject):
     """
-    Returns information about a Telegram Premium giveaway
+    Applies all pending paid reactions on a message
 
-    :param chat_id: Identifier of the channel chat which started the giveaway
+    :param chat_id: Identifier of the chat to which the message belongs
     :type chat_id: :class:`Int53`
-    :param message_id: Identifier of the giveaway or a giveaway winners message in the chat
+    :param message_id: Identifier of the message
     :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getPremiumGiveawayInfo"] = Field(
-        "getPremiumGiveawayInfo", validation_alias="@type", alias="@type"
+    ID: typing.Literal["commitPendingPaidMessageReactions"] = Field(
+        "commitPendingPaidMessageReactions", validation_alias="@type", alias="@type"
     )
     chat_id: Int53
     message_id: Int53

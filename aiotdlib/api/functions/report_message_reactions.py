@@ -18,7 +18,7 @@ from ..types.all import (
 
 class ReportMessageReactions(BaseObject):
     """
-    Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if message.can_report_reactions
+    Reports reactions set on a message to the Telegram moderators. Reactions on a message can be reported only if messageProperties.can_report_reactions
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

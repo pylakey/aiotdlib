@@ -19,7 +19,7 @@ from ..types.all import (
 
 class GetPaymentForm(BaseObject):
     """
-    Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy
+    Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy, or wants to buy access to media in a messagePaidMedia message
 
     :param input_invoice: The invoice
     :type input_invoice: :class:`InputInvoice`

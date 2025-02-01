@@ -19,13 +19,13 @@ from ..types.all import (
 
 class EditMessageCaption(BaseObject):
     """
-    Edits the message content caption. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
+    Edits the message content caption. Returns the edited message after the edit is completed on the server side
 
     :param chat_id: The chat the message belongs to
     :type chat_id: :class:`Int53`
-    :param message_id: Identifier of the message
+    :param message_id: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     :type message_id: :class:`Int53`
-    :param show_caption_above_media: Pass true to show the caption above the media; otherwise, caption will be shown below the media. Can be true only for animation, photo, and video messages
+    :param show_caption_above_media: Pass true to show the caption above the media; otherwise, the caption will be shown below the media. May be true only for animation, photo, and video messages
     :type show_caption_above_media: :class:`Bool`
     :param reply_markup: The new message reply markup; pass null if none; for bots only, defaults to None
     :type reply_markup: :class:`ReplyMarkup`, optional

@@ -14,7 +14,7 @@ from ..types.base import *
 
 class LoadQuickReplyShortcuts(BaseObject):
     """
-    Loads quick reply shortcuts created by the current user. The loaded topics will be sent through updateQuickReplyShortcuts
+    Loads quick reply shortcuts created by the current user. The loaded data will be sent through updateQuickReplyShortcut and updateQuickReplyShortcuts
     """
 
     ID: typing.Literal["loadQuickReplyShortcuts"] = Field(

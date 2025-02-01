@@ -24,7 +24,7 @@ class SetMessageReactions(BaseObject):
     :type chat_id: :class:`Int53`
     :param message_id: Identifier of the message
     :type message_id: :class:`Int53`
-    :param reaction_types: Types of the reaction to set
+    :param reaction_types: Types of the reaction to set; pass an empty list to remove the reactions
     :type reaction_types: :class:`Vector[ReactionType]`
     :param is_big: Pass true if the reactions are added with a big animation
     :type is_big: :class:`Bool`

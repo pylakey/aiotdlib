@@ -22,7 +22,7 @@ class SetStoryPrivacySettings(BaseObject):
 
     :param story_id: Identifier of the story
     :type story_id: :class:`Int32`
-    :param privacy_settings: The new privacy settigs for the story
+    :param privacy_settings: The new privacy settings for the story
     :type privacy_settings: :class:`StoryPrivacySettings`
     """
 

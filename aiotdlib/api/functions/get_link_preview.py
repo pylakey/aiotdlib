@@ -17,7 +17,7 @@ from ..types.all import (
 )
 
 
-class GetWebPagePreview(BaseObject):
+class GetLinkPreview(BaseObject):
     """
     Returns a link preview by the text of a message. Do not call this function too often. Returns a 404 error if the text has no link preview
 
@@ -27,6 +27,6 @@ class GetWebPagePreview(BaseObject):
     :type link_preview_options: :class:`LinkPreviewOptions`, optional
     """
 
-    ID: typing.Literal["getWebPagePreview"] = Field("getWebPagePreview", validation_alias="@type", alias="@type")
+    ID: typing.Literal["getLinkPreview"] = Field("getLinkPreview", validation_alias="@type", alias="@type")
     text: FormattedText
     link_preview_options: typing.Optional[LinkPreviewOptions] = None

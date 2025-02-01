@@ -20,7 +20,7 @@ class SetDefaultReactionType(BaseObject):
     """
     Changes type of default reaction for the current user
 
-    :param reaction_type: New type of the default reaction
+    :param reaction_type: New type of the default reaction. The paid reaction can't be set as default
     :type reaction_type: :class:`ReactionType`
     """
 

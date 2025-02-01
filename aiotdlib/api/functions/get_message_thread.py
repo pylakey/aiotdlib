@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetMessageThread(BaseObject):
     """
-    Returns information about a message thread. Can be used only if message.can_get_message_thread == true
+    Returns information about a message thread. Can be used only if messageProperties.can_get_message_thread == true
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

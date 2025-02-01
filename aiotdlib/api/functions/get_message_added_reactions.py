@@ -22,13 +22,13 @@ class GetMessageAddedReactions(BaseObject):
 
     :param chat_id: Identifier of the chat to which the message belongs
     :type chat_id: :class:`Int53`
-    :param message_id: Identifier of the message
+    :param message_id: Identifier of the message. Use message.interaction_info.reactions.can_get_added_reactions to check whether added reactions can be received for the message
     :type message_id: :class:`Int53`
     :param offset: Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
     :type offset: :class:`String`
     :param limit: The maximum number of reactions to be returned; must be positive and can't be greater than 100
     :type limit: :class:`Int32`
-    :param reaction_type: Type of the reactions to return; pass null to return all added reactions, defaults to None
+    :param reaction_type: Type of the reactions to return; pass null to return all added reactions; reactionTypePaid isn't supported, defaults to None
     :type reaction_type: :class:`ReactionType`, optional
     """
 

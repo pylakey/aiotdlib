@@ -13,7 +13,7 @@ from ..types.base import *
 
 from ..types.all import (
     InputMessageReplyTo,
-    ThemeParameters,
+    WebAppOpenParameters,
 )
 
 
@@ -27,12 +27,10 @@ class OpenWebApp(BaseObject):
     :type bot_user_id: :class:`Int53`
     :param url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
     :type url: :class:`String`
-    :param application_name: Short name of the application; 0-64 English letters, digits, and underscores
-    :type application_name: :class:`String`
+    :param parameters: Parameters to use to open the Web App
+    :type parameters: :class:`WebAppOpenParameters`
     :param message_thread_id: If not 0, the message thread identifier in which the message will be sent
     :type message_thread_id: :class:`Int53`
-    :param theme: Preferred Web App theme; pass null to use the default theme, defaults to None
-    :type theme: :class:`ThemeParameters`, optional
     :param reply_to: Information about the message or story to be replied in the message sent by the Web App; pass null if none, defaults to None
     :type reply_to: :class:`InputMessageReplyTo`, optional
     """
@@ -41,7 +39,6 @@ class OpenWebApp(BaseObject):
     chat_id: Int53
     bot_user_id: Int53
     url: String
-    application_name: String
+    parameters: WebAppOpenParameters
     message_thread_id: Int53 = 0
-    theme: typing.Optional[ThemeParameters] = None
     reply_to: typing.Optional[InputMessageReplyTo] = None

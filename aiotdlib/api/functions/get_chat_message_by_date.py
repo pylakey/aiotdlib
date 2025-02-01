@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetChatMessageByDate(BaseObject):
     """
-    Returns the last message sent in a chat no later than the specified date
+    Returns the last message sent in a chat no later than the specified date. Returns a 404 error if such message doesn't exist
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

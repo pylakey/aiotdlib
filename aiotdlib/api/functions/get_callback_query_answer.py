@@ -22,7 +22,7 @@ class GetCallbackQueryAnswer(BaseObject):
 
     :param chat_id: Identifier of the chat with the message
     :type chat_id: :class:`Int53`
-    :param message_id: Identifier of the message from which the query originated
+    :param message_id: Identifier of the message from which the query originated. The message must not be scheduled
     :type message_id: :class:`Int53`
     :param payload: Query payload
     :type payload: :class:`CallbackQueryPayload`

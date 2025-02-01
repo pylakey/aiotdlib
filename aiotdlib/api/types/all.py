@@ -40,7 +40,7 @@ class AccountTtl(BaseObject):
     """
     Contains information about the period of inactivity after which the current user's account will automatically be deleted
 
-    :param days: Number of days of inactivity before the account will be flagged for deletion; 30-366 days
+    :param days: Number of days of inactivity before the account will be flagged for deletion; 30-730 days
     :type days: :class:`Int32`
     """
 
@@ -112,6 +112,161 @@ class Address(BaseObject):
     street_line1: String
     street_line2: String
     postal_code: String
+
+
+class AffiliateInfo(BaseObject):
+    """
+    Contains information about an affiliate that received commission from a Telegram Star transaction
+
+    :param commission_per_mille: The number of Telegram Stars received by the affiliate for each 1000 Telegram Stars received by the program owner
+    :type commission_per_mille: :class:`Int32`
+    :param affiliate_chat_id: Identifier of the chat which received the commission
+    :type affiliate_chat_id: :class:`Int53`
+    :param star_amount: The amount of Telegram Stars that were received by the affiliate; can be negative for refunds
+    :type star_amount: :class:`StarAmount`
+    """
+
+    ID: typing.Literal["affiliateInfo"] = Field("affiliateInfo", validation_alias="@type", alias="@type")
+    commission_per_mille: Int32
+    affiliate_chat_id: Int53
+    star_amount: StarAmount
+
+
+class AffiliateProgramInfo(BaseObject):
+    """
+    Contains information about an active affiliate program
+
+    :param parameters: Parameters of the affiliate program
+    :type parameters: :class:`AffiliateProgramParameters`
+    :param daily_revenue_per_user_amount: The amount of daily revenue per user in Telegram Stars of the bot that created the affiliate program
+    :type daily_revenue_per_user_amount: :class:`StarAmount`
+    :param end_date: Point in time (Unix timestamp) when the affiliate program will be closed; 0 if the affiliate program isn't scheduled to be closed. If positive, then the program can't be connected using connectAffiliateProgram, but active connections will work until the date
+    :type end_date: :class:`Int32`
+    """
+
+    ID: typing.Literal["affiliateProgramInfo"] = Field("affiliateProgramInfo", validation_alias="@type", alias="@type")
+    parameters: AffiliateProgramParameters
+    daily_revenue_per_user_amount: StarAmount
+    end_date: Int32 = 0
+
+
+class AffiliateProgramParameters(BaseObject):
+    """
+    Describes parameters of an affiliate program
+
+    :param commission_per_mille: The number of Telegram Stars received by the affiliate for each 1000 Telegram Stars received by the program owner; getOption("affiliate_program_commission_per_mille_min")-getOption("affiliate_program_commission_per_mille_max")
+    :type commission_per_mille: :class:`Int32`
+    :param month_count: Number of months the program will be active; 0-36. If 0, then the program is eternal
+    :type month_count: :class:`Int32`
+    """
+
+    ID: typing.Literal["affiliateProgramParameters"] = Field(
+        "affiliateProgramParameters", validation_alias="@type", alias="@type"
+    )
+    commission_per_mille: Int32
+    month_count: Int32 = 0
+
+
+class AffiliateProgramSortOrderCreationDate(BaseObject):
+    """
+    The affiliate programs must be sorted by creation date
+    """
+
+    ID: typing.Literal["affiliateProgramSortOrderCreationDate"] = Field(
+        "affiliateProgramSortOrderCreationDate", validation_alias="@type", alias="@type"
+    )
+
+
+class AffiliateProgramSortOrderProfitability(BaseObject):
+    """
+    The affiliate programs must be sorted by the profitability
+    """
+
+    ID: typing.Literal["affiliateProgramSortOrderProfitability"] = Field(
+        "affiliateProgramSortOrderProfitability", validation_alias="@type", alias="@type"
+    )
+
+
+class AffiliateProgramSortOrderRevenue(BaseObject):
+    """
+    The affiliate programs must be sorted by the expected revenue
+    """
+
+    ID: typing.Literal["affiliateProgramSortOrderRevenue"] = Field(
+        "affiliateProgramSortOrderRevenue", validation_alias="@type", alias="@type"
+    )
+
+
+AffiliateProgramSortOrder = typing.Union[
+    AffiliateProgramSortOrderCreationDate,
+    AffiliateProgramSortOrderProfitability,
+    AffiliateProgramSortOrderRevenue,
+]
+
+
+class AffiliateTypeBot(BaseObject):
+    """
+    The affiliate is a bot owned by the current user
+
+    :param user_id: User identifier of the bot
+    :type user_id: :class:`Int53`
+    """
+
+    ID: typing.Literal["affiliateTypeBot"] = Field("affiliateTypeBot", validation_alias="@type", alias="@type")
+    user_id: Int53
+
+
+class AffiliateTypeChannel(BaseObject):
+    """
+    The affiliate is a channel chat where the current user has can_post_messages administrator right
+
+    :param chat_id: Identifier of the channel chat
+    :type chat_id: :class:`Int53`
+    """
+
+    ID: typing.Literal["affiliateTypeChannel"] = Field("affiliateTypeChannel", validation_alias="@type", alias="@type")
+    chat_id: Int53
+
+
+class AffiliateTypeCurrentUser(BaseObject):
+    """
+    The affiliate is the current user
+    """
+
+    ID: typing.Literal["affiliateTypeCurrentUser"] = Field(
+        "affiliateTypeCurrentUser", validation_alias="@type", alias="@type"
+    )
+
+
+AffiliateType = typing.Union[
+    AffiliateTypeBot,
+    AffiliateTypeChannel,
+    AffiliateTypeCurrentUser,
+]
+
+
+class AlternativeVideo(BaseObject):
+    """
+    Describes an alternative re-encoded quality of a video file
+
+    :param width: Video width
+    :type width: :class:`Int32`
+    :param height: Video height
+    :type height: :class:`Int32`
+    :param codec: Codec used for video file encoding, for example, "h264", "h265", or "av1"
+    :type codec: :class:`String`
+    :param hls_file: HLS file describing the video
+    :type hls_file: :class:`File`
+    :param video: File containing the video
+    :type video: :class:`File`
+    """
+
+    ID: typing.Literal["alternativeVideo"] = Field("alternativeVideo", validation_alias="@type", alias="@type")
+    width: Int32
+    height: Int32
+    codec: String
+    hls_file: File
+    video: File
 
 
 class AnimatedChatPhoto(BaseObject):
@@ -306,9 +461,9 @@ class AttachmentMenuBotColor(BaseObject):
     """
     Describes a color to highlight a bot added to attachment menu
 
-    :param light_color: Color in the RGB24 format for light themes
+    :param light_color: Color in the RGB format for light themes
     :type light_color: :class:`Int32`
-    :param dark_color: Color in the RGB24 format for dark themes
+    :param dark_color: Color in the RGB format for dark themes
     :type dark_color: :class:`Int32`
     """
 
@@ -339,7 +494,7 @@ class Audio(BaseObject):
     :type audio: :class:`File`
     :param album_cover_minithumbnail: The minithumbnail of the album cover; may be null, defaults to None
     :type album_cover_minithumbnail: :class:`Minithumbnail`, optional
-    :param album_cover_thumbnail: The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is supposed to be extracted from the downloaded audio file; may be null, defaults to None
+    :param album_cover_thumbnail: The thumbnail of the album cover in JPEG format; as defined by the sender. The full size thumbnail is expected to be extracted from the downloaded audio file; may be null, defaults to None
     :type album_cover_thumbnail: :class:`Thumbnail`, optional
     """
 
@@ -396,20 +551,17 @@ class AuthenticationCodeTypeFirebaseAndroid(BaseObject):
     """
     A digit-only authentication code is delivered via Firebase Authentication to the official Android application
 
-    :param nonce: Nonce to pass to the Play Integrity API or the SafetyNet Attestation API
-    :type nonce: :class:`Bytes`
+    :param device_verification_parameters: Parameters to be used for device verification
+    :type device_verification_parameters: :class:`FirebaseDeviceVerificationParameters`
     :param length: Length of the code
     :type length: :class:`Int32`
-    :param use_play_integrity: True, if Play Integrity API must be used for device verification. Otherwise, SafetyNet Attestation API must be used
-    :type use_play_integrity: :class:`Bool`
     """
 
     ID: typing.Literal["authenticationCodeTypeFirebaseAndroid"] = Field(
         "authenticationCodeTypeFirebaseAndroid", validation_alias="@type", alias="@type"
     )
-    nonce: Bytes
+    device_verification_parameters: FirebaseDeviceVerificationParameters
     length: Int32
-    use_play_integrity: Bool = False
 
 
 class AuthenticationCodeTypeFirebaseIos(BaseObject):
@@ -418,7 +570,7 @@ class AuthenticationCodeTypeFirebaseIos(BaseObject):
 
     :param receipt: Receipt of successful application token validation to compare with receipt from push notification
     :type receipt: :class:`String`
-    :param push_timeout: Time after the next authentication method is supposed to be used if verification push notification isn't received, in seconds
+    :param push_timeout: Time after the next authentication method is expected to be used if verification push notification isn't received, in seconds
     :type push_timeout: :class:`Int32`
     :param length: Length of the code
     :type length: :class:`Int32`
@@ -771,11 +923,11 @@ class AutoDownloadSettingsPresets(BaseObject):
     """
     Contains auto-download settings presets for the current user
 
-    :param low: Preset with lowest settings; supposed to be used by default when roaming
+    :param low: Preset with lowest settings; expected to be used by default when roaming
     :type low: :class:`AutoDownloadSettings`
-    :param medium: Preset with medium settings; supposed to be used by default when using mobile data
+    :param medium: Preset with medium settings; expected to be used by default when using mobile data
     :type medium: :class:`AutoDownloadSettings`
-    :param high: Preset with highest settings; supposed to be used by default when connected on Wi-Fi
+    :param high: Preset with highest settings; expected to be used by default when connected on Wi-Fi
     :type high: :class:`AutoDownloadSettings`
     """
 
@@ -950,7 +1102,7 @@ class BackgroundFillFreeformGradient(BaseObject):
     """
     Describes a freeform gradient fill of a background
 
-    :param colors: A list of 3 or 4 colors of the freeform gradient in the RGB24 format
+    :param colors: A list of 3 or 4 colors of the freeform gradient in the RGB format
     :type colors: :class:`Vector[Int32]`
     """
 
@@ -964,9 +1116,9 @@ class BackgroundFillGradient(BaseObject):
     """
     Describes a gradient fill of a background
 
-    :param top_color: A top color of the background in the RGB24 format
+    :param top_color: A top color of the background in the RGB format
     :type top_color: :class:`Int32`
-    :param bottom_color: A bottom color of the background in the RGB24 format
+    :param bottom_color: A bottom color of the background in the RGB format
     :type bottom_color: :class:`Int32`
     :param rotation_angle: Clockwise rotation angle of the gradient, in degrees; 0-359. Must always be divisible by 45
     :type rotation_angle: :class:`Int32`
@@ -984,7 +1136,7 @@ class BackgroundFillSolid(BaseObject):
     """
     Describes a solid fill of a background
 
-    :param color: A color of the background in the RGB24 format
+    :param color: A color of the background in the RGB format
     :type color: :class:`Int32`
     """
 
@@ -1031,7 +1183,7 @@ class BackgroundTypePattern(BaseObject):
 
     :param fill: Fill of the background
     :type fill: :class:`BackgroundFill`
-    :param intensity: Intensity of the pattern when it is shown above the filled background; 0-100.
+    :param intensity: Intensity of the pattern when it is shown above the filled background; 0-100
     :type intensity: :class:`Int32`
     :param is_inverted: True, if the background fill must be applied only to the pattern itself. All other pixels are black in this case. For dark themes only
     :type is_inverted: :class:`Bool`
@@ -1348,6 +1500,14 @@ class BotInfo(BaseObject):
     :type description: :class:`String`
     :param commands: List of the bot commands
     :type commands: :class:`Vector[BotCommand]`
+    :param web_app_background_light_color: Default light background color for bot Web Apps; -1 if not specified
+    :type web_app_background_light_color: :class:`Int32`
+    :param web_app_background_dark_color: Default dark background color for bot Web Apps; -1 if not specified
+    :type web_app_background_dark_color: :class:`Int32`
+    :param web_app_header_light_color: Default light header color for bot Web Apps; -1 if not specified
+    :type web_app_header_light_color: :class:`Int32`
+    :param web_app_header_dark_color: Default dark header color for bot Web Apps; -1 if not specified
+    :type web_app_header_dark_color: :class:`Int32`
     :param photo: Photo shown in the chat with the bot if the chat is empty; may be null, defaults to None
     :type photo: :class:`Photo`, optional
     :param animation: Animation shown in the chat with the bot if the chat is empty; may be null, defaults to None
@@ -1358,6 +1518,10 @@ class BotInfo(BaseObject):
     :type default_group_administrator_rights: :class:`ChatAdministratorRights`, optional
     :param default_channel_administrator_rights: Default administrator rights for adding the bot to channels; may be null, defaults to None
     :type default_channel_administrator_rights: :class:`ChatAdministratorRights`, optional
+    :param affiliate_program: Information about the affiliate program of the bot; may be null if none, defaults to None
+    :type affiliate_program: :class:`AffiliateProgramInfo`, optional
+    :param verification_parameters: Parameters of the verification that can be provided by the bot; may be null if none or the current user isn't the owner of the bot, defaults to None
+    :type verification_parameters: :class:`BotVerificationParameters`, optional
     :param edit_commands_link: The internal link, which can be used to edit bot commands; may be null, defaults to None
     :type edit_commands_link: :class:`InternalLinkType`, optional
     :param edit_description_link: The internal link, which can be used to edit bot description; may be null, defaults to None
@@ -1366,21 +1530,81 @@ class BotInfo(BaseObject):
     :type edit_description_media_link: :class:`InternalLinkType`, optional
     :param edit_settings_link: The internal link, which can be used to edit bot settings; may be null, defaults to None
     :type edit_settings_link: :class:`InternalLinkType`, optional
+    :param privacy_policy_url: The HTTP link to the privacy policy of the bot. If empty, then /privacy command must be used if supported by the bot. If the command isn't supported, then https://telegram.org/privacy-tpa must be opened
+    :type privacy_policy_url: :class:`String`
+    :param can_get_revenue_statistics: True, if the bot's revenue statistics are available to the current user
+    :type can_get_revenue_statistics: :class:`Bool`
+    :param can_manage_emoji_status: True, if the bot can manage emoji status of the current user
+    :type can_manage_emoji_status: :class:`Bool`
+    :param has_media_previews: True, if the bot has media previews
+    :type has_media_previews: :class:`Bool`
     """
 
     ID: typing.Literal["botInfo"] = Field("botInfo", validation_alias="@type", alias="@type")
     short_description: String
     description: String
     commands: Vector[BotCommand]
+    web_app_background_light_color: Int32
+    web_app_background_dark_color: Int32
+    web_app_header_light_color: Int32
+    web_app_header_dark_color: Int32
     photo: typing.Optional[Photo] = None
     animation: typing.Optional[Animation] = None
     menu_button: typing.Optional[BotMenuButton] = None
     default_group_administrator_rights: typing.Optional[ChatAdministratorRights] = None
     default_channel_administrator_rights: typing.Optional[ChatAdministratorRights] = None
+    affiliate_program: typing.Optional[AffiliateProgramInfo] = None
+    verification_parameters: typing.Optional[BotVerificationParameters] = None
     edit_commands_link: typing.Optional[InternalLinkType] = None
     edit_description_link: typing.Optional[InternalLinkType] = None
     edit_description_media_link: typing.Optional[InternalLinkType] = None
     edit_settings_link: typing.Optional[InternalLinkType] = None
+    privacy_policy_url: String = ""
+    can_get_revenue_statistics: Bool = False
+    can_manage_emoji_status: Bool = False
+    has_media_previews: Bool = False
+
+
+class BotMediaPreview(BaseObject):
+    """
+    Describes media previews of a bot
+
+    :param date: Point in time (Unix timestamp) when the preview was added or changed last time
+    :type date: :class:`Int32`
+    :param content: Content of the preview
+    :type content: :class:`StoryContent`
+    """
+
+    ID: typing.Literal["botMediaPreview"] = Field("botMediaPreview", validation_alias="@type", alias="@type")
+    date: Int32
+    content: StoryContent
+
+
+class BotMediaPreviewInfo(BaseObject):
+    """
+    Contains a list of media previews of a bot for the given language and the list of languages for which the bot has dedicated previews
+
+    :param previews: List of media previews
+    :type previews: :class:`Vector[BotMediaPreview]`
+    :param language_codes: List of language codes for which the bot has dedicated previews
+    :type language_codes: :class:`Vector[String]`
+    """
+
+    ID: typing.Literal["botMediaPreviewInfo"] = Field("botMediaPreviewInfo", validation_alias="@type", alias="@type")
+    previews: Vector[BotMediaPreview]
+    language_codes: Vector[String]
+
+
+class BotMediaPreviews(BaseObject):
+    """
+    Contains a list of media previews of a bot
+
+    :param previews: List of media previews
+    :type previews: :class:`Vector[BotMediaPreview]`
+    """
+
+    ID: typing.Literal["botMediaPreviews"] = Field("botMediaPreviews", validation_alias="@type", alias="@type")
+    previews: Vector[BotMediaPreview]
 
 
 class BotMenuButton(BaseObject):
@@ -1389,13 +1613,54 @@ class BotMenuButton(BaseObject):
 
     :param text: Text of the button
     :type text: :class:`String`
-    :param url: URL to be passed to openWebApp
+    :param url: URL of a Web App to open when the button is pressed. If the link is of the type internalLinkTypeWebApp, then it must be processed accordingly. Otherwise, the link must be passed to openWebApp
     :type url: :class:`String`
     """
 
     ID: typing.Literal["botMenuButton"] = Field("botMenuButton", validation_alias="@type", alias="@type")
     text: String
     url: String
+
+
+class BotVerification(BaseObject):
+    """
+    Describes verification status provided by a bot
+
+    :param bot_user_id: Identifier of the bot that provided the verification
+    :type bot_user_id: :class:`Int53`
+    :param icon_custom_emoji_id: Identifier of the custom emoji that is used as the verification sign
+    :type icon_custom_emoji_id: :class:`Int64`
+    :param custom_description: Custom description of verification reason set by the bot. Can contain only Mention, Hashtag, Cashtag, PhoneNumber, BankCardNumber, Url, and EmailAddress entities
+    :type custom_description: :class:`FormattedText`
+    """
+
+    ID: typing.Literal["botVerification"] = Field("botVerification", validation_alias="@type", alias="@type")
+    bot_user_id: Int53
+    icon_custom_emoji_id: Int64
+    custom_description: FormattedText
+
+
+class BotVerificationParameters(BaseObject):
+    """
+    Describes parameters of verification that is provided by a bot
+
+    :param icon_custom_emoji_id: Identifier of the custom emoji that is used as the verification sign
+    :type icon_custom_emoji_id: :class:`Int64`
+    :param organization_name: Name of the organization that provides verification
+    :type organization_name: :class:`String`
+    :param default_custom_description: Default custom description of verification reason to be used as placeholder in setMessageSenderBotVerification; may be null if none, defaults to None
+    :type default_custom_description: :class:`FormattedText`, optional
+    :param can_set_custom_description: True, if the bot is allowed to provide custom description for verified entities
+    :type can_set_custom_description: :class:`Bool`
+    """
+
+    ID: typing.Literal["botVerificationParameters"] = Field(
+        "botVerificationParameters", validation_alias="@type", alias="@type"
+    )
+    icon_custom_emoji_id: Int64
+    organization_name: String
+    default_custom_description: typing.Optional[FormattedText] = None
+    can_set_custom_description: Bool = False
 
 
 class BotWriteAccessAllowReasonAcceptedRequest(BaseObject):
@@ -1976,6 +2241,8 @@ class Call(BaseObject):
     :type is_outgoing: :class:`Bool`
     :param is_video: True, if the call is a video call
     :type is_video: :class:`Bool`
+    :param group_call_id: Identifier of the group call associated with the call; 0 if the group call isn't created yet. The group call can be received through the method getGroupCall
+    :type group_call_id: :class:`Int32`
     """
 
     ID: typing.Literal["call"] = Field("call", validation_alias="@type", alias="@type")
@@ -1984,6 +2251,21 @@ class Call(BaseObject):
     state: CallState
     is_outgoing: Bool = False
     is_video: Bool = False
+    group_call_id: Int32 = 0
+
+
+class CallDiscardReasonAllowGroupCall(BaseObject):
+    """
+    The call was ended because it has been used successfully to transfer private encryption key for the associated group call
+
+    :param encrypted_group_call_key: Encrypted using the call private key encryption key for the associated group call
+    :type encrypted_group_call_key: :class:`Bytes`
+    """
+
+    ID: typing.Literal["callDiscardReasonAllowGroupCall"] = Field(
+        "callDiscardReasonAllowGroupCall", validation_alias="@type", alias="@type"
+    )
+    encrypted_group_call_key: Bytes
 
 
 class CallDiscardReasonDeclined(BaseObject):
@@ -2037,6 +2319,7 @@ class CallDiscardReasonMissed(BaseObject):
 
 
 CallDiscardReason = typing.Union[
+    CallDiscardReasonAllowGroupCall,
     CallDiscardReasonDeclined,
     CallDiscardReasonDisconnected,
     CallDiscardReasonEmpty,
@@ -2956,8 +3239,6 @@ class ChatActionBarReportAddBlock(BaseObject):
     """
     The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method setMessageSenderBlockList, or the other user can be added to the contact list using the method addContact. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
 
-    :param distance: If non-negative, the current user was found by the other user through searchChatsNearby and this is the distance between the users
-    :type distance: :class:`Int32`
     :param can_unarchive: If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
     :type can_unarchive: :class:`Bool`
     """
@@ -2965,13 +3246,12 @@ class ChatActionBarReportAddBlock(BaseObject):
     ID: typing.Literal["chatActionBarReportAddBlock"] = Field(
         "chatActionBarReportAddBlock", validation_alias="@type", alias="@type"
     )
-    distance: Int32
     can_unarchive: Bool = False
 
 
 class ChatActionBarReportSpam(BaseObject):
     """
-    The chat can be reported as spam using the method reportChat with the reason reportReasonSpam. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
+    The chat can be reported as spam using the method reportChat with an empty option_id and message_ids. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
 
     :param can_unarchive: If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
     :type can_unarchive: :class:`Bool`
@@ -2981,16 +3261,6 @@ class ChatActionBarReportSpam(BaseObject):
         "chatActionBarReportSpam", validation_alias="@type", alias="@type"
     )
     can_unarchive: Bool = False
-
-
-class ChatActionBarReportUnrelatedLocation(BaseObject):
-    """
-    The chat is a location-based supergroup, which can be reported as having unrelated location using the method reportChat with the reason reportReasonUnrelatedLocation
-    """
-
-    ID: typing.Literal["chatActionBarReportUnrelatedLocation"] = Field(
-        "chatActionBarReportUnrelatedLocation", validation_alias="@type", alias="@type"
-    )
 
 
 class ChatActionBarSharePhoneNumber(BaseObject):
@@ -3009,7 +3279,6 @@ ChatActionBar = typing.Union[
     ChatActionBarJoinRequest,
     ChatActionBarReportAddBlock,
     ChatActionBarReportSpam,
-    ChatActionBarReportUnrelatedLocation,
     ChatActionBarSharePhoneNumber,
 ]
 
@@ -3022,7 +3291,7 @@ class ChatActiveStories(BaseObject):
     :type chat_id: :class:`Int53`
     :param max_read_story_id: Identifier of the last read active story
     :type max_read_story_id: :class:`Int32`
-    :param stories: Basic information about the stories; use getStory to get full information about the stories. The stories are in a chronological order (i.e., in order of increasing story identifiers)
+    :param stories: Basic information about the stories; use getStory to get full information about the stories. The stories are in chronological order (i.e., in order of increasing story identifiers)
     :type stories: :class:`Vector[StoryInfo]`
     :param list: Identifier of the story list in which the stories are shown; may be null if the stories aren't shown in a story list, defaults to None
     :type list: :class:`StoryList`, optional
@@ -3126,7 +3395,7 @@ class ChatAdministrators(BaseObject):
 
 class ChatAvailableReactionsAll(BaseObject):
     """
-    All reactions are available in the chat
+    All reactions are available in the chat, excluding the paid reaction and custom reactions in channel chats
 
     :param max_reaction_count: The maximum allowed number of reactions per message; 1-11
     :type max_reaction_count: :class:`Int32`
@@ -3374,13 +3643,15 @@ class ChatBoostSourceGiftCode(BaseObject):
 
 class ChatBoostSourceGiveaway(BaseObject):
     """
-    The chat created a Telegram Premium giveaway
+    The chat created a giveaway
 
-    :param gift_code: The created Telegram Premium gift code if it was used by the user or can be claimed by the current user; an empty string otherwise
+    :param gift_code: The created Telegram Premium gift code if it was used by the user or can be claimed by the current user; an empty string otherwise; for Telegram Premium giveways only
     :type gift_code: :class:`String`
+    :param star_count: Number of Telegram Stars distributed among winners of the giveaway
+    :type star_count: :class:`Int53`
     :param giveaway_message_id: Identifier of the corresponding giveaway message; can be an identifier of a deleted message
     :type giveaway_message_id: :class:`Int53`
-    :param is_unclaimed: True, if the winner for the corresponding Telegram Premium subscription wasn't chosen, because there were not enough participants
+    :param is_unclaimed: True, if the winner for the corresponding giveaway prize wasn't chosen, because there were not enough participants
     :type is_unclaimed: :class:`Bool`
     :param user_id: Identifier of a user that won in the giveaway; 0 if none, defaults to None
     :type user_id: :class:`Int53`, optional
@@ -3390,6 +3661,7 @@ class ChatBoostSourceGiveaway(BaseObject):
         "chatBoostSourceGiveaway", validation_alias="@type", alias="@type"
     )
     gift_code: String
+    star_count: Int53
     giveaway_message_id: Int53
     is_unclaimed: Bool = False
     user_id: typing.Optional[Int53] = 0
@@ -3431,7 +3703,7 @@ class ChatBoostStatus(BaseObject):
     :param current_level_boost_count: The number of boosts added to reach the current level
     :type current_level_boost_count: :class:`Int32`
     :param prepaid_giveaways: The list of prepaid giveaways available for the chat; only for chat administrators
-    :type prepaid_giveaways: :class:`Vector[PrepaidPremiumGiveaway]`
+    :type prepaid_giveaways: :class:`Vector[PrepaidGiveaway]`
     :param gift_code_boost_count: The number of boosts received by the chat from created Telegram Premium gift codes and giveaways; always 0 if the current user isn't an administrator in the chat
     :type gift_code_boost_count: :class:`Int32`
     :param next_level_boost_count: The number of boosts needed to reach the next level; 0 if the next level isn't available
@@ -3448,7 +3720,7 @@ class ChatBoostStatus(BaseObject):
     level: Int32
     boost_count: Int32
     current_level_boost_count: Int32
-    prepaid_giveaways: Vector[PrepaidPremiumGiveaway]
+    prepaid_giveaways: Vector[PrepaidGiveaway]
     gift_code_boost_count: Int32 = 0
     next_level_boost_count: Int32 = 0
     premium_member_count: Int32 = 0
@@ -3949,6 +4221,26 @@ class ChatEventMemberRestricted(BaseObject):
     new_status: ChatMemberStatus
 
 
+class ChatEventMemberSubscriptionExtended(BaseObject):
+    """
+    A chat member extended their subscription to the chat
+
+    :param user_id: Affected chat member user identifier
+    :type user_id: :class:`Int53`
+    :param old_status: Previous status of the chat member
+    :type old_status: :class:`ChatMemberStatus`
+    :param new_status: New status of the chat member
+    :type new_status: :class:`ChatMemberStatus`
+    """
+
+    ID: typing.Literal["chatEventMemberSubscriptionExtended"] = Field(
+        "chatEventMemberSubscriptionExtended", validation_alias="@type", alias="@type"
+    )
+    user_id: Int53
+    old_status: ChatMemberStatus
+    new_status: ChatMemberStatus
+
+
 class ChatEventMessageAutoDeleteTimeChanged(BaseObject):
     """
     The message auto-delete timer was changed
@@ -4095,6 +4387,20 @@ class ChatEventProfileAccentColorChanged(BaseObject):
     new_profile_accent_color_id: Int32
     old_profile_background_custom_emoji_id: typing.Optional[Int64] = 0
     new_profile_background_custom_emoji_id: typing.Optional[Int64] = 0
+
+
+class ChatEventShowMessageSenderToggled(BaseObject):
+    """
+    The show_message_sender setting of a channel was toggled
+
+    :param show_message_sender: New value of show_message_sender
+    :type show_message_sender: :class:`Bool`
+    """
+
+    ID: typing.Literal["chatEventShowMessageSenderToggled"] = Field(
+        "chatEventShowMessageSenderToggled", validation_alias="@type", alias="@type"
+    )
+    show_message_sender: Bool
 
 
 class ChatEventSignMessagesToggled(BaseObject):
@@ -4286,6 +4592,7 @@ ChatEventAction = typing.Union[
     ChatEventMemberLeft,
     ChatEventMemberPromoted,
     ChatEventMemberRestricted,
+    ChatEventMemberSubscriptionExtended,
     ChatEventMessageAutoDeleteTimeChanged,
     ChatEventMessageDeleted,
     ChatEventMessageEdited,
@@ -4295,6 +4602,7 @@ ChatEventAction = typing.Union[
     ChatEventPhotoChanged,
     ChatEventPollStopped,
     ChatEventProfileAccentColorChanged,
+    ChatEventShowMessageSenderToggled,
     ChatEventSignMessagesToggled,
     ChatEventSlowModeDelayChanged,
     ChatEventStickerSetChanged,
@@ -4338,6 +4646,8 @@ class ChatEventLogFilters(BaseObject):
     :type video_chat_changes: :class:`Bool`
     :param forum_changes: True, if forum-related actions need to be returned
     :type forum_changes: :class:`Bool`
+    :param subscription_extensions: True, if subscription extensions need to be returned
+    :type subscription_extensions: :class:`Bool`
     """
 
     ID: typing.Literal["chatEventLogFilters"] = Field("chatEventLogFilters", validation_alias="@type", alias="@type")
@@ -4354,6 +4664,7 @@ class ChatEventLogFilters(BaseObject):
     invite_link_changes: Bool = False
     video_chat_changes: Bool = False
     forum_changes: Bool = False
+    subscription_extensions: Bool = False
 
 
 class ChatEvents(BaseObject):
@@ -4372,8 +4683,8 @@ class ChatFolder(BaseObject):
     """
     Represents a folder for user chats
 
-    :param title: The title of the folder; 1-12 characters without line feeds
-    :type title: :class:`String`
+    :param name: The name of the folder
+    :type name: :class:`ChatFolderName`
     :param color_id: The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is disabled. Can't be changed if folder tags are disabled or the current user doesn't have Telegram Premium subscription
     :type color_id: :class:`Int32`
     :param pinned_chat_ids: The chat identifiers of pinned chats in the folder. There can be up to getOption("chat_folder_chosen_chat_count_max") pinned and always included non-secret chats and the same number of secret chats, but the limit can be increased with Telegram Premium
@@ -4405,7 +4716,7 @@ class ChatFolder(BaseObject):
     """
 
     ID: typing.Literal["chatFolder"] = Field("chatFolder", validation_alias="@type", alias="@type")
-    title: String = Field(..., min_length=1, max_length=12)
+    name: ChatFolderName
     color_id: Int32
     pinned_chat_ids: Vector[Int53]
     included_chat_ids: Vector[Int53]
@@ -4440,8 +4751,8 @@ class ChatFolderInfo(BaseObject):
 
     :param id: Unique chat folder identifier
     :type id: :class:`Int32`
-    :param title: The title of the folder; 1-12 characters without line feeds
-    :type title: :class:`String`
+    :param name: The name of the folder
+    :type name: :class:`ChatFolderName`
     :param icon: The chosen or default icon for the chat folder
     :type icon: :class:`ChatFolderIcon`
     :param color_id: The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is disabled
@@ -4454,7 +4765,7 @@ class ChatFolderInfo(BaseObject):
 
     ID: typing.Literal["chatFolderInfo"] = Field("chatFolderInfo", validation_alias="@type", alias="@type")
     id: Int32
-    title: String = Field(..., min_length=1, max_length=12)
+    name: ChatFolderName
     icon: ChatFolderIcon
     color_id: Int32
     is_shareable: Bool = False
@@ -4513,6 +4824,21 @@ class ChatFolderInviteLinks(BaseObject):
     invite_links: Vector[ChatFolderInviteLink]
 
 
+class ChatFolderName(BaseObject):
+    """
+    Describes name of a chat folder
+
+    :param text: The text of the chat folder name; 1-12 characters without line feeds. May contain only CustomEmoji entities
+    :type text: :class:`FormattedText`
+    :param animate_custom_emoji: True, if custom emoji in the name must be animated
+    :type animate_custom_emoji: :class:`Bool`
+    """
+
+    ID: typing.Literal["chatFolderName"] = Field("chatFolderName", validation_alias="@type", alias="@type")
+    text: FormattedText
+    animate_custom_emoji: Bool = False
+
+
 class ChatInviteLink(BaseObject):
     """
     Contains a chat invite link
@@ -4527,8 +4853,12 @@ class ChatInviteLink(BaseObject):
     :type date: :class:`Int32`
     :param member_count: Number of chat members, which joined the chat using the link
     :type member_count: :class:`Int32`
+    :param expired_member_count: Number of chat members, which joined the chat using the link, but have already left because of expired subscription; for subscription links only
+    :type expired_member_count: :class:`Int32`
     :param pending_join_request_count: Number of pending join requests created using this link
     :type pending_join_request_count: :class:`Int32`
+    :param subscription_pricing: Information about subscription plan that is applied to the users joining the chat by the link; may be null if the link doesn't require subscription, defaults to None
+    :type subscription_pricing: :class:`StarSubscriptionPricing`, optional
     :param edit_date: Point in time (Unix timestamp) when the link was last edited; 0 if never or unknown
     :type edit_date: :class:`Int32`
     :param expiration_date: Point in time (Unix timestamp) when the link will expire; 0 if never
@@ -4549,7 +4879,9 @@ class ChatInviteLink(BaseObject):
     creator_user_id: Int53
     date: Int32
     member_count: Int32
+    expired_member_count: Int32
     pending_join_request_count: Int32
+    subscription_pricing: typing.Optional[StarSubscriptionPricing] = None
     edit_date: Int32 = 0
     expiration_date: Int32 = 0
     member_limit: Int32 = 0
@@ -4608,18 +4940,16 @@ class ChatInviteLinkInfo(BaseObject):
     :type member_user_ids: :class:`Vector[Int53]`
     :param photo: Chat photo; may be null, defaults to None
     :type photo: :class:`ChatPhotoInfo`, optional
+    :param subscription_info: Information about subscription plan that must be paid by the user to use the link; may be null if the link doesn't require subscription, defaults to None
+    :type subscription_info: :class:`ChatInviteLinkSubscriptionInfo`, optional
+    :param verification_status: Information about verification status of the chat; may be null if none, defaults to None
+    :type verification_status: :class:`VerificationStatus`, optional
     :param chat_id: Chat identifier of the invite link; 0 if the user has no access to the chat before joining
     :type chat_id: :class:`Int53`
     :param creates_join_request: True, if the link only creates join request
     :type creates_join_request: :class:`Bool`
     :param is_public: True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
     :type is_public: :class:`Bool`
-    :param is_verified: True, if the chat is verified
-    :type is_verified: :class:`Bool`
-    :param is_scam: True, if many users reported this chat as a scam
-    :type is_scam: :class:`Bool`
-    :param is_fake: True, if many users reported this chat as a fake account
-    :type is_fake: :class:`Bool`
     """
 
     ID: typing.Literal["chatInviteLinkInfo"] = Field("chatInviteLinkInfo", validation_alias="@type", alias="@type")
@@ -4631,12 +4961,11 @@ class ChatInviteLinkInfo(BaseObject):
     member_count: Int32
     member_user_ids: Vector[Int53]
     photo: typing.Optional[ChatPhotoInfo] = None
+    subscription_info: typing.Optional[ChatInviteLinkSubscriptionInfo] = None
+    verification_status: typing.Optional[VerificationStatus] = None
     chat_id: Int53 = 0
     creates_join_request: Bool = False
     is_public: Bool = False
-    is_verified: Bool = False
-    is_scam: Bool = False
-    is_fake: Bool = False
 
 
 class ChatInviteLinkMember(BaseObject):
@@ -4675,6 +5004,26 @@ class ChatInviteLinkMembers(BaseObject):
     )
     total_count: Int32
     members: Vector[ChatInviteLinkMember]
+
+
+class ChatInviteLinkSubscriptionInfo(BaseObject):
+    """
+    Contains information about subscription plan that must be paid by the user to use a chat invite link
+
+    :param pricing: Information about subscription plan that must be paid by the user to use the link
+    :type pricing: :class:`StarSubscriptionPricing`
+    :param can_reuse: True, if the user has already paid for the subscription and can use joinChatByInviteLink to join the subscribed chat again
+    :type can_reuse: :class:`Bool`
+    :param form_id: Identifier of the payment form to use for subscription payment; 0 if the subscription can't be paid
+    :type form_id: :class:`Int64`
+    """
+
+    ID: typing.Literal["chatInviteLinkSubscriptionInfo"] = Field(
+        "chatInviteLinkSubscriptionInfo", validation_alias="@type", alias="@type"
+    )
+    pricing: StarSubscriptionPricing
+    can_reuse: Bool = False
+    form_id: Int64 = 0
 
 
 class ChatInviteLinks(BaseObject):
@@ -4888,11 +5237,15 @@ class ChatMemberStatusLeft(BaseObject):
 class ChatMemberStatusMember(BaseObject):
     """
     The user is a member of the chat, without any additional privileges or restrictions
+
+    :param member_until_date: Point in time (Unix timestamp) when the user will be removed from the chat because of the expired subscription; 0 if never. Ignored in setChatMemberStatus
+    :type member_until_date: :class:`Int32`
     """
 
     ID: typing.Literal["chatMemberStatusMember"] = Field(
         "chatMemberStatusMember", validation_alias="@type", alias="@type"
     )
+    member_until_date: Int32 = 0
 
 
 class ChatMemberStatusRestricted(BaseObject):
@@ -5052,21 +5405,6 @@ class ChatMessageSenders(BaseObject):
     senders: Vector[ChatMessageSender]
 
 
-class ChatNearby(BaseObject):
-    """
-    Describes a chat located nearby
-
-    :param chat_id: Chat identifier
-    :type chat_id: :class:`Int53`
-    :param distance: Distance to the chat location, in meters
-    :type distance: :class:`Int32`
-    """
-
-    ID: typing.Literal["chatNearby"] = Field("chatNearby", validation_alias="@type", alias="@type")
-    chat_id: Int53
-    distance: Int32
-
-
 class ChatNotificationSettings(BaseObject):
     """
     Contains information about notification settings for a chat or a forum topic
@@ -5148,8 +5486,8 @@ class ChatPermissions(BaseObject):
     :type can_send_polls: :class:`Bool`
     :param can_send_other_messages: True, if the user can send animations, games, stickers, and dice and use inline bots
     :type can_send_other_messages: :class:`Bool`
-    :param can_add_web_page_previews: True, if the user may add a web page preview to their messages
-    :type can_add_web_page_previews: :class:`Bool`
+    :param can_add_link_previews: True, if the user may add a link preview to their messages
+    :type can_add_link_previews: :class:`Bool`
     :param can_change_info: True, if the user can change the chat title, photo, and other settings
     :type can_change_info: :class:`Bool`
     :param can_invite_users: True, if the user can invite new users to the chat
@@ -5170,7 +5508,7 @@ class ChatPermissions(BaseObject):
     can_send_voice_notes: Bool = False
     can_send_polls: Bool = False
     can_send_other_messages: Bool = False
-    can_add_web_page_previews: Bool = False
+    can_add_link_previews: Bool = False
     can_change_info: Bool = False
     can_invite_users: Bool = False
     can_pin_messages: Bool = False
@@ -5331,6 +5669,8 @@ class ChatRevenueAmount(BaseObject):
     :type balance_amount: :class:`Int64`
     :param available_amount: Amount of the cryptocurrency available for withdrawal, in the smallest units of the cryptocurrency
     :type available_amount: :class:`Int64`
+    :param withdrawal_enabled: True, if Telegram Stars can be withdrawn now or later
+    :type withdrawal_enabled: :class:`Bool`
     """
 
     ID: typing.Literal["chatRevenueAmount"] = Field("chatRevenueAmount", validation_alias="@type", alias="@type")
@@ -5338,6 +5678,7 @@ class ChatRevenueAmount(BaseObject):
     total_amount: Int64
     balance_amount: Int64
     available_amount: Int64
+    withdrawal_enabled: Bool = False
 
 
 class ChatRevenueStatistics(BaseObject):
@@ -5848,21 +6189,6 @@ class Chats(BaseObject):
     chat_ids: Vector[Int53]
 
 
-class ChatsNearby(BaseObject):
-    """
-    Represents a list of chats located nearby
-
-    :param users_nearby: List of users nearby
-    :type users_nearby: :class:`Vector[ChatNearby]`
-    :param supergroups_nearby: List of location-based supergroups nearby
-    :type supergroups_nearby: :class:`Vector[ChatNearby]`
-    """
-
-    ID: typing.Literal["chatsNearby"] = Field("chatsNearby", validation_alias="@type", alias="@type")
-    users_nearby: Vector[ChatNearby]
-    supergroups_nearby: Vector[ChatNearby]
-
-
 class CheckChatUsernameResultOk(BaseObject):
     """
     The username can be set
@@ -5987,7 +6313,7 @@ class CloseBirthdayUser(BaseObject):
 
 class ClosedVectorPath(BaseObject):
     """
-    Represents a closed vector path. The path begins at the end point of the last command
+    Represents a closed vector path. The path begins at the end point of the last command. The coordinate system origin is in the upper-left corner
 
     :param commands: List of vector path commands
     :type commands: :class:`Vector[VectorPathCommand]`
@@ -6056,6 +6382,58 @@ CollectibleItemType = typing.Union[
     CollectibleItemTypePhoneNumber,
     CollectibleItemTypeUsername,
 ]
+
+
+class ConnectedAffiliateProgram(BaseObject):
+    """
+    Describes an affiliate program that was connected to an affiliate
+
+    :param url: The link that can be used to refer users if the program is still active
+    :type url: :class:`String`
+    :param bot_user_id: User identifier of the bot created the program
+    :type bot_user_id: :class:`Int53`
+    :param parameters: The parameters of the affiliate program
+    :type parameters: :class:`AffiliateProgramParameters`
+    :param connection_date: Point in time (Unix timestamp) when the affiliate program was connected
+    :type connection_date: :class:`Int32`
+    :param user_count: The number of users that used the affiliate program
+    :type user_count: :class:`Int64`
+    :param revenue_star_count: The number of Telegram Stars that were earned by the affiliate program
+    :type revenue_star_count: :class:`Int64`
+    :param is_disconnected: True, if the program was canceled by the bot, or disconnected by the chat owner and isn't available anymore
+    :type is_disconnected: :class:`Bool`
+    """
+
+    ID: typing.Literal["connectedAffiliateProgram"] = Field(
+        "connectedAffiliateProgram", validation_alias="@type", alias="@type"
+    )
+    url: String
+    bot_user_id: Int53
+    parameters: AffiliateProgramParameters
+    connection_date: Int32
+    user_count: Int64
+    revenue_star_count: Int64
+    is_disconnected: Bool = False
+
+
+class ConnectedAffiliatePrograms(BaseObject):
+    """
+    Represents a list of affiliate programs that were connected to an affiliate
+
+    :param total_count: The total number of affiliate programs that were connected to the affiliate
+    :type total_count: :class:`Int32`
+    :param programs: The list of connected affiliate programs
+    :type programs: :class:`Vector[ConnectedAffiliateProgram]`
+    :param next_offset: The offset for the next request. If empty, then there are no more results
+    :type next_offset: :class:`String`
+    """
+
+    ID: typing.Literal["connectedAffiliatePrograms"] = Field(
+        "connectedAffiliatePrograms", validation_alias="@type", alias="@type"
+    )
+    total_count: Int32
+    programs: Vector[ConnectedAffiliateProgram]
+    next_offset: String = ""
 
 
 class ConnectedWebsite(BaseObject):
@@ -6136,7 +6514,7 @@ class ConnectionStateReady(BaseObject):
 
 class ConnectionStateUpdating(BaseObject):
     """
-    Downloading data supposed to be received while the application was offline
+    Downloading data expected to be received while the application was offline
     """
 
     ID: typing.Literal["connectionStateUpdating"] = Field(
@@ -6250,6 +6628,21 @@ class CreatedBasicGroupChat(BaseObject):
     )
     chat_id: Int53
     failed_to_add_members: FailedToAddMembers
+
+
+class CurrentWeather(BaseObject):
+    """
+    Describes the current weather
+
+    :param temperature: Temperature, in degree Celsius
+    :type temperature: :class:`Double`
+    :param emoji: Emoji representing the weather
+    :type emoji: :class:`String`
+    """
+
+    ID: typing.Literal["currentWeather"] = Field("currentWeather", validation_alias="@type", alias="@type")
+    temperature: Double
+    emoji: String
 
 
 class CustomRequestResult(BaseObject):
@@ -6924,20 +7317,20 @@ class EmojiReaction(BaseObject):
 
 class EmojiStatus(BaseObject):
     """
-    Describes a custom emoji to be shown instead of the Telegram Premium badge
+    Describes an emoji to be shown instead of the Telegram Premium badge
 
-    :param custom_emoji_id: Identifier of the custom emoji in stickerFormatTgs format
-    :type custom_emoji_id: :class:`Int64`
+    :param type_: Type of the emoji status
+    :type type_: :class:`EmojiStatusType`
     :param expiration_date: Point in time (Unix timestamp) when the status will expire; 0 if never
     :type expiration_date: :class:`Int32`
     """
 
     ID: typing.Literal["emojiStatus"] = Field("emojiStatus", validation_alias="@type", alias="@type")
-    custom_emoji_id: Int64
+    type_: EmojiStatusType = Field(..., alias="type")
     expiration_date: Int32 = 0
 
 
-class EmojiStatuses(BaseObject):
+class EmojiStatusCustomEmojis(BaseObject):
     """
     Contains a list of custom emoji identifiers for emoji statuses
 
@@ -6945,8 +7338,71 @@ class EmojiStatuses(BaseObject):
     :type custom_emoji_ids: :class:`Vector[Int64]`
     """
 
-    ID: typing.Literal["emojiStatuses"] = Field("emojiStatuses", validation_alias="@type", alias="@type")
+    ID: typing.Literal["emojiStatusCustomEmojis"] = Field(
+        "emojiStatusCustomEmojis", validation_alias="@type", alias="@type"
+    )
     custom_emoji_ids: Vector[Int64]
+
+
+class EmojiStatusTypeCustomEmoji(BaseObject):
+    """
+    A custom emoji set as emoji status
+
+    :param custom_emoji_id: Identifier of the custom emoji in stickerFormatTgs format
+    :type custom_emoji_id: :class:`Int64`
+    """
+
+    ID: typing.Literal["emojiStatusTypeCustomEmoji"] = Field(
+        "emojiStatusTypeCustomEmoji", validation_alias="@type", alias="@type"
+    )
+    custom_emoji_id: Int64
+
+
+class EmojiStatusTypeUpgradedGift(BaseObject):
+    """
+    An upgraded gift set as emoji status
+
+    :param upgraded_gift_id: Identifier of the upgraded gift
+    :type upgraded_gift_id: :class:`Int64`
+    :param gift_title: The title of the upgraded gift
+    :type gift_title: :class:`String`
+    :param gift_name: Unique name of the upgraded gift that can be used with internalLinkTypeUpgradedGift
+    :type gift_name: :class:`String`
+    :param model_custom_emoji_id: Custom emoji identifier of the model of the upgraded gift
+    :type model_custom_emoji_id: :class:`Int64`
+    :param symbol_custom_emoji_id: Custom emoji identifier of the symbol of the upgraded gift
+    :type symbol_custom_emoji_id: :class:`Int64`
+    :param backdrop_colors: Colors of the backdrop of the upgraded gift
+    :type backdrop_colors: :class:`UpgradedGiftBackdropColors`
+    """
+
+    ID: typing.Literal["emojiStatusTypeUpgradedGift"] = Field(
+        "emojiStatusTypeUpgradedGift", validation_alias="@type", alias="@type"
+    )
+    upgraded_gift_id: Int64
+    gift_title: String
+    gift_name: String
+    model_custom_emoji_id: Int64
+    symbol_custom_emoji_id: Int64
+    backdrop_colors: UpgradedGiftBackdropColors
+
+
+EmojiStatusType = typing.Union[
+    EmojiStatusTypeCustomEmoji,
+    EmojiStatusTypeUpgradedGift,
+]
+
+
+class EmojiStatuses(BaseObject):
+    """
+    Contains a list of emoji statuses
+
+    :param emoji_statuses: The list of emoji statuses identifiers
+    :type emoji_statuses: :class:`Vector[EmojiStatus]`
+    """
+
+    ID: typing.Literal["emojiStatuses"] = Field("emojiStatuses", validation_alias="@type", alias="@type")
+    emoji_statuses: Vector[EmojiStatus]
 
 
 class Emojis(BaseObject):
@@ -7243,6 +7699,46 @@ class FileTypeSecure(BaseObject):
     ID: typing.Literal["fileTypeSecure"] = Field("fileTypeSecure", validation_alias="@type", alias="@type")
 
 
+class FileTypeSelfDestructingPhoto(BaseObject):
+    """
+    The file is a self-destructing photo in a private chat
+    """
+
+    ID: typing.Literal["fileTypeSelfDestructingPhoto"] = Field(
+        "fileTypeSelfDestructingPhoto", validation_alias="@type", alias="@type"
+    )
+
+
+class FileTypeSelfDestructingVideo(BaseObject):
+    """
+    The file is a self-destructing video in a private chat
+    """
+
+    ID: typing.Literal["fileTypeSelfDestructingVideo"] = Field(
+        "fileTypeSelfDestructingVideo", validation_alias="@type", alias="@type"
+    )
+
+
+class FileTypeSelfDestructingVideoNote(BaseObject):
+    """
+    The file is a self-destructing video note in a private chat
+    """
+
+    ID: typing.Literal["fileTypeSelfDestructingVideoNote"] = Field(
+        "fileTypeSelfDestructingVideoNote", validation_alias="@type", alias="@type"
+    )
+
+
+class FileTypeSelfDestructingVoiceNote(BaseObject):
+    """
+    The file is a self-destructing voice note in a private chat
+    """
+
+    ID: typing.Literal["fileTypeSelfDestructingVoiceNote"] = Field(
+        "fileTypeSelfDestructingVoiceNote", validation_alias="@type", alias="@type"
+    )
+
+
 class FileTypeSticker(BaseObject):
     """
     The file is a sticker
@@ -7319,6 +7815,10 @@ FileType = typing.Union[
     FileTypeSecret,
     FileTypeSecretThumbnail,
     FileTypeSecure,
+    FileTypeSelfDestructingPhoto,
+    FileTypeSelfDestructingVideo,
+    FileTypeSelfDestructingVideoNote,
+    FileTypeSelfDestructingVoiceNote,
     FileTypeSticker,
     FileTypeThumbnail,
     FileTypeUnknown,
@@ -7360,6 +7860,43 @@ class FirebaseAuthenticationSettingsIos(BaseObject):
 FirebaseAuthenticationSettings = typing.Union[
     FirebaseAuthenticationSettingsAndroid,
     FirebaseAuthenticationSettingsIos,
+]
+
+
+class FirebaseDeviceVerificationParametersPlayIntegrity(BaseObject):
+    """
+    Device verification must be performed with the classic Play Integrity verification (https://developer.android.com/google/play/integrity/classic)
+
+    :param nonce: Base64url-encoded nonce to pass to the Play Integrity API
+    :type nonce: :class:`String`
+    :param cloud_project_number: Cloud project number to pass to the Play Integrity API
+    :type cloud_project_number: :class:`Int64`
+    """
+
+    ID: typing.Literal["firebaseDeviceVerificationParametersPlayIntegrity"] = Field(
+        "firebaseDeviceVerificationParametersPlayIntegrity", validation_alias="@type", alias="@type"
+    )
+    nonce: String
+    cloud_project_number: Int64
+
+
+class FirebaseDeviceVerificationParametersSafetyNet(BaseObject):
+    """
+    Device verification must be performed with the SafetyNet Attestation API
+
+    :param nonce: Nonce to pass to the SafetyNet Attestation API
+    :type nonce: :class:`Bytes`
+    """
+
+    ID: typing.Literal["firebaseDeviceVerificationParametersSafetyNet"] = Field(
+        "firebaseDeviceVerificationParametersSafetyNet", validation_alias="@type", alias="@type"
+    )
+    nonce: Bytes
+
+
+FirebaseDeviceVerificationParameters = typing.Union[
+    FirebaseDeviceVerificationParametersPlayIntegrity,
+    FirebaseDeviceVerificationParametersSafetyNet,
 ]
 
 
@@ -7519,6 +8056,43 @@ class ForwardSource(BaseObject):
     date: typing.Optional[Int32] = 0
 
 
+class FoundAffiliateProgram(BaseObject):
+    """
+    Describes a found affiliate program
+
+    :param bot_user_id: User identifier of the bot created the program
+    :type bot_user_id: :class:`Int53`
+    :param info: Information about the affiliate program
+    :type info: :class:`AffiliateProgramInfo`
+    """
+
+    ID: typing.Literal["foundAffiliateProgram"] = Field(
+        "foundAffiliateProgram", validation_alias="@type", alias="@type"
+    )
+    bot_user_id: Int53
+    info: AffiliateProgramInfo
+
+
+class FoundAffiliatePrograms(BaseObject):
+    """
+    Represents a list of found affiliate programs
+
+    :param total_count: The total number of found affiliate programs
+    :type total_count: :class:`Int32`
+    :param programs: The list of affiliate programs
+    :type programs: :class:`Vector[FoundAffiliateProgram]`
+    :param next_offset: The offset for the next request. If empty, then there are no more results
+    :type next_offset: :class:`String`
+    """
+
+    ID: typing.Literal["foundAffiliatePrograms"] = Field(
+        "foundAffiliatePrograms", validation_alias="@type", alias="@type"
+    )
+    total_count: Int32
+    programs: Vector[FoundAffiliateProgram]
+    next_offset: String = ""
+
+
 class FoundChatBoosts(BaseObject):
     """
     Contains a list of boosts applied to a chat
@@ -7636,6 +8210,21 @@ class FoundStories(BaseObject):
     next_offset: String = ""
 
 
+class FoundUsers(BaseObject):
+    """
+    Represents a list of found users
+
+    :param user_ids: Identifiers of the found users
+    :type user_ids: :class:`Vector[Int53]`
+    :param next_offset: The offset for the next request. If empty, then there are no more results
+    :type next_offset: :class:`String`
+    """
+
+    ID: typing.Literal["foundUsers"] = Field("foundUsers", validation_alias="@type", alias="@type")
+    user_ids: Vector[Int53]
+    next_offset: String = ""
+
+
 class FoundWebApp(BaseObject):
     """
     Contains information about a Web App found by its short name
@@ -7714,6 +8303,265 @@ class GameHighScores(BaseObject):
     scores: Vector[GameHighScore]
 
 
+class Gift(BaseObject):
+    """
+    Describes a gift that can be sent to another user or channel chat
+
+    :param id: Unique identifier of the gift
+    :type id: :class:`Int64`
+    :param sticker: The sticker representing the gift
+    :type sticker: :class:`Sticker`
+    :param star_count: Number of Telegram Stars that must be paid for the gift
+    :type star_count: :class:`Int53`
+    :param default_sell_star_count: Number of Telegram Stars that can be claimed by the receiver instead of the regular gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
+    :type default_sell_star_count: :class:`Int53`
+    :param first_send_date: Point in time (Unix timestamp) when the gift was send for the first time; for sold out gifts only
+    :type first_send_date: :class:`Int32`
+    :param last_send_date: Point in time (Unix timestamp) when the gift was send for the last time; for sold out gifts only
+    :type last_send_date: :class:`Int32`
+    :param upgrade_star_count: Number of Telegram Stars that must be paid to upgrade the gift; 0 if upgrade isn't possible
+    :type upgrade_star_count: :class:`Int53`
+    :param is_for_birthday: True, if the gift is a birthday gift
+    :type is_for_birthday: :class:`Bool`
+    :param remaining_count: Number of remaining times the gift can be purchased; 0 if not limited or the gift was sold out
+    :type remaining_count: :class:`Int32`
+    :param total_count: Number of total times the gift can be purchased; 0 if not limited
+    :type total_count: :class:`Int32`
+    """
+
+    ID: typing.Literal["gift"] = Field("gift", validation_alias="@type", alias="@type")
+    id: Int64
+    sticker: Sticker
+    star_count: Int53
+    default_sell_star_count: Int53
+    first_send_date: Int32
+    last_send_date: Int32
+    upgrade_star_count: Int53 = 0
+    is_for_birthday: Bool = False
+    remaining_count: Int32 = 0
+    total_count: Int32 = 0
+
+
+class GiftUpgradePreview(BaseObject):
+    """
+    Contains examples of possible upgraded gifts for the given regular gift
+
+    :param models: Examples of possible models that can be chosen for the gift after upgrade
+    :type models: :class:`Vector[UpgradedGiftModel]`
+    :param symbols: Examples of possible symbols that can be chosen for the gift after upgrade
+    :type symbols: :class:`Vector[UpgradedGiftSymbol]`
+    :param backdrops: Examples of possible backdrops that can be chosen for the gift after upgrade
+    :type backdrops: :class:`Vector[UpgradedGiftBackdrop]`
+    """
+
+    ID: typing.Literal["giftUpgradePreview"] = Field("giftUpgradePreview", validation_alias="@type", alias="@type")
+    models: Vector[UpgradedGiftModel]
+    symbols: Vector[UpgradedGiftSymbol]
+    backdrops: Vector[UpgradedGiftBackdrop]
+
+
+class Gifts(BaseObject):
+    """
+    Contains a list of gifts that can be sent to another user or channel chat
+
+    :param gifts: The list of gifts
+    :type gifts: :class:`Vector[Gift]`
+    """
+
+    ID: typing.Literal["gifts"] = Field("gifts", validation_alias="@type", alias="@type")
+    gifts: Vector[Gift]
+
+
+class GiveawayInfoCompleted(BaseObject):
+    """
+    Describes a completed giveaway
+
+    :param creation_date: Point in time (Unix timestamp) when the giveaway was created
+    :type creation_date: :class:`Int32`
+    :param actual_winners_selection_date: Point in time (Unix timestamp) when the winners were selected. May be bigger than winners selection date specified in parameters of the giveaway
+    :type actual_winners_selection_date: :class:`Int32`
+    :param winner_count: Number of winners in the giveaway
+    :type winner_count: :class:`Int32`
+    :param activation_count: Number of winners, which activated their gift codes; for Telegram Premium giveaways only
+    :type activation_count: :class:`Int32`
+    :param gift_code: Telegram Premium gift code that was received by the current user; empty if the user isn't a winner in the giveaway or the giveaway isn't a Telegram Premium giveaway
+    :type gift_code: :class:`String`
+    :param was_refunded: True, if the giveaway was canceled and was fully refunded
+    :type was_refunded: :class:`Bool`
+    :param is_winner: True, if the current user is a winner of the giveaway
+    :type is_winner: :class:`Bool`
+    :param won_star_count: The amount of Telegram Stars won by the current user; 0 if the user isn't a winner in the giveaway or the giveaway isn't a Telegram Star giveaway
+    :type won_star_count: :class:`Int53`
+    """
+
+    ID: typing.Literal["giveawayInfoCompleted"] = Field(
+        "giveawayInfoCompleted", validation_alias="@type", alias="@type"
+    )
+    creation_date: Int32
+    actual_winners_selection_date: Int32
+    winner_count: Int32
+    activation_count: Int32
+    gift_code: String
+    was_refunded: Bool = False
+    is_winner: Bool = False
+    won_star_count: Int53 = 0
+
+
+class GiveawayInfoOngoing(BaseObject):
+    """
+    Describes an ongoing giveaway
+
+    :param creation_date: Point in time (Unix timestamp) when the giveaway was created
+    :type creation_date: :class:`Int32`
+    :param status: Status of the current user in the giveaway
+    :type status: :class:`GiveawayParticipantStatus`
+    :param is_ended: True, if the giveaway has ended and results are being prepared
+    :type is_ended: :class:`Bool`
+    """
+
+    ID: typing.Literal["giveawayInfoOngoing"] = Field("giveawayInfoOngoing", validation_alias="@type", alias="@type")
+    creation_date: Int32
+    status: GiveawayParticipantStatus
+    is_ended: Bool = False
+
+
+GiveawayInfo = typing.Union[
+    GiveawayInfoCompleted,
+    GiveawayInfoOngoing,
+]
+
+
+class GiveawayParameters(BaseObject):
+    """
+    Describes parameters of a giveaway
+
+    :param boosted_chat_id: Identifier of the supergroup or channel chat, which will be automatically boosted by the winners of the giveaway for duration of the Telegram Premium subscription, or for the specified time. If the chat is a channel, then can_post_messages right is required in the channel, otherwise, the user must be an administrator in the supergroup
+    :type boosted_chat_id: :class:`Int53`
+    :param additional_chat_ids: Identifiers of other supergroup or channel chats that must be subscribed by the users to be eligible for the giveaway. There can be up to getOption("giveaway_additional_chat_count_max") additional chats
+    :type additional_chat_ids: :class:`Vector[Int53]`
+    :param winners_selection_date: Point in time (Unix timestamp) when the giveaway is expected to be performed; must be 60-getOption("giveaway_duration_max") seconds in the future in scheduled giveaways
+    :type winners_selection_date: :class:`Int32`
+    :param only_new_members: True, if only new members of the chats will be eligible for the giveaway
+    :type only_new_members: :class:`Bool`
+    :param has_public_winners: True, if the list of winners of the giveaway will be available to everyone
+    :type has_public_winners: :class:`Bool`
+    :param country_codes: The list of two-letter ISO 3166-1 alpha-2 codes of countries, users from which will be eligible for the giveaway. If empty, then all users can participate in the giveaway. There can be up to getOption("giveaway_country_count_max") chosen countries. Users with phone number that was bought at https://fragment.com can participate in any giveaway and the country code "FT" must not be specified in the list
+    :type country_codes: :class:`Vector[String]`
+    :param prize_description: Additional description of the giveaway prize; 0-128 characters
+    :type prize_description: :class:`String`
+    """
+
+    ID: typing.Literal["giveawayParameters"] = Field("giveawayParameters", validation_alias="@type", alias="@type")
+    boosted_chat_id: Int53
+    additional_chat_ids: Vector[Int53]
+    winners_selection_date: Int32
+    only_new_members: Bool = False
+    has_public_winners: Bool = False
+    country_codes: Vector[String] = []
+    prize_description: String = Field("", max_length=128)
+
+
+class GiveawayParticipantStatusAdministrator(BaseObject):
+    """
+    The user can't participate in the giveaway, because they are an administrator in one of the chats that created the giveaway
+
+    :param chat_id: Identifier of the chat administered by the user
+    :type chat_id: :class:`Int53`
+    """
+
+    ID: typing.Literal["giveawayParticipantStatusAdministrator"] = Field(
+        "giveawayParticipantStatusAdministrator", validation_alias="@type", alias="@type"
+    )
+    chat_id: Int53
+
+
+class GiveawayParticipantStatusAlreadyWasMember(BaseObject):
+    """
+    The user can't participate in the giveaway, because they have already been member of the chat
+
+    :param joined_chat_date: Point in time (Unix timestamp) when the user joined the chat
+    :type joined_chat_date: :class:`Int32`
+    """
+
+    ID: typing.Literal["giveawayParticipantStatusAlreadyWasMember"] = Field(
+        "giveawayParticipantStatusAlreadyWasMember", validation_alias="@type", alias="@type"
+    )
+    joined_chat_date: Int32
+
+
+class GiveawayParticipantStatusDisallowedCountry(BaseObject):
+    """
+    The user can't participate in the giveaway, because they phone number is from a disallowed country
+
+    :param user_country_code: A two-letter ISO 3166-1 alpha-2 country code of the user's country
+    :type user_country_code: :class:`String`
+    """
+
+    ID: typing.Literal["giveawayParticipantStatusDisallowedCountry"] = Field(
+        "giveawayParticipantStatusDisallowedCountry", validation_alias="@type", alias="@type"
+    )
+    user_country_code: String
+
+
+class GiveawayParticipantStatusEligible(BaseObject):
+    """
+    The user is eligible for the giveaway
+    """
+
+    ID: typing.Literal["giveawayParticipantStatusEligible"] = Field(
+        "giveawayParticipantStatusEligible", validation_alias="@type", alias="@type"
+    )
+
+
+class GiveawayParticipantStatusParticipating(BaseObject):
+    """
+    The user participates in the giveaway
+    """
+
+    ID: typing.Literal["giveawayParticipantStatusParticipating"] = Field(
+        "giveawayParticipantStatusParticipating", validation_alias="@type", alias="@type"
+    )
+
+
+GiveawayParticipantStatus = typing.Union[
+    GiveawayParticipantStatusAdministrator,
+    GiveawayParticipantStatusAlreadyWasMember,
+    GiveawayParticipantStatusDisallowedCountry,
+    GiveawayParticipantStatusEligible,
+    GiveawayParticipantStatusParticipating,
+]
+
+
+class GiveawayPrizePremium(BaseObject):
+    """
+    The giveaway sends Telegram Premium subscriptions to the winners
+
+    :param month_count: Number of months the Telegram Premium subscription will be active after code activation
+    :type month_count: :class:`Int32`
+    """
+
+    ID: typing.Literal["giveawayPrizePremium"] = Field("giveawayPrizePremium", validation_alias="@type", alias="@type")
+    month_count: Int32
+
+
+class GiveawayPrizeStars(BaseObject):
+    """
+    The giveaway sends Telegram Stars to the winners
+
+    :param star_count: Number of Telegram Stars that will be shared by all winners
+    :type star_count: :class:`Int53`
+    """
+
+    ID: typing.Literal["giveawayPrizeStars"] = Field("giveawayPrizeStars", validation_alias="@type", alias="@type")
+    star_count: Int53
+
+
+GiveawayPrize = typing.Union[
+    GiveawayPrizePremium,
+    GiveawayPrizeStars,
+]
+
+
 class GroupCall(BaseObject):
     """
     Describes a group call
@@ -7728,7 +8576,7 @@ class GroupCall(BaseObject):
     :type recent_speakers: :class:`Vector[GroupCallRecentSpeaker]`
     :param duration: Call duration, in seconds; for ended calls only
     :type duration: :class:`Int32`
-    :param scheduled_start_date: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator; 0 if it is already active or was ended
+    :param scheduled_start_date: Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 if it is already active or was ended
     :type scheduled_start_date: :class:`Int32`
     :param enabled_start_notification: True, if the group call is scheduled and the current user will receive a notification when the group call starts
     :type enabled_start_notification: :class:`Bool`
@@ -8111,6 +8959,20 @@ class InlineKeyboardButtonTypeCallbackWithPassword(BaseObject):
     data: Bytes
 
 
+class InlineKeyboardButtonTypeCopyText(BaseObject):
+    """
+    A button that copies specified text to clipboard
+
+    :param text: The text to copy to clipboard
+    :type text: :class:`String`
+    """
+
+    ID: typing.Literal["inlineKeyboardButtonTypeCopyText"] = Field(
+        "inlineKeyboardButtonTypeCopyText", validation_alias="@type", alias="@type"
+    )
+    text: String
+
+
 class InlineKeyboardButtonTypeLoginUrl(BaseObject):
     """
     A button that opens a specified URL and automatically authorize the current user by calling getLoginUrlInfo
@@ -8152,7 +9014,7 @@ class InlineKeyboardButtonTypeUrl(BaseObject):
     """
     A button that opens a specified URL
 
-    :param url: HTTP or tg:// URL to open
+    :param url: HTTP or tg:// URL to open. If the link is of the type internalLinkTypeWebApp, then the button must be marked as a Web App button
     :type url: :class:`String`
     """
 
@@ -8195,6 +9057,7 @@ InlineKeyboardButtonType = typing.Union[
     InlineKeyboardButtonTypeCallback,
     InlineKeyboardButtonTypeCallbackGame,
     InlineKeyboardButtonTypeCallbackWithPassword,
+    InlineKeyboardButtonTypeCopyText,
     InlineKeyboardButtonTypeLoginUrl,
     InlineKeyboardButtonTypeSwitchInline,
     InlineKeyboardButtonTypeUrl,
@@ -8237,8 +9100,6 @@ class InlineQueryResultArticle(BaseObject):
     :type description: :class:`String`
     :param thumbnail: Result thumbnail in JPEG format; may be null, defaults to None
     :type thumbnail: :class:`Thumbnail`, optional
-    :param hide_url: True, if the URL must be not shown
-    :type hide_url: :class:`Bool`
     """
 
     ID: typing.Literal["inlineQueryResultArticle"] = Field(
@@ -8249,7 +9110,6 @@ class InlineQueryResultArticle(BaseObject):
     title: String
     description: String
     thumbnail: typing.Optional[Thumbnail] = None
-    hide_url: Bool = False
 
 
 class InlineQueryResultAudio(BaseObject):
@@ -8759,20 +9619,20 @@ InputCredentials = typing.Union[
 
 class InputFileGenerated(BaseObject):
     """
-    A file generated by the application
+    A file generated by the application. The application must handle updates updateFileGenerationStart and updateFileGenerationStop to generate the file when asked by TDLib
 
+    :param original_path: Local path to a file from which the file is generated. The path doesn't have to be a valid path and is used by TDLib only to detect name and MIME type of the generated file
+    :type original_path: :class:`String`
     :param conversion: String specifying the conversion applied to the original file; must be persistent across application restarts. Conversions beginning with '#' are reserved for internal TDLib usage
     :type conversion: :class:`String`
-    :param original_path: Local path to a file from which the file is generated; may be empty if there is no such file
-    :type original_path: :class:`String`
-    :param expected_size: Expected size of the generated file, in bytes; 0 if unknown, defaults to None
-    :type expected_size: :class:`Int53`, optional
+    :param expected_size: Expected size of the generated file, in bytes; pass 0 if unknown
+    :type expected_size: :class:`Int53`
     """
 
     ID: typing.Literal["inputFileGenerated"] = Field("inputFileGenerated", validation_alias="@type", alias="@type")
+    original_path: String
     conversion: String
-    original_path: String = ""
-    expected_size: typing.Optional[Int53] = 0
+    expected_size: Int53 = 0
 
 
 class InputFileId(BaseObject):
@@ -8912,8 +9772,6 @@ class InputInlineQueryResultArticle(BaseObject):
     :type thumbnail_height: :class:`Int32`
     :param input_message_content: The content of the message to be sent. Must be one of the following types: inputMessageText, inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
     :type input_message_content: :class:`InputMessageContent`
-    :param hide_url: True, if the URL must be not shown
-    :type hide_url: :class:`Bool`
     :param reply_markup: The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard or null, defaults to None
     :type reply_markup: :class:`ReplyMarkup`, optional
     """
@@ -8929,7 +9787,6 @@ class InputInlineQueryResultArticle(BaseObject):
     thumbnail_width: Int32
     thumbnail_height: Int32
     input_message_content: InputMessageContent
-    hide_url: Bool = False
     reply_markup: typing.Optional[ReplyMarkup] = None
 
 
@@ -9289,11 +10146,11 @@ InputInlineQueryResult = typing.Union[
 
 class InputInvoiceMessage(BaseObject):
     """
-    An invoice from a message of the type messageInvoice
+    An invoice from a message of the type messageInvoice or paid media purchase from messagePaidMedia
 
     :param chat_id: Chat identifier of the message
     :type chat_id: :class:`Int53`
-    :param message_id: Message identifier
+    :param message_id: Message identifier. Use messageProperties.can_be_paid to check whether the message can be used in the method
     :type message_id: :class:`Int53`
     """
 
@@ -9347,7 +10204,7 @@ class InputMessageAnimation(BaseObject):
     :type width: :class:`Int32`
     :param height: Height of the animation; may be replaced by the server
     :type height: :class:`Int32`
-    :param show_caption_above_media: True, if caption must be shown above the animation; otherwise, caption must be shown below the animation; not supported in secret chats
+    :param show_caption_above_media: True, if the caption must be shown above the animation; otherwise, the caption must be shown below the animation; not supported in secret chats
     :type show_caption_above_media: :class:`Bool`
     :param has_spoiler: True, if the animation preview must be covered by a spoiler animation; not supported in secret chats
     :type has_spoiler: :class:`Bool`
@@ -9452,10 +10309,14 @@ class InputMessageForwarded(BaseObject):
 
     :param from_chat_id: Identifier for the chat this forwarded message came from
     :type from_chat_id: :class:`Int53`
-    :param message_id: Identifier of the message to forward. A message can be forwarded only if message.can_be_forwarded
+    :param message_id: Identifier of the message to forward. A message can be forwarded only if messageProperties.can_be_forwarded
     :type message_id: :class:`Int53`
-    :param in_game_share: True, if a game message is being shared from a launched game; applies only to game messages
+    :param new_video_start_timestamp: The new video start timestamp; ignored if replace_video_start_timestamp == false
+    :type new_video_start_timestamp: :class:`Int32`
+    :param in_game_share: Pass true if a game message is being shared from a launched game; applies only to game messages
     :type in_game_share: :class:`Bool`
+    :param replace_video_start_timestamp: Pass true to replace video start timestamp in the forwarded message
+    :type replace_video_start_timestamp: :class:`Bool`
     :param copy_options: Options to be used to copy content of the message without reference to the original sender; pass null to forward the message as usual, defaults to None
     :type copy_options: :class:`MessageCopyOptions`, optional
     """
@@ -9465,7 +10326,9 @@ class InputMessageForwarded(BaseObject):
     )
     from_chat_id: Int53
     message_id: Int53
+    new_video_start_timestamp: Int32
     in_game_share: Bool = False
+    replace_video_start_timestamp: Bool = False
     copy_options: typing.Optional[MessageCopyOptions] = None
 
 
@@ -9504,14 +10367,16 @@ class InputMessageInvoice(BaseObject):
     :type payload: :class:`Bytes`
     :param provider_data: JSON-encoded data about the invoice, which will be shared with the payment provider
     :type provider_data: :class:`String`
-    :param extended_media_content: The content of extended media attached to the invoice. The content of the message to be sent. Must be one of the following types: inputMessagePhoto, inputMessageVideo
-    :type extended_media_content: :class:`InputMessageContent`
     :param description: Product description; 0-255 characters
     :type description: :class:`String`
     :param provider_token: Payment provider token; may be empty for payments in Telegram Stars
     :type provider_token: :class:`String`
     :param start_parameter: Unique invoice bot deep link parameter for the generation of this invoice. If empty, it would be possible to pay directly from forwards of the invoice message
     :type start_parameter: :class:`String`
+    :param paid_media: The content of paid media attached to the invoice; pass null if none, defaults to None
+    :type paid_media: :class:`InputPaidMedia`, optional
+    :param paid_media_caption: Paid media caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters, defaults to None
+    :type paid_media_caption: :class:`FormattedText`, optional
     """
 
     ID: typing.Literal["inputMessageInvoice"] = Field("inputMessageInvoice", validation_alias="@type", alias="@type")
@@ -9523,10 +10388,11 @@ class InputMessageInvoice(BaseObject):
     photo_height: Int32
     payload: Bytes
     provider_data: String
-    extended_media_content: InputMessageContent
     description: String = Field("", max_length=255)
     provider_token: String = ""
     start_parameter: String = ""
+    paid_media: typing.Optional[InputPaidMedia] = None
+    paid_media_caption: typing.Optional[FormattedText] = None
 
 
 class InputMessageLocation(BaseObject):
@@ -9550,6 +10416,32 @@ class InputMessageLocation(BaseObject):
     proximity_alert_radius: Int32 = 0
 
 
+class InputMessagePaidMedia(BaseObject):
+    """
+    A message with paid media; can be used only in channel chats with supergroupFullInfo.has_paid_media_allowed
+
+    :param star_count: The number of Telegram Stars that must be paid to see the media; 1-getOption("paid_media_message_star_count_max")
+    :type star_count: :class:`Int53`
+    :param paid_media: The content of the paid media
+    :type paid_media: :class:`Vector[InputPaidMedia]`
+    :param payload: Bot-provided data for the paid media; bots only
+    :type payload: :class:`String`
+    :param show_caption_above_media: True, if the caption must be shown above the media; otherwise, the caption must be shown below the media; not supported in secret chats
+    :type show_caption_above_media: :class:`Bool`
+    :param caption: Message caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters, defaults to None
+    :type caption: :class:`FormattedText`, optional
+    """
+
+    ID: typing.Literal["inputMessagePaidMedia"] = Field(
+        "inputMessagePaidMedia", validation_alias="@type", alias="@type"
+    )
+    star_count: Int53
+    paid_media: Vector[InputPaidMedia]
+    payload: String
+    show_caption_above_media: Bool = False
+    caption: typing.Optional[FormattedText] = None
+
+
 class InputMessagePhoto(BaseObject):
     """
     A photo message
@@ -9562,7 +10454,7 @@ class InputMessagePhoto(BaseObject):
     :type width: :class:`Int32`
     :param height: Photo height
     :type height: :class:`Int32`
-    :param show_caption_above_media: True, if caption must be shown above the photo; otherwise, caption must be shown below the photo; not supported in secret chats
+    :param show_caption_above_media: True, if the caption must be shown above the photo; otherwise, the caption must be shown below the photo; not supported in secret chats
     :type show_caption_above_media: :class:`Bool`
     :param has_spoiler: True, if the photo preview must be covered by a spoiler animation; not supported in secret chats
     :type has_spoiler: :class:`Bool`
@@ -9689,8 +10581,10 @@ class InputMessageVideo(BaseObject):
     """
     A video message
 
-    :param video: Video to be sent
+    :param video: Video to be sent. The video is expected to be re-encoded to MPEG4 format with H.264 codec by the sender
     :type video: :class:`InputFile`
+    :param start_timestamp: Timestamp from which the video playing must start, in seconds
+    :type start_timestamp: :class:`Int32`
     :param added_sticker_file_ids: File identifiers of the stickers added to the video, if applicable
     :type added_sticker_file_ids: :class:`Vector[Int32]`
     :param duration: Duration of the video, in seconds
@@ -9699,14 +10593,16 @@ class InputMessageVideo(BaseObject):
     :type width: :class:`Int32`
     :param height: Video height
     :type height: :class:`Int32`
-    :param supports_streaming: True, if the video is supposed to be streamed
+    :param supports_streaming: True, if the video is expected to be streamed
     :type supports_streaming: :class:`Bool`
-    :param show_caption_above_media: True, if caption must be shown above the video; otherwise, caption must be shown below the video; not supported in secret chats
+    :param show_caption_above_media: True, if the caption must be shown above the video; otherwise, the caption must be shown below the video; not supported in secret chats
     :type show_caption_above_media: :class:`Bool`
     :param has_spoiler: True, if the video preview must be covered by a spoiler animation; not supported in secret chats
     :type has_spoiler: :class:`Bool`
     :param thumbnail: Video thumbnail; pass null to skip thumbnail uploading, defaults to None
     :type thumbnail: :class:`InputThumbnail`, optional
+    :param cover: Cover of the video; pass null to skip cover uploading; not supported in secret chats and for self-destructing messages, defaults to None
+    :type cover: :class:`InputFile`, optional
     :param caption: Video caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters, defaults to None
     :type caption: :class:`FormattedText`, optional
     :param self_destruct_type: Video self-destruct type; pass null if none; private chats only, defaults to None
@@ -9715,6 +10611,7 @@ class InputMessageVideo(BaseObject):
 
     ID: typing.Literal["inputMessageVideo"] = Field("inputMessageVideo", validation_alias="@type", alias="@type")
     video: InputFile
+    start_timestamp: Int32
     added_sticker_file_ids: Vector[Int32]
     duration: Int32
     width: Int32
@@ -9723,6 +10620,7 @@ class InputMessageVideo(BaseObject):
     show_caption_above_media: Bool = False
     has_spoiler: Bool = False
     thumbnail: typing.Optional[InputThumbnail] = None
+    cover: typing.Optional[InputFile] = None
     caption: typing.Optional[FormattedText] = None
     self_destruct_type: typing.Optional[MessageSelfDestructType] = None
 
@@ -9731,7 +10629,7 @@ class InputMessageVideoNote(BaseObject):
     """
     A video note message
 
-    :param video_note: Video note to be sent
+    :param video_note: Video note to be sent. The video is expected to be encoded to MPEG4 format with H.264 codec and have no data outside of the visible circle
     :type video_note: :class:`InputFile`
     :param duration: Duration of the video, in seconds; 0-60
     :type duration: :class:`Int32`
@@ -9789,6 +10687,7 @@ InputMessageContent = typing.Union[
     InputMessageGame,
     InputMessageInvoice,
     InputMessageLocation,
+    InputMessagePaidMedia,
     InputMessagePhoto,
     InputMessagePoll,
     InputMessageSticker,
@@ -9807,7 +10706,7 @@ class InputMessageReplyToExternalMessage(BaseObject):
 
     :param chat_id: The identifier of the chat to which the message to be replied belongs
     :type chat_id: :class:`Int53`
-    :param message_id: The identifier of the message to be replied in the specified chat. A message can be replied in another chat or topic only if message.can_be_replied_in_another_chat
+    :param message_id: The identifier of the message to be replied in the specified chat. A message can be replied in another chat or forum topic only if messageProperties.can_be_replied_in_another_chat
     :type message_id: :class:`Int53`
     :param quote: Quote from the message to be replied; pass null if none, defaults to None
     :type quote: :class:`InputTextQuote`, optional
@@ -9825,7 +10724,7 @@ class InputMessageReplyToMessage(BaseObject):
     """
     Describes a message to be replied in the same chat and forum topic
 
-    :param message_id: The identifier of the message to be replied in the same chat and forum topic
+    :param message_id: The identifier of the message to be replied in the same chat and forum topic. A message can be replied in the same chat and forum topic only if messageProperties.can_be_replied
     :type message_id: :class:`Int53`
     :param quote: Quote from the message to be replied; pass null if none. Must always be null for replies in secret chats, defaults to None
     :type quote: :class:`InputTextQuote`, optional
@@ -9859,6 +10758,72 @@ InputMessageReplyTo = typing.Union[
     InputMessageReplyToExternalMessage,
     InputMessageReplyToMessage,
     InputMessageReplyToStory,
+]
+
+
+class InputPaidMedia(BaseObject):
+    """
+    Describes a paid media to be sent
+
+    :param type_: Type of the media
+    :type type_: :class:`InputPaidMediaType`
+    :param media: Photo or video to be sent
+    :type media: :class:`InputFile`
+    :param added_sticker_file_ids: File identifiers of the stickers added to the media, if applicable
+    :type added_sticker_file_ids: :class:`Vector[Int32]`
+    :param width: Media width
+    :type width: :class:`Int32`
+    :param height: Media height
+    :type height: :class:`Int32`
+    :param thumbnail: Media thumbnail; pass null to skip thumbnail uploading, defaults to None
+    :type thumbnail: :class:`InputThumbnail`, optional
+    """
+
+    ID: typing.Literal["inputPaidMedia"] = Field("inputPaidMedia", validation_alias="@type", alias="@type")
+    type_: InputPaidMediaType = Field(..., alias="type")
+    media: InputFile
+    added_sticker_file_ids: Vector[Int32]
+    width: Int32
+    height: Int32
+    thumbnail: typing.Optional[InputThumbnail] = None
+
+
+class InputPaidMediaTypePhoto(BaseObject):
+    """
+    The media is a photo. The photo must be at most 10 MB in size. The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20
+    """
+
+    ID: typing.Literal["inputPaidMediaTypePhoto"] = Field(
+        "inputPaidMediaTypePhoto", validation_alias="@type", alias="@type"
+    )
+
+
+class InputPaidMediaTypeVideo(BaseObject):
+    """
+    The media is a video
+
+    :param start_timestamp: Timestamp from which the video playing must start, in seconds
+    :type start_timestamp: :class:`Int32`
+    :param duration: Duration of the video, in seconds
+    :type duration: :class:`Int32`
+    :param supports_streaming: True, if the video is expected to be streamed
+    :type supports_streaming: :class:`Bool`
+    :param cover: Cover of the video; pass null to skip cover uploading, defaults to None
+    :type cover: :class:`InputFile`, optional
+    """
+
+    ID: typing.Literal["inputPaidMediaTypeVideo"] = Field(
+        "inputPaidMediaTypeVideo", validation_alias="@type", alias="@type"
+    )
+    start_timestamp: Int32
+    duration: Int32
+    supports_streaming: Bool = False
+    cover: typing.Optional[InputFile] = None
+
+
+InputPaidMediaType = typing.Union[
+    InputPaidMediaTypePhoto,
+    InputPaidMediaTypeVideo,
 ]
 
 
@@ -10333,7 +11298,7 @@ class InputStoryAreaTypeMessage(BaseObject):
 
     :param chat_id: Identifier of the chat with the message. Currently, the chat must be a supergroup or a channel chat
     :type chat_id: :class:`Int53`
-    :param message_id: Identifier of the message. Only successfully sent non-scheduled messages can be specified
+    :param message_id: Identifier of the message. Use messageProperties.can_be_shared_in_story to check whether the message is suitable
     :type message_id: :class:`Int53`
     """
 
@@ -10381,6 +11346,40 @@ class InputStoryAreaTypeSuggestedReaction(BaseObject):
     is_flipped: Bool = False
 
 
+class InputStoryAreaTypeUpgradedGift(BaseObject):
+    """
+    An area with an upgraded gift
+
+    :param gift_name: Unique name of the upgraded gift
+    :type gift_name: :class:`String`
+    """
+
+    ID: typing.Literal["inputStoryAreaTypeUpgradedGift"] = Field(
+        "inputStoryAreaTypeUpgradedGift", validation_alias="@type", alias="@type"
+    )
+    gift_name: String
+
+
+class InputStoryAreaTypeWeather(BaseObject):
+    """
+    An area with information about weather
+
+    :param temperature: Temperature, in degree Celsius
+    :type temperature: :class:`Double`
+    :param emoji: Emoji representing the weather
+    :type emoji: :class:`String`
+    :param background_color: A color of the area background in the ARGB format
+    :type background_color: :class:`Int32`
+    """
+
+    ID: typing.Literal["inputStoryAreaTypeWeather"] = Field(
+        "inputStoryAreaTypeWeather", validation_alias="@type", alias="@type"
+    )
+    temperature: Double
+    emoji: String
+    background_color: Int32
+
+
 InputStoryAreaType = typing.Union[
     InputStoryAreaTypeFoundVenue,
     InputStoryAreaTypeLink,
@@ -10388,6 +11387,8 @@ InputStoryAreaType = typing.Union[
     InputStoryAreaTypeMessage,
     InputStoryAreaTypePreviousVenue,
     InputStoryAreaTypeSuggestedReaction,
+    InputStoryAreaTypeUpgradedGift,
+    InputStoryAreaTypeWeather,
 ]
 
 
@@ -10395,7 +11396,7 @@ class InputStoryAreas(BaseObject):
     """
     Contains a list of story areas to be added
 
-    :param areas: List of input story areas. Currently, a story can have up to 10 inputStoryAreaTypeLocation, inputStoryAreaTypeFoundVenue, and inputStoryAreaTypePreviousVenue areas, up to getOption("story_suggested_reaction_area_count_max") inputStoryAreaTypeSuggestedReaction areas, up to 1 inputStoryAreaTypeMessage area, and up to getOption("story_link_area_count_max") inputStoryAreaTypeLink areas if the current user is a Telegram Premium user
+    :param areas: List of input story areas. Currently, a story can have up to 10 inputStoryAreaTypeLocation, inputStoryAreaTypeFoundVenue, and inputStoryAreaTypePreviousVenue areas, up to getOption("story_suggested_reaction_area_count_max") inputStoryAreaTypeSuggestedReaction areas, up to 1 inputStoryAreaTypeMessage area, up to getOption("story_link_area_count_max") inputStoryAreaTypeLink areas if the current user is a Telegram Premium user, up to 3 inputStoryAreaTypeWeather areas, and up to 1 inputStoryAreaTypeUpgradedGift area
     :type areas: :class:`Vector[InputStoryArea]`
     """
 
@@ -10424,12 +11425,14 @@ class InputStoryContentVideo(BaseObject):
     """
     A video story
 
-    :param video: Video to be sent. The video size must be 720x1280. The video must be streamable and stored in MPEG4 format, after encoding with x265 codec and key frames added each second
+    :param video: Video to be sent. The video size must be 720x1280. The video must be streamable and stored in MPEG4 format, after encoding with H.265 codec and key frames added each second
     :type video: :class:`InputFile`
     :param added_sticker_file_ids: File identifiers of the stickers added to the video, if applicable
     :type added_sticker_file_ids: :class:`Vector[Int32]`
     :param duration: Precise duration of the video, in seconds; 0-60
     :type duration: :class:`Double`
+    :param cover_frame_timestamp: Timestamp of the frame, which will be used as video thumbnail
+    :type cover_frame_timestamp: :class:`Double`
     :param is_animation: True, if the video has no sound
     :type is_animation: :class:`Bool`
     """
@@ -10440,6 +11443,7 @@ class InputStoryContentVideo(BaseObject):
     video: InputFile
     added_sticker_file_ids: Vector[Int32]
     duration: Double
+    cover_frame_timestamp: Double
     is_animation: Bool = False
 
 
@@ -10494,7 +11498,7 @@ class InternalLinkTypeActiveSessions(BaseObject):
 
 class InternalLinkTypeAttachmentMenuBot(BaseObject):
     """
-    The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
+    The link is a link to an attachment menu bot to be opened in the specified or a chosen chat. Process given target_chat to open the chat. Then, call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to attachment menu, then show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the attachment menu bot can't be used in the opened chat, show an error to the user. If the bot is added to attachment menu and can be used in the chat, then use openWebApp with the given URL
 
     :param target_chat: Target chat to be opened
     :type target_chat: :class:`TargetChat`
@@ -10528,7 +11532,7 @@ class InternalLinkTypeAuthenticationCode(BaseObject):
 
 class InternalLinkTypeBackground(BaseObject):
     """
-    The link is a link to a background. Call searchBackground with the given background name to process the link If background is found and the user wants to apply it, then call setDefaultBackground
+    The link is a link to a background. Call searchBackground with the given background name to process the link. If background is found and the user wants to apply it, then call setDefaultBackground
 
     :param background_name: Name of the background
     :type background_name: :class:`String`
@@ -10542,7 +11546,7 @@ class InternalLinkTypeBackground(BaseObject):
 
 class InternalLinkTypeBotAddToChannel(BaseObject):
     """
-    The link is a link to a Telegram bot, which is supposed to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
+    The link is a link to a Telegram bot, which is expected to be added to a channel chat as an administrator. Call searchPublicChat with the given bot username and check that the user is a bot, ask the current user to select a channel chat to add the bot to as an administrator. Then, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights and combine received rights with the requested administrator rights. Then, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed rights
 
     :param bot_username: Username of the bot
     :type bot_username: :class:`String`
@@ -10579,7 +11583,7 @@ class InternalLinkTypeBotStart(BaseObject):
 
 class InternalLinkTypeBotStartInGroup(BaseObject):
     """
-    The link is a link to a Telegram bot, which is supposed to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send /start message with bot's username added to the chat.
+    The link is a link to a Telegram bot, which is expected to be added to a group chat. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to groups, ask the current user to select a basic group or a supergroup chat to add the bot to, taking into account that bots can be added to a public supergroup only by administrators of the supergroup. If administrator rights are provided by the link, call getChatMember to receive the current bot rights in the chat and if the bot already is an administrator, check that the current user can edit its administrator rights, combine received rights with the requested administrator rights, show confirmation box to the user, and call setChatMemberStatus with the chosen chat and confirmed administrator rights. Before call to setChatMemberStatus it may be required to upgrade the chosen basic group chat to a supergroup chat. Then, if start_parameter isn't empty, call sendBotStartMessage with the given start parameter and the chosen chat; otherwise, just send /start message with bot's username added to the chat
 
     :param bot_username: Username of the bot
     :type bot_username: :class:`String`
@@ -10611,14 +11615,48 @@ class InternalLinkTypeBusinessChat(BaseObject):
     link_name: String
 
 
+class InternalLinkTypeBuyStars(BaseObject):
+    """
+    The link is a link to the Telegram Star purchase section of the application
+
+    :param star_count: The number of Telegram Stars that must be owned by the user
+    :type star_count: :class:`Int53`
+    :param purpose: Purpose of Telegram Star purchase. Arbitrary string specified by the server, for example, "subs" if the Telegram Stars are required to extend channel subscriptions
+    :type purpose: :class:`String`
+    """
+
+    ID: typing.Literal["internalLinkTypeBuyStars"] = Field(
+        "internalLinkTypeBuyStars", validation_alias="@type", alias="@type"
+    )
+    star_count: Int53
+    purpose: String
+
+
 class InternalLinkTypeChangePhoneNumber(BaseObject):
     """
-    The link is a link to the change phone number section of the app
+    The link is a link to the change phone number section of the application
     """
 
     ID: typing.Literal["internalLinkTypeChangePhoneNumber"] = Field(
         "internalLinkTypeChangePhoneNumber", validation_alias="@type", alias="@type"
     )
+
+
+class InternalLinkTypeChatAffiliateProgram(BaseObject):
+    """
+    The link is an affiliate program link. Call searchChatAffiliateProgram with the given username and referrer to process the link
+
+    :param username: Username to be passed to searchChatAffiliateProgram
+    :type username: :class:`String`
+    :param referrer: Referrer to be passed to searchChatAffiliateProgram
+    :type referrer: :class:`String`
+    """
+
+    ID: typing.Literal["internalLinkTypeChatAffiliateProgram"] = Field(
+        "internalLinkTypeChatAffiliateProgram", validation_alias="@type", alias="@type"
+    )
+    username: String
+    referrer: String
 
 
 class InternalLinkTypeChatBoost(BaseObject):
@@ -10651,7 +11689,7 @@ class InternalLinkTypeChatFolderInvite(BaseObject):
 
 class InternalLinkTypeChatFolderSettings(BaseObject):
     """
-    The link is a link to the folder section of the app settings
+    The link is a link to the folder section of the application settings
     """
 
     ID: typing.Literal["internalLinkTypeChatFolderSettings"] = Field(
@@ -10675,7 +11713,7 @@ class InternalLinkTypeChatInvite(BaseObject):
 
 class InternalLinkTypeDefaultMessageAutoDeleteTimerSettings(BaseObject):
     """
-    The link is a link to the default message auto-delete timer settings section of the app settings
+    The link is a link to the default message auto-delete timer settings section of the application settings
     """
 
     ID: typing.Literal["internalLinkTypeDefaultMessageAutoDeleteTimerSettings"] = Field(
@@ -10685,7 +11723,7 @@ class InternalLinkTypeDefaultMessageAutoDeleteTimerSettings(BaseObject):
 
 class InternalLinkTypeEditProfileSettings(BaseObject):
     """
-    The link is a link to the edit profile section of the app settings
+    The link is a link to the edit profile section of the application settings
     """
 
     ID: typing.Literal["internalLinkTypeEditProfileSettings"] = Field(
@@ -10755,12 +11793,32 @@ class InternalLinkTypeLanguagePack(BaseObject):
 
 class InternalLinkTypeLanguageSettings(BaseObject):
     """
-    The link is a link to the language section of the app settings
+    The link is a link to the language section of the application settings
     """
 
     ID: typing.Literal["internalLinkTypeLanguageSettings"] = Field(
         "internalLinkTypeLanguageSettings", validation_alias="@type", alias="@type"
     )
+
+
+class InternalLinkTypeMainWebApp(BaseObject):
+    """
+    The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and mode and open the returned URL as a Web App
+
+    :param bot_username: Username of the bot
+    :type bot_username: :class:`String`
+    :param start_parameter: Start parameter to be passed to getMainWebApp
+    :type start_parameter: :class:`String`
+    :param mode: The mode to be passed to getMainWebApp
+    :type mode: :class:`WebAppOpenMode`
+    """
+
+    ID: typing.Literal["internalLinkTypeMainWebApp"] = Field(
+        "internalLinkTypeMainWebApp", validation_alias="@type", alias="@type"
+    )
+    bot_username: String
+    start_parameter: String
+    mode: WebAppOpenMode
 
 
 class InternalLinkTypeMessage(BaseObject):
@@ -10853,7 +11911,7 @@ class InternalLinkTypePremiumFeatures(BaseObject):
 
 class InternalLinkTypePremiumGift(BaseObject):
     """
-    The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram payments or in-store purchases
+    The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram with telegramPaymentPurposePremiumGiftCodes payments or in-store purchases
 
     :param referrer: Referrer specified in the link
     :type referrer: :class:`String`
@@ -10881,7 +11939,7 @@ class InternalLinkTypePremiumGiftCode(BaseObject):
 
 class InternalLinkTypePrivacyAndSecuritySettings(BaseObject):
     """
-    The link is a link to the privacy and security section of the app settings
+    The link is a link to the privacy and security section of the application settings
     """
 
     ID: typing.Literal["internalLinkTypePrivacyAndSecuritySettings"] = Field(
@@ -10911,12 +11969,14 @@ class InternalLinkTypeProxy(BaseObject):
 
 class InternalLinkTypePublicChat(BaseObject):
     """
-    The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat with a regular user, then put the draft text in the input field
+    The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link. If the chat is found, open its profile information screen or the chat itself. If draft text isn't empty and the chat is a private chat with a regular user, then put the draft text in the input field
 
     :param chat_username: Username of the chat
     :type chat_username: :class:`String`
     :param draft_text: Draft text for message to send in the chat
     :type draft_text: :class:`String`
+    :param open_profile: True, if chat profile information screen must be opened; otherwise, the chat itself must be opened
+    :type open_profile: :class:`Bool`
     """
 
     ID: typing.Literal["internalLinkTypePublicChat"] = Field(
@@ -10924,6 +11984,7 @@ class InternalLinkTypePublicChat(BaseObject):
     )
     chat_username: String
     draft_text: String
+    open_profile: Bool = False
 
 
 class InternalLinkTypeQrCodeAuthentication(BaseObject):
@@ -10954,23 +12015,6 @@ class InternalLinkTypeSettings(BaseObject):
     ID: typing.Literal["internalLinkTypeSettings"] = Field(
         "internalLinkTypeSettings", validation_alias="@type", alias="@type"
     )
-
-
-class InternalLinkTypeSideMenuBot(BaseObject):
-    """
-    The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL and open the returned URL as a Web App
-
-    :param bot_username: Username of the bot
-    :type bot_username: :class:`String`
-    :param url: URL to be passed to getWebAppUrl
-    :type url: :class:`String`
-    """
-
-    ID: typing.Literal["internalLinkTypeSideMenuBot"] = Field(
-        "internalLinkTypeSideMenuBot", validation_alias="@type", alias="@type"
-    )
-    bot_username: String
-    url: String
 
 
 class InternalLinkTypeStickerSet(BaseObject):
@@ -11009,7 +12053,7 @@ class InternalLinkTypeStory(BaseObject):
 
 class InternalLinkTypeTheme(BaseObject):
     """
-    The link is a link to a theme. TDLib has no theme support yet
+    The link is a link to a cloud theme. TDLib has no theme support yet
 
     :param theme_name: Name of the theme
     :type theme_name: :class:`String`
@@ -11023,7 +12067,7 @@ class InternalLinkTypeTheme(BaseObject):
 
 class InternalLinkTypeThemeSettings(BaseObject):
     """
-    The link is a link to the theme section of the app settings
+    The link is a link to the theme section of the application settings
     """
 
     ID: typing.Literal["internalLinkTypeThemeSettings"] = Field(
@@ -11055,14 +12099,30 @@ class InternalLinkTypeUnsupportedProxy(BaseObject):
     )
 
 
+class InternalLinkTypeUpgradedGift(BaseObject):
+    """
+    The link is a link to an upgraded gift. Call getUpgradedGift with the given name to process the link
+
+    :param name: Name of the unique gift
+    :type name: :class:`String`
+    """
+
+    ID: typing.Literal["internalLinkTypeUpgradedGift"] = Field(
+        "internalLinkTypeUpgradedGift", validation_alias="@type", alias="@type"
+    )
+    name: String
+
+
 class InternalLinkTypeUserPhoneNumber(BaseObject):
     """
-    The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the chat. If draft text isn't empty, then put the draft text in the input field
+    The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open user's profile information screen or the chat itself. If draft text isn't empty, then put the draft text in the input field
 
     :param phone_number: Phone number of the user
     :type phone_number: :class:`String`
     :param draft_text: Draft text for message to send in the chat
     :type draft_text: :class:`String`
+    :param open_profile: True, if user's profile information screen must be opened; otherwise, the chat itself must be opened
+    :type open_profile: :class:`Bool`
     """
 
     ID: typing.Literal["internalLinkTypeUserPhoneNumber"] = Field(
@@ -11070,6 +12130,7 @@ class InternalLinkTypeUserPhoneNumber(BaseObject):
     )
     phone_number: String
     draft_text: String
+    open_profile: Bool = False
 
 
 class InternalLinkTypeUserToken(BaseObject):
@@ -11108,7 +12169,7 @@ class InternalLinkTypeVideoChat(BaseObject):
 
 class InternalLinkTypeWebApp(BaseObject):
     """
-    The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being a third-party apps instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
+    The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party applications instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
 
     :param bot_username: Username of the bot that owns the Web App
     :type bot_username: :class:`String`
@@ -11116,6 +12177,8 @@ class InternalLinkTypeWebApp(BaseObject):
     :type web_app_short_name: :class:`String`
     :param start_parameter: Start parameter to be passed to getWebAppLinkUrl
     :type start_parameter: :class:`String`
+    :param mode: The mode in which the Web App must be opened
+    :type mode: :class:`WebAppOpenMode`
     """
 
     ID: typing.Literal["internalLinkTypeWebApp"] = Field(
@@ -11124,6 +12187,7 @@ class InternalLinkTypeWebApp(BaseObject):
     bot_username: String
     web_app_short_name: String
     start_parameter: String
+    mode: WebAppOpenMode
 
 
 InternalLinkType = typing.Union[
@@ -11135,7 +12199,9 @@ InternalLinkType = typing.Union[
     InternalLinkTypeBotStart,
     InternalLinkTypeBotStartInGroup,
     InternalLinkTypeBusinessChat,
+    InternalLinkTypeBuyStars,
     InternalLinkTypeChangePhoneNumber,
+    InternalLinkTypeChatAffiliateProgram,
     InternalLinkTypeChatBoost,
     InternalLinkTypeChatFolderInvite,
     InternalLinkTypeChatFolderSettings,
@@ -11147,6 +12213,7 @@ InternalLinkType = typing.Union[
     InternalLinkTypeInvoice,
     InternalLinkTypeLanguagePack,
     InternalLinkTypeLanguageSettings,
+    InternalLinkTypeMainWebApp,
     InternalLinkTypeMessage,
     InternalLinkTypeMessageDraft,
     InternalLinkTypePassportDataRequest,
@@ -11160,13 +12227,13 @@ InternalLinkType = typing.Union[
     InternalLinkTypeQrCodeAuthentication,
     InternalLinkTypeRestorePurchases,
     InternalLinkTypeSettings,
-    InternalLinkTypeSideMenuBot,
     InternalLinkTypeStickerSet,
     InternalLinkTypeStory,
     InternalLinkTypeTheme,
     InternalLinkTypeThemeSettings,
     InternalLinkTypeUnknownDeepLink,
     InternalLinkTypeUnsupportedProxy,
+    InternalLinkTypeUpgradedGift,
     InternalLinkTypeUserPhoneNumber,
     InternalLinkTypeUserToken,
     InternalLinkTypeVideoChat,
@@ -11223,6 +12290,8 @@ class Invoice(BaseObject):
     :type max_tip_amount: :class:`Int53`
     :param suggested_tip_amounts: Suggested amounts of tip in the smallest units of the currency
     :type suggested_tip_amounts: :class:`Vector[Int53]`
+    :param subscription_period: The number of seconds between consecutive Telegram Star debiting for subscription invoices; 0 if the invoice doesn't create subscription
+    :type subscription_period: :class:`Int32`
     :param recurring_payment_terms_of_service_url: An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept the terms of service before allowed to pay
     :type recurring_payment_terms_of_service_url: :class:`String`
     :param terms_of_service_url: An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before allowed to pay
@@ -11250,6 +12319,7 @@ class Invoice(BaseObject):
     price_parts: Vector[LabeledPricePart]
     max_tip_amount: Int53
     suggested_tip_amounts: Vector[Int53]
+    subscription_period: Int32 = 0
     recurring_payment_terms_of_service_url: String = ""
     terms_of_service_url: String = ""
     is_test: Bool = False
@@ -11680,6 +12750,88 @@ class LanguagePackStrings(BaseObject):
     strings: Vector[LanguagePackString]
 
 
+class LinkPreview(BaseObject):
+    """
+    Describes a link preview
+
+    :param url: Original URL of the link
+    :type url: :class:`String`
+    :param display_url: URL to display
+    :type display_url: :class:`String`
+    :param site_name: Short name of the site (e.g., Google Docs, App Store)
+    :type site_name: :class:`String`
+    :param title: Title of the content
+    :type title: :class:`String`
+    :param description: Description of the content
+    :type description: :class:`FormattedText`
+    :param author: Author of the content
+    :type author: :class:`String`
+    :param type_: Type of the link preview
+    :type type_: :class:`LinkPreviewType`
+    :param has_large_media: True, if size of media in the preview can be changed
+    :type has_large_media: :class:`Bool`
+    :param show_large_media: True, if large media preview must be shown; otherwise, the media preview must be shown small and only the first frame must be shown for videos
+    :type show_large_media: :class:`Bool`
+    :param show_media_above_description: True, if media must be shown above link preview description; otherwise, the media must be shown below the description
+    :type show_media_above_description: :class:`Bool`
+    :param skip_confirmation: True, if there is no need to show an ordinary open URL confirmation, when opening the URL from the preview, because the URL is shown in the message text in clear
+    :type skip_confirmation: :class:`Bool`
+    :param show_above_text: True, if the link preview must be shown above message text; otherwise, the link preview must be shown below the message text
+    :type show_above_text: :class:`Bool`
+    :param instant_view_version: Version of instant view (currently, can be 1 or 2) for the web page; 0 if none, defaults to None
+    :type instant_view_version: :class:`Int32`, optional
+    """
+
+    ID: typing.Literal["linkPreview"] = Field("linkPreview", validation_alias="@type", alias="@type")
+    url: String
+    display_url: String
+    site_name: String
+    title: String
+    description: FormattedText
+    author: String
+    type_: LinkPreviewType = Field(..., alias="type")
+    has_large_media: Bool = False
+    show_large_media: Bool = False
+    show_media_above_description: Bool = False
+    skip_confirmation: Bool = False
+    show_above_text: Bool = False
+    instant_view_version: typing.Optional[Int32] = 0
+
+
+class LinkPreviewAlbumMediaPhoto(BaseObject):
+    """
+    The media is a photo
+
+    :param photo: Photo description
+    :type photo: :class:`Photo`
+    """
+
+    ID: typing.Literal["linkPreviewAlbumMediaPhoto"] = Field(
+        "linkPreviewAlbumMediaPhoto", validation_alias="@type", alias="@type"
+    )
+    photo: Photo
+
+
+class LinkPreviewAlbumMediaVideo(BaseObject):
+    """
+    The media is a video
+
+    :param video: Video description
+    :type video: :class:`Video`
+    """
+
+    ID: typing.Literal["linkPreviewAlbumMediaVideo"] = Field(
+        "linkPreviewAlbumMediaVideo", validation_alias="@type", alias="@type"
+    )
+    video: Video
+
+
+LinkPreviewAlbumMedia = typing.Union[
+    LinkPreviewAlbumMediaPhoto,
+    LinkPreviewAlbumMediaVideo,
+]
+
+
 class LinkPreviewOptions(BaseObject):
     """
     Options to be used for generation of a link preview
@@ -11702,6 +12854,530 @@ class LinkPreviewOptions(BaseObject):
     force_small_media: Bool = False
     force_large_media: Bool = False
     show_above_text: Bool = False
+
+
+class LinkPreviewTypeAlbum(BaseObject):
+    """
+    The link is a link to a media album consisting of photos and videos
+
+    :param media: The list of album media
+    :type media: :class:`Vector[LinkPreviewAlbumMedia]`
+    :param caption: Album caption
+    :type caption: :class:`String`
+    """
+
+    ID: typing.Literal["linkPreviewTypeAlbum"] = Field("linkPreviewTypeAlbum", validation_alias="@type", alias="@type")
+    media: Vector[LinkPreviewAlbumMedia]
+    caption: String
+
+
+class LinkPreviewTypeAnimation(BaseObject):
+    """
+    The link is a link to an animation
+
+    :param animation: The animation
+    :type animation: :class:`Animation`
+    """
+
+    ID: typing.Literal["linkPreviewTypeAnimation"] = Field(
+        "linkPreviewTypeAnimation", validation_alias="@type", alias="@type"
+    )
+    animation: Animation
+
+
+class LinkPreviewTypeApp(BaseObject):
+    """
+    The link is a link to an app at App Store or Google Play
+
+    :param photo: Photo for the app
+    :type photo: :class:`Photo`
+    """
+
+    ID: typing.Literal["linkPreviewTypeApp"] = Field("linkPreviewTypeApp", validation_alias="@type", alias="@type")
+    photo: Photo
+
+
+class LinkPreviewTypeArticle(BaseObject):
+    """
+    The link is a link to a web site
+
+    :param photo: Article's main photo; may be null, defaults to None
+    :type photo: :class:`Photo`, optional
+    """
+
+    ID: typing.Literal["linkPreviewTypeArticle"] = Field(
+        "linkPreviewTypeArticle", validation_alias="@type", alias="@type"
+    )
+    photo: typing.Optional[Photo] = None
+
+
+class LinkPreviewTypeAudio(BaseObject):
+    """
+    The link is a link to an audio
+
+    :param audio: The audio description
+    :type audio: :class:`Audio`
+    """
+
+    ID: typing.Literal["linkPreviewTypeAudio"] = Field("linkPreviewTypeAudio", validation_alias="@type", alias="@type")
+    audio: Audio
+
+
+class LinkPreviewTypeBackground(BaseObject):
+    """
+    The link is a link to a background. Link preview title and description are available only for filled backgrounds
+
+    :param document: Document with the background; may be null for filled backgrounds, defaults to None
+    :type document: :class:`Document`, optional
+    :param background_type: Type of the background; may be null if unknown, defaults to None
+    :type background_type: :class:`BackgroundType`, optional
+    """
+
+    ID: typing.Literal["linkPreviewTypeBackground"] = Field(
+        "linkPreviewTypeBackground", validation_alias="@type", alias="@type"
+    )
+    document: typing.Optional[Document] = None
+    background_type: typing.Optional[BackgroundType] = None
+
+
+class LinkPreviewTypeChannelBoost(BaseObject):
+    """
+    The link is a link to boost a channel chat
+
+    :param photo: Photo of the chat; may be null, defaults to None
+    :type photo: :class:`ChatPhoto`, optional
+    """
+
+    ID: typing.Literal["linkPreviewTypeChannelBoost"] = Field(
+        "linkPreviewTypeChannelBoost", validation_alias="@type", alias="@type"
+    )
+    photo: typing.Optional[ChatPhoto] = None
+
+
+class LinkPreviewTypeChat(BaseObject):
+    """
+    The link is a link to a chat
+
+    :param type_: Type of the chat
+    :type type_: :class:`InviteLinkChatType`
+    :param photo: Photo of the chat; may be null, defaults to None
+    :type photo: :class:`ChatPhoto`, optional
+    :param creates_join_request: True, if the link only creates join request
+    :type creates_join_request: :class:`Bool`
+    """
+
+    ID: typing.Literal["linkPreviewTypeChat"] = Field("linkPreviewTypeChat", validation_alias="@type", alias="@type")
+    type_: InviteLinkChatType = Field(..., alias="type")
+    photo: typing.Optional[ChatPhoto] = None
+    creates_join_request: Bool = False
+
+
+class LinkPreviewTypeDocument(BaseObject):
+    """
+    The link is a link to a general file
+
+    :param document: The document description
+    :type document: :class:`Document`
+    """
+
+    ID: typing.Literal["linkPreviewTypeDocument"] = Field(
+        "linkPreviewTypeDocument", validation_alias="@type", alias="@type"
+    )
+    document: Document
+
+
+class LinkPreviewTypeEmbeddedAnimationPlayer(BaseObject):
+    """
+    The link is a link to an animation player
+
+    :param url: URL of the external animation player
+    :type url: :class:`String`
+    :param duration: Duration of the animation, in seconds
+    :type duration: :class:`Int32`
+    :param width: Expected width of the embedded player
+    :type width: :class:`Int32`
+    :param height: Expected height of the embedded player
+    :type height: :class:`Int32`
+    :param thumbnail: Thumbnail of the animation; may be null if unknown, defaults to None
+    :type thumbnail: :class:`Photo`, optional
+    """
+
+    ID: typing.Literal["linkPreviewTypeEmbeddedAnimationPlayer"] = Field(
+        "linkPreviewTypeEmbeddedAnimationPlayer", validation_alias="@type", alias="@type"
+    )
+    url: String
+    duration: Int32
+    width: Int32
+    height: Int32
+    thumbnail: typing.Optional[Photo] = None
+
+
+class LinkPreviewTypeEmbeddedAudioPlayer(BaseObject):
+    """
+    The link is a link to an audio player
+
+    :param url: URL of the external audio player
+    :type url: :class:`String`
+    :param duration: Duration of the audio, in seconds
+    :type duration: :class:`Int32`
+    :param width: Expected width of the embedded player
+    :type width: :class:`Int32`
+    :param height: Expected height of the embedded player
+    :type height: :class:`Int32`
+    :param thumbnail: Thumbnail of the audio; may be null if unknown, defaults to None
+    :type thumbnail: :class:`Photo`, optional
+    """
+
+    ID: typing.Literal["linkPreviewTypeEmbeddedAudioPlayer"] = Field(
+        "linkPreviewTypeEmbeddedAudioPlayer", validation_alias="@type", alias="@type"
+    )
+    url: String
+    duration: Int32
+    width: Int32
+    height: Int32
+    thumbnail: typing.Optional[Photo] = None
+
+
+class LinkPreviewTypeEmbeddedVideoPlayer(BaseObject):
+    """
+    The link is a link to a video player
+
+    :param url: URL of the external video player
+    :type url: :class:`String`
+    :param duration: Duration of the video, in seconds
+    :type duration: :class:`Int32`
+    :param width: Expected width of the embedded player
+    :type width: :class:`Int32`
+    :param height: Expected height of the embedded player
+    :type height: :class:`Int32`
+    :param thumbnail: Thumbnail of the video; may be null if unknown, defaults to None
+    :type thumbnail: :class:`Photo`, optional
+    """
+
+    ID: typing.Literal["linkPreviewTypeEmbeddedVideoPlayer"] = Field(
+        "linkPreviewTypeEmbeddedVideoPlayer", validation_alias="@type", alias="@type"
+    )
+    url: String
+    duration: Int32
+    width: Int32
+    height: Int32
+    thumbnail: typing.Optional[Photo] = None
+
+
+class LinkPreviewTypeExternalAudio(BaseObject):
+    """
+    The link is a link to an audio file
+
+    :param url: URL of the audio file
+    :type url: :class:`String`
+    :param mime_type: MIME type of the audio file
+    :type mime_type: :class:`String`
+    :param duration: Duration of the audio, in seconds; 0 if unknown, defaults to None
+    :type duration: :class:`Int32`, optional
+    """
+
+    ID: typing.Literal["linkPreviewTypeExternalAudio"] = Field(
+        "linkPreviewTypeExternalAudio", validation_alias="@type", alias="@type"
+    )
+    url: String
+    mime_type: String
+    duration: typing.Optional[Int32] = 0
+
+
+class LinkPreviewTypeExternalVideo(BaseObject):
+    """
+    The link is a link to a video file
+
+    :param url: URL of the video file
+    :type url: :class:`String`
+    :param mime_type: MIME type of the video file
+    :type mime_type: :class:`String`
+    :param width: Expected width of the video preview; 0 if unknown, defaults to None
+    :type width: :class:`Int32`, optional
+    :param height: Expected height of the video preview; 0 if unknown, defaults to None
+    :type height: :class:`Int32`, optional
+    :param duration: Duration of the video, in seconds; 0 if unknown, defaults to None
+    :type duration: :class:`Int32`, optional
+    """
+
+    ID: typing.Literal["linkPreviewTypeExternalVideo"] = Field(
+        "linkPreviewTypeExternalVideo", validation_alias="@type", alias="@type"
+    )
+    url: String
+    mime_type: String
+    width: typing.Optional[Int32] = 0
+    height: typing.Optional[Int32] = 0
+    duration: typing.Optional[Int32] = 0
+
+
+class LinkPreviewTypeInvoice(BaseObject):
+    """
+    The link is a link to an invoice
+    """
+
+    ID: typing.Literal["linkPreviewTypeInvoice"] = Field(
+        "linkPreviewTypeInvoice", validation_alias="@type", alias="@type"
+    )
+
+
+class LinkPreviewTypeMessage(BaseObject):
+    """
+    The link is a link to a text or a poll Telegram message
+    """
+
+    ID: typing.Literal["linkPreviewTypeMessage"] = Field(
+        "linkPreviewTypeMessage", validation_alias="@type", alias="@type"
+    )
+
+
+class LinkPreviewTypePhoto(BaseObject):
+    """
+    The link is a link to a photo
+
+    :param photo: The photo
+    :type photo: :class:`Photo`
+    """
+
+    ID: typing.Literal["linkPreviewTypePhoto"] = Field("linkPreviewTypePhoto", validation_alias="@type", alias="@type")
+    photo: Photo
+
+
+class LinkPreviewTypePremiumGiftCode(BaseObject):
+    """
+    The link is a link to a Telegram Premium gift code
+    """
+
+    ID: typing.Literal["linkPreviewTypePremiumGiftCode"] = Field(
+        "linkPreviewTypePremiumGiftCode", validation_alias="@type", alias="@type"
+    )
+
+
+class LinkPreviewTypeShareableChatFolder(BaseObject):
+    """
+    The link is a link to a shareable chat folder
+    """
+
+    ID: typing.Literal["linkPreviewTypeShareableChatFolder"] = Field(
+        "linkPreviewTypeShareableChatFolder", validation_alias="@type", alias="@type"
+    )
+
+
+class LinkPreviewTypeSticker(BaseObject):
+    """
+    The link is a link to a sticker
+
+    :param sticker: The sticker. It can be an arbitrary WEBP image and can have dimensions bigger than 512
+    :type sticker: :class:`Sticker`
+    """
+
+    ID: typing.Literal["linkPreviewTypeSticker"] = Field(
+        "linkPreviewTypeSticker", validation_alias="@type", alias="@type"
+    )
+    sticker: Sticker
+
+
+class LinkPreviewTypeStickerSet(BaseObject):
+    """
+    The link is a link to a sticker set
+
+    :param stickers: Up to 4 stickers from the sticker set
+    :type stickers: :class:`Vector[Sticker]`
+    """
+
+    ID: typing.Literal["linkPreviewTypeStickerSet"] = Field(
+        "linkPreviewTypeStickerSet", validation_alias="@type", alias="@type"
+    )
+    stickers: Vector[Sticker]
+
+
+class LinkPreviewTypeStory(BaseObject):
+    """
+    The link is a link to a story. Link preview description is unavailable
+
+    :param story_sender_chat_id: The identifier of the chat that posted the story
+    :type story_sender_chat_id: :class:`Int53`
+    :param story_id: Story identifier
+    :type story_id: :class:`Int32`
+    """
+
+    ID: typing.Literal["linkPreviewTypeStory"] = Field("linkPreviewTypeStory", validation_alias="@type", alias="@type")
+    story_sender_chat_id: Int53
+    story_id: Int32
+
+
+class LinkPreviewTypeSupergroupBoost(BaseObject):
+    """
+    The link is a link to boost a supergroup chat
+
+    :param photo: Photo of the chat; may be null, defaults to None
+    :type photo: :class:`ChatPhoto`, optional
+    """
+
+    ID: typing.Literal["linkPreviewTypeSupergroupBoost"] = Field(
+        "linkPreviewTypeSupergroupBoost", validation_alias="@type", alias="@type"
+    )
+    photo: typing.Optional[ChatPhoto] = None
+
+
+class LinkPreviewTypeTheme(BaseObject):
+    """
+    The link is a link to a cloud theme. TDLib has no theme support yet
+
+    :param documents: The list of files with theme description
+    :type documents: :class:`Vector[Document]`
+    :param settings: Settings for the cloud theme; may be null if unknown, defaults to None
+    :type settings: :class:`ThemeSettings`, optional
+    """
+
+    ID: typing.Literal["linkPreviewTypeTheme"] = Field("linkPreviewTypeTheme", validation_alias="@type", alias="@type")
+    documents: Vector[Document]
+    settings: typing.Optional[ThemeSettings] = None
+
+
+class LinkPreviewTypeUnsupported(BaseObject):
+    """
+    The link preview type is unsupported yet
+    """
+
+    ID: typing.Literal["linkPreviewTypeUnsupported"] = Field(
+        "linkPreviewTypeUnsupported", validation_alias="@type", alias="@type"
+    )
+
+
+class LinkPreviewTypeUpgradedGift(BaseObject):
+    """
+    The link is a link to an upgraded gift
+
+    :param gift: The gift
+    :type gift: :class:`UpgradedGift`
+    """
+
+    ID: typing.Literal["linkPreviewTypeUpgradedGift"] = Field(
+        "linkPreviewTypeUpgradedGift", validation_alias="@type", alias="@type"
+    )
+    gift: UpgradedGift
+
+
+class LinkPreviewTypeUser(BaseObject):
+    """
+    The link is a link to a user
+
+    :param photo: Photo of the user; may be null if none, defaults to None
+    :type photo: :class:`ChatPhoto`, optional
+    :param is_bot: True, if the user is a bot
+    :type is_bot: :class:`Bool`
+    """
+
+    ID: typing.Literal["linkPreviewTypeUser"] = Field("linkPreviewTypeUser", validation_alias="@type", alias="@type")
+    photo: typing.Optional[ChatPhoto] = None
+    is_bot: Bool = False
+
+
+class LinkPreviewTypeVideo(BaseObject):
+    """
+    The link is a link to a video
+
+    :param video: The video description
+    :type video: :class:`Video`
+    """
+
+    ID: typing.Literal["linkPreviewTypeVideo"] = Field("linkPreviewTypeVideo", validation_alias="@type", alias="@type")
+    video: Video
+
+
+class LinkPreviewTypeVideoChat(BaseObject):
+    """
+    The link is a link to a video chat
+
+    :param photo: Photo of the chat with the video chat; may be null if none, defaults to None
+    :type photo: :class:`ChatPhoto`, optional
+    :param is_live_stream: True, if the video chat is expected to be a live stream in a channel or a broadcast group
+    :type is_live_stream: :class:`Bool`
+    """
+
+    ID: typing.Literal["linkPreviewTypeVideoChat"] = Field(
+        "linkPreviewTypeVideoChat", validation_alias="@type", alias="@type"
+    )
+    photo: typing.Optional[ChatPhoto] = None
+    is_live_stream: Bool = False
+
+
+class LinkPreviewTypeVideoNote(BaseObject):
+    """
+    The link is a link to a video note message
+
+    :param video_note: The video note
+    :type video_note: :class:`VideoNote`
+    """
+
+    ID: typing.Literal["linkPreviewTypeVideoNote"] = Field(
+        "linkPreviewTypeVideoNote", validation_alias="@type", alias="@type"
+    )
+    video_note: VideoNote
+
+
+class LinkPreviewTypeVoiceNote(BaseObject):
+    """
+    The link is a link to a voice note message
+
+    :param voice_note: The voice note
+    :type voice_note: :class:`VoiceNote`
+    """
+
+    ID: typing.Literal["linkPreviewTypeVoiceNote"] = Field(
+        "linkPreviewTypeVoiceNote", validation_alias="@type", alias="@type"
+    )
+    voice_note: VoiceNote
+
+
+class LinkPreviewTypeWebApp(BaseObject):
+    """
+    The link is a link to a Web App
+
+    :param photo: Web App photo; may be null if none, defaults to None
+    :type photo: :class:`Photo`, optional
+    """
+
+    ID: typing.Literal["linkPreviewTypeWebApp"] = Field(
+        "linkPreviewTypeWebApp", validation_alias="@type", alias="@type"
+    )
+    photo: typing.Optional[Photo] = None
+
+
+LinkPreviewType = typing.Union[
+    LinkPreviewTypeAlbum,
+    LinkPreviewTypeAnimation,
+    LinkPreviewTypeApp,
+    LinkPreviewTypeArticle,
+    LinkPreviewTypeAudio,
+    LinkPreviewTypeBackground,
+    LinkPreviewTypeChannelBoost,
+    LinkPreviewTypeChat,
+    LinkPreviewTypeDocument,
+    LinkPreviewTypeEmbeddedAnimationPlayer,
+    LinkPreviewTypeEmbeddedAudioPlayer,
+    LinkPreviewTypeEmbeddedVideoPlayer,
+    LinkPreviewTypeExternalAudio,
+    LinkPreviewTypeExternalVideo,
+    LinkPreviewTypeInvoice,
+    LinkPreviewTypeMessage,
+    LinkPreviewTypePhoto,
+    LinkPreviewTypePremiumGiftCode,
+    LinkPreviewTypeShareableChatFolder,
+    LinkPreviewTypeSticker,
+    LinkPreviewTypeStickerSet,
+    LinkPreviewTypeStory,
+    LinkPreviewTypeSupergroupBoost,
+    LinkPreviewTypeTheme,
+    LinkPreviewTypeUnsupported,
+    LinkPreviewTypeUpgradedGift,
+    LinkPreviewTypeUser,
+    LinkPreviewTypeVideo,
+    LinkPreviewTypeVideoChat,
+    LinkPreviewTypeVideoNote,
+    LinkPreviewTypeVoiceNote,
+    LinkPreviewTypeWebApp,
+]
 
 
 class LocalFile(BaseObject):
@@ -11899,6 +13575,21 @@ LoginUrlInfo = typing.Union[
 ]
 
 
+class MainWebApp(BaseObject):
+    """
+    Contains information about the main Web App of a bot
+
+    :param url: URL of the Web App to open
+    :type url: :class:`String`
+    :param mode: The mode in which the Web App must be opened
+    :type mode: :class:`WebAppOpenMode`
+    """
+
+    ID: typing.Literal["mainWebApp"] = Field("mainWebApp", validation_alias="@type", alias="@type")
+    url: String
+    mode: WebAppOpenMode
+
+
 class MaskPointChin(BaseObject):
     """
     The mask is placed relatively to the chin
@@ -11970,10 +13661,6 @@ class Message(BaseObject):
     :type sender_id: :class:`MessageSender`
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`
-    :param date: Point in time (Unix timestamp) when the message was sent
-    :type date: :class:`Int32`
-    :param edit_date: Point in time (Unix timestamp) when the message was last edited
-    :type edit_date: :class:`Int32`
     :param unread_reactions: Information about unread reactions added to the message
     :type unread_reactions: :class:`Vector[UnreadReaction]`
     :param message_thread_id: If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
@@ -12010,32 +13697,8 @@ class Message(BaseObject):
     :type is_pinned: :class:`Bool`
     :param is_from_offline: True, if the message was sent because of a scheduled action by the message sender, for example, as away, or greeting service message
     :type is_from_offline: :class:`Bool`
-    :param can_be_edited: True, if the message can be edited. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message by the application
-    :type can_be_edited: :class:`Bool`
-    :param can_be_forwarded: True, if the message can be forwarded
-    :type can_be_forwarded: :class:`Bool`
-    :param can_be_replied_in_another_chat: True, if the message can be replied in another chat or topic
-    :type can_be_replied_in_another_chat: :class:`Bool`
-    :param can_be_saved: True, if content of the message can be saved locally or copied
+    :param can_be_saved: True, if content of the message can be saved locally or copied using inputMessageForwarded or forwardMessages with copy options
     :type can_be_saved: :class:`Bool`
-    :param can_be_deleted_only_for_self: True, if the message can be deleted only for the current user while other users will continue to see it
-    :type can_be_deleted_only_for_self: :class:`Bool`
-    :param can_be_deleted_for_all_users: True, if the message can be deleted for all users
-    :type can_be_deleted_for_all_users: :class:`Bool`
-    :param can_get_added_reactions: True, if the list of added reactions is available through getMessageAddedReactions
-    :type can_get_added_reactions: :class:`Bool`
-    :param can_get_statistics: True, if the message statistics are available through getMessageStatistics
-    :type can_get_statistics: :class:`Bool`
-    :param can_get_message_thread: True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
-    :type can_get_message_thread: :class:`Bool`
-    :param can_get_read_date: True, if read date of the message can be received through getMessageReadDate
-    :type can_get_read_date: :class:`Bool`
-    :param can_get_viewers: True, if chat members already viewed the message can be received through getMessageViewers
-    :type can_get_viewers: :class:`Bool`
-    :param can_get_media_timestamp_links: True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description through getMessageLink
-    :type can_get_media_timestamp_links: :class:`Bool`
-    :param can_report_reactions: True, if reactions on the message can be reported through reportMessageReactions
-    :type can_report_reactions: :class:`Bool`
     :param has_timestamped_media: True, if media timestamp entities refers to a media in this message as opposed to a media in the replied message
     :type has_timestamped_media: :class:`Bool`
     :param is_channel_post: True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
@@ -12044,12 +13707,18 @@ class Message(BaseObject):
     :type is_topic_message: :class:`Bool`
     :param contains_unread_mention: True, if the message contains an unread mention for the current user
     :type contains_unread_mention: :class:`Bool`
+    :param date: Point in time (Unix timestamp) when the message was sent; 0 for scheduled messages
+    :type date: :class:`Int32`
+    :param edit_date: Point in time (Unix timestamp) when the message was last edited; 0 for scheduled messages
+    :type edit_date: :class:`Int32`
     :param saved_messages_topic_id: Identifier of the Saved Messages topic for the message; 0 for messages not from Saved Messages
     :type saved_messages_topic_id: :class:`Int53`
     :param self_destruct_in: Time left before the message self-destruct timer expires, in seconds; 0 if self-destruction isn't scheduled yet
     :type self_destruct_in: :class:`Double`
     :param auto_delete_in: Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
     :type auto_delete_in: :class:`Double`
+    :param has_sensitive_content: True, if media content of the message must be hidden with 18+ spoiler
+    :type has_sensitive_content: :class:`Bool`
     :param restriction_reason: If non-empty, contains a human-readable description of the reason why access to this message must be restricted
     :type restriction_reason: :class:`String`
     :param sender_boost_count: Number of times the sender of the message boosted the supergroup at the time the message was sent; 0 if none or unknown. For messages sent by the current user, supergroupFullInfo.my_boost_count must be used instead, defaults to None
@@ -12064,8 +13733,6 @@ class Message(BaseObject):
     id: Int53
     sender_id: MessageSender
     chat_id: Int53
-    date: Int32
-    edit_date: Int32
     unread_reactions: Vector[UnreadReaction]
     message_thread_id: Int53
     via_bot_user_id: Int53
@@ -12084,26 +13751,17 @@ class Message(BaseObject):
     is_outgoing: Bool = False
     is_pinned: Bool = False
     is_from_offline: Bool = False
-    can_be_edited: Bool = False
-    can_be_forwarded: Bool = False
-    can_be_replied_in_another_chat: Bool = False
     can_be_saved: Bool = False
-    can_be_deleted_only_for_self: Bool = False
-    can_be_deleted_for_all_users: Bool = False
-    can_get_added_reactions: Bool = False
-    can_get_statistics: Bool = False
-    can_get_message_thread: Bool = False
-    can_get_read_date: Bool = False
-    can_get_viewers: Bool = False
-    can_get_media_timestamp_links: Bool = False
-    can_report_reactions: Bool = False
     has_timestamped_media: Bool = False
     is_channel_post: Bool = False
     is_topic_message: Bool = False
     contains_unread_mention: Bool = False
+    date: Int32 = 0
+    edit_date: Int32 = 0
     saved_messages_topic_id: Int53 = 0
     self_destruct_in: Double = 0
     auto_delete_in: Double = 0
+    has_sensitive_content: Bool = False
     restriction_reason: String = ""
     sender_boost_count: typing.Optional[Int32] = 0
     media_album_id: typing.Optional[Int64] = 0
@@ -12177,7 +13835,7 @@ class MessageAnimation(BaseObject):
     :type animation: :class:`Animation`
     :param caption: Animation caption
     :type caption: :class:`FormattedText`
-    :param show_caption_above_media: True, if caption must be shown above the animation; otherwise, caption must be shown below the animation
+    :param show_caption_above_media: True, if the caption must be shown above the animation; otherwise, the caption must be shown below the animation
     :type show_caption_above_media: :class:`Bool`
     :param has_spoiler: True, if the animation preview must be covered by a spoiler animation
     :type has_spoiler: :class:`Bool`
@@ -12654,10 +14312,60 @@ class MessageGameScore(BaseObject):
     score: Int32
 
 
+class MessageGift(BaseObject):
+    """
+    A regular gift was received or sent by the current user, or the current user was notified about a channel gift
+
+    :param gift: The gift
+    :type gift: :class:`Gift`
+    :param sender_id: Sender of the gift
+    :type sender_id: :class:`MessageSender`
+    :param received_gift_id: Unique identifier of the received gift for the current user; only for the receiver of the gift
+    :type received_gift_id: :class:`String`
+    :param text: Message added to the gift
+    :type text: :class:`FormattedText`
+    :param prepaid_upgrade_star_count: Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift
+    :type prepaid_upgrade_star_count: :class:`Int53`
+    :param sell_star_count: Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the receiver
+    :type sell_star_count: :class:`Int53`
+    :param is_private: True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
+    :type is_private: :class:`Bool`
+    :param is_saved: True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
+    :type is_saved: :class:`Bool`
+    :param can_be_upgraded: True, if the gift can be upgraded to a unique gift; only for the receiver of the gift
+    :type can_be_upgraded: :class:`Bool`
+    :param was_converted: True, if the gift was converted to Telegram Stars; only for the receiver of the gift
+    :type was_converted: :class:`Bool`
+    :param was_upgraded: True, if the gift was upgraded to a unique gift
+    :type was_upgraded: :class:`Bool`
+    :param was_refunded: True, if the gift was refunded and isn't available anymore
+    :type was_refunded: :class:`Bool`
+    :param upgraded_received_gift_id: Identifier of the corresponding upgraded gift; may be empty if unknown. Use getReceivedGift to get information about the gift
+    :type upgraded_received_gift_id: :class:`String`
+    """
+
+    ID: typing.Literal["messageGift"] = Field("messageGift", validation_alias="@type", alias="@type")
+    gift: Gift
+    sender_id: MessageSender
+    received_gift_id: String
+    text: FormattedText
+    prepaid_upgrade_star_count: Int53
+    sell_star_count: Int53 = 0
+    is_private: Bool = False
+    is_saved: Bool = False
+    can_be_upgraded: Bool = False
+    was_converted: Bool = False
+    was_upgraded: Bool = False
+    was_refunded: Bool = False
+    upgraded_received_gift_id: String = ""
+
+
 class MessageGiftedPremium(BaseObject):
     """
-    Telegram Premium was gifted to the user
+    Telegram Premium was gifted to a user
 
+    :param text: Message added to the gifted Telegram Premium by the sender
+    :type text: :class:`FormattedText`
     :param currency: Currency for the paid amount
     :type currency: :class:`String`
     :param amount: The paid amount, in the smallest units of the currency
@@ -12666,8 +14374,10 @@ class MessageGiftedPremium(BaseObject):
     :type month_count: :class:`Int32`
     :param sticker: A sticker to be shown in the message; may be null if unknown, defaults to None
     :type sticker: :class:`Sticker`, optional
-    :param gifter_user_id: The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous
+    :param gifter_user_id: The identifier of a user that gifted Telegram Premium; 0 if the gift was anonymous or is outgoing
     :type gifter_user_id: :class:`Int53`
+    :param receiver_user_id: The identifier of a user that received Telegram Premium; 0 if the gift is incoming
+    :type receiver_user_id: :class:`Int53`
     :param cryptocurrency: Cryptocurrency used to pay for the gift; may be empty if none
     :type cryptocurrency: :class:`String`
     :param cryptocurrency_amount: The paid amount, in the smallest units of the cryptocurrency; 0 if none, defaults to None
@@ -12675,13 +14385,182 @@ class MessageGiftedPremium(BaseObject):
     """
 
     ID: typing.Literal["messageGiftedPremium"] = Field("messageGiftedPremium", validation_alias="@type", alias="@type")
+    text: FormattedText
     currency: String
     amount: Int53
     month_count: Int32
     sticker: typing.Optional[Sticker] = None
     gifter_user_id: Int53 = 0
+    receiver_user_id: Int53 = 0
     cryptocurrency: String = ""
     cryptocurrency_amount: typing.Optional[Int64] = 0
+
+
+class MessageGiftedStars(BaseObject):
+    """
+    Telegram Stars were gifted to a user
+
+    :param currency: Currency for the paid amount
+    :type currency: :class:`String`
+    :param amount: The paid amount, in the smallest units of the currency
+    :type amount: :class:`Int53`
+    :param star_count: Number of Telegram Stars that were gifted
+    :type star_count: :class:`Int53`
+    :param transaction_id: Identifier of the transaction for Telegram Stars purchase; for receiver only
+    :type transaction_id: :class:`String`
+    :param sticker: A sticker to be shown in the message; may be null if unknown, defaults to None
+    :type sticker: :class:`Sticker`, optional
+    :param gifter_user_id: The identifier of a user that gifted Telegram Stars; 0 if the gift was anonymous or is outgoing
+    :type gifter_user_id: :class:`Int53`
+    :param receiver_user_id: The identifier of a user that received Telegram Stars; 0 if the gift is incoming
+    :type receiver_user_id: :class:`Int53`
+    :param cryptocurrency: Cryptocurrency used to pay for the gift; may be empty if none
+    :type cryptocurrency: :class:`String`
+    :param cryptocurrency_amount: The paid amount, in the smallest units of the cryptocurrency; 0 if none, defaults to None
+    :type cryptocurrency_amount: :class:`Int64`, optional
+    """
+
+    ID: typing.Literal["messageGiftedStars"] = Field("messageGiftedStars", validation_alias="@type", alias="@type")
+    currency: String
+    amount: Int53
+    star_count: Int53
+    transaction_id: String
+    sticker: typing.Optional[Sticker] = None
+    gifter_user_id: Int53 = 0
+    receiver_user_id: Int53 = 0
+    cryptocurrency: String = ""
+    cryptocurrency_amount: typing.Optional[Int64] = 0
+
+
+class MessageGiveaway(BaseObject):
+    """
+    A giveaway
+
+    :param parameters: Giveaway parameters
+    :type parameters: :class:`GiveawayParameters`
+    :param winner_count: Number of users which will receive Telegram Premium subscription gift codes
+    :type winner_count: :class:`Int32`
+    :param prize: Prize of the giveaway
+    :type prize: :class:`GiveawayPrize`
+    :param sticker: A sticker to be shown in the message; may be null if unknown, defaults to None
+    :type sticker: :class:`Sticker`, optional
+    """
+
+    ID: typing.Literal["messageGiveaway"] = Field("messageGiveaway", validation_alias="@type", alias="@type")
+    parameters: GiveawayParameters
+    winner_count: Int32
+    prize: GiveawayPrize
+    sticker: typing.Optional[Sticker] = None
+
+
+class MessageGiveawayCompleted(BaseObject):
+    """
+    A giveaway without public winners has been completed for the chat
+
+    :param winner_count: Number of winners in the giveaway
+    :type winner_count: :class:`Int32`
+    :param unclaimed_prize_count: Number of undistributed prizes; for Telegram Premium giveaways only
+    :type unclaimed_prize_count: :class:`Int32`
+    :param giveaway_message_id: Identifier of the message with the giveaway; can be 0 if the message was deleted
+    :type giveaway_message_id: :class:`Int53`
+    :param is_star_giveaway: True, if the giveaway is a Telegram Star giveaway
+    :type is_star_giveaway: :class:`Bool`
+    """
+
+    ID: typing.Literal["messageGiveawayCompleted"] = Field(
+        "messageGiveawayCompleted", validation_alias="@type", alias="@type"
+    )
+    winner_count: Int32
+    unclaimed_prize_count: Int32
+    giveaway_message_id: Int53 = 0
+    is_star_giveaway: Bool = False
+
+
+class MessageGiveawayCreated(BaseObject):
+    """
+    A giveaway was created for the chat. Use telegramPaymentPurposePremiumGiveaway, storePaymentPurposePremiumGiveaway, telegramPaymentPurposeStarGiveaway, or storePaymentPurposeStarGiveaway to create a giveaway
+
+    :param star_count: Number of Telegram Stars that will be shared by winners of the giveaway; 0 for Telegram Premium giveaways
+    :type star_count: :class:`Int53`
+    """
+
+    ID: typing.Literal["messageGiveawayCreated"] = Field(
+        "messageGiveawayCreated", validation_alias="@type", alias="@type"
+    )
+    star_count: Int53 = 0
+
+
+class MessageGiveawayPrizeStars(BaseObject):
+    """
+    A Telegram Stars were received by the current user from a giveaway
+
+    :param star_count: Number of Telegram Stars that were received
+    :type star_count: :class:`Int53`
+    :param transaction_id: Identifier of the transaction for Telegram Stars credit
+    :type transaction_id: :class:`String`
+    :param boosted_chat_id: Identifier of the supergroup or channel chat, which was automatically boosted by the winners of the giveaway
+    :type boosted_chat_id: :class:`Int53`
+    :param sticker: A sticker to be shown in the message; may be null if unknown, defaults to None
+    :type sticker: :class:`Sticker`, optional
+    :param giveaway_message_id: Identifier of the message with the giveaway in the boosted chat; can be 0 if the message was deleted
+    :type giveaway_message_id: :class:`Int53`
+    :param is_unclaimed: True, if the corresponding winner wasn't chosen and the Telegram Stars were received by the owner of the boosted chat
+    :type is_unclaimed: :class:`Bool`
+    """
+
+    ID: typing.Literal["messageGiveawayPrizeStars"] = Field(
+        "messageGiveawayPrizeStars", validation_alias="@type", alias="@type"
+    )
+    star_count: Int53
+    transaction_id: String
+    boosted_chat_id: Int53
+    sticker: typing.Optional[Sticker] = None
+    giveaway_message_id: Int53 = 0
+    is_unclaimed: Bool = False
+
+
+class MessageGiveawayWinners(BaseObject):
+    """
+    A giveaway with public winners has been completed for the chat
+
+    :param boosted_chat_id: Identifier of the supergroup or channel chat, which was automatically boosted by the winners of the giveaway
+    :type boosted_chat_id: :class:`Int53`
+    :param giveaway_message_id: Identifier of the message with the giveaway in the boosted chat
+    :type giveaway_message_id: :class:`Int53`
+    :param additional_chat_count: Number of other chats that participated in the giveaway
+    :type additional_chat_count: :class:`Int32`
+    :param actual_winners_selection_date: Point in time (Unix timestamp) when the winners were selected. May be bigger than winners selection date specified in parameters of the giveaway
+    :type actual_winners_selection_date: :class:`Int32`
+    :param prize: Prize of the giveaway
+    :type prize: :class:`GiveawayPrize`
+    :param prize_description: Additional description of the giveaway prize
+    :type prize_description: :class:`String`
+    :param winner_count: Total number of winners in the giveaway
+    :type winner_count: :class:`Int32`
+    :param winner_user_ids: Up to 100 user identifiers of the winners of the giveaway
+    :type winner_user_ids: :class:`Vector[Int53]`
+    :param unclaimed_prize_count: Number of undistributed prizes; for Telegram Premium giveaways only
+    :type unclaimed_prize_count: :class:`Int32`
+    :param only_new_members: True, if only new members of the chats were eligible for the giveaway
+    :type only_new_members: :class:`Bool`
+    :param was_refunded: True, if the giveaway was canceled and was fully refunded
+    :type was_refunded: :class:`Bool`
+    """
+
+    ID: typing.Literal["messageGiveawayWinners"] = Field(
+        "messageGiveawayWinners", validation_alias="@type", alias="@type"
+    )
+    boosted_chat_id: Int53
+    giveaway_message_id: Int53
+    additional_chat_count: Int32
+    actual_winners_selection_date: Int32
+    prize: GiveawayPrize
+    prize_description: String
+    winner_count: Int32
+    winner_user_ids: Vector[Int53]
+    unclaimed_prize_count: Int32
+    only_new_members: Bool = False
+    was_refunded: Bool = False
 
 
 class MessageInviteVideoChatParticipants(BaseObject):
@@ -12715,8 +14594,10 @@ class MessageInvoice(BaseObject):
     :type start_parameter: :class:`String`
     :param receipt_message_id: The identifier of the message with the receipt, after the product has been purchased
     :type receipt_message_id: :class:`Int53`
-    :param extended_media: Extended media attached to the invoice; may be null, defaults to None
-    :type extended_media: :class:`MessageExtendedMedia`, optional
+    :param paid_media: Extended media attached to the invoice; may be null if none, defaults to None
+    :type paid_media: :class:`PaidMedia`, optional
+    :param paid_media_caption: Extended media caption; may be null if none, defaults to None
+    :type paid_media_caption: :class:`FormattedText`, optional
     :param is_test: True, if the invoice is a test invoice
     :type is_test: :class:`Bool`
     :param need_shipping_address: True, if the shipping address must be specified
@@ -12729,7 +14610,8 @@ class MessageInvoice(BaseObject):
     total_amount: Int53
     start_parameter: String
     receipt_message_id: Int53
-    extended_media: typing.Optional[MessageExtendedMedia] = None
+    paid_media: typing.Optional[PaidMedia] = None
+    paid_media_caption: typing.Optional[FormattedText] = None
     is_test: Bool = False
     need_shipping_address: Bool = False
 
@@ -12756,6 +14638,27 @@ class MessageLocation(BaseObject):
     expires_in: Int32 = 0
     heading: Int32 = 0
     proximity_alert_radius: Int32 = 0
+
+
+class MessagePaidMedia(BaseObject):
+    """
+    A message with paid media
+
+    :param star_count: Number of Telegram Stars needed to buy access to the media in the message
+    :type star_count: :class:`Int53`
+    :param media: Information about the media
+    :type media: :class:`Vector[PaidMedia]`
+    :param caption: Media caption
+    :type caption: :class:`FormattedText`
+    :param show_caption_above_media: True, if the caption must be shown above the media; otherwise, the caption must be shown below the media
+    :type show_caption_above_media: :class:`Bool`
+    """
+
+    ID: typing.Literal["messagePaidMedia"] = Field("messagePaidMedia", validation_alias="@type", alias="@type")
+    star_count: Int53
+    media: Vector[PaidMedia]
+    caption: FormattedText
+    show_caption_above_media: Bool = False
 
 
 class MessagePassportDataReceived(BaseObject):
@@ -12789,9 +14692,38 @@ class MessagePassportDataSent(BaseObject):
     types: Vector[PassportElementType]
 
 
+class MessagePaymentRefunded(BaseObject):
+    """
+    A payment has been refunded
+
+    :param owner_id: Identifier of the previous owner of the Telegram Stars that refunds them
+    :type owner_id: :class:`MessageSender`
+    :param currency: Currency for the price of the product
+    :type currency: :class:`String`
+    :param total_amount: Total price for the product, in the smallest units of the currency
+    :type total_amount: :class:`Int53`
+    :param invoice_payload: Invoice payload; only for bots
+    :type invoice_payload: :class:`Bytes`
+    :param telegram_payment_charge_id: Telegram payment identifier
+    :type telegram_payment_charge_id: :class:`String`
+    :param provider_payment_charge_id: Provider payment identifier
+    :type provider_payment_charge_id: :class:`String`
+    """
+
+    ID: typing.Literal["messagePaymentRefunded"] = Field(
+        "messagePaymentRefunded", validation_alias="@type", alias="@type"
+    )
+    owner_id: MessageSender
+    currency: String
+    total_amount: Int53
+    invoice_payload: Bytes
+    telegram_payment_charge_id: String
+    provider_payment_charge_id: String
+
+
 class MessagePaymentSuccessful(BaseObject):
     """
-    A payment has been completed
+    A payment has been sent to a bot or a business account
 
     :param invoice_chat_id: Identifier of the chat, containing the corresponding invoice message
     :type invoice_chat_id: :class:`Int53`
@@ -12807,6 +14739,8 @@ class MessagePaymentSuccessful(BaseObject):
     :type is_first_recurring: :class:`Bool`
     :param invoice_name: Name of the invoice; may be empty if unknown
     :type invoice_name: :class:`String`
+    :param subscription_until_date: Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring, defaults to None
+    :type subscription_until_date: :class:`Int32`, optional
     """
 
     ID: typing.Literal["messagePaymentSuccessful"] = Field(
@@ -12819,11 +14753,12 @@ class MessagePaymentSuccessful(BaseObject):
     is_recurring: Bool = False
     is_first_recurring: Bool = False
     invoice_name: String = ""
+    subscription_until_date: typing.Optional[Int32] = 0
 
 
 class MessagePaymentSuccessfulBot(BaseObject):
     """
-    A payment has been completed; for bots only
+    A payment has been received by the bot or the business account
 
     :param currency: Currency for price of the product
     :type currency: :class:`String`
@@ -12835,14 +14770,16 @@ class MessagePaymentSuccessfulBot(BaseObject):
     :type telegram_payment_charge_id: :class:`String`
     :param provider_payment_charge_id: Provider payment identifier
     :type provider_payment_charge_id: :class:`String`
-    :param order_info: Information about the order; may be null, defaults to None
+    :param order_info: Information about the order; may be null; for bots only, defaults to None
     :type order_info: :class:`OrderInfo`, optional
     :param is_recurring: True, if this is a recurring payment
     :type is_recurring: :class:`Bool`
     :param is_first_recurring: True, if this is the first recurring payment
     :type is_first_recurring: :class:`Bool`
-    :param shipping_option_id: Identifier of the shipping option chosen by the user; may be empty if not applicable
+    :param shipping_option_id: Identifier of the shipping option chosen by the user; may be empty if not applicable; for bots only
     :type shipping_option_id: :class:`String`
+    :param subscription_until_date: Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring, defaults to None
+    :type subscription_until_date: :class:`Int32`, optional
     """
 
     ID: typing.Literal["messagePaymentSuccessfulBot"] = Field(
@@ -12857,6 +14794,7 @@ class MessagePaymentSuccessfulBot(BaseObject):
     is_recurring: Bool = False
     is_first_recurring: Bool = False
     shipping_option_id: String = ""
+    subscription_until_date: typing.Optional[Int32] = 0
 
 
 class MessagePhoto(BaseObject):
@@ -12867,7 +14805,7 @@ class MessagePhoto(BaseObject):
     :type photo: :class:`Photo`
     :param caption: Photo caption
     :type caption: :class:`FormattedText`
-    :param show_caption_above_media: True, if caption must be shown above the photo; otherwise, caption must be shown below the photo
+    :param show_caption_above_media: True, if the caption must be shown above the photo; otherwise, the caption must be shown below the photo
     :type show_caption_above_media: :class:`Bool`
     :param has_spoiler: True, if the photo preview must be covered by a spoiler animation
     :type has_spoiler: :class:`Bool`
@@ -12911,6 +14849,8 @@ class MessagePremiumGiftCode(BaseObject):
     """
     A Telegram Premium gift code was created for the user
 
+    :param text: Message added to the gift
+    :type text: :class:`FormattedText`
     :param month_count: Number of months the Telegram Premium subscription will be active after code activation
     :type month_count: :class:`Int32`
     :param code: The gift code
@@ -12936,6 +14876,7 @@ class MessagePremiumGiftCode(BaseObject):
     ID: typing.Literal["messagePremiumGiftCode"] = Field(
         "messagePremiumGiftCode", validation_alias="@type", alias="@type"
     )
+    text: FormattedText
     month_count: Int32
     code: String
     creator_id: typing.Optional[MessageSender] = None
@@ -12946,103 +14887,6 @@ class MessagePremiumGiftCode(BaseObject):
     currency: typing.Optional[String] = ""
     amount: typing.Optional[Int53] = 0
     cryptocurrency_amount: typing.Optional[Int64] = 0
-
-
-class MessagePremiumGiveaway(BaseObject):
-    """
-    A Telegram Premium giveaway
-
-    :param parameters: Giveaway parameters
-    :type parameters: :class:`PremiumGiveawayParameters`
-    :param winner_count: Number of users which will receive Telegram Premium subscription gift codes
-    :type winner_count: :class:`Int32`
-    :param month_count: Number of months the Telegram Premium subscription will be active after code activation
-    :type month_count: :class:`Int32`
-    :param sticker: A sticker to be shown in the message; may be null if unknown, defaults to None
-    :type sticker: :class:`Sticker`, optional
-    """
-
-    ID: typing.Literal["messagePremiumGiveaway"] = Field(
-        "messagePremiumGiveaway", validation_alias="@type", alias="@type"
-    )
-    parameters: PremiumGiveawayParameters
-    winner_count: Int32
-    month_count: Int32
-    sticker: typing.Optional[Sticker] = None
-
-
-class MessagePremiumGiveawayCompleted(BaseObject):
-    """
-    A Telegram Premium giveaway without public winners has been completed for the chat
-
-    :param winner_count: Number of winners in the giveaway
-    :type winner_count: :class:`Int32`
-    :param unclaimed_prize_count: Number of undistributed prizes
-    :type unclaimed_prize_count: :class:`Int32`
-    :param giveaway_message_id: Identifier of the message with the giveaway; can be 0 if the message was deleted
-    :type giveaway_message_id: :class:`Int53`
-    """
-
-    ID: typing.Literal["messagePremiumGiveawayCompleted"] = Field(
-        "messagePremiumGiveawayCompleted", validation_alias="@type", alias="@type"
-    )
-    winner_count: Int32
-    unclaimed_prize_count: Int32
-    giveaway_message_id: Int53 = 0
-
-
-class MessagePremiumGiveawayCreated(BaseObject):
-    """
-    A Telegram Premium giveaway was created for the chat
-    """
-
-    ID: typing.Literal["messagePremiumGiveawayCreated"] = Field(
-        "messagePremiumGiveawayCreated", validation_alias="@type", alias="@type"
-    )
-
-
-class MessagePremiumGiveawayWinners(BaseObject):
-    """
-    A Telegram Premium giveaway with public winners has been completed for the chat
-
-    :param boosted_chat_id: Identifier of the channel chat, which was automatically boosted by the winners of the giveaway for duration of the Premium subscription
-    :type boosted_chat_id: :class:`Int53`
-    :param giveaway_message_id: Identifier of the message with the giveaway in the boosted chat
-    :type giveaway_message_id: :class:`Int53`
-    :param additional_chat_count: Number of other chats that participated in the giveaway
-    :type additional_chat_count: :class:`Int32`
-    :param actual_winners_selection_date: Point in time (Unix timestamp) when the winners were selected. May be bigger than winners selection date specified in parameters of the giveaway
-    :type actual_winners_selection_date: :class:`Int32`
-    :param month_count: Number of months the Telegram Premium subscription will be active after code activation
-    :type month_count: :class:`Int32`
-    :param prize_description: Additional description of the giveaway prize
-    :type prize_description: :class:`String`
-    :param winner_count: Total number of winners in the giveaway
-    :type winner_count: :class:`Int32`
-    :param winner_user_ids: Up to 100 user identifiers of the winners of the giveaway
-    :type winner_user_ids: :class:`Vector[Int53]`
-    :param unclaimed_prize_count: Number of undistributed prizes
-    :type unclaimed_prize_count: :class:`Int32`
-    :param only_new_members: True, if only new members of the chats were eligible for the giveaway
-    :type only_new_members: :class:`Bool`
-    :param was_refunded: True, if the giveaway was canceled and was fully refunded
-    :type was_refunded: :class:`Bool`
-    """
-
-    ID: typing.Literal["messagePremiumGiveawayWinners"] = Field(
-        "messagePremiumGiveawayWinners", validation_alias="@type", alias="@type"
-    )
-    boosted_chat_id: Int53
-    giveaway_message_id: Int53
-    additional_chat_count: Int32
-    actual_winners_selection_date: Int32
-    month_count: Int32
-    prize_description: String
-    winner_count: Int32
-    winner_user_ids: Vector[Int53]
-    unclaimed_prize_count: Int32
-    only_new_members: Bool = False
-    was_refunded: Bool = False
 
 
 class MessageProximityAlertTriggered(BaseObject):
@@ -13063,6 +14907,26 @@ class MessageProximityAlertTriggered(BaseObject):
     traveler_id: MessageSender
     watcher_id: MessageSender
     distance: Int32
+
+
+class MessageRefundedUpgradedGift(BaseObject):
+    """
+    A gift which purchase, upgrade or transfer were refunded
+
+    :param gift: The gift
+    :type gift: :class:`Gift`
+    :param sender_id: Sender of the gift
+    :type sender_id: :class:`MessageSender`
+    :param is_upgrade: True, if the gift was obtained by upgrading of a previously received gift
+    :type is_upgrade: :class:`Bool`
+    """
+
+    ID: typing.Literal["messageRefundedUpgradedGift"] = Field(
+        "messageRefundedUpgradedGift", validation_alias="@type", alias="@type"
+    )
+    gift: Gift
+    sender_id: MessageSender
+    is_upgrade: Bool = False
 
 
 class MessageScreenshotTaken(BaseObject):
@@ -13142,15 +15006,15 @@ class MessageText(BaseObject):
 
     :param text: Text of the message
     :type text: :class:`FormattedText`
-    :param web_page: A link preview attached to the message; may be null, defaults to None
-    :type web_page: :class:`WebPage`, optional
+    :param link_preview: A link preview attached to the message; may be null, defaults to None
+    :type link_preview: :class:`LinkPreview`, optional
     :param link_preview_options: Options which were used for generation of the link preview; may be null if default options were used, defaults to None
     :type link_preview_options: :class:`LinkPreviewOptions`, optional
     """
 
     ID: typing.Literal["messageText"] = Field("messageText", validation_alias="@type", alias="@type")
     text: FormattedText
-    web_page: typing.Optional[WebPage] = None
+    link_preview: typing.Optional[LinkPreview] = None
     link_preview_options: typing.Optional[LinkPreviewOptions] = None
 
 
@@ -13160,6 +15024,42 @@ class MessageUnsupported(BaseObject):
     """
 
     ID: typing.Literal["messageUnsupported"] = Field("messageUnsupported", validation_alias="@type", alias="@type")
+
+
+class MessageUpgradedGift(BaseObject):
+    """
+    An upgraded gift was received or sent by the current user, or the current user was notified about a channel gift
+
+    :param gift: The gift
+    :type gift: :class:`UpgradedGift`
+    :param received_gift_id: Unique identifier of the received gift for the current user; only for the receiver of the gift
+    :type received_gift_id: :class:`String`
+    :param transfer_star_count: Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift
+    :type transfer_star_count: :class:`Int53`
+    :param sender_id: Sender of the gift; may be null for anonymous gifts, defaults to None
+    :type sender_id: :class:`MessageSender`, optional
+    :param is_upgrade: True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred gift
+    :type is_upgrade: :class:`Bool`
+    :param is_saved: True, if the gift is displayed on the user's or the channel's profile page; only for the receiver of the gift
+    :type is_saved: :class:`Bool`
+    :param can_be_transferred: True, if the gift can be transferred to another owner; only for the receiver of the gift
+    :type can_be_transferred: :class:`Bool`
+    :param was_transferred: True, if the gift was transferred to another owner; only for the receiver of the gift
+    :type was_transferred: :class:`Bool`
+    :param export_date: Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT; 0 if NFT export isn't possible; only for the receiver of the gift
+    :type export_date: :class:`Int32`
+    """
+
+    ID: typing.Literal["messageUpgradedGift"] = Field("messageUpgradedGift", validation_alias="@type", alias="@type")
+    gift: UpgradedGift
+    received_gift_id: String
+    transfer_star_count: Int53
+    sender_id: typing.Optional[MessageSender] = None
+    is_upgrade: Bool = False
+    is_saved: Bool = False
+    can_be_transferred: Bool = False
+    was_transferred: Bool = False
+    export_date: Int32 = 0
 
 
 class MessageUsersShared(BaseObject):
@@ -13195,9 +15095,15 @@ class MessageVideo(BaseObject):
 
     :param video: The video description
     :type video: :class:`Video`
+    :param alternative_videos: Alternative qualities of the video
+    :type alternative_videos: :class:`Vector[AlternativeVideo]`
+    :param start_timestamp: Timestamp from which the video playing must start, in seconds
+    :type start_timestamp: :class:`Int32`
     :param caption: Video caption
     :type caption: :class:`FormattedText`
-    :param show_caption_above_media: True, if caption must be shown above the video; otherwise, caption must be shown below the video
+    :param cover: Cover of the video; may be null if none, defaults to None
+    :type cover: :class:`Photo`, optional
+    :param show_caption_above_media: True, if the caption must be shown above the video; otherwise, the caption must be shown below the video
     :type show_caption_above_media: :class:`Bool`
     :param has_spoiler: True, if the video preview must be covered by a spoiler animation
     :type has_spoiler: :class:`Bool`
@@ -13207,7 +15113,10 @@ class MessageVideo(BaseObject):
 
     ID: typing.Literal["messageVideo"] = Field("messageVideo", validation_alias="@type", alias="@type")
     video: Video
+    alternative_videos: Vector[AlternativeVideo]
+    start_timestamp: Int32
     caption: FormattedText
+    cover: typing.Optional[Photo] = None
     show_caption_above_media: Bool = False
     has_spoiler: Bool = False
     is_secret: Bool = False
@@ -13233,7 +15142,7 @@ class MessageVideoChatScheduled(BaseObject):
 
     :param group_call_id: Identifier of the video chat. The video chat can be received through the method getGroupCall
     :type group_call_id: :class:`Int32`
-    :param start_date: Point in time (Unix timestamp) when the group call is supposed to be started by an administrator
+    :param start_date: Point in time (Unix timestamp) when the group call is expected to be started by an administrator
     :type start_date: :class:`Int32`
     """
 
@@ -13361,23 +15270,29 @@ MessageContent = typing.Union[
     MessageForumTopicIsHiddenToggled,
     MessageGame,
     MessageGameScore,
+    MessageGift,
     MessageGiftedPremium,
+    MessageGiftedStars,
+    MessageGiveaway,
+    MessageGiveawayCompleted,
+    MessageGiveawayCreated,
+    MessageGiveawayPrizeStars,
+    MessageGiveawayWinners,
     MessageInviteVideoChatParticipants,
     MessageInvoice,
     MessageLocation,
+    MessagePaidMedia,
     MessagePassportDataReceived,
     MessagePassportDataSent,
+    MessagePaymentRefunded,
     MessagePaymentSuccessful,
     MessagePaymentSuccessfulBot,
     MessagePhoto,
     MessagePinMessage,
     MessagePoll,
     MessagePremiumGiftCode,
-    MessagePremiumGiveaway,
-    MessagePremiumGiveawayCompleted,
-    MessagePremiumGiveawayCreated,
-    MessagePremiumGiveawayWinners,
     MessageProximityAlertTriggered,
+    MessageRefundedUpgradedGift,
     MessageScreenshotTaken,
     MessageSticker,
     MessageStory,
@@ -13385,6 +15300,7 @@ MessageContent = typing.Union[
     MessageSupergroupChatCreate,
     MessageText,
     MessageUnsupported,
+    MessageUpgradedGift,
     MessageUsersShared,
     MessageVenue,
     MessageVideo,
@@ -13400,13 +15316,13 @@ MessageContent = typing.Union[
 
 class MessageCopyOptions(BaseObject):
     """
-    Options to be used when a message content is copied without reference to the original sender. Service messages, messages with messageInvoice, messagePremiumGiveaway, or messagePremiumGiveawayWinners content can't be copied
+    Options to be used when a message content is copied without reference to the original sender. Service messages, messages with messageInvoice, messagePaidMedia, messageGiveaway, or messageGiveawayWinners content can't be copied
 
-    :param send_copy: True, if content of the message needs to be copied without reference to the original sender. Always true if the message is forwarded to a secret chat or is local
+    :param send_copy: True, if content of the message needs to be copied without reference to the original sender. Always true if the message is forwarded to a secret chat or is local. Use messageProperties.can_be_saved and messageProperties.can_be_copied_to_secret_chat to check whether the message is suitable
     :type send_copy: :class:`Bool`
     :param replace_caption: True, if media caption of the message copy needs to be replaced. Ignored if send_copy is false
     :type replace_caption: :class:`Bool`
-    :param new_show_caption_above_media: True, if new caption must be shown above the animation; otherwise, new caption must be shown below the animation; not supported in secret chats. Ignored if replace_caption is false
+    :param new_show_caption_above_media: True, if new caption must be shown above the media; otherwise, new caption must be shown below the media; not supported in secret chats. Ignored if replace_caption is false
     :type new_show_caption_above_media: :class:`Bool`
     :param new_caption: New message caption; pass null to copy message without caption. Ignored if replace_caption is false, defaults to None
     :type new_caption: :class:`FormattedText`, optional
@@ -13477,88 +15393,6 @@ class MessageEffectTypePremiumSticker(BaseObject):
 MessageEffectType = typing.Union[
     MessageEffectTypeEmojiReaction,
     MessageEffectTypePremiumSticker,
-]
-
-
-class MessageExtendedMediaPhoto(BaseObject):
-    """
-    The media is a photo
-
-    :param photo: The photo
-    :type photo: :class:`Photo`
-    :param caption: Photo caption
-    :type caption: :class:`FormattedText`
-    """
-
-    ID: typing.Literal["messageExtendedMediaPhoto"] = Field(
-        "messageExtendedMediaPhoto", validation_alias="@type", alias="@type"
-    )
-    photo: Photo
-    caption: FormattedText
-
-
-class MessageExtendedMediaPreview(BaseObject):
-    """
-    The media is hidden until the invoice is paid
-
-    :param caption: Media caption
-    :type caption: :class:`FormattedText`
-    :param minithumbnail: Media minithumbnail; may be null, defaults to None
-    :type minithumbnail: :class:`Minithumbnail`, optional
-    :param width: Media width; 0 if unknown, defaults to None
-    :type width: :class:`Int32`, optional
-    :param height: Media height; 0 if unknown, defaults to None
-    :type height: :class:`Int32`, optional
-    :param duration: Media duration, in seconds; 0 if unknown, defaults to None
-    :type duration: :class:`Int32`, optional
-    """
-
-    ID: typing.Literal["messageExtendedMediaPreview"] = Field(
-        "messageExtendedMediaPreview", validation_alias="@type", alias="@type"
-    )
-    caption: FormattedText
-    minithumbnail: typing.Optional[Minithumbnail] = None
-    width: typing.Optional[Int32] = 0
-    height: typing.Optional[Int32] = 0
-    duration: typing.Optional[Int32] = 0
-
-
-class MessageExtendedMediaUnsupported(BaseObject):
-    """
-    The media is unsupported
-
-    :param caption: Media caption
-    :type caption: :class:`FormattedText`
-    """
-
-    ID: typing.Literal["messageExtendedMediaUnsupported"] = Field(
-        "messageExtendedMediaUnsupported", validation_alias="@type", alias="@type"
-    )
-    caption: FormattedText
-
-
-class MessageExtendedMediaVideo(BaseObject):
-    """
-    The media is a video
-
-    :param video: The video
-    :type video: :class:`Video`
-    :param caption: Photo caption
-    :type caption: :class:`FormattedText`
-    """
-
-    ID: typing.Literal["messageExtendedMediaVideo"] = Field(
-        "messageExtendedMediaVideo", validation_alias="@type", alias="@type"
-    )
-    video: Video
-    caption: FormattedText
-
-
-MessageExtendedMedia = typing.Union[
-    MessageExtendedMediaPhoto,
-    MessageExtendedMediaPreview,
-    MessageExtendedMediaUnsupported,
-    MessageExtendedMediaVideo,
 ]
 
 
@@ -13691,7 +15525,7 @@ class MessageLinkInfo(BaseObject):
     :type message: :class:`Message`, optional
     :param is_public: True, if the link is a public link for a message or a forum topic in a chat
     :type is_public: :class:`Bool`
-    :param media_timestamp: Timestamp from which the video/audio/video note/voice note/story playing must start, in seconds; 0 if not specified. The media can be in the message content or in its web page preview
+    :param media_timestamp: Timestamp from which the video/audio/video note/voice note/story playing must start, in seconds; 0 if not specified. The media can be in the message content or in its link preview
     :type media_timestamp: :class:`Int32`
     :param for_album: True, if the whole media album to which the message belongs is linked
     :type for_album: :class:`Bool`
@@ -13806,6 +15640,93 @@ class MessagePositions(BaseObject):
     positions: Vector[MessagePosition]
 
 
+class MessageProperties(BaseObject):
+    """
+    Contains properties of a message and describes actions that can be done with the message right now
+
+    :param can_be_copied_to_secret_chat: True, if content of the message can be copied to a secret chat using inputMessageForwarded or forwardMessages with copy options
+    :type can_be_copied_to_secret_chat: :class:`Bool`
+    :param can_be_deleted_only_for_self: True, if the message can be deleted only for the current user while other users will continue to see it using the method deleteMessages with revoke == false
+    :type can_be_deleted_only_for_self: :class:`Bool`
+    :param can_be_deleted_for_all_users: True, if the message can be deleted for all users using the method deleteMessages with revoke == true
+    :type can_be_deleted_for_all_users: :class:`Bool`
+    :param can_be_edited: True, if the message can be edited using the methods editMessageText, editMessageCaption, or editMessageReplyMarkup. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message
+    :type can_be_edited: :class:`Bool`
+    :param can_be_forwarded: True, if the message can be forwarded using inputMessageForwarded or forwardMessages
+    :type can_be_forwarded: :class:`Bool`
+    :param can_be_paid: True, if the message can be paid using inputInvoiceMessage
+    :type can_be_paid: :class:`Bool`
+    :param can_be_pinned: True, if the message can be pinned or unpinned in the chat using pinChatMessage or unpinChatMessage
+    :type can_be_pinned: :class:`Bool`
+    :param can_be_replied: True, if the message can be replied in the same chat and forum topic using inputMessageReplyToMessage
+    :type can_be_replied: :class:`Bool`
+    :param can_be_replied_in_another_chat: True, if the message can be replied in another chat or forum topic using inputMessageReplyToExternalMessage
+    :type can_be_replied_in_another_chat: :class:`Bool`
+    :param can_be_saved: True, if content of the message can be saved locally or copied using inputMessageForwarded or forwardMessages with copy options
+    :type can_be_saved: :class:`Bool`
+    :param can_be_shared_in_story: True, if the message can be shared in a story using inputStoryAreaTypeMessage
+    :type can_be_shared_in_story: :class:`Bool`
+    :param can_edit_media: True, if the message can be edited using the method editMessageMedia
+    :type can_edit_media: :class:`Bool`
+    :param can_edit_scheduling_state: True, if scheduling state of the message can be edited
+    :type can_edit_scheduling_state: :class:`Bool`
+    :param can_get_embedding_code: True, if code for message embedding can be received using getMessageEmbeddingCode
+    :type can_get_embedding_code: :class:`Bool`
+    :param can_get_link: True, if a link can be generated for the message using getMessageLink
+    :type can_get_link: :class:`Bool`
+    :param can_get_media_timestamp_links: True, if media timestamp links can be generated for media timestamp entities in the message text, caption or link preview description using getMessageLink
+    :type can_get_media_timestamp_links: :class:`Bool`
+    :param can_get_message_thread: True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
+    :type can_get_message_thread: :class:`Bool`
+    :param can_get_read_date: True, if read date of the message can be received through getMessageReadDate
+    :type can_get_read_date: :class:`Bool`
+    :param can_get_statistics: True, if message statistics are available through getMessageStatistics and message forwards can be received using getMessagePublicForwards
+    :type can_get_statistics: :class:`Bool`
+    :param can_get_viewers: True, if chat members already viewed the message can be received through getMessageViewers
+    :type can_get_viewers: :class:`Bool`
+    :param can_recognize_speech: True, if speech can be recognized for the message through recognizeSpeech
+    :type can_recognize_speech: :class:`Bool`
+    :param can_report_chat: True, if the message can be reported using reportChat
+    :type can_report_chat: :class:`Bool`
+    :param can_report_reactions: True, if reactions on the message can be reported through reportMessageReactions
+    :type can_report_reactions: :class:`Bool`
+    :param can_report_supergroup_spam: True, if the message can be reported using reportSupergroupSpam
+    :type can_report_supergroup_spam: :class:`Bool`
+    :param can_set_fact_check: True, if fact check for the message can be changed through setMessageFactCheck
+    :type can_set_fact_check: :class:`Bool`
+    :param need_show_statistics: True, if message statistics must be available from context menu of the message
+    :type need_show_statistics: :class:`Bool`
+    """
+
+    ID: typing.Literal["messageProperties"] = Field("messageProperties", validation_alias="@type", alias="@type")
+    can_be_copied_to_secret_chat: Bool = False
+    can_be_deleted_only_for_self: Bool = False
+    can_be_deleted_for_all_users: Bool = False
+    can_be_edited: Bool = False
+    can_be_forwarded: Bool = False
+    can_be_paid: Bool = False
+    can_be_pinned: Bool = False
+    can_be_replied: Bool = False
+    can_be_replied_in_another_chat: Bool = False
+    can_be_saved: Bool = False
+    can_be_shared_in_story: Bool = False
+    can_edit_media: Bool = False
+    can_edit_scheduling_state: Bool = False
+    can_get_embedding_code: Bool = False
+    can_get_link: Bool = False
+    can_get_media_timestamp_links: Bool = False
+    can_get_message_thread: Bool = False
+    can_get_read_date: Bool = False
+    can_get_statistics: Bool = False
+    can_get_viewers: Bool = False
+    can_recognize_speech: Bool = False
+    can_report_chat: Bool = False
+    can_report_reactions: Bool = False
+    can_report_supergroup_spam: Bool = False
+    can_set_fact_check: Bool = False
+    need_show_statistics: Bool = False
+
+
 class MessageReaction(BaseObject):
     """
     Contains information about a reaction to a message
@@ -13836,13 +15757,19 @@ class MessageReactions(BaseObject):
 
     :param reactions: List of added reactions
     :type reactions: :class:`Vector[MessageReaction]`
+    :param paid_reactors: Information about top users that added the paid reaction
+    :type paid_reactors: :class:`Vector[PaidReactor]`
     :param are_tags: True, if the reactions are tags and Telegram Premium users can filter messages by them
     :type are_tags: :class:`Bool`
+    :param can_get_added_reactions: True, if the list of added reactions is available using getMessageAddedReactions
+    :type can_get_added_reactions: :class:`Bool`
     """
 
     ID: typing.Literal["messageReactions"] = Field("messageReactions", validation_alias="@type", alias="@type")
     reactions: Vector[MessageReaction]
+    paid_reactors: Vector[PaidReactor]
     are_tags: Bool = False
+    can_get_added_reactions: Bool = False
 
 
 class MessageReadDateMyPrivacyRestricted(BaseObject):
@@ -13938,7 +15865,7 @@ class MessageReplyToMessage(BaseObject):
     :type quote: :class:`TextQuote`, optional
     :param origin: Information about origin of the message if the message was from another chat or topic; may be null for messages from the same chat, defaults to None
     :type origin: :class:`MessageOrigin`, optional
-    :param content: Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageContact, messageDice, messageDocument, messageGame, messageInvoice, messageLocation, messagePhoto, messagePoll, messagePremiumGiveaway, messagePremiumGiveawayWinners, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote, defaults to None
+    :param content: Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageContact, messageDice, messageDocument, messageGame, messageGiveaway, messageGiveawayWinners, messageInvoice, messageLocation, messagePaidMedia, messagePhoto, messagePoll, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote, defaults to None
     :type content: :class:`MessageContent`, optional
     :param chat_id: The identifier of the chat to which the message belongs; may be 0 if the replied message is in unknown chat
     :type chat_id: :class:`Int53`
@@ -14004,9 +15931,24 @@ class MessageSchedulingStateSendWhenOnline(BaseObject):
     )
 
 
+class MessageSchedulingStateSendWhenVideoProcessed(BaseObject):
+    """
+    The message will be sent when the video in the message is converted and optimized; can be used only by the server
+
+    :param send_date: Approximate point in time (Unix timestamp) when the message is expected to be sent
+    :type send_date: :class:`Int32`
+    """
+
+    ID: typing.Literal["messageSchedulingStateSendWhenVideoProcessed"] = Field(
+        "messageSchedulingStateSendWhenVideoProcessed", validation_alias="@type", alias="@type"
+    )
+    send_date: Int32
+
+
 MessageSchedulingState = typing.Union[
     MessageSchedulingStateSendAtDate,
     MessageSchedulingStateSendWhenOnline,
+    MessageSchedulingStateSendWhenVideoProcessed,
 ]
 
 
@@ -14052,6 +15994,8 @@ class MessageSendOptions(BaseObject):
     :type from_background: :class:`Bool`
     :param protect_content: Pass true if the content of the message must be protected from forwarding and saving; for bots only
     :type protect_content: :class:`Bool`
+    :param allow_paid_broadcast: Pass true to allow the message to ignore regular broadcast limits for a small fee; for bots only
+    :type allow_paid_broadcast: :class:`Bool`
     :param update_order_of_installed_sticker_sets: Pass true if the user explicitly chosen a sticker or a custom emoji from an installed sticker set; applicable only to sendMessage and sendMessageAlbum
     :type update_order_of_installed_sticker_sets: :class:`Bool`
     :param effect_id: Identifier of the effect to apply to the message; pass 0 if none; applicable only to sendMessage and sendMessageAlbum in private chats
@@ -14067,6 +16011,7 @@ class MessageSendOptions(BaseObject):
     disable_notification: Bool = False
     from_background: Bool = False
     protect_content: Bool = False
+    allow_paid_broadcast: Bool = False
     update_order_of_installed_sticker_sets: Bool = False
     effect_id: Int64 = 0
     only_preview: Bool = False
@@ -14126,7 +16071,7 @@ class MessageSendingStateFailed(BaseObject):
     :type error: :class:`Error`
     :param retry_after: Time left before the message can be re-sent, in seconds. No update is sent when this field changes
     :type retry_after: :class:`Double`
-    :param can_retry: True, if the message can be re-sent
+    :param can_retry: True, if the message can be re-sent using resendMessages or readdQuickReplyShortcutMessages
     :type can_retry: :class:`Bool`
     :param need_another_sender: True, if the message can be re-sent only on behalf of a different sender
     :type need_another_sender: :class:`Bool`
@@ -14320,7 +16265,7 @@ class MessageThreadInfo(BaseObject):
     :type message_thread_id: :class:`Int53`
     :param unread_message_count: Approximate number of unread messages in the message thread
     :type unread_message_count: :class:`Int32`
-    :param messages: The messages from which the thread starts. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
+    :param messages: The messages from which the thread starts. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id)
     :type messages: :class:`Vector[Message]`
     :param reply_info: Information about the message thread; may be null for forum topic threads, defaults to None
     :type reply_info: :class:`MessageReplyInfo`, optional
@@ -14854,6 +16799,18 @@ class OrderInfo(BaseObject):
     shipping_address: typing.Optional[Address] = None
 
 
+class Outline(BaseObject):
+    """
+    Represents outline of an image
+
+    :param paths: The list of closed vector paths
+    :type paths: :class:`Vector[ClosedVectorPath]`
+    """
+
+    ID: typing.Literal["outline"] = Field("outline", validation_alias="@type", alias="@type")
+    paths: Vector[ClosedVectorPath]
+
+
 class PageBlockAnchor(BaseObject):
     """
     An invisible anchor on a page, which can be used in a URL to open the page from the specified anchor
@@ -15007,7 +16964,7 @@ class PageBlockEmbedded(BaseObject):
     """
     An embedded web page
 
-    :param url: Web page URL, if available
+    :param url: URL of the embedded page, if available
     :type url: :class:`String`
     :param html: HTML-markup of the embedded page
     :type html: :class:`String`
@@ -15040,7 +16997,7 @@ class PageBlockEmbeddedPost(BaseObject):
     """
     An embedded post
 
-    :param url: Web page URL
+    :param url: URL of the embedded post
     :type url: :class:`String`
     :param author: Post author
     :type author: :class:`String`
@@ -15374,7 +17331,7 @@ class PageBlockListItem(BaseObject):
 
 class PageBlockCaption(BaseObject):
     """
-    Contains a caption of an instant view web page block, consisting of a text and a trailing credit
+    Contains a caption of another block
 
     :param text: Content of the caption
     :type text: :class:`RichText`
@@ -15515,6 +17472,97 @@ PageBlockVerticalAlignment = typing.Union[
     PageBlockVerticalAlignmentMiddle,
     PageBlockVerticalAlignmentTop,
 ]
+
+
+class PaidMediaPhoto(BaseObject):
+    """
+    The media is a photo
+
+    :param photo: The photo
+    :type photo: :class:`Photo`
+    """
+
+    ID: typing.Literal["paidMediaPhoto"] = Field("paidMediaPhoto", validation_alias="@type", alias="@type")
+    photo: Photo
+
+
+class PaidMediaPreview(BaseObject):
+    """
+    The media is hidden until the invoice is paid
+
+    :param minithumbnail: Media minithumbnail; may be null, defaults to None
+    :type minithumbnail: :class:`Minithumbnail`, optional
+    :param width: Media width; 0 if unknown, defaults to None
+    :type width: :class:`Int32`, optional
+    :param height: Media height; 0 if unknown, defaults to None
+    :type height: :class:`Int32`, optional
+    :param duration: Media duration, in seconds; 0 if unknown, defaults to None
+    :type duration: :class:`Int32`, optional
+    """
+
+    ID: typing.Literal["paidMediaPreview"] = Field("paidMediaPreview", validation_alias="@type", alias="@type")
+    minithumbnail: typing.Optional[Minithumbnail] = None
+    width: typing.Optional[Int32] = 0
+    height: typing.Optional[Int32] = 0
+    duration: typing.Optional[Int32] = 0
+
+
+class PaidMediaUnsupported(BaseObject):
+    """
+    The media is unsupported
+    """
+
+    ID: typing.Literal["paidMediaUnsupported"] = Field("paidMediaUnsupported", validation_alias="@type", alias="@type")
+
+
+class PaidMediaVideo(BaseObject):
+    """
+    The media is a video
+
+    :param video: The video
+    :type video: :class:`Video`
+    :param start_timestamp: Timestamp from which the video playing must start, in seconds
+    :type start_timestamp: :class:`Int32`
+    :param cover: Cover of the video; may be null if none, defaults to None
+    :type cover: :class:`Photo`, optional
+    """
+
+    ID: typing.Literal["paidMediaVideo"] = Field("paidMediaVideo", validation_alias="@type", alias="@type")
+    video: Video
+    start_timestamp: Int32
+    cover: typing.Optional[Photo] = None
+
+
+PaidMedia = typing.Union[
+    PaidMediaPhoto,
+    PaidMediaPreview,
+    PaidMediaUnsupported,
+    PaidMediaVideo,
+]
+
+
+class PaidReactor(BaseObject):
+    """
+    Contains information about a user that added paid reactions
+
+    :param star_count: Number of Telegram Stars added
+    :type star_count: :class:`Int32`
+    :param sender_id: Identifier of the user or chat that added the reactions; may be null for anonymous reactors that aren't the current user, defaults to None
+    :type sender_id: :class:`MessageSender`, optional
+    :param is_top: True, if the reactor is one of the most active reactors; may be false if the reactor is the current user
+    :type is_top: :class:`Bool`
+    :param is_me: True, if the paid reaction was added by the current user
+    :type is_me: :class:`Bool`
+    :param is_anonymous: True, if the reactor is anonymous
+    :type is_anonymous: :class:`Bool`
+    """
+
+    ID: typing.Literal["paidReactor"] = Field("paidReactor", validation_alias="@type", alias="@type")
+    star_count: Int32
+    sender_id: typing.Optional[MessageSender] = None
+    is_top: Bool = False
+    is_me: Bool = False
+    is_anonymous: Bool = False
 
 
 class PassportAuthorizationForm(BaseObject):
@@ -16168,11 +18216,25 @@ class PaymentFormTypeRegular(BaseObject):
     need_password: Bool = False
 
 
+class PaymentFormTypeStarSubscription(BaseObject):
+    """
+    The payment form is for a payment in Telegram Stars for subscription
+
+    :param pricing: Information about subscription plan
+    :type pricing: :class:`StarSubscriptionPricing`
+    """
+
+    ID: typing.Literal["paymentFormTypeStarSubscription"] = Field(
+        "paymentFormTypeStarSubscription", validation_alias="@type", alias="@type"
+    )
+    pricing: StarSubscriptionPricing
+
+
 class PaymentFormTypeStars(BaseObject):
     """
-    The payment form is for a payment in Telegram stars
+    The payment form is for a payment in Telegram Stars
 
-    :param star_count: Number of Telegram stars that will be paid
+    :param star_count: Number of Telegram Stars that will be paid
     :type star_count: :class:`Int53`
     """
 
@@ -16182,6 +18244,7 @@ class PaymentFormTypeStars(BaseObject):
 
 PaymentFormType = typing.Union[
     PaymentFormTypeRegular,
+    PaymentFormTypeStarSubscription,
     PaymentFormTypeStars,
 ]
 
@@ -16312,9 +18375,9 @@ class PaymentReceiptTypeRegular(BaseObject):
 
 class PaymentReceiptTypeStars(BaseObject):
     """
-    The payment was done using Telegram stars
+    The payment was done using Telegram Stars
 
-    :param star_count: Number of Telegram stars that were paid
+    :param star_count: Number of Telegram Stars that were paid
     :type star_count: :class:`Int53`
     :param transaction_id: Unique identifier of the transaction that can be used to dispute it
     :type transaction_id: :class:`String`
@@ -16799,6 +18862,16 @@ class PremiumFeatureLastSeenTimes(BaseObject):
     )
 
 
+class PremiumFeatureMessageEffects(BaseObject):
+    """
+    The ability to use all available message effects
+    """
+
+    ID: typing.Literal["premiumFeatureMessageEffects"] = Field(
+        "premiumFeatureMessageEffects", validation_alias="@type", alias="@type"
+    )
+
+
 class PremiumFeatureMessagePrivacy(BaseObject):
     """
     The ability to disallow incoming voice and video note messages in private chats using setUserPrivacySettingRules with userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages and to restrict incoming messages from non-contacts using setNewChatPrivacySettings
@@ -16895,6 +18968,7 @@ PremiumFeature = typing.Union[
     PremiumFeatureIncreasedLimits,
     PremiumFeatureIncreasedUploadFileSize,
     PremiumFeatureLastSeenTimes,
+    PremiumFeatureMessageEffects,
     PremiumFeatureMessagePrivacy,
     PremiumFeatureProfileBadge,
     PremiumFeatureRealTimeChatTranslation,
@@ -16973,18 +19047,22 @@ class PremiumGiftCodeInfo(BaseObject):
 
 class PremiumGiftCodePaymentOption(BaseObject):
     """
-    Describes an option for creating Telegram Premium gift codes
+    Describes an option for creating Telegram Premium gift codes or Telegram Premium giveaway. Use telegramPaymentPurposePremiumGiftCodes or telegramPaymentPurposePremiumGiveaway for out-of-store payments
 
     :param currency: ISO 4217 currency code for Telegram Premium gift code payment
     :type currency: :class:`String`
     :param amount: The amount to pay, in the smallest units of the currency
     :type amount: :class:`Int53`
-    :param user_count: Number of users which will be able to activate the gift codes
-    :type user_count: :class:`Int32`
+    :param discount_percentage: The discount associated with this option, as a percentage
+    :type discount_percentage: :class:`Int32`
+    :param winner_count: Number of users which will be able to activate the gift codes
+    :type winner_count: :class:`Int32`
     :param month_count: Number of months the Telegram Premium subscription will be active
     :type month_count: :class:`Int32`
     :param store_product_quantity: Number of times the store product must be paid
     :type store_product_quantity: :class:`Int32`
+    :param sticker: A sticker to be shown along with the gift code; may be null if unknown, defaults to None
+    :type sticker: :class:`Sticker`, optional
     :param store_product_id: Identifier of the store product associated with the option; may be empty if none
     :type store_product_id: :class:`String`
     """
@@ -16994,15 +19072,17 @@ class PremiumGiftCodePaymentOption(BaseObject):
     )
     currency: String
     amount: Int53
-    user_count: Int32
+    discount_percentage: Int32
+    winner_count: Int32
     month_count: Int32
     store_product_quantity: Int32
+    sticker: typing.Optional[Sticker] = None
     store_product_id: String = ""
 
 
 class PremiumGiftCodePaymentOptions(BaseObject):
     """
-    Contains a list of options for creating Telegram Premium gift codes
+    Contains a list of options for creating Telegram Premium gift codes or Telegram Premium giveaway
 
     :param options: The list of options
     :type options: :class:`Vector[PremiumGiftCodePaymentOption]`
@@ -17012,164 +19092,6 @@ class PremiumGiftCodePaymentOptions(BaseObject):
         "premiumGiftCodePaymentOptions", validation_alias="@type", alias="@type"
     )
     options: Vector[PremiumGiftCodePaymentOption]
-
-
-class PremiumGiveawayInfoCompleted(BaseObject):
-    """
-    Describes a completed giveaway
-
-    :param creation_date: Point in time (Unix timestamp) when the giveaway was created
-    :type creation_date: :class:`Int32`
-    :param actual_winners_selection_date: Point in time (Unix timestamp) when the winners were selected. May be bigger than winners selection date specified in parameters of the giveaway
-    :type actual_winners_selection_date: :class:`Int32`
-    :param winner_count: Number of winners in the giveaway
-    :type winner_count: :class:`Int32`
-    :param activation_count: Number of winners, which activated their gift codes
-    :type activation_count: :class:`Int32`
-    :param gift_code: Telegram Premium gift code that was received by the current user; empty if the user isn't a winner in the giveaway
-    :type gift_code: :class:`String`
-    :param was_refunded: True, if the giveaway was canceled and was fully refunded
-    :type was_refunded: :class:`Bool`
-    """
-
-    ID: typing.Literal["premiumGiveawayInfoCompleted"] = Field(
-        "premiumGiveawayInfoCompleted", validation_alias="@type", alias="@type"
-    )
-    creation_date: Int32
-    actual_winners_selection_date: Int32
-    winner_count: Int32
-    activation_count: Int32
-    gift_code: String
-    was_refunded: Bool = False
-
-
-class PremiumGiveawayInfoOngoing(BaseObject):
-    """
-    Describes an ongoing giveaway
-
-    :param creation_date: Point in time (Unix timestamp) when the giveaway was created
-    :type creation_date: :class:`Int32`
-    :param status: Status of the current user in the giveaway
-    :type status: :class:`PremiumGiveawayParticipantStatus`
-    :param is_ended: True, if the giveaway has ended and results are being prepared
-    :type is_ended: :class:`Bool`
-    """
-
-    ID: typing.Literal["premiumGiveawayInfoOngoing"] = Field(
-        "premiumGiveawayInfoOngoing", validation_alias="@type", alias="@type"
-    )
-    creation_date: Int32
-    status: PremiumGiveawayParticipantStatus
-    is_ended: Bool = False
-
-
-PremiumGiveawayInfo = typing.Union[
-    PremiumGiveawayInfoCompleted,
-    PremiumGiveawayInfoOngoing,
-]
-
-
-class PremiumGiveawayParameters(BaseObject):
-    """
-    Describes parameters of a Telegram Premium giveaway
-
-    :param boosted_chat_id: Identifier of the supergroup or channel chat, which will be automatically boosted by the winners of the giveaway for duration of the Premium subscription. If the chat is a channel, then can_post_messages right is required in the channel, otherwise, the user must be an administrator in the supergroup
-    :type boosted_chat_id: :class:`Int53`
-    :param additional_chat_ids: Identifiers of other supergroup or channel chats that must be subscribed by the users to be eligible for the giveaway. There can be up to getOption("giveaway_additional_chat_count_max") additional chats
-    :type additional_chat_ids: :class:`Vector[Int53]`
-    :param winners_selection_date: Point in time (Unix timestamp) when the giveaway is expected to be performed; must be 60-getOption("giveaway_duration_max") seconds in the future in scheduled giveaways
-    :type winners_selection_date: :class:`Int32`
-    :param only_new_members: True, if only new members of the chats will be eligible for the giveaway
-    :type only_new_members: :class:`Bool`
-    :param has_public_winners: True, if the list of winners of the giveaway will be available to everyone
-    :type has_public_winners: :class:`Bool`
-    :param country_codes: The list of two-letter ISO 3166-1 alpha-2 codes of countries, users from which will be eligible for the giveaway. If empty, then all users can participate in the giveaway. There can be up to getOption("giveaway_country_count_max") chosen countries. Users with phone number that was bought at https://fragment.com can participate in any giveaway and the country code "FT" must not be specified in the list
-    :type country_codes: :class:`Vector[String]`
-    :param prize_description: Additional description of the giveaway prize; 0-128 characters
-    :type prize_description: :class:`String`
-    """
-
-    ID: typing.Literal["premiumGiveawayParameters"] = Field(
-        "premiumGiveawayParameters", validation_alias="@type", alias="@type"
-    )
-    boosted_chat_id: Int53
-    additional_chat_ids: Vector[Int53]
-    winners_selection_date: Int32
-    only_new_members: Bool = False
-    has_public_winners: Bool = False
-    country_codes: Vector[String] = []
-    prize_description: String = Field("", max_length=128)
-
-
-class PremiumGiveawayParticipantStatusAdministrator(BaseObject):
-    """
-    The user can't participate in the giveaway, because they are an administrator in one of the chats that created the giveaway
-
-    :param chat_id: Identifier of the chat administered by the user
-    :type chat_id: :class:`Int53`
-    """
-
-    ID: typing.Literal["premiumGiveawayParticipantStatusAdministrator"] = Field(
-        "premiumGiveawayParticipantStatusAdministrator", validation_alias="@type", alias="@type"
-    )
-    chat_id: Int53
-
-
-class PremiumGiveawayParticipantStatusAlreadyWasMember(BaseObject):
-    """
-    The user can't participate in the giveaway, because they have already been member of the chat
-
-    :param joined_chat_date: Point in time (Unix timestamp) when the user joined the chat
-    :type joined_chat_date: :class:`Int32`
-    """
-
-    ID: typing.Literal["premiumGiveawayParticipantStatusAlreadyWasMember"] = Field(
-        "premiumGiveawayParticipantStatusAlreadyWasMember", validation_alias="@type", alias="@type"
-    )
-    joined_chat_date: Int32
-
-
-class PremiumGiveawayParticipantStatusDisallowedCountry(BaseObject):
-    """
-    The user can't participate in the giveaway, because they phone number is from a disallowed country
-
-    :param user_country_code: A two-letter ISO 3166-1 alpha-2 country code of the user's country
-    :type user_country_code: :class:`String`
-    """
-
-    ID: typing.Literal["premiumGiveawayParticipantStatusDisallowedCountry"] = Field(
-        "premiumGiveawayParticipantStatusDisallowedCountry", validation_alias="@type", alias="@type"
-    )
-    user_country_code: String
-
-
-class PremiumGiveawayParticipantStatusEligible(BaseObject):
-    """
-    The user is eligible for the giveaway
-    """
-
-    ID: typing.Literal["premiumGiveawayParticipantStatusEligible"] = Field(
-        "premiumGiveawayParticipantStatusEligible", validation_alias="@type", alias="@type"
-    )
-
-
-class PremiumGiveawayParticipantStatusParticipating(BaseObject):
-    """
-    The user participates in the giveaway
-    """
-
-    ID: typing.Literal["premiumGiveawayParticipantStatusParticipating"] = Field(
-        "premiumGiveawayParticipantStatusParticipating", validation_alias="@type", alias="@type"
-    )
-
-
-PremiumGiveawayParticipantStatus = typing.Union[
-    PremiumGiveawayParticipantStatusAdministrator,
-    PremiumGiveawayParticipantStatusAlreadyWasMember,
-    PremiumGiveawayParticipantStatusDisallowedCountry,
-    PremiumGiveawayParticipantStatusEligible,
-    PremiumGiveawayParticipantStatusParticipating,
-]
 
 
 class PremiumLimit(BaseObject):
@@ -17413,7 +19335,7 @@ class PremiumPaymentOption(BaseObject):
     :type amount: :class:`Int53`
     :param discount_percentage: The discount associated with this option, as a percentage
     :type discount_percentage: :class:`Int32`
-    :param month_count: Number of months the Telegram Premium subscription will be active
+    :param month_count: Number of months the Telegram Premium subscription will be active. Use getPremiumInfoSticker to get the sticker to be used as representation of the Telegram Premium subscription
     :type month_count: :class:`Int32`
     :param store_product_id: Identifier of the store product associated with the option
     :type store_product_id: :class:`String`
@@ -17641,27 +19563,65 @@ PremiumStoryFeature = typing.Union[
 ]
 
 
-class PrepaidPremiumGiveaway(BaseObject):
+class PrepaidGiveaway(BaseObject):
     """
-    Describes a prepaid Telegram Premium giveaway
+    Describes a prepaid giveaway
 
     :param id: Unique identifier of the prepaid giveaway
     :type id: :class:`Int64`
-    :param winner_count: Number of users which will receive Telegram Premium subscription gift codes
+    :param winner_count: Number of users which will receive giveaway prize
     :type winner_count: :class:`Int32`
-    :param month_count: Number of months the Telegram Premium subscription will be active after code activation
-    :type month_count: :class:`Int32`
+    :param prize: Prize of the giveaway
+    :type prize: :class:`GiveawayPrize`
+    :param boost_count: The number of boosts received by the chat from the giveaway; for Telegram Star giveaways only
+    :type boost_count: :class:`Int32`
     :param payment_date: Point in time (Unix timestamp) when the giveaway was paid
     :type payment_date: :class:`Int32`
     """
 
-    ID: typing.Literal["prepaidPremiumGiveaway"] = Field(
-        "prepaidPremiumGiveaway", validation_alias="@type", alias="@type"
-    )
+    ID: typing.Literal["prepaidGiveaway"] = Field("prepaidGiveaway", validation_alias="@type", alias="@type")
     id: Int64
     winner_count: Int32
-    month_count: Int32
+    prize: GiveawayPrize
+    boost_count: Int32
     payment_date: Int32
+
+
+class PreparedInlineMessage(BaseObject):
+    """
+    Represents a ready to send inline message. Use sendInlineQueryResultMessage to send the message
+
+    :param inline_query_id: Unique identifier of the inline query to pass to sendInlineQueryResultMessage
+    :type inline_query_id: :class:`Int64`
+    :param result: Resulted inline message of the query
+    :type result: :class:`InlineQueryResult`
+    :param chat_types: Types of the chats to which the message can be sent
+    :type chat_types: :class:`TargetChatTypes`
+    """
+
+    ID: typing.Literal["preparedInlineMessage"] = Field(
+        "preparedInlineMessage", validation_alias="@type", alias="@type"
+    )
+    inline_query_id: Int64
+    result: InlineQueryResult
+    chat_types: TargetChatTypes
+
+
+class PreparedInlineMessageId(BaseObject):
+    """
+    Represents an inline message that can be sent via the bot
+
+    :param id: Unique identifier for the message
+    :type id: :class:`String`
+    :param expiration_date: Point in time (Unix timestamp) when the message can't be used anymore
+    :type expiration_date: :class:`Int32`
+    """
+
+    ID: typing.Literal["preparedInlineMessageId"] = Field(
+        "preparedInlineMessageId", validation_alias="@type", alias="@type"
+    )
+    id: String
+    expiration_date: Int32
 
 
 class ProductInfo(BaseObject):
@@ -18156,6 +20116,40 @@ class PushMessageContentGameScore(BaseObject):
     is_pinned: Bool = False
 
 
+class PushMessageContentGift(BaseObject):
+    """
+    A message with a gift
+
+    :param star_count: Number of Telegram Stars that sender paid for the gift
+    :type star_count: :class:`Int53`
+    """
+
+    ID: typing.Literal["pushMessageContentGift"] = Field(
+        "pushMessageContentGift", validation_alias="@type", alias="@type"
+    )
+    star_count: Int53
+
+
+class PushMessageContentGiveaway(BaseObject):
+    """
+    A message with a giveaway
+
+    :param prize: Prize of the giveaway; may be null for pinned message, defaults to None
+    :type prize: :class:`GiveawayPrize`, optional
+    :param winner_count: Number of users which will receive giveaway prizes; 0 for pinned message
+    :type winner_count: :class:`Int32`
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`Bool`
+    """
+
+    ID: typing.Literal["pushMessageContentGiveaway"] = Field(
+        "pushMessageContentGiveaway", validation_alias="@type", alias="@type"
+    )
+    prize: typing.Optional[GiveawayPrize] = None
+    winner_count: Int32 = 0
+    is_pinned: Bool = False
+
+
 class PushMessageContentHidden(BaseObject):
     """
     A general message with hidden content
@@ -18244,6 +20238,23 @@ class PushMessageContentMessageForwards(BaseObject):
     total_count: Int32
 
 
+class PushMessageContentPaidMedia(BaseObject):
+    """
+    A message with paid media
+
+    :param star_count: Number of Telegram Stars needed to buy access to the media in the message; 0 for pinned message
+    :type star_count: :class:`Int53`
+    :param is_pinned: True, if the message is a pinned message with the specified content
+    :type is_pinned: :class:`Bool`
+    """
+
+    ID: typing.Literal["pushMessageContentPaidMedia"] = Field(
+        "pushMessageContentPaidMedia", validation_alias="@type", alias="@type"
+    )
+    star_count: Int53 = 0
+    is_pinned: Bool = False
+
+
 class PushMessageContentPhoto(BaseObject):
     """
     A photo message
@@ -18299,26 +20310,6 @@ class PushMessageContentPremiumGiftCode(BaseObject):
         "pushMessageContentPremiumGiftCode", validation_alias="@type", alias="@type"
     )
     month_count: Int32
-
-
-class PushMessageContentPremiumGiveaway(BaseObject):
-    """
-    A message with a Telegram Premium giveaway
-
-    :param winner_count: Number of users which will receive Telegram Premium subscription gift codes; 0 for pinned message
-    :type winner_count: :class:`Int32`
-    :param month_count: Number of months the Telegram Premium subscription will be active after code activation; 0 for pinned message
-    :type month_count: :class:`Int32`
-    :param is_pinned: True, if the message is a pinned message with the specified content
-    :type is_pinned: :class:`Bool`
-    """
-
-    ID: typing.Literal["pushMessageContentPremiumGiveaway"] = Field(
-        "pushMessageContentPremiumGiveaway", validation_alias="@type", alias="@type"
-    )
-    winner_count: Int32 = 0
-    month_count: Int32 = 0
-    is_pinned: Bool = False
 
 
 class PushMessageContentRecurringPayment(BaseObject):
@@ -18406,6 +20397,20 @@ class PushMessageContentText(BaseObject):
     is_pinned: Bool = False
 
 
+class PushMessageContentUpgradedGift(BaseObject):
+    """
+    A message with an upgraded gift
+
+    :param is_upgrade: True, if the gift was obtained by upgrading of a previously received gift; otherwise, this is a transferred gift
+    :type is_upgrade: :class:`Bool`
+    """
+
+    ID: typing.Literal["pushMessageContentUpgradedGift"] = Field(
+        "pushMessageContentUpgradedGift", validation_alias="@type", alias="@type"
+    )
+    is_upgrade: Bool = False
+
+
 class PushMessageContentVideo(BaseObject):
     """
     A video message
@@ -18480,21 +20485,24 @@ PushMessageContent = typing.Union[
     PushMessageContentDocument,
     PushMessageContentGame,
     PushMessageContentGameScore,
+    PushMessageContentGift,
+    PushMessageContentGiveaway,
     PushMessageContentHidden,
     PushMessageContentInvoice,
     PushMessageContentLocation,
     PushMessageContentMediaAlbum,
     PushMessageContentMessageForwards,
+    PushMessageContentPaidMedia,
     PushMessageContentPhoto,
     PushMessageContentPoll,
     PushMessageContentPremiumGiftCode,
-    PushMessageContentPremiumGiveaway,
     PushMessageContentRecurringPayment,
     PushMessageContentScreenshotTaken,
     PushMessageContentSticker,
     PushMessageContentStory,
     PushMessageContentSuggestProfilePhoto,
     PushMessageContentText,
+    PushMessageContentUpgradedGift,
     PushMessageContentVideo,
     PushMessageContentVideoNote,
     PushMessageContentVoiceNote,
@@ -18665,9 +20673,18 @@ class ReactionTypeEmoji(BaseObject):
     emoji: String
 
 
+class ReactionTypePaid(BaseObject):
+    """
+    The paid reaction in a channel chat
+    """
+
+    ID: typing.Literal["reactionTypePaid"] = Field("reactionTypePaid", validation_alias="@type", alias="@type")
+
+
 ReactionType = typing.Union[
     ReactionTypeCustomEmoji,
     ReactionTypeEmoji,
+    ReactionTypePaid,
 ]
 
 
@@ -18701,7 +20718,7 @@ class ReadDatePrivacySettings(BaseObject):
     """
     Contains privacy settings for message read date in private chats. Read dates are always shown to the users that can see online status of the current user regardless of this setting
 
-    :param show_read_date: True, if message read date is shown to other users in private chats. If false and the current user isn't a Telegram Premium user, then they will not be able to see other's message read date.
+    :param show_read_date: True, if message read date is shown to other users in private chats. If false and the current user isn't a Telegram Premium user, then they will not be able to see other's message read date
     :type show_read_date: :class:`Bool`
     """
 
@@ -18709,6 +20726,78 @@ class ReadDatePrivacySettings(BaseObject):
         "readDatePrivacySettings", validation_alias="@type", alias="@type"
     )
     show_read_date: Bool = False
+
+
+class ReceivedGift(BaseObject):
+    """
+    Represents a gift received by a user or a chat
+
+    :param received_gift_id: Unique identifier of the received gift for the current user; only for the receiver of the gift
+    :type received_gift_id: :class:`String`
+    :param text: Message added to the gift
+    :type text: :class:`FormattedText`
+    :param date: Point in time (Unix timestamp) when the gift was sent
+    :type date: :class:`Int32`
+    :param gift: The gift
+    :type gift: :class:`SentGift`
+    :param prepaid_upgrade_star_count: Number of Telegram Stars that were paid by the sender for the ability to upgrade the gift
+    :type prepaid_upgrade_star_count: :class:`Int53`
+    :param transfer_star_count: Number of Telegram Stars that must be paid to transfer the upgraded gift; only for the receiver of the gift
+    :type transfer_star_count: :class:`Int53`
+    :param sender_id: Identifier of a user or a chat that sent the gift; may be null if unknown, defaults to None
+    :type sender_id: :class:`MessageSender`, optional
+    :param is_private: True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone are able to see them
+    :type is_private: :class:`Bool`
+    :param is_saved: True, if the gift is displayed on the chat's profile page; only for the receiver of the gift
+    :type is_saved: :class:`Bool`
+    :param can_be_upgraded: True, if the gift is a regular gift that can be upgraded to a unique gift; only for the receiver of the gift
+    :type can_be_upgraded: :class:`Bool`
+    :param can_be_transferred: True, if the gift is an upgraded gift that can be transferred to another owner; only for the receiver of the gift
+    :type can_be_transferred: :class:`Bool`
+    :param was_refunded: True, if the gift was refunded and isn't available anymore
+    :type was_refunded: :class:`Bool`
+    :param sell_star_count: Number of Telegram Stars that can be claimed by the receiver instead of the regular gift; 0 if the gift can't be sold by the current user
+    :type sell_star_count: :class:`Int53`
+    :param export_date: Point in time (Unix timestamp) when the upgraded gift can be transferred to the TON blockchain as an NFT; 0 if NFT export isn't possible; only for the receiver of the gift
+    :type export_date: :class:`Int32`
+    """
+
+    ID: typing.Literal["receivedGift"] = Field("receivedGift", validation_alias="@type", alias="@type")
+    received_gift_id: String
+    text: FormattedText
+    date: Int32
+    gift: SentGift
+    prepaid_upgrade_star_count: Int53
+    transfer_star_count: Int53
+    sender_id: typing.Optional[MessageSender] = None
+    is_private: Bool = False
+    is_saved: Bool = False
+    can_be_upgraded: Bool = False
+    can_be_transferred: Bool = False
+    was_refunded: Bool = False
+    sell_star_count: Int53 = 0
+    export_date: Int32 = 0
+
+
+class ReceivedGifts(BaseObject):
+    """
+    Represents a list of gifts received by a user or a chat
+
+    :param total_count: The total number of received gifts
+    :type total_count: :class:`Int32`
+    :param gifts: The list of gifts
+    :type gifts: :class:`Vector[ReceivedGift]`
+    :param are_notifications_enabled: True, if notifications about new gifts of the owner are enabled
+    :type are_notifications_enabled: :class:`Bool`
+    :param next_offset: The offset for the next request. If empty, then there are no more results
+    :type next_offset: :class:`String`
+    """
+
+    ID: typing.Literal["receivedGifts"] = Field("receivedGifts", validation_alias="@type", alias="@type")
+    total_count: Int32
+    gifts: Vector[ReceivedGift]
+    are_notifications_enabled: Bool = False
+    next_offset: String = ""
 
 
 class RecommendedChatFolder(BaseObject):
@@ -18829,7 +20918,7 @@ class ReplyMarkupShowKeyboard(BaseObject):
 
     :param rows: A list of rows of bot keyboard buttons
     :type rows: :class:`Vector[Vector[KeyboardButton]]`
-    :param is_persistent: True, if the keyboard is supposed to always be shown when the ordinary keyboard is hidden
+    :param is_persistent: True, if the keyboard is expected to always be shown when the ordinary keyboard is hidden
     :type is_persistent: :class:`Bool`
     :param resize_keyboard: True, if the application needs to resize the keyboard vertically
     :type resize_keyboard: :class:`Bool`
@@ -18860,21 +20949,64 @@ ReplyMarkup = typing.Union[
 ]
 
 
-class ReportChatSponsoredMessageOption(BaseObject):
+class ReportChatResultMessagesRequired(BaseObject):
     """
-    Describes an option to report a sponsored message
-
-    :param id: Unique identifier of the option
-    :type id: :class:`Bytes`
-    :param text: Text of the option
-    :type text: :class:`String`
+    The user must choose messages to report and repeat the reportChat request with the chosen messages
     """
 
-    ID: typing.Literal["reportChatSponsoredMessageOption"] = Field(
-        "reportChatSponsoredMessageOption", validation_alias="@type", alias="@type"
+    ID: typing.Literal["reportChatResultMessagesRequired"] = Field(
+        "reportChatResultMessagesRequired", validation_alias="@type", alias="@type"
     )
-    id: Bytes
-    text: String
+
+
+class ReportChatResultOk(BaseObject):
+    """
+    The chat was reported successfully
+    """
+
+    ID: typing.Literal["reportChatResultOk"] = Field("reportChatResultOk", validation_alias="@type", alias="@type")
+
+
+class ReportChatResultOptionRequired(BaseObject):
+    """
+    The user must choose an option to report the chat and repeat request with the chosen option
+
+    :param title: Title for the option choice
+    :type title: :class:`String`
+    :param options: List of available options
+    :type options: :class:`Vector[ReportOption]`
+    """
+
+    ID: typing.Literal["reportChatResultOptionRequired"] = Field(
+        "reportChatResultOptionRequired", validation_alias="@type", alias="@type"
+    )
+    title: String
+    options: Vector[ReportOption]
+
+
+class ReportChatResultTextRequired(BaseObject):
+    """
+    The user must add additional text details to the report
+
+    :param option_id: Option identifier for the next reportChat request
+    :type option_id: :class:`Bytes`
+    :param is_optional: True, if the user can skip text adding
+    :type is_optional: :class:`Bool`
+    """
+
+    ID: typing.Literal["reportChatResultTextRequired"] = Field(
+        "reportChatResultTextRequired", validation_alias="@type", alias="@type"
+    )
+    option_id: Bytes
+    is_optional: Bool = False
+
+
+ReportChatResult = typing.Union[
+    ReportChatResultMessagesRequired,
+    ReportChatResultOk,
+    ReportChatResultOptionRequired,
+    ReportChatResultTextRequired,
+]
 
 
 class ReportChatSponsoredMessageResultAdsHidden(BaseObject):
@@ -18914,14 +21046,14 @@ class ReportChatSponsoredMessageResultOptionRequired(BaseObject):
     :param title: Title for the option choice
     :type title: :class:`String`
     :param options: List of available options
-    :type options: :class:`Vector[ReportChatSponsoredMessageOption]`
+    :type options: :class:`Vector[ReportOption]`
     """
 
     ID: typing.Literal["reportChatSponsoredMessageResultOptionRequired"] = Field(
         "reportChatSponsoredMessageResultOptionRequired", validation_alias="@type", alias="@type"
     )
     title: String
-    options: Vector[ReportChatSponsoredMessageOption]
+    options: Vector[ReportOption]
 
 
 class ReportChatSponsoredMessageResultPremiumRequired(BaseObject):
@@ -18941,6 +21073,21 @@ ReportChatSponsoredMessageResult = typing.Union[
     ReportChatSponsoredMessageResultOptionRequired,
     ReportChatSponsoredMessageResultPremiumRequired,
 ]
+
+
+class ReportOption(BaseObject):
+    """
+    Describes an option to report an entity to Telegram
+
+    :param id: Unique identifier of the option
+    :type id: :class:`Bytes`
+    :param text: Text of the option
+    :type text: :class:`String`
+    """
+
+    ID: typing.Literal["reportOption"] = Field("reportOption", validation_alias="@type", alias="@type")
+    id: Bytes
+    text: String
 
 
 class ReportReasonChildAbuse(BaseObject):
@@ -19049,6 +21196,55 @@ ReportReason = typing.Union[
 ]
 
 
+class ReportStoryResultOk(BaseObject):
+    """
+    The story was reported successfully
+    """
+
+    ID: typing.Literal["reportStoryResultOk"] = Field("reportStoryResultOk", validation_alias="@type", alias="@type")
+
+
+class ReportStoryResultOptionRequired(BaseObject):
+    """
+    The user must choose an option to report the story and repeat request with the chosen option
+
+    :param title: Title for the option choice
+    :type title: :class:`String`
+    :param options: List of available options
+    :type options: :class:`Vector[ReportOption]`
+    """
+
+    ID: typing.Literal["reportStoryResultOptionRequired"] = Field(
+        "reportStoryResultOptionRequired", validation_alias="@type", alias="@type"
+    )
+    title: String
+    options: Vector[ReportOption]
+
+
+class ReportStoryResultTextRequired(BaseObject):
+    """
+    The user must add additional text details to the report
+
+    :param option_id: Option identifier for the next reportStory request
+    :type option_id: :class:`Bytes`
+    :param is_optional: True, if the user can skip text adding
+    :type is_optional: :class:`Bool`
+    """
+
+    ID: typing.Literal["reportStoryResultTextRequired"] = Field(
+        "reportStoryResultTextRequired", validation_alias="@type", alias="@type"
+    )
+    option_id: Bytes
+    is_optional: Bool = False
+
+
+ReportStoryResult = typing.Union[
+    ReportStoryResultOk,
+    ReportStoryResultOptionRequired,
+    ReportStoryResultTextRequired,
+]
+
+
 class ResendCodeReasonUserRequest(BaseObject):
     """
     The user requested to resend the code
@@ -19063,7 +21259,7 @@ class ResendCodeReasonVerificationFailed(BaseObject):
     """
     The code is re-sent, because device verification has failed
 
-    :param error_message: Cause of the verification failure, for example, PLAY_SERVICES_NOT_AVAILABLE, APNS_RECEIVE_TIMEOUT, APNS_INIT_FAILED, etc.
+    :param error_message: Cause of the verification failure, for example, PLAY_SERVICES_NOT_AVAILABLE, APNS_RECEIVE_TIMEOUT, or APNS_INIT_FAILED
     :type error_message: :class:`String`
     """
 
@@ -19182,7 +21378,7 @@ class RichTextAnchor(BaseObject):
 
 class RichTextAnchorLink(BaseObject):
     """
-    A link to an anchor on the same web page
+    A link to an anchor on the same page
 
     :param text: The link text
     :type text: :class:`RichText`
@@ -19308,7 +21504,7 @@ class RichTextPlain(BaseObject):
 
 class RichTextReference(BaseObject):
     """
-    A reference to a richTexts object on the same web page
+    A reference to a richTexts object on the same page
 
     :param text: The text
     :type text: :class:`RichText`
@@ -19611,6 +21807,43 @@ class ScopeNotificationSettings(BaseObject):
     disable_mention_notifications: Bool = False
 
 
+class SearchMessagesChatTypeFilterChannel(BaseObject):
+    """
+    Returns only messages in channel chats
+    """
+
+    ID: typing.Literal["searchMessagesChatTypeFilterChannel"] = Field(
+        "searchMessagesChatTypeFilterChannel", validation_alias="@type", alias="@type"
+    )
+
+
+class SearchMessagesChatTypeFilterGroup(BaseObject):
+    """
+    Returns only messages in basic group and supergroup chats
+    """
+
+    ID: typing.Literal["searchMessagesChatTypeFilterGroup"] = Field(
+        "searchMessagesChatTypeFilterGroup", validation_alias="@type", alias="@type"
+    )
+
+
+class SearchMessagesChatTypeFilterPrivate(BaseObject):
+    """
+    Returns only messages in private chats
+    """
+
+    ID: typing.Literal["searchMessagesChatTypeFilterPrivate"] = Field(
+        "searchMessagesChatTypeFilterPrivate", validation_alias="@type", alias="@type"
+    )
+
+
+SearchMessagesChatTypeFilter = typing.Union[
+    SearchMessagesChatTypeFilterChannel,
+    SearchMessagesChatTypeFilterGroup,
+    SearchMessagesChatTypeFilterPrivate,
+]
+
+
 class SearchMessagesFilterAnimation(BaseObject):
     """
     Returns only animation messages
@@ -19873,6 +22106,36 @@ SecretChatState = typing.Union[
     SecretChatStateClosed,
     SecretChatStatePending,
     SecretChatStateReady,
+]
+
+
+class SentGiftRegular(BaseObject):
+    """
+    Regular gift
+
+    :param gift: The gift
+    :type gift: :class:`Gift`
+    """
+
+    ID: typing.Literal["sentGiftRegular"] = Field("sentGiftRegular", validation_alias="@type", alias="@type")
+    gift: Gift
+
+
+class SentGiftUpgraded(BaseObject):
+    """
+    Upgraded gift
+
+    :param gift: The gift
+    :type gift: :class:`UpgradedGift`
+    """
+
+    ID: typing.Literal["sentGiftUpgraded"] = Field("sentGiftUpgraded", validation_alias="@type", alias="@type")
+    gift: UpgradedGift
+
+
+SentGift = typing.Union[
+    SentGiftRegular,
+    SentGiftUpgraded,
 ]
 
 
@@ -20241,7 +22504,7 @@ class SponsoredMessage(BaseObject):
 
     :param message_id: Message identifier; unique for the chat to which the sponsored message belongs among both ordinary and sponsored messages
     :type message_id: :class:`Int53`
-    :param content: Content of the message. Currently, can be only of the type messageText
+    :param content: Content of the message. Currently, can be only of the types messageText, messageAnimation, messagePhoto, or messageVideo. Video messages can be viewed fullscreen
     :type content: :class:`MessageContent`
     :param sponsor: Information about the sponsor of the message
     :type sponsor: :class:`MessageSponsor`
@@ -20289,15 +22552,99 @@ class SponsoredMessages(BaseObject):
     messages_between: Int32 = 0
 
 
-class StarPaymentOption(BaseObject):
+class StarAmount(BaseObject):
     """
-    Describes an option for buying Telegram stars
+    Describes a possibly non-integer amount of Telegram Stars
+
+    :param star_count: The integer amount of Telegram Stars rounded to 0
+    :type star_count: :class:`Int53`
+    :param nanostar_count: The number of 1/1000000000 shares of Telegram Stars; from -999999999 to 999999999
+    :type nanostar_count: :class:`Int32`
+    """
+
+    ID: typing.Literal["starAmount"] = Field("starAmount", validation_alias="@type", alias="@type")
+    star_count: Int53
+    nanostar_count: Int32
+
+
+class StarGiveawayPaymentOption(BaseObject):
+    """
+    Describes an option for creating Telegram Star giveaway. Use telegramPaymentPurposeStarGiveaway for out-of-store payments
 
     :param currency: ISO 4217 currency code for the payment
     :type currency: :class:`String`
     :param amount: The amount to pay, in the smallest units of the currency
     :type amount: :class:`Int53`
-    :param star_count: Number of Telegram stars that will be purchased
+    :param star_count: Number of Telegram Stars that will be distributed among winners
+    :type star_count: :class:`Int53`
+    :param yearly_boost_count: Number of times the chat will be boosted for one year if the option is chosen
+    :type yearly_boost_count: :class:`Int32`
+    :param winner_options: Allowed options for the number of giveaway winners
+    :type winner_options: :class:`Vector[StarGiveawayWinnerOption]`
+    :param store_product_id: Identifier of the store product associated with the option; may be empty if none
+    :type store_product_id: :class:`String`
+    :param is_default: True, if the option must be chosen by default
+    :type is_default: :class:`Bool`
+    :param is_additional: True, if the option must be shown only in the full list of payment options
+    :type is_additional: :class:`Bool`
+    """
+
+    ID: typing.Literal["starGiveawayPaymentOption"] = Field(
+        "starGiveawayPaymentOption", validation_alias="@type", alias="@type"
+    )
+    currency: String
+    amount: Int53
+    star_count: Int53
+    yearly_boost_count: Int32
+    winner_options: Vector[StarGiveawayWinnerOption]
+    store_product_id: String = ""
+    is_default: Bool = False
+    is_additional: Bool = False
+
+
+class StarGiveawayPaymentOptions(BaseObject):
+    """
+    Contains a list of options for creating Telegram Star giveaway
+
+    :param options: The list of options
+    :type options: :class:`Vector[StarGiveawayPaymentOption]`
+    """
+
+    ID: typing.Literal["starGiveawayPaymentOptions"] = Field(
+        "starGiveawayPaymentOptions", validation_alias="@type", alias="@type"
+    )
+    options: Vector[StarGiveawayPaymentOption]
+
+
+class StarGiveawayWinnerOption(BaseObject):
+    """
+    Describes an option for the number of winners of a Telegram Star giveaway
+
+    :param winner_count: The number of users that will be chosen as winners
+    :type winner_count: :class:`Int32`
+    :param won_star_count: The number of Telegram Stars that will be won by the winners of the giveaway
+    :type won_star_count: :class:`Int53`
+    :param is_default: True, if the option must be chosen by default
+    :type is_default: :class:`Bool`
+    """
+
+    ID: typing.Literal["starGiveawayWinnerOption"] = Field(
+        "starGiveawayWinnerOption", validation_alias="@type", alias="@type"
+    )
+    winner_count: Int32
+    won_star_count: Int53
+    is_default: Bool = False
+
+
+class StarPaymentOption(BaseObject):
+    """
+    Describes an option for buying Telegram Stars. Use telegramPaymentPurposeStars for out-of-store payments
+
+    :param currency: ISO 4217 currency code for the payment
+    :type currency: :class:`String`
+    :param amount: The amount to pay, in the smallest units of the currency
+    :type amount: :class:`Int53`
+    :param star_count: Number of Telegram Stars that will be purchased
     :type star_count: :class:`Int53`
     :param store_product_id: Identifier of the store product associated with the option; may be empty if none
     :type store_product_id: :class:`String`
@@ -20315,7 +22662,7 @@ class StarPaymentOption(BaseObject):
 
 class StarPaymentOptions(BaseObject):
     """
-    Contains a list of options for buying Telegram stars
+    Contains a list of options for buying Telegram Stars
 
     :param options: The list of options
     :type options: :class:`Vector[StarPaymentOption]`
@@ -20327,13 +22674,13 @@ class StarPaymentOptions(BaseObject):
 
 class StarRevenueStatistics(BaseObject):
     """
-    A detailed statistics about Telegram stars earned by a bot or a chat
+    A detailed statistics about Telegram Stars earned by a bot or a chat
 
     :param revenue_by_day_graph: A graph containing amount of revenue in a given day
     :type revenue_by_day_graph: :class:`StatisticalGraph`
-    :param status: Telegram star revenue status
+    :param status: Telegram Star revenue status
     :type status: :class:`StarRevenueStatus`
-    :param usd_rate: Current conversion rate of a Telegram star to USD
+    :param usd_rate: Current conversion rate of a Telegram Star to USD
     :type usd_rate: :class:`Double`
     """
 
@@ -20347,55 +22694,169 @@ class StarRevenueStatistics(BaseObject):
 
 class StarRevenueStatus(BaseObject):
     """
-    Contains information about Telegram stars earned by a bot or a chat
+    Contains information about Telegram Stars earned by a bot or a chat
 
-    :param total_count: Total number of the stars earned
-    :type total_count: :class:`Int53`
-    :param current_count: The number of Telegram stars that aren't withdrawn yet
-    :type current_count: :class:`Int53`
-    :param available_count: The number of Telegram stars that are available for withdrawal
-    :type available_count: :class:`Int53`
-    :param withdrawal_enabled: True, if Telegram stars can be withdrawn now or later
+    :param total_amount: Total amount of Telegram Stars earned
+    :type total_amount: :class:`StarAmount`
+    :param current_amount: The amount of Telegram Stars that aren't withdrawn yet
+    :type current_amount: :class:`StarAmount`
+    :param available_amount: The amount of Telegram Stars that are available for withdrawal
+    :type available_amount: :class:`StarAmount`
+    :param withdrawal_enabled: True, if Telegram Stars can be withdrawn now or later
     :type withdrawal_enabled: :class:`Bool`
     :param next_withdrawal_in: Time left before the next withdrawal can be started, in seconds; 0 if withdrawal can be started now
     :type next_withdrawal_in: :class:`Int32`
     """
 
     ID: typing.Literal["starRevenueStatus"] = Field("starRevenueStatus", validation_alias="@type", alias="@type")
-    total_count: Int53
-    current_count: Int53
-    available_count: Int53
+    total_amount: StarAmount
+    current_amount: StarAmount
+    available_amount: StarAmount
     withdrawal_enabled: Bool = False
     next_withdrawal_in: Int32 = 0
 
 
+class StarSubscription(BaseObject):
+    """
+    Contains information about subscription to a channel chat, a bot, or a business account that was paid in Telegram Stars
+
+    :param id: Unique identifier of the subscription
+    :type id: :class:`String`
+    :param chat_id: Identifier of the chat that is subscribed
+    :type chat_id: :class:`Int53`
+    :param expiration_date: Point in time (Unix timestamp) when the subscription will expire or expired
+    :type expiration_date: :class:`Int32`
+    :param pricing: The subscription plan
+    :type pricing: :class:`StarSubscriptionPricing`
+    :param type_: Type of the subscription
+    :type type_: :class:`StarSubscriptionType`
+    :param is_canceled: True, if the subscription was canceled
+    :type is_canceled: :class:`Bool`
+    :param is_expiring: True, if the subscription expires soon and there are no enough Telegram Stars on the user's balance to extend it
+    :type is_expiring: :class:`Bool`
+    """
+
+    ID: typing.Literal["starSubscription"] = Field("starSubscription", validation_alias="@type", alias="@type")
+    id: String
+    chat_id: Int53
+    expiration_date: Int32
+    pricing: StarSubscriptionPricing
+    type_: StarSubscriptionType = Field(..., alias="type")
+    is_canceled: Bool = False
+    is_expiring: Bool = False
+
+
+class StarSubscriptionPricing(BaseObject):
+    """
+    Describes subscription plan paid in Telegram Stars
+
+    :param period: The number of seconds between consecutive Telegram Star debiting
+    :type period: :class:`Int32`
+    :param star_count: The amount of Telegram Stars that must be paid for each period
+    :type star_count: :class:`Int53`
+    """
+
+    ID: typing.Literal["starSubscriptionPricing"] = Field(
+        "starSubscriptionPricing", validation_alias="@type", alias="@type"
+    )
+    period: Int32
+    star_count: Int53
+
+
+class StarSubscriptionTypeBot(BaseObject):
+    """
+    Describes a subscription in a bot or a business account
+
+    :param title: Subscription invoice title
+    :type title: :class:`String`
+    :param photo: Subscription invoice photo
+    :type photo: :class:`Photo`
+    :param invoice_link: The link to the subscription invoice
+    :type invoice_link: :class:`String`
+    :param is_canceled_by_bot: True, if the subscription was canceled by the bot and can't be extended
+    :type is_canceled_by_bot: :class:`Bool`
+    """
+
+    ID: typing.Literal["starSubscriptionTypeBot"] = Field(
+        "starSubscriptionTypeBot", validation_alias="@type", alias="@type"
+    )
+    title: String
+    photo: Photo
+    invoice_link: String
+    is_canceled_by_bot: Bool = False
+
+
+class StarSubscriptionTypeChannel(BaseObject):
+    """
+    Describes a subscription to a channel chat
+
+    :param can_reuse: True, if the subscription is active and the user can use the method reuseStarSubscription to join the subscribed chat again
+    :type can_reuse: :class:`Bool`
+    :param invite_link: The invite link that can be used to renew the subscription if it has been expired; may be empty, if the link isn't available anymore
+    :type invite_link: :class:`String`
+    """
+
+    ID: typing.Literal["starSubscriptionTypeChannel"] = Field(
+        "starSubscriptionTypeChannel", validation_alias="@type", alias="@type"
+    )
+    can_reuse: Bool = False
+    invite_link: String = ""
+
+
+StarSubscriptionType = typing.Union[
+    StarSubscriptionTypeBot,
+    StarSubscriptionTypeChannel,
+]
+
+
+class StarSubscriptions(BaseObject):
+    """
+    Represents a list of Telegram Star subscriptions
+
+    :param star_amount: The amount of owned Telegram Stars
+    :type star_amount: :class:`StarAmount`
+    :param subscriptions: List of subscriptions for Telegram Stars
+    :type subscriptions: :class:`Vector[StarSubscription]`
+    :param required_star_count: The number of Telegram Stars required to buy to extend subscriptions expiring soon
+    :type required_star_count: :class:`Int53`
+    :param next_offset: The offset for the next request. If empty, then there are no more results
+    :type next_offset: :class:`String`
+    """
+
+    ID: typing.Literal["starSubscriptions"] = Field("starSubscriptions", validation_alias="@type", alias="@type")
+    star_amount: StarAmount
+    subscriptions: Vector[StarSubscription]
+    required_star_count: Int53
+    next_offset: String = ""
+
+
 class StarTransaction(BaseObject):
     """
-    Represents a transaction changing the amount of owned Telegram stars
+    Represents a transaction changing the amount of owned Telegram Stars
 
     :param id: Unique identifier of the transaction
     :type id: :class:`String`
-    :param star_count: The amount of added owned Telegram stars; negative for outgoing transactions
-    :type star_count: :class:`Int53`
+    :param star_amount: The amount of added owned Telegram Stars; negative for outgoing transactions
+    :type star_amount: :class:`StarAmount`
     :param date: Point in time (Unix timestamp) when the transaction was completed
     :type date: :class:`Int32`
-    :param partner: Source of the incoming transaction, or its recipient for outgoing transactions
-    :type partner: :class:`StarTransactionPartner`
+    :param type_: Type of the transaction
+    :type type_: :class:`StarTransactionType`
     :param is_refund: True, if the transaction is a refund of a previous transaction
     :type is_refund: :class:`Bool`
     """
 
     ID: typing.Literal["starTransaction"] = Field("starTransaction", validation_alias="@type", alias="@type")
     id: String
-    star_count: Int53
+    star_amount: StarAmount
     date: Int32
-    partner: StarTransactionPartner
+    type_: StarTransactionType = Field(..., alias="type")
     is_refund: Bool = False
 
 
 class StarTransactionDirectionIncoming(BaseObject):
     """
-    The transaction is incoming and increases the number of owned Telegram stars
+    The transaction is incoming and increases the number of owned Telegram Stars
     """
 
     ID: typing.Literal["starTransactionDirectionIncoming"] = Field(
@@ -20405,7 +22866,7 @@ class StarTransactionDirectionIncoming(BaseObject):
 
 class StarTransactionDirectionOutgoing(BaseObject):
     """
-    The transaction is outgoing and decreases the number of owned Telegram stars
+    The transaction is outgoing and decreases the number of owned Telegram Stars
     """
 
     ID: typing.Literal["starTransactionDirectionOutgoing"] = Field(
@@ -20419,116 +22880,489 @@ StarTransactionDirection = typing.Union[
 ]
 
 
-class StarTransactionPartnerAppStore(BaseObject):
+class StarTransactionTypeAffiliateProgramCommission(BaseObject):
     """
-    The transaction is a transaction with App Store
-    """
+    The transaction is a receiving of a commission from an affiliate program; for regular users, bots and channel chats only
 
-    ID: typing.Literal["starTransactionPartnerAppStore"] = Field(
-        "starTransactionPartnerAppStore", validation_alias="@type", alias="@type"
-    )
-
-
-class StarTransactionPartnerChannel(BaseObject):
-    """
-    The transaction is a transaction with a channel chat
-
-    :param chat_id: Identifier of the chat
+    :param chat_id: Identifier of the chat that created the affiliate program
     :type chat_id: :class:`Int53`
+    :param commission_per_mille: The number of Telegram Stars received by the affiliate for each 1000 Telegram Stars received by the program owner
+    :type commission_per_mille: :class:`Int32`
     """
 
-    ID: typing.Literal["starTransactionPartnerChannel"] = Field(
-        "starTransactionPartnerChannel", validation_alias="@type", alias="@type"
+    ID: typing.Literal["starTransactionTypeAffiliateProgramCommission"] = Field(
+        "starTransactionTypeAffiliateProgramCommission", validation_alias="@type", alias="@type"
     )
     chat_id: Int53
+    commission_per_mille: Int32
 
 
-class StarTransactionPartnerFragment(BaseObject):
+class StarTransactionTypeAppStoreDeposit(BaseObject):
     """
-    The transaction is a transaction with Fragment
+    The transaction is a deposit of Telegram Stars from App Store; for regular users only
+    """
+
+    ID: typing.Literal["starTransactionTypeAppStoreDeposit"] = Field(
+        "starTransactionTypeAppStoreDeposit", validation_alias="@type", alias="@type"
+    )
+
+
+class StarTransactionTypeBotInvoicePurchase(BaseObject):
+    """
+    The transaction is a purchase of a product from a bot or a business account by the current user; for regular users only
+
+    :param user_id: Identifier of the bot or the business account user that created the invoice
+    :type user_id: :class:`Int53`
+    :param product_info: Information about the bought product
+    :type product_info: :class:`ProductInfo`
+    """
+
+    ID: typing.Literal["starTransactionTypeBotInvoicePurchase"] = Field(
+        "starTransactionTypeBotInvoicePurchase", validation_alias="@type", alias="@type"
+    )
+    user_id: Int53
+    product_info: ProductInfo
+
+
+class StarTransactionTypeBotInvoiceSale(BaseObject):
+    """
+    The transaction is a sale of a product by the bot; for bots only
+
+    :param user_id: Identifier of the user that bought the product
+    :type user_id: :class:`Int53`
+    :param product_info: Information about the bought product
+    :type product_info: :class:`ProductInfo`
+    :param invoice_payload: Invoice payload
+    :type invoice_payload: :class:`Bytes`
+    :param affiliate: Information about the affiliate which received commission from the transaction; may be null if none, defaults to None
+    :type affiliate: :class:`AffiliateInfo`, optional
+    """
+
+    ID: typing.Literal["starTransactionTypeBotInvoiceSale"] = Field(
+        "starTransactionTypeBotInvoiceSale", validation_alias="@type", alias="@type"
+    )
+    user_id: Int53
+    product_info: ProductInfo
+    invoice_payload: Bytes
+    affiliate: typing.Optional[AffiliateInfo] = None
+
+
+class StarTransactionTypeBotPaidMediaPurchase(BaseObject):
+    """
+    The transaction is a purchase of paid media from a bot or a business account by the current user; for regular users only
+
+    :param user_id: Identifier of the bot or the business account user that sent the paid media
+    :type user_id: :class:`Int53`
+    :param media: The bought media if the transaction wasn't refunded
+    :type media: :class:`Vector[PaidMedia]`
+    """
+
+    ID: typing.Literal["starTransactionTypeBotPaidMediaPurchase"] = Field(
+        "starTransactionTypeBotPaidMediaPurchase", validation_alias="@type", alias="@type"
+    )
+    user_id: Int53
+    media: Vector[PaidMedia]
+
+
+class StarTransactionTypeBotPaidMediaSale(BaseObject):
+    """
+    The transaction is a sale of paid media by the bot or a business account managed by the bot; for bots only
+
+    :param user_id: Identifier of the user that bought the media
+    :type user_id: :class:`Int53`
+    :param media: The bought media
+    :type media: :class:`Vector[PaidMedia]`
+    :param payload: Bot-provided payload
+    :type payload: :class:`String`
+    :param affiliate: Information about the affiliate which received commission from the transaction; may be null if none, defaults to None
+    :type affiliate: :class:`AffiliateInfo`, optional
+    """
+
+    ID: typing.Literal["starTransactionTypeBotPaidMediaSale"] = Field(
+        "starTransactionTypeBotPaidMediaSale", validation_alias="@type", alias="@type"
+    )
+    user_id: Int53
+    media: Vector[PaidMedia]
+    payload: String
+    affiliate: typing.Optional[AffiliateInfo] = None
+
+
+class StarTransactionTypeBotSubscriptionPurchase(BaseObject):
+    """
+    The transaction is a purchase of a subscription from a bot or a business account by the current user; for regular users only
+
+    :param user_id: Identifier of the bot or the business account user that created the subscription link
+    :type user_id: :class:`Int53`
+    :param subscription_period: The number of seconds between consecutive Telegram Star debitings
+    :type subscription_period: :class:`Int32`
+    :param product_info: Information about the bought subscription
+    :type product_info: :class:`ProductInfo`
+    """
+
+    ID: typing.Literal["starTransactionTypeBotSubscriptionPurchase"] = Field(
+        "starTransactionTypeBotSubscriptionPurchase", validation_alias="@type", alias="@type"
+    )
+    user_id: Int53
+    subscription_period: Int32
+    product_info: ProductInfo
+
+
+class StarTransactionTypeBotSubscriptionSale(BaseObject):
+    """
+    The transaction is a sale of a subscription by the bot; for bots only
+
+    :param user_id: Identifier of the user that bought the subscription
+    :type user_id: :class:`Int53`
+    :param subscription_period: The number of seconds between consecutive Telegram Star debitings
+    :type subscription_period: :class:`Int32`
+    :param product_info: Information about the bought subscription
+    :type product_info: :class:`ProductInfo`
+    :param invoice_payload: Invoice payload
+    :type invoice_payload: :class:`Bytes`
+    :param affiliate: Information about the affiliate which received commission from the transaction; may be null if none, defaults to None
+    :type affiliate: :class:`AffiliateInfo`, optional
+    """
+
+    ID: typing.Literal["starTransactionTypeBotSubscriptionSale"] = Field(
+        "starTransactionTypeBotSubscriptionSale", validation_alias="@type", alias="@type"
+    )
+    user_id: Int53
+    subscription_period: Int32
+    product_info: ProductInfo
+    invoice_payload: Bytes
+    affiliate: typing.Optional[AffiliateInfo] = None
+
+
+class StarTransactionTypeChannelPaidMediaPurchase(BaseObject):
+    """
+    The transaction is a purchase of paid media from a channel by the current user; for regular users only
+
+    :param chat_id: Identifier of the channel chat that sent the paid media
+    :type chat_id: :class:`Int53`
+    :param message_id: Identifier of the corresponding message with paid media; can be 0 or an identifier of a deleted message
+    :type message_id: :class:`Int53`
+    :param media: The bought media if the transaction wasn't refunded
+    :type media: :class:`Vector[PaidMedia]`
+    """
+
+    ID: typing.Literal["starTransactionTypeChannelPaidMediaPurchase"] = Field(
+        "starTransactionTypeChannelPaidMediaPurchase", validation_alias="@type", alias="@type"
+    )
+    chat_id: Int53
+    message_id: Int53
+    media: Vector[PaidMedia]
+
+
+class StarTransactionTypeChannelPaidMediaSale(BaseObject):
+    """
+    The transaction is a sale of paid media by the channel chat; for channel chats only
+
+    :param user_id: Identifier of the user that bought the media
+    :type user_id: :class:`Int53`
+    :param message_id: Identifier of the corresponding message with paid media; can be 0 or an identifier of a deleted message
+    :type message_id: :class:`Int53`
+    :param media: The bought media
+    :type media: :class:`Vector[PaidMedia]`
+    """
+
+    ID: typing.Literal["starTransactionTypeChannelPaidMediaSale"] = Field(
+        "starTransactionTypeChannelPaidMediaSale", validation_alias="@type", alias="@type"
+    )
+    user_id: Int53
+    message_id: Int53
+    media: Vector[PaidMedia]
+
+
+class StarTransactionTypeChannelPaidReactionReceive(BaseObject):
+    """
+    The transaction is a receiving of a paid reaction to a message by the channel chat; for channel chats only
+
+    :param user_id: Identifier of the user that added the paid reaction
+    :type user_id: :class:`Int53`
+    :param message_id: Identifier of the reacted message; can be 0 or an identifier of a deleted message
+    :type message_id: :class:`Int53`
+    """
+
+    ID: typing.Literal["starTransactionTypeChannelPaidReactionReceive"] = Field(
+        "starTransactionTypeChannelPaidReactionReceive", validation_alias="@type", alias="@type"
+    )
+    user_id: Int53
+    message_id: Int53
+
+
+class StarTransactionTypeChannelPaidReactionSend(BaseObject):
+    """
+    The transaction is a sending of a paid reaction to a message in a channel chat by the current user; for regular users only
+
+    :param chat_id: Identifier of the channel chat
+    :type chat_id: :class:`Int53`
+    :param message_id: Identifier of the reacted message; can be 0 or an identifier of a deleted message
+    :type message_id: :class:`Int53`
+    """
+
+    ID: typing.Literal["starTransactionTypeChannelPaidReactionSend"] = Field(
+        "starTransactionTypeChannelPaidReactionSend", validation_alias="@type", alias="@type"
+    )
+    chat_id: Int53
+    message_id: Int53
+
+
+class StarTransactionTypeChannelSubscriptionPurchase(BaseObject):
+    """
+    The transaction is a purchase of a subscription to a channel chat by the current user; for regular users only
+
+    :param chat_id: Identifier of the channel chat that created the subscription
+    :type chat_id: :class:`Int53`
+    :param subscription_period: The number of seconds between consecutive Telegram Star debitings
+    :type subscription_period: :class:`Int32`
+    """
+
+    ID: typing.Literal["starTransactionTypeChannelSubscriptionPurchase"] = Field(
+        "starTransactionTypeChannelSubscriptionPurchase", validation_alias="@type", alias="@type"
+    )
+    chat_id: Int53
+    subscription_period: Int32
+
+
+class StarTransactionTypeChannelSubscriptionSale(BaseObject):
+    """
+    The transaction is a sale of a subscription by the channel chat; for channel chats only
+
+    :param user_id: Identifier of the user that bought the subscription
+    :type user_id: :class:`Int53`
+    :param subscription_period: The number of seconds between consecutive Telegram Star debitings
+    :type subscription_period: :class:`Int32`
+    """
+
+    ID: typing.Literal["starTransactionTypeChannelSubscriptionSale"] = Field(
+        "starTransactionTypeChannelSubscriptionSale", validation_alias="@type", alias="@type"
+    )
+    user_id: Int53
+    subscription_period: Int32
+
+
+class StarTransactionTypeFragmentDeposit(BaseObject):
+    """
+    The transaction is a deposit of Telegram Stars from Fragment; for regular users and bots only
+    """
+
+    ID: typing.Literal["starTransactionTypeFragmentDeposit"] = Field(
+        "starTransactionTypeFragmentDeposit", validation_alias="@type", alias="@type"
+    )
+
+
+class StarTransactionTypeFragmentWithdrawal(BaseObject):
+    """
+    The transaction is a withdrawal of earned Telegram Stars to Fragment; for bots and channel chats only
 
     :param withdrawal_state: State of the withdrawal; may be null for refunds from Fragment, defaults to None
     :type withdrawal_state: :class:`RevenueWithdrawalState`, optional
     """
 
-    ID: typing.Literal["starTransactionPartnerFragment"] = Field(
-        "starTransactionPartnerFragment", validation_alias="@type", alias="@type"
+    ID: typing.Literal["starTransactionTypeFragmentWithdrawal"] = Field(
+        "starTransactionTypeFragmentWithdrawal", validation_alias="@type", alias="@type"
     )
     withdrawal_state: typing.Optional[RevenueWithdrawalState] = None
 
 
-class StarTransactionPartnerGooglePlay(BaseObject):
+class StarTransactionTypeGiftPurchase(BaseObject):
     """
-    The transaction is a transaction with Google Play
+    The transaction is a purchase of a regular gift; for regular users and bots only
+
+    :param owner_id: Identifier of the user or the channel that received the gift
+    :type owner_id: :class:`MessageSender`
+    :param gift: The gift
+    :type gift: :class:`Gift`
     """
 
-    ID: typing.Literal["starTransactionPartnerGooglePlay"] = Field(
-        "starTransactionPartnerGooglePlay", validation_alias="@type", alias="@type"
+    ID: typing.Literal["starTransactionTypeGiftPurchase"] = Field(
+        "starTransactionTypeGiftPurchase", validation_alias="@type", alias="@type"
     )
+    owner_id: MessageSender
+    gift: Gift
 
 
-class StarTransactionPartnerTelegram(BaseObject):
+class StarTransactionTypeGiftSale(BaseObject):
     """
-    The transaction is a transaction with Telegram through a bot
-    """
+    The transaction is a sale of a received gift; for regular users and channel chats only
 
-    ID: typing.Literal["starTransactionPartnerTelegram"] = Field(
-        "starTransactionPartnerTelegram", validation_alias="@type", alias="@type"
-    )
-
-
-class StarTransactionPartnerUnsupported(BaseObject):
-    """
-    The transaction is a transaction with unknown partner
-    """
-
-    ID: typing.Literal["starTransactionPartnerUnsupported"] = Field(
-        "starTransactionPartnerUnsupported", validation_alias="@type", alias="@type"
-    )
-
-
-class StarTransactionPartnerUser(BaseObject):
-    """
-    The transaction is a transaction with another user
-
-    :param user_id: Identifier of the user
+    :param user_id: Identifier of the user that sent the gift
     :type user_id: :class:`Int53`
-    :param product_info: Information about the bought product; may be null if none, defaults to None
-    :type product_info: :class:`ProductInfo`, optional
+    :param gift: The gift
+    :type gift: :class:`Gift`
     """
 
-    ID: typing.Literal["starTransactionPartnerUser"] = Field(
-        "starTransactionPartnerUser", validation_alias="@type", alias="@type"
+    ID: typing.Literal["starTransactionTypeGiftSale"] = Field(
+        "starTransactionTypeGiftSale", validation_alias="@type", alias="@type"
     )
     user_id: Int53
-    product_info: typing.Optional[ProductInfo] = None
+    gift: Gift
 
 
-StarTransactionPartner = typing.Union[
-    StarTransactionPartnerAppStore,
-    StarTransactionPartnerChannel,
-    StarTransactionPartnerFragment,
-    StarTransactionPartnerGooglePlay,
-    StarTransactionPartnerTelegram,
-    StarTransactionPartnerUnsupported,
-    StarTransactionPartnerUser,
+class StarTransactionTypeGiftTransfer(BaseObject):
+    """
+    The transaction is a transfer of an upgraded gift; for regular users only
+
+    :param owner_id: Identifier of the user or the channel that received the gift
+    :type owner_id: :class:`MessageSender`
+    :param gift: The gift
+    :type gift: :class:`UpgradedGift`
+    """
+
+    ID: typing.Literal["starTransactionTypeGiftTransfer"] = Field(
+        "starTransactionTypeGiftTransfer", validation_alias="@type", alias="@type"
+    )
+    owner_id: MessageSender
+    gift: UpgradedGift
+
+
+class StarTransactionTypeGiftUpgrade(BaseObject):
+    """
+    The transaction is an upgrade of a gift; for regular users only
+
+    :param gift: The upgraded gift
+    :type gift: :class:`UpgradedGift`
+    """
+
+    ID: typing.Literal["starTransactionTypeGiftUpgrade"] = Field(
+        "starTransactionTypeGiftUpgrade", validation_alias="@type", alias="@type"
+    )
+    gift: UpgradedGift
+
+
+class StarTransactionTypeGiveawayDeposit(BaseObject):
+    """
+    The transaction is a deposit of Telegram Stars from a giveaway; for regular users only
+
+    :param chat_id: Identifier of a supergroup or a channel chat that created the giveaway
+    :type chat_id: :class:`Int53`
+    :param giveaway_message_id: Identifier of the message with the giveaway; can be 0 or an identifier of a deleted message
+    :type giveaway_message_id: :class:`Int53`
+    """
+
+    ID: typing.Literal["starTransactionTypeGiveawayDeposit"] = Field(
+        "starTransactionTypeGiveawayDeposit", validation_alias="@type", alias="@type"
+    )
+    chat_id: Int53
+    giveaway_message_id: Int53
+
+
+class StarTransactionTypeGooglePlayDeposit(BaseObject):
+    """
+    The transaction is a deposit of Telegram Stars from Google Play; for regular users only
+    """
+
+    ID: typing.Literal["starTransactionTypeGooglePlayDeposit"] = Field(
+        "starTransactionTypeGooglePlayDeposit", validation_alias="@type", alias="@type"
+    )
+
+
+class StarTransactionTypePremiumBotDeposit(BaseObject):
+    """
+    The transaction is a deposit of Telegram Stars from the Premium bot; for regular users only
+    """
+
+    ID: typing.Literal["starTransactionTypePremiumBotDeposit"] = Field(
+        "starTransactionTypePremiumBotDeposit", validation_alias="@type", alias="@type"
+    )
+
+
+class StarTransactionTypeTelegramAdsWithdrawal(BaseObject):
+    """
+    The transaction is a withdrawal of earned Telegram Stars to Telegram Ad platform; for bots and channel chats only
+    """
+
+    ID: typing.Literal["starTransactionTypeTelegramAdsWithdrawal"] = Field(
+        "starTransactionTypeTelegramAdsWithdrawal", validation_alias="@type", alias="@type"
+    )
+
+
+class StarTransactionTypeTelegramApiUsage(BaseObject):
+    """
+    The transaction is a payment for Telegram API usage; for bots only
+
+    :param request_count: The number of billed requests
+    :type request_count: :class:`Int32`
+    """
+
+    ID: typing.Literal["starTransactionTypeTelegramApiUsage"] = Field(
+        "starTransactionTypeTelegramApiUsage", validation_alias="@type", alias="@type"
+    )
+    request_count: Int32
+
+
+class StarTransactionTypeUnsupported(BaseObject):
+    """
+    The transaction is a transaction of an unsupported type
+    """
+
+    ID: typing.Literal["starTransactionTypeUnsupported"] = Field(
+        "starTransactionTypeUnsupported", validation_alias="@type", alias="@type"
+    )
+
+
+class StarTransactionTypeUserDeposit(BaseObject):
+    """
+    The transaction is a deposit of Telegram Stars by another user; for regular users only
+
+    :param sticker: The sticker to be shown in the transaction information; may be null if unknown, defaults to None
+    :type sticker: :class:`Sticker`, optional
+    :param user_id: Identifier of the user that gifted Telegram Stars; 0 if the user was anonymous
+    :type user_id: :class:`Int53`
+    """
+
+    ID: typing.Literal["starTransactionTypeUserDeposit"] = Field(
+        "starTransactionTypeUserDeposit", validation_alias="@type", alias="@type"
+    )
+    sticker: typing.Optional[Sticker] = None
+    user_id: Int53 = 0
+
+
+StarTransactionType = typing.Union[
+    StarTransactionTypeAffiliateProgramCommission,
+    StarTransactionTypeAppStoreDeposit,
+    StarTransactionTypeBotInvoicePurchase,
+    StarTransactionTypeBotInvoiceSale,
+    StarTransactionTypeBotPaidMediaPurchase,
+    StarTransactionTypeBotPaidMediaSale,
+    StarTransactionTypeBotSubscriptionPurchase,
+    StarTransactionTypeBotSubscriptionSale,
+    StarTransactionTypeChannelPaidMediaPurchase,
+    StarTransactionTypeChannelPaidMediaSale,
+    StarTransactionTypeChannelPaidReactionReceive,
+    StarTransactionTypeChannelPaidReactionSend,
+    StarTransactionTypeChannelSubscriptionPurchase,
+    StarTransactionTypeChannelSubscriptionSale,
+    StarTransactionTypeFragmentDeposit,
+    StarTransactionTypeFragmentWithdrawal,
+    StarTransactionTypeGiftPurchase,
+    StarTransactionTypeGiftSale,
+    StarTransactionTypeGiftTransfer,
+    StarTransactionTypeGiftUpgrade,
+    StarTransactionTypeGiveawayDeposit,
+    StarTransactionTypeGooglePlayDeposit,
+    StarTransactionTypePremiumBotDeposit,
+    StarTransactionTypeTelegramAdsWithdrawal,
+    StarTransactionTypeTelegramApiUsage,
+    StarTransactionTypeUnsupported,
+    StarTransactionTypeUserDeposit,
 ]
 
 
 class StarTransactions(BaseObject):
     """
-    Represents a list of Telegram star transactions
+    Represents a list of Telegram Star transactions
 
-    :param star_count: The amount of owned Telegram stars
-    :type star_count: :class:`Int53`
-    :param transactions: List of transactions with Telegram stars
+    :param star_amount: The amount of owned Telegram Stars
+    :type star_amount: :class:`StarAmount`
+    :param transactions: List of transactions with Telegram Stars
     :type transactions: :class:`Vector[StarTransaction]`
     :param next_offset: The offset for the next request. If empty, then there are no more results
     :type next_offset: :class:`String`
     """
 
     ID: typing.Literal["starTransactions"] = Field("starTransactions", validation_alias="@type", alias="@type")
-    star_count: Int53
+    star_amount: StarAmount
     transactions: Vector[StarTransaction]
     next_offset: String = ""
 
@@ -20619,8 +23453,6 @@ class Sticker(BaseObject):
     :type sticker: :class:`File`
     :param thumbnail: Sticker thumbnail in WEBP or JPEG format; may be null, defaults to None
     :type thumbnail: :class:`Thumbnail`, optional
-    :param outline: Sticker's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
-    :type outline: :class:`Vector[ClosedVectorPath]`
     :param id: Unique sticker identifier within the set; 0 if none, defaults to None
     :type id: :class:`Int64`, optional
     :param set_id: Identifier of the sticker set to which the sticker belongs; 0 if none, defaults to None
@@ -20635,7 +23467,6 @@ class Sticker(BaseObject):
     full_type: StickerFullType
     sticker: File
     thumbnail: typing.Optional[Thumbnail] = None
-    outline: Vector[ClosedVectorPath] = []
     id: typing.Optional[Int64] = 0
     set_id: typing.Optional[Int64] = 0
 
@@ -20741,8 +23572,8 @@ class StickerSet(BaseObject):
     :type emojis: :class:`Vector[Emojis]`
     :param thumbnail: Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed, defaults to None
     :type thumbnail: :class:`Thumbnail`, optional
-    :param thumbnail_outline: Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
-    :type thumbnail_outline: :class:`Vector[ClosedVectorPath]`
+    :param thumbnail_outline: Sticker set thumbnail's outline; may be null if unknown, defaults to None
+    :type thumbnail_outline: :class:`Outline`, optional
     :param is_owned: True, if the sticker set is owned by the current user
     :type is_owned: :class:`Bool`
     :param is_installed: True, if the sticker set has been installed by the current user
@@ -20766,7 +23597,7 @@ class StickerSet(BaseObject):
     stickers: Vector[Sticker]
     emojis: Vector[Emojis]
     thumbnail: typing.Optional[Thumbnail] = None
-    thumbnail_outline: Vector[ClosedVectorPath] = []
+    thumbnail_outline: typing.Optional[Outline] = None
     is_owned: Bool = False
     is_installed: Bool = False
     is_archived: Bool = False
@@ -20795,8 +23626,8 @@ class StickerSetInfo(BaseObject):
     :type covers: :class:`Vector[Sticker]`
     :param thumbnail: Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed, defaults to None
     :type thumbnail: :class:`Thumbnail`, optional
-    :param thumbnail_outline: Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
-    :type thumbnail_outline: :class:`Vector[ClosedVectorPath]`
+    :param thumbnail_outline: Sticker set thumbnail's outline; may be null if unknown, defaults to None
+    :type thumbnail_outline: :class:`Outline`, optional
     :param is_owned: True, if the sticker set is owned by the current user
     :type is_owned: :class:`Bool`
     :param is_installed: True, if the sticker set has been installed by the current user
@@ -20820,7 +23651,7 @@ class StickerSetInfo(BaseObject):
     size: Int32
     covers: Vector[Sticker]
     thumbnail: typing.Optional[Thumbnail] = None
-    thumbnail_outline: Vector[ClosedVectorPath] = []
+    thumbnail_outline: typing.Optional[Outline] = None
     is_owned: Bool = False
     is_installed: Bool = False
     is_archived: Bool = False
@@ -20976,24 +23807,27 @@ class StorageStatisticsFast(BaseObject):
     log_size: Int53
 
 
-class StorePaymentPurposeGiftedPremium(BaseObject):
+class StorePaymentPurposeGiftedStars(BaseObject):
     """
-    The user gifting Telegram Premium to another user
+    The user buying Telegram Stars for other users
 
-    :param user_id: Identifier of the user to which Premium was gifted
+    :param user_id: Identifier of the user to which Telegram Stars are gifted
     :type user_id: :class:`Int53`
     :param currency: ISO 4217 currency code of the payment currency
     :type currency: :class:`String`
     :param amount: Paid amount, in the smallest units of the currency
     :type amount: :class:`Int53`
+    :param star_count: Number of bought Telegram Stars
+    :type star_count: :class:`Int53`
     """
 
-    ID: typing.Literal["storePaymentPurposeGiftedPremium"] = Field(
-        "storePaymentPurposeGiftedPremium", validation_alias="@type", alias="@type"
+    ID: typing.Literal["storePaymentPurposeGiftedStars"] = Field(
+        "storePaymentPurposeGiftedStars", validation_alias="@type", alias="@type"
     )
     user_id: Int53
     currency: String
     amount: Int53
+    star_count: Int53
 
 
 class StorePaymentPurposePremiumGiftCodes(BaseObject):
@@ -21006,6 +23840,8 @@ class StorePaymentPurposePremiumGiftCodes(BaseObject):
     :type amount: :class:`Int53`
     :param user_ids: Identifiers of the users which can activate the gift codes
     :type user_ids: :class:`Vector[Int53]`
+    :param text: Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    :type text: :class:`FormattedText`
     :param boosted_chat_id: Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none, defaults to None
     :type boosted_chat_id: :class:`Int53`, optional
     """
@@ -21016,6 +23852,7 @@ class StorePaymentPurposePremiumGiftCodes(BaseObject):
     currency: String
     amount: Int53
     user_ids: Vector[Int53]
+    text: FormattedText
     boosted_chat_id: typing.Optional[Int53] = 0
 
 
@@ -21024,7 +23861,7 @@ class StorePaymentPurposePremiumGiveaway(BaseObject):
     The user creating a Telegram Premium giveaway
 
     :param parameters: Giveaway parameters
-    :type parameters: :class:`PremiumGiveawayParameters`
+    :type parameters: :class:`GiveawayParameters`
     :param currency: ISO 4217 currency code of the payment currency
     :type currency: :class:`String`
     :param amount: Paid amount, in the smallest units of the currency
@@ -21034,7 +23871,7 @@ class StorePaymentPurposePremiumGiveaway(BaseObject):
     ID: typing.Literal["storePaymentPurposePremiumGiveaway"] = Field(
         "storePaymentPurposePremiumGiveaway", validation_alias="@type", alias="@type"
     )
-    parameters: PremiumGiveawayParameters
+    parameters: GiveawayParameters
     currency: String
     amount: Int53
 
@@ -21056,15 +23893,41 @@ class StorePaymentPurposePremiumSubscription(BaseObject):
     is_upgrade: Bool = False
 
 
+class StorePaymentPurposeStarGiveaway(BaseObject):
+    """
+    The user creating a Telegram Star giveaway
+
+    :param parameters: Giveaway parameters
+    :type parameters: :class:`GiveawayParameters`
+    :param currency: ISO 4217 currency code of the payment currency
+    :type currency: :class:`String`
+    :param amount: Paid amount, in the smallest units of the currency
+    :type amount: :class:`Int53`
+    :param winner_count: The number of users to receive Telegram Stars
+    :type winner_count: :class:`Int32`
+    :param star_count: The number of Telegram Stars to be distributed through the giveaway
+    :type star_count: :class:`Int53`
+    """
+
+    ID: typing.Literal["storePaymentPurposeStarGiveaway"] = Field(
+        "storePaymentPurposeStarGiveaway", validation_alias="@type", alias="@type"
+    )
+    parameters: GiveawayParameters
+    currency: String
+    amount: Int53
+    winner_count: Int32
+    star_count: Int53
+
+
 class StorePaymentPurposeStars(BaseObject):
     """
-    The user buying Telegram stars
+    The user buying Telegram Stars
 
     :param currency: ISO 4217 currency code of the payment currency
     :type currency: :class:`String`
     :param amount: Paid amount, in the smallest units of the currency
     :type amount: :class:`Int53`
-    :param star_count: Number of bought stars
+    :param star_count: Number of bought Telegram Stars
     :type star_count: :class:`Int53`
     """
 
@@ -21077,10 +23940,11 @@ class StorePaymentPurposeStars(BaseObject):
 
 
 StorePaymentPurpose = typing.Union[
-    StorePaymentPurposeGiftedPremium,
+    StorePaymentPurposeGiftedStars,
     StorePaymentPurposePremiumGiftCodes,
     StorePaymentPurposePremiumGiveaway,
     StorePaymentPurposePremiumSubscription,
+    StorePaymentPurposeStarGiveaway,
     StorePaymentPurposeStars,
 ]
 
@@ -21293,6 +24157,20 @@ class StoryAreaTypeSuggestedReaction(BaseObject):
     is_flipped: Bool = False
 
 
+class StoryAreaTypeUpgradedGift(BaseObject):
+    """
+    An area with an upgraded gift
+
+    :param gift_name: Unique name of the upgraded gift
+    :type gift_name: :class:`String`
+    """
+
+    ID: typing.Literal["storyAreaTypeUpgradedGift"] = Field(
+        "storyAreaTypeUpgradedGift", validation_alias="@type", alias="@type"
+    )
+    gift_name: String
+
+
 class StoryAreaTypeVenue(BaseObject):
     """
     An area pointing to a venue
@@ -21305,12 +24183,32 @@ class StoryAreaTypeVenue(BaseObject):
     venue: Venue
 
 
+class StoryAreaTypeWeather(BaseObject):
+    """
+    An area with information about weather
+
+    :param temperature: Temperature, in degree Celsius
+    :type temperature: :class:`Double`
+    :param emoji: Emoji representing the weather
+    :type emoji: :class:`String`
+    :param background_color: A color of the area background in the ARGB format
+    :type background_color: :class:`Int32`
+    """
+
+    ID: typing.Literal["storyAreaTypeWeather"] = Field("storyAreaTypeWeather", validation_alias="@type", alias="@type")
+    temperature: Double
+    emoji: String
+    background_color: Int32
+
+
 StoryAreaType = typing.Union[
     StoryAreaTypeLink,
     StoryAreaTypeLocation,
     StoryAreaTypeMessage,
     StoryAreaTypeSuggestedReaction,
+    StoryAreaTypeUpgradedGift,
     StoryAreaTypeVenue,
+    StoryAreaTypeWeather,
 ]
 
 
@@ -21342,7 +24240,7 @@ class StoryContentVideo(BaseObject):
 
     :param video: The video in MPEG4 format
     :type video: :class:`StoryVideo`
-    :param alternative_video: Alternative version of the video in MPEG4 format, encoded by x264 codec; may be null, defaults to None
+    :param alternative_video: Alternative version of the video in MPEG4 format, encoded with H.264 codec; may be null, defaults to None
     :type alternative_video: :class:`StoryVideo`, optional
     """
 
@@ -21665,8 +24563,10 @@ class StoryVideo(BaseObject):
     :type width: :class:`Int32`
     :param height: Video height
     :type height: :class:`Int32`
-    :param preload_prefix_size: Size of file prefix, which is supposed to be preloaded, in bytes
+    :param preload_prefix_size: Size of file prefix, which is expected to be preloaded, in bytes
     :type preload_prefix_size: :class:`Int32`
+    :param cover_frame_timestamp: Timestamp of the frame used as video thumbnail
+    :type cover_frame_timestamp: :class:`Double`
     :param video: File containing the video
     :type video: :class:`File`
     :param minithumbnail: Video minithumbnail; may be null, defaults to None
@@ -21684,6 +24584,7 @@ class StoryVideo(BaseObject):
     width: Int32
     height: Int32
     preload_prefix_size: Int32
+    cover_frame_timestamp: Double
     video: File
     minithumbnail: typing.Optional[Minithumbnail] = None
     thumbnail: typing.Optional[Thumbnail] = None
@@ -21749,6 +24650,16 @@ class SuggestedActionExtendPremium(BaseObject):
     manage_premium_subscription_url: String
 
 
+class SuggestedActionExtendStarSubscriptions(BaseObject):
+    """
+    Suggests the user to extend their expiring Telegram Star subscriptions. Call getStarSubscriptions with only_expiring == true to get the number of expiring subscriptions and the number of required to buy Telegram Stars
+    """
+
+    ID: typing.Literal["suggestedActionExtendStarSubscriptions"] = Field(
+        "suggestedActionExtendStarSubscriptions", validation_alias="@type", alias="@type"
+    )
+
+
 class SuggestedActionGiftPremiumForChristmas(BaseObject):
     """
     Suggests the user to gift Telegram Premium to friends for Christmas
@@ -21793,6 +24704,16 @@ class SuggestedActionSetPassword(BaseObject):
     authorization_delay: Int32 = 0
 
 
+class SuggestedActionSetProfilePhoto(BaseObject):
+    """
+    Suggests the user to set profile photo
+    """
+
+    ID: typing.Literal["suggestedActionSetProfilePhoto"] = Field(
+        "suggestedActionSetProfilePhoto", validation_alias="@type", alias="@type"
+    )
+
+
 class SuggestedActionSubscribeToAnnualPremium(BaseObject):
     """
     Suggests the user to subscribe to the Premium subscription with annual payments
@@ -21829,10 +24750,12 @@ SuggestedAction = typing.Union[
     SuggestedActionConvertToBroadcastGroup,
     SuggestedActionEnableArchiveAndMuteNewChats,
     SuggestedActionExtendPremium,
+    SuggestedActionExtendStarSubscriptions,
     SuggestedActionGiftPremiumForChristmas,
     SuggestedActionRestorePremium,
     SuggestedActionSetBirthdate,
     SuggestedActionSetPassword,
+    SuggestedActionSetProfilePhoto,
     SuggestedActionSubscribeToAnnualPremium,
     SuggestedActionUpgradePremium,
     SuggestedActionViewChecksHint,
@@ -21853,12 +24776,16 @@ class Supergroup(BaseObject):
     :type boost_level: :class:`Int32`
     :param usernames: Usernames of the supergroup or channel; may be null, defaults to None
     :type usernames: :class:`Usernames`, optional
+    :param verification_status: Information about verification status of the supergroup or channel; may be null if none, defaults to None
+    :type verification_status: :class:`VerificationStatus`, optional
     :param has_linked_chat: True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
     :type has_linked_chat: :class:`Bool`
     :param has_location: True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
     :type has_location: :class:`Bool`
-    :param sign_messages: True, if messages sent to the channel need to contain information about the sender. This field is only applicable to channels
+    :param sign_messages: True, if messages sent to the channel contains name of the sender. This field is only applicable to channels
     :type sign_messages: :class:`Bool`
+    :param show_message_sender: True, if messages sent to the channel have information about the sender user. This field is only applicable to channels
+    :type show_message_sender: :class:`Bool`
     :param join_to_send_messages: True, if users need to join the supergroup before they can send messages. Always true for channels and non-discussion supergroups
     :type join_to_send_messages: :class:`Bool`
     :param join_by_request: True, if all users directly joining the supergroup need to be approved by supergroup administrators. Always false for channels and supergroups without username, location, or a linked chat
@@ -21871,19 +24798,15 @@ class Supergroup(BaseObject):
     :type is_broadcast_group: :class:`Bool`
     :param is_forum: True, if the supergroup is a forum with topics
     :type is_forum: :class:`Bool`
-    :param is_verified: True, if the supergroup or channel is verified
-    :type is_verified: :class:`Bool`
+    :param has_sensitive_content: True, if content of media messages in the supergroup or channel chat must be hidden with 18+ spoiler
+    :type has_sensitive_content: :class:`Bool`
     :param restriction_reason: If non-empty, contains a human-readable description of the reason why access to this supergroup or channel must be restricted
     :type restriction_reason: :class:`String`
-    :param is_scam: True, if many users reported this supergroup or channel as a scam
-    :type is_scam: :class:`Bool`
-    :param is_fake: True, if many users reported this supergroup or channel as a fake account
-    :type is_fake: :class:`Bool`
     :param has_active_stories: True, if the supergroup or channel has non-expired stories available to the current user
     :type has_active_stories: :class:`Bool`
     :param has_unread_active_stories: True, if the supergroup or channel has unread non-expired stories available to the current user
     :type has_unread_active_stories: :class:`Bool`
-    :param member_count: Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through getChatSimilarChats, getChatsToSendStories, getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats, getRecommendedChats, getSuitableDiscussionChats, getUserPrivacySettingRules, getVideoChatAvailableParticipants, searchChatsNearby, searchPublicChats, or in chatFolderInviteLinkInfo.missing_chat_ids, or in userFullInfo.personal_chat_id, or for chats with messages or stories from publicForwards, defaults to None
+    :param member_count: Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through getChatSimilarChats, getChatsToSendStories, getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats, getRecommendedChats, getSuitableDiscussionChats, getUserPrivacySettingRules, getVideoChatAvailableParticipants, searchPublicChats, or in chatFolderInviteLinkInfo.missing_chat_ids, or in userFullInfo.personal_chat_id, or for chats with messages or stories from publicForwards and foundStories, defaults to None
     :type member_count: :class:`Int32`, optional
     """
 
@@ -21893,19 +24816,19 @@ class Supergroup(BaseObject):
     status: ChatMemberStatus
     boost_level: Int32
     usernames: typing.Optional[Usernames] = None
+    verification_status: typing.Optional[VerificationStatus] = None
     has_linked_chat: Bool = False
     has_location: Bool = False
     sign_messages: Bool = False
+    show_message_sender: Bool = False
     join_to_send_messages: Bool = False
     join_by_request: Bool = False
     is_slow_mode_enabled: Bool = False
     is_channel: Bool = False
     is_broadcast_group: Bool = False
     is_forum: Bool = False
-    is_verified: Bool = False
+    has_sensitive_content: Bool = False
     restriction_reason: String = ""
-    is_scam: Bool = False
-    is_fake: Bool = False
     has_active_stories: Bool = False
     has_unread_active_stories: Bool = False
     member_count: typing.Optional[Int32] = 0
@@ -21921,6 +24844,8 @@ class SupergroupFullInfo(BaseObject):
     :type slow_mode_delay: :class:`Int32`
     :param slow_mode_delay_expires_in: Time left before next message can be sent in the supergroup, in seconds. An updateSupergroupFullInfo update is not triggered when value of this field changes, but both new and old values are non-zero
     :type slow_mode_delay_expires_in: :class:`Double`
+    :param gift_count: Number of saved to profile gifts for channels without can_post_messages administrator right, otherwise, the total number of received gifts
+    :type gift_count: :class:`Int32`
     :param my_boost_count: Number of times the current user boosted the supergroup or channel
     :type my_boost_count: :class:`Int32`
     :param bot_commands: List of commands of bots in the group
@@ -21931,6 +24856,10 @@ class SupergroupFullInfo(BaseObject):
     :type location: :class:`ChatLocation`, optional
     :param invite_link: Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only, defaults to None
     :type invite_link: :class:`ChatInviteLink`, optional
+    :param bot_verification: Information about verification status of the supergroup or the channel provided by a bot; may be null if none or unknown, defaults to None
+    :type bot_verification: :class:`BotVerification`, optional
+    :param can_enable_paid_reaction: True, if paid reaction can be enabled in the channel chat; for channels only
+    :type can_enable_paid_reaction: :class:`Bool`
     :param can_get_members: True, if members of the chat can be retrieved via getSupergroupMembers or searchChatMembers
     :type can_get_members: :class:`Bool`
     :param has_hidden_members: True, if non-administrators can receive only administrators and bots using getSupergroupMembers or searchChatMembers
@@ -21945,6 +24874,10 @@ class SupergroupFullInfo(BaseObject):
     :type can_get_statistics: :class:`Bool`
     :param can_get_revenue_statistics: True, if the supergroup or channel revenue statistics are available
     :type can_get_revenue_statistics: :class:`Bool`
+    :param can_get_star_revenue_statistics: True, if the supergroup or channel Telegram Star revenue statistics are available
+    :type can_get_star_revenue_statistics: :class:`Bool`
+    :param can_send_gift: True, if the user can send a gift to the supergroup or channel using sendGift or transferGift
+    :type can_send_gift: :class:`Bool`
     :param can_toggle_aggressive_anti_spam: True, if aggressive anti-spam checks can be enabled or disabled in the supergroup
     :type can_toggle_aggressive_anti_spam: :class:`Bool`
     :param is_all_history_available: True, if new chat members will have access to old messages. In public, discussion, of forum groups and all channels, old messages are always available, so this option affects only private non-forum supergroups without a linked chat. The value of this field is only available to chat administrators
@@ -21953,6 +24886,8 @@ class SupergroupFullInfo(BaseObject):
     :type can_have_sponsored_messages: :class:`Bool`
     :param has_aggressive_anti_spam_enabled: True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available to chat administrators
     :type has_aggressive_anti_spam_enabled: :class:`Bool`
+    :param has_paid_media_allowed: True, if paid media can be sent and forwarded to the channel chat; for channels only
+    :type has_paid_media_allowed: :class:`Bool`
     :param has_pinned_stories: True, if the supergroup or channel has pinned stories
     :type has_pinned_stories: :class:`Bool`
     :param unrestrict_boost_count: Number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; 0 if unspecified
@@ -21981,11 +24916,14 @@ class SupergroupFullInfo(BaseObject):
     description: String
     slow_mode_delay: Int32
     slow_mode_delay_expires_in: Double
+    gift_count: Int32
     my_boost_count: Int32
     bot_commands: Vector[BotCommands]
     photo: typing.Optional[ChatPhoto] = None
     location: typing.Optional[ChatLocation] = None
     invite_link: typing.Optional[ChatInviteLink] = None
+    bot_verification: typing.Optional[BotVerification] = None
+    can_enable_paid_reaction: Bool = False
     can_get_members: Bool = False
     has_hidden_members: Bool = False
     can_hide_members: Bool = False
@@ -21993,10 +24931,13 @@ class SupergroupFullInfo(BaseObject):
     can_set_location: Bool = False
     can_get_statistics: Bool = False
     can_get_revenue_statistics: Bool = False
+    can_get_star_revenue_statistics: Bool = False
+    can_send_gift: Bool = False
     can_toggle_aggressive_anti_spam: Bool = False
     is_all_history_available: Bool = False
     can_have_sponsored_messages: Bool = False
     has_aggressive_anti_spam_enabled: Bool = False
+    has_paid_media_allowed: Bool = False
     has_pinned_stories: Bool = False
     unrestrict_boost_count: Int32 = 0
     member_count: typing.Optional[Int32] = 0
@@ -22212,26 +25153,17 @@ class TargetChatChosen(BaseObject):
     """
     The chat needs to be chosen by the user among chats of the specified types
 
-    :param allow_user_chats: True, if private chats with ordinary users are allowed
-    :type allow_user_chats: :class:`Bool`
-    :param allow_bot_chats: True, if private chats with other bots are allowed
-    :type allow_bot_chats: :class:`Bool`
-    :param allow_group_chats: True, if basic group and supergroup chats are allowed
-    :type allow_group_chats: :class:`Bool`
-    :param allow_channel_chats: True, if channel chats are allowed
-    :type allow_channel_chats: :class:`Bool`
+    :param types: Allowed types for the chat
+    :type types: :class:`TargetChatTypes`
     """
 
     ID: typing.Literal["targetChatChosen"] = Field("targetChatChosen", validation_alias="@type", alias="@type")
-    allow_user_chats: Bool = False
-    allow_bot_chats: Bool = False
-    allow_group_chats: Bool = False
-    allow_channel_chats: Bool = False
+    types: TargetChatTypes
 
 
 class TargetChatCurrent(BaseObject):
     """
-    The currently opened chat needs to be kept
+    The currently opened chat and forum topic must be kept
     """
 
     ID: typing.Literal["targetChatCurrent"] = Field("targetChatCurrent", validation_alias="@type", alias="@type")
@@ -22258,6 +25190,64 @@ TargetChat = typing.Union[
 ]
 
 
+class TargetChatTypes(BaseObject):
+    """
+    Describes allowed types for the target chat
+
+    :param allow_user_chats: True, if private chats with ordinary users are allowed
+    :type allow_user_chats: :class:`Bool`
+    :param allow_bot_chats: True, if private chats with other bots are allowed
+    :type allow_bot_chats: :class:`Bool`
+    :param allow_group_chats: True, if basic group and supergroup chats are allowed
+    :type allow_group_chats: :class:`Bool`
+    :param allow_channel_chats: True, if channel chats are allowed
+    :type allow_channel_chats: :class:`Bool`
+    """
+
+    ID: typing.Literal["targetChatTypes"] = Field("targetChatTypes", validation_alias="@type", alias="@type")
+    allow_user_chats: Bool = False
+    allow_bot_chats: Bool = False
+    allow_group_chats: Bool = False
+    allow_channel_chats: Bool = False
+
+
+class TelegramPaymentPurposeGiftedStars(BaseObject):
+    """
+    The user buying Telegram Stars for other users
+
+    :param user_id: Identifier of the user to which Telegram Stars are gifted
+    :type user_id: :class:`Int53`
+    :param currency: ISO 4217 currency code of the payment currency
+    :type currency: :class:`String`
+    :param amount: Paid amount, in the smallest units of the currency
+    :type amount: :class:`Int53`
+    :param star_count: Number of bought Telegram Stars
+    :type star_count: :class:`Int53`
+    """
+
+    ID: typing.Literal["telegramPaymentPurposeGiftedStars"] = Field(
+        "telegramPaymentPurposeGiftedStars", validation_alias="@type", alias="@type"
+    )
+    user_id: Int53
+    currency: String
+    amount: Int53
+    star_count: Int53
+
+
+class TelegramPaymentPurposeJoinChat(BaseObject):
+    """
+    The user joins a chat and subscribes to regular payments in Telegram Stars
+
+    :param invite_link: Invite link to use
+    :type invite_link: :class:`String`
+    """
+
+    ID: typing.Literal["telegramPaymentPurposeJoinChat"] = Field(
+        "telegramPaymentPurposeJoinChat", validation_alias="@type", alias="@type"
+    )
+    invite_link: String
+
+
 class TelegramPaymentPurposePremiumGiftCodes(BaseObject):
     """
     The user creating Telegram Premium gift codes for other users
@@ -22270,6 +25260,8 @@ class TelegramPaymentPurposePremiumGiftCodes(BaseObject):
     :type user_ids: :class:`Vector[Int53]`
     :param month_count: Number of months the Telegram Premium subscription will be active for the users
     :type month_count: :class:`Int32`
+    :param text: Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    :type text: :class:`FormattedText`
     :param boosted_chat_id: Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none, defaults to None
     :type boosted_chat_id: :class:`Int53`, optional
     """
@@ -22281,6 +25273,7 @@ class TelegramPaymentPurposePremiumGiftCodes(BaseObject):
     amount: Int53
     user_ids: Vector[Int53]
     month_count: Int32
+    text: FormattedText
     boosted_chat_id: typing.Optional[Int53] = 0
 
 
@@ -22289,7 +25282,7 @@ class TelegramPaymentPurposePremiumGiveaway(BaseObject):
     The user creating a Telegram Premium giveaway
 
     :param parameters: Giveaway parameters
-    :type parameters: :class:`PremiumGiveawayParameters`
+    :type parameters: :class:`GiveawayParameters`
     :param currency: ISO 4217 currency code of the payment currency
     :type currency: :class:`String`
     :param amount: Paid amount, in the smallest units of the currency
@@ -22303,22 +25296,48 @@ class TelegramPaymentPurposePremiumGiveaway(BaseObject):
     ID: typing.Literal["telegramPaymentPurposePremiumGiveaway"] = Field(
         "telegramPaymentPurposePremiumGiveaway", validation_alias="@type", alias="@type"
     )
-    parameters: PremiumGiveawayParameters
+    parameters: GiveawayParameters
     currency: String
     amount: Int53
     winner_count: Int32
     month_count: Int32
 
 
+class TelegramPaymentPurposeStarGiveaway(BaseObject):
+    """
+    The user creating a Telegram Star giveaway
+
+    :param parameters: Giveaway parameters
+    :type parameters: :class:`GiveawayParameters`
+    :param currency: ISO 4217 currency code of the payment currency
+    :type currency: :class:`String`
+    :param amount: Paid amount, in the smallest units of the currency
+    :type amount: :class:`Int53`
+    :param winner_count: The number of users to receive Telegram Stars
+    :type winner_count: :class:`Int32`
+    :param star_count: The number of Telegram Stars to be distributed through the giveaway
+    :type star_count: :class:`Int53`
+    """
+
+    ID: typing.Literal["telegramPaymentPurposeStarGiveaway"] = Field(
+        "telegramPaymentPurposeStarGiveaway", validation_alias="@type", alias="@type"
+    )
+    parameters: GiveawayParameters
+    currency: String
+    amount: Int53
+    winner_count: Int32
+    star_count: Int53
+
+
 class TelegramPaymentPurposeStars(BaseObject):
     """
-    The user buying Telegram stars
+    The user buying Telegram Stars
 
     :param currency: ISO 4217 currency code of the payment currency
     :type currency: :class:`String`
     :param amount: Paid amount, in the smallest units of the currency
     :type amount: :class:`Int53`
-    :param star_count: Number of bought stars
+    :param star_count: Number of bought Telegram Stars
     :type star_count: :class:`Int53`
     """
 
@@ -22331,8 +25350,11 @@ class TelegramPaymentPurposeStars(BaseObject):
 
 
 TelegramPaymentPurpose = typing.Union[
+    TelegramPaymentPurposeGiftedStars,
+    TelegramPaymentPurposeJoinChat,
     TelegramPaymentPurposePremiumGiftCodes,
     TelegramPaymentPurposePremiumGiveaway,
+    TelegramPaymentPurposeStarGiveaway,
     TelegramPaymentPurposeStars,
 ]
 
@@ -22540,7 +25562,7 @@ class TextEntityTypeBotCommand(BaseObject):
 
 class TextEntityTypeCashtag(BaseObject):
     """
-    A cashtag text, beginning with "$" and consisting of capital English letters (e.g., "$USD")
+    A cashtag text, beginning with "$", consisting of capital English letters (e.g., "$USD"), and optionally containing a chat username at the end
     """
 
     ID: typing.Literal["textEntityTypeCashtag"] = Field(
@@ -22592,7 +25614,7 @@ class TextEntityTypeExpandableBlockQuote(BaseObject):
 
 class TextEntityTypeHashtag(BaseObject):
     """
-    A hashtag text, beginning with "#"
+    A hashtag text, beginning with "#" and optionally containing a chat username at the end
     """
 
     ID: typing.Literal["textEntityTypeHashtag"] = Field(
@@ -22612,7 +25634,7 @@ class TextEntityTypeMediaTimestamp(BaseObject):
     """
     A media timestamp
 
-    :param media_timestamp: Timestamp from which a video/audio/video note/voice note/story playing must start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message
+    :param media_timestamp: Timestamp from which a video/audio/video note/voice note/story playing must start, in seconds. The media can be in the content or the link preview of the current message, or in the same places in the replied message
     :type media_timestamp: :class:`Int32`
     """
 
@@ -22806,31 +25828,35 @@ class ThemeParameters(BaseObject):
     """
     Contains parameters of the application theme
 
-    :param background_color: A color of the background in the RGB24 format
+    :param background_color: A color of the background in the RGB format
     :type background_color: :class:`Int32`
-    :param secondary_background_color: A secondary color for the background in the RGB24 format
+    :param secondary_background_color: A secondary color for the background in the RGB format
     :type secondary_background_color: :class:`Int32`
-    :param header_background_color: A color of the header background in the RGB24 format
+    :param header_background_color: A color of the header background in the RGB format
     :type header_background_color: :class:`Int32`
-    :param section_background_color: A color of the section background in the RGB24 format
+    :param bottom_bar_background_color: A color of the bottom bar background in the RGB format
+    :type bottom_bar_background_color: :class:`Int32`
+    :param section_background_color: A color of the section background in the RGB format
     :type section_background_color: :class:`Int32`
-    :param text_color: A color of text in the RGB24 format
+    :param section_separator_color: A color of the section separator in the RGB format
+    :type section_separator_color: :class:`Int32`
+    :param text_color: A color of text in the RGB format
     :type text_color: :class:`Int32`
-    :param accent_text_color: An accent color of the text in the RGB24 format
+    :param accent_text_color: An accent color of the text in the RGB format
     :type accent_text_color: :class:`Int32`
-    :param section_header_text_color: A color of text on the section headers in the RGB24 format
+    :param section_header_text_color: A color of text on the section headers in the RGB format
     :type section_header_text_color: :class:`Int32`
-    :param subtitle_text_color: A color of the subtitle text in the RGB24 format
+    :param subtitle_text_color: A color of the subtitle text in the RGB format
     :type subtitle_text_color: :class:`Int32`
-    :param destructive_text_color: A color of the text for destructive actions in the RGB24 format
+    :param destructive_text_color: A color of the text for destructive actions in the RGB format
     :type destructive_text_color: :class:`Int32`
-    :param hint_color: A color of hints in the RGB24 format
+    :param hint_color: A color of hints in the RGB format
     :type hint_color: :class:`Int32`
-    :param link_color: A color of links in the RGB24 format
+    :param link_color: A color of links in the RGB format
     :type link_color: :class:`Int32`
-    :param button_color: A color of the buttons in the RGB24 format
+    :param button_color: A color of the buttons in the RGB format
     :type button_color: :class:`Int32`
-    :param button_text_color: A color of text on the buttons in the RGB24 format
+    :param button_text_color: A color of text on the buttons in the RGB format
     :type button_text_color: :class:`Int32`
     """
 
@@ -22838,7 +25864,9 @@ class ThemeParameters(BaseObject):
     background_color: Int32
     secondary_background_color: Int32
     header_background_color: Int32
+    bottom_bar_background_color: Int32
     section_background_color: Int32
+    section_separator_color: Int32
     text_color: Int32
     accent_text_color: Int32
     section_header_text_color: Int32
@@ -23056,6 +26084,16 @@ class TopChatCategoryUsers(BaseObject):
     ID: typing.Literal["topChatCategoryUsers"] = Field("topChatCategoryUsers", validation_alias="@type", alias="@type")
 
 
+class TopChatCategoryWebAppBots(BaseObject):
+    """
+    A category containing frequently used chats with bots, which Web Apps were opened
+    """
+
+    ID: typing.Literal["topChatCategoryWebAppBots"] = Field(
+        "topChatCategoryWebAppBots", validation_alias="@type", alias="@type"
+    )
+
+
 TopChatCategory = typing.Union[
     TopChatCategoryBots,
     TopChatCategoryCalls,
@@ -23064,6 +26102,7 @@ TopChatCategory = typing.Union[
     TopChatCategoryGroups,
     TopChatCategoryInlineBots,
     TopChatCategoryUsers,
+    TopChatCategoryWebAppBots,
 ]
 
 
@@ -23130,7 +26169,7 @@ class UpdateAccentColors(BaseObject):
 
     :param colors: Information about supported colors; colors with identifiers 0 (red), 1 (orange), 2 (purple/violet), 3 (green), 4 (cyan), 5 (blue), 6 (pink) must always be supported and aren't included in the list. The exact colors for the accent colors with identifiers 0-6 must be taken from the app theme
     :type colors: :class:`Vector[AccentColor]`
-    :param available_accent_color_ids: The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specififed order
+    :param available_accent_color_ids: The list of accent color identifiers, which can be set through setAccentColor and setChatAccentColor. The colors must be shown in the specified order
     :type available_accent_color_ids: :class:`Vector[Int32]`
     """
 
@@ -23151,6 +26190,20 @@ class UpdateActiveEmojiReactions(BaseObject):
         "updateActiveEmojiReactions", validation_alias="@type", alias="@type"
     )
     emojis: Vector[String]
+
+
+class UpdateActiveLiveLocationMessages(BaseObject):
+    """
+    The list of messages with active live location that need to be updated by the application has changed. The list is persistent across application restarts only if the message database is used
+
+    :param messages: The list of messages with active live locations
+    :type messages: :class:`Vector[Message]`
+    """
+
+    ID: typing.Literal["updateActiveLiveLocationMessages"] = Field(
+        "updateActiveLiveLocationMessages", validation_alias="@type", alias="@type"
+    )
+    messages: Vector[Message]
 
 
 class UpdateActiveNotifications(BaseObject):
@@ -23210,8 +26263,10 @@ class UpdateApplicationVerificationRequired(BaseObject):
 
     :param verification_id: Unique identifier for the verification process
     :type verification_id: :class:`Int53`
-    :param nonce: Unique nonce for the classic Play Integrity verification (https://developer.android.com/google/play/integrity/classic) for Android, or a unique string to compare with verify_nonce field from a push notification for iOS
+    :param nonce: Unique base64url-encoded nonce for the classic Play Integrity verification (https://developer.android.com/google/play/integrity/classic) for Android, or a unique string to compare with verify_nonce field from a push notification for iOS
     :type nonce: :class:`String`
+    :param cloud_project_number: Cloud project number to pass to the Play Integrity API on Android
+    :type cloud_project_number: :class:`Int64`
     """
 
     ID: typing.Literal["updateApplicationVerificationRequired"] = Field(
@@ -23219,6 +26274,7 @@ class UpdateApplicationVerificationRequired(BaseObject):
     )
     verification_id: Int53
     nonce: String
+    cloud_project_number: Int64
 
 
 class UpdateAttachmentMenuBots(BaseObject):
@@ -24240,25 +27296,25 @@ class UpdateFileDownloads(BaseObject):
 
 class UpdateFileGenerationStart(BaseObject):
     """
-    The file generation process needs to be started by the application
+    The file generation process needs to be started by the application. Use setFileGenerationProgress and finishFileGeneration to generate the file
 
     :param generation_id: Unique identifier for the generation process
     :type generation_id: :class:`Int64`
-    :param destination_path: The path to a file that must be created and where the new file is generated
-    :type destination_path: :class:`String`
-    :param conversion: String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which must be downloaded by the application
-    :type conversion: :class:`String`
-    :param original_path: The path to a file from which a new file is generated; may be empty
+    :param original_path: The original path specified by the application in inputFileGenerated
     :type original_path: :class:`String`
+    :param destination_path: The path to a file that must be created and where the new file must be generated by the application. If the application has no access to the path, it can use writeGeneratedFilePart to generate the file
+    :type destination_path: :class:`String`
+    :param conversion: If the conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file that must be downloaded by the application. Otherwise, this is the conversion specified by the application in inputFileGenerated
+    :type conversion: :class:`String`
     """
 
     ID: typing.Literal["updateFileGenerationStart"] = Field(
         "updateFileGenerationStart", validation_alias="@type", alias="@type"
     )
     generation_id: Int64
+    original_path: String
     destination_path: String
     conversion: String
-    original_path: String = ""
 
 
 class UpdateFileGenerationStop(BaseObject):
@@ -24508,7 +27564,7 @@ class UpdateMessageIsPinned(BaseObject):
 
 class UpdateMessageLiveLocationViewed(BaseObject):
     """
-    A message with a live location was viewed. When the update is received, the application is supposed to update the live location
+    A message with a live location was viewed. When the update is received, the application is expected to update the live location
 
     :param chat_id: Identifier of the chat with the live location message
     :type chat_id: :class:`Int53`
@@ -24636,7 +27692,7 @@ class UpdateMessageSendSucceeded(BaseObject):
     """
     A message has been successfully sent
 
-    :param message: The sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
+    :param message: The sent message. Almost any field of the new message can be different from the corresponding field of the original message. For example, the field scheduling_state may change, making the message scheduled, or non-scheduled
     :type message: :class:`Message`
     :param old_message_id: The previous temporary message identifier
     :type old_message_id: :class:`Int53`
@@ -25042,14 +28098,31 @@ class UpdateOption(BaseObject):
 
 class UpdateOwnedStarCount(BaseObject):
     """
-    The number of Telegram stars owned by the current user has changed
+    The number of Telegram Stars owned by the current user has changed
 
-    :param star_count: The new number of Telegram stars owned
-    :type star_count: :class:`Int53`
+    :param star_amount: The new amount of owned Telegram Stars
+    :type star_amount: :class:`StarAmount`
     """
 
     ID: typing.Literal["updateOwnedStarCount"] = Field("updateOwnedStarCount", validation_alias="@type", alias="@type")
-    star_count: Int53
+    star_amount: StarAmount
+
+
+class UpdatePaidMediaPurchased(BaseObject):
+    """
+    Paid media were purchased by a user; for bots only
+
+    :param user_id: User identifier
+    :type user_id: :class:`Int53`
+    :param payload: Bot-specified payload for the paid media
+    :type payload: :class:`String`
+    """
+
+    ID: typing.Literal["updatePaidMediaPurchased"] = Field(
+        "updatePaidMediaPurchased", validation_alias="@type", alias="@type"
+    )
+    user_id: Int53
+    payload: String
 
 
 class UpdatePoll(BaseObject):
@@ -25088,7 +28161,7 @@ class UpdateProfileAccentColors(BaseObject):
 
     :param colors: Information about supported colors
     :type colors: :class:`Vector[ProfileAccentColor]`
-    :param available_accent_color_ids: The list of accent color identifiers, which can be set through setProfileAccentColor and setChatProfileAccentColor. The colors must be shown in the specififed order
+    :param available_accent_color_ids: The list of accent color identifiers, which can be set through setProfileAccentColor and setChatProfileAccentColor. The colors must be shown in the specified order
     :type available_accent_color_ids: :class:`Vector[Int32]`
     """
 
@@ -25331,7 +28404,7 @@ class UpdateSpeechRecognitionTrial(BaseObject):
 
 class UpdateSpeedLimitNotification(BaseObject):
     """
-    Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a being downloaded or uploaded file is visible to the user Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
+    Download or upload file speed for the user was limited, but it can be restored by subscription to Telegram Premium. The notification can be postponed until a being downloaded or uploaded file is visible to the user. Use getOption("premium_download_speedup") or getOption("premium_upload_speedup") to get expected speedup after subscription to Telegram Premium
 
     :param is_upload: True, if upload speed was limited; false, if download speed was limited
     :type is_upload: :class:`Bool`
@@ -25345,11 +28418,11 @@ class UpdateSpeedLimitNotification(BaseObject):
 
 class UpdateStarRevenueStatus(BaseObject):
     """
-    The Telegram star revenue earned by a bot or a chat has changed. If star transactions screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
+    The Telegram Star revenue earned by a bot or a chat has changed. If Telegram Star transaction screen of the chat is opened, then getStarTransactions may be called to fetch new transactions
 
-    :param owner_id: Identifier of the owner of the Telegram stars
+    :param owner_id: Identifier of the owner of the Telegram Stars
     :type owner_id: :class:`MessageSender`
-    :param status: New Telegram star revenue status
+    :param status: New Telegram Star revenue status
     :type status: :class:`StarRevenueStatus`
     """
 
@@ -25670,16 +28743,19 @@ class UpdateUserStatus(BaseObject):
     status: UserStatus
 
 
-class UpdateUsersNearby(BaseObject):
+class UpdateVideoPublished(BaseObject):
     """
-    The list of users nearby has changed. The update is guaranteed to be sent only 60 seconds after a successful searchChatsNearby request
+    An automatically scheduled message with video has been successfully sent after conversion
 
-    :param users_nearby: The new list of users nearby
-    :type users_nearby: :class:`Vector[ChatNearby]`
+    :param chat_id: Identifier of the chat with the message
+    :type chat_id: :class:`Int53`
+    :param message_id: Identifier of the sent message
+    :type message_id: :class:`Int53`
     """
 
-    ID: typing.Literal["updateUsersNearby"] = Field("updateUsersNearby", validation_alias="@type", alias="@type")
-    users_nearby: Vector[ChatNearby]
+    ID: typing.Literal["updateVideoPublished"] = Field("updateVideoPublished", validation_alias="@type", alias="@type")
+    chat_id: Int53
+    message_id: Int53
 
 
 class UpdateWebAppMessageSent(BaseObject):
@@ -25699,6 +28775,7 @@ class UpdateWebAppMessageSent(BaseObject):
 Update = typing.Union[
     UpdateAccentColors,
     UpdateActiveEmojiReactions,
+    UpdateActiveLiveLocationMessages,
     UpdateActiveNotifications,
     UpdateAnimatedEmojiMessageClicked,
     UpdateAnimationSearchParameters,
@@ -25805,6 +28882,7 @@ Update = typing.Union[
     UpdateNotificationGroup,
     UpdateOption,
     UpdateOwnedStarCount,
+    UpdatePaidMediaPurchased,
     UpdatePoll,
     UpdatePollAnswer,
     UpdateProfileAccentColors,
@@ -25844,7 +28922,7 @@ Update = typing.Union[
     UpdateUserFullInfo,
     UpdateUserPrivacySettingRules,
     UpdateUserStatus,
-    UpdateUsersNearby,
+    UpdateVideoPublished,
     UpdateWebAppMessageSent,
 ]
 
@@ -25861,6 +28939,181 @@ class Updates(BaseObject):
     updates: Vector[Update]
 
 
+class UpgradeGiftResult(BaseObject):
+    """
+    Contains result of gift upgrading
+
+    :param gift: The upgraded gift
+    :type gift: :class:`UpgradedGift`
+    :param received_gift_id: Unique identifier of the received gift for the current user
+    :type received_gift_id: :class:`String`
+    :param transfer_star_count: Number of Telegram Stars that must be paid to transfer the upgraded gift
+    :type transfer_star_count: :class:`Int53`
+    :param export_date: Point in time (Unix timestamp) when the gift can be transferred to the TON blockchain as an NFT
+    :type export_date: :class:`Int32`
+    :param is_saved: True, if the gift is displayed on the user's or the channel's profile page
+    :type is_saved: :class:`Bool`
+    :param can_be_transferred: True, if the gift can be transferred to another owner
+    :type can_be_transferred: :class:`Bool`
+    """
+
+    ID: typing.Literal["upgradeGiftResult"] = Field("upgradeGiftResult", validation_alias="@type", alias="@type")
+    gift: UpgradedGift
+    received_gift_id: String
+    transfer_star_count: Int53
+    export_date: Int32
+    is_saved: Bool = False
+    can_be_transferred: Bool = False
+
+
+class UpgradedGift(BaseObject):
+    """
+    Describes an upgraded gift that can be transferred to another owner or transferred to the TON blockchain as an NFT
+
+    :param id: Unique identifier of the gift
+    :type id: :class:`Int64`
+    :param title: The title of the upgraded gift
+    :type title: :class:`String`
+    :param name: Unique name of the upgraded gift that can be used with internalLinkTypeUpgradedGift
+    :type name: :class:`String`
+    :param number: Unique number of the upgraded gift among gifts upgraded from the same gift
+    :type number: :class:`Int32`
+    :param total_upgraded_count: Total number of gifts that were upgraded from the same gift
+    :type total_upgraded_count: :class:`Int32`
+    :param max_upgraded_count: The maximum number of gifts that can be upgraded from the same gift
+    :type max_upgraded_count: :class:`Int32`
+    :param owner_name: Name of the owner for the case when owner identifier and address aren't known
+    :type owner_name: :class:`String`
+    :param model: Model of the upgraded gift
+    :type model: :class:`UpgradedGiftModel`
+    :param symbol: Symbol of the upgraded gift
+    :type symbol: :class:`UpgradedGiftSymbol`
+    :param backdrop: Backdrop of the upgraded gift
+    :type backdrop: :class:`UpgradedGiftBackdrop`
+    :param owner_id: Identifier of the user or the chat that owns the upgraded gift; may be null if none or unknown, defaults to None
+    :type owner_id: :class:`MessageSender`, optional
+    :param original_details: Information about the originally sent gift; may be null if unknown, defaults to None
+    :type original_details: :class:`UpgradedGiftOriginalDetails`, optional
+    :param owner_address: Address of the gift NFT owner in TON blockchain; may be empty if none
+    :type owner_address: :class:`String`
+    """
+
+    ID: typing.Literal["upgradedGift"] = Field("upgradedGift", validation_alias="@type", alias="@type")
+    id: Int64
+    title: String
+    name: String
+    number: Int32
+    total_upgraded_count: Int32
+    max_upgraded_count: Int32
+    owner_name: String
+    model: UpgradedGiftModel
+    symbol: UpgradedGiftSymbol
+    backdrop: UpgradedGiftBackdrop
+    owner_id: typing.Optional[MessageSender] = None
+    original_details: typing.Optional[UpgradedGiftOriginalDetails] = None
+    owner_address: String = ""
+
+
+class UpgradedGiftBackdrop(BaseObject):
+    """
+    Describes a backdrop of an upgraded gift
+
+    :param name: Name of the backdrop
+    :type name: :class:`String`
+    :param colors: Colors of the backdrop
+    :type colors: :class:`UpgradedGiftBackdropColors`
+    :param rarity_per_mille: The number of upgraded gift that receive this backdrop for each 1000 gifts upgraded
+    :type rarity_per_mille: :class:`Int32`
+    """
+
+    ID: typing.Literal["upgradedGiftBackdrop"] = Field("upgradedGiftBackdrop", validation_alias="@type", alias="@type")
+    name: String
+    colors: UpgradedGiftBackdropColors
+    rarity_per_mille: Int32
+
+
+class UpgradedGiftBackdropColors(BaseObject):
+    """
+    Describes colors of a backdrop of an upgraded gift
+
+    :param center_color: A color in the center of the backdrop in the RGB format
+    :type center_color: :class:`Int32`
+    :param edge_color: A color on the edges of the backdrop in the RGB format
+    :type edge_color: :class:`Int32`
+    :param symbol_color: A color to be applied for the symbol in the RGB format
+    :type symbol_color: :class:`Int32`
+    :param text_color: A color for the text on the backdrop in the RGB format
+    :type text_color: :class:`Int32`
+    """
+
+    ID: typing.Literal["upgradedGiftBackdropColors"] = Field(
+        "upgradedGiftBackdropColors", validation_alias="@type", alias="@type"
+    )
+    center_color: Int32
+    edge_color: Int32
+    symbol_color: Int32
+    text_color: Int32
+
+
+class UpgradedGiftModel(BaseObject):
+    """
+    Describes a model of an upgraded gift
+
+    :param name: Name of the model
+    :type name: :class:`String`
+    :param sticker: The sticker representing the upgraded gift
+    :type sticker: :class:`Sticker`
+    :param rarity_per_mille: The number of upgraded gift that receive this model for each 1000 gifts upgraded
+    :type rarity_per_mille: :class:`Int32`
+    """
+
+    ID: typing.Literal["upgradedGiftModel"] = Field("upgradedGiftModel", validation_alias="@type", alias="@type")
+    name: String
+    sticker: Sticker
+    rarity_per_mille: Int32
+
+
+class UpgradedGiftOriginalDetails(BaseObject):
+    """
+    Describes the original details about the gift
+
+    :param receiver_id: Identifier of the user or the chat that received the gift
+    :type receiver_id: :class:`MessageSender`
+    :param text: Message added to the gift
+    :type text: :class:`FormattedText`
+    :param date: Point in time (Unix timestamp) when the gift was sent
+    :type date: :class:`Int32`
+    :param sender_id: Identifier of the user or the chat that sent the gift; may be null if the gift was private, defaults to None
+    :type sender_id: :class:`MessageSender`, optional
+    """
+
+    ID: typing.Literal["upgradedGiftOriginalDetails"] = Field(
+        "upgradedGiftOriginalDetails", validation_alias="@type", alias="@type"
+    )
+    receiver_id: MessageSender
+    text: FormattedText
+    date: Int32
+    sender_id: typing.Optional[MessageSender] = None
+
+
+class UpgradedGiftSymbol(BaseObject):
+    """
+    Describes a symbol shown on the pattern of an upgraded gift
+
+    :param name: Name of the symbol
+    :type name: :class:`String`
+    :param sticker: The sticker representing the upgraded gift
+    :type sticker: :class:`Sticker`
+    :param rarity_per_mille: The number of upgraded gift that receive this symbol for each 1000 gifts upgraded
+    :type rarity_per_mille: :class:`Int32`
+    """
+
+    ID: typing.Literal["upgradedGiftSymbol"] = Field("upgradedGiftSymbol", validation_alias="@type", alias="@type")
+    name: String
+    sticker: Sticker
+    rarity_per_mille: Int32
+
+
 class User(BaseObject):
     """
     Represents a user
@@ -25875,9 +29128,9 @@ class User(BaseObject):
     :type phone_number: :class:`String`
     :param status: Current online status of the user
     :type status: :class:`UserStatus`
-    :param accent_color_id: Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview. For Telegram Premium users only
+    :param accent_color_id: Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview
     :type accent_color_id: :class:`Int32`
-    :param profile_accent_color_id: Identifier of the accent color for the user's profile; -1 if none. For Telegram Premium users only
+    :param profile_accent_color_id: Identifier of the accent color for the user's profile; -1 if none
     :type profile_accent_color_id: :class:`Int32`
     :param is_contact: The user is a contact of the current user
     :type is_contact: :class:`Bool`
@@ -25893,20 +29146,16 @@ class User(BaseObject):
     :type usernames: :class:`Usernames`, optional
     :param profile_photo: Profile photo of the user; may be null, defaults to None
     :type profile_photo: :class:`ProfilePhoto`, optional
-    :param emoji_status: Emoji status to be shown instead of the default Telegram Premium badge; may be null. For Telegram Premium users only, defaults to None
+    :param emoji_status: Emoji status to be shown instead of the default Telegram Premium badge; may be null, defaults to None
     :type emoji_status: :class:`EmojiStatus`, optional
-    :param is_verified: True, if the user is verified
-    :type is_verified: :class:`Bool`
+    :param verification_status: Information about verification status of the user; may be null if none, defaults to None
+    :type verification_status: :class:`VerificationStatus`, optional
     :param is_premium: True, if the user is a Telegram Premium user
     :type is_premium: :class:`Bool`
     :param is_support: True, if the user is Telegram support account
     :type is_support: :class:`Bool`
     :param restriction_reason: If non-empty, it contains a human-readable description of the reason why access to this user must be restricted
     :type restriction_reason: :class:`String`
-    :param is_scam: True, if many users reported this user as a scam
-    :type is_scam: :class:`Bool`
-    :param is_fake: True, if many users reported this user as a fake account
-    :type is_fake: :class:`Bool`
     :param has_active_stories: True, if the user has non-expired stories available to the current user
     :type has_active_stories: :class:`Bool`
     :param has_unread_active_stories: True, if the user has unread non-expired stories available to the current user
@@ -25917,9 +29166,9 @@ class User(BaseObject):
     :type have_access: :class:`Bool`
     :param added_to_attachment_menu: True, if the user added the current bot to attachment menu; only available to bots
     :type added_to_attachment_menu: :class:`Bool`
-    :param background_custom_emoji_id: Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. For Telegram Premium users only, defaults to None
+    :param background_custom_emoji_id: Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none, defaults to None
     :type background_custom_emoji_id: :class:`Int64`, optional
-    :param profile_background_custom_emoji_id: Identifier of a custom emoji to be shown on the background of the user's profile; 0 if none. For Telegram Premium users only, defaults to None
+    :param profile_background_custom_emoji_id: Identifier of a custom emoji to be shown on the background of the user's profile; 0 if none, defaults to None
     :type profile_background_custom_emoji_id: :class:`Int64`, optional
     """
 
@@ -25939,12 +29188,10 @@ class User(BaseObject):
     usernames: typing.Optional[Usernames] = None
     profile_photo: typing.Optional[ProfilePhoto] = None
     emoji_status: typing.Optional[EmojiStatus] = None
-    is_verified: Bool = False
+    verification_status: typing.Optional[VerificationStatus] = None
     is_premium: Bool = False
     is_support: Bool = False
     restriction_reason: String = ""
-    is_scam: Bool = False
-    is_fake: Bool = False
     has_active_stories: Bool = False
     has_unread_active_stories: Bool = False
     restricts_new_chats: Bool = False
@@ -25958,8 +29205,8 @@ class UserFullInfo(BaseObject):
     """
     Contains full information about a user
 
-    :param premium_gift_options: The list of available options for gifting Telegram Premium to the user
-    :type premium_gift_options: :class:`Vector[PremiumPaymentOption]`
+    :param gift_count: Number of saved to profile gifts for other users or the total number of received gifts for the current user
+    :type gift_count: :class:`Int32`
     :param personal_photo: User profile photo set by the current user for the contact; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos, defaults to None
     :type personal_photo: :class:`ChatPhoto`, optional
     :param photo: User profile photo; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and personal_photo is null, then it is the same photo as in user.profile_photo and chat.photo, defaults to None
@@ -25972,6 +29219,8 @@ class UserFullInfo(BaseObject):
     :type bio: :class:`FormattedText`, optional
     :param birthdate: Birthdate of the user; may be null if unknown, defaults to None
     :type birthdate: :class:`Birthdate`, optional
+    :param bot_verification: Information about verification status of the user provided by a bot; may be null if none or unknown, defaults to None
+    :type bot_verification: :class:`BotVerification`, optional
     :param business_info: Information about business settings for Telegram Business accounts; may be null if none, defaults to None
     :type business_info: :class:`BusinessInfo`, optional
     :param bot_info: For bots, information about the bot; may be null if the user isn't a bot, defaults to None
@@ -26001,13 +29250,14 @@ class UserFullInfo(BaseObject):
     """
 
     ID: typing.Literal["userFullInfo"] = Field("userFullInfo", validation_alias="@type", alias="@type")
-    premium_gift_options: Vector[PremiumPaymentOption]
+    gift_count: Int32
     personal_photo: typing.Optional[ChatPhoto] = None
     photo: typing.Optional[ChatPhoto] = None
     public_photo: typing.Optional[ChatPhoto] = None
     block_list: typing.Optional[BlockList] = None
     bio: typing.Optional[FormattedText] = None
     birthdate: typing.Optional[Birthdate] = None
+    bot_verification: typing.Optional[BotVerification] = None
     business_info: typing.Optional[BusinessInfo] = None
     bot_info: typing.Optional[BotInfo] = None
     can_be_called: Bool = False
@@ -26088,6 +29338,16 @@ class UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages(BaseObject):
     )
 
 
+class UserPrivacySettingAutosaveGifts(BaseObject):
+    """
+    A privacy setting for managing whether received gifts are automatically shown on the user's profile page
+    """
+
+    ID: typing.Literal["userPrivacySettingAutosaveGifts"] = Field(
+        "userPrivacySettingAutosaveGifts", validation_alias="@type", alias="@type"
+    )
+
+
 class UserPrivacySettingShowBio(BaseObject):
     """
     A privacy setting for managing whether the user's bio is visible
@@ -26154,6 +29414,7 @@ UserPrivacySetting = typing.Union[
     UserPrivacySettingAllowFindingByPhoneNumber,
     UserPrivacySettingAllowPeerToPeerCalls,
     UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages,
+    UserPrivacySettingAutosaveGifts,
     UserPrivacySettingShowBio,
     UserPrivacySettingShowBirthdate,
     UserPrivacySettingShowLinkInForwardedMessages,
@@ -26170,6 +29431,16 @@ class UserPrivacySettingRuleAllowAll(BaseObject):
 
     ID: typing.Literal["userPrivacySettingRuleAllowAll"] = Field(
         "userPrivacySettingRuleAllowAll", validation_alias="@type", alias="@type"
+    )
+
+
+class UserPrivacySettingRuleAllowBots(BaseObject):
+    """
+    A rule to allow all bots to do something
+    """
+
+    ID: typing.Literal["userPrivacySettingRuleAllowBots"] = Field(
+        "userPrivacySettingRuleAllowBots", validation_alias="@type", alias="@type"
     )
 
 
@@ -26231,6 +29502,16 @@ class UserPrivacySettingRuleRestrictAll(BaseObject):
     )
 
 
+class UserPrivacySettingRuleRestrictBots(BaseObject):
+    """
+    A rule to restrict all bots from doing something
+    """
+
+    ID: typing.Literal["userPrivacySettingRuleRestrictBots"] = Field(
+        "userPrivacySettingRuleRestrictBots", validation_alias="@type", alias="@type"
+    )
+
+
 class UserPrivacySettingRuleRestrictChatMembers(BaseObject):
     """
     A rule to restrict all members of specified basic groups and supergroups from doing something
@@ -26271,11 +29552,13 @@ class UserPrivacySettingRuleRestrictUsers(BaseObject):
 
 UserPrivacySettingRule = typing.Union[
     UserPrivacySettingRuleAllowAll,
+    UserPrivacySettingRuleAllowBots,
     UserPrivacySettingRuleAllowChatMembers,
     UserPrivacySettingRuleAllowContacts,
     UserPrivacySettingRuleAllowPremiumUsers,
     UserPrivacySettingRuleAllowUsers,
     UserPrivacySettingRuleRestrictAll,
+    UserPrivacySettingRuleRestrictBots,
     UserPrivacySettingRuleRestrictChatMembers,
     UserPrivacySettingRuleRestrictContacts,
     UserPrivacySettingRuleRestrictUsers,
@@ -26398,12 +29681,16 @@ class UserTypeBot(BaseObject):
 
     :param inline_query_placeholder: Placeholder for inline queries (displayed on the application input field)
     :type inline_query_placeholder: :class:`String`
+    :param active_user_count: The number of recently active users of the bot
+    :type active_user_count: :class:`Int32`
     :param can_be_edited: True, if the bot is owned by the current user and can be edited using the methods toggleBotUsernameIsActive, reorderBotActiveUsernames, setBotProfilePhoto, setBotName, setBotInfoDescription, and setBotInfoShortDescription
     :type can_be_edited: :class:`Bool`
     :param can_join_groups: True, if the bot can be invited to basic group and supergroup chats
     :type can_join_groups: :class:`Bool`
     :param can_read_all_group_messages: True, if the bot can read all messages in basic group or supergroup chats and not just those addressed to the bot. In private and channel chats a bot can always read all messages
     :type can_read_all_group_messages: :class:`Bool`
+    :param has_main_web_app: True, if the bot has the main Web App
+    :type has_main_web_app: :class:`Bool`
     :param is_inline: True, if the bot supports inline queries
     :type is_inline: :class:`Bool`
     :param need_location: True, if the location of the user is expected to be sent with every inline query to this bot
@@ -26416,9 +29703,11 @@ class UserTypeBot(BaseObject):
 
     ID: typing.Literal["userTypeBot"] = Field("userTypeBot", validation_alias="@type", alias="@type")
     inline_query_placeholder: String
+    active_user_count: Int32
     can_be_edited: Bool = False
     can_join_groups: Bool = False
     can_read_all_group_messages: Bool = False
+    has_main_web_app: Bool = False
     is_inline: Bool = False
     need_location: Bool = False
     can_connect_to_business: Bool = False
@@ -26572,6 +29861,27 @@ class Venue(BaseObject):
     type_: String = Field(..., alias="type")
 
 
+class VerificationStatus(BaseObject):
+    """
+    Contains information about verification status of a chat or a user
+
+    :param is_verified: True, if the chat or the user is verified by Telegram
+    :type is_verified: :class:`Bool`
+    :param is_scam: True, if the chat or the user is marked as scam by Telegram
+    :type is_scam: :class:`Bool`
+    :param is_fake: True, if the chat or the user is marked as fake by Telegram
+    :type is_fake: :class:`Bool`
+    :param bot_verification_icon_custom_emoji_id: Identifier of the custom emoji to be shown as verification sign provided by a bot for the user; 0 if none, defaults to None
+    :type bot_verification_icon_custom_emoji_id: :class:`Int64`, optional
+    """
+
+    ID: typing.Literal["verificationStatus"] = Field("verificationStatus", validation_alias="@type", alias="@type")
+    is_verified: Bool = False
+    is_scam: Bool = False
+    is_fake: Bool = False
+    bot_verification_icon_custom_emoji_id: typing.Optional[Int64] = 0
+
+
 class Video(BaseObject):
     """
     Describes a video file
@@ -26594,7 +29904,7 @@ class Video(BaseObject):
     :type thumbnail: :class:`Thumbnail`, optional
     :param has_stickers: True, if stickers were added to the video. The list of corresponding sticker sets can be received using getAttachedStickerSets
     :type has_stickers: :class:`Bool`
-    :param supports_streaming: True, if the video is supposed to be streamed
+    :param supports_streaming: True, if the video is expected to be streamed
     :type supports_streaming: :class:`Bool`
     """
 
@@ -26722,104 +30032,66 @@ class WebAppInfo(BaseObject):
     url: String
 
 
-class WebPage(BaseObject):
+class WebAppOpenModeCompact(BaseObject):
     """
-    Describes a link preview
-
-    :param url: Original URL of the link
-    :type url: :class:`String`
-    :param display_url: URL to display
-    :type display_url: :class:`String`
-    :param type_: Type of the web page. Can be: article, photo, audio, video, document, profile, app, or something else
-    :type type_: :class:`String`
-    :param site_name: Short name of the site (e.g., Google Docs, App Store)
-    :type site_name: :class:`String`
-    :param title: Title of the content
-    :type title: :class:`String`
-    :param description: Description of the content
-    :type description: :class:`FormattedText`
-    :param embed_url: URL to show in the embedded preview
-    :type embed_url: :class:`String`
-    :param embed_type: MIME type of the embedded preview, (e.g., text/html or video/mp4)
-    :type embed_type: :class:`String`
-    :param embed_width: Width of the embedded preview
-    :type embed_width: :class:`Int32`
-    :param embed_height: Height of the embedded preview
-    :type embed_height: :class:`Int32`
-    :param duration: Duration of the content, in seconds
-    :type duration: :class:`Int32`
-    :param author: Author of the content
-    :type author: :class:`String`
-    :param stickers: Up to 4 stickers from the sticker set available via the link
-    :type stickers: :class:`Vector[Sticker]`
-    :param photo: Image representing the content; may be null, defaults to None
-    :type photo: :class:`Photo`, optional
-    :param animation: Preview of the content as an animation, if available; may be null, defaults to None
-    :type animation: :class:`Animation`, optional
-    :param audio: Preview of the content as an audio file, if available; may be null, defaults to None
-    :type audio: :class:`Audio`, optional
-    :param document: Preview of the content as a document, if available; may be null, defaults to None
-    :type document: :class:`Document`, optional
-    :param sticker: Preview of the content as a sticker for small WEBP files, if available; may be null, defaults to None
-    :type sticker: :class:`Sticker`, optional
-    :param video: Preview of the content as a video, if available; may be null, defaults to None
-    :type video: :class:`Video`, optional
-    :param video_note: Preview of the content as a video note, if available; may be null, defaults to None
-    :type video_note: :class:`VideoNote`, optional
-    :param voice_note: Preview of the content as a voice note, if available; may be null, defaults to None
-    :type voice_note: :class:`VoiceNote`, optional
-    :param has_large_media: True, if size of media in the preview can be changed
-    :type has_large_media: :class:`Bool`
-    :param show_large_media: True, if large media preview must be shown; otherwise, the media preview must be shown small and only the first frame must be shown for videos
-    :type show_large_media: :class:`Bool`
-    :param skip_confirmation: True, if there is no need to show an ordinary open URL confirmation, when opening the URL from the preview, because the URL is shown in the message text in clear
-    :type skip_confirmation: :class:`Bool`
-    :param show_above_text: True, if the link preview must be shown above message text; otherwise, the link preview must be shown below the message text
-    :type show_above_text: :class:`Bool`
-    :param story_sender_chat_id: The identifier of the sender of the previewed story; 0 if none, defaults to None
-    :type story_sender_chat_id: :class:`Int53`, optional
-    :param story_id: The identifier of the previewed story; 0 if none, defaults to None
-    :type story_id: :class:`Int32`, optional
-    :param instant_view_version: Version of web page instant view (currently, can be 1 or 2); 0 if none, defaults to None
-    :type instant_view_version: :class:`Int32`, optional
+    The Web App is opened in the compact mode
     """
 
-    ID: typing.Literal["webPage"] = Field("webPage", validation_alias="@type", alias="@type")
-    url: String
-    display_url: String
-    type_: String = Field(..., alias="type")
-    site_name: String
-    title: String
-    description: FormattedText
-    embed_url: String
-    embed_type: String
-    embed_width: Int32
-    embed_height: Int32
-    duration: Int32
-    author: String
-    stickers: Vector[Sticker]
-    photo: typing.Optional[Photo] = None
-    animation: typing.Optional[Animation] = None
-    audio: typing.Optional[Audio] = None
-    document: typing.Optional[Document] = None
-    sticker: typing.Optional[Sticker] = None
-    video: typing.Optional[Video] = None
-    video_note: typing.Optional[VideoNote] = None
-    voice_note: typing.Optional[VoiceNote] = None
-    has_large_media: Bool = False
-    show_large_media: Bool = False
-    skip_confirmation: Bool = False
-    show_above_text: Bool = False
-    story_sender_chat_id: typing.Optional[Int53] = 0
-    story_id: typing.Optional[Int32] = 0
-    instant_view_version: typing.Optional[Int32] = 0
+    ID: typing.Literal["webAppOpenModeCompact"] = Field(
+        "webAppOpenModeCompact", validation_alias="@type", alias="@type"
+    )
+
+
+class WebAppOpenModeFullScreen(BaseObject):
+    """
+    The Web App is opened in the full-screen mode
+    """
+
+    ID: typing.Literal["webAppOpenModeFullScreen"] = Field(
+        "webAppOpenModeFullScreen", validation_alias="@type", alias="@type"
+    )
+
+
+class WebAppOpenModeFullSize(BaseObject):
+    """
+    The Web App is opened in the full-size mode
+    """
+
+    ID: typing.Literal["webAppOpenModeFullSize"] = Field(
+        "webAppOpenModeFullSize", validation_alias="@type", alias="@type"
+    )
+
+
+WebAppOpenMode = typing.Union[
+    WebAppOpenModeCompact,
+    WebAppOpenModeFullScreen,
+    WebAppOpenModeFullSize,
+]
+
+
+class WebAppOpenParameters(BaseObject):
+    """
+    Options to be used when a Web App is opened
+
+    :param application_name: Short name of the current application; 0-64 English letters, digits, and underscores
+    :type application_name: :class:`String`
+    :param theme: Preferred Web App theme; pass null to use the default theme, defaults to None
+    :type theme: :class:`ThemeParameters`, optional
+    :param mode: The mode in which the Web App is opened; pass null to open in webAppOpenModeFullSize, defaults to None
+    :type mode: :class:`WebAppOpenMode`, optional
+    """
+
+    ID: typing.Literal["webAppOpenParameters"] = Field("webAppOpenParameters", validation_alias="@type", alias="@type")
+    application_name: String
+    theme: typing.Optional[ThemeParameters] = None
+    mode: typing.Optional[WebAppOpenMode] = None
 
 
 class WebPageInstantView(BaseObject):
     """
     Describes an instant view page for a web page
 
-    :param page_blocks: Content of the web page
+    :param page_blocks: Content of the instant view page
     :type page_blocks: :class:`Vector[PageBlock]`
     :param version: Version of the instant view; currently, can be 1 or 2
     :type version: :class:`Int32`
@@ -26827,7 +30099,7 @@ class WebPageInstantView(BaseObject):
     :type feedback_link: :class:`InternalLinkType`
     :param is_rtl: True, if the instant view must be shown from right to left
     :type is_rtl: :class:`Bool`
-    :param is_full: True, if the instant view contains the full page. A network request might be needed to get the full web page instant view
+    :param is_full: True, if the instant view contains the full page. A network request might be needed to get the full instant view
     :type is_full: :class:`Bool`
     :param view_count: Number of the instant view views; 0 if unknown, defaults to None
     :type view_count: :class:`Int32`, optional
@@ -26844,6 +30116,9 @@ class WebPageInstantView(BaseObject):
 
 AddedReaction.model_rebuild()
 AddedReactions.model_rebuild()
+AffiliateInfo.model_rebuild()
+AffiliateProgramInfo.model_rebuild()
+AlternativeVideo.model_rebuild()
 AnimatedChatPhoto.model_rebuild()
 AnimatedEmoji.model_rebuild()
 Animation.model_rebuild()
@@ -26851,6 +30126,7 @@ Animations.model_rebuild()
 AttachmentMenuBot.model_rebuild()
 Audio.model_rebuild()
 AuthenticationCodeInfo.model_rebuild()
+AuthenticationCodeTypeFirebaseAndroid.model_rebuild()
 AuthorizationStateWaitCode.model_rebuild()
 AuthorizationStateWaitEmailCode.model_rebuild()
 AuthorizationStateWaitRegistration.model_rebuild()
@@ -26868,6 +30144,11 @@ BasicGroup.model_rebuild()
 BasicGroupFullInfo.model_rebuild()
 BotCommands.model_rebuild()
 BotInfo.model_rebuild()
+BotMediaPreview.model_rebuild()
+BotMediaPreviewInfo.model_rebuild()
+BotMediaPreviews.model_rebuild()
+BotVerification.model_rebuild()
+BotVerificationParameters.model_rebuild()
 BotWriteAccessAllowReasonLaunchedWebApp.model_rebuild()
 BusinessAwayMessageSettings.model_rebuild()
 BusinessChatLink.model_rebuild()
@@ -26916,6 +30197,7 @@ ChatEventMemberJoinedByInviteLink.model_rebuild()
 ChatEventMemberJoinedByRequest.model_rebuild()
 ChatEventMemberPromoted.model_rebuild()
 ChatEventMemberRestricted.model_rebuild()
+ChatEventMemberSubscriptionExtended.model_rebuild()
 ChatEventMessageDeleted.model_rebuild()
 ChatEventMessageEdited.model_rebuild()
 ChatEventMessagePinned.model_rebuild()
@@ -26930,9 +30212,12 @@ ChatFolder.model_rebuild()
 ChatFolderInfo.model_rebuild()
 ChatFolderInviteLinkInfo.model_rebuild()
 ChatFolderInviteLinks.model_rebuild()
+ChatFolderName.model_rebuild()
+ChatInviteLink.model_rebuild()
 ChatInviteLinkCounts.model_rebuild()
 ChatInviteLinkInfo.model_rebuild()
 ChatInviteLinkMembers.model_rebuild()
+ChatInviteLinkSubscriptionInfo.model_rebuild()
 ChatInviteLinks.model_rebuild()
 ChatJoinRequests.model_rebuild()
 ChatLists.model_rebuild()
@@ -26956,9 +30241,10 @@ ChatStatisticsChannel.model_rebuild()
 ChatStatisticsSupergroup.model_rebuild()
 ChatStatisticsInteractionInfo.model_rebuild()
 ChatTheme.model_rebuild()
-ChatsNearby.model_rebuild()
 CloseBirthdayUser.model_rebuild()
 ClosedVectorPath.model_rebuild()
+ConnectedAffiliateProgram.model_rebuild()
+ConnectedAffiliatePrograms.model_rebuild()
 ConnectedWebsites.model_rebuild()
 Countries.model_rebuild()
 CreatedBasicGroupChat.model_rebuild()
@@ -26972,6 +30258,9 @@ EmojiCategories.model_rebuild()
 EmojiCategory.model_rebuild()
 EmojiKeywords.model_rebuild()
 EmojiReaction.model_rebuild()
+EmojiStatus.model_rebuild()
+EmojiStatusTypeUpgradedGift.model_rebuild()
+EmojiStatuses.model_rebuild()
 EncryptedPassportElement.model_rebuild()
 FactCheck.model_rebuild()
 FailedToAddMembers.model_rebuild()
@@ -26982,6 +30271,8 @@ ForumTopic.model_rebuild()
 ForumTopicInfo.model_rebuild()
 ForumTopics.model_rebuild()
 ForwardSource.model_rebuild()
+FoundAffiliateProgram.model_rebuild()
+FoundAffiliatePrograms.model_rebuild()
 FoundChatBoosts.model_rebuild()
 FoundChatMessages.model_rebuild()
 FoundFileDownloads.model_rebuild()
@@ -26990,6 +30281,10 @@ FoundStories.model_rebuild()
 FoundWebApp.model_rebuild()
 Game.model_rebuild()
 GameHighScores.model_rebuild()
+Gift.model_rebuild()
+GiftUpgradePreview.model_rebuild()
+Gifts.model_rebuild()
+GiveawayInfoOngoing.model_rebuild()
 GroupCall.model_rebuild()
 GroupCallParticipant.model_rebuild()
 GroupCallParticipantVideoInfo.model_rebuild()
@@ -27039,6 +30334,7 @@ InputMessageDocument.model_rebuild()
 InputMessageForwarded.model_rebuild()
 InputMessageInvoice.model_rebuild()
 InputMessageLocation.model_rebuild()
+InputMessagePaidMedia.model_rebuild()
 InputMessagePhoto.model_rebuild()
 InputMessagePoll.model_rebuild()
 InputMessageSticker.model_rebuild()
@@ -27049,6 +30345,8 @@ InputMessageVideoNote.model_rebuild()
 InputMessageVoiceNote.model_rebuild()
 InputMessageReplyToExternalMessage.model_rebuild()
 InputMessageReplyToMessage.model_rebuild()
+InputPaidMedia.model_rebuild()
+InputPaidMediaTypeVideo.model_rebuild()
 InputPassportElementAddress.model_rebuild()
 InputPassportElementBankStatement.model_rebuild()
 InputPassportElementDriverLicense.model_rebuild()
@@ -27074,8 +30372,10 @@ InputThumbnail.model_rebuild()
 InternalLinkTypeAttachmentMenuBot.model_rebuild()
 InternalLinkTypeBotAddToChannel.model_rebuild()
 InternalLinkTypeBotStartInGroup.model_rebuild()
+InternalLinkTypeMainWebApp.model_rebuild()
 InternalLinkTypeMessageDraft.model_rebuild()
 InternalLinkTypeProxy.model_rebuild()
+InternalLinkTypeWebApp.model_rebuild()
 Invoice.model_rebuild()
 JsonValueArray.model_rebuild()
 JsonValueObject.model_rebuild()
@@ -27084,7 +30384,35 @@ KeyboardButton.model_rebuild()
 KeyboardButtonTypeRequestChat.model_rebuild()
 LanguagePackString.model_rebuild()
 LanguagePackStrings.model_rebuild()
+LinkPreview.model_rebuild()
+LinkPreviewAlbumMediaPhoto.model_rebuild()
+LinkPreviewAlbumMediaVideo.model_rebuild()
+LinkPreviewTypeAlbum.model_rebuild()
+LinkPreviewTypeAnimation.model_rebuild()
+LinkPreviewTypeApp.model_rebuild()
+LinkPreviewTypeArticle.model_rebuild()
+LinkPreviewTypeAudio.model_rebuild()
+LinkPreviewTypeBackground.model_rebuild()
+LinkPreviewTypeChannelBoost.model_rebuild()
+LinkPreviewTypeChat.model_rebuild()
+LinkPreviewTypeDocument.model_rebuild()
+LinkPreviewTypeEmbeddedAnimationPlayer.model_rebuild()
+LinkPreviewTypeEmbeddedAudioPlayer.model_rebuild()
+LinkPreviewTypeEmbeddedVideoPlayer.model_rebuild()
+LinkPreviewTypePhoto.model_rebuild()
+LinkPreviewTypeSticker.model_rebuild()
+LinkPreviewTypeStickerSet.model_rebuild()
+LinkPreviewTypeSupergroupBoost.model_rebuild()
+LinkPreviewTypeTheme.model_rebuild()
+LinkPreviewTypeUpgradedGift.model_rebuild()
+LinkPreviewTypeUser.model_rebuild()
+LinkPreviewTypeVideo.model_rebuild()
+LinkPreviewTypeVideoChat.model_rebuild()
+LinkPreviewTypeVideoNote.model_rebuild()
+LinkPreviewTypeVoiceNote.model_rebuild()
+LinkPreviewTypeWebApp.model_rebuild()
 LocalizationTargetInfo.model_rebuild()
+MainWebApp.model_rebuild()
 MaskPosition.model_rebuild()
 Message.model_rebuild()
 MessageCalendar.model_rebuild()
@@ -27102,20 +30430,28 @@ MessageDice.model_rebuild()
 MessageDocument.model_rebuild()
 MessageForumTopicCreated.model_rebuild()
 MessageGame.model_rebuild()
+MessageGift.model_rebuild()
 MessageGiftedPremium.model_rebuild()
+MessageGiftedStars.model_rebuild()
+MessageGiveaway.model_rebuild()
+MessageGiveawayPrizeStars.model_rebuild()
+MessageGiveawayWinners.model_rebuild()
 MessageInvoice.model_rebuild()
 MessageLocation.model_rebuild()
+MessagePaidMedia.model_rebuild()
 MessagePassportDataReceived.model_rebuild()
 MessagePassportDataSent.model_rebuild()
+MessagePaymentRefunded.model_rebuild()
 MessagePaymentSuccessfulBot.model_rebuild()
 MessagePhoto.model_rebuild()
 MessagePoll.model_rebuild()
 MessagePremiumGiftCode.model_rebuild()
-MessagePremiumGiveaway.model_rebuild()
 MessageProximityAlertTriggered.model_rebuild()
+MessageRefundedUpgradedGift.model_rebuild()
 MessageSticker.model_rebuild()
 MessageSuggestProfilePhoto.model_rebuild()
 MessageText.model_rebuild()
+MessageUpgradedGift.model_rebuild()
 MessageUsersShared.model_rebuild()
 MessageVenue.model_rebuild()
 MessageVideo.model_rebuild()
@@ -27125,10 +30461,6 @@ MessageCopyOptions.model_rebuild()
 MessageEffect.model_rebuild()
 MessageEffectTypeEmojiReaction.model_rebuild()
 MessageEffectTypePremiumSticker.model_rebuild()
-MessageExtendedMediaPhoto.model_rebuild()
-MessageExtendedMediaPreview.model_rebuild()
-MessageExtendedMediaUnsupported.model_rebuild()
-MessageExtendedMediaVideo.model_rebuild()
 MessageForwardInfo.model_rebuild()
 MessageInteractionInfo.model_rebuild()
 MessageLinkInfo.model_rebuild()
@@ -27155,6 +30487,7 @@ NotificationSounds.model_rebuild()
 NotificationTypeNewMessage.model_rebuild()
 NotificationTypeNewPushMessage.model_rebuild()
 OrderInfo.model_rebuild()
+Outline.model_rebuild()
 PageBlockAnimation.model_rebuild()
 PageBlockAudio.model_rebuild()
 PageBlockAuthorDate.model_rebuild()
@@ -27186,6 +30519,10 @@ PageBlockListItem.model_rebuild()
 PageBlockCaption.model_rebuild()
 PageBlockRelatedArticle.model_rebuild()
 PageBlockTableCell.model_rebuild()
+PaidMediaPhoto.model_rebuild()
+PaidMediaPreview.model_rebuild()
+PaidMediaVideo.model_rebuild()
+PaidReactor.model_rebuild()
 PassportAuthorizationForm.model_rebuild()
 PassportElementAddress.model_rebuild()
 PassportElementBankStatement.model_rebuild()
@@ -27206,6 +30543,7 @@ PassportSuitableElement.model_rebuild()
 PasswordState.model_rebuild()
 PaymentForm.model_rebuild()
 PaymentFormTypeRegular.model_rebuild()
+PaymentFormTypeStarSubscription.model_rebuild()
 PaymentReceipt.model_rebuild()
 PaymentReceiptTypeRegular.model_rebuild()
 PersonalDetails.model_rebuild()
@@ -27220,8 +30558,8 @@ PollTypeQuiz.model_rebuild()
 PremiumFeaturePromotionAnimation.model_rebuild()
 PremiumFeatures.model_rebuild()
 PremiumGiftCodeInfo.model_rebuild()
+PremiumGiftCodePaymentOption.model_rebuild()
 PremiumGiftCodePaymentOptions.model_rebuild()
-PremiumGiveawayInfoOngoing.model_rebuild()
 PremiumLimit.model_rebuild()
 PremiumPaymentOption.model_rebuild()
 PremiumSourceBusinessFeature.model_rebuild()
@@ -27230,6 +30568,8 @@ PremiumSourceLimitExceeded.model_rebuild()
 PremiumSourceStoryFeature.model_rebuild()
 PremiumState.model_rebuild()
 PremiumStatePaymentOption.model_rebuild()
+PrepaidGiveaway.model_rebuild()
+PreparedInlineMessage.model_rebuild()
 ProductInfo.model_rebuild()
 ProfileAccentColor.model_rebuild()
 ProfilePhoto.model_rebuild()
@@ -27241,6 +30581,7 @@ PublicForwards.model_rebuild()
 PushMessageContentAnimation.model_rebuild()
 PushMessageContentAudio.model_rebuild()
 PushMessageContentDocument.model_rebuild()
+PushMessageContentGiveaway.model_rebuild()
 PushMessageContentPhoto.model_rebuild()
 PushMessageContentSticker.model_rebuild()
 PushMessageContentVideo.model_rebuild()
@@ -27250,11 +30591,15 @@ QuickReplyMessage.model_rebuild()
 QuickReplyMessages.model_rebuild()
 QuickReplyShortcut.model_rebuild()
 ReactionNotificationSettings.model_rebuild()
+ReceivedGift.model_rebuild()
+ReceivedGifts.model_rebuild()
 RecommendedChatFolder.model_rebuild()
 RecommendedChatFolders.model_rebuild()
 ReplyMarkupInlineKeyboard.model_rebuild()
 ReplyMarkupShowKeyboard.model_rebuild()
+ReportChatResultOptionRequired.model_rebuild()
 ReportChatSponsoredMessageResultOptionRequired.model_rebuild()
+ReportStoryResultOptionRequired.model_rebuild()
 RichTextAnchorLink.model_rebuild()
 RichTextBold.model_rebuild()
 RichTextEmailAddress.model_rebuild()
@@ -27274,6 +30619,8 @@ SavedMessagesTag.model_rebuild()
 SavedMessagesTags.model_rebuild()
 SavedMessagesTopic.model_rebuild()
 SecretChat.model_rebuild()
+SentGiftRegular.model_rebuild()
+SentGiftUpgraded.model_rebuild()
 Session.model_rebuild()
 Sessions.model_rebuild()
 SharedChat.model_rebuild()
@@ -27282,11 +30629,29 @@ ShippingOption.model_rebuild()
 SpeechRecognitionResultError.model_rebuild()
 SponsoredMessage.model_rebuild()
 SponsoredMessages.model_rebuild()
+StarGiveawayPaymentOption.model_rebuild()
+StarGiveawayPaymentOptions.model_rebuild()
 StarPaymentOptions.model_rebuild()
 StarRevenueStatistics.model_rebuild()
+StarRevenueStatus.model_rebuild()
+StarSubscription.model_rebuild()
+StarSubscriptionTypeBot.model_rebuild()
+StarSubscriptions.model_rebuild()
 StarTransaction.model_rebuild()
-StarTransactionPartnerFragment.model_rebuild()
-StarTransactionPartnerUser.model_rebuild()
+StarTransactionTypeBotInvoicePurchase.model_rebuild()
+StarTransactionTypeBotInvoiceSale.model_rebuild()
+StarTransactionTypeBotPaidMediaPurchase.model_rebuild()
+StarTransactionTypeBotPaidMediaSale.model_rebuild()
+StarTransactionTypeBotSubscriptionPurchase.model_rebuild()
+StarTransactionTypeBotSubscriptionSale.model_rebuild()
+StarTransactionTypeChannelPaidMediaPurchase.model_rebuild()
+StarTransactionTypeChannelPaidMediaSale.model_rebuild()
+StarTransactionTypeFragmentWithdrawal.model_rebuild()
+StarTransactionTypeGiftPurchase.model_rebuild()
+StarTransactionTypeGiftSale.model_rebuild()
+StarTransactionTypeGiftTransfer.model_rebuild()
+StarTransactionTypeGiftUpgrade.model_rebuild()
+StarTransactionTypeUserDeposit.model_rebuild()
 StarTransactions.model_rebuild()
 Sticker.model_rebuild()
 StickerFullTypeMask.model_rebuild()
@@ -27298,7 +30663,9 @@ Stickers.model_rebuild()
 StorageStatistics.model_rebuild()
 StorageStatisticsByChat.model_rebuild()
 StorageStatisticsByFileType.model_rebuild()
+StorePaymentPurposePremiumGiftCodes.model_rebuild()
 StorePaymentPurposePremiumGiveaway.model_rebuild()
+StorePaymentPurposeStarGiveaway.model_rebuild()
 Stories.model_rebuild()
 Story.model_rebuild()
 StoryArea.model_rebuild()
@@ -27320,8 +30687,11 @@ SupergroupFullInfo.model_rebuild()
 TMeUrl.model_rebuild()
 TMeUrlTypeChatInvite.model_rebuild()
 TMeUrls.model_rebuild()
+TargetChatChosen.model_rebuild()
 TargetChatInternalLink.model_rebuild()
+TelegramPaymentPurposePremiumGiftCodes.model_rebuild()
 TelegramPaymentPurposePremiumGiveaway.model_rebuild()
+TelegramPaymentPurposeStarGiveaway.model_rebuild()
 TermsOfService.model_rebuild()
 TestVectorIntObject.model_rebuild()
 TestVectorStringObject.model_rebuild()
@@ -27334,6 +30704,7 @@ TimeZones.model_rebuild()
 TrendingStickerSets.model_rebuild()
 UnreadReaction.model_rebuild()
 UpdateAccentColors.model_rebuild()
+UpdateActiveLiveLocationMessages.model_rebuild()
 UpdateActiveNotifications.model_rebuild()
 UpdateAnimatedEmojiMessageClicked.model_rebuild()
 UpdateAttachmentMenuBots.model_rebuild()
@@ -27404,6 +30775,7 @@ UpdateNewShippingQuery.model_rebuild()
 UpdateNotification.model_rebuild()
 UpdateNotificationGroup.model_rebuild()
 UpdateOption.model_rebuild()
+UpdateOwnedStarCount.model_rebuild()
 UpdatePoll.model_rebuild()
 UpdatePollAnswer.model_rebuild()
 UpdateProfileAccentColors.model_rebuild()
@@ -27433,8 +30805,13 @@ UpdateUser.model_rebuild()
 UpdateUserFullInfo.model_rebuild()
 UpdateUserPrivacySettingRules.model_rebuild()
 UpdateUserStatus.model_rebuild()
-UpdateUsersNearby.model_rebuild()
 Updates.model_rebuild()
+UpgradeGiftResult.model_rebuild()
+UpgradedGift.model_rebuild()
+UpgradedGiftBackdrop.model_rebuild()
+UpgradedGiftModel.model_rebuild()
+UpgradedGiftOriginalDetails.model_rebuild()
+UpgradedGiftSymbol.model_rebuild()
 User.model_rebuild()
 UserFullInfo.model_rebuild()
 UserPrivacySettingRules.model_rebuild()
@@ -27448,5 +30825,5 @@ VideoChat.model_rebuild()
 VideoNote.model_rebuild()
 VoiceNote.model_rebuild()
 WebApp.model_rebuild()
-WebPage.model_rebuild()
+WebAppOpenParameters.model_rebuild()
 WebPageInstantView.model_rebuild()

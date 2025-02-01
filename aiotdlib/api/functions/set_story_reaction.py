@@ -26,7 +26,7 @@ class SetStoryReaction(BaseObject):
     :type story_id: :class:`Int32`
     :param update_recent_reactions: Pass true if the reaction needs to be added to recent reactions
     :type update_recent_reactions: :class:`Bool`
-    :param reaction_type: Type of the reaction to set; pass null to remove the reaction. `reactionTypeCustomEmoji` reactions can be used only by Telegram Premium users, defaults to None
+    :param reaction_type: Type of the reaction to set; pass null to remove the reaction. Custom emoji reactions can be used only by Telegram Premium users. Paid reactions can't be set, defaults to None
     :type reaction_type: :class:`ReactionType`, optional
     """
 

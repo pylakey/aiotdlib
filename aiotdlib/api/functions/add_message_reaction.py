@@ -24,7 +24,7 @@ class AddMessageReaction(BaseObject):
     :type chat_id: :class:`Int53`
     :param message_id: Identifier of the message
     :type message_id: :class:`Int53`
-    :param reaction_type: Type of the reaction to add
+    :param reaction_type: Type of the reaction to add. Use addPendingPaidMessageReaction instead to add the paid reaction
     :type reaction_type: :class:`ReactionType`
     :param is_big: Pass true if the reaction is added with a big animation
     :type is_big: :class:`Bool`

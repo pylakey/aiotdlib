@@ -19,11 +19,11 @@ from ..types.all import (
 
 class EditMessageLiveLocation(BaseObject):
     """
-    Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
+    Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
 
     :param chat_id: The chat the message belongs to
     :type chat_id: :class:`Int53`
-    :param message_id: Identifier of the message
+    :param message_id: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     :type message_id: :class:`Int53`
     :param live_period: New time relative to the message send date, for which the location can be updated, in seconds. If 0x7FFFFFFF specified, then the location can be updated forever. Otherwise, must not exceed the current live_period by more than a day, and the live location expiration date must remain in the next 90 days. Pass 0 to keep the current live_period
     :type live_period: :class:`Int32`

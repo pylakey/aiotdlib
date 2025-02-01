@@ -13,6 +13,7 @@ from ..types.base import *
 
 from ..types.all import (
     ChatList,
+    SearchMessagesChatTypeFilter,
     SearchMessagesFilter,
 )
 
@@ -27,8 +28,6 @@ class SearchMessages(BaseObject):
     :type offset: :class:`String`
     :param limit: The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
     :type limit: :class:`Int32`
-    :param only_in_channels: Pass true to search only for messages in channels
-    :type only_in_channels: :class:`Bool`
     :param min_date: If not 0, the minimum date of the messages to return
     :type min_date: :class:`Int32`
     :param max_date: If not 0, the maximum date of the messages to return
@@ -37,14 +36,16 @@ class SearchMessages(BaseObject):
     :type chat_list: :class:`ChatList`, optional
     :param filter_: Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function, defaults to None
     :type filter_: :class:`SearchMessagesFilter`, optional
+    :param chat_type_filter: Additional filter for type of the chat of the searched messages; pass null to search for messages in all chats, defaults to None
+    :type chat_type_filter: :class:`SearchMessagesChatTypeFilter`, optional
     """
 
     ID: typing.Literal["searchMessages"] = Field("searchMessages", validation_alias="@type", alias="@type")
     query: String
     offset: String
     limit: Int32
-    only_in_channels: Bool = False
     min_date: Int32 = 0
     max_date: Int32 = 0
     chat_list: typing.Optional[ChatList] = None
     filter_: typing.Optional[SearchMessagesFilter] = Field(None, alias="filter")
+    chat_type_filter: typing.Optional[SearchMessagesChatTypeFilter] = None

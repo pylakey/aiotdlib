@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetMessageStatistics(BaseObject):
     """
-    Returns detailed statistics about a message. Can be used only if message.can_get_statistics == true
+    Returns detailed statistics about a message. Can be used only if messageProperties.can_get_statistics == true
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

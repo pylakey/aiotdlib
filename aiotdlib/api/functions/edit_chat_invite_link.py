@@ -14,7 +14,7 @@ from ..types.base import *
 
 class EditChatInviteLink(BaseObject):
     """
-    Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
+    Edits a non-primary invite link for a chat. Available for basic groups, supergroups, and channels. If the link creates a subscription, then expiration_date, member_limit and creates_join_request must not be used. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

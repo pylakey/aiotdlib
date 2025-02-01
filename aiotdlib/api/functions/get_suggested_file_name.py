@@ -18,7 +18,7 @@ class GetSuggestedFileName(BaseObject):
 
     :param file_id: Identifier of the file
     :type file_id: :class:`Int32`
-    :param directory: Directory in which the file is supposed to be saved
+    :param directory: Directory in which the file is expected to be saved
     :type directory: :class:`String`
     """
 

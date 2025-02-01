@@ -18,11 +18,11 @@ from ..types.all import (
 
 class StopPoll(BaseObject):
     """
-    Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set
+    Stops a poll
 
     :param chat_id: Identifier of the chat to which the poll belongs
     :type chat_id: :class:`Int53`
-    :param message_id: Identifier of the message containing the poll
+    :param message_id: Identifier of the message containing the poll. Use messageProperties.can_be_edited to check whether the poll can be stopped
     :type message_id: :class:`Int53`
     :param reply_markup: The new message reply markup; pass null if none; for bots only, defaults to None
     :type reply_markup: :class:`ReplyMarkup`, optional

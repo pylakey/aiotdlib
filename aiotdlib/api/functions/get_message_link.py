@@ -14,13 +14,13 @@ from ..types.base import *
 
 class GetMessageLink(BaseObject):
     """
-    Returns an HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels, or if message.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
+    Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
 
     :param chat_id: Identifier of the chat to which the message belongs
     :type chat_id: :class:`Int53`
     :param message_id: Identifier of the message
     :type message_id: :class:`Int53`
-    :param media_timestamp: If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its web page preview
+    :param media_timestamp: If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its link preview
     :type media_timestamp: :class:`Int32`
     :param for_album: Pass true to create a link for the whole media album
     :type for_album: :class:`Bool`

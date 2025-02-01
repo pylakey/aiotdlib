@@ -19,11 +19,11 @@ from ..types.all import (
 
 class EditMessageText(BaseObject):
     """
-    Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side. Can be used only if message.can_be_edited == true
+    Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
 
     :param chat_id: The chat the message belongs to
     :type chat_id: :class:`Int53`
-    :param message_id: Identifier of the message
+    :param message_id: Identifier of the message. Use messageProperties.can_be_edited to check whether the message can be edited
     :type message_id: :class:`Int53`
     :param input_message_content: New text content of the message. Must be of type inputMessageText
     :type input_message_content: :class:`InputMessageContent`

@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetMessagePublicForwards(BaseObject):
     """
-    Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if message.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
+    Returns forwarded copies of a channel message to different public channels and public reposts as a story. Can be used only if messageProperties.can_get_statistics == true. For optimal performance, the number of returned messages and stories is chosen by TDLib
 
     :param chat_id: Chat identifier of the message
     :type chat_id: :class:`Int53`
