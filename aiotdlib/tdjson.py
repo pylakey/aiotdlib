@@ -6,7 +6,7 @@ import pathlib
 import platform
 import sys
 import typing
-from ctypes import *
+from ctypes import CDLL, CFUNCTYPE, c_char_p, c_double, c_int
 from ctypes.util import find_library
 from enum import IntEnum
 
@@ -14,22 +14,27 @@ import ujson
 
 TDJsonQuery = typing.Union[str, bytes, dict]
 LogMessageCallback = CFUNCTYPE(None, c_int, c_char_p)
+LogMessageCallbackT = typing.Callable[[int, str], None]
+
+
 ARCH_ALIASES = {
     "x86_64": "amd64",
+    "amd64": "amd64",
     "aarch64": "arm64",
+    "arm64": "arm64",
     "arm64v8": "arm64",
 }
 SYSTEM_LIB_EXTENSION = {
-    'darwin': 'dylib',
-    'linux': 'so',
-    'freebsd': 'so',
+    "darwin": "dylib",
+    "linux": "so",
+    "freebsd": "so",
 }
 
 logger = logging.getLogger(__name__)
 
 
 def _get_bundled_tdjson_lib_path() -> str:
-    tdjson_path = find_library('tdjson')
+    tdjson_path = find_library("tdjson")
 
     if tdjson_path is not None:
         return tdjson_path
@@ -41,24 +46,24 @@ def _get_bundled_tdjson_lib_path() -> str:
     extension = SYSTEM_LIB_EXTENSION.get(system_name)
 
     if not bool(extension):
-        raise RuntimeError('Prebuilt TDLib binary is not included for this system')
+        raise RuntimeError("Prebuilt TDLib binary is not included for this system")
 
-    binary_name = f'libtdjson_{system_name}_{machine_name}.{extension}'
-    bundled_lib_path = (pathlib.Path(__file__).parent / 'tdlib' / binary_name).resolve()
-    logger.info('Current system: %s %s', system_name, machine_name)
-    logger.info('Bundled TDLib binary: %s', bundled_lib_path)
+    binary_name = f"libtdjson_{system_name}_{machine_name}.{extension}"
+    bundled_lib_path = (pathlib.Path(__file__).parent / "tdlib" / binary_name).resolve()
+    logger.info("Current system: %s %s", system_name, machine_name)
+    logger.info("Bundled TDLib binary: %s", bundled_lib_path)
     return str(bundled_lib_path)
 
 
 def _encode_tdjson_query(query: TDJsonQuery) -> bytes:
     if isinstance(query, dict):
-        return ujson.dumps(query, ensure_ascii=False).encode('utf-8')
+        return ujson.dumps(query, ensure_ascii=False).encode("utf-8")
     elif isinstance(query, str):
-        return query.encode('utf-8')
+        return query.encode("utf-8")
     elif isinstance(query, bytes):
         return query
 
-    raise ValueError('Query has wrong type')
+    raise ValueError("Query has wrong type")
 
 
 class TDLibLogVerbosity(IntEnum):
@@ -76,15 +81,15 @@ class CoreTDJson:
         self.logger = logging.getLogger(__name__)
 
         if not bool(library_path):
-            raise ValueError('Library path must be provided')
+            raise ValueError("Library path must be provided")
 
         library_path = pathlib.Path(library_path).resolve()
 
         if not bool(library_path.exists()):
-            raise FileNotFoundError(f'Library path {library_path} does not exist')
+            raise FileNotFoundError(f"Library path {library_path} does not exist")
 
         if not bool(library_path.is_file()):
-            raise IsADirectoryError(f'Library path {library_path} must point to a binary file')
+            raise IsADirectoryError(f"Library path {library_path} must point to a binary file")
 
         self.logger.info('Using "%s" TDLib binary', library_path)
         self.library_path = library_path
@@ -114,36 +119,35 @@ class CoreTDJson:
         self._td_execute.argtypes = [c_char_p]
 
         # td_set_log_message_callback
-        self._td_set_log_message_callback: typing.Callable[
-            [LogMessageCallback],
-            None
-        ] = self._tdjson.td_set_log_message_callback
+        self._td_set_log_message_callback: typing.Callable[[LogMessageCallbackT], None] = (
+            self._tdjson.td_set_log_message_callback
+        )
         self._td_set_log_message_callback.restype = None
         self._td_set_log_message_callback.argtypes = [LogMessageCallback]
         self._td_set_log_message_callback(LogMessageCallback(self.__log_message_callback))
 
     def __log_message_callback(self, verbosity_level: int, message: str) -> None:
         if verbosity_level == TDLibLogVerbosity.FATAL:
-            self.logger.error('[TDLib FATAL ERROR]: %s', message)
+            self.logger.error("[TDLib FATAL ERROR]: %s", message)
         elif verbosity_level == TDLibLogVerbosity.ERROR:
-            self.logger.error('[TDLib ERROR]: %s', message)
+            self.logger.error("[TDLib ERROR]: %s", message)
         elif verbosity_level == TDLibLogVerbosity.WARNING:
-            self.logger.warning('[TDLib WARNING]: %s', message)
+            self.logger.warning("[TDLib WARNING]: %s", message)
         elif verbosity_level == TDLibLogVerbosity.INFO:
-            self.logger.info('[TDLib INFO]: %s', message)
+            self.logger.info("[TDLib INFO]: %s", message)
         elif verbosity_level == TDLibLogVerbosity.DEBUG:
-            self.logger.debug('[TDLib DEBUG]: %s', message)
+            self.logger.debug("[TDLib DEBUG]: %s", message)
 
         sys.stdout.flush()
 
     def send(self, client_id: int, query: TDJsonQuery):
         query = _encode_tdjson_query(query)
-        self.logger.debug('[Client %s >>>] Sending %s', client_id, query)
+        self.logger.debug("[Client %s >>>] Sending %s", client_id, query)
         self._td_send(client_id, query)
 
     def execute(self, query: TDJsonQuery) -> typing.Optional[dict]:
         query = _encode_tdjson_query(query)
-        self.logger.debug('Executing query %s', query)
+        self.logger.debug("Executing query %s", query)
         result = self._td_execute(query)
 
         if result:
@@ -162,12 +166,12 @@ class CoreTDJson:
 
     def create_client_id(self) -> int:
         client_id = self._td_create_client_id()
-        self.logger.debug('Created new client ID: %d', client_id)
+        self.logger.debug("Created new client ID: %d", client_id)
         return client_id
 
     def close_client(self, client_id: int):
         # TDLib client instances are destroyed automatically after they are closed
-        self.send(client_id, {'@type': 'close'})
+        self.send(client_id, {"@type": "close"})
 
 
 class TDJson(CoreTDJson):
@@ -186,7 +190,11 @@ class TDJson(CoreTDJson):
         if bool(client_id) and client_id in self._subscribed_clients:
             self._subscribed_clients.pop(client_id, None)
 
-        if len(self._subscribed_clients) == 0 and bool(self._listen_task) and not self._listen_task.cancelled():
+        if (
+            len(self._subscribed_clients) == 0
+            and bool(self._listen_task)
+            and not self._listen_task.cancelled()
+        ):
             self._listen_task.cancel()
 
     async def _listen_updates(self):

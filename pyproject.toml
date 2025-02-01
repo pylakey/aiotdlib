@@ -47,11 +47,41 @@ allow-direct-references = true
 skip-excluded-dirs = true
 
 [tool.hatch.build.targets.sdist]
-exclude = ["**/__pycache__", "**/*.py[cod]", "tdlib"]
+exclude = [
+    "**/__pycache__",
+    "**/*.py[cod]",
+    "tdlib/*.so",
+    "tdlib/*.dylib",
+    "aiotdlib/tdlib/*.so",
+    "aiotdlib/tdlib/*.dylib",
+    "*.so",
+    "*.dylib",
+]
 
 [tool.hatch.build.targets.wheel]
 only-packages = true
 artifacts = ["aiotdlib/tdlib/*"]
+packages = ["aiotdlib"]
 
 [tool.hatch.build.targets.wheel.hooks.custom]
 path = "hatch_build.py"
+
+
+[tool.ruff]
+src = ["aiotdlib"]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+extend-select = ["I"]
+select = [
+    "F",    # pyflakes
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "B",    # flake8-bugbear
+    "I001", # isort,
+    "D403", # docstring
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["aiotdlib"]
