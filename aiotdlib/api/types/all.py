@@ -12169,7 +12169,7 @@ class InternalLinkTypeVideoChat(BaseObject):
 
 class InternalLinkTypeWebApp(BaseObject):
     """
-    The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party applications instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
+    The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot. If the bot is restricted for the current user, then show an error message. Otherwise, call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being third-party applications instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App
 
     :param bot_username: Username of the bot that owns the Web App
     :type bot_username: :class:`String`
@@ -13279,10 +13279,16 @@ class LinkPreviewTypeVideo(BaseObject):
 
     :param video: The video description
     :type video: :class:`Video`
+    :param start_timestamp: Timestamp from which the video playing must start, in seconds
+    :type start_timestamp: :class:`Int32`
+    :param cover: Cover of the video; may be null if none, defaults to None
+    :type cover: :class:`Photo`, optional
     """
 
     ID: typing.Literal["linkPreviewTypeVideo"] = Field("linkPreviewTypeVideo", validation_alias="@type", alias="@type")
     video: Video
+    start_timestamp: Int32
+    cover: typing.Optional[Photo] = None
 
 
 class LinkPreviewTypeVideoChat(BaseObject):
@@ -17538,6 +17544,45 @@ PaidMedia = typing.Union[
     PaidMediaPreview,
     PaidMediaUnsupported,
     PaidMediaVideo,
+]
+
+
+class PaidReactionTypeAnonymous(BaseObject):
+    """
+    An anonymous paid reaction
+    """
+
+    ID: typing.Literal["paidReactionTypeAnonymous"] = Field(
+        "paidReactionTypeAnonymous", validation_alias="@type", alias="@type"
+    )
+
+
+class PaidReactionTypeChat(BaseObject):
+    """
+    A paid reaction on behalf of an owned chat
+
+    :param chat_id: Identifier of the chat
+    :type chat_id: :class:`Int53`
+    """
+
+    ID: typing.Literal["paidReactionTypeChat"] = Field("paidReactionTypeChat", validation_alias="@type", alias="@type")
+    chat_id: Int53
+
+
+class PaidReactionTypeRegular(BaseObject):
+    """
+    A paid reaction on behalf of the current user
+    """
+
+    ID: typing.Literal["paidReactionTypeRegular"] = Field(
+        "paidReactionTypeRegular", validation_alias="@type", alias="@type"
+    )
+
+
+PaidReactionType = typing.Union[
+    PaidReactionTypeAnonymous,
+    PaidReactionTypeChat,
+    PaidReactionTypeRegular,
 ]
 
 
@@ -26257,6 +26302,26 @@ class UpdateAnimationSearchParameters(BaseObject):
     emojis: Vector[String]
 
 
+class UpdateApplicationRecaptchaVerificationRequired(BaseObject):
+    """
+    A request can't be completed unless reCAPTCHA verification is performed; for official mobile applications only. The method setApplicationVerificationToken must be called once the verification is completed or failed
+
+    :param verification_id: Unique identifier for the verification process
+    :type verification_id: :class:`Int53`
+    :param action: The action for the check
+    :type action: :class:`String`
+    :param recaptcha_key_id: Identifier of the reCAPTCHA key
+    :type recaptcha_key_id: :class:`String`
+    """
+
+    ID: typing.Literal["updateApplicationRecaptchaVerificationRequired"] = Field(
+        "updateApplicationRecaptchaVerificationRequired", validation_alias="@type", alias="@type"
+    )
+    verification_id: Int53
+    action: String
+    recaptcha_key_id: String
+
+
 class UpdateApplicationVerificationRequired(BaseObject):
     """
     A request can't be completed unless application verification is performed; for official mobile applications only. The method setApplicationVerificationToken must be called once the verification is completed or failed
@@ -27163,6 +27228,20 @@ class UpdateDefaultBackground(BaseObject):
     )
     background: typing.Optional[Background] = None
     for_dark_theme: Bool = False
+
+
+class UpdateDefaultPaidReactionType(BaseObject):
+    """
+    The type of default paid reaction has changed
+
+    :param type_: The new type of the default paid reaction
+    :type type_: :class:`PaidReactionType`
+    """
+
+    ID: typing.Literal["updateDefaultPaidReactionType"] = Field(
+        "updateDefaultPaidReactionType", validation_alias="@type", alias="@type"
+    )
+    type_: PaidReactionType = Field(..., alias="type")
 
 
 class UpdateDefaultReactionType(BaseObject):
@@ -28779,6 +28858,7 @@ Update = typing.Union[
     UpdateActiveNotifications,
     UpdateAnimatedEmojiMessageClicked,
     UpdateAnimationSearchParameters,
+    UpdateApplicationRecaptchaVerificationRequired,
     UpdateApplicationVerificationRequired,
     UpdateAttachmentMenuBots,
     UpdateAuthorizationState,
@@ -28833,6 +28913,7 @@ Update = typing.Union[
     UpdateConnectionState,
     UpdateContactCloseBirthdays,
     UpdateDefaultBackground,
+    UpdateDefaultPaidReactionType,
     UpdateDefaultReactionType,
     UpdateDeleteMessages,
     UpdateDiceEmojis,
@@ -28996,6 +29077,8 @@ class UpgradedGift(BaseObject):
     :type original_details: :class:`UpgradedGiftOriginalDetails`, optional
     :param owner_address: Address of the gift NFT owner in TON blockchain; may be empty if none
     :type owner_address: :class:`String`
+    :param gift_address: Address of the gift NFT in TON blockchain; may be empty if none
+    :type gift_address: :class:`String`
     """
 
     ID: typing.Literal["upgradedGift"] = Field("upgradedGift", validation_alias="@type", alias="@type")
@@ -29012,6 +29095,7 @@ class UpgradedGift(BaseObject):
     owner_id: typing.Optional[MessageSender] = None
     original_details: typing.Optional[UpgradedGiftOriginalDetails] = None
     owner_address: String = ""
+    gift_address: String = ""
 
 
 class UpgradedGiftBackdrop(BaseObject):
@@ -30742,6 +30826,7 @@ UpdateChatVideoChat.model_rebuild()
 UpdateConnectionState.model_rebuild()
 UpdateContactCloseBirthdays.model_rebuild()
 UpdateDefaultBackground.model_rebuild()
+UpdateDefaultPaidReactionType.model_rebuild()
 UpdateDefaultReactionType.model_rebuild()
 UpdateFile.model_rebuild()
 UpdateFileAddedToDownloads.model_rebuild()

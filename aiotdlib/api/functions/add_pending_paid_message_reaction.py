@@ -11,6 +11,10 @@ from pydantic import Field
 
 from ..types.base import *
 
+from ..types.all import (
+    PaidReactionType,
+)
+
 
 class AddPendingPaidMessageReaction(BaseObject):
     """
@@ -22,10 +26,8 @@ class AddPendingPaidMessageReaction(BaseObject):
     :type message_id: :class:`Int53`
     :param star_count: Number of Telegram Stars to be used for the reaction. The total number of pending paid reactions must not exceed getOption("paid_reaction_star_count_max")
     :type star_count: :class:`Int53`
-    :param use_default_is_anonymous: Pass true if the user didn't choose anonymity explicitly, for example, the reaction is set from the message bubble
-    :type use_default_is_anonymous: :class:`Bool`
-    :param is_anonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors. Ignored if use_default_is_anonymous == true
-    :type is_anonymous: :class:`Bool`
+    :param type_: Type of the paid reaction; pass null if the user didn't choose reaction type explicitly, for example, the reaction is set from the message bubble, defaults to None
+    :type type_: :class:`PaidReactionType`, optional
     """
 
     ID: typing.Literal["addPendingPaidMessageReaction"] = Field(
@@ -34,5 +36,4 @@ class AddPendingPaidMessageReaction(BaseObject):
     chat_id: Int53
     message_id: Int53
     star_count: Int53
-    use_default_is_anonymous: Bool = False
-    is_anonymous: Bool = False
+    type_: typing.Optional[PaidReactionType] = Field(None, alias="type")

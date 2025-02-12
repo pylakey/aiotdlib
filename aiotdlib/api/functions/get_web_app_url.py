@@ -20,7 +20,7 @@ class GetWebAppUrl(BaseObject):
     """
     Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
 
-    :param bot_user_id: Identifier of the target bot
+    :param bot_user_id: Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
     :type bot_user_id: :class:`Int53`
     :param url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
     :type url: :class:`String`

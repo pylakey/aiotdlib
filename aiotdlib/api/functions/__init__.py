@@ -674,6 +674,9 @@ from .get_chat_archived_stories import GetChatArchivedStories
 from .get_chat_available_message_senders import GetChatAvailableMessageSenders
 
 
+from .get_chat_available_paid_message_reaction_senders import GetChatAvailablePaidMessageReactionSenders
+
+
 from .get_chat_boost_features import GetChatBoostFeatures
 
 
@@ -2114,6 +2117,9 @@ from .set_new_chat_privacy_settings import SetNewChatPrivacySettings
 from .set_option import SetOption
 
 
+from .set_paid_message_reaction_type import SetPaidMessageReactionType
+
+
 from .set_passport_element import SetPassportElement
 
 
@@ -2370,9 +2376,6 @@ from .toggle_group_call_screen_sharing_is_paused import ToggleGroupCallScreenSha
 
 
 from .toggle_has_sponsored_messages_enabled import ToggleHasSponsoredMessagesEnabled
-
-
-from .toggle_paid_message_reaction_is_anonymous import TogglePaidMessageReactionIsAnonymous
 
 
 from .toggle_saved_messages_topic_is_pinned import ToggleSavedMessagesTopicIsPinned
@@ -2689,6 +2692,7 @@ __all__ = [
     "GetChatAdministrators",
     "GetChatArchivedStories",
     "GetChatAvailableMessageSenders",
+    "GetChatAvailablePaidMessageReactionSenders",
     "GetChatBoostFeatures",
     "GetChatBoostLevelFeatures",
     "GetChatBoostLink",
@@ -3169,6 +3173,7 @@ __all__ = [
     "SetNetworkType",
     "SetNewChatPrivacySettings",
     "SetOption",
+    "SetPaidMessageReactionType",
     "SetPassportElement",
     "SetPassportElementErrors",
     "SetPassword",
@@ -3255,7 +3260,6 @@ __all__ = [
     "ToggleGroupCallParticipantIsMuted",
     "ToggleGroupCallScreenSharingIsPaused",
     "ToggleHasSponsoredMessagesEnabled",
-    "TogglePaidMessageReactionIsAnonymous",
     "ToggleSavedMessagesTopicIsPinned",
     "ToggleSessionCanAcceptCalls",
     "ToggleSessionCanAcceptSecretChats",

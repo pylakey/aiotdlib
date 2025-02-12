@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 set -e
-brew install gperf cmake openssl
 rm -rf td/
 git clone https://github.com/pylakey/td.git
 cd td

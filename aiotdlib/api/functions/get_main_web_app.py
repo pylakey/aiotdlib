@@ -20,7 +20,7 @@ class GetMainWebApp(BaseObject):
     """
     Returns information needed to open the main Web App of a bot
 
-    :param bot_user_id: Identifier of the target bot
+    :param bot_user_id: Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
     :type bot_user_id: :class:`Int53`
     :param start_parameter: Start parameter from internalLinkTypeMainWebApp
     :type start_parameter: :class:`String`

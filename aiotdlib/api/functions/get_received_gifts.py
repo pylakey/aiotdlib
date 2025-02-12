@@ -28,15 +28,15 @@ class GetReceivedGifts(BaseObject):
     :type limit: :class:`Int32`
     :param exclude_unsaved: Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right
     :type exclude_unsaved: :class:`Bool`
-    :param exclude_saved: Pass true to exclude gifts that are saved to the chat's profile page; for channel chats with can_post_messages administrator right only
+    :param exclude_saved: Pass true to exclude gifts that are saved to the chat's profile page. Always false for gifts received by other users and channel chats without can_post_messages administrator right
     :type exclude_saved: :class:`Bool`
-    :param exclude_unlimited: Pass true to exclude gifts that can be purchased unlimited number of times; for channel chats with can_post_messages administrator right only
+    :param exclude_unlimited: Pass true to exclude gifts that can be purchased unlimited number of times
     :type exclude_unlimited: :class:`Bool`
-    :param exclude_limited: Pass true to exclude gifts that can be purchased limited number of times; for channel chats with can_post_messages administrator right only
+    :param exclude_limited: Pass true to exclude gifts that can be purchased limited number of times
     :type exclude_limited: :class:`Bool`
-    :param exclude_upgraded: Pass true to exclude upgraded gifts; for channel chats with can_post_messages administrator right only
+    :param exclude_upgraded: Pass true to exclude upgraded gifts
     :type exclude_upgraded: :class:`Bool`
-    :param sort_by_price: Pass true to sort results by gift price instead of send date; for channel chats with can_post_messages administrator right only
+    :param sort_by_price: Pass true to sort results by gift price instead of send date
     :type sort_by_price: :class:`Bool`
     """
 

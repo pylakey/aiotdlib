@@ -757,6 +757,7 @@ class API:
         GET_CHAT_ADMINISTRATORS = "getChatAdministrators"
         GET_CHAT_ARCHIVED_STORIES = "getChatArchivedStories"
         GET_CHAT_AVAILABLE_MESSAGE_SENDERS = "getChatAvailableMessageSenders"
+        GET_CHAT_AVAILABLE_PAID_MESSAGE_REACTION_SENDERS = "getChatAvailablePaidMessageReactionSenders"
         GET_CHAT_BOOST_FEATURES = "getChatBoostFeatures"
         GET_CHAT_BOOST_LEVEL_FEATURES = "getChatBoostLevelFeatures"
         GET_CHAT_BOOST_LINK = "getChatBoostLink"
@@ -1560,6 +1561,10 @@ class API:
         PAID_MEDIA_PREVIEW = "paidMediaPreview"
         PAID_MEDIA_UNSUPPORTED = "paidMediaUnsupported"
         PAID_MEDIA_VIDEO = "paidMediaVideo"
+        PAID_REACTION_TYPE = "paidReactionType"
+        PAID_REACTION_TYPE_ANONYMOUS = "paidReactionTypeAnonymous"
+        PAID_REACTION_TYPE_CHAT = "paidReactionTypeChat"
+        PAID_REACTION_TYPE_REGULAR = "paidReactionTypeRegular"
         PAID_REACTOR = "paidReactor"
         PARSE_MARKDOWN = "parseMarkdown"
         PARSE_TEXT_ENTITIES = "parseTextEntities"
@@ -2128,6 +2133,7 @@ class API:
         SET_NETWORK_TYPE = "setNetworkType"
         SET_NEW_CHAT_PRIVACY_SETTINGS = "setNewChatPrivacySettings"
         SET_OPTION = "setOption"
+        SET_PAID_MESSAGE_REACTION_TYPE = "setPaidMessageReactionType"
         SET_PASSPORT_ELEMENT = "setPassportElement"
         SET_PASSPORT_ELEMENT_ERRORS = "setPassportElementErrors"
         SET_PASSWORD = "setPassword"
@@ -2439,7 +2445,6 @@ class API:
         TOGGLE_GROUP_CALL_PARTICIPANT_IS_MUTED = "toggleGroupCallParticipantIsMuted"
         TOGGLE_GROUP_CALL_SCREEN_SHARING_IS_PAUSED = "toggleGroupCallScreenSharingIsPaused"
         TOGGLE_HAS_SPONSORED_MESSAGES_ENABLED = "toggleHasSponsoredMessagesEnabled"
-        TOGGLE_PAID_MESSAGE_REACTION_IS_ANONYMOUS = "togglePaidMessageReactionIsAnonymous"
         TOGGLE_SAVED_MESSAGES_TOPIC_IS_PINNED = "toggleSavedMessagesTopicIsPinned"
         TOGGLE_SESSION_CAN_ACCEPT_CALLS = "toggleSessionCanAcceptCalls"
         TOGGLE_SESSION_CAN_ACCEPT_SECRET_CHATS = "toggleSessionCanAcceptSecretChats"
@@ -2481,6 +2486,7 @@ class API:
         UPDATE_ACTIVE_NOTIFICATIONS = "updateActiveNotifications"
         UPDATE_ANIMATED_EMOJI_MESSAGE_CLICKED = "updateAnimatedEmojiMessageClicked"
         UPDATE_ANIMATION_SEARCH_PARAMETERS = "updateAnimationSearchParameters"
+        UPDATE_APPLICATION_RECAPTCHA_VERIFICATION_REQUIRED = "updateApplicationRecaptchaVerificationRequired"
         UPDATE_APPLICATION_VERIFICATION_REQUIRED = "updateApplicationVerificationRequired"
         UPDATE_ATTACHMENT_MENU_BOTS = "updateAttachmentMenuBots"
         UPDATE_AUTHORIZATION_STATE = "updateAuthorizationState"
@@ -2535,6 +2541,7 @@ class API:
         UPDATE_CONNECTION_STATE = "updateConnectionState"
         UPDATE_CONTACT_CLOSE_BIRTHDAYS = "updateContactCloseBirthdays"
         UPDATE_DEFAULT_BACKGROUND = "updateDefaultBackground"
+        UPDATE_DEFAULT_PAID_REACTION_TYPE = "updateDefaultPaidReactionType"
         UPDATE_DEFAULT_REACTION_TYPE = "updateDefaultReactionType"
         UPDATE_DELETE_MESSAGES = "updateDeleteMessages"
         UPDATE_DICE_EMOJIS = "updateDiceEmojis"
@@ -3199,8 +3206,7 @@ class API:
         chat_id: Int53,
         message_id: Int53,
         star_count: Int53,
-        use_default_is_anonymous: Bool = False,
-        is_anonymous: Bool = False,
+        type_: typing.Optional[PaidReactionType] = None,
         *,
         request_id: str = None,
         request_timeout: int = None,
@@ -3214,10 +3220,8 @@ class API:
         :type message_id: :class:`Int53`
         :param star_count: Number of Telegram Stars to be used for the reaction. The total number of pending paid reactions must not exceed getOption("paid_reaction_star_count_max")
         :type star_count: :class:`Int53`
-        :param use_default_is_anonymous: Pass true if the user didn't choose anonymity explicitly, for example, the reaction is set from the message bubble
-        :type use_default_is_anonymous: :class:`Bool`
-        :param is_anonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors. Ignored if use_default_is_anonymous == true
-        :type is_anonymous: :class:`Bool`
+        :param type_: Type of the paid reaction; pass null if the user didn't choose reaction type explicitly, for example, the reaction is set from the message bubble, defaults to None
+        :type type_: :class:`PaidReactionType`, optional
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
         :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
@@ -3232,8 +3236,7 @@ class API:
                 chat_id=chat_id,
                 message_id=message_id,
                 star_count=star_count,
-                use_default_is_anonymous=use_default_is_anonymous,
-                is_anonymous=is_anonymous,
+                type=type_,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -9162,6 +9165,31 @@ class API:
             request_timeout=request_timeout,
         )
 
+    async def get_chat_available_paid_message_reaction_senders(
+        self, chat_id: Int53, *, request_id: str = None, request_timeout: int = None
+    ) -> MessageSenders:
+        """
+        Returns the list of message sender identifiers, which can be used to send a paid reaction in a chat
+
+        :param chat_id: Chat identifier
+        :type chat_id: :class:`Int53`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.MessageSenders`
+        """
+
+        return await self.client.request(
+            GetChatAvailablePaidMessageReactionSenders(
+                chat_id=chat_id,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
     async def get_chat_boost_features(
         self, is_channel: Bool = False, *, request_id: str = None, request_timeout: int = None
     ) -> ChatBoostFeatures:
@@ -12102,7 +12130,7 @@ class API:
         """
         Returns information needed to open the main Web App of a bot
 
-        :param bot_user_id: Identifier of the target bot
+        :param bot_user_id: Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
         :type bot_user_id: :class:`Int53`
         :param start_parameter: Start parameter from internalLinkTypeMainWebApp
         :type start_parameter: :class:`String`
@@ -13507,15 +13535,15 @@ class API:
         :type limit: :class:`Int32`
         :param exclude_unsaved: Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right
         :type exclude_unsaved: :class:`Bool`
-        :param exclude_saved: Pass true to exclude gifts that are saved to the chat's profile page; for channel chats with can_post_messages administrator right only
+        :param exclude_saved: Pass true to exclude gifts that are saved to the chat's profile page. Always false for gifts received by other users and channel chats without can_post_messages administrator right
         :type exclude_saved: :class:`Bool`
-        :param exclude_unlimited: Pass true to exclude gifts that can be purchased unlimited number of times; for channel chats with can_post_messages administrator right only
+        :param exclude_unlimited: Pass true to exclude gifts that can be purchased unlimited number of times
         :type exclude_unlimited: :class:`Bool`
-        :param exclude_limited: Pass true to exclude gifts that can be purchased limited number of times; for channel chats with can_post_messages administrator right only
+        :param exclude_limited: Pass true to exclude gifts that can be purchased limited number of times
         :type exclude_limited: :class:`Bool`
-        :param exclude_upgraded: Pass true to exclude upgraded gifts; for channel chats with can_post_messages administrator right only
+        :param exclude_upgraded: Pass true to exclude upgraded gifts
         :type exclude_upgraded: :class:`Bool`
-        :param sort_by_price: Pass true to sort results by gift price instead of send date; for channel chats with can_post_messages administrator right only
+        :param sort_by_price: Pass true to sort results by gift price instead of send date
         :type sort_by_price: :class:`Bool`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
@@ -15344,7 +15372,7 @@ class API:
         """
         Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
 
-        :param bot_user_id: Identifier of the target bot
+        :param bot_user_id: Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
         :type bot_user_id: :class:`Int53`
         :param url: The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
         :type url: :class:`String`
@@ -16023,7 +16051,7 @@ class API:
 
         :param chat_id: Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
         :type chat_id: :class:`Int53`
-        :param bot_user_id: Identifier of the bot, providing the Web App
+        :param bot_user_id: Identifier of the bot, providing the Web App. If the bot is restricted for the current user, then show an error instead of calling the method
         :type bot_user_id: :class:`Int53`
         :param url: The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
         :type url: :class:`String`
@@ -20544,11 +20572,11 @@ class API:
         self, verification_id: Int53, token: String, *, request_id: str = None, request_timeout: int = None
     ) -> Ok:
         """
-        Application verification has been completed. Can be called before authorization
+        Application or reCAPTCHA verification has been completed. Can be called before authorization
 
-        :param verification_id: Unique identifier for the verification process as received from updateApplicationVerificationRequired
+        :param verification_id: Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired
         :type verification_id: :class:`Int53`
-        :param token: Play Integrity API token for the Android application, or secret from push notification for the iOS application; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
+        :param token: Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
         :type token: :class:`String`
         :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
         :type request_id: :class:`str`
@@ -22871,6 +22899,43 @@ class API:
             SetOption(
                 name=name,
                 value=value,
+            ),
+            request_id=request_id,
+            request_timeout=request_timeout,
+        )
+
+    async def set_paid_message_reaction_type(
+        self,
+        chat_id: Int53,
+        message_id: Int53,
+        type_: PaidReactionType,
+        *,
+        request_id: str = None,
+        request_timeout: int = None,
+    ) -> Ok:
+        """
+        Changes type of paid message reaction of the current user on a message. The message must have paid reaction added by the current user
+
+        :param chat_id: Identifier of the chat to which the message belongs
+        :type chat_id: :class:`Int53`
+        :param message_id: Identifier of the message
+        :type message_id: :class:`Int53`
+        :param type_: New type of the paid reaction
+        :type type_: :class:`PaidReactionType`
+        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
+        :type request_id: :class:`str`
+        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
+        :type request_timeout: :class:`int`
+
+        :return: response from TDLib
+        :rtype: :class:`aiotdlib.api.types.Ok`
+        """
+
+        return await self.client.request(
+            SetPaidMessageReactionType(
+                chat_id=chat_id,
+                message_id=message_id,
+                type=type_,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
@@ -25465,43 +25530,6 @@ class API:
         return await self.client.request(
             ToggleHasSponsoredMessagesEnabled(
                 has_sponsored_messages_enabled=has_sponsored_messages_enabled,
-            ),
-            request_id=request_id,
-            request_timeout=request_timeout,
-        )
-
-    async def toggle_paid_message_reaction_is_anonymous(
-        self,
-        chat_id: Int53,
-        message_id: Int53,
-        is_anonymous: Bool = False,
-        *,
-        request_id: str = None,
-        request_timeout: int = None,
-    ) -> Ok:
-        """
-        Changes whether the paid message reaction of the user to a message is anonymous. The message must have paid reaction added by the user
-
-        :param chat_id: Identifier of the chat to which the message belongs
-        :type chat_id: :class:`Int53`
-        :param message_id: Identifier of the message
-        :type message_id: :class:`Int53`
-        :param is_anonymous: Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors
-        :type is_anonymous: :class:`Bool`
-        :param request_id: custom request ID. By default random UUID4 will be generated, defaults to None
-        :type request_id: :class:`str`
-        :param request_timeout: amounts of seconds to wait of response, (:class:`TimeoutError`) will be raised if request lasts more than `request_timeout` seconds, defaults to None
-        :type request_timeout: :class:`int`
-
-        :return: response from TDLib
-        :rtype: :class:`aiotdlib.api.types.Ok`
-        """
-
-        return await self.client.request(
-            TogglePaidMessageReactionIsAnonymous(
-                chat_id=chat_id,
-                message_id=message_id,
-                is_anonymous=is_anonymous,
             ),
             request_id=request_id,
             request_timeout=request_timeout,
