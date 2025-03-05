@@ -190,11 +190,7 @@ class TDJson(CoreTDJson):
         if bool(client_id) and client_id in self._subscribed_clients:
             self._subscribed_clients.pop(client_id, None)
 
-        if (
-            len(self._subscribed_clients) == 0
-            and bool(self._listen_task)
-            and not self._listen_task.cancelled()
-        ):
+        if len(self._subscribed_clients) == 0 and bool(self._listen_task) and not self._listen_task.cancelled():
             self._listen_task.cancel()
 
     async def _listen_updates(self):
@@ -213,16 +209,13 @@ class TDJson(CoreTDJson):
             raise
 
 
-DEFAULT_TDJSON = TDJson(library_path=_get_bundled_tdjson_lib_path())
-
-
 class TDJsonClient:
     @classmethod
     def create(cls, library_path: typing.Optional[str] = None):
         if bool(library_path):
             td_json = TDJson(library_path=library_path)
         else:
-            td_json = DEFAULT_TDJSON
+            td_json = TDJson(library_path=_get_bundled_tdjson_lib_path())
 
         return cls(td_json)
 
