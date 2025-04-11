@@ -11,6 +11,7 @@ from .errors import *
 from .functions import *
 from .types import *
 
+
 TDLibObject = typing.Annotated[
     typing.Union[
         AccentColor,
