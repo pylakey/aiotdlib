@@ -11,23 +11,19 @@ from pydantic import Field
 
 from ..types.base import *
 
-from ..types.all import (
-    InputChatPhoto,
-)
 
-
-class SuggestUserProfilePhoto(BaseObject):
+class AllowUnpaidMessagesFromUser(BaseObject):
     """
-    Suggests a profile photo to another regular user with common messages and allowing non-paid messages
+    Allows the specified user to send unpaid private messages to the current user by adding a rule to userPrivacySettingAllowUnpaidMessages
 
-    :param user_id: User identifier
+    :param user_id: Identifier of the user
     :type user_id: :class:`Int53`
-    :param photo: Profile photo to suggest; inputChatPhotoPrevious isn't supported in this function
-    :type photo: :class:`InputChatPhoto`
+    :param refund_payments: Pass true to refund the user previously paid messages
+    :type refund_payments: :class:`Bool`
     """
 
-    ID: typing.Literal["suggestUserProfilePhoto"] = Field(
-        "suggestUserProfilePhoto", validation_alias="@type", alias="@type"
+    ID: typing.Literal["allowUnpaidMessagesFromUser"] = Field(
+        "allowUnpaidMessagesFromUser", validation_alias="@type", alias="@type"
     )
     user_id: Int53
-    photo: InputChatPhoto
+    refund_payments: Bool = False

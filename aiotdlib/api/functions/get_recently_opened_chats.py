@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetRecentlyOpenedChats(BaseObject):
     """
-    Returns recently opened chats; this is an offline request. Returns chats in the order of last opening
+    Returns recently opened chats. This is an offline method. Returns chats in the order of last opening
 
     :param limit: The maximum number of chats to be returned
     :type limit: :class:`Int32`

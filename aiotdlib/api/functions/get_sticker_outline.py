@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetStickerOutline(BaseObject):
     """
-    Returns outline of a sticker; this is an offline request. Returns a 404 error if the outline isn't known
+    Returns outline of a sticker. This is an offline method. Returns a 404 error if the outline isn't known
 
     :param sticker_file_id: File identifier of the sticker
     :type sticker_file_id: :class:`Int32`

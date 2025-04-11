@@ -25,7 +25,7 @@ class SendGift(BaseObject):
     :type gift_id: :class:`Int64`
     :param owner_id: Identifier of the user or the channel chat that will receive the gift
     :type owner_id: :class:`MessageSender`
-    :param text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    :param text: Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
     :type text: :class:`FormattedText`
     :param is_private: Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
     :type is_private: :class:`Bool`

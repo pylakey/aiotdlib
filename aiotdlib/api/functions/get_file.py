@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetFile(BaseObject):
     """
-    Returns information about a file; this is an offline request
+    Returns information about a file. This is an offline method
 
     :param file_id: Identifier of the file to get
     :type file_id: :class:`Int32`

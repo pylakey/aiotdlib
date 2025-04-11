@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetMessageProperties(BaseObject):
     """
-    Returns properties of a message; this is an offline request
+    Returns properties of a message. This is an offline method
 
     :param chat_id: Chat identifier
     :type chat_id: :class:`Int53`

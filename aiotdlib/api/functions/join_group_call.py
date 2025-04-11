@@ -32,6 +32,8 @@ class JoinGroupCall(BaseObject):
     :type is_my_video_enabled: :class:`Bool`
     :param invite_hash: If non-empty, invite hash to be used to join the group call without being muted by administrators
     :type invite_hash: :class:`String`
+    :param key_fingerprint: Fingerprint of the encryption key for E2E group calls not bound to a chat; pass 0 for voice chats
+    :type key_fingerprint: :class:`Int64`
     :param participant_id: Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only, defaults to None
     :type participant_id: :class:`MessageSender`, optional
     """
@@ -43,4 +45,5 @@ class JoinGroupCall(BaseObject):
     is_muted: Bool = False
     is_my_video_enabled: Bool = False
     invite_hash: String = ""
+    key_fingerprint: Int64 = 0
     participant_id: typing.Optional[MessageSender] = None

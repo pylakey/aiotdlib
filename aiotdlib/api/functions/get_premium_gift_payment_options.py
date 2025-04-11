@@ -12,15 +12,11 @@ from pydantic import Field
 from ..types.base import *
 
 
-class GetChatListsToAddChat(BaseObject):
+class GetPremiumGiftPaymentOptions(BaseObject):
     """
-    Returns chat lists to which the chat can be added. This is an offline method
-
-    :param chat_id: Chat identifier
-    :type chat_id: :class:`Int53`
+    Returns available options for gifting Telegram Premium to a user
     """
 
-    ID: typing.Literal["getChatListsToAddChat"] = Field(
-        "getChatListsToAddChat", validation_alias="@type", alias="@type"
+    ID: typing.Literal["getPremiumGiftPaymentOptions"] = Field(
+        "getPremiumGiftPaymentOptions", validation_alias="@type", alias="@type"
     )
-    chat_id: Int53

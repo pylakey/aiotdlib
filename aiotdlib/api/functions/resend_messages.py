@@ -24,6 +24,8 @@ class ResendMessages(BaseObject):
     :type chat_id: :class:`Int53`
     :param message_ids: Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
     :type message_ids: :class:`Vector[Int53]`
+    :param paid_message_star_count: The number of Telegram Stars the user agreed to pay to send the messages. Ignored if messageSendingStateFailed.required_paid_message_star_count == 0
+    :type paid_message_star_count: :class:`Int53`
     :param quote: New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false, defaults to None
     :type quote: :class:`InputTextQuote`, optional
     """
@@ -31,4 +33,5 @@ class ResendMessages(BaseObject):
     ID: typing.Literal["resendMessages"] = Field("resendMessages", validation_alias="@type", alias="@type")
     chat_id: Int53
     message_ids: Vector[Int53]
+    paid_message_star_count: Int53
     quote: typing.Optional[InputTextQuote] = None

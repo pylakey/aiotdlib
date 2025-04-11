@@ -21,7 +21,7 @@ class GetStarTransactions(BaseObject):
     """
     Returns the list of Telegram Star transactions for the specified owner
 
-    :param owner_id: Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+    :param owner_id: Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
     :type owner_id: :class:`MessageSender`
     :param offset: Offset of the first transaction to return as received from the previous request; use empty string to get the first chunk of results
     :type offset: :class:`String`

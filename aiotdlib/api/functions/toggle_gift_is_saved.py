@@ -14,7 +14,7 @@ from ..types.base import *
 
 class ToggleGiftIsSaved(BaseObject):
     """
-    Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the chat
+    Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
 
     :param received_gift_id: Identifier of the gift
     :type received_gift_id: :class:`String`

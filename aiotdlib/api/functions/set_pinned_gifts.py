@@ -16,18 +16,16 @@ from ..types.all import (
 )
 
 
-class GetStarRevenueStatistics(BaseObject):
+class SetPinnedGifts(BaseObject):
     """
-    Returns detailed Telegram Star revenue statistics
+    Changes the list of pinned gifts on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
 
-    :param owner_id: Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+    :param owner_id: Identifier of the user or the channel chat that received the gifts
     :type owner_id: :class:`MessageSender`
-    :param is_dark: Pass true if a dark theme is used by the application
-    :type is_dark: :class:`Bool`
+    :param received_gift_ids: New list of pinned gifts. All gifts must be upgraded and saved on the profile page first. There can be up to getOption("pinned_gift_count_max") pinned gifts
+    :type received_gift_ids: :class:`Vector[String]`
     """
 
-    ID: typing.Literal["getStarRevenueStatistics"] = Field(
-        "getStarRevenueStatistics", validation_alias="@type", alias="@type"
-    )
+    ID: typing.Literal["setPinnedGifts"] = Field("setPinnedGifts", validation_alias="@type", alias="@type")
     owner_id: MessageSender
-    is_dark: Bool = False
+    received_gift_ids: Vector[String]

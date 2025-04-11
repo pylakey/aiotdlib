@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetChatBoostFeatures(BaseObject):
     """
-    Returns the list of features available for different chat boost levels; this is an offline request
+    Returns the list of features available for different chat boost levels. This is an offline method
 
     :param is_channel: Pass true to get the list of features for channels; pass false to get the list of features for supergroups
     :type is_channel: :class:`Bool`

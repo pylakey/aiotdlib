@@ -14,7 +14,7 @@ from ..types.base import *
 
 class SearchRecentlyFoundChats(BaseObject):
     """
-    Searches for the specified query in the title and username of up to 50 recently found chats; this is an offline request
+    Searches for the specified query in the title and username of up to 50 recently found chats. This is an offline method
 
     :param query: Query to search for
     :type query: :class:`String`

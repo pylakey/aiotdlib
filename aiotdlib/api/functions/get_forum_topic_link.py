@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetForumTopicLink(BaseObject):
     """
-    Returns an HTTPS link to a topic in a forum chat. This is an offline request
+    Returns an HTTPS link to a topic in a forum chat. This is an offline method
 
     :param chat_id: Identifier of the chat
     :type chat_id: :class:`Int53`

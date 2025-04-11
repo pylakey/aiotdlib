@@ -36,6 +36,30 @@ class AccentColor(BaseObject):
     min_channel_chat_boost_level: Int32
 
 
+class AccountInfo(BaseObject):
+    """
+    Contains basic information about another user that started a chat with the current user
+
+    :param registration_month: Month when the user was registered in Telegram; 0-12; may be 0 if unknown
+    :type registration_month: :class:`Int32`
+    :param registration_year: Year when the user was registered in Telegram; 0-9999; may be 0 if unknown
+    :type registration_year: :class:`Int32`
+    :param phone_number_country_code: A two-letter ISO 3166-1 alpha-2 country code based on the phone number of the user; may be empty if unknown
+    :type phone_number_country_code: :class:`String`
+    :param last_name_change_date: Point in time (Unix timestamp) when the user changed name last time; 0 if unknown, defaults to None
+    :type last_name_change_date: :class:`Int32`, optional
+    :param last_photo_change_date: Point in time (Unix timestamp) when the user changed photo last time; 0 if unknown, defaults to None
+    :type last_photo_change_date: :class:`Int32`, optional
+    """
+
+    ID: typing.Literal["accountInfo"] = Field("accountInfo", validation_alias="@type", alias="@type")
+    registration_month: Int32 = 0
+    registration_year: Int32 = 0
+    phone_number_country_code: String = ""
+    last_name_change_date: typing.Optional[Int32] = 0
+    last_photo_change_date: typing.Optional[Int32] = 0
+
+
 class AccountTtl(BaseObject):
     """
     Contains information about the period of inactivity after which the current user's account will automatically be deleted
@@ -249,6 +273,8 @@ class AlternativeVideo(BaseObject):
     """
     Describes an alternative re-encoded quality of a video file
 
+    :param id: Unique identifier of the alternative video, which is used in the HLS file
+    :type id: :class:`Int64`
     :param width: Video width
     :type width: :class:`Int32`
     :param height: Video height
@@ -262,6 +288,7 @@ class AlternativeVideo(BaseObject):
     """
 
     ID: typing.Literal["alternativeVideo"] = Field("alternativeVideo", validation_alias="@type", alias="@type")
+    id: Int64
     width: Int32
     height: Int32
     codec: String
@@ -2715,6 +2742,20 @@ class CanSendMessageToUserResultOk(BaseObject):
     )
 
 
+class CanSendMessageToUserResultUserHasPaidMessages(BaseObject):
+    """
+    The user can be messaged, but the messages are paid
+
+    :param outgoing_paid_message_star_count: Number of Telegram Stars that must be paid by the current user for each sent message to the user
+    :type outgoing_paid_message_star_count: :class:`Int53`
+    """
+
+    ID: typing.Literal["canSendMessageToUserResultUserHasPaidMessages"] = Field(
+        "canSendMessageToUserResultUserHasPaidMessages", validation_alias="@type", alias="@type"
+    )
+    outgoing_paid_message_star_count: Int53
+
+
 class CanSendMessageToUserResultUserIsDeleted(BaseObject):
     """
     The user can't be messaged, because they are deleted or unknown
@@ -2737,6 +2778,7 @@ class CanSendMessageToUserResultUserRestrictsNewChats(BaseObject):
 
 CanSendMessageToUserResult = typing.Union[
     CanSendMessageToUserResultOk,
+    CanSendMessageToUserResultUserHasPaidMessages,
     CanSendMessageToUserResultUserIsDeleted,
     CanSendMessageToUserResultUserRestrictsNewChats,
 ]
@@ -3239,6 +3281,8 @@ class ChatActionBarReportAddBlock(BaseObject):
     """
     The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be blocked using the method setMessageSenderBlockList, or the other user can be added to the contact list using the method addContact. If the chat is a private chat with a user with an emoji status, then a notice about emoji status usage must be shown
 
+    :param account_info: Basic information about the other user in the chat; may be null if unknown, defaults to None
+    :type account_info: :class:`AccountInfo`, optional
     :param can_unarchive: If true, the chat was automatically archived and can be moved back to the main chat list using addChatToList simultaneously with setting chat notification settings to default using setChatNotificationSettings
     :type can_unarchive: :class:`Bool`
     """
@@ -3246,6 +3290,7 @@ class ChatActionBarReportAddBlock(BaseObject):
     ID: typing.Literal["chatActionBarReportAddBlock"] = Field(
         "chatActionBarReportAddBlock", validation_alias="@type", alias="@type"
     )
+    account_info: typing.Optional[AccountInfo] = None
     can_unarchive: Bool = False
 
 
@@ -8606,6 +8651,8 @@ class GroupCall(BaseObject):
     :type can_toggle_mute_new_participants: :class:`Bool`
     :param is_video_recorded: True, if a video file is being recorded for the call
     :type is_video_recorded: :class:`Bool`
+    :param from_call_id: Identifier of one-to-one call from which the group call was created; 0 if unknown, defaults to None
+    :type from_call_id: :class:`Int32`, optional
     :param record_duration: Duration of the ongoing group call recording, in seconds; 0 if none. An updateGroupCall update is not triggered when value of this field changes, but the same recording goes on, defaults to None
     :type record_duration: :class:`Int32`, optional
     """
@@ -8631,6 +8678,7 @@ class GroupCall(BaseObject):
     mute_new_participants: Bool = False
     can_toggle_mute_new_participants: Bool = False
     is_video_recorded: Bool = False
+    from_call_id: typing.Optional[Int32] = 0
     record_duration: typing.Optional[Int32] = 0
 
 
@@ -11911,7 +11959,7 @@ class InternalLinkTypePremiumFeatures(BaseObject):
 
 class InternalLinkTypePremiumGift(BaseObject):
     """
-    The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram with telegramPaymentPurposePremiumGiftCodes payments or in-store purchases
+    The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram with telegramPaymentPurposePremiumGift payments or in-store purchases
 
     :param referrer: Referrer specified in the link
     :type referrer: :class:`String`
@@ -13675,6 +13723,8 @@ class Message(BaseObject):
     :type via_bot_user_id: :class:`Int53`
     :param sender_business_bot_user_id: If non-zero, the user identifier of the business bot that sent this message
     :type sender_business_bot_user_id: :class:`Int53`
+    :param paid_message_star_count: The number of Telegram Stars the sender paid to send the message
+    :type paid_message_star_count: :class:`Int53`
     :param author_signature: For channel posts and anonymous group messages, optional author signature
     :type author_signature: :class:`String`
     :param content: Content of the message
@@ -13743,6 +13793,7 @@ class Message(BaseObject):
     message_thread_id: Int53
     via_bot_user_id: Int53
     sender_business_bot_user_id: Int53
+    paid_message_star_count: Int53
     author_signature: String
     content: MessageContent
     sending_state: typing.Optional[MessageSendingState] = None
@@ -15992,6 +16043,8 @@ class MessageSendOptions(BaseObject):
     """
     Options to be used when a message is sent
 
+    :param paid_message_star_count: The number of Telegram Stars the user agreed to pay to send the messages
+    :type paid_message_star_count: :class:`Int53`
     :param sending_id: Non-persistent identifier, which will be returned back in messageSendingStatePending object and can be used to match sent messages and corresponding updateNewMessage updates
     :type sending_id: :class:`Int32`
     :param disable_notification: Pass true to disable notification for the message
@@ -16008,11 +16061,12 @@ class MessageSendOptions(BaseObject):
     :type effect_id: :class:`Int64`
     :param only_preview: Pass true to get a fake message instead of actually sending them
     :type only_preview: :class:`Bool`
-    :param scheduling_state: Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled, defaults to None
+    :param scheduling_state: Message scheduling state; pass null to send message immediately. Messages sent to a secret chat, to a chat with paid messages, live location messages and self-destructing messages can't be scheduled, defaults to None
     :type scheduling_state: :class:`MessageSchedulingState`, optional
     """
 
     ID: typing.Literal["messageSendOptions"] = Field("messageSendOptions", validation_alias="@type", alias="@type")
+    paid_message_star_count: Int53
     sending_id: Int32
     disable_notification: Bool = False
     from_background: Bool = False
@@ -16085,6 +16139,8 @@ class MessageSendingStateFailed(BaseObject):
     :type need_another_reply_quote: :class:`Bool`
     :param need_drop_reply: True, if the message can be re-sent only if the message to be replied is removed. This will be done automatically by resendMessages
     :type need_drop_reply: :class:`Bool`
+    :param required_paid_message_star_count: The number of Telegram Stars that must be paid to send the message; 0 if the current amount is correct
+    :type required_paid_message_star_count: :class:`Int53`
     """
 
     ID: typing.Literal["messageSendingStateFailed"] = Field(
@@ -16096,6 +16152,7 @@ class MessageSendingStateFailed(BaseObject):
     need_another_sender: Bool = False
     need_another_reply_quote: Bool = False
     need_drop_reply: Bool = False
+    required_paid_message_star_count: Int53 = 0
 
 
 class MessageSendingStatePending(BaseObject):
@@ -16468,8 +16525,10 @@ NetworkType = typing.Union[
 
 class NewChatPrivacySettings(BaseObject):
     """
-    Contains privacy settings for new chats with non-contacts
+    Contains privacy settings for chats with non-contacts
 
+    :param incoming_paid_message_star_count: Number of Telegram Stars that must be paid for every incoming private message by non-contacts; 0-getOption("paid_message_star_count_max"). If positive, then allow_new_chats_from_unknown_users must be true. The current user will receive getOption("paid_message_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for message sending
+    :type incoming_paid_message_star_count: :class:`Int53`
     :param allow_new_chats_from_unknown_users: True, if non-contacts users are able to write first to the current user. Telegram Premium subscribers are able to write first regardless of this setting
     :type allow_new_chats_from_unknown_users: :class:`Bool`
     """
@@ -16477,6 +16536,7 @@ class NewChatPrivacySettings(BaseObject):
     ID: typing.Literal["newChatPrivacySettings"] = Field(
         "newChatPrivacySettings", validation_alias="@type", alias="@type"
     )
+    incoming_paid_message_star_count: Int53
     allow_new_chats_from_unknown_users: Bool = False
 
 
@@ -19090,53 +19150,93 @@ class PremiumGiftCodeInfo(BaseObject):
     use_date: typing.Optional[Int32] = 0
 
 
-class PremiumGiftCodePaymentOption(BaseObject):
+class PremiumGiftPaymentOption(BaseObject):
     """
-    Describes an option for creating Telegram Premium gift codes or Telegram Premium giveaway. Use telegramPaymentPurposePremiumGiftCodes or telegramPaymentPurposePremiumGiveaway for out-of-store payments
+    Describes an option for gifting Telegram Premium to a user. Use telegramPaymentPurposePremiumGift for out-of-store payments or payments in Telegram Stars
 
-    :param currency: ISO 4217 currency code for Telegram Premium gift code payment
+    :param currency: ISO 4217 currency code for the payment
     :type currency: :class:`String`
     :param amount: The amount to pay, in the smallest units of the currency
     :type amount: :class:`Int53`
     :param discount_percentage: The discount associated with this option, as a percentage
     :type discount_percentage: :class:`Int32`
+    :param month_count: Number of months the Telegram Premium subscription will be active
+    :type month_count: :class:`Int32`
+    :param store_product_id: Identifier of the store product associated with the option
+    :type store_product_id: :class:`String`
+    :param sticker: A sticker to be shown along with the option; may be null if unknown, defaults to None
+    :type sticker: :class:`Sticker`, optional
+    :param star_count: The alternative amount of Telegram Stars to pay; 0 if payment in Telegram Stars is not possible
+    :type star_count: :class:`Int53`
+    """
+
+    ID: typing.Literal["premiumGiftPaymentOption"] = Field(
+        "premiumGiftPaymentOption", validation_alias="@type", alias="@type"
+    )
+    currency: String
+    amount: Int53
+    discount_percentage: Int32
+    month_count: Int32
+    store_product_id: String
+    sticker: typing.Optional[Sticker] = None
+    star_count: Int53 = 0
+
+
+class PremiumGiftPaymentOptions(BaseObject):
+    """
+    Contains a list of options for gifting Telegram Premium to a user
+
+    :param options: The list of options sorted by Telegram Premium subscription duration
+    :type options: :class:`Vector[PremiumGiftPaymentOption]`
+    """
+
+    ID: typing.Literal["premiumGiftPaymentOptions"] = Field(
+        "premiumGiftPaymentOptions", validation_alias="@type", alias="@type"
+    )
+    options: Vector[PremiumGiftPaymentOption]
+
+
+class PremiumGiveawayPaymentOption(BaseObject):
+    """
+    Describes an option for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members. Use telegramPaymentPurposePremiumGiftCodes or telegramPaymentPurposePremiumGiveaway for out-of-store payments
+
+    :param currency: ISO 4217 currency code for Telegram Premium gift code payment
+    :type currency: :class:`String`
+    :param amount: The amount to pay, in the smallest units of the currency
+    :type amount: :class:`Int53`
     :param winner_count: Number of users which will be able to activate the gift codes
     :type winner_count: :class:`Int32`
     :param month_count: Number of months the Telegram Premium subscription will be active
     :type month_count: :class:`Int32`
     :param store_product_quantity: Number of times the store product must be paid
     :type store_product_quantity: :class:`Int32`
-    :param sticker: A sticker to be shown along with the gift code; may be null if unknown, defaults to None
-    :type sticker: :class:`Sticker`, optional
     :param store_product_id: Identifier of the store product associated with the option; may be empty if none
     :type store_product_id: :class:`String`
     """
 
-    ID: typing.Literal["premiumGiftCodePaymentOption"] = Field(
-        "premiumGiftCodePaymentOption", validation_alias="@type", alias="@type"
+    ID: typing.Literal["premiumGiveawayPaymentOption"] = Field(
+        "premiumGiveawayPaymentOption", validation_alias="@type", alias="@type"
     )
     currency: String
     amount: Int53
-    discount_percentage: Int32
     winner_count: Int32
     month_count: Int32
     store_product_quantity: Int32
-    sticker: typing.Optional[Sticker] = None
     store_product_id: String = ""
 
 
-class PremiumGiftCodePaymentOptions(BaseObject):
+class PremiumGiveawayPaymentOptions(BaseObject):
     """
-    Contains a list of options for creating Telegram Premium gift codes or Telegram Premium giveaway
+    Contains a list of options for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members
 
     :param options: The list of options
-    :type options: :class:`Vector[PremiumGiftCodePaymentOption]`
+    :type options: :class:`Vector[PremiumGiveawayPaymentOption]`
     """
 
-    ID: typing.Literal["premiumGiftCodePaymentOptions"] = Field(
-        "premiumGiftCodePaymentOptions", validation_alias="@type", alias="@type"
+    ID: typing.Literal["premiumGiveawayPaymentOptions"] = Field(
+        "premiumGiveawayPaymentOptions", validation_alias="@type", alias="@type"
     )
-    options: Vector[PremiumGiftCodePaymentOption]
+    options: Vector[PremiumGiveawayPaymentOption]
 
 
 class PremiumLimit(BaseObject):
@@ -20209,6 +20309,20 @@ class PushMessageContentHidden(BaseObject):
     is_pinned: Bool = False
 
 
+class PushMessageContentInviteVideoChatParticipants(BaseObject):
+    """
+    An invitation of participants to a video chat or live stream
+
+    :param is_current_user: True, if the current user was invited to the video chat or the live stream
+    :type is_current_user: :class:`Bool`
+    """
+
+    ID: typing.Literal["pushMessageContentInviteVideoChatParticipants"] = Field(
+        "pushMessageContentInviteVideoChatParticipants", validation_alias="@type", alias="@type"
+    )
+    is_current_user: Bool = False
+
+
 class PushMessageContentInvoice(BaseObject):
     """
     A message with an invoice from a bot
@@ -20357,6 +20471,20 @@ class PushMessageContentPremiumGiftCode(BaseObject):
     month_count: Int32
 
 
+class PushMessageContentProximityAlertTriggered(BaseObject):
+    """
+    A user in the chat came within proximity alert range from the current user
+
+    :param distance: The distance to the user
+    :type distance: :class:`Int32`
+    """
+
+    ID: typing.Literal["pushMessageContentProximityAlertTriggered"] = Field(
+        "pushMessageContentProximityAlertTriggered", validation_alias="@type", alias="@type"
+    )
+    distance: Int32
+
+
 class PushMessageContentRecurringPayment(BaseObject):
     """
     A new recurring payment was made by the current user
@@ -20405,6 +20533,8 @@ class PushMessageContentStory(BaseObject):
     """
     A message with a story
 
+    :param is_mention: True, if the user was mentioned in the story
+    :type is_mention: :class:`Bool`
     :param is_pinned: True, if the message is a pinned message with the specified content
     :type is_pinned: :class:`Bool`
     """
@@ -20412,6 +20542,7 @@ class PushMessageContentStory(BaseObject):
     ID: typing.Literal["pushMessageContentStory"] = Field(
         "pushMessageContentStory", validation_alias="@type", alias="@type"
     )
+    is_mention: Bool = False
     is_pinned: Bool = False
 
 
@@ -20479,6 +20610,26 @@ class PushMessageContentVideo(BaseObject):
     is_pinned: Bool = False
 
 
+class PushMessageContentVideoChatEnded(BaseObject):
+    """
+    A video chat or live stream has ended
+    """
+
+    ID: typing.Literal["pushMessageContentVideoChatEnded"] = Field(
+        "pushMessageContentVideoChatEnded", validation_alias="@type", alias="@type"
+    )
+
+
+class PushMessageContentVideoChatStarted(BaseObject):
+    """
+    A video chat or live stream was started
+    """
+
+    ID: typing.Literal["pushMessageContentVideoChatStarted"] = Field(
+        "pushMessageContentVideoChatStarted", validation_alias="@type", alias="@type"
+    )
+
+
 class PushMessageContentVideoNote(BaseObject):
     """
     A video note message
@@ -20533,6 +20684,7 @@ PushMessageContent = typing.Union[
     PushMessageContentGift,
     PushMessageContentGiveaway,
     PushMessageContentHidden,
+    PushMessageContentInviteVideoChatParticipants,
     PushMessageContentInvoice,
     PushMessageContentLocation,
     PushMessageContentMediaAlbum,
@@ -20541,6 +20693,7 @@ PushMessageContent = typing.Union[
     PushMessageContentPhoto,
     PushMessageContentPoll,
     PushMessageContentPremiumGiftCode,
+    PushMessageContentProximityAlertTriggered,
     PushMessageContentRecurringPayment,
     PushMessageContentScreenshotTaken,
     PushMessageContentSticker,
@@ -20549,6 +20702,8 @@ PushMessageContent = typing.Union[
     PushMessageContentText,
     PushMessageContentUpgradedGift,
     PushMessageContentVideo,
+    PushMessageContentVideoChatEnded,
+    PushMessageContentVideoChatStarted,
     PushMessageContentVideoNote,
     PushMessageContentVoiceNote,
 ]
@@ -20795,6 +20950,8 @@ class ReceivedGift(BaseObject):
     :type is_private: :class:`Bool`
     :param is_saved: True, if the gift is displayed on the chat's profile page; only for the receiver of the gift
     :type is_saved: :class:`Bool`
+    :param is_pinned: True, if the gift is pinned to the top of the chat's profile page
+    :type is_pinned: :class:`Bool`
     :param can_be_upgraded: True, if the gift is a regular gift that can be upgraded to a unique gift; only for the receiver of the gift
     :type can_be_upgraded: :class:`Bool`
     :param can_be_transferred: True, if the gift is an upgraded gift that can be transferred to another owner; only for the receiver of the gift
@@ -20817,6 +20974,7 @@ class ReceivedGift(BaseObject):
     sender_id: typing.Optional[MessageSender] = None
     is_private: Bool = False
     is_saved: Bool = False
+    is_pinned: Bool = False
     can_be_upgraded: Bool = False
     can_be_transferred: Bool = False
     was_refunded: Bool = False
@@ -22612,9 +22770,21 @@ class StarAmount(BaseObject):
     nanostar_count: Int32
 
 
+class StarCount(BaseObject):
+    """
+    Contains a number of Telegram Stars
+
+    :param star_count: Number of Telegram Stars
+    :type star_count: :class:`Int53`
+    """
+
+    ID: typing.Literal["starCount"] = Field("starCount", validation_alias="@type", alias="@type")
+    star_count: Int53
+
+
 class StarGiveawayPaymentOption(BaseObject):
     """
-    Describes an option for creating Telegram Star giveaway. Use telegramPaymentPurposeStarGiveaway for out-of-store payments
+    Describes an option for creating of Telegram Star giveaway. Use telegramPaymentPurposeStarGiveaway for out-of-store payments
 
     :param currency: ISO 4217 currency code for the payment
     :type currency: :class:`String`
@@ -22649,7 +22819,7 @@ class StarGiveawayPaymentOption(BaseObject):
 
 class StarGiveawayPaymentOptions(BaseObject):
     """
-    Contains a list of options for creating Telegram Star giveaway
+    Contains a list of options for creating of Telegram Star giveaway
 
     :param options: The list of options
     :type options: :class:`Vector[StarGiveawayPaymentOption]`
@@ -23198,7 +23368,7 @@ class StarTransactionTypeFragmentDeposit(BaseObject):
 
 class StarTransactionTypeFragmentWithdrawal(BaseObject):
     """
-    The transaction is a withdrawal of earned Telegram Stars to Fragment; for bots and channel chats only
+    The transaction is a withdrawal of earned Telegram Stars to Fragment; for regular users, bots, supergroup and channel chats only
 
     :param withdrawal_state: State of the withdrawal; may be null for refunds from Fragment, defaults to None
     :type withdrawal_state: :class:`RevenueWithdrawalState`, optional
@@ -23265,6 +23435,8 @@ class StarTransactionTypeGiftUpgrade(BaseObject):
     """
     The transaction is an upgrade of a gift; for regular users only
 
+    :param user_id: Identifier of the user that initially sent the gift
+    :type user_id: :class:`Int53`
     :param gift: The upgraded gift
     :type gift: :class:`UpgradedGift`
     """
@@ -23272,6 +23444,7 @@ class StarTransactionTypeGiftUpgrade(BaseObject):
     ID: typing.Literal["starTransactionTypeGiftUpgrade"] = Field(
         "starTransactionTypeGiftUpgrade", validation_alias="@type", alias="@type"
     )
+    user_id: Int53
     gift: UpgradedGift
 
 
@@ -23302,6 +23475,46 @@ class StarTransactionTypeGooglePlayDeposit(BaseObject):
     )
 
 
+class StarTransactionTypePaidMessageReceive(BaseObject):
+    """
+    The transaction is a receiving of a paid message; for regular users and supergroup chats only
+
+    :param sender_id: Identifier of the sender of the message
+    :type sender_id: :class:`MessageSender`
+    :param message_count: Number of received paid messages
+    :type message_count: :class:`Int32`
+    :param commission_per_mille: The number of Telegram Stars received by the Telegram for each 1000 Telegram Stars paid for message sending
+    :type commission_per_mille: :class:`Int32`
+    :param commission_star_amount: The amount of Telegram Stars that were received by Telegram; can be negative for refunds
+    :type commission_star_amount: :class:`StarAmount`
+    """
+
+    ID: typing.Literal["starTransactionTypePaidMessageReceive"] = Field(
+        "starTransactionTypePaidMessageReceive", validation_alias="@type", alias="@type"
+    )
+    sender_id: MessageSender
+    message_count: Int32
+    commission_per_mille: Int32
+    commission_star_amount: StarAmount
+
+
+class StarTransactionTypePaidMessageSend(BaseObject):
+    """
+    The transaction is a sending of a paid message; for regular users only
+
+    :param chat_id: Identifier of the chat that received the payment
+    :type chat_id: :class:`Int53`
+    :param message_count: Number of sent paid messages
+    :type message_count: :class:`Int32`
+    """
+
+    ID: typing.Literal["starTransactionTypePaidMessageSend"] = Field(
+        "starTransactionTypePaidMessageSend", validation_alias="@type", alias="@type"
+    )
+    chat_id: Int53
+    message_count: Int32
+
+
 class StarTransactionTypePremiumBotDeposit(BaseObject):
     """
     The transaction is a deposit of Telegram Stars from the Premium bot; for regular users only
@@ -23310,6 +23523,26 @@ class StarTransactionTypePremiumBotDeposit(BaseObject):
     ID: typing.Literal["starTransactionTypePremiumBotDeposit"] = Field(
         "starTransactionTypePremiumBotDeposit", validation_alias="@type", alias="@type"
     )
+
+
+class StarTransactionTypePremiumPurchase(BaseObject):
+    """
+    The transaction is a purchase of Telegram Premium subscription; for regular users only
+
+    :param user_id: Identifier of the user that received the Telegram Premium subscription
+    :type user_id: :class:`Int53`
+    :param month_count: Number of months the Telegram Premium subscription will be active
+    :type month_count: :class:`Int32`
+    :param sticker: A sticker to be shown in the transaction information; may be null if unknown, defaults to None
+    :type sticker: :class:`Sticker`, optional
+    """
+
+    ID: typing.Literal["starTransactionTypePremiumPurchase"] = Field(
+        "starTransactionTypePremiumPurchase", validation_alias="@type", alias="@type"
+    )
+    user_id: Int53
+    month_count: Int32
+    sticker: typing.Optional[Sticker] = None
 
 
 class StarTransactionTypeTelegramAdsWithdrawal(BaseObject):
@@ -23386,7 +23619,10 @@ StarTransactionType = typing.Union[
     StarTransactionTypeGiftUpgrade,
     StarTransactionTypeGiveawayDeposit,
     StarTransactionTypeGooglePlayDeposit,
+    StarTransactionTypePaidMessageReceive,
+    StarTransactionTypePaidMessageSend,
     StarTransactionTypePremiumBotDeposit,
+    StarTransactionTypePremiumPurchase,
     StarTransactionTypeTelegramAdsWithdrawal,
     StarTransactionTypeTelegramApiUsage,
     StarTransactionTypeUnsupported,
@@ -23875,10 +24111,35 @@ class StorePaymentPurposeGiftedStars(BaseObject):
     star_count: Int53
 
 
+class StorePaymentPurposePremiumGift(BaseObject):
+    """
+    The user gifting Telegram Premium to another user
+
+    :param currency: ISO 4217 currency code of the payment currency
+    :type currency: :class:`String`
+    :param amount: Paid amount, in the smallest units of the currency
+    :type amount: :class:`Int53`
+    :param user_id: Identifiers of the user which will receive Telegram Premium
+    :type user_id: :class:`Int53`
+    :param text: Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    :type text: :class:`FormattedText`
+    """
+
+    ID: typing.Literal["storePaymentPurposePremiumGift"] = Field(
+        "storePaymentPurposePremiumGift", validation_alias="@type", alias="@type"
+    )
+    currency: String
+    amount: Int53
+    user_id: Int53
+    text: FormattedText
+
+
 class StorePaymentPurposePremiumGiftCodes(BaseObject):
     """
-    The user creating Telegram Premium gift codes for other users
+    The user boosting a chat by creating Telegram Premium gift codes for other users
 
+    :param boosted_chat_id: Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user
+    :type boosted_chat_id: :class:`Int53`
     :param currency: ISO 4217 currency code of the payment currency
     :type currency: :class:`String`
     :param amount: Paid amount, in the smallest units of the currency
@@ -23887,18 +24148,16 @@ class StorePaymentPurposePremiumGiftCodes(BaseObject):
     :type user_ids: :class:`Vector[Int53]`
     :param text: Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
     :type text: :class:`FormattedText`
-    :param boosted_chat_id: Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none, defaults to None
-    :type boosted_chat_id: :class:`Int53`, optional
     """
 
     ID: typing.Literal["storePaymentPurposePremiumGiftCodes"] = Field(
         "storePaymentPurposePremiumGiftCodes", validation_alias="@type", alias="@type"
     )
+    boosted_chat_id: Int53
     currency: String
     amount: Int53
     user_ids: Vector[Int53]
     text: FormattedText
-    boosted_chat_id: typing.Optional[Int53] = 0
 
 
 class StorePaymentPurposePremiumGiveaway(BaseObject):
@@ -23986,6 +24245,7 @@ class StorePaymentPurposeStars(BaseObject):
 
 StorePaymentPurpose = typing.Union[
     StorePaymentPurposeGiftedStars,
+    StorePaymentPurposePremiumGift,
     StorePaymentPurposePremiumGiftCodes,
     StorePaymentPurposePremiumGiveaway,
     StorePaymentPurposePremiumSubscription,
@@ -24819,6 +25079,8 @@ class Supergroup(BaseObject):
     :type status: :class:`ChatMemberStatus`
     :param boost_level: Approximate boost level for the chat
     :type boost_level: :class:`Int32`
+    :param paid_message_star_count: Number of Telegram Stars that must be paid by non-administrator users of the supergroup chat for each sent message
+    :type paid_message_star_count: :class:`Int53`
     :param usernames: Usernames of the supergroup or channel; may be null, defaults to None
     :type usernames: :class:`Usernames`, optional
     :param verification_status: Information about verification status of the supergroup or channel; may be null if none, defaults to None
@@ -24860,6 +25122,7 @@ class Supergroup(BaseObject):
     date: Int32
     status: ChatMemberStatus
     boost_level: Int32
+    paid_message_star_count: Int53
     usernames: typing.Optional[Usernames] = None
     verification_status: typing.Optional[VerificationStatus] = None
     has_linked_chat: Bool = False
@@ -24903,6 +25166,8 @@ class SupergroupFullInfo(BaseObject):
     :type invite_link: :class:`ChatInviteLink`, optional
     :param bot_verification: Information about verification status of the supergroup or the channel provided by a bot; may be null if none or unknown, defaults to None
     :type bot_verification: :class:`BotVerification`, optional
+    :param can_enable_paid_messages: True, if paid messages can be enabled in the supergroup chat; for supergroup only
+    :type can_enable_paid_messages: :class:`Bool`
     :param can_enable_paid_reaction: True, if paid reaction can be enabled in the channel chat; for channels only
     :type can_enable_paid_reaction: :class:`Bool`
     :param can_get_members: True, if members of the chat can be retrieved via getSupergroupMembers or searchChatMembers
@@ -24968,6 +25233,7 @@ class SupergroupFullInfo(BaseObject):
     location: typing.Optional[ChatLocation] = None
     invite_link: typing.Optional[ChatInviteLink] = None
     bot_verification: typing.Optional[BotVerification] = None
+    can_enable_paid_messages: Bool = False
     can_enable_paid_reaction: Bool = False
     can_get_members: Bool = False
     has_hidden_members: Bool = False
@@ -25293,10 +25559,38 @@ class TelegramPaymentPurposeJoinChat(BaseObject):
     invite_link: String
 
 
+class TelegramPaymentPurposePremiumGift(BaseObject):
+    """
+    The user gifting Telegram Premium to another user
+
+    :param currency: ISO 4217 currency code of the payment currency
+    :type currency: :class:`String`
+    :param amount: Paid amount, in the smallest units of the currency
+    :type amount: :class:`Int53`
+    :param user_id: Identifier of the user which will receive Telegram Premium
+    :type user_id: :class:`Int53`
+    :param month_count: Number of months the Telegram Premium subscription will be active for the user
+    :type month_count: :class:`Int32`
+    :param text: Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+    :type text: :class:`FormattedText`
+    """
+
+    ID: typing.Literal["telegramPaymentPurposePremiumGift"] = Field(
+        "telegramPaymentPurposePremiumGift", validation_alias="@type", alias="@type"
+    )
+    currency: String
+    amount: Int53
+    user_id: Int53
+    month_count: Int32
+    text: FormattedText
+
+
 class TelegramPaymentPurposePremiumGiftCodes(BaseObject):
     """
-    The user creating Telegram Premium gift codes for other users
+    The user boosting a chat by creating Telegram Premium gift codes for other users
 
+    :param boosted_chat_id: Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user
+    :type boosted_chat_id: :class:`Int53`
     :param currency: ISO 4217 currency code of the payment currency
     :type currency: :class:`String`
     :param amount: Paid amount, in the smallest units of the currency
@@ -25307,19 +25601,17 @@ class TelegramPaymentPurposePremiumGiftCodes(BaseObject):
     :type month_count: :class:`Int32`
     :param text: Text to show along with the gift codes; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
     :type text: :class:`FormattedText`
-    :param boosted_chat_id: Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none, defaults to None
-    :type boosted_chat_id: :class:`Int53`, optional
     """
 
     ID: typing.Literal["telegramPaymentPurposePremiumGiftCodes"] = Field(
         "telegramPaymentPurposePremiumGiftCodes", validation_alias="@type", alias="@type"
     )
+    boosted_chat_id: Int53
     currency: String
     amount: Int53
     user_ids: Vector[Int53]
     month_count: Int32
     text: FormattedText
-    boosted_chat_id: typing.Optional[Int53] = 0
 
 
 class TelegramPaymentPurposePremiumGiveaway(BaseObject):
@@ -25397,6 +25689,7 @@ class TelegramPaymentPurposeStars(BaseObject):
 TelegramPaymentPurpose = typing.Union[
     TelegramPaymentPurposeGiftedStars,
     TelegramPaymentPurposeJoinChat,
+    TelegramPaymentPurposePremiumGift,
     TelegramPaymentPurposePremiumGiftCodes,
     TelegramPaymentPurposePremiumGiveaway,
     TelegramPaymentPurposeStarGiveaway,
@@ -29222,6 +29515,8 @@ class User(BaseObject):
     :type is_mutual_contact: :class:`Bool`
     :param is_close_friend: The user is a close friend of the current user; implies that the user is a contact
     :type is_close_friend: :class:`Bool`
+    :param paid_message_star_count: Number of Telegram Stars that must be paid by general user for each sent message to the user. If positive and userFullInfo is unknown, use canSendMessageToUser to check whether the current user must pay
+    :type paid_message_star_count: :class:`Int53`
     :param type_: Type of the user
     :type type_: :class:`UserType`
     :param language_code: IETF language tag of the user's language; only available to bots
@@ -29267,6 +29562,7 @@ class User(BaseObject):
     is_contact: Bool
     is_mutual_contact: Bool
     is_close_friend: Bool
+    paid_message_star_count: Int53
     type_: UserType = Field(..., alias="type")
     language_code: String
     usernames: typing.Optional[Usernames] = None
@@ -29291,6 +29587,10 @@ class UserFullInfo(BaseObject):
 
     :param gift_count: Number of saved to profile gifts for other users or the total number of received gifts for the current user
     :type gift_count: :class:`Int32`
+    :param incoming_paid_message_star_count: Number of Telegram Stars that must be paid by the user for each sent message to the current user
+    :type incoming_paid_message_star_count: :class:`Int53`
+    :param outgoing_paid_message_star_count: Number of Telegram Stars that must be paid by the current user for each sent message to the user
+    :type outgoing_paid_message_star_count: :class:`Int53`
     :param personal_photo: User profile photo set by the current user for the contact; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null, then it is the same photo as in user.profile_photo and chat.photo. This photo isn't returned in the list of user photos, defaults to None
     :type personal_photo: :class:`ChatPhoto`, optional
     :param photo: User profile photo; may be null. If null and user.profile_photo is null, then the photo is empty; otherwise, it is unknown. If non-null and personal_photo is null, then it is the same photo as in user.profile_photo and chat.photo, defaults to None
@@ -29335,6 +29635,8 @@ class UserFullInfo(BaseObject):
 
     ID: typing.Literal["userFullInfo"] = Field("userFullInfo", validation_alias="@type", alias="@type")
     gift_count: Int32
+    incoming_paid_message_star_count: Int53
+    outgoing_paid_message_star_count: Int53
     personal_photo: typing.Optional[ChatPhoto] = None
     photo: typing.Optional[ChatPhoto] = None
     public_photo: typing.Optional[ChatPhoto] = None
@@ -29422,6 +29724,16 @@ class UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages(BaseObject):
     )
 
 
+class UserPrivacySettingAllowUnpaidMessages(BaseObject):
+    """
+    A privacy setting for managing whether the user can receive messages without additional payment
+    """
+
+    ID: typing.Literal["userPrivacySettingAllowUnpaidMessages"] = Field(
+        "userPrivacySettingAllowUnpaidMessages", validation_alias="@type", alias="@type"
+    )
+
+
 class UserPrivacySettingAutosaveGifts(BaseObject):
     """
     A privacy setting for managing whether received gifts are automatically shown on the user's profile page
@@ -29498,6 +29810,7 @@ UserPrivacySetting = typing.Union[
     UserPrivacySettingAllowFindingByPhoneNumber,
     UserPrivacySettingAllowPeerToPeerCalls,
     UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages,
+    UserPrivacySettingAllowUnpaidMessages,
     UserPrivacySettingAutosaveGifts,
     UserPrivacySettingShowBio,
     UserPrivacySettingShowBirthdate,
@@ -30254,6 +30567,7 @@ CallStateDiscarded.model_rebuild()
 CallStateError.model_rebuild()
 CallStateReady.model_rebuild()
 Chat.model_rebuild()
+ChatActionBarReportAddBlock.model_rebuild()
 ChatActiveStories.model_rebuild()
 ChatAdministrators.model_rebuild()
 ChatAvailableReactionsSome.model_rebuild()
@@ -30642,8 +30956,9 @@ PollTypeQuiz.model_rebuild()
 PremiumFeaturePromotionAnimation.model_rebuild()
 PremiumFeatures.model_rebuild()
 PremiumGiftCodeInfo.model_rebuild()
-PremiumGiftCodePaymentOption.model_rebuild()
-PremiumGiftCodePaymentOptions.model_rebuild()
+PremiumGiftPaymentOption.model_rebuild()
+PremiumGiftPaymentOptions.model_rebuild()
+PremiumGiveawayPaymentOptions.model_rebuild()
 PremiumLimit.model_rebuild()
 PremiumPaymentOption.model_rebuild()
 PremiumSourceBusinessFeature.model_rebuild()
@@ -30735,6 +31050,8 @@ StarTransactionTypeGiftPurchase.model_rebuild()
 StarTransactionTypeGiftSale.model_rebuild()
 StarTransactionTypeGiftTransfer.model_rebuild()
 StarTransactionTypeGiftUpgrade.model_rebuild()
+StarTransactionTypePaidMessageReceive.model_rebuild()
+StarTransactionTypePremiumPurchase.model_rebuild()
 StarTransactionTypeUserDeposit.model_rebuild()
 StarTransactions.model_rebuild()
 Sticker.model_rebuild()
@@ -30747,6 +31064,7 @@ Stickers.model_rebuild()
 StorageStatistics.model_rebuild()
 StorageStatisticsByChat.model_rebuild()
 StorageStatisticsByFileType.model_rebuild()
+StorePaymentPurposePremiumGift.model_rebuild()
 StorePaymentPurposePremiumGiftCodes.model_rebuild()
 StorePaymentPurposePremiumGiveaway.model_rebuild()
 StorePaymentPurposeStarGiveaway.model_rebuild()
@@ -30773,6 +31091,7 @@ TMeUrlTypeChatInvite.model_rebuild()
 TMeUrls.model_rebuild()
 TargetChatChosen.model_rebuild()
 TargetChatInternalLink.model_rebuild()
+TelegramPaymentPurposePremiumGift.model_rebuild()
 TelegramPaymentPurposePremiumGiftCodes.model_rebuild()
 TelegramPaymentPurposePremiumGiveaway.model_rebuild()
 TelegramPaymentPurposeStarGiveaway.model_rebuild()

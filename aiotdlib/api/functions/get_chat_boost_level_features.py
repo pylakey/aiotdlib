@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetChatBoostLevelFeatures(BaseObject):
     """
-    Returns the list of features available on the specific chat boost level; this is an offline request
+    Returns the list of features available on the specific chat boost level. This is an offline method
 
     :param level: Chat boost level
     :type level: :class:`Int32`

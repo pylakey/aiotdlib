@@ -14,7 +14,7 @@ from ..types.base import *
 
 class SendQuickReplyShortcutMessages(BaseObject):
     """
-    Sends messages from a quick reply shortcut. Requires Telegram Business subscription
+    Sends messages from a quick reply shortcut. Requires Telegram Business subscription. Can't be used to send paid messages
 
     :param chat_id: Identifier of the chat to which to send messages. The chat must be a private chat with a regular user
     :type chat_id: :class:`Int53`

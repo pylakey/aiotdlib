@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetSupergroup(BaseObject):
     """
-    Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot
+    Returns information about a supergroup or a channel by its identifier. This is an offline method if the current user is not a bot
 
     :param supergroup_id: Supergroup or channel identifier
     :type supergroup_id: :class:`Int53`

@@ -14,7 +14,7 @@ from ..types.base import *
 
 class SearchChats(BaseObject):
     """
-    Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main chat list
+    Searches for the specified query in the title and username of already known chats. This is an offline method. Returns chats in the order seen in the main chat list
 
     :param query: Query to search for. If the query is empty, returns up to 50 recently found chats
     :type query: :class:`String`

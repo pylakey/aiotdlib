@@ -8,11 +8,11 @@
 > This library is still in development, so any updates before version 1.0.0 may include breaking changes. Please be cautious and pin the library version when using it. If you wish to update, I recommend reviewing the Git commit history.
 
 > This wrapper is actual
-> for **[TDLib v1.8.45](https://github.com/tdlib/td/commit/8e29c4d7d21db3ab2c7a88c384626e95ef789f61)**
+> for **[TDLib v1.8.46](https://github.com/tdlib/td/commit/b498497bbfd6b80c86f800b3546a0170206317d3)**
 >
 > This package includes prebuilt TDLib binaries for macOS (arm64) and Debian (amd64).
 > You can use your own binary by passing `library_path` argument to `Client` class constructor. Make sure it's built
-> from [this commit](https://github.com/tdlib/td/commit/8e29c4d7d21db3ab2c7a88c384626e95ef789f61). Compatibility with
+> from [this commit](https://github.com/tdlib/td/commit/b498497bbfd6b80c86f800b3546a0170206317d3). Compatibility with
 > other versions of library is not guaranteed.
 
 ## Features

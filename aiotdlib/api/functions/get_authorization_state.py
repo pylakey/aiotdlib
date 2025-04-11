@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetAuthorizationState(BaseObject):
     """
-    Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
+    Returns the current authorization state. This is an offline method. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
     """
 
     ID: typing.Literal["getAuthorizationState"] = Field(

@@ -14,7 +14,7 @@ from ..types.base import *
 
 class GetSecretChat(BaseObject):
     """
-    Returns information about a secret chat by its identifier. This is an offline request
+    Returns information about a secret chat by its identifier. This is an offline method
 
     :param secret_chat_id: Secret chat identifier
     :type secret_chat_id: :class:`Int32`

@@ -12,15 +12,15 @@ from pydantic import Field
 from ..types.base import *
 
 
-class GetChatListsToAddChat(BaseObject):
+class GetPaidMessageRevenue(BaseObject):
     """
-    Returns chat lists to which the chat can be added. This is an offline method
+    Returns the total number of Telegram Stars received by the current user for paid messages from the given user
 
-    :param chat_id: Chat identifier
-    :type chat_id: :class:`Int53`
+    :param user_id: Identifier of the user
+    :type user_id: :class:`Int53`
     """
 
-    ID: typing.Literal["getChatListsToAddChat"] = Field(
-        "getChatListsToAddChat", validation_alias="@type", alias="@type"
+    ID: typing.Literal["getPaidMessageRevenue"] = Field(
+        "getPaidMessageRevenue", validation_alias="@type", alias="@type"
     )
-    chat_id: Int53
+    user_id: Int53
