@@ -2,6 +2,8 @@ import re
 from abc import ABC, abstractmethod
 from typing import Awaitable, Callable, NoReturn, Optional, Union
 
+from aiotdlib.api.types.all import MessagePaidMedia
+
 from .api import (
     BaseObject,
     MessageAnimation,
@@ -105,7 +107,10 @@ class MergedFilter(BaseObjectFilter):
     """
 
     def __init__(
-        self, base_filter: BaseFilter, and_filter: BaseFilter = None, or_filter: BaseFilter = None
+        self,
+        base_filter: BaseFilter,
+        and_filter: BaseFilter = None,
+        or_filter: BaseFilter = None,
     ):
         self.base_filter = base_filter
 
@@ -114,11 +119,7 @@ class MergedFilter(BaseObjectFilter):
 
         self.and_filter = and_filter
 
-        if (
-            self.and_filter
-            and not isinstance(self.and_filter, bool)
-            and self.and_filter.data_filter
-        ):
+        if self.and_filter and not isinstance(self.and_filter, bool) and self.and_filter.data_filter:
             self.data_filter = True
 
         self.or_filter = or_filter
@@ -164,10 +165,7 @@ class MergedFilter(BaseObjectFilter):
 
     @property
     def name(self) -> str:
-        return (
-            f"<{self.base_filter} {'and' if self.and_filter else 'or'} "
-            f"{self.and_filter or self.or_filter}>"
-        )
+        return f"<{self.base_filter} {'and' if self.and_filter else 'or'} {self.and_filter or self.or_filter}>"
 
     @name.setter
     def name(self, name: str) -> NoReturn:
@@ -206,144 +204,168 @@ class XORFilter(BaseObjectFilter):
 class AllFilter(BaseObjectFilter):
     name = "Filters.all"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
+    async def filter(self, update: BaseObject) -> bool:
         return True
 
 
 class MessageFilter(BaseObjectFilter):
     name = "Filters.message"
 
-    async def filter(self, update: UpdateNewMessage) -> Optional[Union[bool, dict]]:
+    async def filter(self, update: BaseObject) -> bool:
         return isinstance(update, UpdateNewMessage)
 
 
-class TextFilter(MessageFilter):
+class TextFilter(BaseObjectFilter):
     name = "Filters.text"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageText)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageText)
 
 
-class AnimationFilter(MessageFilter):
+_CaptionTypes = (
+    MessagePhoto,
+    MessageVideo,
+    MessageAnimation,
+    MessageDocument,
+    MessageAudio,
+    MessagePaidMedia,
+    MessageVoiceNote,
+)
+
+
+class CaptionFilter(BaseObjectFilter):
+    name = "Filters.caption"
+
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, _CaptionTypes)
+
+
+class AnimationFilter(BaseObjectFilter):
     name = "Filters.animation"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageAnimation)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageAnimation)
 
 
-class AudioFilter(MessageFilter):
+class AudioFilter(BaseObjectFilter):
     name = "Filters.audio"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageAudio)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageAudio)
 
 
-class ContactFilter(MessageFilter):
+class ContactFilter(BaseObjectFilter):
     name = "Filters.contact"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageContact)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageContact)
 
 
-class DiceFilter(MessageFilter):
+class DiceFilter(BaseObjectFilter):
     name = "Filters.dice"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageDice)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageDice)
 
 
-class DocumentFilter(MessageFilter):
+class DocumentFilter(BaseObjectFilter):
     name = "Filters.document"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageDocument)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageDocument)
 
 
-class GameFilter(MessageFilter):
+class GameFilter(BaseObjectFilter):
     name = "Filters.game"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageGame)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageGame)
 
 
-class InvoiceFilter(MessageFilter):
+class InvoiceFilter(BaseObjectFilter):
     name = "Filters.invoice"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageInvoice)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageInvoice)
 
 
-class LocationFilter(MessageFilter):
+class LocationFilter(BaseObjectFilter):
     name = "Filters.location"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageLocation)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageLocation)
 
 
-class PhotoFilter(MessageFilter):
+class PhotoFilter(BaseObjectFilter):
     name = "Filters.photo"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessagePhoto)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessagePhoto)
 
 
-class PollFilter(MessageFilter):
+class PollFilter(BaseObjectFilter):
     name = "Filters.poll"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessagePoll)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessagePoll)
 
 
-class StickerFilter(MessageFilter):
+class StickerFilter(BaseObjectFilter):
     name = "Filters.sticker"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageSticker)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageSticker)
 
 
-class UnsupportedFilter(MessageFilter):
+class UnsupportedFilter(BaseObjectFilter):
     name = "Filters.unsupported"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageUnsupported)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageUnsupported)
 
 
-class VenueFilter(MessageFilter):
+class VenueFilter(BaseObjectFilter):
     name = "Filters.venue"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageVenue)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageVenue)
 
 
-class VideoFilter(MessageFilter):
+class VideoFilter(BaseObjectFilter):
     name = "Filters.video"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageVideo)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageVideo)
 
 
-class VideoNoteFilter(MessageFilter):
+class VideoNoteFilter(BaseObjectFilter):
     name = "Filters.video_note"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageVideoNote)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageVideoNote)
 
 
-class VoiceNoteFilter(MessageFilter):
+class VoiceNoteFilter(BaseObjectFilter):
     name = "Filters.voice_note"
 
-    async def filter(self, update: UpdateNewMessage) -> bool:
-        return isinstance(update.message.content, MessageVoiceNote)
+    async def filter(self, update: BaseObject) -> bool:
+        return isinstance(update, UpdateNewMessage) and isinstance(update.message.content, MessageVoiceNote)
 
 
-class BotCommandFilter(TextFilter):
+class BotCommandFilter(BaseObjectFilter):
     data_filter = True
     command: str = None
 
     def __init__(self, command: str = "*"):
         self.command = command
 
-    async def filter(self, update: UpdateNewMessage) -> Union[bool, dict]:
+    async def filter(self, update: BaseObject) -> Union[bool, dict]:
+        if not isinstance(update, UpdateNewMessage):
+            return False
+
+        if not isinstance(update.message.content, MessageText):
+            return False
+
         message_text = update.message.content.text.text
 
         if not message_text.startswith("/"):
@@ -360,18 +382,30 @@ class BotCommandFilter(TextFilter):
         return False
 
 
-class RegexFilter(TextFilter):
+class RegexFilter(BaseObjectFilter):
     data_filter = True
     regex: re.Pattern
 
     def __init__(self, pattern: str, flags: int = 0):
         self.regex = re.compile(pattern, flags=flags)
 
-    async def filter(self, update: UpdateNewMessage) -> Union[bool, dict]:
-        message_text = update.message.content.text.text
+    async def filter(self, update: BaseObject) -> Union[bool, dict]:
+        if not isinstance(update, UpdateNewMessage):
+            return False
+
+        if isinstance(update.message.content, MessageText):
+            message_text = update.message.content.text.text
+
+        if isinstance(update.message.content, _CaptionTypes):
+            message_text = update.message.content.caption.text
+
+        if not message_text:
+            return False
+
         match = self.regex.match(message_text)
 
         if bool(match):
+            update.EXTRA["regex_match"] = match
             return {"regex_match": match}
 
         return False
