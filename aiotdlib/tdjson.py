@@ -151,6 +151,7 @@ class CoreTDJson:
         result = self._td_execute(query)
 
         if result:
+            self.logger.debug("Query result: %s", result)
             result = ujson.loads(result)
 
         return result
@@ -203,7 +204,7 @@ class TDJson(CoreTDJson):
 
                     if client_id in self._subscribed_clients:
                         await self._subscribed_clients[client_id].enqueue_update(update)
-        except asyncio.CancelledError:
+        except (asyncio.CancelledError, KeyboardInterrupt):
             self._subscribed_clients.clear()
             self._listen_task = None
             raise
@@ -261,7 +262,7 @@ class TDJsonClient:
             try:
                 message = await self._updates_queue.get()
                 yield message
-            except asyncio.CancelledError:
+            except (asyncio.CancelledError, KeyboardInterrupt):
                 self._cleanup()
                 raise
 
