@@ -273,3 +273,4 @@ fabric.properties
 test.py
 td/
 aiotdlib/tdlib/**
+!tdlib/*.so
