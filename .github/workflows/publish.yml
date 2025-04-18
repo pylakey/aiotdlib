@@ -45,7 +45,7 @@ jobs:
             arch: x86_64
           - os: ubuntu-22.04-arm
             platform: linux
-            arch: arm64
+            arch: aarch64
           - os: macos-latest
             platform: darwin
             arch: x86_64
