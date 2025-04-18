@@ -16,9 +16,9 @@ SYSTEM_LIB_EXTENSION = {
 ARCH_ALIASES = {
     "x86_64": "x86_64",
     "amd64": "x86_64",
-    "aarch64": "arm64",
-    "arm64": "arm64",
-    "arm64v8": "arm64",
+    "aarch64": "aarch64",
+    "arm64": "aarch64",
+    "arm64v8": "aarch64",
 }
 
 # Architecture aliases for filenames
@@ -34,7 +34,7 @@ FILENAME_ARCH_ALIASES = {
 PLATFORM_TAGS = {
     ("darwin", "arm64"): "macosx_11_0_arm64",
     ("darwin", "x86_64"): "macosx_10_9_x86_64",
-    ("linux", "arm64"): "manylinux_2_28_arm64",
+    ("linux", "arm64"): "manylinux_2_28_aarch64",
     ("linux", "x86_64"): "manylinux_2_28_x86_64",
 }
 
