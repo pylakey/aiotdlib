@@ -16,9 +16,9 @@ SYSTEM_LIB_EXTENSION = {
 ARCH_ALIASES = {
     "x86_64": "x86_64",
     "amd64": "x86_64",
-    "aarch64": "aarch64",
-    "arm64": "aarch64",
-    "arm64v8": "aarch64",
+    "aarch64": "arm64",  # Back to arm64 for macOS compatibility
+    "arm64": "arm64",
+    "arm64v8": "arm64",
 }
 
 # Architecture aliases for filenames
@@ -34,7 +34,7 @@ FILENAME_ARCH_ALIASES = {
 PLATFORM_TAGS = {
     ("darwin", "arm64"): "macosx_11_0_arm64",
     ("darwin", "x86_64"): "macosx_10_9_x86_64",
-    ("linux", "arm64"): "manylinux_2_28_aarch64",
+    ("linux", "aarch64"): "manylinux_2_28_aarch64",  # Now using aarch64 for Linux
     ("linux", "x86_64"): "manylinux_2_28_x86_64",
 }
 
@@ -56,7 +56,14 @@ def get_macos_arch_from_env():
 
 def get_normalized_arch(machine_name: str) -> str:
     """Normalize architecture name to unified format."""
-    return ARCH_ALIASES.get(machine_name.lower(), machine_name.lower())
+    system = platform.system().lower()
+    arch = ARCH_ALIASES.get(machine_name.lower(), machine_name.lower())
+
+    # For Linux, convert arm64 to aarch64 for platform tags
+    if system == "linux" and arch == "arm64":
+        return "aarch64"
+
+    return arch
 
 
 def get_filename_arch(machine_name: str) -> str:
