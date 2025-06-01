@@ -139,7 +139,9 @@ class MergedFilter(BaseObjectFilter):
 
                 if comp_output:
                     if self.data_filter:
-                        merged = (base_output or {}) | (comp_output or {})
+                        base_data = base_output if isinstance(base_output, dict) else {}
+                        comp_data = comp_output if isinstance(comp_output, dict) else {}
+                        merged = base_data | comp_data
 
                         if merged:
                             return merged
