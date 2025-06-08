@@ -395,6 +395,8 @@ class RegexFilter(BaseObjectFilter):
         if not isinstance(update, UpdateNewMessage):
             return False
 
+        message_text = None
+
         if isinstance(update.message.content, MessageText):
             message_text = update.message.content.text.text
 
